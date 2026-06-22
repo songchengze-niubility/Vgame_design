@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame 关卡设计映射"
+  short_description: "梳理 Vgame 关卡地形/Loop/刷怪/编辑器/场景管线的设计与配置方式。"
+  default_prompt: "请使用 $vgame-level-design-map 分析这个关卡的地形结构和战斗节奏设计。"

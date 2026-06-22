@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame Character Kit Design Map"
+  short_description: "Map Vgame heroes, skills, passives, and equipment synergy."
+  default_prompt: "Use $vgame-character-kit-design-map to analyze a Vgame character kit and its skill/equipment synergy."

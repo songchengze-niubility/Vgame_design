@@ -1,0 +1,660 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-06-22T14:21:29",
+  "nodes": [
+    {
+      "id": "document:37dd68363fc1",
+      "type": "document",
+      "name": "Vgame Design — Agent-First Knowledge Base",
+      "filePath": "AGENTS.md",
+      "summary": "Vgame Design — Agent-First Knowledge Base",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 76,
+        "sha256": "2d8a0ee27aaed0a18cbebd4b9293404d5e5b6e6ace924056dc155bc2219929d7"
+      }
+    },
+    {
+      "id": "document:5353c59756b7",
+      "type": "document",
+      "name": "Vgame Design Architecture",
+      "filePath": "ARCHITECTURE.md",
+      "summary": "Vgame Design Architecture",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 50,
+        "sha256": "63f6f1b1241b2bf3e35ce648f69e9f37e1873b023c73a6a82dde8061d7f51bbc"
+      }
+    },
+    {
+      "id": "document:2d5d10cfc503",
+      "type": "document",
+      "name": "Vgame Design Agent Instructions",
+      "filePath": "CLAUDE.md",
+      "summary": "Vgame Design Agent Instructions",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 36,
+        "sha256": "e0990d1e07fd74ffe8a1049d35510262d54b81aa15cbe752485bcd7bb8903fc2"
+      }
+    },
+    {
+      "id": "document:7b8c25d2dd97",
+      "type": "document",
+      "name": "Cross-Repo Changes",
+      "filePath": "CROSS-REPO-CHANGES.md",
+      "summary": "Cross-Repo Changes",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 29,
+        "sha256": "ff9274275c315b8994342c83821f98beeffb84a3a7778e6540148552930fb0bc"
+      }
+    },
+    {
+      "id": "document:3483d4aa37ac",
+      "type": "document",
+      "name": "Design Docs",
+      "filePath": "design/README.md",
+      "summary": "Design Docs",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 6,
+        "sha256": "963e218cf86401d75def189877e08c096cbeb55745263303e17199a6202f1092"
+      }
+    },
+    {
+      "id": "document:abe17297a3bb",
+      "type": "document",
+      "name": "[系统名] 反推文档",
+      "filePath": "design/REVERSE-ENGINEERING-TEMPLATE.md",
+      "summary": "[系统名] 反推文档",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 28,
+        "sha256": "b56fee8f0080f1a69f6d651985560257fa89853f69da5b24aa7700527e96560a"
+      }
+    },
+    {
+      "id": "document:1059094c31fc",
+      "type": "document",
+      "name": "[系统名] Design Doc",
+      "filePath": "design/TEMPLATE.md",
+      "summary": "[系统名] Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 38,
+        "sha256": "fc652905d1c10833ff4b23b640d78e8456df7db635ca166d830f2b9c22499419"
+      }
+    },
+    {
+      "id": "document:8db518927522",
+      "type": "document",
+      "name": "Vgame Design Rules",
+      "filePath": "DESIGN.md",
+      "summary": "Vgame Design Rules",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 44,
+        "sha256": "d8ce3ef2687c5f7b40a39cf5c6f28b9c0b57af6b603b1687296590a553977df8"
+      }
+    },
+    {
+      "id": "document:f4547e46f01e",
+      "type": "document",
+      "name": "Vgame Golden Principles",
+      "filePath": "golden-principles.md",
+      "summary": "Vgame Golden Principles",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 13,
+        "sha256": "3ec6d469402e90fa43ef32650a94c6c32ec2e2f8ed50afae57fc01a7eacdf2f3"
+      }
+    },
+    {
+      "id": "document:8200ff23f79a",
+      "type": "document",
+      "name": "Vgame Design Coding And Script Standards",
+      "filePath": "harness/coding-standards.md",
+      "summary": "Vgame Design Coding And Script Standards",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 32,
+        "sha256": "244767164b78155dbbc7b6910f6022aee9ef55895c28ed63203ed9b4561a8d71"
+      }
+    },
+    {
+      "id": "document:3610185bbb36",
+      "type": "document",
+      "name": "Harness Engineering 概览",
+      "filePath": "harness/concepts/00-overview.md",
+      "summary": "Harness Engineering 概览",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 41,
+        "sha256": "4231fe5e35dc845be06e31c5e4102a92472fd70c4be23dd07b5df24f89a3ae98"
+      }
+    },
+    {
+      "id": "document:2cd5efb6a82e",
+      "type": "document",
+      "name": "仓库即记录系统",
+      "filePath": "harness/concepts/01-repo-as-source-of-truth.md",
+      "summary": "仓库即记录系统",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 39,
+        "sha256": "0fddb3174e068708e006abd57c443917d5b7e4ca5e9d8fcef98510f8a906021d"
+      }
+    },
+    {
+      "id": "document:8c9d767e2724",
+      "type": "document",
+      "name": "机械化执行",
+      "filePath": "harness/concepts/02-mechanical-enforcement.md",
+      "summary": "机械化执行",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 21,
+        "sha256": "f81bb5d9a7960b207c7142ae68e13d0b12ed5740baafdd82b301075e55326276"
+      }
+    },
+    {
+      "id": "document:9c38e88f1c12",
+      "type": "document",
+      "name": "吞吐量改变合并理念",
+      "filePath": "harness/concepts/03-throughput-changes-merge.md",
+      "summary": "吞吐量改变合并理念",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 22,
+        "sha256": "60607806caf04726d19d9c8013a682331d87573147b4c96871be8f1e5e4ccf35"
+      }
+    },
+    {
+      "id": "document:313db56ee3d9",
+      "type": "document",
+      "name": "熵管理",
+      "filePath": "harness/concepts/04-entropy-management.md",
+      "summary": "熵管理",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 30,
+        "sha256": "893036d671108b4adcbeb3d6ee2f7c0ea50f5da017eee3d1f3996156e51805ca"
+      }
+    },
+    {
+      "id": "document:3e52122e105e",
+      "type": "document",
+      "name": "设计 -> 提案 -> 任务流程",
+      "filePath": "harness/concepts/05-design-proposal-task.md",
+      "summary": "设计 -> 提案 -> 任务流程",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 60,
+        "sha256": "e7e8193e48f346f6102c1e830c42ec41492bdac4dcb7bb8f00d00160491f6ef2"
+      }
+    },
+    {
+      "id": "document:1f2277c8273e",
+      "type": "document",
+      "name": "File Conventions",
+      "filePath": "harness/file-conventions.md",
+      "summary": "File Conventions",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 30,
+        "sha256": "652785490d81d147f8468dbbb489497376fc6f94aae1d95237d4ecf10381471d"
+      }
+    },
+    {
+      "id": "document:ebb80ef7fd12",
+      "type": "document",
+      "name": "Vgame Agent Skill Integration Guide",
+      "filePath": "harness/integration-guide.md",
+      "summary": "Vgame Agent Skill Integration Guide",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 55,
+        "sha256": "dc91f0d2a1f9e9ece9b5eb03348fb0b011f576f363303f09fe0ebbeafcff88bc"
+      }
+    },
+    {
+      "id": "document:24d54c348ffa",
+      "type": "document",
+      "name": "Lua Standards For Vgame",
+      "filePath": "harness/lua-standards.md",
+      "summary": "Lua Standards For Vgame",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 39,
+        "sha256": "a3b1351bc9fe3d2a003856968e84ff9d2b2407ceaa11ad2e0279882eeb6acdd4"
+      }
+    },
+    {
+      "id": "document:679aca58bac1",
+      "type": "document",
+      "name": "Maintenance Gates",
+      "filePath": "harness/maintenance-gates.md",
+      "summary": "Maintenance Gates",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "harness"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "harness",
+        "line_count": 27,
+        "sha256": "4a7a466ec2e2f6c0cf6e23818d401012240f98a19ad77e7bd2e544b832e2a544"
+      }
+    },
+    {
+      "id": "document:be22a42ab7bb",
+      "type": "document",
+      "name": "Plans",
+      "filePath": "plans/README.md",
+      "summary": "Plans",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "plan"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "plan",
+        "line_count": 6,
+        "sha256": "824323069d4dc20b2136de1ccc159f0d26344daf891d06b1c7574c6253261da6"
+      }
+    },
+    {
+      "id": "document:26a6bf2b5a91",
+      "type": "document",
+      "name": "Vgame Plans",
+      "filePath": "PLANS.md",
+      "summary": "Vgame Plans",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 20,
+        "sha256": "c32003f1bc1b5a1b27311695c1a9139be6d6a40babeca5958bcaed0808e360fd"
+      }
+    },
+    {
+      "id": "document:d00524f22f76",
+      "type": "document",
+      "name": "Proposals",
+      "filePath": "proposals/README.md",
+      "summary": "Proposals",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "proposal"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "proposal",
+        "line_count": 6,
+        "sha256": "72ca48c8d0a9df291ae0655329d93e5a36f1ef2d39c0ce2ec545c95888d43a43"
+      }
+    },
+    {
+      "id": "document:c87739c5c66a",
+      "type": "document",
+      "name": "Proposal: [标题]",
+      "filePath": "proposals/TEMPLATE.md",
+      "summary": "Proposal: [标题]",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "proposal"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "proposal",
+        "line_count": 41,
+        "sha256": "927797c715c5563f92fcf8fee729b92c7b7d85d5c438da6ed48fdfecef634abc"
+      }
+    },
+    {
+      "id": "document:cb6127d985e8",
+      "type": "document",
+      "name": "Vgame Quality Score",
+      "filePath": "quality-score.md",
+      "summary": "Vgame Quality Score",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 22,
+        "sha256": "518922a39392568b5fb8d3cee2aeb9664d441c6c2eb4afa9062ee5facbb3329b"
+      }
+    },
+    {
+      "id": "document:240c2b50eb9f",
+      "type": "document",
+      "name": "Vgame 需求澄清交接规范",
+      "filePath": "REQUIREMENT-CLARIFICATION-BRIDGE.md",
+      "summary": "Vgame 需求澄清交接规范",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 34,
+        "sha256": "645cf2cac72f44ab805231888db99b1961ac5cd35ec08172393dd98bd2e9f7a5"
+      }
+    },
+    {
+      "id": "document:424882b888c7",
+      "type": "document",
+      "name": "Vgame Design Roadbook",
+      "filePath": "ROADBOOK.md",
+      "summary": "Vgame Design Roadbook",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 20,
+        "sha256": "a3712b624a29664fcd3b7b9e1764d49709ddb3dc03fdec3a60257a3fb1d58b7d"
+      }
+    },
+    {
+      "id": "document:7c875fef5426",
+      "type": "document",
+      "name": "Security And Safety",
+      "filePath": "SECURITY.md",
+      "summary": "Security And Safety",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 21,
+        "sha256": "f3517d7aced0c52631f67e729779f291603d0f5f448230fd6ac32674d1ef5672"
+      }
+    },
+    {
+      "id": "document:a1f9f489774e",
+      "type": "document",
+      "name": "Tasks",
+      "filePath": "tasks/README.md",
+      "summary": "Tasks",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 4,
+        "sha256": "5e4148d9d12dee809c45e4f77dfbcc76344db12c2b86e06db39753025858f634"
+      }
+    },
+    {
+      "id": "document:70bd5cea30ff",
+      "type": "document",
+      "name": "Task: [标题]",
+      "filePath": "tasks/TEMPLATE.md",
+      "summary": "Task: [标题]",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 25,
+        "sha256": "d2b44136e0cd82be2d10591346bc14baf06e13030c9ab84b190be96b2045fa84"
+      }
+    },
+    {
+      "id": "document:f7496c4bbd1e",
+      "type": "document",
+      "name": "Vgame Tech Debt Tracker",
+      "filePath": "tech-debt-tracker.md",
+      "summary": "Vgame Tech Debt Tracker",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 7,
+        "sha256": "b6a94891193cfc1c6b36fc9c6549e82352348264def8eee01295e97ff53a4d35"
+      }
+    },
+    {
+      "id": "document:add5a82d6da9",
+      "type": "document",
+      "name": "Vgame 驾驭工程使用说明",
+      "filePath": "Vgame驾驭工程使用说明.md",
+      "summary": "Vgame 驾驭工程使用说明",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "low",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 69,
+        "sha256": "87cf7d2b4ef322e79223096d3b1c6601a50d62af67d059ddd89a3e42e9daeb6a"
+      }
+    }
+  ],
+  "edges": [],
+  "layers": [
+    {
+      "id": "layer:design-docs",
+      "name": "策划与治理文档",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（32份）",
+      "nodeIds": [
+        "document:37dd68363fc1",
+        "document:5353c59756b7",
+        "document:2d5d10cfc503",
+        "document:7b8c25d2dd97",
+        "document:3483d4aa37ac",
+        "document:abe17297a3bb",
+        "document:1059094c31fc",
+        "document:8db518927522",
+        "document:f4547e46f01e",
+        "document:8200ff23f79a",
+        "document:3610185bbb36",
+        "document:2cd5efb6a82e",
+        "document:8c9d767e2724",
+        "document:9c38e88f1c12",
+        "document:313db56ee3d9",
+        "document:3e52122e105e",
+        "document:1f2277c8273e",
+        "document:ebb80ef7fd12",
+        "document:24d54c348ffa",
+        "document:679aca58bac1",
+        "document:be22a42ab7bb",
+        "document:26a6bf2b5a91",
+        "document:d00524f22f76",
+        "document:c87739c5c66a",
+        "document:cb6127d985e8",
+        "document:240c2b50eb9f",
+        "document:424882b888c7",
+        "document:7c875fef5426",
+        "document:a1f9f489774e",
+        "document:70bd5cea30ff",
+        "document:f7496c4bbd1e",
+        "document:add5a82d6da9"
+      ]
+    }
+  ],
+  "statistics": {
+    "documents": 32,
+    "edges": 0
+  }
+}

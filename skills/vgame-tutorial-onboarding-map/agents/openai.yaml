@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame 新手引导映射"
+  short_description: "梳理 Vgame 战斗教学/功能引导/SystemOpen/Unlock 的配置和运行逻辑。"
+  default_prompt: "请使用 $vgame-tutorial-onboarding-map 分析新手引导系统的配置和触发逻辑。"

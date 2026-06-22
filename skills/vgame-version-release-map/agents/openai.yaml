@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame 版本功能映射"
+  short_description: "追踪 Vgame 功能发布状态、版本里程碑、功能开关和回滚记录。"
+  default_prompt: "请使用 $vgame-version-release-map 查询这个功能的发布状态和版本信息。"

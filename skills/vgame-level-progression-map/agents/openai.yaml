@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame 关卡进度地图"
+  short_description: "追踪 Vgame 正式玩法的关卡、章节、解锁、体力、扫荡和配置链。"
+  default_prompt: "请使用 Vgame 关卡进度地图 skill，只读分析这个玩法或 LevelId 涉及哪些关卡表、怎么解锁、如何验证配置链。"

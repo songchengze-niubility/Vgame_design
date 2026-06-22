@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame 奖励掉落同步"
+  short_description: "把 Vgame 奖励设计落到 Drop/UIlevel 源表并验证 DropId 引用。"
+  default_prompt: "请使用 Vgame 奖励掉落同步 skill，帮我把这批奖励落到 Drop 和 UIlevel，并列出影响矩阵和验证结果。"

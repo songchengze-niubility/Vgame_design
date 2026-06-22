@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame 战斗内容配置图"
+  short_description: "梳理 Vgame 怪物/Boss/技能/Buff/AI/波次/关卡的配置来源和引用关系。"
+  default_prompt: "请使用 $vgame-battle-content-map 分析这个战斗内容元素的配置来源和影响范围。"

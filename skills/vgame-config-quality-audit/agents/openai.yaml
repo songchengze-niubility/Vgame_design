@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame 配置质量审查"
+  short_description: "只读检查 Vgame 配置注册、引用、奖励和格式断链。"
+  default_prompt: "请使用 $vgame-config-quality-audit 对这批 Vgame 配置做只读质量审查，并列出阻断问题、警告和需要下游 skill 复核的点。"

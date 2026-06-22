@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame 战斗调参助手"
+  short_description: "读取 Vgame 配置，做战斗调参、标杆校准角色横评、全满可视量化、DPS/TTK/存活分析。"
+  default_prompt: "请使用 $vgame-battle-tuning-helper 分析这个关卡/怪物/角色强度是否合理，并在需要时结合高置信标杆生成全角色量化表。"

@@ -1,0 +1,28 @@
+[project]
+name = "Vgame"
+root = "D:\\Vgame"
+output_root = "D:\\数值文档\\策划agent\\项目专属\\Vgame\\output"
+
+[adapter]
+skill = "vgame-core-understanding"
+agent = "vgame-design-lead"
+
+[skills]
+project_context = "vgame-core-understanding"
+economy = "senior-game-economy"
+numerical_analysis = "game-numerical-analysis"
+config_schema = "vgame-config-schema"
+reward_drop_sync = "vgame-reward-drop-sync"
+level_progression = "vgame-level-progression-map"
+economy_source_map = "vgame-economy-source-map"
+growth_combat_conversion = "vgame-growth-combat-conversion-map"
+character_kit_design = "vgame-character-kit-design-map"
+hero_skill_config = "vgame-hero-skill-config-map"
+outer_loop_system = "vgame-outer-loop-system-map"
+config_quality_audit = "vgame-config-quality-audit"
+battle_content = "vgame-battle-content-map"
+level_design = "vgame-level-design-map"
+battle_tuning = "vgame-battle-tuning-helper"
+tutorial_onboarding = "vgame-tutorial-onboarding-map"
+version_release = "vgame-version-release-map"
+player_progression_simulator = "vgame-player-progression-simulator"

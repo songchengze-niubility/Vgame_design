@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame 外循环系统图"
+  short_description: "梳理 Vgame 抽卡、商店、任务、活动、签到、战令等外循环关系。"
+  default_prompt: "请使用 $vgame-outer-loop-system-map 分析这个外循环系统和资源投放、留存、商业化之间的关系。"

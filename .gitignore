@@ -1,0 +1,20 @@
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+*.bak
+
+# 本仓库保存设计与协作约束，不保存真实导出缓存。
+codex_output/
+output/
+dist/
+build/
+__pycache__/
+knowledge-graph/watchdog-state.json
+knowledge-graph/.understand-anything/diff-overlay.json
+local.env.bat
+
+# 避免误把真实配置导出或本地工具缓存提交进设计仓库。
+*.xlsx~
+*.xlsm~
+*.csv~

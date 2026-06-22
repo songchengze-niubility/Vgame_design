@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vgame 策划驾驭工程使用手册</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #5f6b76;
+      --line: #d8dee4;
+      --surface: #ffffff;
+      --surface-soft: #f5f7f8;
+      --nav: #182126;
+      --teal: #0f766e;
+      --teal-soft: #dff4f1;
+      --blue: #2563a6;
+      --blue-soft: #e8f1fb;
+      --green: #287a45;
+      --green-soft: #e4f4e9;
+      --amber: #9a6700;
+      --amber-soft: #fff3cf;
+      --red: #b4232c;
+      --red-soft: #fdebed;
+      --purple: #7152a5;
+      --purple-soft: #f0ebf8;
+      --sidebar: 248px;
+      --radius: 8px;
+      --shadow: 0 1px 2px rgba(23, 32, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface-soft);
+      font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+    a { color: inherit; }
+    code, pre { font-family: Consolas, "Cascadia Code", monospace; }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: var(--sidebar);
+      overflow-y: auto;
+      background: var(--nav);
+      color: #edf3f5;
+      padding: 24px 16px;
+      z-index: 10;
+    }
+    .brand { padding: 0 10px 20px; border-bottom: 1px solid #364149; }
+    .brand strong { display: block; font-size: 19px; }
+    .brand span { display: block; margin-top: 5px; color: #aebbc2; font-size: 12px; }
+    .nav-title {
+      margin: 22px 10px 8px;
+      color: #899aa3;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .nav-link {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 6px;
+      color: #cdd8dd;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .nav-link:hover, .nav-link.active { background: #2b373d; color: #fff; }
+
+    main { margin-left: var(--sidebar); min-width: 0; }
+    .hero {
+      padding: 54px max(28px, calc((100vw - var(--sidebar) - 1040px) / 2));
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { color: var(--teal); font-size: 13px; font-weight: 800; }
+    h1 { margin: 8px 0 12px; font-size: 38px; line-height: 1.2; }
+    .hero p { max-width: 760px; margin: 0; color: var(--muted); font-size: 17px; }
+    .hero-meta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: #3c4852;
+      background: var(--surface-soft);
+      font-size: 12px;
+    }
+
+    .content { width: min(1040px, calc(100% - 48px)); margin: 0 auto; padding: 28px 0 80px; }
+    section {
+      scroll-margin-top: 18px;
+      margin: 22px 0;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    h2 { margin: 0 0 16px; font-size: 25px; line-height: 1.35; }
+    h3 { margin: 24px 0 10px; font-size: 18px; }
+    h4 { margin: 0 0 7px; font-size: 15px; }
+    p { margin: 8px 0 14px; }
+    .section-lead { color: var(--muted); }
+
+    .callout {
+      margin: 16px 0;
+      padding: 14px 16px;
+      border-left: 4px solid var(--teal);
+      background: var(--teal-soft);
+      border-radius: 0 6px 6px 0;
+    }
+    .callout.warning { border-left-color: var(--amber); background: var(--amber-soft); }
+    .callout.danger { border-left-color: var(--red); background: var(--red-soft); }
+
+    .grid { display: grid; gap: 14px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .item {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: #fff;
+    }
+    .item p { margin: 5px 0 0; color: var(--muted); font-size: 14px; }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .phase { position: relative; padding: 18px 14px; border-radius: 7px; min-height: 138px; }
+    .phase:not(:last-child)::after {
+      content: ">";
+      position: absolute;
+      right: -10px;
+      top: 50%;
+      z-index: 2;
+      color: #77838c;
+      font-weight: 800;
+    }
+    .phase.design { background: var(--blue-soft); border: 1px solid #bdd3ec; }
+    .phase.proposal { background: var(--purple-soft); border: 1px solid #d2c4e8; }
+    .phase.task { background: var(--amber-soft); border: 1px solid #ead28b; }
+    .phase.execute { background: var(--green-soft); border: 1px solid #b9ddc4; }
+    .phase small { display: block; color: var(--muted); margin-bottom: 5px; }
+    .phase ul { margin: 9px 0 0; padding-left: 18px; font-size: 13px; }
+    .mode-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .mode {
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--teal);
+      border-radius: 7px;
+      background: #fff;
+    }
+    .mode strong { display: block; font-size: 14px; }
+    .mode span { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; }
+    .nine-flow { margin: 18px 0; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; }
+    .stage-line {
+      display: grid;
+      grid-template-columns: 54px minmax(170px, 1.1fr) minmax(200px, 1.7fr) minmax(150px, 1fr);
+      align-items: stretch;
+      border-bottom: 1px solid var(--line);
+      background: #fff;
+    }
+    .stage-line:last-child { border-bottom: 0; }
+    .stage-line > div { padding: 11px 12px; }
+    .stage-no { display: grid; place-items: center; color: #fff; background: var(--teal); font-weight: 800; }
+    .stage-line.contract .stage-no { background: var(--blue); }
+    .stage-line.specialist .stage-no { background: var(--purple); }
+    .stage-line.delivery .stage-no { background: var(--amber); }
+    .stage-line.acceptance .stage-no { background: var(--green); }
+    .stage-name strong, .stage-owner strong { display: block; }
+    .stage-name small, .stage-owner small, .stage-output { color: var(--muted); font-size: 12px; }
+    .loop {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      align-items: center;
+      margin: 18px 0;
+    }
+    .loop div { padding: 13px; text-align: center; border: 1px solid var(--line); border-radius: 7px; background: var(--surface-soft); font-weight: 700; }
+    .loop div:not(:last-child)::after { content: "→"; float: right; margin-right: -21px; color: var(--muted); }
+
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 18px; font-size: 14px; }
+    th, td { padding: 11px 12px; text-align: left; vertical-align: top; border: 1px solid var(--line); }
+    th { background: #edf1f3; font-weight: 700; }
+    tr:nth-child(even) td { background: #fafbfc; }
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .b-high { color: var(--green); background: var(--green-soft); }
+    .b-mid { color: var(--amber); background: var(--amber-soft); }
+    .b-low { color: var(--red); background: var(--red-soft); }
+    .b-info { color: var(--blue); background: var(--blue-soft); }
+
+    pre {
+      overflow-x: auto;
+      margin: 12px 0 18px;
+      padding: 15px 17px;
+      color: #e7eff2;
+      background: #202a2f;
+      border-radius: 7px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    :not(pre) > code { padding: 1px 5px; color: #1f4f6b; background: #edf3f6; border-radius: 4px; }
+    .steps { counter-reset: step; padding: 0; list-style: none; }
+    .steps li { position: relative; margin: 0 0 14px; padding: 1px 0 14px 44px; border-bottom: 1px solid #edf0f2; }
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--teal);
+      font-weight: 800;
+      font-size: 13px;
+    }
+    details { border-top: 1px solid var(--line); }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary { cursor: pointer; padding: 14px 4px; font-weight: 700; }
+    details p { padding: 0 4px 12px; color: var(--muted); }
+    footer { margin-left: var(--sidebar); padding: 22px; color: #67747d; text-align: center; font-size: 12px; }
+
+    @media (max-width: 860px) {
+      .sidebar { position: static; width: auto; max-height: none; padding: 16px; }
+      .brand { border: 0; padding-bottom: 6px; }
+      .nav-title { display: none; }
+      .nav-link { display: inline-block; padding: 6px 8px; }
+      main, footer { margin-left: 0; }
+      .hero { padding: 36px 24px; }
+      h1 { font-size: 31px; }
+      .content { width: min(100% - 28px, 720px); }
+      section { padding: 22px 18px; }
+      .workflow, .grid.three, .mode-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .phase:not(:last-child)::after { display: none; }
+      .stage-line { grid-template-columns: 48px 1fr 1.35fr; }
+      .stage-output { grid-column: 2 / 4; border-top: 1px dashed var(--line); }
+      .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .loop div::after { display: none; }
+    }
+    @media (max-width: 560px) {
+      .workflow, .grid.two, .grid.three, .mode-grid, .loop { grid-template-columns: 1fr; }
+      .stage-line { grid-template-columns: 42px 1fr; }
+      .stage-owner, .stage-output { grid-column: 2; border-top: 1px dashed var(--line); }
+      h1 { font-size: 27px; }
+      h2 { font-size: 22px; }
+      th, td { padding: 9px; font-size: 13px; }
+      table { display: block; overflow-x: auto; }
+    }
+    @media print {
+      .sidebar { display: none; }
+      main, footer { margin-left: 0; }
+      .hero { padding: 24px 0; }
+      .content { width: 100%; padding: 0; }
+      section { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <strong>Vgame 驾驭工程</strong>
+      <span>策划 Agent 项目工作手册</span>
+    </div>
+    <div class="nav-title">开始</div>
+    <a class="nav-link" href="#quick">快速开始</a>
+    <a class="nav-link" href="#modes">模式与档位</a>
+    <a class="nav-link" href="#workflow">工作流总览</a>
+    <a class="nav-link" href="#stages">九步详解</a>
+    <a class="nav-link" href="#gates">门禁契约</a>
+    <a class="nav-link" href="#roles">角色索引</a>
+    <a class="nav-link" href="#artifacts">标准产物</a>
+    <div class="nav-title">项目能力</div>
+    <a class="nav-link" href="#skills">Skill 路由</a>
+    <a class="nav-link" href="#knowledge">知识图谱</a>
+    <a class="nav-link" href="#repos">仓库关系</a>
+    <a class="nav-link" href="#commands">常用命令</a>
+    <div class="nav-title">维护</div>
+    <a class="nav-link" href="#paths">本机路径</a>
+    <a class="nav-link" href="#quality">质量与回写</a>
+    <a class="nav-link" href="#changes">变更循环</a>
+    <a class="nav-link" href="#faq">常见问题</a>
+  </aside>
+
+  <main>
+    <header class="hero">
+      <div class="eyebrow">VGAME DESIGN HARNESS</div>
+      <h1>Vgame 策划驾驭工程使用手册</h1>
+      <p>把需求澄清、项目知识、策划设计、配置分析、强度验证和落地审查组织成可追踪的工作流。仓库保存规则与知识，不保存任何成员的本地盘符。</p>
+      <div class="hero-meta">
+        <span class="pill">中文项目规范</span>
+        <span class="pill">真实配置默认只读</span>
+        <span class="pill">三源知识图谱</span>
+        <span class="pill">9 步完整策划交付</span>
+        <span class="pill">Vgame 专项 Skill 路由</span>
+      </div>
+    </header>
+
+    <div class="content">
+      <section id="quick">
+        <h2>快速开始</h2>
+        <p class="section-lead">直接说功能、目标和限制即可。总控先解析项目、控制模式、交付档位、风险档位和写入权限，再挂载 Vgame 项目适配层。</p>
+        <div class="callout"><strong>完整交付示例：</strong>“为 Vgame 设计一个新的周期 Boss 挑战，交付 DOC_UI，按 HIGH 风险执行，先做需求契约，不修改真实配置。”</div>
+        <div class="callout warning"><strong>只读分析示例：</strong>“CONFIG_REVIEW：分析资源副本金钱本什么时候开放，列出表、字段、奖励引用和风险，不修改任何文件。”</div>
+        <h3>启动顺序</h3>
+        <ol class="steps">
+          <li><strong>总控解析任务</strong><br>识别 <code>ADVICE / DISCOVERY / DESIGN / CONFIG_REVIEW / CONFIG_SYNC / FULL_DELIVERY</code>。</li>
+          <li><strong>挂载 Vgame 适配层</strong><br>读取 <code>skills/config.toml</code>、<code>vgame-core-understanding</code>、项目画像、证据地图、配置索引和交付门禁。</li>
+          <li><strong>确认项目证据</strong><br>只做高层讨论时不乱读 Excel；需要文件结论时按证据优先级回到真实源。</li>
+          <li><strong>选择工作流深度</strong><br>建议和只读审查走最小路径；完整功能才启动九步交付。</li>
+          <li><strong>人工门禁</strong><br>需求契约、澄清、规则冻结、验收就绪和最终验收均不可由 Agent 自动代签。</li>
+        </ol>
+      </section>
+
+      <section id="modes">
+        <h2>控制模式、交付档位与风险档位</h2>
+        <p class="section-lead">三组参数解决不同问题：控制模式决定“做多深”，交付档位决定“交什么文件”，风险档位决定“评审多严格”。</p>
+        <h3>控制模式</h3>
+        <div class="mode-grid">
+          <div class="mode"><strong>ADVICE</strong><span>只给建议、风险或方案，不生成文件。</span></div>
+          <div class="mode"><strong>DISCOVERY</strong><span>建立项目画像、证据地图和待确认清单。</span></div>
+          <div class="mode"><strong>DESIGN</strong><span>需求澄清、范围契约和功能规则设计。</span></div>
+          <div class="mode"><strong>CONFIG_REVIEW</strong><span>只读检查 Excel、JSON、ID 和引用链。</span></div>
+          <div class="mode"><strong>CONFIG_SYNC</strong><span>用户明确授权后同步配置与产物。</span></div>
+          <div class="mode"><strong>FULL_DELIVERY</strong><span>九步流程、正式 UI/Excel、验收和交付。</span></div>
+        </div>
+        <h3>交付档位</h3>
+        <table>
+          <thead><tr><th>档位</th><th>正式交付物</th><th>适用场景</th></tr></thead>
+          <tbody>
+            <tr><td><code>ADVICE</code></td><td>对话结论</td><td>方向咨询、风险判断</td></tr>
+            <tr><td><code>DOC_ONLY</code></td><td>Excel 策划案 + 追踪矩阵 + 验收用例</td><td>规则文档与配置策划</td></tr>
+            <tr><td><code>UI_ONLY</code></td><td>HTML + 页面/组件 PNG + UI Manifest</td><td>只做界面规格和视觉验证</td></tr>
+            <tr><td><code>DOC_UI</code></td><td>Excel + HTML + PNG + Manifest，且 Excel 嵌图</td><td>默认完整策划交付</td></tr>
+            <tr><td><code>IMPLEMENTATION</code></td><td>实际修改 + 验证证据 + 追踪与验收</td><td>代码或配置落地</td></tr>
+          </tbody>
+        </table>
+        <h3>风险档位</h3>
+        <div class="grid three">
+          <div class="item"><h4><span class="badge b-high">LOW</span> 小范围</h4><p>单模块、小调整、无复杂数值或跨系统影响。专项角色与总控自检。</p></div>
+          <div class="item"><h4><span class="badge b-mid">MEDIUM</span> 多产物</h4><p>涉及配置、Excel、UI、周期奖励或多个系统。必须做一次一致性评审。</p></div>
+          <div class="item"><h4><span class="badge b-low">HIGH</span> 核心风险</h4><p>经济投放、付费、复杂战斗、版本核心或线上变更。必须独立评审和成品复核。</p></div>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <h2>工作流总览</h2>
+        <p class="section-lead">Vgame 完整交付由通用总控编排，先执行项目适配 Step 0，再进入九步功能交付。所有下游角色读取同一份需求契约和项目证据，避免各自理解一套规则。</p>
+        <div class="callout"><strong>Step 0 · 项目适配：</strong><code>game-planning-control</code> → <code>skills/config.toml</code> → <code>vgame-core-understanding</code> → 项目画像 / 证据地图 / 配置索引 / 交付门禁。</div>
+        <div class="workflow">
+          <div class="phase design">
+            <small>步骤 1-4</small><h4>取证与核心设计</h4>
+            <ul><li>参考选择</li><li>需求契约</li><li>逐条澄清</li><li>核心设计</li></ul>
+          </div>
+          <div class="phase proposal">
+            <small>步骤 5-6</small><h4>专项与规则冻结</h4>
+            <ul><li>数值/配置/UI/实现</li><li>数据与 LiveOps</li><li>一致性评审</li></ul>
+          </div>
+          <div class="phase task">
+            <small>步骤 7-8</small><h4>正式资产</h4>
+            <ul><li>HTML 原型</li><li>页面/组件 PNG</li><li>Manifest</li><li>正式 Excel</li></ul>
+          </div>
+          <div class="phase execute">
+            <small>步骤 9</small><h4>验收与交付</h4>
+            <ul><li>追踪矩阵</li><li>Given-When-Then</li><li>自动校验</li><li>人工验收</li></ul>
+          </div>
+        </div>
+        <table>
+          <thead><tr><th>流程原则</th><th>具体要求</th></tr></thead>
+          <tbody>
+            <tr><td>唯一契约</td><td>所有角色只读取同一份 <code>00-design-contract.md</code>，变更必须同步回契约。</td></tr>
+            <tr><td>按需专项</td><td>步骤 5 不默认全跑，只调用与功能相关的数值、配置、实现、UI、数据或 LiveOps 角色。</td></tr>
+            <tr><td>证据优先</td><td>用户输入与实际文件优先于状态文件；Vgame 项目证据优先于通用经验。</td></tr>
+            <tr><td>人工终审</td><td>自动校验只证明结构通过，不能代替用户确认规则、Excel 和 UI。</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="stages">
+        <h2>九步流程详解</h2>
+        <p class="section-lead">每一步都有明确角色、输入和产物。阶段完成必须有实际文件证据，不能靠口头说明推进。</p>
+        <div class="nine-flow">
+          <div class="stage-line">
+            <div class="stage-no">1</div>
+            <div class="stage-name"><strong>任务登记与参考选择</strong><small>FAST / STANDARD / REFRESH</small></div>
+            <div class="stage-owner"><strong>project-researcher</strong><small>局部检索项目、模板、配置、代码与 UI；禁止无目标全盘扫描。</small></div>
+            <div class="stage-output"><strong>产物：</strong><code>01-project-reference.md</code></div>
+          </div>
+          <div class="stage-line contract">
+            <div class="stage-no">2</div>
+            <div class="stage-name"><strong>需求契约与范围确认</strong><small>目标、范围、非目标、规则 ID</small></div>
+            <div class="stage-owner"><strong>feature-scoper</strong><small>区分已确认事实、工作假设、待确认和已否决方案。</small></div>
+            <div class="stage-output"><strong>产物：</strong><code>00-design-contract.md</code></div>
+          </div>
+          <div class="stage-line contract">
+            <div class="stage-no">3</div>
+            <div class="stage-name"><strong>逐条澄清与决策冻结</strong><small>一次只确认一个阻塞问题</small></div>
+            <div class="stage-owner"><strong>requirement-clarifier</strong><small>提供 2-4 个选项及影响，结论同步回唯一契约。</small></div>
+            <div class="stage-output"><strong>产物：</strong><code>00-clarification-log.md</code></div>
+          </div>
+          <div class="stage-line contract">
+            <div class="stage-no">4</div>
+            <div class="stage-name"><strong>核心设计</strong><small>系统设计或战斗设计</small></div>
+            <div class="stage-owner"><strong>system-designer / combat-designer</strong><small>覆盖触发、流程、状态、资源、周期、异常、UI、配置、实现和 QA。</small></div>
+            <div class="stage-output"><strong>产物：</strong><code>02-core-design.md</code></div>
+          </div>
+          <div class="stage-line specialist">
+            <div class="stage-no">5</div>
+            <div class="stage-name"><strong>专项设计</strong><small>按任务需要选择，不默认全跑</small></div>
+            <div class="stage-owner"><strong>num / config / implementation / UI / analytics / LiveOps</strong><small>Vgame 专项 skill 在本步提供项目字段、公式、配置链和验证证据。</small></div>
+            <div class="stage-output"><strong>产物：</strong><code>03-specialist-results/</code></div>
+          </div>
+          <div class="stage-line specialist">
+            <div class="stage-no">6</div>
+            <div class="stage-name"><strong>一致性评审与规则冻结</strong><small>MEDIUM/HIGH 必须独立评审</small></div>
+            <div class="stage-owner"><strong>design-reviewer</strong><small>核对规则、数值、配置、实现和 UI；P0/P1 未关闭不得继续。</small></div>
+            <div class="stage-output"><strong>产物：</strong><code>04-review.md</code></div>
+          </div>
+          <div class="stage-line delivery">
+            <div class="stage-no">7</div>
+            <div class="stage-name"><strong>UI 资产制作</strong><small>仅 UI_ONLY / DOC_UI</small></div>
+            <div class="stage-owner"><strong>ui-prototype</strong><small>HTML 必须真实渲染，页面和组件图片都要关联页面 ID 与规则 ID。</small></div>
+            <div class="stage-output"><strong>产物：</strong><code>ui/index.html</code> + PNG + Manifest</div>
+          </div>
+          <div class="stage-line delivery">
+            <div class="stage-no">8</div>
+            <div class="stage-name"><strong>正式 Excel</strong><small>仅 DOC_ONLY / DOC_UI</small></div>
+            <div class="stage-owner"><strong>doc-writer</strong><small>规则、页面主图和组件详图邻近排版，不创建脱离正文的纯图片 Sheet。</small></div>
+            <div class="stage-output"><strong>产物：</strong><code>&lt;功能名&gt;策划案.xlsx</code></div>
+          </div>
+          <div class="stage-line acceptance">
+            <div class="stage-no">9</div>
+            <div class="stage-name"><strong>追踪、校验与用户验收</strong><small>规则 → UI/配置/实现 → 验收</small></div>
+            <div class="stage-owner"><strong>acceptance-designer + design-lead + 用户</strong><small>Given-When-Then、结构校验和人工终验；Agent 不得代替用户验收。</small></div>
+            <div class="stage-output"><strong>产物：</strong>追踪矩阵、验收用例、交付报告</div>
+          </div>
+        </div>
+        <div class="callout warning"><strong>当前接入状态：</strong>你加入的 skill 已包含流程协议、角色标准和门禁定义；其中提到的状态更新与成品校验 Python 脚本目前未随本仓库入库，手册不会假装这些命令已可执行。</div>
+      </section>
+
+      <section id="gates">
+        <h2>门禁契约</h2>
+        <p class="section-lead">工作流有五个人工门禁。状态块只记录进度，不代替文件检查，更不能代替用户验收。</p>
+        <table>
+          <thead><tr><th>门禁</th><th>状态字段</th><th>通过条件</th><th>不通过时</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge b-info">需求契约</span></td><td><code>contract_confirmed</code></td><td>用户确认契约或明确接受工作假设</td><td>留在步骤 2</td></tr>
+            <tr><td><span class="badge b-info">澄清闭环</span></td><td><code>clarification_resolved</code></td><td>阻塞问题逐条确认并同步回契约</td><td>留在步骤 3</td></tr>
+            <tr><td><span class="badge b-mid">规则冻结</span></td><td><code>review_approved</code></td><td>LOW 自检通过；MEDIUM/HIGH 的 P0/P1 已关闭</td><td>回到被点名阶段</td></tr>
+            <tr><td><span class="badge b-mid">验收就绪</span></td><td><code>acceptance_approved</code></td><td>追踪矩阵和验收用例完整、可执行</td><td>回到缺失产物阶段</td></tr>
+            <tr><td><span class="badge b-high">最终验收</span></td><td><code>delivery_accepted</code></td><td>用户确认规则、Excel 和 UI 符合预期</td><td>按问题回退；Agent 不得代签</td></tr>
+          </tbody>
+        </table>
+        <h3>阶段状态块</h3>
+        <pre>```planning-workflow-gate
+{"actor":"vgame-design-lead","phase":"project_adapter","outcome":"waiting_human",
+ "next_action":"review","evidence":"列出实际文件或表格证据"}
+```</pre>
+        <h3>回退原则</h3>
+        <table>
+          <thead><tr><th>发现问题的位置</th><th>回退规则</th></tr></thead>
+          <tbody>
+            <tr><td>核心设计</td><td>范围变化回需求契约；规则细节问题留在核心设计。</td></tr>
+            <tr><td>专项设计</td><td>回对应专项；核心规则变化则回步骤 4。</td></tr>
+            <tr><td>UI / Excel</td><td>内容问题回设计，纯视觉或排版问题留在本阶段。</td></tr>
+            <tr><td>验收 / 交付</td><td>映射缺失回对应产物；规则不可验收回评审或设计。</td></tr>
+          </tbody>
+        </table>
+        <div class="callout danger">同一阶段最多自动返工两轮。超过后必须标记 <code>blocked</code>，列出分歧、已尝试方案和需要用户决策的问题。</div>
+      </section>
+
+      <section id="roles">
+        <h2>角色索引</h2>
+        <p class="section-lead"><code>design-lead</code> 负责编排，不替代专项角色。用户没有要求并行 Agent 时，主线程也必须按同样角色标准依次完成。</p>
+        <table>
+          <thead><tr><th>角色</th><th>职责</th><th>主要步骤</th></tr></thead>
+          <tbody>
+            <tr><td><code>design-lead</code></td><td>总控、状态、门禁、冲突处理与最终交付</td><td>全程 / 步骤 9</td></tr>
+            <tr><td><code>project-researcher</code></td><td>项目取证、模板选择和局部检索</td><td>步骤 1</td></tr>
+            <tr><td><code>feature-scoper</code></td><td>收口需求并维护唯一契约</td><td>步骤 2</td></tr>
+            <tr><td><code>requirement-clarifier</code></td><td>逐条关闭会改变方向或验收的阻塞问题</td><td>步骤 3</td></tr>
+            <tr><td><code>system-designer</code></td><td>活动、任务、商城、成长、奖励、排行和红点</td><td>步骤 4</td></tr>
+            <tr><td><code>combat-designer</code></td><td>战斗、Boss、技能、Buff、AI、关卡与反馈</td><td>步骤 4</td></tr>
+            <tr><td><code>num-balance</code></td><td>数值公式、倍率、阈值、奖励和难度曲线</td><td>步骤 5</td></tr>
+            <tr><td><code>config-table</code></td><td>表结构、字段、枚举、跨表关系、迁移与校验</td><td>步骤 5</td></tr>
+            <tr><td><code>lua-scripter</code></td><td>实现、配置接入、根因定位与最小验证</td><td>步骤 5</td></tr>
+            <tr><td><code>analytics-designer</code></td><td>指标、埋点、漏斗、留存与实验观测</td><td>步骤 5</td></tr>
+            <tr><td><code>liveops-planner</code></td><td>排期、灰度、开关、补偿、回滚和复盘</td><td>步骤 5</td></tr>
+            <tr><td><code>design-reviewer</code></td><td>一致性、边界、实现风险和玩家体验评审</td><td>步骤 6</td></tr>
+            <tr><td><code>ui-prototype</code></td><td>HTML 原型、页面/组件 PNG 与 Manifest</td><td>步骤 5 / 7</td></tr>
+            <tr><td><code>doc-writer</code></td><td>把确认事实和 UI 资产整理为正式 Excel</td><td>步骤 8</td></tr>
+            <tr><td><code>acceptance-designer</code></td><td>Given-When-Then 用例和跨产物追踪矩阵</td><td>步骤 9</td></tr>
+            <tr><td><code>change-sync-reviewer</code></td><td>需求变化影响分析、同步清单和闭环复核</td><td>变更循环</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="artifacts">
+        <h2>标准产物目录</h2>
+        <p class="section-lead">每个功能使用独立目录，根目录由 Vgame 项目适配层的 <code>project.output_root</code> 指定。</p>
+        <pre>&lt;output_root&gt;/&lt;功能短名&gt;/
+├─ 00-workflow-state.json
+├─ 00-design-contract.md
+├─ 00-clarification-log.md
+├─ 01-project-reference.md
+├─ 02-core-design.md
+├─ 03-specialist-results/
+├─ 04-review.md
+├─ 05-traceability-matrix.md
+├─ 06-acceptance-cases.md
+├─ 07-change-log.md
+├─ ui/
+│  ├─ index.html
+│  ├─ page-*.png
+│  ├─ component-*.png
+│  └─ ui-asset-manifest.json
+├─ &lt;功能短名&gt;策划案.xlsx
+└─ 08-delivery-report.json</pre>
+        <h3>追踪矩阵必须回答</h3>
+        <table>
+          <thead><tr><th>规则 ID</th><th>项目证据</th><th>配置/字段</th><th>UI/页面</th><th>实现</th><th>验收</th><th>状态</th></tr></thead>
+          <tbody><tr><td>R001</td><td>文件 / Sheet / 行</td><td>表与字段</td><td>PAGE / COMPONENT</td><td>模块或代码</td><td>AC-001</td><td>draft / ready / verified / blocked / changed</td></tr></tbody>
+        </table>
+      </section>
+
+      <section id="skills">
+        <h2>Vgame Skill 路由</h2>
+        <p class="section-lead">先由 <code>vgame-core-understanding</code> 识别问题，再按领域加载专项 skill。多个 skill 可以组合，但职责不能混淆。</p>
+        <table>
+          <thead><tr><th>问题</th><th>优先 Skill</th><th>负责边界</th></tr></thead>
+          <tbody>
+            <tr><td>项目总览与路由</td><td><code>vgame-core-understanding</code></td><td>项目事实、边界与专项分流</td></tr>
+            <tr><td>表结构与注册源</td><td><code>vgame-config-schema</code></td><td>字段、公式、表作用与 Schema</td></tr>
+            <tr><td>关卡、章节、开放</td><td><code>vgame-level-progression-map</code></td><td>Level、Unlock、SystemOpen 与进度链</td></tr>
+            <tr><td>奖励与掉落</td><td><code>vgame-reward-drop-sync</code></td><td>Drop、UIlevel、首通与重复奖励</td></tr>
+            <tr><td>资源产销与经济</td><td><code>vgame-economy-source-map</code></td><td>来源、消耗、引用与经济风险</td></tr>
+            <tr><td>成长到战斗转化</td><td><code>vgame-growth-combat-conversion-map</code></td><td>养成属性、战斗收益与转化链</td></tr>
+            <tr><td>角色套件设计</td><td><code>vgame-character-kit-design-map</code></td><td>定位、技能循环、天赋、升星、专武与装备适配</td></tr>
+            <tr><td>角色技能配置</td><td><code>vgame-hero-skill-config-map</code></td><td>Hero / Skill / Buff、属性、突破与编辑器链路</td></tr>
+            <tr><td>战斗强度验证</td><td><code>vgame-battle-tuning-helper</code></td><td>DPS、TTK、存活、系数 What-If 与标杆校准</td></tr>
+            <tr><td>外循环系统</td><td><code>vgame-outer-loop-system-map</code></td><td>入口、循环、资源连接与留存职责</td></tr>
+            <tr><td>配置质量审查</td><td><code>vgame-config-quality-audit</code></td><td>悬空引用、链路缺口和配置风险</td></tr>
+            <tr><td>怪物与战斗内容</td><td><code>vgame-battle-content-map</code></td><td>怪物、Boss、AI、波次、子弹、召唤和机关</td></tr>
+            <tr><td>关卡设计</td><td><code>vgame-level-design-map</code></td><td>地形、Loop、刷怪、镜头、编辑器与场景序列化</td></tr>
+            <tr><td>新手与开启节奏</td><td><code>vgame-tutorial-onboarding-map</code></td><td>战斗教学、引导步骤、SystemOpen 与首小时体验</td></tr>
+            <tr><td>版本与发布</td><td><code>vgame-version-release-map</code></td><td>功能状态、开关、灰度、AB、Hotfix 和回滚</td></tr>
+            <tr><td>玩家进度模拟</td><td><code>vgame-player-progression-simulator</code></td><td>按天资源、里程碑、卡点、体力预算与场景对比</td></tr>
+            <tr><td>长线经济 / 综合数值</td><td><code>senior-game-economy</code><br><code>game-numerical-analysis</code></td><td>价值、奖励、成长曲线、概率与体验审计</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="knowledge">
+        <h2>知识图谱</h2>
+        <p class="section-lead">当前总图由客户端代码、配置表 Schema 和本仓库设计文档三类来源组成，用于快速定位“在哪里”和“与谁相关”。</p>
+        <div class="grid three">
+          <div class="item"><h4>客户端代码</h4><p><code>${VGAME_CLIENT_GRAPH}</code><br>类、文件、配置与调用关系。</p></div>
+          <div class="item"><h4>配置表</h4><p><code>${VGAME_CONFIG_DATAS}</code><br>290 张注册表、字段和推断引用。</p></div>
+          <div class="item"><h4>设计文档</h4><p>当前仓库<br>Design、Proposal、Task、Plan 与 Harness。</p></div>
+        </div>
+        <h3>正确查询顺序</h3>
+        <ol class="steps">
+          <li>从统一图谱定位相关节点、表和一跳关系。</li>
+          <li>按 <code>KG-AI-RULES.md</code> 判断边的来源和置信度。</li>
+          <li>回到真实 Excel、代码或设计文档确认关键事实。</li>
+          <li>涉及实际修改时，再进入对应专项 skill 的落地流程。</li>
+        </ol>
+        <div class="callout danger"><strong>不要误用：</strong><code>depends_on</code> 可能是字段名推断；<code>safe_write_columns</code> 仅表示未检测到公式，并不等于业务可安全写入。</div>
+      </section>
+
+      <section id="repos">
+        <h2>仓库关系</h2>
+        <table>
+          <thead><tr><th>位置</th><th>职责</th><th>是否保存真实配置</th></tr></thead>
+          <tbody>
+            <tr><td>当前 Vgame_design 仓库</td><td>设计规范、提案、任务、Harness、知识图谱产物</td><td>否</td></tr>
+            <tr><td><code>skills/</code></td><td>可分发的 Vgame 项目适配层、总控 Agent 与 19 个专项 Skill</td><td>否</td></tr>
+            <tr><td><code>${VGAME_ROOT}</code></td><td>游戏工程、真实配置和客户端内容</td><td>是</td></tr>
+            <tr><td><code>${VGAME_SKILL_ROOT}</code></td><td>本机安装后的 Vgame Skill 运行目录</td><td>否</td></tr>
+          </tbody>
+        </table>
+        <p>所有跨仓修改必须能说明：为什么改、改哪些源、如何验证、是否需要回写设计或 skill。</p>
+      </section>
+
+      <section id="commands">
+        <h2>常用命令</h2>
+        <h3>当前仓库已可运行</h3>
+        <pre>powershell -ExecutionPolicy Bypass -File scripts/check.ps1
+powershell -ExecutionPolicy Bypass -File scripts/doc-check.ps1
+python scripts/build_vgame_graph.py --skip-cs-refs
+python scripts/check_vgame_graph.py
+python scripts/watch_vgame_graph.py --once</pre>
+        <p>也可以直接双击 <code>knowledge-graph/</code> 下的更新、检查、监控和 UA Dashboard 启动脚本。</p>
+        <h3>工作流协议已定义但脚本尚未接入</h3>
+        <table>
+          <thead><tr><th>协议命令</th><th>用途</th><th>当前状态</th></tr></thead>
+          <tbody>
+            <tr><td><code>planning_workflow_status.py</code></td><td>读取功能阶段和现有产物</td><td><span class="badge b-mid">待接入</span></td></tr>
+            <tr><td><code>update_planning_workflow_state.py</code></td><td>写入阶段状态块</td><td><span class="badge b-mid">待接入</span></td></tr>
+            <tr><td><code>verify_design_artifacts.py</code></td><td>校验 Excel、HTML、PNG、Manifest 与规则映射</td><td><span class="badge b-mid">待接入</span></td></tr>
+            <tr><td><code>check_planning_template_cache.py</code></td><td>检查模板缓存与参考选择</td><td><span class="badge b-mid">待接入</span></td></tr>
+          </tbody>
+        </table>
+        <div class="callout warning">在这些脚本真正加入仓库并验证前，应以用户声明、状态文件和实际产物检查判断进度，不能展示虚假的“命令已通过”。</div>
+      </section>
+
+      <section id="paths">
+        <h2>本机路径配置</h2>
+        <p>可提交文件不保存盘符。每位成员只维护自己的 <code>local.env.bat</code>，该文件已被 Git 忽略。</p>
+        <pre>set "VGAME_ROOT=&lt;游戏工程根目录&gt;"
+set "VGAME_CONFIG_DATAS=&lt;配置表 Datas 目录，可选&gt;"
+set "VGAME_CLIENT_GRAPH=&lt;客户端图谱文件，可选&gt;"
+set "VGAME_CODE_ROOT=&lt;客户端代码目录，可选&gt;"
+set "VGAME_SKILL_ROOT=&lt;项目 Skill 目录&gt;"</pre>
+        <div class="callout"><code>VGAME_ROOT</code> 是基础变量。其余工程路径不填写时从它推导；Skill 路径需要单独配置。</div>
+      </section>
+
+      <section id="quality">
+        <h2>质量、置信度与经验回写</h2>
+        <table>
+          <thead><tr><th>置信度</th><th>判断标准</th><th>输出要求</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge b-high">高</span></td><td>真实源明确声明，或多个独立来源一致</td><td>给出准确文件、表或字段</td></tr>
+            <tr><td><span class="badge b-mid">中</span></td><td>代码扫描、注册表或稳定命名规则命中</td><td>说明扫描规则和剩余风险</td></tr>
+            <tr><td><span class="badge b-low">低</span></td><td>字段名、相似度、经验或语义推断</td><td>明确标注待确认，不直接落地</td></tr>
+          </tbody>
+        </table>
+        <h3>什么内容应该回写 Skill</h3>
+        <ul>
+          <li>可重复使用的项目事实、稳定配置链和已验证口径。</li>
+          <li>容易读错的字段、无效列、特殊 Boss 规则和标杆校准方法。</li>
+          <li>新配置表加入后的作用、关联、注册来源和维护规则。</li>
+        </ul>
+        <p>一次性结论、临时数据和未经验证的猜测不应固化为项目事实。</p>
+      </section>
+
+      <section id="changes">
+        <h2>需求变更循环</h2>
+        <p class="section-lead">需求、规则、数值、配置、UI 或实现变化都必须进入同一条变更链，禁止只改最后一份 Excel 或只改实现。</p>
+        <div class="loop">
+          <div>记录 CHG-xxx</div>
+          <div>影响矩阵</div>
+          <div>回到受影响阶段</div>
+          <div>同步追踪与验收</div>
+        </div>
+        <table>
+          <thead><tr><th>变化类型</th><th>回退位置</th><th>必须同步</th></tr></thead>
+          <tbody>
+            <tr><td>范围、核心体验、经济模型</td><td>步骤 2 需求契约 + 步骤 6 评审</td><td>契约、设计、专项、UI、Excel、验收</td></tr>
+            <tr><td>局部规则或数值</td><td>步骤 4 或对应专项</td><td>变更记录、追踪矩阵、验收用例</td></tr>
+            <tr><td>视觉布局</td><td>步骤 7 UI</td><td>HTML、PNG、Manifest、Excel 嵌图</td></tr>
+            <tr><td>实现或配置修复</td><td>对应专项 / IMPLEMENTATION</td><td>根因、差异、回滚和验证证据</td></tr>
+          </tbody>
+        </table>
+        <div class="callout"><strong>关闭条件：</strong>没有实际文件或验证证据时不得关闭变更；重大变化必须重新经过人工门禁。</div>
+      </section>
+
+      <section id="faq">
+        <h2>常见问题</h2>
+        <details open><summary>只想问一个配置问题，也必须写 Design 吗？</summary><p>不需要。只读事实查询直接走图谱和专项 skill，输出证据链即可。只有形成新规则或正式变更时才进入 Design / Proposal / Task。</p></details>
+        <details><summary>知识图谱和 Skill 冲突时听谁的？</summary><p>两者都不是最终真源。回到真实 Excel、代码和已确认设计核实；核实后修正图谱生成逻辑或回写 Skill。</p></details>
+        <details><summary>为什么默认不允许修改真实配置？</summary><p>分析和写入的风险不同。未经授权写表可能覆盖公式、破坏引用或制造版本冲突，因此真实写入必须由用户明确要求。</p></details>
+        <details><summary>新增配置表后做什么？</summary><p>先确认表已注册到 <code>__tables__.xlsx</code>，再全量更新图谱，并把表作用和关联补入相应项目 Skill。</p></details>
+        <details><summary>换电脑或换目录后怎么用？</summary><p>只需重新配置本机 <code>local.env.bat</code>。仓库文档、脚本和 JSON 不依赖任何成员的盘符。</p></details>
+        <details><summary>Skill 已加入，为什么状态脚本还不能运行？</summary><p>Skill 定义了流程协议和命令契约，但对应 Python 文件没有随当前仓库出现。手册会明确标为“待接入”，避免把协议描述误当成已实现能力。</p></details>
+      </section>
+    </div>
+  </main>
+
+  <footer>Vgame 策划驾驭工程使用手册 · 版本 1.1 · 2026-06-22 · 基于 game-planning-control、planning-feature-workflow 与 Vgame 项目适配层</footer>
+
+  <script>
+    const links = [...document.querySelectorAll('.nav-link')];
+    const targets = links.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver(entries => {
+      const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      links.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${visible.target.id}`));
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: [0, 0.2, 0.6] });
+    targets.forEach(target => observer.observe(target));
+  </script>
+</body>
+</html>
