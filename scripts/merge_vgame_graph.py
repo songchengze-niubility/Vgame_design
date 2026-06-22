@@ -35,10 +35,12 @@ def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
     edges = []
     layers = []
     tour = []
+    client_project = {}
 
     # === 1. 加载客户端代码图谱 ===
     if os.path.exists(client_path):
         client = load_json(client_path)
+        client_project = client.get("project", {})
         client_nodes = client.get("nodes", [])
         client_edges = client.get("edges", [])
         client_layers = client.get("layers", [])
@@ -70,6 +72,9 @@ def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
         # 配置表节点已经有 "table:" 前缀和 layer="config"
         for node in config_nodes:
             node["source"] = "config"
+            node.setdefault("summary", f"Vgame Luban 配置表：{node.get('name', node.get('id', 'unknown'))}")
+            node.setdefault("tags", ["vgame", "config-table", "luban"])
+            node.setdefault("complexity", "moderate")
 
         nodes.extend(config_nodes)
         edges.extend(config_edges)
@@ -135,6 +140,13 @@ def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
     seen_edges = set()
     unique_edges = []
     for edge in edges:
+        edge_type = edge.get("type")
+        if edge_type == "references":
+            edge["type"] = "cites"
+        elif edge_type == "used_by":
+            edge["type"] = "related"
+        edge.setdefault("direction", "forward")
+        edge.setdefault("weight", 0.7 if edge.get("type") == "depends_on" else 0.5)
         key = (edge.get("source"), edge.get("target"), edge.get("type"))
         if key not in seen_edges:
             seen_edges.add(key)
@@ -150,6 +162,7 @@ def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
             "languages": ["C#", "Lua"],
             "frameworks": ["Unity", "Luban"],
             "analyzedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "gitCommitHash": client_project.get("gitCommitHash") or "uncommitted",
             "sources": ["client-code", "config-tables", "design-docs"],
         },
         "nodes": nodes,

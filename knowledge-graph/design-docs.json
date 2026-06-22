@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-06-22T14:21:29",
+  "generated_at": "2026-06-22T15:35:27",
   "nodes": [
     {
       "id": "document:37dd68363fc1",
@@ -13,12 +13,12 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 76,
-        "sha256": "2d8a0ee27aaed0a18cbebd4b9293404d5e5b6e6ace924056dc155bc2219929d7"
+        "line_count": 75,
+        "sha256": "62ba75a8c03249cca5d48a1cadd5f5d918e54b0d5fdc5bacf103c0875e9115fa"
       }
     },
     {
@@ -32,7 +32,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -51,7 +51,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -70,12 +70,31 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
         "line_count": 29,
         "sha256": "ff9274275c315b8994342c83821f98beeffb84a3a7778e6540148552930fb0bc"
+      }
+    },
+    {
+      "id": "document:377fc91ac69b",
+      "type": "document",
+      "name": "Buff 系统 — Design Doc",
+      "filePath": "design/Buff系统Design Doc.md",
+      "summary": "Buff 系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 130,
+        "sha256": "7bd5400d33f9db16f784f549e3ab12f1f3bb58e4fb3839c070b82e3ff7209cf4"
       }
     },
     {
@@ -89,7 +108,7 @@
         "design-doc",
         "design"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "design",
@@ -108,7 +127,7 @@
         "design-doc",
         "design"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "design",
@@ -119,20 +138,552 @@
     {
       "id": "document:1059094c31fc",
       "type": "document",
-      "name": "[系统名] Design Doc",
+      "name": "<功能名称> — Design Doc",
       "filePath": "design/TEMPLATE.md",
-      "summary": "[系统名] Design Doc",
+      "summary": "<功能名称> — Design Doc",
       "tags": [
         "vgame",
         "design-doc",
         "design"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "design",
-        "line_count": 38,
-        "sha256": "fc652905d1c10833ff4b23b640d78e8456df7db635ca166d830f2b9c22499419"
+        "line_count": 75,
+        "sha256": "aac0f23f7627ecad47ea06866535cc9d40886816f461e476e8ba53d4f951e7ad"
+      }
+    },
+    {
+      "id": "document:487697f18bea",
+      "type": "document",
+      "name": "专武系统 — Design Doc",
+      "filePath": "design/专武系统Design Doc.md",
+      "summary": "专武系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 154,
+        "sha256": "580b6ecaab0d06570acaf27ad0a7f4dc4edae61a49c8582c73eea411b9841776"
+      }
+    },
+    {
+      "id": "document:6316d1684f87",
+      "type": "document",
+      "name": "专武经验副本 — Design Doc",
+      "filePath": "design/专武经验副本Design Doc.md",
+      "summary": "专武经验副本 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 154,
+        "sha256": "58d121efce9cf89f41d1b77ee6cd041796320fb97d7ea15c774f8e51be199b45"
+      }
+    },
+    {
+      "id": "document:74acaa4f574c",
+      "type": "document",
+      "name": "主线关卡系统 — Design Doc",
+      "filePath": "design/主线关卡系统Design Doc.md",
+      "summary": "主线关卡系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 139,
+        "sha256": "14279f66d4ab71cf55289fe33e29ac6d89e467d192fcbefb116b0f183cfe56c6"
+      }
+    },
+    {
+      "id": "document:360ac4879486",
+      "type": "document",
+      "name": "主角等级 — Design Doc",
+      "filePath": "design/主角等级Design Doc.md",
+      "summary": "主角等级 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 162,
+        "sha256": "5e89e233edee2377b117d07f70c4e60f496e0a54c681e109a01f334c554ae1ad"
+      }
+    },
+    {
+      "id": "document:2a009184f7b0",
+      "type": "document",
+      "name": "任务系统 — Design Doc",
+      "filePath": "design/任务系统Design Doc.md",
+      "summary": "任务系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 136,
+        "sha256": "2feb40a1cc3ae289fa588657dd34fe4dcdb1b75130983de79d82d96b57fb55c1"
+      }
+    },
+    {
+      "id": "document:44f7261307c7",
+      "type": "document",
+      "name": "伤害计算公式 — Design Doc",
+      "filePath": "design/伤害计算公式Design Doc.md",
+      "summary": "伤害计算公式 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 118,
+        "sha256": "a176e9dab8374a79053f32d0a5979e2d2b4b56f07bb6c423303e2df6ac5b2f07"
+      }
+    },
+    {
+      "id": "document:3bf6bbf18a5d",
+      "type": "document",
+      "name": "商店系统 — Design Doc",
+      "filePath": "design/商店系统Design Doc.md",
+      "summary": "商店系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 133,
+        "sha256": "3022b09a0dccd2067396b4120740898c43710d2d5e976da5cd6b6fe134800326"
+      }
+    },
+    {
+      "id": "document:2378f56b2353",
+      "type": "document",
+      "name": "大秘境 — Design Doc",
+      "filePath": "design/大秘境Design Doc.md",
+      "summary": "大秘境 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 136,
+        "sha256": "7487dc96e2989e54166f981600deaa9f6eed5bda4579ae5fadc8adf25514f266"
+      }
+    },
+    {
+      "id": "document:48fce13ed101",
+      "type": "document",
+      "name": "宝石与铭文 — Design Doc",
+      "filePath": "design/宝石与铭文Design Doc.md",
+      "summary": "宝石与铭文 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 145,
+        "sha256": "d7d1600b1ca04ac0cc2c59092f60834dcb3258eae20caf0fe74abd1aa6a1cf6a"
+      }
+    },
+    {
+      "id": "document:a2f36e0a6b4c",
+      "type": "document",
+      "name": "怪物与 Boss 系统 — Design Doc",
+      "filePath": "design/怪物与Boss系统Design Doc.md",
+      "summary": "怪物与 Boss 系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 117,
+        "sha256": "03b41e62ea8ccd4299afe03e878b5f3078f11fd497d0421a00a52d8b919c6b27"
+      }
+    },
+    {
+      "id": "document:0c2343f2dcf2",
+      "type": "document",
+      "name": "技能系统 — Design Doc",
+      "filePath": "design/技能系统Design Doc.md",
+      "summary": "技能系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 102,
+        "sha256": "ece5f8f9f471f03af6efd621d0967e8045d6f2e5a6f0d09a5ec58d108a655620"
+      }
+    },
+    {
+      "id": "document:01f6a8c23a8a",
+      "type": "document",
+      "name": "抽卡系统 — Design Doc",
+      "filePath": "design/抽卡系统Design Doc.md",
+      "summary": "抽卡系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 134,
+        "sha256": "24decd328435b978181a8e58570b70874c81a426dc3c26d5816d1b5cc29681e5"
+      }
+    },
+    {
+      "id": "document:ecdc3ed343c0",
+      "type": "document",
+      "name": "新手引导系统 — Design Doc",
+      "filePath": "design/新手引导系统Design Doc.md",
+      "summary": "新手引导系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 121,
+        "sha256": "4f9835da3b336cd92a22093c3f1deb88a0e1a66ab4e0c429a126e82d7e1f86f0"
+      }
+    },
+    {
+      "id": "document:e9d8745b6ec8",
+      "type": "document",
+      "name": "旅券副本 — Design Doc",
+      "filePath": "design/旅券副本Design Doc.md",
+      "summary": "旅券副本 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 127,
+        "sha256": "50ca2a3f1fad8b24adfc8fa47ebd53c81a223c1ed033d5539fa13b97a6a5c81b"
+      }
+    },
+    {
+      "id": "document:5dbf432d2672",
+      "type": "document",
+      "name": "旅券系统 — Design Doc",
+      "filePath": "design/旅券系统Design Doc.md",
+      "summary": "旅券系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 138,
+        "sha256": "44f59e534428a11484456dd85554ab0c12b611ea3960c5cadc610fa8b13177fb"
+      }
+    },
+    {
+      "id": "document:287cb0ab0b13",
+      "type": "document",
+      "name": "无限挑战 — Design Doc",
+      "filePath": "design/无限挑战Design Doc.md",
+      "summary": "无限挑战 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 129,
+        "sha256": "cebbe693274263d5973fee54ac44d5a207f218cb4df28daded6ac3f086d56dbe"
+      }
+    },
+    {
+      "id": "document:60ce44b676ff",
+      "type": "document",
+      "name": "映射装备系统 — Design Doc",
+      "filePath": "design/映射装备系统Design Doc.md",
+      "summary": "映射装备系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 148,
+        "sha256": "a8873593d8457150d764d3da1232573c92af2a701bbb361d24f3340766e711f7"
+      }
+    },
+    {
+      "id": "document:aa30e31a65a0",
+      "type": "document",
+      "name": "月卡系统 — Design Doc",
+      "filePath": "design/月卡系统Design Doc.md",
+      "summary": "月卡系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 122,
+        "sha256": "3dd0dd8dea480fa204838d76ad67533ab0869f5b0c58f08fbef472ebc8a1fa5c"
+      }
+    },
+    {
+      "id": "document:84a548fa694d",
+      "type": "document",
+      "name": "爬塔 — Design Doc",
+      "filePath": "design/爬塔Design Doc.md",
+      "summary": "爬塔 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 132,
+        "sha256": "93a0b21b5caf8b6e54ccb4878798b65ec588eefffe30083f7f6fb6880e757be2"
+      }
+    },
+    {
+      "id": "document:fdfaf62f631a",
+      "type": "document",
+      "name": "竞技场 — Design Doc",
+      "filePath": "design/竞技场Design Doc.md",
+      "summary": "竞技场 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 135,
+        "sha256": "ce8678ad1239ecaaee47bd932a253defa047c9cffe7d0e043f90a7e54d1091bc"
+      }
+    },
+    {
+      "id": "document:b51d25f37857",
+      "type": "document",
+      "name": "签到系统 — Design Doc",
+      "filePath": "design/签到系统Design Doc.md",
+      "summary": "签到系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 115,
+        "sha256": "c2035735191e02c83045e5dcd482ec3b7041900438628ee2921f3a344ba38f3c"
+      }
+    },
+    {
+      "id": "document:2387fa5df778",
+      "type": "document",
+      "name": "角色升星 — Design Doc",
+      "filePath": "design/角色升星Design Doc.md",
+      "summary": "角色升星 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 135,
+        "sha256": "ee6e51f6b27efcaf42cb9ed0014bc6b763ed4be58919c15a667eb62bdfc35269"
+      }
+    },
+    {
+      "id": "document:fe5ae2a54a2c",
+      "type": "document",
+      "name": "角色升级与突破 — Design Doc",
+      "filePath": "design/角色升级与突破Design Doc.md",
+      "summary": "角色升级与突破 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 157,
+        "sha256": "f4251343f0db95e58b30652cdaebe54156b9b95deacfffc81a73ae88bd812852"
+      }
+    },
+    {
+      "id": "document:24a0945aa31f",
+      "type": "document",
+      "name": "角色星盘与能效 — Design Doc",
+      "filePath": "design/角色星盘与能效Design Doc.md",
+      "summary": "角色星盘与能效 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 138,
+        "sha256": "bb0cf26407ca073b161f9acb7f7df98bca6e7dbf750efe08170c82cf48624e24"
+      }
+    },
+    {
+      "id": "document:43e289477609",
+      "type": "document",
+      "name": "角色经验副本 — Design Doc",
+      "filePath": "design/角色经验副本Design Doc.md",
+      "summary": "角色经验副本 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 156,
+        "sha256": "387fe4991e61704beff587bfbdff864a3e5e7ac2a88aa5c9344aef6a9e6c9367"
+      }
+    },
+    {
+      "id": "document:8400a5c36f45",
+      "type": "document",
+      "name": "通行证系统 — Design Doc",
+      "filePath": "design/通行证系统Design Doc.md",
+      "summary": "通行证系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 133,
+        "sha256": "5e356665c9fc5ebbc68d92a703203d6aa9251813f5460ad25b248b5e918ae0d0"
+      }
+    },
+    {
+      "id": "document:9b7723659bd1",
+      "type": "document",
+      "name": "邮件系统 — Design Doc",
+      "filePath": "design/邮件系统Design Doc.md",
+      "summary": "邮件系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 135,
+        "sha256": "4106bccb87796e330c57362756b6121bfb8e932ce9ba25e4a0b10db436bdc43a"
+      }
+    },
+    {
+      "id": "document:3e99cf6a866b",
+      "type": "document",
+      "name": "金币副本 — Design Doc",
+      "filePath": "design/金币副本Design Doc.md",
+      "summary": "金币副本 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 167,
+        "sha256": "c31a56d9d612d7193479c0db008aaf71ebd3399dfc164913275bf59e468d4416"
       }
     },
     {
@@ -146,7 +697,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -165,7 +716,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -184,7 +735,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -203,7 +754,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -222,7 +773,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -241,7 +792,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -260,7 +811,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -279,7 +830,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -298,7 +849,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -317,7 +868,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -336,7 +887,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -355,7 +906,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -374,7 +925,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -393,7 +944,7 @@
         "design-doc",
         "plan"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "plan",
@@ -412,7 +963,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -431,7 +982,7 @@
         "design-doc",
         "proposal"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "proposal",
@@ -450,7 +1001,7 @@
         "design-doc",
         "proposal"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "proposal",
@@ -469,7 +1020,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -488,7 +1039,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -507,7 +1058,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -526,7 +1077,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -545,7 +1096,7 @@
         "design-doc",
         "task"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "task",
@@ -564,7 +1115,7 @@
         "design-doc",
         "task"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "task",
@@ -583,7 +1134,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -602,12 +1153,12 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 69,
-        "sha256": "87cf7d2b4ef322e79223096d3b1c6601a50d62af67d059ddd89a3e42e9daeb6a"
+        "line_count": 76,
+        "sha256": "5f5fbd533674f3505e8f3f8d141513d7d9db103b42c695c25ce0eeeffb50f8bb"
       }
     }
   ],
@@ -616,15 +1167,44 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（32份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（61份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
         "document:2d5d10cfc503",
         "document:7b8c25d2dd97",
+        "document:377fc91ac69b",
         "document:3483d4aa37ac",
         "document:abe17297a3bb",
         "document:1059094c31fc",
+        "document:487697f18bea",
+        "document:6316d1684f87",
+        "document:74acaa4f574c",
+        "document:360ac4879486",
+        "document:2a009184f7b0",
+        "document:44f7261307c7",
+        "document:3bf6bbf18a5d",
+        "document:2378f56b2353",
+        "document:48fce13ed101",
+        "document:a2f36e0a6b4c",
+        "document:0c2343f2dcf2",
+        "document:01f6a8c23a8a",
+        "document:ecdc3ed343c0",
+        "document:e9d8745b6ec8",
+        "document:5dbf432d2672",
+        "document:287cb0ab0b13",
+        "document:60ce44b676ff",
+        "document:aa30e31a65a0",
+        "document:84a548fa694d",
+        "document:fdfaf62f631a",
+        "document:b51d25f37857",
+        "document:2387fa5df778",
+        "document:fe5ae2a54a2c",
+        "document:24a0945aa31f",
+        "document:43e289477609",
+        "document:8400a5c36f45",
+        "document:9b7723659bd1",
+        "document:3e99cf6a866b",
         "document:8db518927522",
         "document:f4547e46f01e",
         "document:8200ff23f79a",
@@ -654,7 +1234,7 @@
     }
   ],
   "statistics": {
-    "documents": 32,
+    "documents": 61,
     "edges": 0
   }
 }

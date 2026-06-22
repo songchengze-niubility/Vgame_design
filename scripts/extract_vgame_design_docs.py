@@ -82,7 +82,7 @@ def extract(output: Path) -> dict:
                 "filePath": rel,
                 "summary": summary_of(text),
                 "tags": ["vgame", "design-doc", category],
-                "complexity": "low" if len(text) < 8000 else "medium",
+                "complexity": "simple" if len(text) < 8000 else "moderate",
                 "layer": "design",
                 "metadata": {
                     "category": category,

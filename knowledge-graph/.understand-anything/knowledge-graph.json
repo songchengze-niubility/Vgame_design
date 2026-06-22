@@ -11,7 +11,8 @@
       "Unity",
       "Luban"
     ],
-    "analyzedAt": "2026-06-22T14:21:29Z",
+    "analyzedAt": "2026-06-22T15:35:27Z",
+    "gitCommitHash": "49c40c44e30c5c2d3bde08bfd6d2ee9bc5989485",
     "sources": [
       "client-code",
       "config-tables",
@@ -23660,7 +23661,14 @@
         ],
         "data_rows": 31
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Video",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ActiveReward",
@@ -23712,7 +23720,14 @@
         ],
         "data_rows": 267
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ActiveReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Activity",
@@ -23820,7 +23835,14 @@
         ],
         "data_rows": 123
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Activity",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DoubleDropActivity",
@@ -23935,7 +23957,14 @@
         ],
         "data_rows": 257
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DoubleDropActivity",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:FourteenDayActivity",
@@ -23987,7 +24016,14 @@
         ],
         "data_rows": 136
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：FourteenDayActivity",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ArenaMonsterMultiplier",
@@ -24025,7 +24061,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ArenaMonsterMultiplier",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ArenaRank",
@@ -24112,7 +24155,14 @@
         ],
         "data_rows": 22
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ArenaRank",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ArenaRankReward",
@@ -24192,7 +24242,14 @@
         ],
         "data_rows": 7
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ArenaRankReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ArenaWinReward",
@@ -24244,7 +24301,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ArenaWinReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ArenaWinStreak",
@@ -24289,7 +24353,14 @@
         ],
         "data_rows": 9
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ArenaWinStreak",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ArenaWinStreakBonus",
@@ -24334,7 +24405,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ArenaWinStreakBonus",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Battery",
@@ -24421,7 +24499,14 @@
         ],
         "data_rows": 53
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Battery",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BatteryAttribute",
@@ -24473,7 +24558,14 @@
         ],
         "data_rows": 180
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BatteryAttribute",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BatteryLv",
@@ -24532,7 +24624,14 @@
         ],
         "data_rows": 123
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BatteryLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Attribute",
@@ -24661,7 +24760,14 @@
         ],
         "data_rows": 72
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Attribute",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:AttributeHurt",
@@ -24720,7 +24826,14 @@
         ],
         "data_rows": 62
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：AttributeHurt",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:AvyTime",
@@ -24772,7 +24885,14 @@
         ],
         "data_rows": 11
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：AvyTime",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BattlePass",
@@ -25027,7 +25147,14 @@
         ],
         "data_rows": 2
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BattlePass",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BattlePassLevel",
@@ -25072,7 +25199,14 @@
         ],
         "data_rows": 80
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BattlePassLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BattlePassReward",
@@ -25145,7 +25279,14 @@
         ],
         "data_rows": 201
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BattlePassReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BattleSimulationHero",
@@ -25456,7 +25597,14 @@
         ],
         "data_rows": 3
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BattleSimulationHero",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BattleSimulationLevel",
@@ -25487,7 +25635,14 @@
         ],
         "data_rows": 3
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BattleSimulationLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BattleSimulationTeam",
@@ -25525,7 +25680,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BattleSimulationTeam",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Boss_Dungeon",
@@ -25612,7 +25774,14 @@
         ],
         "data_rows": 70
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Boss_Dungeon",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Chat",
@@ -25791,7 +25960,14 @@
         ],
         "data_rows": 485
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Chat",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ChatBg",
@@ -25843,7 +26019,14 @@
         ],
         "data_rows": 124
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ChatBg",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ChatBox",
@@ -25895,7 +26078,14 @@
         ],
         "data_rows": 8
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ChatBox",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ChatPanelContent",
@@ -25933,7 +26123,14 @@
         ],
         "data_rows": 21
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ChatPanelContent",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Emoji",
@@ -25978,7 +26175,14 @@
         ],
         "data_rows": 66
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Emoji",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:EmojiClass",
@@ -26023,7 +26227,14 @@
         ],
         "data_rows": 2
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：EmojiClass",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Gif",
@@ -26075,7 +26286,14 @@
         ],
         "data_rows": 46
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Gif",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TeamEmote",
@@ -26120,7 +26338,14 @@
         ],
         "data_rows": 37
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TeamEmote",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Timeline_Gen",
@@ -26229,7 +26454,14 @@
         ],
         "data_rows": 34
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Timeline_Gen",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CommonRuleDesc",
@@ -26267,7 +26499,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CommonRuleDesc",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CommonSpecialRuleDesc",
@@ -26319,7 +26558,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CommonSpecialRuleDesc",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:UIPopPriority",
@@ -26350,7 +26596,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：UIPopPriority",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:UIRule",
@@ -26388,7 +26641,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：UIRule",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Drop_BattlePass",
@@ -26497,7 +26757,14 @@
         ],
         "data_rows": 212
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Drop_BattlePass",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Drop_draw",
@@ -26606,7 +26873,14 @@
         ],
         "data_rows": 548
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Drop_draw",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Drop_dungeon",
@@ -26715,7 +26989,14 @@
         ],
         "data_rows": 3006
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Drop_dungeon",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Drop_GiftBox",
@@ -26824,7 +27105,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Drop_GiftBox",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Drop_mainlevel",
@@ -26933,7 +27221,14 @@
         ],
         "data_rows": 534
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Drop_mainlevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Drop_other",
@@ -27042,7 +27337,14 @@
         ],
         "data_rows": 407
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Drop_other",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Drop_TimeLimitedActivity",
@@ -27151,7 +27453,14 @@
         ],
         "data_rows": 299
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Drop_TimeLimitedActivity",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Drop_world",
@@ -27260,7 +27569,14 @@
         ],
         "data_rows": 83
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Drop_world",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Eqpt",
@@ -27431,7 +27747,14 @@
         ],
         "data_rows": 63
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Eqpt",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:EqptAscendLv",
@@ -27504,7 +27827,14 @@
         ],
         "data_rows": 25
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：EqptAscendLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:EqptAscendMaterial",
@@ -27577,7 +27907,14 @@
         ],
         "data_rows": 20
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：EqptAscendMaterial",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:EqptLv",
@@ -27629,7 +27966,14 @@
         ],
         "data_rows": 240
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：EqptLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:EqptResolve",
@@ -27681,7 +28025,14 @@
         ],
         "data_rows": 25
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：EqptResolve",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:EqptStar",
@@ -27803,7 +28154,14 @@
         ],
         "data_rows": 20
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：EqptStar",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ExclWeapon",
@@ -27968,7 +28326,14 @@
         ],
         "data_rows": 85
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ExclWeapon",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ExclWeaponAscendLv",
@@ -28041,7 +28406,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ExclWeaponAscendLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ExclWeaponAscendMaterial",
@@ -28115,7 +28487,14 @@
         ],
         "data_rows": 90
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ExclWeaponAscendMaterial",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ExclWeaponLv",
@@ -28168,7 +28547,14 @@
         ],
         "data_rows": 180
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ExclWeaponLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ExclWeaponResolve",
@@ -28213,7 +28599,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ExclWeaponResolve",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ExclWeaponStar",
@@ -28294,7 +28687,14 @@
         ],
         "data_rows": 29
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ExclWeaponStar",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WeaponDuplicateReward",
@@ -28332,7 +28732,14 @@
         ],
         "data_rows": 3
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WeaponDuplicateReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:AddPoints",
@@ -28370,7 +28777,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：AddPoints",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BattleTips",
@@ -28408,7 +28822,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BattleTips",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CameraChangeLimit",
@@ -28460,7 +28881,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CameraChangeLimit",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CameraChangeSize",
@@ -28505,7 +28933,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CameraChangeSize",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CameraMovePosition",
@@ -28550,7 +28985,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CameraMovePosition",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CameraShake",
@@ -28581,7 +29023,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CameraShake",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ChangeTerrainSpeed",
@@ -28626,7 +29075,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ChangeTerrainSpeed",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:EnergyBall",
@@ -28664,7 +29120,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：EnergyBall",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:EnergyBallMagnet",
@@ -28737,7 +29200,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：EnergyBallMagnet",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:FightItem",
@@ -28838,7 +29308,14 @@
         ],
         "data_rows": 20
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：FightItem",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:PointsBallMagnet",
@@ -28911,7 +29388,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：PointsBallMagnet",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Sprint",
@@ -28949,7 +29433,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Sprint",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:UseHeroSkill",
@@ -28987,7 +29478,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：UseHeroSkill",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:UseUltimateSkill",
@@ -29025,7 +29523,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：UseUltimateSkill",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:IntimacyLevel",
@@ -29105,7 +29610,14 @@
         ],
         "data_rows": 16
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：IntimacyLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BattleGuide",
@@ -29192,7 +29704,14 @@
         ],
         "data_rows": 28
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BattleGuide",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Introduction",
@@ -29237,7 +29756,14 @@
         ],
         "data_rows": 3
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Introduction",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CommissionConditionDesc",
@@ -29268,7 +29794,14 @@
         ],
         "data_rows": 11
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CommissionConditionDesc",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildAssistingQuota",
@@ -29313,7 +29846,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildAssistingQuota",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildAuthority",
@@ -29372,7 +29912,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildAuthority",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildBargaining",
@@ -29431,7 +29978,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildBargaining",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildBargainingQuota",
@@ -29469,7 +30023,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildBargainingQuota",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildBuilding",
@@ -29542,7 +30103,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildBuilding",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildComission",
@@ -29636,7 +30204,14 @@
         ],
         "data_rows": 30
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildComission",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildCommissionLv",
@@ -29674,7 +30249,14 @@
         ],
         "data_rows": 1
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildCommissionLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildFlag",
@@ -29705,7 +30287,14 @@
         ],
         "data_rows": 3
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildFlag",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildIcon",
@@ -29743,7 +30332,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildIcon",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildLv",
@@ -29809,7 +30405,14 @@
         ],
         "data_rows": 16
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GuildMission",
@@ -29868,7 +30471,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GuildMission",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CalibrationPoints",
@@ -29920,7 +30530,14 @@
         ],
         "data_rows": 1048572
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CalibrationPoints",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CalibrationPointsAttr",
@@ -29979,7 +30596,14 @@
         ],
         "data_rows": 1381
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CalibrationPointsAttr",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Hero",
@@ -30256,7 +30880,14 @@
         ],
         "data_rows": 72
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Hero",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroAscendLv",
@@ -30322,7 +30953,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroAscendLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroAscendMaterial",
@@ -30381,7 +31019,14 @@
         ],
         "data_rows": 29
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroAscendMaterial",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroAttribute",
@@ -30580,7 +31225,14 @@
         ],
         "data_rows": 1802
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroAttribute",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroEnergyEfficiencyAttr",
@@ -30864,7 +31516,14 @@
         ],
         "data_rows": 1048539
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroEnergyEfficiencyAttr",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroEnergyEfficiencyMap",
@@ -30987,7 +31646,14 @@
         ],
         "data_rows": 99
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroEnergyEfficiencyMap",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroExtraReward",
@@ -31025,7 +31691,14 @@
         ],
         "data_rows": 3
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroExtraReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroInformation",
@@ -31112,7 +31785,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroInformation",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroLv",
@@ -31157,7 +31837,14 @@
         ],
         "data_rows": 60
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroSkillLv",
@@ -31223,7 +31910,14 @@
         ],
         "data_rows": 36
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroSkillLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroStarAttrUp",
@@ -31528,7 +32222,14 @@
         ],
         "data_rows": 469
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroStarAttrUp",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:HeroSupport",
@@ -31762,7 +32463,14 @@
         ],
         "data_rows": 2
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：HeroSupport",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ItemAccess",
@@ -31828,7 +32536,14 @@
         ],
         "data_rows": 33
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ItemAccess",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ItemChest",
@@ -31859,7 +32574,14 @@
         ],
         "data_rows": 24
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ItemChest",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Items",
@@ -31974,7 +32696,14 @@
         ],
         "data_rows": 1467
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Items",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ItemSweep",
@@ -32012,7 +32741,14 @@
         ],
         "data_rows": 72
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ItemSweep",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ItemTypeFunc",
@@ -32120,7 +32856,14 @@
         ],
         "data_rows": 18
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ItemTypeFunc",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:QualityCfg",
@@ -32173,7 +32916,14 @@
         ],
         "data_rows": 222
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：QualityCfg",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:QualityName",
@@ -32211,7 +32961,14 @@
         ],
         "data_rows": 192
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：QualityName",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TopAssets",
@@ -32256,7 +33013,14 @@
         ],
         "data_rows": 79
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TopAssets",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:StrategyCraft",
@@ -32351,7 +33115,14 @@
         ],
         "data_rows": 27
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：StrategyCraft",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BossBattleTime",
@@ -32396,7 +33167,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BossBattleTime",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CameraParameter",
@@ -32441,7 +33219,14 @@
         ],
         "data_rows": 18
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CameraParameter",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ChallengeDungeonSupport",
@@ -32529,7 +33314,14 @@
         ],
         "data_rows": 41
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ChallengeDungeonSupport",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ChapterLevel",
@@ -32630,7 +33422,14 @@
         ],
         "data_rows": 15
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ChapterLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ChapterStarReward",
@@ -32682,7 +33481,14 @@
         ],
         "data_rows": 31
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ChapterStarReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ChapterTasks",
@@ -32734,7 +33540,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ChapterTasks",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CoinLevel",
@@ -32814,7 +33627,14 @@
         ],
         "data_rows": 9
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CoinLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DifficultLevelNum",
@@ -32852,7 +33672,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DifficultLevelNum",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:EquipmentLevel",
@@ -32897,7 +33724,14 @@
         ],
         "data_rows": 124
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：EquipmentLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:level",
@@ -33124,7 +33958,14 @@
         ],
         "data_rows": 1105
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：level",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:LevelCondition",
@@ -33169,7 +34010,14 @@
         ],
         "data_rows": 9
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：LevelCondition",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:LevelType",
@@ -33270,7 +34118,14 @@
         ],
         "data_rows": 36
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：LevelType",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:MainLevel",
@@ -33336,7 +34191,14 @@
         ],
         "data_rows": 861
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：MainLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialLevel",
@@ -33374,7 +34236,14 @@
         ],
         "data_rows": 30
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:UIlevel",
@@ -33636,7 +34505,14 @@
         ],
         "data_rows": 1920
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：UIlevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:LoadingPic",
@@ -33675,7 +34551,14 @@
         ],
         "data_rows": 70
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：LoadingPic",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:LoadingTips",
@@ -33714,7 +34597,14 @@
         ],
         "data_rows": 72
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：LoadingTips",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Mail",
@@ -33773,7 +34663,14 @@
         ],
         "data_rows": 51
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Mail",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:PresendMail",
@@ -33825,7 +34722,14 @@
         ],
         "data_rows": 1048572
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：PresendMail",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Boss",
@@ -33912,7 +34816,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Boss",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Monster",
@@ -34126,7 +35037,14 @@
         ],
         "data_rows": 136
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Monster",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:MonsterAttribute",
@@ -34270,7 +35188,14 @@
         ],
         "data_rows": 1000
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：MonsterAttribute",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:MonsterAttributeCorrect",
@@ -34413,7 +35338,14 @@
         ],
         "data_rows": 208
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：MonsterAttributeCorrect",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:MonsterAttributeType",
@@ -34472,7 +35404,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：MonsterAttributeType",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SummonMonster",
@@ -34538,7 +35477,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SummonMonster",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:UIMonster",
@@ -34598,7 +35544,14 @@
         ],
         "data_rows": 27
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：UIMonster",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:MonthCard",
@@ -34755,7 +35708,14 @@
         ],
         "data_rows": 2
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：MonthCard",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Affix",
@@ -34828,7 +35788,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Affix",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:AffixSchedule",
@@ -34894,7 +35861,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：AffixSchedule",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Dungeon",
@@ -35009,7 +35983,14 @@
         ],
         "data_rows": 31
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Dungeon",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Layers",
@@ -35096,7 +36077,14 @@
         ],
         "data_rows": 100
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Layers",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SeasonRankReward",
@@ -35141,7 +36129,14 @@
         ],
         "data_rows": 7
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SeasonRankReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SeasonScoreReward",
@@ -35186,7 +36181,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SeasonScoreReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WeekBalanceDownLayer",
@@ -35224,7 +36226,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WeekBalanceDownLayer",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WeekMaxLayerReward",
@@ -35269,7 +36278,14 @@
         ],
         "data_rows": 54
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WeekMaxLayerReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WeekScoreReward",
@@ -35335,7 +36351,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WeekScoreReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:NR_HighestScoreReward",
@@ -35373,7 +36396,14 @@
         ],
         "data_rows": 297
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：NR_HighestScoreReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:NR_Layer",
@@ -35446,7 +36476,14 @@
         ],
         "data_rows": 297
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：NR_Layer",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:NR_Level",
@@ -35484,7 +36521,14 @@
         ],
         "data_rows": 55
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：NR_Level",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:NR_LevelPool",
@@ -35522,7 +36566,14 @@
         ],
         "data_rows": 9
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：NR_LevelPool",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:NR_Modifier",
@@ -35574,7 +36625,14 @@
         ],
         "data_rows": 1048572
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：NR_Modifier",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:NR_ModifierSchedule",
@@ -35619,7 +36677,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：NR_ModifierSchedule",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:NR_RankReward",
@@ -35664,7 +36729,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：NR_RankReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:NR_StartProgress",
@@ -35702,7 +36774,14 @@
         ],
         "data_rows": 1048572
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：NR_StartProgress",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Objects",
@@ -35747,7 +36826,14 @@
         ],
         "data_rows": 16
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Objects",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Paomadeng",
@@ -35813,7 +36899,14 @@
         ],
         "data_rows": 19
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Paomadeng",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:PayProducts",
@@ -35886,7 +36979,14 @@
         ],
         "data_rows": 13
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：PayProducts",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Avatar",
@@ -35960,7 +37060,14 @@
         ],
         "data_rows": 58
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Avatar",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Frame",
@@ -36033,7 +37140,14 @@
         ],
         "data_rows": 45
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Frame",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:PlayerLv",
@@ -36092,7 +37206,14 @@
         ],
         "data_rows": 60
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：PlayerLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Power",
@@ -36165,7 +37286,14 @@
         ],
         "data_rows": 59
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Power",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Title",
@@ -36239,7 +37367,14 @@
         ],
         "data_rows": 54
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Title",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RobotName",
@@ -36291,7 +37426,14 @@
         ],
         "data_rows": 361
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RobotName",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RobotObject",
@@ -36385,7 +37527,14 @@
         ],
         "data_rows": 550
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RobotObject",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RobotTeam",
@@ -36451,7 +37600,14 @@
         ],
         "data_rows": 387
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RobotTeam",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RoguelikeCharacter",
@@ -36517,7 +37673,14 @@
         ],
         "data_rows": 1
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RoguelikeCharacter",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RoguelikeItem",
@@ -36590,7 +37753,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RoguelikeItem",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RoguelikeLevel",
@@ -36691,7 +37861,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RoguelikeLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RoguelikeMilestone",
@@ -36736,7 +37913,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RoguelikeMilestone",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RoguelikeTalent",
@@ -36795,7 +37979,14 @@
         ],
         "data_rows": 8
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RoguelikeTalent",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougelikeNegativeEffect",
@@ -36847,7 +38038,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougelikeNegativeEffect",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougelikeReward",
@@ -36899,7 +38097,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougelikeReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RoleName",
@@ -36951,7 +38156,14 @@
         ],
         "data_rows": 81
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RoleName",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Craft",
@@ -36989,7 +38201,14 @@
         ],
         "data_rows": 48
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Craft",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ServerSave",
@@ -37027,7 +38246,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ServerSave",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ErrorStr",
@@ -37079,7 +38305,14 @@
         ],
         "data_rows": 300
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ErrorStr",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:GameQualitySettings",
@@ -37152,7 +38385,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：GameQualitySettings",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ShareConversationBg",
@@ -37197,7 +38437,14 @@
         ],
         "data_rows": 1
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ShareConversationBg",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Shop",
@@ -37305,7 +38552,14 @@
         ],
         "data_rows": 20
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Shop",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ShopGoods",
@@ -37462,7 +38716,14 @@
         ],
         "data_rows": 120
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ShopGoods",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DailySign",
@@ -37514,7 +38775,14 @@
         ],
         "data_rows": 369
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DailySign",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:MonthlyAccumulate",
@@ -37559,7 +38827,14 @@
         ],
         "data_rows": 39
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：MonthlyAccumulate",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SevenDaySign",
@@ -37611,7 +38886,14 @@
         ],
         "data_rows": 122
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SevenDaySign",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SigninText",
@@ -37642,7 +38924,14 @@
         ],
         "data_rows": 30
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SigninText",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TravelAccumulate",
@@ -37680,7 +38969,14 @@
         ],
         "data_rows": 1048573
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TravelAccumulate",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BuffIcon",
@@ -37718,7 +39014,14 @@
         ],
         "data_rows": 14
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BuffIcon",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:LevelSkill",
@@ -37791,7 +39094,14 @@
         ],
         "data_rows": 195
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：LevelSkill",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Skill",
@@ -37886,7 +39196,14 @@
         ],
         "data_rows": 1352
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Skill",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TargetSkill",
@@ -37924,7 +39241,14 @@
         ],
         "data_rows": 401
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TargetSkill",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ChatHeroFacialRes",
@@ -37969,7 +39293,14 @@
         ],
         "data_rows": 142
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ChatHeroFacialRes",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Skin",
@@ -38238,7 +39569,14 @@
         ],
         "data_rows": 32
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Skin",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:AudioMixerType",
@@ -38297,7 +39635,14 @@
         ],
         "data_rows": 19
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：AudioMixerType",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BGSound",
@@ -38363,7 +39708,14 @@
         ],
         "data_rows": 66
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BGSound",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:LevelSound",
@@ -38436,7 +39788,14 @@
         ],
         "data_rows": 66
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：LevelSound",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RecordAlbum",
@@ -38481,7 +39840,14 @@
         ],
         "data_rows": 228
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RecordAlbum",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RecordPlayer",
@@ -38554,7 +39920,14 @@
         ],
         "data_rows": 252
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RecordPlayer",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Sounds",
@@ -38655,7 +40028,14 @@
         ],
         "data_rows": 496
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Sounds",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipment",
@@ -38735,7 +40115,14 @@
         ],
         "data_rows": 190
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipment",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentChip",
@@ -38794,7 +40181,14 @@
         ],
         "data_rows": 55
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentChip",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentColor",
@@ -38832,7 +40226,14 @@
         ],
         "data_rows": 349
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentColor",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentEffect",
@@ -38905,7 +40306,14 @@
         ],
         "data_rows": 246
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentEffect",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentEffectDrop",
@@ -38936,7 +40344,14 @@
         ],
         "data_rows": 193
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentEffectDrop",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentGem",
@@ -39002,7 +40417,14 @@
         ],
         "data_rows": 59
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentGem",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentGenerate",
@@ -39068,7 +40490,14 @@
         ],
         "data_rows": 1133
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentGenerate",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentLvLimit",
@@ -39106,7 +40535,14 @@
         ],
         "data_rows": 236
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentLvLimit",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentLvUp",
@@ -39151,7 +40587,14 @@
         ],
         "data_rows": 236
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentLvUp",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentMain",
@@ -39196,7 +40639,14 @@
         ],
         "data_rows": 380
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentMain",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentPartFun",
@@ -39234,7 +40684,14 @@
         ],
         "data_rows": 56
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentPartFun",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SpecialEquipmentQuality",
@@ -39370,7 +40827,14 @@
         ],
         "data_rows": 56
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SpecialEquipmentQuality",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:PrimAttr",
@@ -39632,7 +41096,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：PrimAttr",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:PrimAttrWeight",
@@ -39670,7 +41141,14 @@
         ],
         "data_rows": 21
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：PrimAttrWeight",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SecAttr",
@@ -39743,7 +41221,14 @@
         ],
         "data_rows": 19
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SecAttr",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SecAttrWeight",
@@ -39788,7 +41273,14 @@
         ],
         "data_rows": 12
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SecAttrWeight",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SetAttr",
@@ -39868,7 +41360,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SetAttr",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:StrategyCards",
@@ -39941,7 +41440,14 @@
         ],
         "data_rows": 720
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：StrategyCards",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:StrategyLv",
@@ -39993,7 +41499,14 @@
         ],
         "data_rows": 25
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：StrategyLv",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:StrategyQuality",
@@ -40045,7 +41558,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：StrategyQuality",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:StrategyRecommendation",
@@ -40112,7 +41632,14 @@
         ],
         "data_rows": 112
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：StrategyRecommendation",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:StrategyResolve",
@@ -40157,7 +41684,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：StrategyResolve",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:StrategySuits",
@@ -40244,7 +41778,14 @@
         ],
         "data_rows": 30
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：StrategySuits",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:LuaCodeString",
@@ -40275,7 +41816,14 @@
         ],
         "data_rows": 1102
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：LuaCodeString",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:StringConst",
@@ -40306,7 +41854,14 @@
         ],
         "data_rows": 1165
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：StringConst",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SystemOpen",
@@ -40435,7 +41990,14 @@
         ],
         "data_rows": 175
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SystemOpen",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DailyActiveReward",
@@ -40480,7 +42042,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DailyActiveReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DailyTask",
@@ -40539,7 +42108,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DailyTask",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Jottings",
@@ -40584,7 +42160,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Jottings",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:JottingsTask",
@@ -40615,7 +42198,14 @@
         ],
         "data_rows": 26
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：JottingsTask",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SystemGuideTask",
@@ -40667,7 +42257,14 @@
         ],
         "data_rows": 1048564
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SystemGuideTask",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Task",
@@ -40887,7 +42484,14 @@
         ],
         "data_rows": 1048572
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Task",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TaskTarget",
@@ -40974,7 +42578,14 @@
         ],
         "data_rows": 218
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TaskTarget",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WeeklyReward",
@@ -41019,7 +42630,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WeeklyReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WeeklyTask",
@@ -41050,7 +42668,14 @@
         ],
         "data_rows": 9
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WeeklyTask",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Team",
@@ -41088,7 +42713,14 @@
         ],
         "data_rows": 100
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Team",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TeamHero",
@@ -41399,7 +43031,14 @@
         ],
         "data_rows": 500
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TeamHero",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:BuffCalendar",
@@ -41437,7 +43076,14 @@
         ],
         "data_rows": 9
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：BuffCalendar",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerBossAvatar",
@@ -41482,7 +43128,14 @@
         ],
         "data_rows": 80
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerBossAvatar",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerBuff",
@@ -41534,7 +43187,14 @@
         ],
         "data_rows": 11
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerBuff",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerDebuff",
@@ -41593,7 +43253,14 @@
         ],
         "data_rows": 30
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerDebuff",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerEnemyFormation",
@@ -41645,7 +43312,14 @@
         ],
         "data_rows": 400
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerEnemyFormation",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerFall",
@@ -41683,7 +43357,14 @@
         ],
         "data_rows": 100
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerFall",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerFirstReward",
@@ -41721,7 +43402,14 @@
         ],
         "data_rows": 100
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerFirstReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerLevelDebuff",
@@ -41773,7 +43461,14 @@
         ],
         "data_rows": 415
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerLevelDebuff",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerLevelSeasonStage",
@@ -41811,7 +43506,14 @@
         ],
         "data_rows": 9
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerLevelSeasonStage",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerRankReward",
@@ -41849,7 +43551,14 @@
         ],
         "data_rows": 9
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerRankReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerReward",
@@ -41901,7 +43610,14 @@
         ],
         "data_rows": 100
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TowerText",
@@ -41953,7 +43669,14 @@
         ],
         "data_rows": 11
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TowerText",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Unlock",
@@ -41998,7 +43721,14 @@
         ],
         "data_rows": 678
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Unlock",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:UnlockDesc",
@@ -42029,7 +43759,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：UnlockDesc",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Chest",
@@ -42151,7 +43888,14 @@
         ],
         "data_rows": 123
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Chest",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ValuableBox",
@@ -42210,7 +43954,14 @@
         ],
         "data_rows": 14
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ValuableBox",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Barrier",
@@ -42255,7 +44006,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Barrier",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:CollectStation",
@@ -42342,7 +44100,14 @@
         ],
         "data_rows": 20
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：CollectStation",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Gain",
@@ -42415,7 +44180,14 @@
         ],
         "data_rows": 20
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Gain",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:Map",
@@ -42488,7 +44260,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：Map",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:MapBuff",
@@ -42554,7 +44333,14 @@
         ],
         "data_rows": 20
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：MapBuff",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:ReputationLvUp",
@@ -42613,7 +44399,14 @@
         ],
         "data_rows": 196
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：ReputationLvUp",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:SmallGame",
@@ -42665,7 +44458,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：SmallGame",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:World",
@@ -42780,7 +44580,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：World",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WorldChest",
@@ -42846,7 +44653,14 @@
         ],
         "data_rows": 40
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WorldChest",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WorldCondition",
@@ -42877,7 +44691,14 @@
         ],
         "data_rows": 17
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WorldCondition",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WorldScheduleReward",
@@ -42922,7 +44743,14 @@
         ],
         "data_rows": 25
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WorldScheduleReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:TextTranslate",
@@ -42967,7 +44795,14 @@
         ],
         "data_rows": 3
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：TextTranslate",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WhackAMole",
@@ -43166,7 +45001,14 @@
         ],
         "data_rows": 18
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WhackAMole",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:WoodpeckerLevel",
@@ -43260,7 +45102,14 @@
         ],
         "data_rows": 18
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：WoodpeckerLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeBuff",
@@ -43404,7 +45253,14 @@
         ],
         "data_rows": 109
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeBuff",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeBuffPack",
@@ -43442,7 +45298,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeBuffPack",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeDiff",
@@ -43578,7 +45441,14 @@
         ],
         "data_rows": 23
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeDiff",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeEvent",
@@ -43637,7 +45507,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeEvent",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeEventOptionEffect",
@@ -43675,7 +45552,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeEventOptionEffect",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeEventOptions",
@@ -43720,7 +45604,14 @@
         ],
         "data_rows": 896
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeEventOptions",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeExSkill",
@@ -43814,7 +45705,14 @@
         ],
         "data_rows": 4
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeExSkill",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeHero",
@@ -44069,7 +45967,14 @@
         ],
         "data_rows": 15
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeHero",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeIntegralReward",
@@ -44121,7 +46026,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeIntegralReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeLevel",
@@ -44167,7 +46079,14 @@
         ],
         "data_rows": 15
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeLevel",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeMap",
@@ -44182,7 +46101,14 @@
         "safe_write_columns": [],
         "data_rows": 0
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeMap",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeMapGroup",
@@ -44213,7 +46139,14 @@
         ],
         "data_rows": 7
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeMapGroup",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeMonsterAttrCorrect",
@@ -44265,7 +46198,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeMonsterAttrCorrect",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeNodeTypeGroup",
@@ -44296,7 +46236,14 @@
         ],
         "data_rows": 6
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeNodeTypeGroup",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeReward",
@@ -44341,7 +46288,14 @@
         ],
         "data_rows": 10
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeReward",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeShopGoods",
@@ -44386,7 +46340,14 @@
         ],
         "data_rows": 72
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeShopGoods",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeSkill",
@@ -44474,7 +46435,14 @@
         ],
         "data_rows": 9
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeSkill",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeSkillTreeMap",
@@ -44489,7 +46457,14 @@
         "safe_write_columns": [],
         "data_rows": 0
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeSkillTreeMap",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeTreasure",
@@ -44619,7 +46594,14 @@
         ],
         "data_rows": 311
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeTreasure",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:RougeTreasurePack",
@@ -44657,7 +46639,14 @@
         ],
         "data_rows": 11
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：RougeTreasurePack",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DrawCard",
@@ -44877,7 +46866,14 @@
         ],
         "data_rows": 7
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DrawCard",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DrawCardAnimationSSR",
@@ -44908,7 +46904,14 @@
         ],
         "data_rows": 5
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DrawCardAnimationSSR",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DrawCardGoodsTip",
@@ -44939,7 +46942,14 @@
         ],
         "data_rows": 22
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DrawCardGoodsTip",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DrawCardPool",
@@ -45012,7 +47022,14 @@
         ],
         "data_rows": 21
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DrawCardPool",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DrawCardWeight",
@@ -45043,7 +47060,14 @@
         ],
         "data_rows": 60
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DrawCardWeight",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "table:DrawSpecialChooseGacha",
@@ -45081,7 +47105,14 @@
         ],
         "data_rows": 2
       },
-      "source": "config"
+      "source": "config",
+      "summary": "Vgame Luban 配置表：DrawSpecialChooseGacha",
+      "tags": [
+        "vgame",
+        "config-table",
+        "luban"
+      ],
+      "complexity": "moderate"
     },
     {
       "id": "document:37dd68363fc1",
@@ -45094,12 +47125,12 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 76,
-        "sha256": "2d8a0ee27aaed0a18cbebd4b9293404d5e5b6e6ace924056dc155bc2219929d7"
+        "line_count": 75,
+        "sha256": "62ba75a8c03249cca5d48a1cadd5f5d918e54b0d5fdc5bacf103c0875e9115fa"
       },
       "source": "design"
     },
@@ -45114,7 +47145,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45134,7 +47165,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45154,12 +47185,32 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
         "line_count": 29,
         "sha256": "ff9274275c315b8994342c83821f98beeffb84a3a7778e6540148552930fb0bc"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:377fc91ac69b",
+      "type": "document",
+      "name": "Buff 系统 — Design Doc",
+      "filePath": "design/Buff系统Design Doc.md",
+      "summary": "Buff 系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 130,
+        "sha256": "7bd5400d33f9db16f784f549e3ab12f1f3bb58e4fb3839c070b82e3ff7209cf4"
       },
       "source": "design"
     },
@@ -45174,7 +47225,7 @@
         "design-doc",
         "design"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "design",
@@ -45194,7 +47245,7 @@
         "design-doc",
         "design"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "design",
@@ -45206,20 +47257,580 @@
     {
       "id": "document:1059094c31fc",
       "type": "document",
-      "name": "[系统名] Design Doc",
+      "name": "<功能名称> — Design Doc",
       "filePath": "design/TEMPLATE.md",
-      "summary": "[系统名] Design Doc",
+      "summary": "<功能名称> — Design Doc",
       "tags": [
         "vgame",
         "design-doc",
         "design"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "design",
-        "line_count": 38,
-        "sha256": "fc652905d1c10833ff4b23b640d78e8456df7db635ca166d830f2b9c22499419"
+        "line_count": 75,
+        "sha256": "aac0f23f7627ecad47ea06866535cc9d40886816f461e476e8ba53d4f951e7ad"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:487697f18bea",
+      "type": "document",
+      "name": "专武系统 — Design Doc",
+      "filePath": "design/专武系统Design Doc.md",
+      "summary": "专武系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 154,
+        "sha256": "580b6ecaab0d06570acaf27ad0a7f4dc4edae61a49c8582c73eea411b9841776"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:6316d1684f87",
+      "type": "document",
+      "name": "专武经验副本 — Design Doc",
+      "filePath": "design/专武经验副本Design Doc.md",
+      "summary": "专武经验副本 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 154,
+        "sha256": "58d121efce9cf89f41d1b77ee6cd041796320fb97d7ea15c774f8e51be199b45"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:74acaa4f574c",
+      "type": "document",
+      "name": "主线关卡系统 — Design Doc",
+      "filePath": "design/主线关卡系统Design Doc.md",
+      "summary": "主线关卡系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 139,
+        "sha256": "14279f66d4ab71cf55289fe33e29ac6d89e467d192fcbefb116b0f183cfe56c6"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:360ac4879486",
+      "type": "document",
+      "name": "主角等级 — Design Doc",
+      "filePath": "design/主角等级Design Doc.md",
+      "summary": "主角等级 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 162,
+        "sha256": "5e89e233edee2377b117d07f70c4e60f496e0a54c681e109a01f334c554ae1ad"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:2a009184f7b0",
+      "type": "document",
+      "name": "任务系统 — Design Doc",
+      "filePath": "design/任务系统Design Doc.md",
+      "summary": "任务系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 136,
+        "sha256": "2feb40a1cc3ae289fa588657dd34fe4dcdb1b75130983de79d82d96b57fb55c1"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:44f7261307c7",
+      "type": "document",
+      "name": "伤害计算公式 — Design Doc",
+      "filePath": "design/伤害计算公式Design Doc.md",
+      "summary": "伤害计算公式 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 118,
+        "sha256": "a176e9dab8374a79053f32d0a5979e2d2b4b56f07bb6c423303e2df6ac5b2f07"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:3bf6bbf18a5d",
+      "type": "document",
+      "name": "商店系统 — Design Doc",
+      "filePath": "design/商店系统Design Doc.md",
+      "summary": "商店系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 133,
+        "sha256": "3022b09a0dccd2067396b4120740898c43710d2d5e976da5cd6b6fe134800326"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:2378f56b2353",
+      "type": "document",
+      "name": "大秘境 — Design Doc",
+      "filePath": "design/大秘境Design Doc.md",
+      "summary": "大秘境 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 136,
+        "sha256": "7487dc96e2989e54166f981600deaa9f6eed5bda4579ae5fadc8adf25514f266"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:48fce13ed101",
+      "type": "document",
+      "name": "宝石与铭文 — Design Doc",
+      "filePath": "design/宝石与铭文Design Doc.md",
+      "summary": "宝石与铭文 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 145,
+        "sha256": "d7d1600b1ca04ac0cc2c59092f60834dcb3258eae20caf0fe74abd1aa6a1cf6a"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:a2f36e0a6b4c",
+      "type": "document",
+      "name": "怪物与 Boss 系统 — Design Doc",
+      "filePath": "design/怪物与Boss系统Design Doc.md",
+      "summary": "怪物与 Boss 系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 117,
+        "sha256": "03b41e62ea8ccd4299afe03e878b5f3078f11fd497d0421a00a52d8b919c6b27"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:0c2343f2dcf2",
+      "type": "document",
+      "name": "技能系统 — Design Doc",
+      "filePath": "design/技能系统Design Doc.md",
+      "summary": "技能系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 102,
+        "sha256": "ece5f8f9f471f03af6efd621d0967e8045d6f2e5a6f0d09a5ec58d108a655620"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:01f6a8c23a8a",
+      "type": "document",
+      "name": "抽卡系统 — Design Doc",
+      "filePath": "design/抽卡系统Design Doc.md",
+      "summary": "抽卡系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 134,
+        "sha256": "24decd328435b978181a8e58570b70874c81a426dc3c26d5816d1b5cc29681e5"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:ecdc3ed343c0",
+      "type": "document",
+      "name": "新手引导系统 — Design Doc",
+      "filePath": "design/新手引导系统Design Doc.md",
+      "summary": "新手引导系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 121,
+        "sha256": "4f9835da3b336cd92a22093c3f1deb88a0e1a66ab4e0c429a126e82d7e1f86f0"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:e9d8745b6ec8",
+      "type": "document",
+      "name": "旅券副本 — Design Doc",
+      "filePath": "design/旅券副本Design Doc.md",
+      "summary": "旅券副本 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 127,
+        "sha256": "50ca2a3f1fad8b24adfc8fa47ebd53c81a223c1ed033d5539fa13b97a6a5c81b"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:5dbf432d2672",
+      "type": "document",
+      "name": "旅券系统 — Design Doc",
+      "filePath": "design/旅券系统Design Doc.md",
+      "summary": "旅券系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 138,
+        "sha256": "44f59e534428a11484456dd85554ab0c12b611ea3960c5cadc610fa8b13177fb"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:287cb0ab0b13",
+      "type": "document",
+      "name": "无限挑战 — Design Doc",
+      "filePath": "design/无限挑战Design Doc.md",
+      "summary": "无限挑战 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 129,
+        "sha256": "cebbe693274263d5973fee54ac44d5a207f218cb4df28daded6ac3f086d56dbe"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:60ce44b676ff",
+      "type": "document",
+      "name": "映射装备系统 — Design Doc",
+      "filePath": "design/映射装备系统Design Doc.md",
+      "summary": "映射装备系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 148,
+        "sha256": "a8873593d8457150d764d3da1232573c92af2a701bbb361d24f3340766e711f7"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:aa30e31a65a0",
+      "type": "document",
+      "name": "月卡系统 — Design Doc",
+      "filePath": "design/月卡系统Design Doc.md",
+      "summary": "月卡系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 122,
+        "sha256": "3dd0dd8dea480fa204838d76ad67533ab0869f5b0c58f08fbef472ebc8a1fa5c"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:84a548fa694d",
+      "type": "document",
+      "name": "爬塔 — Design Doc",
+      "filePath": "design/爬塔Design Doc.md",
+      "summary": "爬塔 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 132,
+        "sha256": "93a0b21b5caf8b6e54ccb4878798b65ec588eefffe30083f7f6fb6880e757be2"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:fdfaf62f631a",
+      "type": "document",
+      "name": "竞技场 — Design Doc",
+      "filePath": "design/竞技场Design Doc.md",
+      "summary": "竞技场 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 135,
+        "sha256": "ce8678ad1239ecaaee47bd932a253defa047c9cffe7d0e043f90a7e54d1091bc"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:b51d25f37857",
+      "type": "document",
+      "name": "签到系统 — Design Doc",
+      "filePath": "design/签到系统Design Doc.md",
+      "summary": "签到系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 115,
+        "sha256": "c2035735191e02c83045e5dcd482ec3b7041900438628ee2921f3a344ba38f3c"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:2387fa5df778",
+      "type": "document",
+      "name": "角色升星 — Design Doc",
+      "filePath": "design/角色升星Design Doc.md",
+      "summary": "角色升星 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 135,
+        "sha256": "ee6e51f6b27efcaf42cb9ed0014bc6b763ed4be58919c15a667eb62bdfc35269"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:fe5ae2a54a2c",
+      "type": "document",
+      "name": "角色升级与突破 — Design Doc",
+      "filePath": "design/角色升级与突破Design Doc.md",
+      "summary": "角色升级与突破 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 157,
+        "sha256": "f4251343f0db95e58b30652cdaebe54156b9b95deacfffc81a73ae88bd812852"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:24a0945aa31f",
+      "type": "document",
+      "name": "角色星盘与能效 — Design Doc",
+      "filePath": "design/角色星盘与能效Design Doc.md",
+      "summary": "角色星盘与能效 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 138,
+        "sha256": "bb0cf26407ca073b161f9acb7f7df98bca6e7dbf750efe08170c82cf48624e24"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:43e289477609",
+      "type": "document",
+      "name": "角色经验副本 — Design Doc",
+      "filePath": "design/角色经验副本Design Doc.md",
+      "summary": "角色经验副本 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 156,
+        "sha256": "387fe4991e61704beff587bfbdff864a3e5e7ac2a88aa5c9344aef6a9e6c9367"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:8400a5c36f45",
+      "type": "document",
+      "name": "通行证系统 — Design Doc",
+      "filePath": "design/通行证系统Design Doc.md",
+      "summary": "通行证系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 133,
+        "sha256": "5e356665c9fc5ebbc68d92a703203d6aa9251813f5460ad25b248b5e918ae0d0"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:9b7723659bd1",
+      "type": "document",
+      "name": "邮件系统 — Design Doc",
+      "filePath": "design/邮件系统Design Doc.md",
+      "summary": "邮件系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 135,
+        "sha256": "4106bccb87796e330c57362756b6121bfb8e932ce9ba25e4a0b10db436bdc43a"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:3e99cf6a866b",
+      "type": "document",
+      "name": "金币副本 — Design Doc",
+      "filePath": "design/金币副本Design Doc.md",
+      "summary": "金币副本 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 167,
+        "sha256": "c31a56d9d612d7193479c0db008aaf71ebd3399dfc164913275bf59e468d4416"
       },
       "source": "design"
     },
@@ -45234,7 +47845,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45254,7 +47865,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45274,7 +47885,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45294,7 +47905,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45314,7 +47925,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45334,7 +47945,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45354,7 +47965,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45374,7 +47985,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45394,7 +48005,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45414,7 +48025,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45434,7 +48045,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45454,7 +48065,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45474,7 +48085,7 @@
         "design-doc",
         "harness"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "harness",
@@ -45494,7 +48105,7 @@
         "design-doc",
         "plan"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "plan",
@@ -45514,7 +48125,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45534,7 +48145,7 @@
         "design-doc",
         "proposal"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "proposal",
@@ -45554,7 +48165,7 @@
         "design-doc",
         "proposal"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "proposal",
@@ -45574,7 +48185,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45594,7 +48205,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45614,7 +48225,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45634,7 +48245,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45654,7 +48265,7 @@
         "design-doc",
         "task"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "task",
@@ -45674,7 +48285,7 @@
         "design-doc",
         "task"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "task",
@@ -45694,7 +48305,7 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
@@ -45714,12 +48325,12 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "low",
+      "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 69,
-        "sha256": "87cf7d2b4ef322e79223096d3b1c6601a50d62af67d059ddd89a3e42e9daeb6a"
+        "line_count": 76,
+        "sha256": "5f5fbd533674f3505e8f3f8d141513d7d9db103b42c695c25ce0eeeffb50f8bb"
       },
       "source": "design"
     }
@@ -50530,28 +53141,28 @@
     {
       "target": "file:Lua/UI/Badge/UICompoundBadgeView.lua",
       "source": "file:Lua/UI/Badge/UIMainBadgeView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.5,
       "direction": "forward"
     },
     {
       "target": "file:Lua/UI/Badge/UIEnhanceBadgeView.lua",
       "source": "file:Lua/UI/Badge/UIMainBadgeView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.5,
       "direction": "forward"
     },
     {
       "target": "file:Lua/UI/Badge/UIDismantleBadgeView.lua",
       "source": "file:Lua/UI/Badge/UIMainBadgeView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.5,
       "direction": "forward"
     },
     {
       "target": "file:Lua/UI/Badge/UIReplaceBadgeViewEdit.lua",
       "source": "file:Lua/UI/Badge/UIReplaceBadgeView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
@@ -51237,7 +53848,7 @@
     {
       "target": "file:Lua/UI/Common/PropItem/PropItem.lua",
       "source": "file:Lua/UI/Common/PropItem/UIShowPropItemView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.5,
       "direction": "forward"
     },
@@ -51510,7 +54121,7 @@
     {
       "target": "file:Lua/UI/Common/UICommonHeroStar.lua",
       "source": "file:Lua/UI/Common/UICommonHeroInfo.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.5,
       "direction": "forward"
     },
@@ -51587,7 +54198,7 @@
     {
       "target": "file:Lua/UI/DailySign/UIDailySignRewardView.lua",
       "source": "file:Lua/UI/DailySign/UIDailySignView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.5,
       "direction": "forward"
     },
@@ -51650,7 +54261,7 @@
     {
       "target": "file:Lua/UI/Friend/UIFriendApplyView.lua",
       "source": "file:Lua/UI/Friend/FriendApplyView.lua",
-      "type": "used_by",
+      "type": "related",
       "weight": 0.6,
       "direction": "forward"
     },
@@ -52602,7 +55213,7 @@
     {
       "target": "file:Lua/UI/Main/UIMainMenuView.lua",
       "source": "file:Lua/UI/Main/UIMainControlView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
@@ -52651,14 +55262,14 @@
     {
       "target": "file:Lua/UI/MappingEquip/UIMappingBagView.lua",
       "source": "file:Lua/UI/MappingEquip/UIMappingEquipmentView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
     {
       "target": "file:Lua/UI/MappingEquip/UIMappingEquipBuildView.lua",
       "source": "file:Lua/UI/MappingEquip/UIMappingEquipmentView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
@@ -52707,14 +55318,14 @@
     {
       "target": "file:Lua/UI/MappingEquip/UIMappingGemReplaceView.lua",
       "source": "file:Lua/UI/MappingEquip/UIMappingMosaicView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
     {
       "target": "file:Lua/UI/MappingEquip/MappingEquipPanel.lua",
       "source": "file:Lua/UI/MappingEquip/UIMappingPartItemPlanView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
@@ -52889,14 +55500,14 @@
     {
       "target": "file:Lua/UI/PVPPVE/UIPVPPVESeasonReportView.lua",
       "source": "file:Lua/UI/PVPPVE/UIPVPPVEMainView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
     {
       "target": "file:Lua/UI/PVPPVE/UIPVPPVERecordView.lua",
       "source": "file:Lua/UI/PVPPVE/UIPVPPVEMainView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
@@ -53197,21 +55808,21 @@
     {
       "target": "file:Lua/UI/Task/UIGrowUpTask.lua",
       "source": "file:Lua/UI/Task/UITaskView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
     {
       "target": "file:Lua/UI/Task/UITaskDailyView.lua",
       "source": "file:Lua/UI/Task/UITaskView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
     {
       "target": "file:Lua/UI/Task/UIWeekTaskView.lua",
       "source": "file:Lua/UI/Task/UITaskView.lua",
-      "type": "references",
+      "type": "cites",
       "weight": 0.6,
       "direction": "forward"
     },
@@ -53464,583 +56075,777 @@
       "source": "table:ActiveReward",
       "target": "table:Activity",
       "type": "depends_on",
-      "field": "ActivityId"
+      "field": "ActivityId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Activity",
       "target": "table:Unlock",
       "type": "depends_on",
-      "field": "UnlockId"
+      "field": "UnlockId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:DoubleDropActivity",
       "target": "table:Activity",
       "type": "depends_on",
-      "field": "ActivityId"
+      "field": "ActivityId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:FourteenDayActivity",
       "target": "table:Activity",
       "type": "depends_on",
-      "field": "ActivityId"
+      "field": "ActivityId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Battery",
       "target": "table:Video",
       "type": "depends_on",
-      "field": "VideoId"
+      "field": "VideoId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:BattlePassReward",
       "target": "table:BattlePass",
       "type": "depends_on",
-      "field": "BattlePassID"
+      "field": "BattlePassID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:BattleSimulationLevel",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Boss_Dungeon",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:AddPoints",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:BattleTips",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:CameraChangeLimit",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:CameraChangeSize",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:CameraMovePosition",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:CameraShake",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ChangeTerrainSpeed",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:EnergyBall",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:EnergyBallMagnet",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:FightItem",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:PointsBallMagnet",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Sprint",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:UseHeroSkill",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:UseUltimateSkill",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:UseUltimateSkill",
       "target": "table:Skill",
       "type": "depends_on",
-      "field": "SkillId"
+      "field": "SkillId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:BattleGuide",
       "target": "table:Introduction",
       "type": "depends_on",
-      "field": "IntroductionId"
+      "field": "IntroductionId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:GuildCommissionLv",
       "target": "table:Task",
       "type": "depends_on",
-      "field": "TaskId"
+      "field": "TaskId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:GuildMission",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemID"
+      "field": "ItemID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:CalibrationPointsAttr",
       "target": "table:Attribute",
       "type": "depends_on",
-      "field": "AttributeID"
+      "field": "AttributeID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:HeroAttribute",
       "target": "table:Attribute",
       "type": "depends_on",
-      "field": "AttributeID"
+      "field": "AttributeID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:HeroStarAttrUp",
       "target": "table:Hero",
       "type": "depends_on",
-      "field": "HeroId"
+      "field": "HeroId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:HeroSupport",
       "target": "table:Hero",
       "type": "depends_on",
-      "field": "HeroId"
+      "field": "HeroId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:HeroSupport",
       "target": "table:Skin",
       "type": "depends_on",
-      "field": "SkinId"
+      "field": "SkinId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ItemChest",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ItemChest",
       "target": "table:Chest",
       "type": "depends_on",
-      "field": "ChestId"
+      "field": "ChestId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ItemSweep",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ItemSweep",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ChallengeDungeonSupport",
       "target": "table:SystemOpen",
       "type": "depends_on",
-      "field": "SystemOpenId"
+      "field": "SystemOpenId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ChapterStarReward",
       "target": "table:ChapterLevel",
       "type": "depends_on",
-      "field": "ChapterId"
+      "field": "ChapterId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ChapterTasks",
       "target": "table:ChapterLevel",
       "type": "depends_on",
-      "field": "ChapterId"
+      "field": "ChapterId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:CoinLevel",
       "target": "table:Boss",
       "type": "depends_on",
-      "field": "BossId"
+      "field": "BossId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:CoinLevel",
       "target": "table:Monster",
       "type": "depends_on",
-      "field": "MonsterId"
+      "field": "MonsterId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:EquipmentLevel",
       "target": "table:UIlevel",
       "type": "depends_on",
-      "field": "UiLevelId"
+      "field": "UiLevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:EquipmentLevel",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:level",
       "target": "table:Boss",
       "type": "depends_on",
-      "field": "BossId"
+      "field": "BossId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:level",
       "target": "table:LevelSkill",
       "type": "depends_on",
-      "field": "LevelSkillId"
+      "field": "LevelSkillId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:MainLevel",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:MainLevel",
       "target": "table:ChapterLevel",
       "type": "depends_on",
-      "field": "ChapterId"
+      "field": "ChapterId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:UIlevel",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:UIlevel",
       "target": "table:World",
       "type": "depends_on",
-      "field": "WorldId"
+      "field": "WorldId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:UIlevel",
       "target": "table:ChapterLevel",
       "type": "depends_on",
-      "field": "ChapterId"
+      "field": "ChapterId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:PresendMail",
       "target": "table:Mail",
       "type": "depends_on",
-      "field": "MailId"
+      "field": "MailId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:MonsterAttributeType",
       "target": "table:Attribute",
       "type": "depends_on",
-      "field": "AttributeID"
+      "field": "AttributeID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:UIMonster",
       "target": "table:Monster",
       "type": "depends_on",
-      "field": "MonsterID"
+      "field": "MonsterID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Layers",
       "target": "table:Dungeon",
       "type": "depends_on",
-      "field": "DungeonId"
+      "field": "DungeonId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Layers",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:NR_Level",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Power",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RobotObject",
       "target": "table:Hero",
       "type": "depends_on",
-      "field": "HeroID"
+      "field": "HeroID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RoguelikeCharacter",
       "target": "table:Attribute",
       "type": "depends_on",
-      "field": "AttributeId"
+      "field": "AttributeId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RoguelikeCharacter",
       "target": "table:Unlock",
       "type": "depends_on",
-      "field": "unlockId"
+      "field": "unlockId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RoguelikeItem",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "itemId"
+      "field": "itemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RoguelikeItem",
       "target": "table:Skill",
       "type": "depends_on",
-      "field": "skillId"
+      "field": "skillId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RoguelikeLevel",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RougelikeNegativeEffect",
       "target": "table:TargetSkill",
       "type": "depends_on",
-      "field": "TargetSkillId"
+      "field": "TargetSkillId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RougelikeReward",
       "target": "table:RougeReward",
       "type": "depends_on",
-      "field": "RougeRewardId"
+      "field": "RougeRewardId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ShareConversationBg",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ShopGoods",
       "target": "table:Shop",
       "type": "depends_on",
-      "field": "ShopId"
+      "field": "ShopId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:ShopGoods",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:SevenDaySign",
       "target": "table:Activity",
       "type": "depends_on",
-      "field": "ActivityId"
+      "field": "ActivityId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:LevelSkill",
       "target": "table:Skill",
       "type": "depends_on",
-      "field": "SkillId"
+      "field": "SkillId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:TargetSkill",
       "target": "table:Skill",
       "type": "depends_on",
-      "field": "SkillId"
+      "field": "SkillId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Skin",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:SpecialEquipmentGenerate",
       "target": "table:SpecialEquipment",
       "type": "depends_on",
-      "field": "SpecialEquipmentId"
+      "field": "SpecialEquipmentId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:StrategyRecommendation",
       "target": "table:Hero",
       "type": "depends_on",
-      "field": "HeroId"
+      "field": "HeroId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:SystemOpen",
       "target": "table:Unlock",
       "type": "depends_on",
-      "field": "UnlockId"
+      "field": "UnlockId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:JottingsTask",
       "target": "table:Task",
       "type": "depends_on",
-      "field": "TaskID"
+      "field": "TaskID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Task",
       "target": "table:Unlock",
       "type": "depends_on",
-      "field": "UnlockId"
+      "field": "UnlockId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Task",
       "target": "table:World",
       "type": "depends_on",
-      "field": "WorldId"
+      "field": "WorldId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Task",
       "target": "table:Chat",
       "type": "depends_on",
-      "field": "chatId"
+      "field": "chatId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:WeeklyTask",
       "target": "table:Task",
       "type": "depends_on",
-      "field": "TaskID"
+      "field": "TaskID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:TowerEnemyFormation",
       "target": "table:Team",
       "type": "depends_on",
-      "field": "TeamId"
+      "field": "TeamId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:TowerLevelDebuff",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelID"
+      "field": "LevelID",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Chest",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Barrier",
       "target": "table:World",
       "type": "depends_on",
-      "field": "WorldId"
+      "field": "WorldId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:CollectStation",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:CollectStation",
       "target": "table:World",
       "type": "depends_on",
-      "field": "WorldId"
+      "field": "WorldId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:Gain",
       "target": "table:World",
       "type": "depends_on",
-      "field": "WorldId"
+      "field": "WorldId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:MapBuff",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:MapBuff",
       "target": "table:World",
       "type": "depends_on",
-      "field": "WorldId"
+      "field": "WorldId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:World",
       "target": "table:ChapterLevel",
       "type": "depends_on",
-      "field": "ChapterId"
+      "field": "ChapterId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:World",
       "target": "table:Shop",
       "type": "depends_on",
-      "field": "ShopId"
+      "field": "ShopId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:WorldChest",
       "target": "table:World",
       "type": "depends_on",
-      "field": "WorldId"
+      "field": "WorldId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:WorldScheduleReward",
       "target": "table:ChapterLevel",
       "type": "depends_on",
-      "field": "ChapterId"
+      "field": "ChapterId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RougeHero",
       "target": "table:Hero",
       "type": "depends_on",
-      "field": "HeroId"
+      "field": "HeroId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RougeLevel",
       "target": "table:level",
       "type": "depends_on",
-      "field": "LevelId"
+      "field": "LevelId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:RougeShopGoods",
       "target": "table:Items",
       "type": "depends_on",
-      "field": "ItemId"
+      "field": "ItemId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:DrawCard",
       "target": "table:AvyTime",
       "type": "depends_on",
-      "field": "AvyTimeId"
+      "field": "AvyTimeId",
+      "direction": "forward",
+      "weight": 0.7
     },
     {
       "source": "table:DrawCardAnimationSSR",
       "target": "table:Hero",
       "type": "depends_on",
-      "field": "HeroId"
+      "field": "HeroId",
+      "direction": "forward",
+      "weight": 0.7
     }
   ],
   "layers": [
@@ -55978,15 +58783,44 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（32份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（61份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
         "document:2d5d10cfc503",
         "document:7b8c25d2dd97",
+        "document:377fc91ac69b",
         "document:3483d4aa37ac",
         "document:abe17297a3bb",
         "document:1059094c31fc",
+        "document:487697f18bea",
+        "document:6316d1684f87",
+        "document:74acaa4f574c",
+        "document:360ac4879486",
+        "document:2a009184f7b0",
+        "document:44f7261307c7",
+        "document:3bf6bbf18a5d",
+        "document:2378f56b2353",
+        "document:48fce13ed101",
+        "document:a2f36e0a6b4c",
+        "document:0c2343f2dcf2",
+        "document:01f6a8c23a8a",
+        "document:ecdc3ed343c0",
+        "document:e9d8745b6ec8",
+        "document:5dbf432d2672",
+        "document:287cb0ab0b13",
+        "document:60ce44b676ff",
+        "document:aa30e31a65a0",
+        "document:84a548fa694d",
+        "document:fdfaf62f631a",
+        "document:b51d25f37857",
+        "document:2387fa5df778",
+        "document:fe5ae2a54a2c",
+        "document:24a0945aa31f",
+        "document:43e289477609",
+        "document:8400a5c36f45",
+        "document:9b7723659bd1",
+        "document:3e99cf6a866b",
         "document:8db518927522",
         "document:f4547e46f01e",
         "document:8200ff23f79a",
@@ -56133,14 +58967,14 @@
     }
   ],
   "statistics": {
-    "total_nodes": 1872,
+    "total_nodes": 1901,
     "total_edges": 1202,
     "total_layers": 14,
     "tour_steps": 12,
     "sources": {
       "client": 1550,
       "config": 290,
-      "design": 32
+      "design": 61
     }
   }
 }

@@ -1,45 +1,57 @@
 @echo off
-chcp 65001 >nul
-setlocal
+setlocal EnableExtensions
 
 set "UA_ROOT=%~dp0understand-anything-new"
 set "GRAPH_DIR=%~dp0"
+set "DASHBOARD_VITE=understand-anything-plugin\packages\dashboard\node_modules\.bin\vite.cmd"
+set "CORE_SCHEMA=understand-anything-plugin\packages\core\dist\schema.js"
 
 where node >nul 2>nul
-if errorlevel 1 (
-    echo [ERROR] 未找到 Node.js，请先安装 Node.js 20+
-    pause
-    exit /b 1
-)
+if errorlevel 1 goto :missing_node
 
 where corepack >nul 2>nul
-if errorlevel 1 (
-    echo [ERROR] 未找到 corepack，无法准备 pnpm
-    pause
-    exit /b 1
-)
+if errorlevel 1 goto :missing_corepack
 
+if not exist "%UA_ROOT%\package.json" goto :missing_source
 cd /d "%UA_ROOT%"
-if not exist "node_modules" (
-    echo [SETUP] 首次启动，正在安装 Dashboard 依赖...
+
+if not exist "%DASHBOARD_VITE%" (
+    echo [SETUP] Installing dashboard dependencies...
     call corepack pnpm@10.6.2 install --frozen-lockfile --ignore-scripts
-    if errorlevel 1 (
-        echo [ERROR] Dashboard 依赖安装失败
-        pause
-        exit /b 1
-    )
+    if errorlevel 1 goto :install_failed
 )
 
-if not exist "understand-anything-plugin\packages\core\dist\schema.js" (
-    echo [SETUP] 正在构建 Dashboard 核心包...
+if not exist "%CORE_SCHEMA%" (
+    echo [SETUP] Building dashboard core package...
     call corepack pnpm@10.6.2 --filter @understand-anything/core build
-    if errorlevel 1 (
-        echo [ERROR] Dashboard 核心包构建失败
-        pause
-        exit /b 1
-    )
+    if errorlevel 1 goto :build_failed
 )
 
-echo [START] 浏览器将自动打开带临时访问令牌的本地页面。
+echo [START] Opening the Vgame knowledge graph dashboard...
+echo [INFO] Keep this window open. Press Ctrl+C to stop.
 call corepack pnpm@10.6.2 --filter @understand-anything/dashboard dev
+exit /b %errorlevel%
+
+:missing_node
+echo [ERROR] Node.js was not found. Install Node.js 20 or newer.
+goto :failed
+
+:missing_corepack
+echo [ERROR] Corepack was not found. Reinstall or repair Node.js.
+goto :failed
+
+:missing_source
+echo [ERROR] Dashboard source was not found: %UA_ROOT%
+goto :failed
+
+:install_failed
+echo [ERROR] Dashboard dependency installation failed.
+goto :failed
+
+:build_failed
+echo [ERROR] Dashboard core build failed.
+goto :failed
+
+:failed
 pause
+exit /b 1
