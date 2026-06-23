@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vgame 驾驭工程 — 新人上手指南</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #5f6b76;
+      --line: #d8dee4;
+      --surface: #ffffff;
+      --surface-soft: #f5f7f8;
+      --nav: #182126;
+      --teal: #0f766e;
+      --teal-soft: #dff4f1;
+      --blue: #2563a6;
+      --blue-soft: #e8f1fb;
+      --green: #287a45;
+      --green-soft: #e4f4e9;
+      --amber: #9a6700;
+      --amber-soft: #fff3cf;
+      --red: #b4232c;
+      --red-soft: #fdebed;
+      --purple: #7152a5;
+      --purple-soft: #f0ebf8;
+      --sidebar: 248px;
+      --radius: 8px;
+      --shadow: 0 1px 2px rgba(23, 32, 42, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--surface-soft);
+      font-family: "Microsoft YaHei", "PingFang SC", "Segoe UI", sans-serif;
+      line-height: 1.65;
+      letter-spacing: 0;
+    }
+    a { color: inherit; }
+    code, pre { font-family: Consolas, "Cascadia Code", monospace; }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: var(--sidebar);
+      overflow-y: auto;
+      background: var(--nav);
+      color: #edf3f5;
+      padding: 24px 16px;
+      z-index: 10;
+    }
+    .brand { padding: 0 10px 20px; border-bottom: 1px solid #364149; }
+    .brand strong { display: block; font-size: 19px; }
+    .brand span { display: block; margin-top: 5px; color: #aebbc2; font-size: 12px; }
+    .nav-title {
+      margin: 22px 10px 8px;
+      color: #899aa3;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .nav-link {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 6px;
+      color: #cdd8dd;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .nav-link:hover, .nav-link.active { background: #2b373d; color: #fff; }
+
+    main { margin-left: var(--sidebar); min-width: 0; }
+    .hero {
+      padding: 54px max(28px, calc((100vw - var(--sidebar) - 1040px) / 2));
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+    }
+    .hero h1 { margin: 0 0 10px; font-size: 32px; }
+    .hero p { margin: 0; color: var(--muted); font-size: 16px; max-width: 680px; }
+
+    .content {
+      padding: 32px max(28px, calc((100vw - var(--sidebar) - 1040px) / 2));
+    }
+    .content h2 {
+      margin: 40px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--teal);
+      font-size: 22px;
+    }
+    .content h3 { margin: 24px 0 12px; font-size: 17px; }
+    .content p { margin: 0 0 12px; }
+    .content ul, .content ol { margin: 0 0 16px; padding-left: 24px; }
+    .content li { margin-bottom: 6px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 0 20px;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 10px 14px;
+      border: 1px solid var(--line);
+      text-align: left;
+    }
+    th { background: var(--surface-soft); font-weight: 600; }
+    tr:nth-child(even) td { background: var(--surface-soft); }
+
+    code {
+      background: var(--surface-soft);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    pre {
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.5;
+      margin: 0 0 20px;
+    }
+    pre code { background: none; padding: 0; color: inherit; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 0 0 16px;
+      box-shadow: var(--shadow);
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p:last-child { margin-bottom: 0; }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .tag-teal { background: var(--teal-soft); color: var(--teal); }
+    .tag-blue { background: var(--blue-soft); color: var(--blue); }
+    .tag-green { background: var(--green-soft); color: var(--green); }
+    .tag-amber { background: var(--amber-soft); color: var(--amber); }
+    .tag-red { background: var(--red-soft); color: var(--red); }
+    .tag-purple { background: var(--purple-soft); color: var(--purple); }
+
+    .step {
+      display: flex;
+      gap: 16px;
+      margin: 0 0 24px;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 16px;
+    }
+    .step-body { flex: 1; min-width: 0; }
+    .step-body h3 { margin: 0 0 8px; font-size: 17px; }
+
+    .tree {
+      font-family: Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      background: var(--surface-soft);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      margin: 0 0 20px;
+      white-space: pre;
+    }
+
+    .qa { margin: 0 0 16px; }
+    .qa-q { font-weight: 600; color: var(--teal); margin: 0 0 4px; }
+    .qa-a { color: var(--ink); margin: 0 0 12px; padding-left: 20px; }
+
+    @media (max-width: 900px) {
+      .sidebar { position: static; width: 100%; padding: 16px; }
+      main { margin-left: 0; }
+      .hero, .content { padding-left: 20px; padding-right: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="brand">
+    <strong>Vgame 驾驭工程</strong>
+    <span>新人上手指南 v1.0</span>
+  </div>
+  <div class="nav-title">目录</div>
+  <a class="nav-link" href="#prereq">前置条件</a>
+  <a class="nav-link" href="#clone">克隆仓库</a>
+  <a class="nav-link" href="#config">配置本地路径</a>
+  <a class="nav-link" href="#structure">认识仓库结构</a>
+  <a class="nav-link" href="#workflow">日常怎么用</a>
+  <a class="nav-link" href="#ai">AI 怎么配合</a>
+  <a class="nav-link" href="#check">提交前检查</a>
+  <a class="nav-link" href="#faq">常见问题</a>
+</aside>
+
+<main>
+  <div class="hero">
+    <h1>Vgame 驾驭工程 — 新人上手指南</h1>
+    <p>本指南面向第一次接触 Vgame_design 仓库的策划。读完后你应该能独立完成：查配置表结构、写设计文档、跑 Proposal→Task 流程、让 AI 帮你改表。</p>
+  </div>
+
+  <div class="content">
+
+    <!-- ==================== 前置条件 ==================== -->
+    <h2 id="prereq">前置条件</h2>
+    <table>
+      <tr><th>工具</th><th>用途</th><th>安装方式</th></tr>
+      <tr><td><strong>Git</strong></td><td>版本控制</td><td>已有</td></tr>
+      <tr><td><strong>Python 3.10+</strong></td><td>运行图谱脚本和模拟器</td><td><code>python.org</code> 下载</td></tr>
+      <tr><td><strong>openpyxl</strong></td><td>Python 读写 Excel</td><td><code>pip install openpyxl</code></td></tr>
+      <tr><td><strong>OpenCode</strong>（推荐）</td><td>AI 辅助，自动加载 Skill</td><td>按团队文档安装</td></tr>
+    </table>
+
+    <!-- ==================== 克隆仓库 ==================== -->
+    <h2 id="clone">第一步：克隆仓库</h2>
+    <pre><code># 公司内网
+git clone git@code.dobest.com:spark/Vgame_design.git
+
+# 或者个人 GitHub
+git clone https://github.com/songchengze-niubility/Vgame_design.git</code></pre>
+
+    <!-- ==================== 配置本地路径 ==================== -->
+    <h2 id="config">第二步：配置本地路径</h2>
+    <p>仓库不保存任何人的盘符。首次使用时：</p>
+    <pre><code>copy local.env.example.bat local.env.bat</code></pre>
+    <p>编辑 <code>local.env.bat</code>，填入你的本机路径：</p>
+    <pre><code>set "VGAME_ROOT=D:\Vgame"
+set "VGAME_CONFIG_DATAS=D:\Vgame\Config\GameConfig\Datas"</code></pre>
+    <p><code>local.env.bat</code> 已在 <code>.gitignore</code> 中，不会上传到仓库。</p>
+
+    <!-- ==================== 认识仓库结构 ==================== -->
+    <h2 id="structure">第三步：认识仓库结构（5 分钟）</h2>
+
+    <div class="tree">Vgame_design/
+├── AGENTS.md                ← AI 入口（AI 第一个读的文件）
+├── design/                  ← 32 篇系统设计文档
+│   ├── TEMPLATE.md          ← 新设计文档的模板
+│   └── 主线关卡系统Design Doc.md
+├── proposals/               ← 落地方案（改表前写）
+│   └── TEMPLATE.md
+├── tasks/                   ← 执行任务（拆步骤）
+│   └── TEMPLATE.md
+├── skills/                  ← 18 个策划 AI Skill
+│   └── vgame-core-understanding/SKILL.md ← 入口
+├── knowledge-graph/         ← 知识图谱
+│   ├── config-schema.json   ← 290 张表的字段/类型/公式/外键
+│   ├── knowledge-graph.json ← 代码图谱
+│   └── 更新知识图谱.bat
+├── harness/                 ← 约束规则
+├── scripts/                 ← 检查脚本
+└── 通用项目skill/           ← 可复用模板</div>
+
+    <h3>核心概念</h3>
+    <table>
+      <tr><th>概念</th><th>一句话解释</th></tr>
+      <tr><td><strong>Design Doc</strong></td><td>"这个系统是什么、怎么运作" — 设计文档</td></tr>
+      <tr><td><strong>Proposal</strong></td><td>"我要改什么、影响什么、怎么验证" — 落地方案</td></tr>
+      <tr><td><strong>Task</strong></td><td>"拆成哪些步骤、每步怎么做" — 执行清单</td></tr>
+      <tr><td><strong>Skill</strong></td><td>AI 的"策划知识库"，告诉 AI 配置表怎么查、规则是什么</td></tr>
+      <tr><td><strong>知识图谱</strong></td><td>290 张配置表的结构数据（字段名、类型、公式列、外键）</td></tr>
+    </table>
+
+    <!-- ==================== 日常怎么用 ==================== -->
+    <h2 id="workflow">第四步：日常怎么用</h2>
+
+    <!-- 场景 A -->
+    <div class="card">
+      <div class="card-title"><span class="tag tag-blue">场景 A</span> 查配置表结构</div>
+      <p>想查某张表有什么字段、哪些列有公式不能写：</p>
+      <pre><code># 方法 1：直接打开 Excel 看前 4 行
+# Row 1 = 字段名, Row 2 = 类型, Row 3 = 分组, Row 4 = 中文说明
+
+# 方法 2：用 Python 查（需要先安装 openpyxl）
+python -c "
+import json
+schema = json.load(open('knowledge-graph/config-schema.json', 'r', encoding='utf-8'))
+for node in schema['nodes']:
+    if node['name'] == '你想查的表名':
+        print('字段:', list(node['metadata']['fields'].keys()))
+        print('公式列:', node['metadata']['formula_columns'])
+        print('安全列:', node['metadata']['safe_write_columns'])
+"</code></pre>
+    </div>
+
+    <!-- 场景 B -->
+    <div class="card">
+      <div class="card-title"><span class="tag tag-green">场景 B</span> 写一份新系统设计</div>
+      <pre><code># 1. 复制模板
+copy design/TEMPLATE.md design/新系统名Design Doc.md
+
+# 2. 按模板填写（元信息 → 背景与目标 → 核心规则 → 技术方案 → 风险评估 → 工作假设）
+
+# 3. 提交
+git add design/新系统名Design Doc.md
+git commit -m "Design: 新系统名"
+git push</code></pre>
+    </div>
+
+    <!-- 场景 C -->
+    <div class="card">
+      <div class="card-title"><span class="tag tag-amber">场景 C</span> 改配置表（走 Proposal→Task 流程）</div>
+      <pre><code># 1. 写 Proposal（改什么、影响什么、风险）
+copy proposals/TEMPLATE.md proposals/改动名-YYYY-MM-DD.md
+
+# 2. 写 Task（拆步骤）
+copy tasks/TEMPLATE.md tasks/改动名-YYYY-MM-DD.md
+
+# 3. 改表（在 D:\Vgame\Config\GameConfig\Datas\ 下的 Excel）
+
+# 4. 改完后更新知识图谱（只有新增/删除表或字段时需要）
+双击 knowledge-graph/更新知识图谱.bat
+
+# 5. 更新 Task 状态
+
+# 6. 提交
+git add proposals/ tasks/
+git commit -m "Task: 改动名已完成"
+git push</code></pre>
+    </div>
+
+    <!-- 场景 D -->
+    <div class="card">
+      <div class="card-title"><span class="tag tag-purple">场景 D</span> 让 AI 帮你做事</div>
+      <p>如果你用 OpenCode，AI 会自动加载 <code>skills/</code> 下的 Skill。你只需要：</p>
+      <ol>
+        <li>告诉 AI 你想做什么（比如"帮我查 Drop_mainlevel 的字段"）</li>
+        <li>AI 自动读 <code>AGENTS.md</code> → 路由到对应 Skill → 读知识图谱 → 输出结果</li>
+      </ol>
+      <p><strong>不需要</strong>手动告诉 AI 去读哪个文件，<code>AGENTS.md</code> 已经定义好了路由。</p>
+    </div>
+
+    <!-- ==================== AI 配合 ==================== -->
+    <h2 id="ai">第五步：AI 怎么配合</h2>
+
+    <table>
+      <tr><th>你想要</th><th>AI 自动做什么</th></tr>
+      <tr><td>查一张表的字段</td><td>读 <code>config-schema.json</code> 返回字段名/类型/公式列</td></tr>
+      <tr><td>改一个奖励配置</td><td>查 <code>config-schema.json</code> 确认字段安全 → 读 Excel 当前值 → 改表</td></tr>
+      <tr><td>写一份设计文档</td><td>读 <code>design/TEMPLATE.md</code> + 相关 Skill → 按模板输出</td></tr>
+      <tr><td>跑模拟验证</td><td>调用 <code>simulate_progression.py</code> → 对比改前改后</td></tr>
+      <tr><td>调战斗数值</td><td>读 <code>vgame-battle-tuning-helper</code> Skill → 计算 DPS/TTK/难度</td></tr>
+    </table>
+
+    <p>AI 的知识来源是仓库里的 Skill 和知识图谱，不是它自己猜的。所以你问的问题越具体，AI 回答越准。</p>
+
+    <!-- ==================== 提交前检查 ==================== -->
+    <h2 id="check">第六步：提交前检查</h2>
+    <pre><code>powershell -ExecutionPolicy Bypass -File scripts/check.ps1</code></pre>
+    <p>这个脚本会检查：</p>
+    <ul>
+      <li>设计文档格式是否正确</li>
+      <li>配置表结构是否有问题</li>
+      <li>跨表引用是否完整</li>
+    </ul>
+
+    <!-- ==================== 常见问题 ==================== -->
+    <h2 id="faq">常见问题</h2>
+
+    <div class="qa">
+      <p class="qa-q">Q：我改了配置表，需要更新知识图谱吗？</p>
+      <p class="qa-a">只有新增/删除表或字段时需要。只改数值不需要。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">Q：知识图谱过期了怎么办？</p>
+      <p class="qa-a">双击 <code>knowledge-graph/更新知识图谱.bat</code>，它会重新读取所有配置表生成最新结构。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">Q：AI 不知道我改了什么怎么办？</p>
+      <p class="qa-a">确保你改的配置表在 SVN 里，AI 会通过知识图谱读取最新结构。如果 AI 用的是旧数据，跑一次 <code>更新知识图谱.bat</code>。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">Q：我想新增一个系统，从哪开始？</p>
+      <p class="qa-a">先写 <code>design/新系统名Design Doc.md</code>（用 TEMPLATE.md），再走 Proposal→Task 流程。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">Q：Proposal 和 Task 有什么区别？</p>
+      <p class="qa-a">Proposal = "改什么 + 影响什么 + 风险"（给人看的）。Task = "拆成哪些步骤"（给执行用的）。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">Q：我只想改一个数值，也要走完整流程吗？</p>
+      <p class="qa-a">不需要。小改动直接改表 + commit message 记录就行。只有跨系统、影响大的改动才需要 Proposal→Task。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">Q：怎么知道哪些列能改、哪些不能改？</p>
+      <p class="qa-a">查 <code>config-schema.json</code> 里的 <code>formula_columns</code>（不能改）和 <code>safe_write_columns</code>（能改）。或者直接问 AI。</p>
+    </div>
+
+    <div class="qa">
+      <p class="qa-q">Q：我想给其他项目也用这套框架怎么办？</p>
+      <p class="qa-a"><code>通用项目skill/</code> 目录下有通用模板，复制后填入新项目的具体信息即可。</p>
+    </div>
+
+  </div>
+</main>
+
+</body>
+</html>
