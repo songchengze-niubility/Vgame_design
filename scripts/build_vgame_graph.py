@@ -30,9 +30,13 @@ def publish() -> dict:
     source = KG / "knowledge-graph.json"
     graph = json.loads(source.read_text(encoding="utf-8"))
     UA.mkdir(parents=True, exist_ok=True)
+    # UA Dashboard 读取的全量图；仓库根的 knowledge-graph.json 由 merge 脚本生成，
+    # 这里不再复制第二份进 .understand-anything，避免 1.9MB × 3 重复。
     shutil.copy2(source, UA / "knowledge-graph.json")
 
-    lite_nodes = [node for node in graph.get("nodes", []) if node.get("type") != "function"]
+    # lite 版给 AI / check 脚本作精简索引：剔除占绝大多数的 file 节点，
+    # 只保留 config / table / document 等结构层节点，显著小于全量图。
+    lite_nodes = [node for node in graph.get("nodes", []) if node.get("type") != "file"]
     lite_ids = {node.get("id") for node in lite_nodes}
     lite_edges = [
         edge

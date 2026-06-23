@@ -11,7 +11,7 @@
       "Unity",
       "Luban"
     ],
-    "analyzedAt": "2026-06-23T19:20:20Z",
+    "analyzedAt": "2026-06-23T19:34:08Z",
     "gitCommitHash": "49c40c44e30c5c2d3bde08bfd6d2ee9bc5989485",
     "sources": [
       "client-code",
@@ -46984,6 +46984,26 @@
       "source": "design"
     },
     {
+      "id": "document:258b6c8294f4",
+      "type": "document",
+      "name": "宝石与铭文 — Design Doc [ARCHIVED]",
+      "filePath": "design/archive/宝石与铭文Design Doc.md",
+      "summary": "宝石与铭文 — Design Doc [ARCHIVED]",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 148,
+        "sha256": "96d670a84696b90364bfaab11347fb04163bb700ad21bade99f7f3c139bf84fc"
+      },
+      "source": "design"
+    },
+    {
       "id": "document:377fc91ac69b",
       "type": "document",
       "name": "Buff 系统 — Design Doc",
@@ -47059,7 +47079,7 @@
       "metadata": {
         "category": "design",
         "line_count": 75,
-        "sha256": "aac0f23f7627ecad47ea06866535cc9d40886816f461e476e8ba53d4f951e7ad"
+        "sha256": "bf5aa088b39725003ae9699365bbd74d7b50796355304a49095dd95fbea09306"
       },
       "source": "design"
     },
@@ -47260,26 +47280,6 @@
         "category": "design",
         "line_count": 136,
         "sha256": "7487dc96e2989e54166f981600deaa9f6eed5bda4579ae5fadc8adf25514f266"
-      },
-      "source": "design"
-    },
-    {
-      "id": "document:48fce13ed101",
-      "type": "document",
-      "name": "宝石与铭文 — Design Doc",
-      "filePath": "design/宝石与铭文Design Doc.md",
-      "summary": "宝石与铭文 — Design Doc",
-      "tags": [
-        "vgame",
-        "design-doc",
-        "design"
-      ],
-      "complexity": "simple",
-      "layer": "design",
-      "metadata": {
-        "category": "design",
-        "line_count": 145,
-        "sha256": "d7d1600b1ca04ac0cc2c59092f60834dcb3258eae20caf0fe74abd1aa6a1cf6a"
       },
       "source": "design"
     },
@@ -47759,7 +47759,7 @@
       "metadata": {
         "category": "harness",
         "line_count": 41,
-        "sha256": "4231fe5e35dc845be06e31c5e4102a92472fd70c4be23dd07b5df24f89a3ae98"
+        "sha256": "bae5340eeff03832bb64fddbbf61beb5aa117b8862204429f4a025248a7e3a1b"
       },
       "source": "design"
     },
@@ -47878,8 +47878,8 @@
       "layer": "design",
       "metadata": {
         "category": "harness",
-        "line_count": 30,
-        "sha256": "652785490d81d147f8468dbbb489497376fc6f94aae1d95237d4ecf10381471d"
+        "line_count": 31,
+        "sha256": "ceada48b99a31aa4cb5f1e51724de8635d79929f79930dc91dce5ecec8dd8042"
       },
       "source": "design"
     },
@@ -47919,7 +47919,7 @@
       "metadata": {
         "category": "harness",
         "line_count": 39,
-        "sha256": "a3b1351bc9fe3d2a003856968e84ff9d2b2407ceaa11ad2e0279882eeb6acdd4"
+        "sha256": "7917fda2ec71fe2313c90f3516f873c4053fcdb651710f5af17f0226dab7573c"
       },
       "source": "design"
     },
@@ -47940,46 +47940,6 @@
         "category": "harness",
         "line_count": 27,
         "sha256": "4a7a466ec2e2f6c0cf6e23818d401012240f98a19ad77e7bd2e544b832e2a544"
-      },
-      "source": "design"
-    },
-    {
-      "id": "document:be22a42ab7bb",
-      "type": "document",
-      "name": "Plans",
-      "filePath": "plans/README.md",
-      "summary": "Plans",
-      "tags": [
-        "vgame",
-        "design-doc",
-        "plan"
-      ],
-      "complexity": "simple",
-      "layer": "design",
-      "metadata": {
-        "category": "plan",
-        "line_count": 6,
-        "sha256": "824323069d4dc20b2136de1ccc159f0d26344daf891d06b1c7574c6253261da6"
-      },
-      "source": "design"
-    },
-    {
-      "id": "document:26a6bf2b5a91",
-      "type": "document",
-      "name": "Vgame Plans",
-      "filePath": "PLANS.md",
-      "summary": "Vgame Plans",
-      "tags": [
-        "vgame",
-        "design-doc",
-        "governance"
-      ],
-      "complexity": "simple",
-      "layer": "design",
-      "metadata": {
-        "category": "governance",
-        "line_count": 20,
-        "sha256": "c32003f1bc1b5a1b27311695c1a9139be6d6a40babeca5958bcaed0808e360fd"
       },
       "source": "design"
     },
@@ -48058,8 +48018,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 22,
-        "sha256": "518922a39392568b5fb8d3cee2aeb9664d441c6c2eb4afa9062ee5facbb3329b"
+        "line_count": 24,
+        "sha256": "24b81ecb0c62920718235b63295df509a7783cef2ca8ef8d7ee8ee48bfc5d830"
       },
       "source": "design"
     },
@@ -48098,8 +48058,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 20,
-        "sha256": "a3712b624a29664fcd3b7b9e1764d49709ddb3dc03fdec3a60257a3fb1d58b7d"
+        "line_count": 35,
+        "sha256": "a7c029af4227db4a6c7d906b6fa41121e2ce86a7f87be5d491bc44ff678b6512"
       },
       "source": "design"
     },
@@ -58647,12 +58607,13 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（66份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（64份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
         "document:2d5d10cfc503",
         "document:7b8c25d2dd97",
+        "document:258b6c8294f4",
         "document:377fc91ac69b",
         "document:3483d4aa37ac",
         "document:abe17297a3bb",
@@ -58667,7 +58628,6 @@
         "document:4882c66d2091",
         "document:3bf6bbf18a5d",
         "document:2378f56b2353",
-        "document:48fce13ed101",
         "document:a2f36e0a6b4c",
         "document:0c2343f2dcf2",
         "document:01f6a8c23a8a",
@@ -58701,8 +58661,6 @@
         "document:ebb80ef7fd12",
         "document:24d54c348ffa",
         "document:679aca58bac1",
-        "document:be22a42ab7bb",
-        "document:26a6bf2b5a91",
         "document:d00524f22f76",
         "document:c87739c5c66a",
         "document:6268c74d06bc",
@@ -58836,14 +58794,14 @@
     }
   ],
   "statistics": {
-    "total_nodes": 1897,
+    "total_nodes": 1895,
     "total_edges": 1200,
     "total_layers": 14,
     "tour_steps": 12,
     "sources": {
       "client": 1550,
       "config": 281,
-      "design": 66
+      "design": 64
     }
   }
 }

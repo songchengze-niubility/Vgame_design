@@ -12,7 +12,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT = REPO_ROOT / "knowledge-graph" / "design-docs.json"
-SCAN_DIRS = ("design", "proposals", "tasks", "plans", "harness")
+SCAN_DIRS = ("design", "proposals", "tasks", "harness")
 def slug(path: Path) -> str:
     rel = path.relative_to(REPO_ROOT).as_posix()
     return hashlib.sha1(rel.encode("utf-8")).hexdigest()[:12]
@@ -57,8 +57,6 @@ def classify(path: Path) -> str:
         return "proposal"
     if rel.startswith("tasks/"):
         return "task"
-    if rel.startswith("plans/"):
-        return "plan"
     if rel.startswith("harness/"):
         return "harness"
     return "governance"

@@ -72,4 +72,4 @@
 2. 每条规则必须覆盖 8 个维度，缺失的维度标注「不适用」并说明原因
 3. 工作假设必须在 Proposal 阶段前完成澄清
 4. 状态流转：`Draft` → `InReview`（评审中）→ `Approved`（门禁通过）
-5. Design Doc 通过后回流到 `tkl_design/design/` 目录
+5. Design Doc 通过后回流到本仓库 `design/` 目录

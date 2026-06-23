@@ -54,7 +54,7 @@ $RequiredFiles = @(
     @{ Path = "CLAUDE.md"; Desc = "agent instructions" },
     @{ Path = "ARCHITECTURE.md"; Desc = "architecture map" },
     @{ Path = "DESIGN.md"; Desc = "design rules" },
-    @{ Path = "PLANS.md"; Desc = "plan index" },
+    @{ Path = "ROADBOOK.md"; Desc = "roadbook and plan index" },
     @{ Path = "SECURITY.md"; Desc = "security guide" },
     @{ Path = "CROSS-REPO-CHANGES.md"; Desc = "cross repo log" },
     @{ Path = "golden-principles.md"; Desc = "golden principles" },
@@ -83,7 +83,6 @@ $RequiredDirs = @(
     "design",
     "proposals",
     "tasks",
-    "plans",
     "knowledge-graph",
     "scripts"
 )
