@@ -58,29 +58,63 @@ if exist local.env.bat (
     echo   local.env.bat 已存在，跳过
 ) else (
     echo   正在生成 local.env.bat...
-    :: 尝试自动检测 Vgame 路径
-    set "DETECTED_ROOT="
-    if exist "D:\Vgame" set "DETECTED_ROOT=D:\Vgame"
-    if exist "E:\Vgame" set "DETECTED_ROOT=E:\Vgame"
-    if exist "C:\Vgame" set "DETECTED_ROOT=C:\Vgame"
 
-    if defined DETECTED_ROOT (
-        echo   检测到 Vgame 目录: !DETECTED_ROOT!
-        (
-            echo set "VGAME_ROOT=!DETECTED_ROOT!"
-            echo set "VGAME_CONFIG_DATAS=!DETECTED_ROOT!\Config\GameConfig\Datas"
-        ) > local.env.bat
-        echo   local.env.bat 已生成
-    ) else (
-        echo   [提示] 未自动检测到 Vgame 目录
-        echo   请手动编辑 local.env.bat，填入你的本机路径：
-        echo     set "VGAME_ROOT=你的Vgame路径"
-        echo     set "VGAME_CONFIG_DATAS=你的Vgame路径\Config\GameConfig\Datas"
-        (
-            echo set "VGAME_ROOT=请修改为你的路径"
-            echo set "VGAME_CONFIG_DATAS=请修改为你的路径\Config\GameConfig\Datas"
-        ) > local.env.bat
+    :: 尝试自动检测：在当前目录或父目录找 .svn 标识
+    set "DETECTED_ROOT="
+    set "CHECK_DIR=%CD%"
+
+    :: 检查当前目录
+    if exist "%CHECK_DIR%\.svn" (
+        set "DETECTED_ROOT=%CHECK_DIR%"
+        goto :found_svn
     )
+
+    :: 检查上级目录（最多3级）
+    for /f "delims=" %%d in ("%CHECK_DIR%") do set "P1=%%~dpd"
+    if exist "%P1%.svn" (
+        set "DETECTED_ROOT=%P1:~0,-1%"
+        goto :found_svn
+    )
+    for /f "delims=" %%d in ("%P1%") do set "P2=%%~dpd"
+    if exist "%P2%.svn" (
+        set "DETECTED_ROOT=%P2:~0,-1%"
+        goto :found_svn
+    )
+    for /f "delims=" %%d in ("%P2%") do set "P3=%%~dpd"
+    if exist "%P3%.svn" (
+        set "DETECTED_ROOT=%P3:~0,-1%"
+        goto :found_svn
+    )
+
+    goto :manual_input
+
+    :found_svn
+    :: 验证是否是正确的 SVN 仓库（HorizonFlyMaster）
+    svn info "%DETECTED_ROOT%" 2>nul | findstr /i "HorizonFlyMaster" >nul
+    if %errorlevel% neq 0 (
+        echo   [提示] 检测到 SVN 仓库但不是 HorizonFlyMaster，请手动输入路径
+        goto :manual_input
+    )
+
+    echo   检测到 Vgame SVN 工作副本: !DETECTED_ROOT!
+    (
+        echo set "VGAME_ROOT=!DETECTED_ROOT!"
+        echo set "VGAME_CONFIG_DATAS=!DETECTED_ROOT!\Config\GameConfig\Datas"
+    ) > local.env.bat
+    echo   local.env.bat 已生成
+    goto :done_env
+
+    :manual_input
+    echo   [提示] 未检测到 Vgame SVN 工作副本
+    echo   请手动编辑 local.env.bat，填入你的 Vgame 路径：
+    echo     set "VGAME_ROOT=你的Vgame路径"
+    echo     set "VGAME_CONFIG_DATAS=你的Vgame路径\Config\GameConfig\Datas"
+    (
+        echo set "VGAME_ROOT=请修改为你的路径"
+        echo set "VGAME_CONFIG_DATAS=请修改为你的路径\Config\GameConfig\Datas"
+    ) > local.env.bat
+
+    :done_env
 )
 
 :: ============================================================
