@@ -1,0 +1,3 @@
+schema=1
+branch=master
+remote=git@code.dobest.com:spark/Vgame_design.git

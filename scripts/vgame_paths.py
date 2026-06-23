@@ -52,7 +52,7 @@ def design_root() -> Path:
 
 
 def harness_root() -> Path:
-    return _env_path("VGAME_HARNESS_ROOT") or (vgame_root() / "驾驭工程")
+    return REPO_ROOT / "驾驭工程"
 
 
 def config_datas() -> Path:
@@ -60,9 +60,10 @@ def config_datas() -> Path:
 
 
 def client_graph() -> Path:
-    return _env_path("VGAME_CLIENT_GRAPH") or (
-        harness_root() / "知识图谱" / "client" / "knowledge-graph.json"
-    )
+    configured = _env_path("VGAME_CLIENT_GRAPH")
+    if configured and configured.is_file():
+        return configured
+    return REPO_ROOT / "knowledge-graph" / "client" / "knowledge-graph.json"
 
 
 def code_root() -> Path:

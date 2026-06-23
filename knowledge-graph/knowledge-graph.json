@@ -11,7 +11,7 @@
       "Unity",
       "Luban"
     ],
-    "analyzedAt": "2026-06-23T17:05:11Z",
+    "analyzedAt": "2026-06-23T17:42:12Z",
     "gitCommitHash": "49c40c44e30c5c2d3bde08bfd6d2ee9bc5989485",
     "sources": [
       "client-code",
@@ -46918,8 +46918,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 75,
-        "sha256": "ddd9e3d3ef6735b16f39f8ca3a62af5102a94bd88004d2e60fe060d84b3ffc13"
+        "line_count": 76,
+        "sha256": "461b75ee60942663b2a3df4374b6d52667f1651873094a7ee0b58378fdff868a"
       },
       "source": "design"
     },
@@ -48218,17 +48218,17 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 80,
-        "sha256": "a4f22d18f92def06de9088d6273a5055ec2618e70d4bb68f4922758c40a1e35c"
+        "line_count": 5,
+        "sha256": "1e6f6264619d9d94c1c3516ff6b8826d18c847fa6b1044c49eb214ef2fde761d"
       },
       "source": "design"
     },
     {
       "id": "document:060c16cf65a7",
       "type": "document",
-      "name": "Vgame 驾驭工程 — 新人上手指南",
+      "name": "Vgame 驾驭工程新人使用手册",
       "filePath": "新人上手指南.md",
-      "summary": "Vgame 驾驭工程 — 新人上手指南",
+      "summary": "Vgame 驾驭工程新人使用手册",
       "tags": [
         "vgame",
         "design-doc",
@@ -48238,8 +48238,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 201,
-        "sha256": "f1bc50ddb0782a521820a2b0ceb5e97f8fa6f8ce5f5bdae2e16442f07c27126e"
+        "line_count": 366,
+        "sha256": "2215ac3b10fcb2e55ed6a604fa460430ba23f3a8fc144155c5c7be95ae6b03fd"
       },
       "source": "design"
     }

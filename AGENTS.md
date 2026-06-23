@@ -1,4 +1,4 @@
-# Vgame Design — Agent-First Knowledge Base
+# Vgame 策划 Agent 总入口
 
 > 地图而非手册。本文件是智能体入口页，只负责告诉下一步该看什么。
 > 具体规则放在 `harness/`，具体设计放在 `design/`，执行计划放在 `proposals/` 与 `tasks/`。
@@ -15,6 +15,18 @@ Design -> Proposal -> Task -> Config/Code
 4. 要改真实配置或代码：先确认来源链路，再回到 `${VGAME_ROOT}` 执行。
 5. 提交前：运行 `scripts/check.ps1`。
 6. 涉及项目事实：先按 `knowledge-graph/KG-AI-RULES.md` 查图谱，再回源确认。
+
+## 本机工程连接
+
+本仓库是 Codex 新对话的工作目录。开始 Vgame 项目任务前：
+
+1. 读取 `%LOCALAPPDATA%\Vgame\design-harness.env.bat` 或本仓库忽略的 `local.env.bat`。
+2. 确认 `${VGAME_ROOT}` 指向当前电脑上的 Vgame SVN 工作副本。
+3. 先读取 `skills/vgame-core-understanding/SKILL.md`，再按路由加载专项 Skill。
+4. 通过 `${VGAME_CONFIG_DATAS}` 和 `${VGAME_CODE_ROOT}` 读取真实配置与代码。
+5. 除非用户明确授权修改，否则将 SVN 工程视为只读。
+
+首次安装、换电脑或路径变化时，运行 `驾驭工程/配置本机路径.bat` 和 `驾驭工程/一键安装.bat`。不要再从 Vgame SVN 目录启动驾驭工程。
 
 ## 项目概览
 
@@ -40,6 +52,7 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 
 | 场景 | 下一步看 |
 |---|---|
+| 新人安装、Git/SVN 与完整使用流程 | `新人上手指南.md`、`驾驭工程/README.md` |
 | 不知道怎么开始 | `harness/concepts/00-overview.md` |
 | 需要新增玩法/系统设计 | `DESIGN.md`、`design/TEMPLATE.md` |
 | 需要形成落地方案 | `proposals/TEMPLATE.md` |
