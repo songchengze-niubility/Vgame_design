@@ -12,11 +12,9 @@ ${VGAME_SKILL_ROOT}
 
 关键文件：
 
-- `config.toml` — 项目 Skill 路由配置
-- `agents/` — Agent 定义
-- `vgame-core-understanding/` — 入口 Skill
-- `vgame-*` — 18 个 Vgame 专项 Skill
-- `generic/` — 16 个通用框架模板（不绑定项目，供新项目初始化或方法论参考）
+- `config.toml`
+- `agents/`
+- `skills/`
 
 ## 使用顺序
 

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-06-23T21:10:40",
+  "generated_at": "2026-06-23T19:34:08",
   "nodes": [
     {
       "id": "document:37dd68363fc1",
@@ -948,8 +948,8 @@
       "layer": "design",
       "metadata": {
         "category": "harness",
-        "line_count": 57,
-        "sha256": "de8cdb5618cc5f805e318990891f9e3c4202b15e479e27dbd394ff99927d291c"
+        "line_count": 55,
+        "sha256": "dc91f0d2a1f9e9ece9b5eb03348fb0b011f576f363303f09fe0ebbeafcff88bc"
       }
     },
     {
@@ -1045,25 +1045,6 @@
         "category": "proposal",
         "line_count": 80,
         "sha256": "8063882efa187522e6fa42cdbde022143cad9c25ade90ec195f91362a9140b7a"
-      }
-    },
-    {
-      "id": "document:dff8119f5f8d",
-      "type": "document",
-      "name": "Proposal: 爬塔多编队挑战",
-      "filePath": "proposals/爬塔多编队-2026-06-23.md",
-      "summary": "Proposal: 爬塔多编队挑战",
-      "tags": [
-        "vgame",
-        "design-doc",
-        "proposal"
-      ],
-      "complexity": "simple",
-      "layer": "design",
-      "metadata": {
-        "category": "proposal",
-        "line_count": 137,
-        "sha256": "563272a0d0e57c90d8200f23c1aca27b76f58f0710f93adf779cbe90c6f6b451"
       }
     },
     {
@@ -1243,7 +1224,7 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（65份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（64份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
@@ -1300,7 +1281,6 @@
         "document:d00524f22f76",
         "document:c87739c5c66a",
         "document:6268c74d06bc",
-        "document:dff8119f5f8d",
         "document:cb6127d985e8",
         "document:240c2b50eb9f",
         "document:424882b888c7",
@@ -1314,7 +1294,7 @@
     }
   ],
   "statistics": {
-    "documents": 65,
+    "documents": 64,
     "edges": 0
   }
 }
