@@ -22,7 +22,7 @@ Design -> Proposal -> Task -> Config/Code
 |---|---|
 | 项目 | Vgame |
 | 本仓库 | Vgame 设计/harness/提案/任务/知识图谱/策划Skill 全包 |
-| 游戏工程 | `D:\Vgame` |
+| 游戏工程 | `${VGAME_ROOT}` |
 | 配置体系 | Excel 配置表为核心源，真实表不直接放入本仓库 |
 | Agent skill | `skills/`（本仓库内，入口 `skills/vgame-core-understanding/SKILL.md`） |
 | 协作目标 | 让策划、数值、配置、战斗、外循环问题有可追踪的判断链 |

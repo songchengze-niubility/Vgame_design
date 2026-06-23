@@ -12,7 +12,7 @@
 
 ## 背景与目标
 ### 背景
-Vgame 使用 Luban 工具链管理配置表管线。Excel 源文件（`D:\Vgame\Config\GameConfig\Datas\`）采用 4 行头格式（##var / ##type / ##group / ##），通过 `__tables__.xlsx` 注册逻辑表名到物理文件的映射。Luban 工具将 Excel 编译为 server_json 目录下的 JSON 和 C# 代码。部分逻辑表合并多个 Excel 文件（如 Drop = 8 个文件）。Excel 为唯一数据源，生成的 JSON 不作为直接编辑对象。公式列（ID / DropId / DropId2）有安全保护。
+Vgame 使用 Luban 工具链管理配置表管线。Excel 源文件（`${VGAME_ROOT}\Config\GameConfig\Datas\`）采用 4 行头格式（##var / ##type / ##group / ##），通过 `__tables__.xlsx` 注册逻辑表名到物理文件的映射。Luban 工具将 Excel 编译为 server_json 目录下的 JSON 和 C# 代码。部分逻辑表合并多个 Excel 文件（如 Drop = 8 个文件）。Excel 为唯一数据源，生成的 JSON 不作为直接编辑对象。公式列（ID / DropId / DropId2）有安全保护。
 
 ### 目标
 - 规范配置表的添加、修改、导出全流程

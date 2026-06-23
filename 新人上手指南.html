@@ -247,13 +247,16 @@ git clone git@code.dobest.com:spark/Vgame_design.git
 git clone https://github.com/songchengze-niubility/Vgame_design.git</code></pre>
 
     <!-- ==================== 配置本地路径 ==================== -->
-    <h2 id="config">第二步：配置本地路径</h2>
+    <h2 id="config">第二步：配置本地路径（必做一次）</h2>
     <p>仓库不保存任何人的盘符。首次使用时：</p>
     <pre><code>copy local.env.example.bat local.env.bat</code></pre>
     <p>编辑 <code>local.env.bat</code>，填入你的本机路径：</p>
-    <pre><code>set "VGAME_ROOT=D:\Vgame"
-set "VGAME_CONFIG_DATAS=D:\Vgame\Config\GameConfig\Datas"</code></pre>
+    <pre><code>set "VGAME_ROOT=&lt;你的 Vgame SVN 工程路径&gt;"
+set "VGAME_DESIGN_ROOT=&lt;你的 Vgame_design Git 仓库路径&gt;"
+set "VGAME_SOURCE_DOCS_ROOT=&lt;你的 Vgame 原始策划文档路径&gt;"
+set "VGAME_OUTPUT_ROOT=&lt;你的个人输出路径&gt;"</code></pre>
     <p><code>local.env.bat</code> 已在 <code>.gitignore</code> 中，不会上传到仓库。</p>
+    <p>使用 SVN 中的中文启动层时，直接双击 <code>驾驭工程/配置本机路径.bat</code>，按提示粘贴自己的目录即可。</p>
 
     <!-- ==================== 认识仓库结构 ==================== -->
     <h2 id="structure">第三步：认识仓库结构（5 分钟）</h2>
@@ -332,7 +335,7 @@ copy proposals/TEMPLATE.md proposals/改动名-YYYY-MM-DD.md
 # 2. 写 Task（拆步骤）
 copy tasks/TEMPLATE.md tasks/改动名-YYYY-MM-DD.md
 
-# 3. 改表（在 D:\Vgame\Config\GameConfig\Datas\ 下的 Excel）
+# 3. 改表（在 ${VGAME_ROOT}\Config\GameConfig\Datas\ 下的 Excel）
 
 # 4. 改完后更新知识图谱（只有新增/删除表或字段时需要）
 双击 knowledge-graph/更新知识图谱.bat

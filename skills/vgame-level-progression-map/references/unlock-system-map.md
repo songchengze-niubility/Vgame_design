@@ -4,9 +4,9 @@
 
 | 逻辑表/源表 | 路径 | 职责 |
 |---|---|---|
-| `Unlock` / `Unlock.xlsx` | `D:\Vgame\Config\GameConfig\Datas\unlock\Unlock.xlsx` | 解锁条件定义。 |
-| `UnlockDesc` / `UnlockDesc.xlsx` | `D:\Vgame\Config\GameConfig\Datas\unlock\UnlockDesc.xlsx` | 解锁条件文案模板。 |
-| `SystemOpen` / `SystemOpen.xlsx` | `D:\Vgame\Config\GameConfig\Datas\system_open\SystemOpen.xlsx` | 功能/系统开放入口、显示、跳转和可用状态。 |
+| `Unlock` / `Unlock.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\unlock\Unlock.xlsx` | 解锁条件定义。 |
+| `UnlockDesc` / `UnlockDesc.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\unlock\UnlockDesc.xlsx` | 解锁条件文案模板。 |
+| `SystemOpen` / `SystemOpen.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\system_open\SystemOpen.xlsx` | 功能/系统开放入口、显示、跳转和可用状态。 |
 
 ## `Unlock.xlsx`
 

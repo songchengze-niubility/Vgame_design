@@ -4,9 +4,9 @@
 
 | 类型 | 路径 |
 |---|---|
-| 源 Excel | `D:\Vgame\Config\GameConfig\Datas` |
-| 逻辑表注册 | `D:\Vgame\Config\GameConfig\Datas\__tables__.xlsx` |
-| 生成 JSON | `D:\Vgame\Config\GameConfig\server_json` |
+| 源 Excel | `${VGAME_ROOT}\Config\GameConfig\Datas` |
+| 逻辑表注册 | `${VGAME_ROOT}\Config\GameConfig\Datas\__tables__.xlsx` |
+| 生成 JSON | `${VGAME_ROOT}\Config\GameConfig\server_json` |
 
 生成 JSON 默认不是修改源。精确 schema 和导出链路使用 `vgame-config-schema`。
 

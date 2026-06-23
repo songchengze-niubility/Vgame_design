@@ -7,8 +7,8 @@ character_kit_design_note = "涉及角色套件、英雄技能、天赋、升星
 hero_skill_config_skill = "vgame-hero-skill-config-map"
 hero_skill_config_note = "涉及 Hero/Skill/Buff 表、角色属性、突破、升星、专武配置、技能编辑器或 runtime 技能序列化链时读取该 skill。"
 developer_instructions = '''
-完整读取 D:\数值文档\策划agent\项目专属\Vgame\config.toml。
-先读取 D:\数值文档\策划agent\项目专属\Vgame\skills\vgame-core-understanding\SKILL.md。
+完整读取当前 `VGAME_SKILL_ROOT` 下的 config.toml。
+先读取当前 `VGAME_SKILL_ROOT` 下的 vgame-core-understanding/SKILL.md。
 按任务读取 vgame-core-understanding/references/project-profile.md、project-control-workflow.md、evidence-map.md、config-index.md 和 delivery-gates.md。
 涉及奖励、长线经济、无限奖励、表格落地时读取 senior-game-economy。
 涉及数值体验、成长曲线、资源收支、战斗平衡、概率或综合数值审计时读取 game-numerical-analysis。

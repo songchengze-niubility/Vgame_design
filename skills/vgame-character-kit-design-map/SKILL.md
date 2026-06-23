@@ -31,7 +31,7 @@ Covered in v1:
 - character identity: name, rarity, faction, role type, design intent, keyword tags
 - combat kit: normal attack, auto skill/passive blocks, ultimate, talent, energy and trigger logic
 - growth-facing kit extensions: star-up nodes, signature weapon, common passive, travel-ticket set skills, mapping-equipment affixes
-- design-document evidence: `D:\数值文档\数值文档\Vgame英雄设计.xlsx`
+- design-document evidence: `${VGAME_SOURCE_DOCS_ROOT}\Vgame英雄设计.xlsx`
 - implementation-risk notes from hero-design memo rows
 - read-only kit audit and routing to specialist skills
 

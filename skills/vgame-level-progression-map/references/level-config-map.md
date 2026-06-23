@@ -4,14 +4,14 @@
 
 | 逻辑表/源表 | 路径 | 职责 |
 |---|---|---|
-| `level` / `level.xlsx` | `D:\Vgame\Config\GameConfig\Datas\level\level.xlsx` | 战斗关卡底表。 |
-| `MainLevel` / `MainLevel.xlsx` | `D:\Vgame\Config\GameConfig\Datas\level\MainLevel.xlsx` | 主线/高难关卡在章节地图上的节点。 |
-| `ChapterLevel` / `ChapterLevel.xlsx` | `D:\Vgame\Config\GameConfig\Datas\level\ChapterLevel.xlsx` | 章节信息、章节解锁和高难章节解锁。 |
-| `UILevel` / `UIlevel.xlsx` | `D:\Vgame\Config\GameConfig\Datas\level\UIlevel.xlsx` | 玩法 UI 层级、关卡展示、奖励预览和 DropId 引用。 |
-| `LevelType` / `LevelType.xlsx` | `D:\Vgame\Config\GameConfig\Datas\level\LevelType.xlsx` | LevelType 分组、系统入口、结算 UI、默认展示奖励。 |
-| `LevelCondition` / `LevelCondition.xlsx` | `D:\Vgame\Config\GameConfig\Datas\level\LevelCondition.xlsx` | 三星/关卡条件。 |
-| `ChapterStarReward` / `ChapterStarReward.xlsx` | `D:\Vgame\Config\GameConfig\Datas\level\ChapterStarReward.xlsx` | 章节星级奖励 DropId。 |
-| `ChapterTasks` / `ChapterTasks.xlsx` | `D:\Vgame\Config\GameConfig\Datas\level\ChapterTasks.xlsx` | 章节任务链和章节任务奖励。 |
+| `level` / `level.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\level\level.xlsx` | 战斗关卡底表。 |
+| `MainLevel` / `MainLevel.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\level\MainLevel.xlsx` | 主线/高难关卡在章节地图上的节点。 |
+| `ChapterLevel` / `ChapterLevel.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\level\ChapterLevel.xlsx` | 章节信息、章节解锁和高难章节解锁。 |
+| `UILevel` / `UIlevel.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\level\UIlevel.xlsx` | 玩法 UI 层级、关卡展示、奖励预览和 DropId 引用。 |
+| `LevelType` / `LevelType.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\level\LevelType.xlsx` | LevelType 分组、系统入口、结算 UI、默认展示奖励。 |
+| `LevelCondition` / `LevelCondition.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\level\LevelCondition.xlsx` | 三星/关卡条件。 |
+| `ChapterStarReward` / `ChapterStarReward.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\level\ChapterStarReward.xlsx` | 章节星级奖励 DropId。 |
+| `ChapterTasks` / `ChapterTasks.xlsx` | `${VGAME_ROOT}\Config\GameConfig\Datas\level\ChapterTasks.xlsx` | 章节任务链和章节任务奖励。 |
 
 ## `level.xlsx`
 

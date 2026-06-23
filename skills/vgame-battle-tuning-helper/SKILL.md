@@ -118,7 +118,7 @@ python battle_tuning.py --mode mythic --floor 10
 python battle_tuning.py --mode tower --floor 50
 
 # Generate full-max all-character quantification workbook
-python character_fullmax_quant.py --config-root D:\Vgame\Config\GameConfig\Datas --output-dir D:\Vgame\codex_output
+python character_fullmax_quant.py --config-root ${VGAME_ROOT}\Config\GameConfig\Datas --output-dir ${VGAME_ROOT}\codex_output
 ```
 
 ## References

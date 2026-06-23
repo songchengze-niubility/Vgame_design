@@ -2,7 +2,7 @@
 
 ## 功能开放系统 (SystemOpen)
 
-路径: `D:\Vgame\Config\GameConfig\Datas\system_open\SystemOpen.xlsx`
+路径: `${VGAME_ROOT}\Config\GameConfig\Datas\system_open\SystemOpen.xlsx`
 
 ### Schema (92个系统)
 
@@ -45,7 +45,7 @@
 
 ## 解锁条件系统 (Unlock)
 
-路径: `D:\Vgame\Config\GameConfig\Datas\unlock\Unlock.xlsx`
+路径: `${VGAME_ROOT}\Config\GameConfig\Datas\unlock\Unlock.xlsx`
 
 ### Schema (682条)
 

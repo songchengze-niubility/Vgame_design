@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-06-22T15:35:27",
+  "generated_at": "2026-06-23T17:05:11",
   "nodes": [
     {
       "id": "document:37dd68363fc1",
@@ -18,7 +18,7 @@
       "metadata": {
         "category": "governance",
         "line_count": 75,
-        "sha256": "62ba75a8c03249cca5d48a1cadd5f5d918e54b0d5fdc5bacf103c0875e9115fa"
+        "sha256": "ddd9e3d3ef6735b16f39f8ca3a62af5102a94bd88004d2e60fe060d84b3ffc13"
       }
     },
     {
@@ -208,7 +208,7 @@
       "metadata": {
         "category": "design",
         "line_count": 139,
-        "sha256": "14279f66d4ab71cf55289fe33e29ac6d89e467d192fcbefb116b0f183cfe56c6"
+        "sha256": "2c7af3de277baacc83b60009e846c674ddb5712c605234864996975f6590aca7"
       }
     },
     {
@@ -266,6 +266,44 @@
         "category": "design",
         "line_count": 118,
         "sha256": "a176e9dab8374a79053f32d0a5979e2d2b4b56f07bb6c423303e2df6ac5b2f07"
+      }
+    },
+    {
+      "id": "document:3f208c0fb9c3",
+      "type": "document",
+      "name": "公会系统 — Design Doc",
+      "filePath": "design/公会系统Design Doc.md",
+      "summary": "公会系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 150,
+        "sha256": "e4a1d302227dcd4df1fedbd5c8679dfb362d55325b561b62337779a91be31d98"
+      }
+    },
+    {
+      "id": "document:4882c66d2091",
+      "type": "document",
+      "name": "关卡编辑器 — Design Doc",
+      "filePath": "design/关卡编辑器Design Doc.md",
+      "summary": "关卡编辑器 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 135,
+        "sha256": "b8f60a96b0b396884ef1679cd3e6eb21aea7935bd44ca76bd82e8a32309be76c"
       }
     },
     {
@@ -668,6 +706,25 @@
       }
     },
     {
+      "id": "document:c76d187143d8",
+      "type": "document",
+      "name": "配置表管线 — Design Doc",
+      "filePath": "design/配置表管线Design Doc.md",
+      "summary": "配置表管线 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 126,
+        "sha256": "6dc2c286c22f334ea5de6441266cf15150ab330e2e3424594bf60605c9b03159"
+      }
+    },
+    {
       "id": "document:3e99cf6a866b",
       "type": "document",
       "name": "金币副本 — Design Doc",
@@ -1010,6 +1067,25 @@
       }
     },
     {
+      "id": "document:6268c74d06bc",
+      "type": "document",
+      "name": "Proposal: 主线首通金币翻倍",
+      "filePath": "proposals/主线首通金币翻倍-2026-06-19.md",
+      "summary": "Proposal: 主线首通金币翻倍",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "proposal"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "proposal",
+        "line_count": 80,
+        "sha256": "8063882efa187522e6fa42cdbde022143cad9c25ade90ec195f91362a9140b7a"
+      }
+    },
+    {
       "id": "document:cb6127d985e8",
       "type": "document",
       "name": "Vgame Quality Score",
@@ -1124,6 +1200,25 @@
       }
     },
     {
+      "id": "document:10b809b8e39b",
+      "type": "document",
+      "name": "Task: 主线首通金币翻倍执行",
+      "filePath": "tasks/主线首通金币翻倍-2026-06-19.md",
+      "summary": "Task: 主线首通金币翻倍执行",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 77,
+        "sha256": "8abe43ba0deaaac3154bebb36eab41613738edf79a1003c6a398cd81e4563ed9"
+      }
+    },
+    {
       "id": "document:f7496c4bbd1e",
       "type": "document",
       "name": "Vgame Tech Debt Tracker",
@@ -1157,8 +1252,27 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 76,
-        "sha256": "5f5fbd533674f3505e8f3f8d141513d7d9db103b42c695c25ce0eeeffb50f8bb"
+        "line_count": 80,
+        "sha256": "a4f22d18f92def06de9088d6273a5055ec2618e70d4bb68f4922758c40a1e35c"
+      }
+    },
+    {
+      "id": "document:060c16cf65a7",
+      "type": "document",
+      "name": "Vgame 驾驭工程 — 新人上手指南",
+      "filePath": "新人上手指南.md",
+      "summary": "Vgame 驾驭工程 — 新人上手指南",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "governance"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "governance",
+        "line_count": 201,
+        "sha256": "f1bc50ddb0782a521820a2b0ceb5e97f8fa6f8ce5f5bdae2e16442f07c27126e"
       }
     }
   ],
@@ -1167,7 +1281,7 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（61份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（67份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
@@ -1183,6 +1297,8 @@
         "document:360ac4879486",
         "document:2a009184f7b0",
         "document:44f7261307c7",
+        "document:3f208c0fb9c3",
+        "document:4882c66d2091",
         "document:3bf6bbf18a5d",
         "document:2378f56b2353",
         "document:48fce13ed101",
@@ -1204,6 +1320,7 @@
         "document:43e289477609",
         "document:8400a5c36f45",
         "document:9b7723659bd1",
+        "document:c76d187143d8",
         "document:3e99cf6a866b",
         "document:8db518927522",
         "document:f4547e46f01e",
@@ -1222,19 +1339,22 @@
         "document:26a6bf2b5a91",
         "document:d00524f22f76",
         "document:c87739c5c66a",
+        "document:6268c74d06bc",
         "document:cb6127d985e8",
         "document:240c2b50eb9f",
         "document:424882b888c7",
         "document:7c875fef5426",
         "document:a1f9f489774e",
         "document:70bd5cea30ff",
+        "document:10b809b8e39b",
         "document:f7496c4bbd1e",
-        "document:add5a82d6da9"
+        "document:add5a82d6da9",
+        "document:060c16cf65a7"
       ]
     }
   ],
   "statistics": {
-    "documents": 61,
+    "documents": 67,
     "edges": 0
   }
 }

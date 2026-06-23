@@ -1,7 +1,10 @@
 [project]
 name = "Vgame"
-root = "D:\\Vgame"
-output_root = "D:\\数值文档\\策划agent\\项目专属\\Vgame\\output"
+root = "${VGAME_ROOT}"
+design_root = "${VGAME_DESIGN_ROOT}"
+harness_root = "${VGAME_HARNESS_ROOT}"
+source_docs_root = "${VGAME_SOURCE_DOCS_ROOT}"
+output_root = "${VGAME_OUTPUT_ROOT}"
 
 [adapter]
 skill = "vgame-core-understanding"

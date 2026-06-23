@@ -99,7 +99,14 @@ if exist local.env.bat (
     echo   检测到 Vgame SVN 工作副本: !DETECTED_ROOT!
     (
         echo set "VGAME_ROOT=!DETECTED_ROOT!"
+        echo set "VGAME_DESIGN_ROOT=%CD%"
+        echo set "VGAME_HARNESS_ROOT=!DETECTED_ROOT!\驾驭工程"
         echo set "VGAME_CONFIG_DATAS=!DETECTED_ROOT!\Config\GameConfig\Datas"
+        echo set "VGAME_CODE_ROOT=!DETECTED_ROOT!\HorizonFlyProject\Packages\VGame"
+        echo set "VGAME_SKILL_ROOT=%CD%\skills"
+        echo set "VGAME_CLIENT_GRAPH=!DETECTED_ROOT!\驾驭工程\知识图谱\client\knowledge-graph.json"
+        echo set "VGAME_SOURCE_DOCS_ROOT="
+        echo set "VGAME_OUTPUT_ROOT=%CD%\output"
     ) > local.env.bat
     echo   local.env.bat 已生成
     goto :done_env
@@ -111,7 +118,14 @@ if exist local.env.bat (
     echo     set "VGAME_CONFIG_DATAS=你的Vgame路径\Config\GameConfig\Datas"
     (
         echo set "VGAME_ROOT=请修改为你的路径"
+        echo set "VGAME_DESIGN_ROOT=%CD%"
+        echo set "VGAME_HARNESS_ROOT="
         echo set "VGAME_CONFIG_DATAS=请修改为你的路径\Config\GameConfig\Datas"
+        echo set "VGAME_CODE_ROOT="
+        echo set "VGAME_SKILL_ROOT=%CD%\skills"
+        echo set "VGAME_CLIENT_GRAPH="
+        echo set "VGAME_SOURCE_DOCS_ROOT="
+        echo set "VGAME_OUTPUT_ROOT=%CD%\output"
     ) > local.env.bat
 
     :done_env

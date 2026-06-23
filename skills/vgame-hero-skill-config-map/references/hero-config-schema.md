@@ -2,7 +2,7 @@
 
 ## 角色定义主表: Hero.xlsx
 
-路径: `D:\Vgame\Config\GameConfig\Datas\Hero\Hero.xlsx`
+路径: `${VGAME_ROOT}\Config\GameConfig\Datas\Hero\Hero.xlsx`
 
 ### 核心字段
 

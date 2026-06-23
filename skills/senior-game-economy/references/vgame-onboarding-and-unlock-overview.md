@@ -2,11 +2,11 @@
 
 基于以下资料整理：
 
-- [Vgame新手引导以及开启节奏.xlsx](D:/Vgame/策划/数值组/2026-03/Vgame新手引导以及开启节奏.xlsx)
-- [Vgame基本战斗框架.xlsx](D:/Vgame/策划/数值组/2026-03/Vgame基本战斗框架.xlsx)
-- [Vgame养成数值.xlsx](D:/Vgame/策划/数值组/2026-03/Vgame养成数值.xlsx)
-- [vgame-terminology.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-terminology.md)
-- [vgame-progression-structure.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-progression-structure.md)
+- [Vgame新手引导以及开启节奏.xlsx](${VGAME_ROOT}/策划/数值组/2026-03/Vgame新手引导以及开启节奏.xlsx)
+- [Vgame基本战斗框架.xlsx](${VGAME_ROOT}/策划/数值组/2026-03/Vgame基本战斗框架.xlsx)
+- [Vgame养成数值.xlsx](${VGAME_ROOT}/策划/数值组/2026-03/Vgame养成数值.xlsx)
+- [vgame-terminology.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-terminology.md)
+- [vgame-progression-structure.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-progression-structure.md)
 
 本文档用于总结 Vgame 当前版本中新手引导、功能开启、主角等级推进和养成进度预估之间的关系，作为后续讨论节奏设计时的优先参考。
 
@@ -104,8 +104,8 @@
 
 与其他文档的关系：
 
-- 与 [vgame-progression-structure.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-progression-structure.md) 共同确定“理论养成结构 -> 实际玩家进度”
-- 与 [Vgame基本战斗框架.xlsx](D:/Vgame/策划/数值组/2026-03/Vgame基本战斗框架.xlsx) 中的 `玩家战力曲线` 相互呼应
+- 与 [vgame-progression-structure.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-progression-structure.md) 共同确定“理论养成结构 -> 实际玩家进度”
+- 与 [Vgame基本战斗框架.xlsx](${VGAME_ROOT}/策划/数值组/2026-03/Vgame基本战斗框架.xlsx) 中的 `玩家战力曲线` 相互呼应
 
 当前定位：
 
@@ -126,7 +126,7 @@
 
 与其他文档关系：
 
-- 是 [Vgame基本战斗框架.xlsx](D:/Vgame/策划/数值组/2026-03/Vgame基本战斗框架.xlsx) 中 `主角等级（从新手引导复制）` 页的原始来源
+- 是 [Vgame基本战斗框架.xlsx](${VGAME_ROOT}/策划/数值组/2026-03/Vgame基本战斗框架.xlsx) 中 `主角等级（从新手引导复制）` 页的原始来源
 
 当前定位：
 
@@ -186,7 +186,7 @@
 
 ### 4.1 战斗框架
 
-[Vgame基本战斗框架.xlsx](D:/Vgame/策划/数值组/2026-03/Vgame基本战斗框架.xlsx) 负责：
+[Vgame基本战斗框架.xlsx](${VGAME_ROOT}/策划/数值组/2026-03/Vgame基本战斗框架.xlsx) 负责：
 
 - 战斗规则
 - 玩家战力曲线
@@ -195,7 +195,7 @@
 
 ### 4.2 养成数值
 
-[Vgame养成数值.xlsx](D:/Vgame/策划/数值组/2026-03/Vgame养成数值.xlsx) 负责：
+[Vgame养成数值.xlsx](${VGAME_ROOT}/策划/数值组/2026-03/Vgame养成数值.xlsx) 负责：
 
 - 养成模块职责
 - 属性投放
@@ -204,7 +204,7 @@
 
 ### 4.3 新手引导与开启节奏
 
-[Vgame新手引导以及开启节奏.xlsx](D:/Vgame/策划/数值组/2026-03/Vgame新手引导以及开启节奏.xlsx) 负责：
+[Vgame新手引导以及开启节奏.xlsx](${VGAME_ROOT}/策划/数值组/2026-03/Vgame新手引导以及开启节奏.xlsx) 负责：
 
 - 玩家什么时候接触这些内容
 - 各模块如何按阶段逐步展开
@@ -320,6 +320,6 @@
 
 如果问题同时涉及战斗、养成、开启节奏三者关系，建议联动参考：
 
-- [vgame-battle-framework-overview.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-battle-framework-overview.md)
-- [vgame-progression-structure.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-progression-structure.md)
+- [vgame-battle-framework-overview.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-battle-framework-overview.md)
+- [vgame-progression-structure.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-progression-structure.md)
 - 本文档

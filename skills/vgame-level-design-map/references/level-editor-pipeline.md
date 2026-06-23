@@ -5,7 +5,7 @@
 - Unity 菜单: `局内工具/Scene/关卡编辑 &M`
 - 窗口标题: "地形编辑"
 - 子窗口: "编辑"(TerrainOperationWindow) / "地块"(TerrainListWindow) / "绘制路径"(DrawMovePathWindow)
-- 文档: `D:\Vgame\策划\战斗内容组\关卡编辑器\《关卡编辑器功能文档》.docx`
+- 文档: `${VGAME_ROOT}\策划\战斗内容组\关卡编辑器\《关卡编辑器功能文档》.docx`
 
 ## 编辑流程
 

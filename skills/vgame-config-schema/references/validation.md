@@ -5,7 +5,7 @@
 服务端和全量导出会调用 `scripts\check_rules\CheckRules.py`：
 
 ```powershell
-cd D:\Vgame\Config\GameConfig
+cd ${VGAME_ROOT}\Config\GameConfig
 .\export_server.bat
 .\export_all.bat
 ```

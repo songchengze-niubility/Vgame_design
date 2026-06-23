@@ -4,15 +4,15 @@
 
 | 项 | 内容 | 证据 |
 |---|---|---|
-| 项目名 | Vgame | 用户指定与 `D:\Vgame` 工作区 |
-| 项目根目录 | `D:\Vgame` | 当前工作区 |
-| Unity 工程候选 | `D:\Vgame\HorizonFlyProject` | 文件树观察 |
-| 配置目录 | `D:\Vgame\Config` | 文件树观察 |
-| 游戏 JSON 配置候选 | `D:\Vgame\Config\GameConfig\server_json` | 文件树观察 |
-| Luban 工具候选 | `D:\Vgame\Config\Tools\Luban` | 文件树观察 |
-| 策划文档目录 | `D:\Vgame\策划` | 文件树观察 |
-| 数值组目录 | `D:\Vgame\策划\数值组` | 文件树观察 |
-| 战斗内容组目录 | `D:\Vgame\策划\战斗内容组` | 文件树观察 |
+| 项目名 | Vgame | 用户指定与 `${VGAME_ROOT}` 工作区 |
+| 项目根目录 | `${VGAME_ROOT}` | 当前工作区 |
+| Unity 工程候选 | `${VGAME_ROOT}\HorizonFlyProject` | 文件树观察 |
+| 配置目录 | `${VGAME_ROOT}\Config` | 文件树观察 |
+| 游戏 JSON 配置候选 | `${VGAME_ROOT}\Config\GameConfig\server_json` | 文件树观察 |
+| Luban 工具候选 | `${VGAME_ROOT}\Config\Tools\Luban` | 文件树观察 |
+| 策划文档目录 | `${VGAME_ROOT}\策划` | 文件树观察 |
+| 数值组目录 | `${VGAME_ROOT}\策划\数值组` | 文件树观察 |
+| 战斗内容组目录 | `${VGAME_ROOT}\策划\战斗内容组` | 文件树观察 |
 | 核心项目理解 | `Vgame 是 5 人小队养成驱动的跑酷战斗射击游戏` | `vgame-core-understanding` |
 
 ## 当前核心口径
@@ -31,7 +31,7 @@
 | 当前权威数值版本目录 | 不按日期猜，任务开始时根据用户或文件证据确认 | 待确认 |
 | Excel 源表与 JSON 生成关系 | 不直接修改 `server_json`，先确认源表和导表流程 | 待确认 |
 | DropId、RewardId、UIlevel 的源表和字段 | 需要结合具体任务读取表结构 | 待确认 |
-| 术语表 Excel 原文件 | 当前未在 `D:\Vgame` 搜到 `Vgame术语表.xlsx`，先使用迁移后的 `vgame-terminology.md` | 待确认 |
+| 术语表 Excel 原文件 | 当前未在 `${VGAME_ROOT}` 搜到 `Vgame术语表.xlsx`，先使用迁移后的 `vgame-terminology.md` | 待确认 |
 
 ## 禁止假设
 

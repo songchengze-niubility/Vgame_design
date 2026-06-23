@@ -15,8 +15,13 @@ Usage:
 import argparse
 import os
 import sys
+from pathlib import Path
 
-BATTLE_XLSX_PATH = r"D:\数值文档\数值文档\Vgame基本战斗框架.xlsx"
+REPO_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from vgame_paths import source_docs_root
+
+BATTLE_XLSX_PATH = str(source_docs_root() / "Vgame基本战斗框架.xlsx")
 DEF_CONSTANT = 24000
 BASE_BLOCK_REDUCTION = 0.5
 DMG_REDUCTION_CAP = 0.75
@@ -252,6 +257,7 @@ def print_combat_analysis(player: dict, monster: dict, hp_coeff: float = 1.0, at
 
 
 def main():
+    global BATTLE_XLSX_PATH
     parser = argparse.ArgumentParser(description="Vgame Battle Tuning Helper")
     parser.add_argument("--monster-level", type=int, default=0, help="查询怪物等级 (1-500)")
     parser.add_argument("--stage", type=int, default=0, help="查询主线关卡 (1-105)")
@@ -260,8 +266,10 @@ def main():
     parser.add_argument("--mode", type=str, default="", help="玩法模式: tower, infinite, mythic")
     parser.add_argument("--floor", type=int, default=0, help="层数/波数 (配合 --mode)")
     parser.add_argument("--wave", type=int, default=0, help="无限挑战波数 (配合 --mode infinite)")
+    parser.add_argument("--workbook", default=BATTLE_XLSX_PATH, help="Vgame基本战斗框架.xlsx 路径")
     args = parser.parse_args()
 
+    BATTLE_XLSX_PATH = args.workbook
     wb = load_workbook_cached()
 
     # 模式路由

@@ -4,15 +4,15 @@
 
 | 类型 | 路径 | 说明 |
 |---|---|---|
-| 源 Excel | `D:\Vgame\Config\GameConfig\Datas` | 策划配置源。改配置优先改这里。 |
-| 临时 Excel | `D:\Vgame\Config\GameConfig\TempDatas` | 导出时由脚本扁平复制生成。不要手工维护。 |
-| 服务端 JSON | `D:\Vgame\Config\GameConfig\server_json` | Luban 生成物。只用于核对，不作为源表修改。 |
-| 客户端工程 | `D:\Vgame\HorizonFlyProject` | 客户端代码、Lua、二进制配置输出目标。 |
-| Luban 工具 | `D:\Vgame\Config\Tools\Luban\Luban.dll` | 由导出脚本调用。 |
+| 源 Excel | `${VGAME_ROOT}\Config\GameConfig\Datas` | 策划配置源。改配置优先改这里。 |
+| 临时 Excel | `${VGAME_ROOT}\Config\GameConfig\TempDatas` | 导出时由脚本扁平复制生成。不要手工维护。 |
+| 服务端 JSON | `${VGAME_ROOT}\Config\GameConfig\server_json` | Luban 生成物。只用于核对，不作为源表修改。 |
+| 客户端工程 | `${VGAME_ROOT}\HorizonFlyProject` | 客户端代码、Lua、二进制配置输出目标。 |
+| Luban 工具 | `${VGAME_ROOT}\Config\Tools\Luban\Luban.dll` | 由导出脚本调用。 |
 
 ## Luban 配置
 
-`D:\Vgame\Config\GameConfig\luban.conf`：
+`${VGAME_ROOT}\Config\GameConfig\luban.conf`：
 
 - `schemaFiles`: `Defines`, `Datas/__tables__.xlsx`, `Datas/__beans__.xlsx`, `Datas/__enums__.xlsx`
 - `dataDir`: `TempDatas`
@@ -26,16 +26,16 @@
 
 关键路径来自 `scripts/path_config.py`：
 
-- `EXCEL_DATA_PATH = D:\Vgame\Config\GameConfig\Datas`
-- `EXCEL_TMP_DATA_PATH = D:\Vgame\Config\GameConfig\TempDatas`
-- `SERVER_JSON_PATH = D:\Vgame\Config\GameConfig\server_json`
-- `CLIENT_BYTES_PATH = D:\Vgame\HorizonFlyProject\Assets\GameResources\GameData\ExcelData`
-- `CLIENT_LUA_PATH = D:\Vgame\HorizonFlyProject\LuaConfig`
-- `LUA_CODE_PATH = D:\Vgame\HorizonFlyProject\Lua\Framework\ExcelData\Generated`
+- `EXCEL_DATA_PATH = ${VGAME_ROOT}\Config\GameConfig\Datas`
+- `EXCEL_TMP_DATA_PATH = ${VGAME_ROOT}\Config\GameConfig\TempDatas`
+- `SERVER_JSON_PATH = ${VGAME_ROOT}\Config\GameConfig\server_json`
+- `CLIENT_BYTES_PATH = ${VGAME_ROOT}\HorizonFlyProject\Assets\GameResources\GameData\ExcelData`
+- `CLIENT_LUA_PATH = ${VGAME_ROOT}\HorizonFlyProject\LuaConfig`
+- `LUA_CODE_PATH = ${VGAME_ROOT}\HorizonFlyProject\Lua\Framework\ExcelData\Generated`
 
 ## 常用导出命令
 
-在 `D:\Vgame\Config\GameConfig` 下执行：
+在 `${VGAME_ROOT}\Config\GameConfig` 下执行：
 
 ```powershell
 .\export_server.bat

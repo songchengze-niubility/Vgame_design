@@ -42,13 +42,17 @@ Step 9  追踪、校验与用户验收
 
 ```bat
 set "VGAME_ROOT=<游戏工程根目录>"
+set "VGAME_DESIGN_ROOT=<Vgame_design Git 仓库根目录>"
+set "VGAME_HARNESS_ROOT=<驾驭工程启动目录>"
 set "VGAME_CONFIG_DATAS=<配置表 Datas 目录>"
 set "VGAME_CLIENT_GRAPH=<客户端 knowledge-graph.json>"
 set "VGAME_CODE_ROOT=<需要扫描的客户端代码目录>"
 set "VGAME_SKILL_ROOT=<Vgame 项目 skill 目录>"
+set "VGAME_SOURCE_DOCS_ROOT=<Vgame 原始策划文档目录>"
+set "VGAME_OUTPUT_ROOT=<个人输出目录>"
 ```
 
-只有 `VGAME_ROOT` 是基础变量，其余变量不填时会从它推导。`local.env.bat` 已加入 `.gitignore`，不会上传个人路径。
+只有 `VGAME_ROOT` 是必填基础变量；Git 仓库根目录会从当前脚本位置识别，其余变量不填时会自动推导。推荐直接双击 SVN 工程中 `驾驭工程/配置本机路径.bat`。`local.env.bat` 已加入 `.gitignore`，不会上传个人路径。
 
 ## AI 正确使用方式
 

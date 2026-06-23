@@ -5,7 +5,7 @@ Use this when Vgame adds, registers, renames, relocates, or classifies a new sou
 ## Required Flow
 
 1. Confirm the new table's player-facing purpose and owning system.
-2. Place the source workbook under the correct `D:\Vgame\Config\GameConfig\Datas\<domain>` directory.
+2. Place the source workbook under the correct `${VGAME_ROOT}\Config\GameConfig\Datas\<domain>` directory.
 3. Ensure the workbook file name is unique under `Datas`; export flattens files into `TempDatas`, so duplicate file names are unsafe even in different folders.
 4. Follow the Vgame header convention:
    - row 1: `##var` field names
@@ -30,8 +30,8 @@ Use this when Vgame adds, registers, renames, relocates, or classifies a new sou
    - `LevelId`, `LevelType`, `ChapterId` -> level/progression tables
    - `TaskId`, `ActivityId`, `ShopId`, `DrawId`, `PayProductId` -> their matching system tables
 10. Refresh or update:
-   - `D:\数值文档\策划agent\项目专属\Vgame\output\config-table-application-summary.md`
-   - `D:\数值文档\策划agent\项目专属\Vgame\output\config-table-role-relationship-map.md`
+   - `${VGAME_OUTPUT_ROOT}\config-table-application-summary.md`
+   - `${VGAME_OUTPUT_ROOT}\config-table-role-relationship-map.md`
 11. Update the relevant project skill if the new table creates a new route:
    - rewards/Drop/UIlevel -> `vgame-reward-drop-sync`
    - resource source/sink -> `vgame-economy-source-map`

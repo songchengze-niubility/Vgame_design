@@ -117,8 +117,8 @@
 
 ```bash
 python scripts/character_fullmax_quant.py ^
-  --config-root D:\Vgame\Config\GameConfig\Datas ^
-  --output-dir D:\Vgame\codex_output
+  --config-root ${VGAME_ROOT}\Config\GameConfig\Datas ^
+  --output-dir ${VGAME_ROOT}\codex_output
 ```
 
 如果用户只要求结论，可以先运行脚本，再读取生成的 `summary.md`；如果用户要“怎么改”，同时查看 `Suggestions` 和 `RawFeatures`。

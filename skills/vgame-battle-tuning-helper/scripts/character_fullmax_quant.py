@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 from collections import defaultdict
 from pathlib import Path
 from typing import Any
@@ -15,9 +16,12 @@ from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.table import Table, TableStyleInfo
 
+REPO_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from vgame_paths import config_datas, output_root
 
-DEFAULT_CONFIG_ROOT = Path(r"D:\Vgame\Config\GameConfig\Datas")
-DEFAULT_OUTPUT_DIR = Path(r"D:\Vgame\codex_output")
+DEFAULT_CONFIG_ROOT = config_datas()
+DEFAULT_OUTPUT_DIR = output_root()
 HEADER_FONT_NAME = "黑体"
 BODY_FONT_NAME = "微软雅黑"
 PEER_DELTA_COLOR_RULES = [

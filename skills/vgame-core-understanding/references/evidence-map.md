@@ -3,11 +3,11 @@
 ## 检索优先级
 
 1. 用户当前明确给出的文件、表名、功能名、ID、页签。
-2. `D:\数值文档\策划agent\项目专属\Vgame\output` 中已有任务产物。
+2. `${VGAME_OUTPUT_ROOT}` 中已有任务产物。
 3. `vgame-core-understanding` 与 `senior-game-economy` 的 references。
-4. `D:\Vgame\策划` 下的项目策划文档。
-5. `D:\Vgame\Config` 下的源表、导出配置、Luban 工具和规则文档。
-6. `D:\Vgame\HorizonFlyProject` 下的客户端实现、资源和 UI。
+4. `${VGAME_ROOT}\策划` 下的项目策划文档。
+5. `${VGAME_ROOT}\Config` 下的源表、导出配置、Luban 工具和规则文档。
+6. `${VGAME_ROOT}\HorizonFlyProject` 下的客户端实现、资源和 UI。
 
 ## 主要资料入口
 

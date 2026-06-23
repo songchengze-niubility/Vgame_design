@@ -13,13 +13,18 @@ Usage:
 import argparse
 import json
 import os
+import sys
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+REPO_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from vgame_paths import source_docs_root
 
 # ========== Excel 自动读取 ==========
 
-ECONOMY_XLSX_PATH = r"D:\数值文档\数值文档\Vgame经济框架.xlsx"
+ECONOMY_XLSX_PATH = str(source_docs_root() / "Vgame经济框架.xlsx")
 
 
 def load_from_excel() -> Tuple[dict, dict, dict, dict, dict, dict]:

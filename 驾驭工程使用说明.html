@@ -629,11 +629,15 @@ python scripts/watch_vgame_graph.py --once</pre>
         <h2>本机路径配置</h2>
         <p>可提交文件不保存盘符。每位成员只维护自己的 <code>local.env.bat</code>，该文件已被 Git 忽略。</p>
         <pre>set "VGAME_ROOT=&lt;游戏工程根目录&gt;"
+set "VGAME_DESIGN_ROOT=&lt;Vgame_design Git 仓库根目录&gt;"
+set "VGAME_HARNESS_ROOT=&lt;驾驭工程启动目录&gt;"
 set "VGAME_CONFIG_DATAS=&lt;配置表 Datas 目录，可选&gt;"
 set "VGAME_CLIENT_GRAPH=&lt;客户端图谱文件，可选&gt;"
 set "VGAME_CODE_ROOT=&lt;客户端代码目录，可选&gt;"
-set "VGAME_SKILL_ROOT=&lt;项目 Skill 目录&gt;"</pre>
-        <div class="callout"><code>VGAME_ROOT</code> 是基础变量。其余工程路径不填写时从它推导；Skill 路径需要单独配置。</div>
+set "VGAME_SKILL_ROOT=&lt;项目 Skill 目录，可选&gt;"
+set "VGAME_SOURCE_DOCS_ROOT=&lt;原始策划文档目录，可选&gt;"
+set "VGAME_OUTPUT_ROOT=&lt;个人输出目录，可选&gt;"</pre>
+        <div class="callout"><code>VGAME_ROOT</code> 是必填基础变量。推荐双击 <code>驾驭工程/配置本机路径.bat</code>，其余路径会自动推导并保存在 Git 忽略的本机配置中。</div>
       </section>
 
       <section id="quality">
@@ -682,7 +686,7 @@ set "VGAME_SKILL_ROOT=&lt;项目 Skill 目录&gt;"</pre>
         <details><summary>知识图谱和 Skill 冲突时听谁的？</summary><p>两者都不是最终真源。回到真实 Excel、代码和已确认设计核实；核实后修正图谱生成逻辑或回写 Skill。</p></details>
         <details><summary>为什么默认不允许修改真实配置？</summary><p>分析和写入的风险不同。未经授权写表可能覆盖公式、破坏引用或制造版本冲突，因此真实写入必须由用户明确要求。</p></details>
         <details><summary>新增配置表后做什么？</summary><p>先确认表已注册到 <code>__tables__.xlsx</code>，再全量更新图谱，并把表作用和关联补入相应项目 Skill。</p></details>
-        <details><summary>换电脑或换目录后怎么用？</summary><p>只需重新配置本机 <code>local.env.bat</code>。仓库文档、脚本和 JSON 不依赖任何成员的盘符。</p></details>
+        <details><summary>换电脑或换目录后怎么用？</summary><p>双击 <code>驾驭工程/配置本机路径.bat</code> 重新选择目录即可。仓库文档、脚本和 JSON 不依赖任何成员的盘符。</p></details>
         <details><summary>Skill 已加入，为什么状态脚本还不能运行？</summary><p>Skill 定义了流程协议和命令契约，但对应 Python 文件没有随当前仓库出现。手册会明确标为“待接入”，避免把协议描述误当成已实现能力。</p></details>
       </section>
     </div>

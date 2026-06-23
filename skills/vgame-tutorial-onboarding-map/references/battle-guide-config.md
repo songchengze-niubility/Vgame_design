@@ -2,7 +2,7 @@
 
 ## 配置表: BattleGuide.xlsx
 
-路径: `D:\Vgame\Config\GameConfig\Datas\Guide\BattleGuide.xlsx`
+路径: `${VGAME_ROOT}\Config\GameConfig\Datas\Guide\BattleGuide.xlsx`
 
 ### Schema
 

@@ -2,7 +2,7 @@
 
 ## 1. 源表和注册
 
-- 是否明确使用 `D:\Vgame\Config\GameConfig\Datas` 源 Excel。
+- 是否明确使用 `${VGAME_ROOT}\Config\GameConfig\Datas` 源 Excel。
 - 是否避免直接修改 `server_json`。
 - 目标逻辑表是否在 `__tables__.xlsx` 注册。
 - `input` 指向的 Excel 文件是否真实存在。

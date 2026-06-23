@@ -4,7 +4,7 @@
 
 ### 技能主表: Skill.xlsx
 
-路径: `D:\Vgame\Config\GameConfig\Datas\Skill\Skill.xlsx` (1356行)
+路径: `${VGAME_ROOT}\Config\GameConfig\Datas\Skill\Skill.xlsx` (1356行)
 
 | 字段 | 类型 | 说明 |
 |---|---|---|

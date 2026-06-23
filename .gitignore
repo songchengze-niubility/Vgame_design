@@ -11,6 +11,7 @@ dist/
 build/
 __pycache__/
 knowledge-graph/watchdog-state.json
+knowledge-graph/fingerprints.json
 knowledge-graph/.understand-anything/diff-overlay.json
 local.env.bat
 

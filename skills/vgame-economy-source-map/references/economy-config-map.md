@@ -4,9 +4,9 @@
 
 | 类型 | 路径 | 说明 |
 |---|---|---|
-| 源 Excel | `D:\Vgame\Config\GameConfig\Datas` | 策划源表。 |
-| 逻辑表注册 | `D:\Vgame\Config\GameConfig\Datas\__tables__.xlsx` | 用于确认逻辑表和输入 Excel。 |
-| 服务端 JSON | `D:\Vgame\Config\GameConfig\server_json` | 生成物，不直接当源表改。 |
+| 源 Excel | `${VGAME_ROOT}\Config\GameConfig\Datas` | 策划源表。 |
+| 逻辑表注册 | `${VGAME_ROOT}\Config\GameConfig\Datas\__tables__.xlsx` | 用于确认逻辑表和输入 Excel。 |
+| 服务端 JSON | `${VGAME_ROOT}\Config\GameConfig\server_json` | 生成物，不直接当源表改。 |
 
 精确 schema、导出链路和校验命令交给 `vgame-config-schema`。
 

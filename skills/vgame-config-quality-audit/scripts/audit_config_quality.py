@@ -9,12 +9,16 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any, Iterable
 
 from openpyxl import load_workbook
 
+REPO_ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from vgame_paths import config_datas
 
 KNOWN_BASELINE_DROP_IDS = {
     60004,
@@ -382,7 +386,7 @@ class Audit:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Read-only Vgame config quality audit.")
-    parser.add_argument("--datas-root", default=r"D:\Vgame\Config\GameConfig\Datas", help="Path to Config/GameConfig/Datas")
+    parser.add_argument("--datas-root", default=str(config_datas()), help="Path to Config/GameConfig/Datas")
     parser.add_argument("--output", help="Optional Markdown report output path")
     parser.add_argument("--json", action="store_true", help="Print JSON instead of text summary")
     parser.add_argument("--max-issues", type=int, default=1000, help="Maximum issues to collect")

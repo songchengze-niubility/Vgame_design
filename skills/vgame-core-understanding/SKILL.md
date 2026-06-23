@@ -17,7 +17,7 @@ Vgame is not a traditional idle card battler. It is a `5-character squad progres
 
 ## Project Master Role
 
-This skill is the entry project adapter for `D:\数值文档\策划agent\项目专属\Vgame`.
+This skill is the entry project adapter for `${VGAME_DESIGN_ROOT}`.
 
 When called by the generic `game-planning-control` skill:
 

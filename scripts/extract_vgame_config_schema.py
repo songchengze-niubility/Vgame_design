@@ -84,10 +84,11 @@ def load_tables_registry(datas_root: str) -> list[dict]:
     input_col = headers.get("input", headers.get("Input", None))
     
     for row in ws.iter_rows(min_row=header_row + 1, values_only=True):
-        if not row or not row[0]:
+        if not row:
             continue
-        first_val = str(row[0]).strip()
-        if first_val.startswith("##") or not first_val:
+
+        marker = str(row[0]).strip() if row[0] is not None else ""
+        if marker.startswith("##"):
             continue
         
         logical_name = str(row[name_col]).strip() if name_col is not None and row[name_col] else ""
@@ -375,11 +376,11 @@ def main():
     print(f"[INFO] Vgame Config Schema Extractor")
     print(f"[INFO] Datas 目录: {args.datas_root}")
     
-    # 1. 找到所有 Excel 文件
-    xlsx_files = find_excel_files(args.datas_root)
-    print(f"[INFO] 发现 {len(xlsx_files)} 个 .xlsx 文件")
-    
-    # 2. 读取注册表（可选，用于映射逻辑表名）
+    # 1. 找到候选 Excel 文件
+    discovered_files = find_excel_files(args.datas_root)
+    print(f"[INFO] 发现 {len(discovered_files)} 个 .xlsx 文件")
+
+    # 2. 以 __tables__.xlsx 为权威来源解析注册源表
     registry = []
     try:
         registry = load_tables_registry(args.datas_root)
@@ -387,10 +388,31 @@ def main():
     except Exception as e:
         print(f"[WARN] 读取 __tables__.xlsx 失败: {e}，将使用文件名作为表名")
     
-    # 逻辑表名到源文件的映射
-    logical_to_files = {}
+    files_by_name = {path.name.lower(): path for path in discovered_files}
+    xlsx_files = []
+    missing_inputs = []
+    seen_paths = set()
     for reg in registry:
-        logical_to_files[reg["logical_name"]] = reg.get("input_files", "")
+        for input_name in reg.get("input_files", "").split(","):
+            input_name = input_name.strip()
+            if not input_name:
+                continue
+            matched = files_by_name.get(Path(input_name).name.lower())
+            if matched is None:
+                missing_inputs.append(input_name)
+                continue
+            normalized = str(matched.resolve()).lower()
+            if normalized not in seen_paths:
+                seen_paths.add(normalized)
+                xlsx_files.append(matched)
+
+    if registry and xlsx_files:
+        print(f"[INFO] 将扫描 {len(xlsx_files)} 个注册源文件")
+        if missing_inputs:
+            print(f"[WARN] {len(missing_inputs)} 个注册源文件不存在: {', '.join(missing_inputs)}")
+    else:
+        xlsx_files = discovered_files
+        print("[WARN] 未解析到注册源文件，将回退扫描全部 Excel")
     
     # 3. 逐文件提取 Schema
     all_tables = {}

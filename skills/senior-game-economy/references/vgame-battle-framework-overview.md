@@ -1,13 +1,13 @@
 # Vgame 基本战斗框架总览
 
-基于 [Vgame基本战斗框架.xlsx](D:/Vgame/策划/数值组/2026-03/Vgame基本战斗框架.xlsx) 整理。
+基于 [Vgame基本战斗框架.xlsx](${VGAME_ROOT}/策划/数值组/2026-03/Vgame基本战斗框架.xlsx) 整理。
 
 本文档用于总结 Vgame 基本战斗框架这本 Excel 的整体结构、各页签职责、页签之间的关系，以及当前应优先采用的正式口径。
 
 结合资料：
 
-- [vgame-battle-system.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-battle-system.md)
-- [vgame-terminology.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-terminology.md)
+- [vgame-battle-system.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-battle-system.md)
+- [vgame-terminology.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-terminology.md)
 
 ## 1. 文档定位
 
@@ -92,8 +92,8 @@
 
 与其他文档关系：
 
-- 名词层与 [vgame-terminology.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-terminology.md) 对齐
-- 规则层与 [vgame-battle-system.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-battle-system.md) 对齐
+- 名词层与 [vgame-terminology.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-terminology.md) 对齐
+- 规则层与 [vgame-battle-system.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-battle-system.md) 对齐
 
 ## 3.2 战斗公式
 
@@ -451,7 +451,7 @@
 ## 6. 后续使用建议
 
 - 讨论战斗规则时，优先读取：
-  - [vgame-battle-system.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-battle-system.md)
+  - [vgame-battle-system.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-battle-system.md)
   - `战斗属性`
   - `战斗公式`
 - 讨论战斗框架结构和数值母线时，优先读取本文档和：
@@ -461,4 +461,4 @@
   - `玩家战力曲线`
   - 各玩法难度线
 - 讨论术语时，优先读取：
-  - [vgame-terminology.md](D:/数值文档/策划agent/项目专属/Vgame/skills/senior-game-economy/references/vgame-terminology.md)
+  - [vgame-terminology.md](${VGAME_SKILL_ROOT}/senior-game-economy/references/vgame-terminology.md)

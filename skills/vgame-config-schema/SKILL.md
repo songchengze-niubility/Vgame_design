@@ -18,8 +18,8 @@ Use this skill to decide where a Vgame config fact comes from, how an Excel sour
 
 ## Operating Rules
 
-- Treat `D:\Vgame\Config\GameConfig\Datas` as the source Excel root.
-- Treat `D:\Vgame\Config\GameConfig\server_json` as generated output, not a source of truth to edit.
+- Treat `${VGAME_ROOT}\Config\GameConfig\Datas` as the source Excel root.
+- Treat `${VGAME_ROOT}\Config\GameConfig\server_json` as generated output, not a source of truth to edit.
 - Confirm the logical table in `__tables__.xlsx` before editing a source file. Some logical tables merge multiple Excel files.
 - For any new config table, register it through `__tables__.xlsx`, confirm the actual `Datas` path, and update the config table application/relationship maps.
 - Read row 1 `##var`, row 2 `##type`, row 3 `##group`, and row 4 comments before changing any Excel table.

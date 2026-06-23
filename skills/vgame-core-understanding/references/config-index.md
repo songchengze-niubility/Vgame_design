@@ -4,12 +4,12 @@
 
 | 类型 | 路径 | 说明 |
 |---|---|---|
-| 源 Excel | `D:\Vgame\Config\GameConfig\Datas` | 策划配置源。 |
-| 临时 Excel | `D:\Vgame\Config\GameConfig\TempDatas` | 导出脚本扁平复制生成。 |
-| 服务端 JSON | `D:\Vgame\Config\GameConfig\server_json` | 生成物，不直接作为源表修改。 |
-| Luban 配置 | `D:\Vgame\Config\GameConfig\luban.conf` | schema、dataDir、target 定义。 |
-| 导出脚本 | `D:\Vgame\Config\GameConfig\scripts\export_excel.py` | 复制 Excel、调用 Luban、生成客户端/服务端配置。 |
-| 校验脚本 | `D:\Vgame\Config\GameConfig\scripts\check_rules\CheckRules.py` | 服务端导出后的规则检查入口。 |
+| 源 Excel | `${VGAME_ROOT}\Config\GameConfig\Datas` | 策划配置源。 |
+| 临时 Excel | `${VGAME_ROOT}\Config\GameConfig\TempDatas` | 导出脚本扁平复制生成。 |
+| 服务端 JSON | `${VGAME_ROOT}\Config\GameConfig\server_json` | 生成物，不直接作为源表修改。 |
+| Luban 配置 | `${VGAME_ROOT}\Config\GameConfig\luban.conf` | schema、dataDir、target 定义。 |
+| 导出脚本 | `${VGAME_ROOT}\Config\GameConfig\scripts\export_excel.py` | 复制 Excel、调用 Luban、生成客户端/服务端配置。 |
+| 校验脚本 | `${VGAME_ROOT}\Config\GameConfig\scripts\check_rules\CheckRules.py` | 服务端导出后的规则检查入口。 |
 
 详细规则见 `vgame-config-schema`。资源、货币、道具的来源/消耗账本见 `vgame-economy-source-map`。战斗内容配置链见 `vgame-battle-content-map`，关卡设计和场景层链路见 `vgame-level-design-map`，新手引导与功能开放触发见 `vgame-tutorial-onboarding-map`，战斗数值测算见 `vgame-battle-tuning-helper`。
 
@@ -72,7 +72,7 @@
 
 ## 默认规则
 
-- 未确认源表前，不直接改 `D:\Vgame\Config\GameConfig\server_json`。
+- 未确认源表前，不直接改 `${VGAME_ROOT}\Config\GameConfig\server_json`。
 - 修改 Excel 前先读取目标 sheet 周边结构、公式和引用。
 - 涉及奖励落地时优先读取 `senior-game-economy/references/excel-delivery.md`。
 - 涉及配置源表、Luban schema、导出和校验时优先使用 `vgame-config-schema`。

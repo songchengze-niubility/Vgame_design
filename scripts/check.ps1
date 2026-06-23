@@ -6,9 +6,21 @@ $ErrorActionPreference = "Continue"
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
 $Root = Split-Path -Parent $PSScriptRoot
+$LocalEnv = Join-Path $Root "local.env.bat"
+if (Test-Path -LiteralPath $LocalEnv) {
+    foreach ($line in Get-Content -LiteralPath $LocalEnv -Encoding UTF8) {
+        if ($line -match '^\s*set\s+"?([A-Za-z_][A-Za-z0-9_]*)=(.*?)"?\s*$') {
+            $name = $Matches[1]
+            $value = $Matches[2].TrimEnd('"')
+            if (-not [Environment]::GetEnvironmentVariable($name, "Process")) {
+                [Environment]::SetEnvironmentVariable($name, $value, "Process")
+            }
+        }
+    }
+}
 $DefaultVgameRoot = [System.IO.Path]::GetFullPath((Join-Path $Root "..\Vgame"))
 $VgameRoot = if ($env:VGAME_ROOT) { $env:VGAME_ROOT } else { $DefaultVgameRoot }
-$SkillRoot = if ($env:VGAME_SKILL_ROOT) { $env:VGAME_SKILL_ROOT } else { "" }
+$SkillRoot = if ($env:VGAME_SKILL_ROOT) { $env:VGAME_SKILL_ROOT } else { Join-Path $Root "skills" }
 $FailCount = 0
 $WarnCount = 0
 
@@ -121,6 +133,22 @@ foreach ($hit in $todoHits) {
     Write-Result "WARN" "${rel}:$($hit.LineNumber) contains pending marker" "Register it in tech-debt-tracker.md or rewrite it as an explicit task."
 }
 
+Write-Host ""
+Write-Host "--- Portable Path Check ---" -ForegroundColor "White"
+$portableExtensions = @(".md", ".html", ".toml", ".py", ".ps1", ".bat")
+$trackedFiles = git -c core.quotepath=false -C $Root ls-files 2>$null
+foreach ($relativePath in $trackedFiles) {
+    if ($relativePath -like "knowledge-graph/understand-anything-new/*") { continue }
+    $extension = [System.IO.Path]::GetExtension($relativePath).ToLowerInvariant()
+    if ($portableExtensions -notcontains $extension) { continue }
+    $fullPath = Join-Path $Root $relativePath
+    if (-not (Test-Path -LiteralPath $fullPath)) { continue }
+    $matches = Select-String -LiteralPath $fullPath -Pattern '[A-Za-z]:\\' -Encoding UTF8
+    foreach ($match in $matches) {
+        Write-Result "FAIL" "$relativePath contains a machine-specific absolute path at line $($match.LineNumber)" "Use VGAME_* variables or a repository-relative path."
+    }
+}
+
 $largeDocs = Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction SilentlyContinue |
     Where-Object { $_.Extension -eq ".md" } |
     Where-Object {
@@ -167,7 +195,12 @@ if (-not $SkillRoot) {
 } elseif (-not (Test-Path -LiteralPath $SkillRoot)) {
     Write-Result "WARN" "Vgame skill root not found: $SkillRoot" "Check VGAME_SKILL_ROOT."
 } else {
-    foreach ($path in @("config.toml", "skills", "agents")) {
+    $skillLayout = if (Test-Path -LiteralPath (Join-Path $SkillRoot "skills")) {
+        @("config.toml", "skills", "agents")
+    } else {
+        @("config.toml", "agents", "vgame-core-understanding")
+    }
+    foreach ($path in $skillLayout) {
         $fullPath = Join-Path $SkillRoot $path
         if (-not (Test-Path -LiteralPath $fullPath)) {
             Write-Result "WARN" "Skill root missing $path" "Check Vgame agent skill installation."

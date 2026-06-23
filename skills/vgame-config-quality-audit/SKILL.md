@@ -49,7 +49,7 @@ Not covered in v1:
 Use the bundled script for broad read-only checks:
 
 ```powershell
-python "D:\数值文档\策划agent\项目专属\Vgame\skills\vgame-config-quality-audit\scripts\audit_config_quality.py" --datas-root "D:\Vgame\Config\GameConfig\Datas" --output "D:\数值文档\策划agent\项目专属\Vgame\output\config-quality-audit.md"
+python "${VGAME_SKILL_ROOT}\vgame-config-quality-audit\scripts\audit_config_quality.py" --datas-root "${VGAME_ROOT}\Config\GameConfig\Datas" --output "${VGAME_OUTPUT_ROOT}\config-quality-audit.md"
 ```
 
 The script prints a summary and writes a Markdown report when `--output` is provided.

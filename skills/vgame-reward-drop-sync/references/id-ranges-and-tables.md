@@ -17,7 +17,7 @@
 
 实际文件路径当前都位于：
 
-`D:\Vgame\Config\GameConfig\Datas\Drop`
+`${VGAME_ROOT}\Config\GameConfig\Datas\Drop`
 
 ## DropId 范围约定
 
