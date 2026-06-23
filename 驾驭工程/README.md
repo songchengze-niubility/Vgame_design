@@ -43,7 +43,7 @@ Vgame_design\local.env.bat
 | `更新驾驭工程.bat` | 快进拉取 Git 策划仓库更新 |
 | `检查驾驭工程.bat` | 执行 Harness 与图谱只读检查 |
 | `启动知识图谱.bat` | 启动 UA 知识图谱 Dashboard |
-| `查看新人指南.bat` | 打开新人使用手册 |
+| `查看新人指南.bat` | 打开 `新人上手指南.html` |
 
 ## 新建 Codex 对话
 

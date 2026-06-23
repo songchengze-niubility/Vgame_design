@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generated_at": "2026-06-23 17:05:11",
+  "generated_at": "2026-06-23 19:20:20",
   "datas_root": "${VGAME_CONFIG_DATAS}",
   "statistics": {
     "total_tables": 281,
@@ -2512,7 +2512,7 @@
           "RelatedId",
           "IsValid"
         ],
-        "data_rows": 1469
+        "data_rows": 1470
       }
     },
     {
@@ -8408,7 +8408,7 @@
           },
           "PriceType": {
             "type": "ShopGoodsPriceType",
-            "description": "价格类型（0：游戏道具，1：人民币，2：游戏货币+人民币）",
+            "description": "价格类型（0：游戏道具，1：人民币）",
             "column_index": 9,
             "has_formula": false
           },
@@ -8420,7 +8420,7 @@
           },
           "Discount": {
             "type": "(array#sep=;),GoodsDiscount",
-            "description": "折扣（购买数量、适用折扣)",
+            "description": "折扣（购买数量、当前价格)",
             "column_index": 11,
             "has_formula": false
           },

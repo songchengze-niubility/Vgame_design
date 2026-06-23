@@ -11,7 +11,7 @@
       "Unity",
       "Luban"
     ],
-    "analyzedAt": "2026-06-23T17:42:12Z",
+    "analyzedAt": "2026-06-23T19:20:20Z",
     "gitCommitHash": "49c40c44e30c5c2d3bde08bfd6d2ee9bc5989485",
     "sources": [
       "client-code",
@@ -26319,7 +26319,7 @@
           "RelatedId",
           "IsValid"
         ],
-        "data_rows": 1469
+        "data_rows": 1470
       },
       "source": "config",
       "summary": "Vgame Luban 配置表：Items",
@@ -32775,7 +32775,7 @@
           },
           "PriceType": {
             "type": "ShopGoodsPriceType",
-            "description": "价格类型（0：游戏道具，1：人民币，2：游戏货币+人民币）",
+            "description": "价格类型（0：游戏道具，1：人民币）",
             "column_index": 9,
             "has_formula": false
           },
@@ -32787,7 +32787,7 @@
           },
           "Discount": {
             "type": "(array#sep=;),GoodsDiscount",
-            "description": "折扣（购买数量、适用折扣)",
+            "description": "折扣（购买数量、当前价格)",
             "column_index": 11,
             "has_formula": false
           },
@@ -46906,9 +46906,9 @@
     {
       "id": "document:37dd68363fc1",
       "type": "document",
-      "name": "Vgame Design — Agent-First Knowledge Base",
+      "name": "Vgame 策划 Agent 总入口",
       "filePath": "AGENTS.md",
-      "summary": "Vgame Design — Agent-First Knowledge Base",
+      "summary": "Vgame 策划 Agent 总入口",
       "tags": [
         "vgame",
         "design-doc",
@@ -46918,8 +46918,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 76,
-        "sha256": "461b75ee60942663b2a3df4374b6d52667f1651873094a7ee0b58378fdff868a"
+        "line_count": 88,
+        "sha256": "e42bdf2315c86ffd7a59a0778840f70e4854f1d4418953ced9eeb1a63e9d4785"
       },
       "source": "design"
     },
@@ -48179,7 +48179,7 @@
       "metadata": {
         "category": "task",
         "line_count": 77,
-        "sha256": "8abe43ba0deaaac3154bebb36eab41613738edf79a1003c6a398cd81e4563ed9"
+        "sha256": "5a4baa92f6398e6aa7579a26b187324282e0967e067d03b1309c8e995aaf1e00"
       },
       "source": "design"
     },
@@ -48204,26 +48204,6 @@
       "source": "design"
     },
     {
-      "id": "document:add5a82d6da9",
-      "type": "document",
-      "name": "Vgame 驾驭工程使用说明",
-      "filePath": "Vgame驾驭工程使用说明.md",
-      "summary": "Vgame 驾驭工程使用说明",
-      "tags": [
-        "vgame",
-        "design-doc",
-        "governance"
-      ],
-      "complexity": "simple",
-      "layer": "design",
-      "metadata": {
-        "category": "governance",
-        "line_count": 5,
-        "sha256": "1e6f6264619d9d94c1c3516ff6b8826d18c847fa6b1044c49eb214ef2fde761d"
-      },
-      "source": "design"
-    },
-    {
       "id": "document:060c16cf65a7",
       "type": "document",
       "name": "Vgame 驾驭工程新人使用手册",
@@ -48234,12 +48214,12 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "simple",
+      "complexity": "moderate",
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 366,
-        "sha256": "2215ac3b10fcb2e55ed6a604fa460430ba23f3a8fc144155c5c7be95ae6b03fd"
+        "line_count": 389,
+        "sha256": "0a0635e73bcbdbfabb62ca7bfd38cbde4ef0698bdd5e6c0def69ad5d8bd48a8e"
       },
       "source": "design"
     }
@@ -58667,7 +58647,7 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（67份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（66份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
@@ -58734,7 +58714,6 @@
         "document:70bd5cea30ff",
         "document:10b809b8e39b",
         "document:f7496c4bbd1e",
-        "document:add5a82d6da9",
         "document:060c16cf65a7"
       ]
     }
@@ -58857,14 +58836,14 @@
     }
   ],
   "statistics": {
-    "total_nodes": 1898,
+    "total_nodes": 1897,
     "total_edges": 1200,
     "total_layers": 14,
     "tour_steps": 12,
     "sources": {
       "client": 1550,
       "config": 281,
-      "design": 67
+      "design": 66
     }
   }
 }

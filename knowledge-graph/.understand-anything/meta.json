@@ -1,14 +1,14 @@
 {
   "version": "1.0",
-  "generated_at": "2026-06-23T17:42:13",
+  "generated_at": "2026-06-23T19:20:20",
   "sources": {
     "client": 1550,
     "config": 281,
-    "design": 67
+    "design": 66
   },
-  "total_nodes": 1898,
+  "total_nodes": 1897,
   "total_edges": 1200,
-  "lite_nodes": 1898,
+  "lite_nodes": 1897,
   "lite_edges": 1200,
   "layer_count": 14,
   "source_availability": {

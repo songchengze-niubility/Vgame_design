@@ -342,8 +342,8 @@
           <li><strong>克隆策划仓库</strong><br>用 Git 克隆 <code>Vgame_design</code>，进入其中的 <code>驾驭工程</code>目录。</li>
           <li><strong>配置路径</strong><br>双击 <code>配置本机路径.bat</code>，填写 SVN 根目录、源文档目录和个人输出目录。Git 根目录由脚本自动确定。</li>
           <li><strong>运行安装</strong><br>双击 <code>一键安装.bat</code>，等待依赖、仓库、Skill 和图谱检查完成。</li>
-          <li><strong>确认结果</strong><br>正常结果为 <code>PASS (FAIL: 0, WARN: 0)</code> 和 <code>Setup complete</code>。</li>
-          <li><strong>启动图谱和 Codex</strong><br>双击 <code>启动知识图谱.bat</code>，然后用 Codex 打开 <code>${VGAME_DESIGN_ROOT}</code>。</li>
+          <li><strong>确认结果</strong><br>正常结果为 <code>=== Result: PASS (FAIL: 0, WARN: 0) ===</code> 和 <code>Setup complete</code>。</li>
+          <li><strong>启动图谱和 Codex</strong><br>双击 <code>启动知识图谱.bat</code>，然后用 Codex 或兼容客户端打开 <code>${VGAME_DESIGN_ROOT}</code>。AI 入口由 <code>AGENTS.md</code> 路由到 <code>vgame-core-understanding</code>，再按需挂载 18 个专项 Skill，无需手动加载。</li>
         </ol>
         <div class="callout"><strong>路径不会上传：</strong>本机配置保存在 <code>%LOCALAPPDATA%\Vgame\design-harness.env.bat</code> 和 Git 忽略的 <code>local.env.bat</code>。每个人可以使用不同盘符。</div>
       </section>
@@ -355,8 +355,9 @@
           <li><strong>更新策划仓库</strong><br>双击 <code>更新驾驭工程.bat</code>。存在本地修改时脚本会停止保护现场。</li>
           <li><strong>运行检查</strong><br>双击 <code>检查驾驭工程.bat</code>，阅读所有 FAIL 和 WARN。</li>
           <li><strong>按需启动 Dashboard</strong><br>浏览器通常打开 <code>http://127.0.0.1:5173</code>，以启动窗口显示地址为准。</li>
-          <li><strong>开始任务</strong><br>在 Codex 中明确任务范围、是否只读、是否允许修改真实配置。</li>
+          <li><strong>开始任务</strong><br>在 Codex 或兼容客户端中明确任务范围、是否只读、是否允许修改真实配置。</li>
         </ol>
+        <div class="callout"><strong>直接改配置或配战斗：</strong>只读分析或单点数值修改走最小路径，不必跑九步流程；新增系统、跨表联动、影响经济总量或战斗强度才必须走 Design → Proposal → Task。改真实 Excel 前先按 <code>vgame-config-schema</code> 扫描公式列，含公式的列绝不覆写、不插删行列。</div>
         <div class="callout warning"><strong>更新提示本地修改时：</strong>进入 <code>${VGAME_DESIGN_ROOT}</code> 执行 <code>git status</code>，不要删除或还原不认识的文件。</div>
       </section>
 
@@ -364,7 +365,7 @@
         <h2>在全新对话中怎么使用</h2>
         <p class="section-lead">新对话不会继承旧聊天记忆，但会读取 Vgame_design Git 仓库根目录的 <code>AGENTS.md</code>，并通过本机路径连接策划总控、项目 Skill、知识图谱和 SVN 真实工程。</p>
         <ol class="steps">
-          <li><strong>新建 Codex 对话</strong><br>工作目录选择 <code>${VGAME_DESIGN_ROOT}</code>，不再从 SVN 工程目录启动。</li>
+          <li><strong>新建 Codex 或兼容客户端对话</strong><br>工作目录选择 <code>${VGAME_DESIGN_ROOT}</code>，不再从 SVN 工程目录启动。</li>
           <li><strong>自动加载项目入口</strong><br>根目录 <code>AGENTS.md</code> 会读取本机路径配置、<code>${VGAME_ROOT}</code> 和 <code>vgame-core-understanding</code>。</li>
           <li><strong>直接说明任务</strong><br>写清任务、范围、是否只读、是否允许修改真实配置，不需要重新介绍整个项目。</li>
           <li><strong>观察加载结果</strong><br>AI 应先确认项目入口和相关专项 Skill，再读取真实证据。</li>
@@ -636,7 +637,7 @@
         <p class="section-lead">当前总图由客户端代码、配置表 Schema 和本仓库设计文档三类来源组成，用于快速定位“在哪里”和“与谁相关”。</p>
         <div class="grid three">
           <div class="item"><h4>客户端代码</h4><p><code>${VGAME_CLIENT_GRAPH}</code><br>类、文件、配置与调用关系。</p></div>
-          <div class="item"><h4>配置表</h4><p><code>${VGAME_CONFIG_DATAS}</code><br>278 个逻辑表、285 个注册源文件及其字段和推断引用。</p></div>
+          <div class="item"><h4>配置表</h4><p><code>${VGAME_CONFIG_DATAS}</code><br>281 个注册配置表、2314 个字段、33 张含公式表与 63 张 C# 扫描命中表。</p></div>
           <div class="item"><h4>设计文档</h4><p>当前仓库<br>Design、Proposal、Task、Plan 与 Harness。</p></div>
         </div>
         <h3>正确查询顺序</h3>
@@ -705,9 +706,11 @@ git push origin master</pre>
           <tbody>
             <tr><td><code>配置本机路径.bat</code></td><td>换电脑、盘符或目录后重新配置</td><td>否</td></tr>
             <tr><td><code>一键安装.bat</code></td><td>安装或修复本机环境</td><td>否</td></tr>
+            <tr><td><code>打开驾驭工程.bat</code></td><td>在资源管理器打开本地 Git 仓库</td><td>否</td></tr>
             <tr><td><code>更新驾驭工程.bat</code></td><td>快进拉取 Git 最新内容</td><td>只下载</td></tr>
             <tr><td><code>检查驾驭工程.bat</code></td><td>运行只读门禁和图谱检查</td><td>否</td></tr>
             <tr><td><code>启动知识图谱.bat</code></td><td>启动 UA Dashboard</td><td>否</td></tr>
+            <tr><td><code>查看新人指南.bat</code></td><td>打开本手册 HTML 版</td><td>否</td></tr>
           </tbody>
         </table>
         <h3>当前仓库已可运行</h3>

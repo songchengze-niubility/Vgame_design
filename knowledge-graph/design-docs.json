@@ -1,13 +1,13 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-06-23T17:42:12",
+  "generated_at": "2026-06-23T19:20:20",
   "nodes": [
     {
       "id": "document:37dd68363fc1",
       "type": "document",
-      "name": "Vgame Design — Agent-First Knowledge Base",
+      "name": "Vgame 策划 Agent 总入口",
       "filePath": "AGENTS.md",
-      "summary": "Vgame Design — Agent-First Knowledge Base",
+      "summary": "Vgame 策划 Agent 总入口",
       "tags": [
         "vgame",
         "design-doc",
@@ -17,8 +17,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 76,
-        "sha256": "461b75ee60942663b2a3df4374b6d52667f1651873094a7ee0b58378fdff868a"
+        "line_count": 88,
+        "sha256": "e42bdf2315c86ffd7a59a0778840f70e4854f1d4418953ced9eeb1a63e9d4785"
       }
     },
     {
@@ -1215,7 +1215,7 @@
       "metadata": {
         "category": "task",
         "line_count": 77,
-        "sha256": "8abe43ba0deaaac3154bebb36eab41613738edf79a1003c6a398cd81e4563ed9"
+        "sha256": "5a4baa92f6398e6aa7579a26b187324282e0967e067d03b1309c8e995aaf1e00"
       }
     },
     {
@@ -1238,25 +1238,6 @@
       }
     },
     {
-      "id": "document:add5a82d6da9",
-      "type": "document",
-      "name": "Vgame 驾驭工程使用说明",
-      "filePath": "Vgame驾驭工程使用说明.md",
-      "summary": "Vgame 驾驭工程使用说明",
-      "tags": [
-        "vgame",
-        "design-doc",
-        "governance"
-      ],
-      "complexity": "simple",
-      "layer": "design",
-      "metadata": {
-        "category": "governance",
-        "line_count": 5,
-        "sha256": "1e6f6264619d9d94c1c3516ff6b8826d18c847fa6b1044c49eb214ef2fde761d"
-      }
-    },
-    {
       "id": "document:060c16cf65a7",
       "type": "document",
       "name": "Vgame 驾驭工程新人使用手册",
@@ -1267,12 +1248,12 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "simple",
+      "complexity": "moderate",
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 366,
-        "sha256": "2215ac3b10fcb2e55ed6a604fa460430ba23f3a8fc144155c5c7be95ae6b03fd"
+        "line_count": 389,
+        "sha256": "0a0635e73bcbdbfabb62ca7bfd38cbde4ef0698bdd5e6c0def69ad5d8bd48a8e"
       }
     }
   ],
@@ -1281,7 +1262,7 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（67份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（66份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
@@ -1348,13 +1329,12 @@
         "document:70bd5cea30ff",
         "document:10b809b8e39b",
         "document:f7496c4bbd1e",
-        "document:add5a82d6da9",
         "document:060c16cf65a7"
       ]
     }
   ],
   "statistics": {
-    "documents": 67,
+    "documents": 66,
     "edges": 0
   }
 }

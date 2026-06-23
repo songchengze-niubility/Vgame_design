@@ -13,11 +13,11 @@ if not defined HARNESS_COMMON (
 )
 call "%HARNESS_COMMON%"
 
-if not exist "%VGAME_DESIGN_ROOT%\BEGINNER-GUIDE.html" (
+if not exist "%VGAME_DESIGN_ROOT%\新人上手指南.html" (
     echo [ERROR] Beginner guide was not found. Run the setup launcher first.
     pause
     exit /b 1
 )
 
-start "" "%VGAME_DESIGN_ROOT%\BEGINNER-GUIDE.html"
+start "" "%VGAME_DESIGN_ROOT%\新人上手指南.html"
 exit /b 0
