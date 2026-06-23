@@ -1,0 +1,7 @@
+interface:
+  display_name: "策划需求逐条澄清"
+  short_description: "维护待确认队列并逐条完成策划需求和边界决策"
+  default_prompt: "使用 $planning-requirement-clarification 梳理并逐条确认这个功能的需求缺口。"
+
+policy:
+  allow_implicit_invocation: true

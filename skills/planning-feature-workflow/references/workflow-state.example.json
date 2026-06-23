@@ -1,0 +1,30 @@
+{
+  "feature": "示例功能",
+  "current_phase": "reference",
+  "execution_mode": "STANDARD",
+  "artifact_profile": "DOC_UI",
+  "risk_tier": "MEDIUM",
+  "last_actor": "",
+  "last_outcome": "",
+  "human_gates": {
+    "contract_confirmed": false,
+    "clarification_resolved": false,
+    "review_approved": false,
+    "acceptance_approved": false,
+    "delivery_accepted": false
+  },
+  "attempts_by_phase": {
+    "reference": 0,
+    "contract": 0,
+    "clarification": 0,
+    "core_design": 0,
+    "specialists": 0,
+    "review": 0,
+    "ui": 0,
+    "excel": 0,
+    "acceptance": 0,
+    "change_sync": 0,
+    "delivery": 0
+  },
+  "block_reason": ""
+}

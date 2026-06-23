@@ -1,0 +1,7 @@
+interface:
+  display_name: "游戏策划数据与埋点"
+  short_description: "设计指标、事件、漏斗、留存、经济护栏和实验观测"
+  default_prompt: "使用 $planning-analytics-instrumentation 为这个游戏功能设计指标和埋点方案。"
+
+policy:
+  allow_implicit_invocation: true

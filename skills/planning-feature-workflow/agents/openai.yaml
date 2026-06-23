@@ -1,0 +1,7 @@
+interface:
+  display_name: "游戏策划交付工作流"
+  short_description: "从需求契约到 Excel、UI 资产和人工验收的八步策划流程"
+  default_prompt: "使用 $planning-feature-workflow 推进这个游戏策划需求，并根据已有产物判断当前阶段。"
+
+policy:
+  allow_implicit_invocation: true

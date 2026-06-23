@@ -1,0 +1,7 @@
+interface:
+  display_name: "游戏 LiveOps 上线准备"
+  short_description: "设计排期、灰度、开关、补偿、回滚、观察与复盘"
+  default_prompt: "使用 $planning-liveops-readiness 为这个功能制定上线与运营准备方案。"
+
+policy:
+  allow_implicit_invocation: true

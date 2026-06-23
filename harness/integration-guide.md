@@ -12,17 +12,22 @@ ${VGAME_SKILL_ROOT}
 
 关键文件：
 
-- `config.toml`
-- `agents/`
-- `skills/`
+- `config.toml` — 项目 Skill 路由配置
+- `agents/` — Agent 定义
+- `vgame-core-understanding/` — 入口 Skill
+- `vgame-*` — 18 个 Vgame 专项 Skill
+- `planning-feature-workflow` — 策划案九步交付编排（每次发起需求必须加载）
+- `planning-*` — 策划流程子 skill（澄清、验收、变更、埋点、LiveOps）
+- `game-monetization`、`localize` 等 — 跨领域专项
 
 ## 使用顺序
 
-1. 先读 `vgame-core-understanding`，确认问题属于哪个设计域。
-2. 涉及配置字段时读 `vgame-config-schema`。
-3. 根据问题进入专项 skill。
-4. 如果分析过程中发现新经验或坑点，补回对应 skill 的 references。
-5. 如果会影响长期设计或流程，补到本仓库的 `design/`、`proposals/` 或 `tech-debt-tracker.md`。
+1. 每次发起需求或策划案任务：先加载 `planning-feature-workflow`，按九步流程执行。
+2. 先读 `vgame-core-understanding`，确认问题属于哪个设计域。
+3. 涉及配置字段时读 `vgame-config-schema`。
+4. 根据问题进入专项 skill。
+5. 如果分析过程中发现新经验或坑点，补回对应 skill 的 references。
+6. 如果会影响长期设计或流程，补到本仓库的 `design/`、`proposals/` 或 `tech-debt-tracker.md`。
 
 ## 常见路由
 

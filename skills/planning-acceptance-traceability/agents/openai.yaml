@@ -1,0 +1,7 @@
+interface:
+  display_name: "策划验收与追踪矩阵"
+  short_description: "生成 Given-When-Then 验收用例和规则追踪矩阵"
+  default_prompt: "使用 $planning-acceptance-traceability 为这个功能建立验收用例和追踪矩阵。"
+
+policy:
+  allow_implicit_invocation: true

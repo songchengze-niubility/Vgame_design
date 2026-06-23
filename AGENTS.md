@@ -68,6 +68,7 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 
 | 问题类型 | 优先 skill |
 |---|---|
+| 策划案交付、需求澄清、验收追踪 | `planning-feature-workflow`（每次发起需求必须加载） |
 | 项目总览、路由、边界 | `vgame-core-understanding` |
 | 配置字段、表结构、注册源表 | `vgame-config-schema` |
 | 奖励、Drop、UIlevel 同步 | `vgame-reward-drop-sync` / `vgame-drop-uilevel-sync` |
@@ -78,6 +79,17 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 | 外循环系统 | `vgame-outer-loop-system-map` |
 | 配置质量审查 | `vgame-config-quality-audit` |
 | 版本、教程、玩法内容 | `vgame-version-release-map`、`vgame-tutorial-onboarding-map`、`vgame-battle-content-map`、`vgame-level-design-map` |
+
+策划案交付流程子 skill（由 `planning-feature-workflow` 按步骤调用）：
+
+| 步骤 | skill |
+|---|---|
+| 需求逐条澄清 | `planning-requirement-clarification` |
+| 验收与追踪矩阵 | `planning-acceptance-traceability` |
+| 需求变更同步 | `planning-change-sync` |
+| 数据与埋点 | `planning-analytics-instrumentation` |
+| LiveOps 与上线准备 | `planning-liveops-readiness` |
+| 商业化设计 | `game-monetization` |
 
 ## 黄金原则
 

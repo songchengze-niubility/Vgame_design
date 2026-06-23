@@ -10,6 +10,9 @@ output_root = "${VGAME_OUTPUT_ROOT}"
 skill = "vgame-core-understanding"
 agent = "vgame-design-lead"
 
+[workflow]
+feature_workflow = "planning-feature-workflow"
+
 [skills]
 project_context = "vgame-core-understanding"
 economy = "senior-game-economy"
@@ -29,3 +32,15 @@ battle_tuning = "vgame-battle-tuning-helper"
 tutorial_onboarding = "vgame-tutorial-onboarding-map"
 version_release = "vgame-version-release-map"
 player_progression_simulator = "vgame-player-progression-simulator"
+
+[planning]
+requirement_clarification = "planning-requirement-clarification"
+acceptance_traceability = "planning-acceptance-traceability"
+change_sync = "planning-change-sync"
+analytics_instrumentation = "planning-analytics-instrumentation"
+liveops_readiness = "planning-liveops-readiness"
+monetization = "game-monetization"
+localization = "localize"
+accessibility = "accessibility-compliance"
+experimentation = "experimentation-analytics"
+product_analytics = "product-analytics-setup"

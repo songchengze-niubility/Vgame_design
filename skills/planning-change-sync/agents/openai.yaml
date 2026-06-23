@@ -1,0 +1,7 @@
+interface:
+  display_name: "策划需求变更同步"
+  short_description: "分析需求变化影响并同步策划、UI、配置和验收产物"
+  default_prompt: "使用 $planning-change-sync 同步这次需求变化并检查所有受影响产物。"
+
+policy:
+  allow_implicit_invocation: true
