@@ -224,3 +224,7 @@ For gameplay understanding and project framing, this skill should usually be eno
 - [references/delivery-gates.md](references/delivery-gates.md)
 - [references/current-gameplay.md](references/current-gameplay.md)
 - [references/character-kit-routing.md](references/character-kit-routing.md)
+
+## Generic Framework Templates
+
+`skills/generic/` 目录下保存 16 个通用策划 Skill 框架模板（不绑定任何项目），覆盖与上述专项 Skill 相同的方法论层。Vgame 任务直接使用上方的专项 Skill；通用模板仅在跨项目迁移或审查方法论完整性时参考。

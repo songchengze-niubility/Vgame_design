@@ -79,6 +79,8 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 | 配置质量审查 | `vgame-config-quality-audit` |
 | 版本、教程、玩法内容 | `vgame-version-release-map`、`vgame-tutorial-onboarding-map`、`vgame-battle-content-map`、`vgame-level-design-map` |
 
+`skills/generic/` 下另有 16 个通用框架模板（不绑定项目），Vgame 任务不使用它们；仅在跨项目迁移或方法论审查时参考。
+
 ## 黄金原则
 
 1. 不在仓库里的决策，对智能体不存在。
