@@ -212,9 +212,14 @@ Write-Host ""
 Write-Host "--- Git Check ---" -ForegroundColor "White"
 
 try {
-    $recentCommits = git -C $Root log --oneline -10 2>$null
-    if ($recentCommits) {
-        $badCommits = $recentCommits | Where-Object {
+    $upstream = git -C $Root rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' 2>$null
+    $pendingCommits = if ($upstream) {
+        git -C $Root log --oneline "$upstream..HEAD" 2>$null
+    } else {
+        git -C $Root log --oneline -1 2>$null
+    }
+    if ($pendingCommits) {
+        $badCommits = $pendingCommits | Where-Object {
             $_ -notmatch "^[0-9a-f]+\s+(feat|fix|docs|style|refactor|perf|test|chore|ci|build|revert)(\(.+\))?:\s" -and
             $_ -notmatch "^[0-9a-f]+\s+Merge"
         }
@@ -222,7 +227,7 @@ try {
             Write-Result "WARN" "Non-conventional commit: $commit" "Use format like docs(harness): add Vgame scaffold."
         }
     } else {
-        Write-Host "  [SKIP] No commits yet." -ForegroundColor "DarkGray"
+        Write-Host "  [PASS] No unpushed commits require message validation." -ForegroundColor "DarkGray"
     }
 } catch {
     Write-Host "  [SKIP] Git is unavailable or this is not a git repo." -ForegroundColor "DarkGray"
