@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vgame UI 原型"
+  short_description: "将策划规则转为可交互 HTML、页面图、组件图与追踪清单"
+  default_prompt: "使用 $vgame-ui-prototype 为这个策划功能生成可追踪的 UI 原型资产。"

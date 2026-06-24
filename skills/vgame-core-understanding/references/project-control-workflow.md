@@ -65,6 +65,7 @@
 | `vgame-growth-combat-conversion-map` | 角色、专武、旅券、映射装备等成长系统如何转化为战斗表现和正式玩法验证。 |
 | `vgame-outer-loop-system-map` | 抽卡、商店、任务、签到、战令、活动、邮件、月卡等外循环职责、周期和商业化支撑关系。 |
 | `vgame-config-quality-audit` | 配置交付前只读质检、注册源文件、ID/引用完整性、PropType 格式和常见断链。 |
+| `vgame-ui-prototype` | 策划 UI 规格、可交互 HTML、真实渲染的页面/组件 PNG、Manifest 与规则 ID 追踪。 |
 | `vgame-battle-content-map` | 怪物、Boss、精英、技能、Buff、AI、波次、子弹、召唤物、地形机关和战斗内容配置链。 |
 | `vgame-level-design-map` | 关卡设计、地形编排、Loop 区域、移动平台、刷怪布局、战斗节奏、关卡编辑器、场景序列化和镜头边界。 |
 | `vgame-battle-tuning-helper` | DPS、TTK、怪物属性、玩家战力曲线、难度系数、存活时间和战斗 What-If 调参。 |

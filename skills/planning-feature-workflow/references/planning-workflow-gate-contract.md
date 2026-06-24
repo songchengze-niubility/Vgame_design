@@ -20,7 +20,7 @@
 | `core_design` | 核心系统/战斗设计 | system/combat designer |
 | `specialists` | 数值、配置、实现、UI 规格 | specialists |
 | `review` | 一致性评审与规则冻结 | design-reviewer |
-| `ui` | HTML、页面主图、组件详图 | ui-prototype |
+| `ui` | HTML、页面主图、组件详图与 Manifest | ui-prototype（使用 `vgame-ui-prototype`） |
 | `excel` | 正式 Excel 策划案 | doc-writer |
 | `acceptance` | 验收用例与追踪矩阵 | acceptance-designer |
 | `delivery` | 自动检查与人工验收 | design-lead + 用户 |
@@ -87,6 +87,12 @@ python scripts/update_planning_workflow_state.py --feature "<功能名>" --accep
 | `UI_ONLY` | html、png、ui-asset-manifest.json、追踪矩阵、验收用例 |
 | `DOC_UI` | xlsx、html、png、ui-asset-manifest.json、追踪矩阵、验收用例，且 Excel 有嵌图 |
 | `IMPLEMENTATION` | 实际修改、追踪矩阵、验收用例和验证证据 |
+
+UI 阶段完成前先运行：
+
+```powershell
+python "${VGAME_SKILL_ROOT}\vgame-ui-prototype\scripts\validate_ui_assets.py" --ui-dir "${VGAME_OUTPUT_ROOT}\<功能短名>\ui" --require-components
+```
 
 ```powershell
 python scripts/verify_design_artifacts.py "${VGAME_OUTPUT_ROOT}/<功能短名>" --profile <档位>

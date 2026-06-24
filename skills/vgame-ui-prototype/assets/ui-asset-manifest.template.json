@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "source_html": "index.html",
+  "viewport": {
+    "width": 1440,
+    "height": 900,
+    "device_scale_factor": 1
+  },
+  "pages": [
+    {
+      "id": "PAGE-001",
+      "name": "替换为页面名称",
+      "file": "page-001.png",
+      "selector": "[data-ui-kind='page'][data-ui-id='PAGE-001']",
+      "state": "default",
+      "rule_ids": [
+        "R-01"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "COMP-001",
+      "name": "替换为组件名称",
+      "page_id": "PAGE-001",
+      "file": "component-001-default.png",
+      "selector": "[data-ui-kind='component'][data-ui-id='COMP-001']",
+      "state": "default",
+      "rule_ids": [
+        "R-01"
+      ]
+    }
+  ]
+}
