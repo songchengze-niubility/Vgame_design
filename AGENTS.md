@@ -95,6 +95,12 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 | LiveOps 与上线准备 | `planning-liveops-readiness` |
 | 商业化设计 | `game-monetization` |
 
+## Claude × Codex 协作分工
+
+- Claude：需求澄清、策划案与规划、核心/专项设计、数值与配置、评审、Excel、追踪与验收，必要时代码/配置落地。
+- Codex：UI 与 Figma 资产的最终产出（HTML 原型、页面/组件 PNG、可编辑 Figma 源、Handoff Manifest）。
+- UI/Figma 档位由 Claude 出 `ui-spec.md` / `figma-ui-plan.md` 交接 Codex；Codex 先出 **UI 示意图** 交用户评审（门禁 `ui_mockup_approved`），通过后才并入 Excel 策划案。详见 `planning-feature-workflow`。
+
 ## 黄金原则
 
 1. 不在仓库里的决策，对智能体不存在。

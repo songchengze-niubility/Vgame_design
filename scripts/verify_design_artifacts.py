@@ -106,6 +106,16 @@ def read_text(path: Path) -> str | None:
         return None
 
 
+def gate_is_true(state: dict[str, Any] | None, name: str) -> bool:
+    """读取人类门禁。门禁存于 state['human_gates'][name]，兼容历史扁平写法。"""
+    if not isinstance(state, dict):
+        return False
+    gates = state.get("human_gates")
+    if isinstance(gates, dict) and name in gates:
+        return gates.get(name) is True
+    return state.get(name) is True
+
+
 def resolve_profile(feature_dir: Path, requested: str | None, report: Report) -> str | None:
     profile = requested
     if not profile:
@@ -199,7 +209,7 @@ def check_figma(feature_dir: Path, report: Report) -> None:
 
     state = read_json(feature_dir / STATE_FILE) or {}
     for field in ("figma_ui_plan_confirmed", "figma_target_confirmed"):
-        if state.get(field) is True:
+        if gate_is_true(state, field):
             report.passed(f"figma.{field}", f"人类门禁已确认: {field}")
         else:
             report.fail(f"figma.{field}",
@@ -295,6 +305,14 @@ def verify(feature_dir: Path, profile: str, skill_root: Path, use_sub: bool, rep
 
     if profile in doc_profiles:
         check_excel(feature_dir, report, require_embedded_image=profile in embed_profiles)
+
+    # UI/Figma 档位：Codex 的 UI 示意图必须先经用户评审，才允许并入 Excel/正式资产。
+    if profile in ui_profiles or profile in figma_profiles:
+        if gate_is_true(read_json(feature_dir / STATE_FILE), "ui_mockup_approved"):
+            report.passed("ui.mockup_approved", "UI 示意图已通过用户评审")
+        else:
+            report.fail("ui.mockup_approved",
+                        "UI 示意图未经用户评审（ui_mockup_approved!=true）；示意图须先评审再并入 Excel")
 
     if profile in ui_profiles:
         check_ui(feature_dir, report)

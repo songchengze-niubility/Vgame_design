@@ -45,7 +45,7 @@ OUTCOMES = ["success", "failure", "needs_revision", "blocked", "waiting_human"]
 REWORK_OUTCOMES = {"failure", "needs_revision"}
 HUMAN_GATES = [
     "contract_confirmed", "clarification_resolved", "review_approved",
-    "figma_ui_plan_confirmed", "figma_target_confirmed",
+    "figma_ui_plan_confirmed", "figma_target_confirmed", "ui_mockup_approved",
     "acceptance_approved", "delivery_accepted",
 ]
 # attempts_by_phase 跟踪自动返工次数，键与 example 一致（不含 complete）。
@@ -102,6 +102,8 @@ def parse_args() -> argparse.Namespace:
                         help="设置 clarification_resolved=true（阻塞澄清已逐条确认并同步回契约）")
     parser.add_argument("--approve-acceptance", action="store_true",
                         help="设置 acceptance_approved=true（追踪矩阵与验收用例完整且可执行）")
+    parser.add_argument("--approve-ui-mockup", action="store_true",
+                        help="设置 ui_mockup_approved=true（Codex 的 UI 示意图已经用户评审，可并入 Excel）")
     parser.add_argument("--close-change", action="store_true",
                         help="标记当前变更已闭环并记入 history（须配合 --phase change_sync）")
     parser.add_argument("--mode", help="执行模式 FAST/STANDARD/REFRESH")
@@ -182,6 +184,9 @@ def main() -> int:
     if args.approve_acceptance:
         state["human_gates"]["acceptance_approved"] = True
         notes.append("门禁 acceptance_approved -> True（--approve-acceptance）")
+    if args.approve_ui_mockup:
+        state["human_gates"]["ui_mockup_approved"] = True
+        notes.append("门禁 ui_mockup_approved -> True（--approve-ui-mockup）")
     if args.close_change:
         notes.append("变更已闭环（--close-change）")
 

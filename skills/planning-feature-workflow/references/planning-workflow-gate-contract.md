@@ -57,6 +57,7 @@ python scripts/update_planning_workflow_state.py --feature "<功能名>" --phase
 | 规则冻结 | `review_approved` | MEDIUM/HIGH 的 P0/P1 已关闭；LOW 自检通过 |
 | Figma UI 方案 | `figma_ui_plan_confirmed` | 用户明确批准当前 `figma-ui-plan.md` 版本；未批准时禁止 Figma 写入 |
 | Figma 写入目标 | `figma_target_confirmed` | 用户明确批准 `figma-target.json` 中的准确 design URL、file key 和目标 page/node |
+| UI 示意图评审 | `ui_mockup_approved` | 用户确认 Codex 产出的 UI 示意图方向；未通过前不得把页面图并入 Excel 策划案 |
 | 验收就绪 | `acceptance_approved` | 追踪矩阵和验收用例完整且可执行 |
 | 最终验收 | `delivery_accepted` | 用户确认 Excel、规则和 UI 符合预期 |
 

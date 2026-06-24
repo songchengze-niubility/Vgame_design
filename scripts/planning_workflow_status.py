@@ -56,7 +56,7 @@ PHASE_EVIDENCE: list[tuple[str, str, Callable[[Path], bool]]] = [
 
 HUMAN_GATES = [
     "contract_confirmed", "clarification_resolved", "review_approved",
-    "figma_ui_plan_confirmed", "figma_target_confirmed",
+    "figma_ui_plan_confirmed", "figma_target_confirmed", "ui_mockup_approved",
     "acceptance_approved", "delivery_accepted",
 ]
 

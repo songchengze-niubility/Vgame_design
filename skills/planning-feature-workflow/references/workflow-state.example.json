@@ -12,6 +12,7 @@
     "review_approved": false,
     "figma_ui_plan_confirmed": false,
     "figma_target_confirmed": false,
+    "ui_mockup_approved": false,
     "acceptance_approved": false,
     "delivery_accepted": false
   },
