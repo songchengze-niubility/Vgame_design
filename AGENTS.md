@@ -79,6 +79,7 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 | 外循环系统 | `vgame-outer-loop-system-map` |
 | 配置质量审查 | `vgame-config-quality-audit` |
 | UI 原型图、页面/组件截图与资产追踪 | `vgame-ui-prototype` |
+| 可编辑 Figma 游戏 UI、组件库与程序交接 | `vgame-figma-ui` |
 | 版本、教程、玩法内容 | `vgame-version-release-map`、`vgame-tutorial-onboarding-map`、`vgame-battle-content-map`、`vgame-level-design-map` |
 
 策划案交付流程子 skill（由 `planning-feature-workflow` 按步骤调用）：
@@ -89,6 +90,7 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 | 验收与追踪矩阵 | `planning-acceptance-traceability` |
 | 需求变更同步 | `planning-change-sync` |
 | UI 原型资产 | `vgame-ui-prototype` |
+| 可编辑 Figma UI 交付 | `vgame-figma-ui` |
 | 数据与埋点 | `planning-analytics-instrumentation` |
 | LiveOps 与上线准备 | `planning-liveops-readiness` |
 | 商业化设计 | `game-monetization` |

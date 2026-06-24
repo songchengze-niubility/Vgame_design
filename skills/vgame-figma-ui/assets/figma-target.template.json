@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "feature": "功能短名",
+  "source": "existing_file",
+  "url": "https://www.figma.com/design/REPLACE_WITH_FIGMA_FILE_KEY/FILE_NAME",
+  "file_key": "REPLACE_WITH_FIGMA_FILE_KEY",
+  "target_node_id": null,
+  "target_page_name": "REPLACE_WITH_TARGET_PAGE_NAME",
+  "access_verified": false,
+  "confirmed": false,
+  "approval_evidence": ""
+}

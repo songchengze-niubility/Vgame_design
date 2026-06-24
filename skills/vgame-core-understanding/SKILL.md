@@ -54,6 +54,7 @@ When called by the generic `game-planning-control` skill:
 | gacha, shop, task, sign-in, battle pass, activity, mail, month card, sweep, paid products, retention cadence, monetization-support loops | `vgame-outer-loop-system-map` |
 | read-only config QA, delivery audit, broken references, registered table inputs, ItemId/DropId/RewardId integrity, PropType formats, common config quality gates | `vgame-config-quality-audit` |
 | planning UI prototype, interactive HTML, rendered page/component PNG, UI asset manifest, rule-to-UI traceability | `vgame-ui-prototype` |
+| editable Figma game UI, component variants, design tokens, prototype links, export annotations, programmer and UI/UE handoff | `vgame-figma-ui` |
 | monster, boss, elite, skill, buff, AI, behavior tree, wave spawn, bullet, summon, damage effect, encounter pacing, battle content authoring | `vgame-battle-content-map` |
 | level design, terrain layout, loop zones, moving platforms, encounter pacing, spawn placement, level editor, scene serialization, camera boundaries, gameplay mode level structure | `vgame-level-design-map` |
 | tutorial, newbie guide, battle guide, ZoneShowGuide, guide sequences/steps, SystemOpen, feature unlock gating, unlock conditions, onboarding timeline, guide editor | `vgame-tutorial-onboarding-map` |
@@ -208,6 +209,7 @@ Use `vgame-growth-combat-conversion-map` for growth-module responsibility, comba
 Use `vgame-outer-loop-system-map` for gacha/shop/task/sign-in/battle-pass/activity/mail/month-card outer-loop relationships, cadence, and monetization support.
 Use `vgame-config-quality-audit` for read-only config QA, registered-source checks, ID/reference integrity, and delivery-gate audit reports.
 Use `vgame-ui-prototype` for planning UI specifications, interactive HTML prototypes, rendered page/component screenshots, and UI-to-rule asset traceability.
+Use `vgame-figma-ui` for editable Figma game screens, components and variants, design tokens, interaction links, export annotations, and programmer/UI-UE handoff.
 Use `vgame-battle-content-map` for monster/boss/skill/buff/AI/wave/bullet/summon configuration mapping and battle content authoring pipeline.
 Use `vgame-level-design-map` for level design, terrain layout, loop zones, moving platforms, spawn placement, encounter pacing, camera boundaries, level editor workflow, scene serialization, and Excel-to-Unity-scene relationships.
 Use `vgame-battle-tuning-helper` for DPS, TTK, monster stat lookup, player power curve comparison, difficulty coefficient checks, survival analysis, and battle what-if tuning.

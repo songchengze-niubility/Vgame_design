@@ -19,6 +19,9 @@
 | 配置质量审查确认 | 已运行或手动完成只读配置质检，断引用、PropType 格式、注册源文件和已知基线均已说明 |
 | 战斗内容确认 | 已确认怪物、Boss、技能、Buff、AI、波次、子弹、召唤物、地形或战斗事件配置影响、引用链和运行时消费方 |
 | 关卡设计确认 | 已确认 Excel 配置层与 Unity 场景层的边界、地形/Loop/刷怪/镜头/序列化影响、可调项和需要关卡编辑器处理的内容 |
+| Figma UI 方案确认 | 写入前已有获用户明确批准的 `figma-ui-plan.md`，正式风格证据、页面布局、组件策略、交互、适配和导出范围已确定 |
+| Figma 写入目标确认 | 已记录并获用户确认准确的 Figma design URL、file key 与目标 page/node；实际写入地址与记录一致 |
+| Figma UI 交付确认 | Figma 文件可访问；PAGE/COMP 与规则 ID 可追踪；组件、变体、变量和交互可编辑；安全区、导出规格及九宫格标注完整 |
 | 战斗调参确认 | 已确认玩家模型、怪物模型、DPS/TTK/存活时间、难度系数、目标体验区间和调参风险 |
 | 新手引导确认 | 已确认 BattleGuide/NewbieGuide/SystemOpen/Unlock 触发链、引导步骤、完成记录、跳过/失败逻辑和首小时体验影响 |
 | 版本发布确认 | 已确认功能状态、目标版本、SystemOpen/功能开关/活动时间/灰度范围、依赖和回滚方案 |
@@ -36,6 +39,7 @@
 | 质量审查 | 可用 `vgame-config-quality-audit/scripts/audit_config_quality.py` 做只读全量或局部审查 |
 | 战斗内容 | 按 `vgame-battle-content-map` 检查战斗元素、引用链、运行时消费方和影响范围 |
 | 关卡设计 | 按 `vgame-level-design-map` 检查 Excel 配置层、Unity 场景层、地形/Loop/刷怪/镜头和序列化链路 |
+| Figma UI | 用 `vgame-figma-ui/scripts/validate_figma_handoff.py` 检查页面、组件、节点、规则、预览与程序交接清单 |
 | 战斗调参 | 可用 `vgame-battle-tuning-helper/scripts/battle_tuning.py` 做 DPS、TTK、存活时间和系数 What-If |
 | 新手引导 | 按 `vgame-tutorial-onboarding-map` 检查 BattleGuide、NewbieGuide、SystemOpen、Unlock、引导编辑器和首小时体验链路 |
 | 版本发布 | 按 `vgame-version-release-map` 检查功能状态、开关层、灰度/AB、活动时间和回滚方案 |

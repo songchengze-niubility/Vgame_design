@@ -28,6 +28,7 @@
 | DropId、Drop/UIlevel、奖励预览、首通和重复奖励同步 | `vgame-reward-drop-sync` |
 | LevelId、LevelType、章节、Unlock/SystemOpen、体力、扫荡、玩法开放 | `vgame-level-progression-map` |
 | 配置质量、断引用、注册表、ID 完整性和交付前只读审查 | `vgame-config-quality-audit` |
+| 可编辑 Figma 游戏 UI、组件变体、设计变量、交互流与程序交接 | `vgame-figma-ui`、目标 Figma 文件及其已订阅组件库、Vgame 正式 UI 源资产 |
 | 怪物、Boss、技能、Buff、AI、波次、子弹、召唤物和战斗内容配置链 | `vgame-battle-content-map` |
 | 关卡设计、地形编排、Loop 区域、移动平台、刷怪布局、战斗节奏、关卡编辑器、场景序列化和镜头边界 | `vgame-level-design-map` |
 | DPS、TTK、怪物属性、玩家战力曲线、难度系数和战斗 What-If | `vgame-battle-tuning-helper` |

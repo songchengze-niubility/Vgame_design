@@ -10,6 +10,8 @@
     "contract_confirmed": false,
     "clarification_resolved": false,
     "review_approved": false,
+    "figma_ui_plan_confirmed": false,
+    "figma_target_confirmed": false,
     "acceptance_approved": false,
     "delivery_accepted": false
   },
@@ -21,10 +23,15 @@
     "specialists": 0,
     "review": 0,
     "ui": 0,
+    "figma_ui_plan": 0,
+    "figma_target": 0,
+    "figma_ui": 0,
     "excel": 0,
     "acceptance": 0,
-    "change_sync": 0,
-    "delivery": 0
+    "delivery": 0,
+    "change_sync": 0
   },
-  "block_reason": ""
+  "block_reason": "",
+  "history": [],
+  "updated_at": ""
 }

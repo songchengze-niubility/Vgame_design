@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "feature": "功能短名",
+  "rule_id_source": "../00-design-contract.md",
+  "ui_plan": {
+    "source": "../03-specialist-results/figma-ui-plan.md",
+    "confirmed": true,
+    "approval_evidence": "REPLACE_WITH_USER_APPROVAL_EVIDENCE"
+  },
+  "figma_target": {
+    "source": "../03-specialist-results/figma-target.json",
+    "confirmed": true
+  },
+  "figma_file": {
+    "file_key": "REPLACE_WITH_FIGMA_FILE_KEY",
+    "url": "https://www.figma.com/design/REPLACE_WITH_FIGMA_FILE_KEY/FILE_NAME",
+    "name": "Vgame 功能 UI"
+  },
+  "reference_viewport": {
+    "width": 1920,
+    "height": 1080,
+    "safe_area_percent": 90
+  },
+  "pages": [
+    {
+      "id": "PAGE-001",
+      "name": "页面名称",
+      "node_id": "123:456",
+      "url": "https://www.figma.com/design/REPLACE_WITH_FIGMA_FILE_KEY/FILE_NAME?node-id=123-456",
+      "state": "default",
+      "rule_ids": ["R-01"]
+    }
+  ],
+  "components": [
+    {
+      "id": "COMP-001",
+      "name": "组件名称",
+      "page_id": "PAGE-001",
+      "node_id": "234:567",
+      "component_set_node_id": "234:500",
+      "states": ["default", "focused", "disabled"],
+      "rule_ids": ["R-01"],
+      "export": {
+        "required": false,
+        "format": null,
+        "scales": []
+      }
+    }
+  ],
+  "flows": [],
+  "handoff": {
+    "target_engine": "Unity 2022.3 uGUI",
+    "editable_source_confirmed": true,
+    "component_instances_confirmed": true,
+    "prototype_links_confirmed": true,
+    "export_specs_confirmed": true,
+    "nine_slice_annotations_confirmed": true,
+    "safe_area_confirmed": true,
+    "localization_stress_tested": true,
+    "unresolved_items": []
+  }
+}

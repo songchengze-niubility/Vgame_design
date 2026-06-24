@@ -67,7 +67,12 @@ $RequiredFiles = @(
     @{ Path = "tasks\TEMPLATE.md"; Desc = "task template" },
     @{ Path = "knowledge-graph\KG-AI-RULES.md"; Desc = "knowledge graph AI rules" },
     @{ Path = "scripts\build_vgame_graph.py"; Desc = "knowledge graph build entry" },
-    @{ Path = "scripts\check_vgame_graph.py"; Desc = "knowledge graph check entry" }
+    @{ Path = "scripts\check_vgame_graph.py"; Desc = "knowledge graph check entry" },
+    @{ Path = "scripts\vgame_paths.py"; Desc = "shared path resolver" },
+    @{ Path = "scripts\planning_workflow_status.py"; Desc = "planning workflow status" },
+    @{ Path = "scripts\update_planning_workflow_state.py"; Desc = "planning workflow state writer" },
+    @{ Path = "scripts\verify_design_artifacts.py"; Desc = "planning delivery verifier" },
+    @{ Path = "scripts\check_planning_template_cache.py"; Desc = "planning template cache check" }
 )
 
 foreach ($item in $RequiredFiles) {
@@ -110,6 +115,29 @@ foreach ($doc in $ConceptDocs) {
     $fullPath = Join-Path $Root "harness\concepts\$doc"
     if (-not (Test-Path -LiteralPath $fullPath)) {
         Write-Result "FAIL" "Missing harness concept: $doc" "Restore the concept document under harness/concepts."
+    }
+}
+
+Write-Host ""
+Write-Host "--- Planning Workflow Scripts Check ---" -ForegroundColor "White"
+
+$python = (Get-Command python -ErrorAction SilentlyContinue)
+if (-not $python) {
+    Write-Host "  [SKIP] python not found; skipping planning script smoke test." -ForegroundColor "DarkGray"
+} else {
+    $PlanningScripts = @(
+        "planning_workflow_status.py",
+        "update_planning_workflow_state.py",
+        "verify_design_artifacts.py",
+        "check_planning_template_cache.py"
+    )
+    foreach ($scriptName in $PlanningScripts) {
+        $scriptPath = Join-Path $PSScriptRoot $scriptName
+        if (-not (Test-Path -LiteralPath $scriptPath)) { continue }
+        & python $scriptPath --help *> $null
+        if ($LASTEXITCODE -ne 0) {
+            Write-Result "FAIL" "Planning script fails to import/parse: $scriptName" "Run 'python scripts/$scriptName --help' and fix the error."
+        }
     }
 }
 
