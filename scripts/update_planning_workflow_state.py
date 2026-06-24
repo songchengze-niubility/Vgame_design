@@ -98,6 +98,12 @@ def parse_args() -> argparse.Namespace:
                         metavar="NAME=BOOL", help="设置人类门禁，可重复")
     parser.add_argument("--accept-delivery", action="store_true",
                         help="设置 delivery_accepted=true 并进入 complete（仅用户明确验收后运行）")
+    parser.add_argument("--resolve-clarifications", action="store_true",
+                        help="设置 clarification_resolved=true（阻塞澄清已逐条确认并同步回契约）")
+    parser.add_argument("--approve-acceptance", action="store_true",
+                        help="设置 acceptance_approved=true（追踪矩阵与验收用例完整且可执行）")
+    parser.add_argument("--close-change", action="store_true",
+                        help="标记当前变更已闭环并记入 history（须配合 --phase change_sync）")
     parser.add_argument("--mode", help="执行模式 FAST/STANDARD/REFRESH")
     parser.add_argument("--profile", help="交付档位")
     parser.add_argument("--risk", help="风险档位 LOW/MEDIUM/HIGH")
@@ -168,6 +174,16 @@ def main() -> int:
     for name, value in args.set_gate:
         state["human_gates"][name] = value
         notes.append(f"门禁 {name} -> {value}")
+
+    # 便捷门禁别名，与子 skill 的收尾命令保持一致（见各 planning-* SKILL.md）。
+    if args.resolve_clarifications:
+        state["human_gates"]["clarification_resolved"] = True
+        notes.append("门禁 clarification_resolved -> True（--resolve-clarifications）")
+    if args.approve_acceptance:
+        state["human_gates"]["acceptance_approved"] = True
+        notes.append("门禁 acceptance_approved -> True（--approve-acceptance）")
+    if args.close_change:
+        notes.append("变更已闭环（--close-change）")
 
     if args.accept_delivery:
         state["human_gates"]["delivery_accepted"] = True
