@@ -11,7 +11,7 @@
 
 ## 交付边界
 
-Figma 交付负责可编辑设计源、组件、状态、交互与程序说明；不宣称已经生成 Unity Prefab、Canvas 锚点、ObjectBinder、`_Auto.lua` 或业务 Lua。
+Figma 交付负责可编辑设计源、组件、状态、Prototype 交互与程序说明；不宣称已经生成 UE Widget Blueprint、Unity Prefab、Canvas/Overlay 锚点、ObjectBinder、`_Auto.lua` 或业务 Lua。
 
 静态 PNG 只用于评审和追踪，不能替代 Figma 源文件。不得把完整页面压成一张图片后称为可编辑 UI。
 
@@ -62,6 +62,7 @@ Figma 交付负责可编辑设计源、组件、状态、交互与程序说明�
 - 组件：按钮、页签、弹窗、列表项、奖励项、角色槽等使用组件与变体。
 - 状态：交互状态使用组件属性或变体表达，不靠页面旁文字代替。
 - 原型：关键路径必须建立 Prototype 连接；不可达页面需注明原因。
+- 占位目标：若交互目标页面未在当前批准范围内，只能创建 `Prototype Target Placeholder`，并在画板和 Manifest 中注明非最终 UI。
 
 ## 游戏专项要求
 
@@ -91,6 +92,8 @@ Figma 交付负责可编辑设计源、组件、状态、交互与程序说明�
 | `components` | 关键组件记录，至少一条 |
 | `flows` | 关键交互流记录 |
 | `handoff` | 程序/UI-UE 交接检查项 |
+
+`FLOW-*` 只用于 Manifest 内部记录交互链路，不是策划规则 ID；规则 ID 必须仍来自 `00-design-contract.md`。
 
 页面记录：
 
@@ -145,7 +148,7 @@ Figma 交付负责可编辑设计源、组件、状态、交互与程序说明�
 
 ```json
 {
-  "target_engine": "Unity 2022.3 uGUI",
+  "target_engine": "Unreal Engine UMG / Unity uGUI（按本次目标填写）",
   "editable_source_confirmed": true,
   "component_instances_confirmed": true,
   "prototype_links_confirmed": true,
@@ -157,13 +160,15 @@ Figma 交付负责可编辑设计源、组件、状态、交互与程序说明�
 }
 ```
 
+UE/UMG 交付时建议额外生成 `ue-ui-asset-manifest.json`，记录 `WBP_*` 命名、运行时绑定、焦点顺序、Prototype link、九宫格与不切图边界。
+
 每个需导出的视觉资产应说明：
 
 - Figma node ID 与显示名称。
-- 建议 Unity 资源名和目录。
+- 建议 UE Widget / Unity 资源名和目录。
 - PNG/SVG 等格式、倍率和透明背景要求。
 - 是否允许运行时染色。
 - 九宫格不可拉伸区域与边界数值。
 - 是否包含字体或需使用 TextEx/TMP 渲染。
 
-Manifest 只证明交接信息存在，不证明 Unity 实现已经完成。
+Manifest 只证明交接信息存在，不证明 UE/Unity 实现已经完成。

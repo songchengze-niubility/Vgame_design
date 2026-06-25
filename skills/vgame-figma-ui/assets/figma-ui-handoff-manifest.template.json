@@ -28,6 +28,7 @@
       "node_id": "123:456",
       "url": "https://www.figma.com/design/REPLACE_WITH_FIGMA_FILE_KEY/FILE_NAME?node-id=123-456",
       "state": "default",
+      "preview_file": "previews/page-001.png",
       "rule_ids": ["R-01"]
     }
   ],
@@ -39,6 +40,7 @@
       "node_id": "234:567",
       "component_set_node_id": "234:500",
       "states": ["default", "focused", "disabled"],
+      "preview_file": "previews/component-001.png",
       "rule_ids": ["R-01"],
       "export": {
         "required": false,
@@ -47,9 +49,18 @@
       }
     }
   ],
-  "flows": [],
+  "flows": [
+    {
+      "id": "FLOW-001",
+      "name": "关键交互流名称",
+      "from_page_id": "PAGE-001",
+      "to_page_id": "PAGE-001",
+      "trigger": "点击按钮/页签/入口",
+      "rule_ids": ["R-01"]
+    }
+  ],
   "handoff": {
-    "target_engine": "Unity 2022.3 uGUI",
+    "target_engine": "Unreal Engine UMG / Unity uGUI（按本次目标填写）",
     "editable_source_confirmed": true,
     "component_instances_confirmed": true,
     "prototype_links_confirmed": true,

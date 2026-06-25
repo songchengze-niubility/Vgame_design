@@ -49,7 +49,7 @@
 - 复用组件库：
 - 新建页面/组件/变量：
 - 需要导出的程序资源：
-- 不属于本次交付：Unity Prefab、Binder、Lua 绑定及运行时实现。
+- 不属于本次交付：UE Widget Blueprint、Unity Prefab、Binder、Lua/业务绑定及运行时实现。
 
 ## 取舍与待确认
 

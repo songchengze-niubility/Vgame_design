@@ -1,4 +1,4 @@
 interface:
   display_name: "Vgame 可编辑 Figma UI"
-  short_description: "先确认游戏 UI 方案和 Figma 写入地址，再制作可编辑源文件与程序交接"
-  default_prompt: "使用 $vgame-figma-ui 先提交 UI 方案并确认准确的 Figma 写入地址，批准后再制作可编辑界面和程序交接包。"
+  short_description: "确认方案和 Figma 地址后，制作可编辑 UI、原型流与 UE/程序交接"
+  default_prompt: "使用 $vgame-figma-ui 先确认 UI 方案和 Figma 地址，批准后制作可编辑界面、Prototype 流和 UE/程序交接包。"

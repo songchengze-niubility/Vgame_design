@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "feature": "功能短名",
+  "target_engine": "Unreal Engine UMG / UE 5.x",
+  "figma_file": {
+    "file_key": "REPLACE_WITH_FIGMA_FILE_KEY",
+    "url": "https://www.figma.com/design/REPLACE_WITH_FIGMA_FILE_KEY/FILE_NAME"
+  },
+  "source_manifest": "figma-ui-handoff-manifest.json",
+  "reference_viewport": {
+    "width": 1920,
+    "height": 1080,
+    "safe_area_px": 0,
+    "layout_policy": "横屏/竖屏/宽屏策略按本次方案填写"
+  },
+  "widgets": [
+    {
+      "id": "PAGE-001",
+      "figma_node_id": "123:456",
+      "figma_url": "https://www.figma.com/design/REPLACE_WITH_FIGMA_FILE_KEY/FILE_NAME?node-id=123-456",
+      "ue_widget_name": "WBP_FeatureScreen",
+      "type": "screen",
+      "rules": ["R-01"],
+      "preview": "previews/page-001.png",
+      "export_required": false,
+      "implementation_note": "使用 UMG 控件重建；不建议整页切图。"
+    },
+    {
+      "id": "COMP-001",
+      "figma_node_id": "234:500",
+      "figma_url": "https://www.figma.com/design/REPLACE_WITH_FIGMA_FILE_KEY/FILE_NAME?node-id=234-500",
+      "ue_widget_name": "WBP_FeatureComponent",
+      "type": "component_set",
+      "states": ["Default", "Focused", "Pressed", "Disabled"],
+      "rules": ["R-01"],
+      "preview": "previews/component-001.png",
+      "export_required": false,
+      "runtime_binding": {
+        "Label": "FText",
+        "State": "enum"
+      }
+    }
+  ],
+  "export_specs": [
+    {
+      "name": "面板/按钮/状态条",
+      "source": "Figma shape + token 或 UIAtlas 贴图",
+      "format": "UMG Border/Button/TextBlock 或 PNG/SVG",
+      "export_required": false,
+      "nine_slice": "若替换为贴图，填写中心可拉伸区域、边缘不可拉伸数值。"
+    }
+  ],
+  "prototype_links": [
+    {
+      "id": "FLOW-001",
+      "from_node_id": "123:456",
+      "to_node_id": "345:678",
+      "trigger": "ON_CLICK",
+      "navigation": "NAVIGATE",
+      "transition": "DISSOLVE 0.2s",
+      "rules": ["R-01"]
+    }
+  ],
+  "non_goals": [
+    "不生成 UE Widget Blueprint。",
+    "不生成 Lua/业务绑定。",
+    "不把整页 PNG 当作运行时 UI。"
+  ]
+}

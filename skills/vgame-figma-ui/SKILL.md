@@ -1,11 +1,11 @@
 ---
 name: vgame-figma-ui
-description: 将已评审通过的 Vgame 策划规则和 UI 规格制作成可由 UI/UE、策划与程序继续编辑的 Figma 游戏界面、组件库、交互流和程序交接清单。用户要求正式可编辑 UI、Figma 源文件、游戏 HUD/菜单、组件变体、切图标记、开发交接或从 HTML 原型升级为 Figma 交付时使用；不要用于仅需 HTML 示意图或直接修改 Unity Prefab 的任务。
+description: 将已评审通过的 Vgame 策划规则和 UI 规格制作成可由 UI/UE、策划与程序继续编辑的 Figma 游戏界面、组件库、Prototype 交互流和程序/UE/UMG 交接清单。用户要求正式可编辑 UI、Figma 源文件、游戏 HUD/菜单、组件变体、切图标记、UE/UMG 或 Unity/uGUI 开发交接，或从 HTML 原型升级为 Figma 交付时使用；不要用于仅需 HTML 示意图或直接修改引擎 Prefab/Widget Blueprint 的任务。
 ---
 
 # Vgame 可编辑 Figma UI
 
-把已冻结的策划 UI 转成结构化 Figma 源文件，而不是静态截图或铺满位图的画板。交付目标是让 UI/UE 能继续设计，让程序能读取尺寸、状态、资源与规则映射。
+把已冻结的策划 UI 转成结构化 Figma 源文件，而不是静态截图或铺满位图的画板。交付目标是让 UI/UE 能继续设计，让程序能读取尺寸、状态、资源、原型跳转与规则映射。
 
 ## 强制依赖
 
@@ -102,7 +102,32 @@ python "${VGAME_SKILL_ROOT}\vgame-figma-ui\scripts\check_figma_write_gate.py" `
 5. 保持玩法中心视野清晰；大段说明、次要信息和低频操作使用分层披露。
 6. 每完成一页，检查整页和关键局部截图，修复截字、遮挡、占位文本和错误变体。
 
-### 6. 程序与 UI/UE 交接
+### 6. 从可编辑样稿升级为程序/UE 交接
+
+当用户追问“这是不是原型图”“能否交付给程序/UE”“做成可编辑 UI”时，先澄清交付档位：
+
+- UI 示意图：HTML/PNG 或 Figma 静态画面，只用于评审视觉与布局。
+- 可编辑 Figma 源：页面、组件、变量、TEXT、状态变体和实例关系可继续编辑。
+- Prototype 交接稿：关键按钮、页签或流程节点已建立 Figma Prototype 连接。
+- 程序/UE 交接稿：额外包含 UMG/Widget 命名建议、锚点、安全区、焦点顺序、九宫格、导出边界、运行时绑定和非目标说明。
+- 引擎实现：真正的 Widget Blueprint/Prefab、Lua/业务绑定、运行时状态机；本 skill 不直接声明已完成。
+
+升级流程：
+
+1. 保留已批准页面和组件实例，不把页面压成 PNG；不得 detach 已批准组件，除非记录原因。
+2. 若关键路径需要跳转但目标正式页面不在当前批准范围内，可创建 `PAGE-xxx/.../Prototype Target Placeholder` 占位帧；必须写明“非最终 UI”，并只使用契约已有 PAGE ID 和规则 ID。`FLOW-*` 仅作为 Manifest 本地交互记录，不是规则 ID。
+3. 给真实入口节点建立 Figma Prototype reaction，例如主 CTA `ON_CLICK -> PAGE-xxx Prototype Target Placeholder`，并在 Manifest `flows` 中记录 from/to/trigger/rule_ids。
+4. 在 Figma 文件中创建 `UE-HANDOFF/<PAGE-ID>/程序交接说明` 或同等交接板，包含：
+   - UE/UMG Widget 命名建议（如 `WBP_*`）、关键 Button/List/Panel 实例名。
+   - Canvas/Overlay 锚点、安全区、横竖屏或宽窄屏策略。
+   - 键鼠、手柄、触控适用范围与焦点顺序。
+   - 九宫格/可拉伸区域；当前为 shape 时说明无需切图，若替换 UIAtlas 贴图再切。
+   - 运行时绑定字段、点击回调、状态枚举和非目标。
+5. 导出正式页面、关键组件、Prototype 目标占位和交接板 PNG；PNG 只作为评审/追踪，不作为运行时 UI 替代品。
+6. 生成或更新 `figma-ui-handoff-manifest.json`、`figma-ui-handoff-report.md`；若目标是 UE/UMG，再生成 `ue-ui-asset-manifest.json`。
+7. 明确边界：Figma 交接稿不等于 UE Widget Blueprint、Unity Prefab、Binder、Lua 或运行时实现。
+
+### 7. 程序与 UI/UE 交接
 
 在 Figma 文件中建立交接页，并在功能输出目录生成：
 
@@ -110,9 +135,11 @@ python "${VGAME_SKILL_ROOT}\vgame-figma-ui\scripts\check_figma_write_gate.py" `
 figma/
 ├─ figma-ui-handoff-manifest.json
 ├─ figma-ui-handoff-report.md
+├─ ue-ui-asset-manifest.json（UE/UMG 交付时）
 └─ previews/
    ├─ page-*.png
-   └─ component-*.png
+   ├─ component-*.png
+   └─ ue-handoff-*.png
 ```
 
 交接页至少包含：
@@ -125,14 +152,15 @@ figma/
 - 动效时长、触发与可降级方案。
 - 未确定项、需程序实现项及明确非目标。
 
-Figma 交付不等于 Unity Prefab。九宫格、Canvas 锚点、Binder 和 Lua 绑定必须作为程序交接说明记录，不能伪装成已完成的引擎实现。
+Figma 交付不等于 UE Widget Blueprint 或 Unity Prefab。九宫格、Canvas/Overlay 锚点、UMG/Prefab 层级、Binder 和 Lua/业务绑定必须作为程序交接说明记录，不能伪装成已完成的引擎实现。
 
-### 7. 校验
+### 8. 校验
 
 1. 用 Figma metadata 检查页面、组件、实例、变量绑定和节点 ID。
 2. 用 Figma screenshot 检查每个正式页面及关键组件状态。
-3. 复制 `assets/figma-ui-handoff-manifest.template.json` 和 `assets/figma-ui-handoff-report.template.md`，填写本次节点、规则映射与 UI 方案批准证据。
-4. 运行：
+3. 读取 Prototype 入口节点，确认关键 reaction 的 trigger、destinationId 和 navigation 已写入。
+4. 复制 `assets/figma-ui-handoff-manifest.template.json` 和 `assets/figma-ui-handoff-report.template.md`，填写本次节点、规则映射与 UI 方案批准证据。UE/UMG 交付时同时复制 `assets/ue-ui-asset-manifest.template.json`。
+5. 运行：
 
 ```powershell
 python "${VGAME_SKILL_ROOT}\vgame-figma-ui\scripts\validate_figma_handoff.py" `
@@ -143,7 +171,8 @@ python "${VGAME_SKILL_ROOT}\vgame-figma-ui\scripts\validate_figma_handoff.py" `
   --require-previews
 ```
 
-5. 运行仓库门禁。校验失败时留在 `figma_ui` 阶段。
+6. 对 `ue-ui-asset-manifest.json`、构建状态账本等新增 JSON 运行可解析检查；预览 PNG 应存在且可读。
+7. 运行仓库门禁。校验失败时留在 `figma_ui` 阶段。
 
 详细字段和交付质量要求见 [Figma 游戏 UI 交付契约](references/figma-game-ui-handoff-contract.md)。
 
@@ -155,7 +184,7 @@ python "${VGAME_SKILL_ROOT}\vgame-figma-ui\scripts\validate_figma_handoff.py" `
 - 所有契约页面与关键状态有 Figma node ID 和预览图。
 - 组件实例未无故脱离，存在 token 时不硬编码重复视觉值。
 - Manifest 可解析、无重复或断链，并只沿用契约中的规则 ID。
-- 程序交接页包含切图、九宫格、适配、状态和未落地边界。
+- 程序交接页包含切图/不切图边界、九宫格、适配、状态、Prototype flow、UE/UMG 或 Unity/uGUI 命名建议和未落地边界。
 - 用户完成视觉与交互人工确认；Agent 不得代替用户设置最终验收通过。
 
 阶段状态使用：
