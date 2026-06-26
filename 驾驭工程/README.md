@@ -1,5 +1,12 @@
 # Vgame 驾驭工程启动入口
 
+<!-- AI Agent 规则（同时作为 AGENTS.md 使用） -->
+<!-- 1. 将上级目录 ${VGAME_DESIGN_ROOT} 视为策划知识、Skill、流程和知识图谱的权威来源。 -->
+<!-- 2. 将本机配置中的 ${VGAME_ROOT} 视为真实 Vgame SVN 工程，只在用户明确授权后写入。 -->
+<!-- 3. 首次使用或更换电脑时运行 配置本机路径.bat，随后运行 一键安装.bat。 -->
+<!-- 4. 新建 Codex 对话时直接打开 ${VGAME_DESIGN_ROOT}，由上级 AGENTS.md 路由到项目 Skill 和 SVN 工程。 -->
+<!-- 5. 不要在 SVN 工程中复制本目录、Skill 或知识图谱，避免 Git 与 SVN 出现两份驾驭工程。 -->
+
 ## 定位
 
 本目录随 `Vgame_design` Git 仓库统一分发，负责安装、配置、更新、检查和启动。真实游戏工程仍由 SVN 管理，通过每台电脑自己的 `${VGAME_ROOT}` 路径访问。
