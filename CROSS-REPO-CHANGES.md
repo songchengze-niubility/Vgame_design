@@ -6,9 +6,8 @@
 
 | 名称 | 路径 | 职责 |
 |---|---|---|
-| Vgame Design | 当前仓库 | 设计、提案、任务、harness |
+| Vgame Design | 当前仓库 | 设计、提案、任务、harness、skills（含项目专项 agent skill） |
 | Vgame Project | `${VGAME_ROOT}` | 游戏工程与真实配置 |
-| Vgame Skills | `${VGAME_SKILL_ROOT}` | 项目专项 agent skill |
 
 ## 记录模板
 

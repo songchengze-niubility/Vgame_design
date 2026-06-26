@@ -6,19 +6,17 @@
 
 ## Skill 根目录
 
-```text
-${VGAME_SKILL_ROOT}
-```
+Skills 已全部纳入本仓库 `skills/` 目录（`${VGAME_SKILL_ROOT}` 指向同一位置）。
 
 关键文件：
 
-- `config.toml` — 项目 Skill 路由配置
-- `agents/` — Agent 定义
-- `vgame-core-understanding/` — 入口 Skill
-- `vgame-*` — 18 个 Vgame 专项 Skill
-- `planning-feature-workflow` — 策划案九步交付编排（每次发起需求必须加载）
-- `planning-*` — 策划流程子 skill（澄清、验收、变更、埋点、LiveOps）
-- `game-monetization`、`localize` 等 — 跨领域专项
+- `skills/config.toml` — 项目 Skill 路由配置
+- `skills/agents/` — Agent 定义
+- `skills/vgame-core-understanding/` — 入口 Skill
+- `skills/vgame-*` — 18 个 Vgame 专项 Skill
+- `skills/planning-feature-workflow` — 策划案九步交付编排（每次发起需求必须加载）
+- `skills/planning-*` — 策划流程子 skill（澄清、验收、变更、埋点、LiveOps）
+- `skills/game-monetization`、`localize` 等 — 跨领域专项
 
 ## 使用顺序
 
