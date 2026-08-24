@@ -309,7 +309,7 @@
   "documents": [
     {
       "sourcePath": "design/Buff系统Design Doc.md",
-      "sourceSha256": "ba35e65121185f10fe9a74ef6d90d7ec3c1ccfb2653c10e474aff419890f4e7c"
+      "sourceSha256": "7bd5400d33f9db16f784f549e3ab12f1f3bb58e4fb3839c070b82e3ff7209cf4"
     },
     {
       "sourcePath": "design/PVPVE怪物伤害数值设计-2026-07-27.md",
@@ -317,23 +317,23 @@
     },
     {
       "sourcePath": "design/README.md",
-      "sourceSha256": "fe13d1a4fe667d6d3d83b070ea47cc95e85d07f37f8e5a8c862c967f34dc9da1"
+      "sourceSha256": "963e218cf86401d75def189877e08c096cbeb55745263303e17199a6202f1092"
     },
     {
       "sourcePath": "design/REVERSE-ENGINEERING-TEMPLATE.md",
-      "sourceSha256": "14ccc2ff52e1d4279da8a1701c28618407eb9094eba5eb6d4a7dd6ec33bc2ff3"
+      "sourceSha256": "b56fee8f0080f1a69f6d651985560257fa89853f69da5b24aa7700527e96560a"
     },
     {
       "sourcePath": "design/TEMPLATE.md",
-      "sourceSha256": "8dbbed6ee49eba22dedb46044b44814caad35a7336a912dd9e34357daeb81109"
+      "sourceSha256": "bf5aa088b39725003ae9699365bbd74d7b50796355304a49095dd95fbea09306"
     },
     {
       "sourcePath": "design/专武系统Design Doc.md",
-      "sourceSha256": "d0942e3e4716bd88e830461b9f8169eb23afa2ba848685fc92c92d9f75cad8a9"
+      "sourceSha256": "ab4f12eb0bf59aad9ed76617dc450e0cf6c4e4de5d9e30767602d731bc000540"
     },
     {
       "sourcePath": "design/专武经验副本Design Doc.md",
-      "sourceSha256": "78d193ea41f3565faa20ce8156c803b1be05ca6b8be077ab11cee798b3011375"
+      "sourceSha256": "58d121efce9cf89f41d1b77ee6cd041796320fb97d7ea15c774f8e51be199b45"
     },
     {
       "sourcePath": "design/主线关卡奖励重设计-2026-07-30.md",
@@ -341,35 +341,35 @@
     },
     {
       "sourcePath": "design/主线关卡系统Design Doc.md",
-      "sourceSha256": "3035146316318226f55ca11d36cfd8e857a5f449325a1dcb7d954cf0b8de93b5"
+      "sourceSha256": "243db5cdbcaef38f693c74e5bdcbc39ef41fe9f7e67072597f6659aa79f39114"
     },
     {
       "sourcePath": "design/主角等级Design Doc.md",
-      "sourceSha256": "6f7c43dd8e0d6fbb7cfc1c7881f24cfcd0738c639b0b9a8d990062678ef65ba5"
+      "sourceSha256": "4ddbed1cd6ed55968262d6e63d5408ab96e45bc7a0e901562a4f094e1dcf2198"
     },
     {
       "sourcePath": "design/任务系统Design Doc.md",
-      "sourceSha256": "20f124af241a971583bbd71d26a36aea565d5a489c5a090d0a10a34a5e5f8ddc"
+      "sourceSha256": "2feb40a1cc3ae289fa588657dd34fe4dcdb1b75130983de79d82d96b57fb55c1"
     },
     {
       "sourcePath": "design/伤害计算公式Design Doc.md",
-      "sourceSha256": "886c85a986d877cf542c041de526ba7f3c5d4e83f5d7175c1bb38fb5a6ad5648"
+      "sourceSha256": "a176e9dab8374a79053f32d0a5979e2d2b4b56f07bb6c423303e2df6ac5b2f07"
     },
     {
       "sourcePath": "design/公会系统Design Doc.md",
-      "sourceSha256": "c50dcfc966bde34cd407a31e99d22b8dc6670f9e12edcd8f52ed1011d639d26c"
+      "sourceSha256": "d19a839d2a623ec4f758bc23e2ebc92f0468e7568a36c5b29db24e6203f5c853"
     },
     {
       "sourcePath": "design/关卡编辑器Design Doc.md",
-      "sourceSha256": "f7a9a3da9a0388c40d60f89a96aa07daa8da1f42e567d489a342747f662cabf4"
+      "sourceSha256": "b8f60a96b0b396884ef1679cd3e6eb21aea7935bd44ca76bd82e8a32309be76c"
     },
     {
       "sourcePath": "design/商店系统Design Doc.md",
-      "sourceSha256": "ef140ff698f6aadbbbe464f626f57edb0f7427faa5217479633613740af55dce"
+      "sourceSha256": "3022b09a0dccd2067396b4120740898c43710d2d5e976da5cd6b6fe134800326"
     },
     {
       "sourcePath": "design/大秘境Design Doc.md",
-      "sourceSha256": "a08fe7f48bb888941154c8db300213bb416c14efc0440d17136f8bbe88409c0b"
+      "sourceSha256": "78ce1c5cd7b70a6e751af6a6aa3f200aa5ae50bd591df963d75cd61d79c213be"
     },
     {
       "sourcePath": "design/局内金币带出Design Doc.md",
@@ -377,7 +377,7 @@
     },
     {
       "sourcePath": "design/怪物与Boss系统Design Doc.md",
-      "sourceSha256": "361cff1b52c4a76786aeafa90b1dc27d8730991d9e66b24bc543bda56bcc75b0"
+      "sourceSha256": "03b41e62ea8ccd4299afe03e878b5f3078f11fd497d0421a00a52d8b919c6b27"
     },
     {
       "sourcePath": "design/战斗掉落Icon表现Design Doc.md",
@@ -401,11 +401,11 @@
     },
     {
       "sourcePath": "design/技能系统Design Doc.md",
-      "sourceSha256": "0d3cc1592c287dae59dab78a6a6ce68ffea23b63bac16d77c38d864714b69c96"
+      "sourceSha256": "2a449be69d8b7704f7361c8e103cb92b5a8ae19b8b636cc1dc2664dce4c71fcf"
     },
     {
       "sourcePath": "design/抽卡系统Design Doc.md",
-      "sourceSha256": "87ce79010c81dabc56f61578397bdf6d6aa23b45fec94ba2227f988aac52db47"
+      "sourceSha256": "c351555a324c6275d6ee7d9bcedd0c444a66b5d0e467a3d734ea6c5200866ddb"
     },
     {
       "sourcePath": "design/收容物养成数值Design Doc.md",
@@ -413,23 +413,23 @@
     },
     {
       "sourcePath": "design/新手引导系统Design Doc.md",
-      "sourceSha256": "b720f12ffe07b2f5f1ed864d6c41a109450f453567423a7a20dfe694cf1b5499"
+      "sourceSha256": "4f9835da3b336cd92a22093c3f1deb88a0e1a66ab4e0c429a126e82d7e1f86f0"
     },
     {
       "sourcePath": "design/旅券副本Design Doc.md",
-      "sourceSha256": "d2456c65b2078cc395262ed3f4960a519c866bee22401b090b7bae61b34c42ef"
+      "sourceSha256": "50ca2a3f1fad8b24adfc8fa47ebd53c81a223c1ed033d5539fa13b97a6a5c81b"
     },
     {
       "sourcePath": "design/旅券系统Design Doc.md",
-      "sourceSha256": "2b614a7f52df69773e20a2368926f1afee5644baa8706dbda3dad67268ba8e7e"
+      "sourceSha256": "44f59e534428a11484456dd85554ab0c12b611ea3960c5cadc610fa8b13177fb"
     },
     {
       "sourcePath": "design/无限挑战Design Doc.md",
-      "sourceSha256": "3c767a0723ad90fddf33236b8bfb072542de772c93f06276d033668544ca5bfb"
+      "sourceSha256": "cebbe693274263d5973fee54ac44d5a207f218cb4df28daded6ac3f086d56dbe"
     },
     {
       "sourcePath": "design/映射装备系统Design Doc.md",
-      "sourceSha256": "18ea6fda33b89d437b458ea54a7c54803ba86171f206c72edb6af4b91bc79292"
+      "sourceSha256": "3e6bbff36597c67307609228d01881b58d3bd8e6d544bcc8259dc4024a429584"
     },
     {
       "sourcePath": "design/映射装备系统数值设计文档-2026-07-03.md",
@@ -441,11 +441,11 @@
     },
     {
       "sourcePath": "design/月卡系统Design Doc.md",
-      "sourceSha256": "50c70d9afc3e93ee2c5425f1d60b70e7b7cbebe37b19e511d42aab63c24e9dee"
+      "sourceSha256": "3dd0dd8dea480fa204838d76ad67533ab0869f5b0c58f08fbef472ebc8a1fa5c"
     },
     {
       "sourcePath": "design/爬塔Design Doc.md",
-      "sourceSha256": "0d36ff196f9e8a96db011b41d509496e81fc95eb99a9b57ab9565a2d603e29b7"
+      "sourceSha256": "93a0b21b5caf8b6e54ccb4878798b65ec588eefffe30083f7f6fb6880e757be2"
     },
     {
       "sourcePath": "design/碎片回收Design Doc.md",
@@ -453,7 +453,7 @@
     },
     {
       "sourcePath": "design/竞技场Design Doc.md",
-      "sourceSha256": "735897a99bbcbe9cb16ceac18cde512c0a8396173177a7db8d491dc5b06a0432"
+      "sourceSha256": "a3991129b068fb0431a80dd2a9d25def3c057c071265e33579664c70494c397d"
     },
     {
       "sourcePath": "design/章节任务重设计讨论稿-2026-07-22.md",
@@ -461,11 +461,11 @@
     },
     {
       "sourcePath": "design/签到系统Design Doc.md",
-      "sourceSha256": "b9b8353ad68f3af59fe34decae85775935ae973461d382b46e74895a40187010"
+      "sourceSha256": "c2035735191e02c83045e5dcd482ec3b7041900438628ee2921f3a344ba38f3c"
     },
     {
       "sourcePath": "design/角色升星Design Doc.md",
-      "sourceSha256": "422c2c1b52b9d07cd896fd3171884f8397b7401e4575e6d341aa7eacce6bd9c9"
+      "sourceSha256": "ee6e51f6b27efcaf42cb9ed0014bc6b763ed4be58919c15a667eb62bdfc35269"
     }
   ],
   "systemStatusRegister": [

@@ -468,7 +468,7 @@ const designFiles = fs.readdirSync(path.join(repoRoot, "design"), { withFileType
   .slice(0, 40)
   .map(x => {
     const p = path.join(repoRoot, "design", x.name);
-    return { sourcePath: rel(p), sourceSha256: sha256(fs.readFileSync(p, "utf8")) };
+    return { sourcePath: rel(p), sourceSha256: sha256(fs.readFileSync(p, "utf8").replace(/\r\n/g, "\n")) };
   });
 const legacyFramework = readJson(path.join(repoRoot, "archive", "legacy-output-20260824", "registries", "project-planning-framework-legacy.json"));
 writeJson(path.join(kbRoot, "registries", "project-planning-framework.json"), {

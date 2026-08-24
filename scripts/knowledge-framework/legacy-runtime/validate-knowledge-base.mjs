@@ -901,7 +901,8 @@ if (fs.existsSync(frameworkJsonPath)) {
   for (const doc of (framework.documents || [])) {
     const sourcePath = path.join(projectRoot, ...doc.sourcePath.split("/"));
     if (!fs.existsSync(sourcePath)) { sourceDocHashErrors.push(`${doc.sourcePath}:missing`); continue; }
-    const actualHash = crypto.createHash("sha256").update(fs.readFileSync(sourcePath, "utf8"), "utf8").digest("hex");
+    const normalizedSource = fs.readFileSync(sourcePath, "utf8").replace(/\r\n/g, "\n");
+    const actualHash = crypto.createHash("sha256").update(normalizedSource, "utf8").digest("hex");
     if (actualHash !== doc.sourceSha256) sourceDocHashErrors.push(`${doc.sourcePath}:hash-drift`);
   }
 }
