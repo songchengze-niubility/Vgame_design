@@ -1,6 +1,6 @@
 {
   "schema": "vgame-numerical-formula-registry/v2",
-  "generatedAt": "2026-08-24T11:21:08.718145+00:00",
+  "generatedAt": "2026-08-24T11:33:39.981856+00:00",
   "count": 1062,
   "formulas": [
     {
@@ -8129,10 +8129,10 @@
       "status": "SOURCE_EXTRACTED_NEEDS_CONTEXT"
     },
     {
-      "formulaId": "NFORM-077C9B8B7652",
+      "formulaId": "NFORM-5665F910D048",
       "atomId": "NATOM-DB82FF0AB629",
       "domain": "probability",
-      "expressionOrRule": "| 模块产销表 | D:/数值文档/数值文档/框架v2/04_数值文档/经济/模块产销表/21_抽卡_概率.xlsx | 抽卡概率阅读版 |",
+      "expressionOrRule": "| 模块产销表 | vgame-numeric-source://框架v2/04_数值文档/经济/模块产销表/21_抽卡_概率.xlsx | 抽卡概率阅读版 |",
       "sourceId": "NSRC-9E70D622C786",
       "sourceLocator": "03_沉淀MD/经济/21_抽卡_概率经济沉淀-2026-07-09.md#L21:来源表",
       "status": "SOURCE_EXTRACTED_NEEDS_CONTEXT"

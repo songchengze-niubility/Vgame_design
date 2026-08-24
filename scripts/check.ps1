@@ -149,6 +149,7 @@ $todoHits = Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction Silentl
     Where-Object { $_.Extension -in @(".md", ".ps1") } |
     Where-Object {
         $_.FullName -notmatch "\\.git\\" -and
+        $_.FullName -notmatch "\\output\\" -and
         $_.FullName -notmatch "\\knowledge-graph\\understand-anything-new\\" -and
         $_.Name -ne "tech-debt-tracker.md"
     } |
@@ -182,6 +183,7 @@ $largeDocs = Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction Silent
     Where-Object { $_.Extension -eq ".md" } |
     Where-Object {
         $_.FullName -notmatch "\\.git\\" -and
+        $_.FullName -notmatch "\\output\\" -and
         $_.FullName -notmatch "\\archive\\" -and
         $_.FullName -notmatch "\\knowledge-graph\\understand-anything-new\\"
     } |
@@ -199,7 +201,7 @@ foreach ($doc in $largeDocs) {
 $tableExtensions = @(".xlsx", ".xlsm", ".csv")
 $tableLikeFiles = Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction SilentlyContinue |
     Where-Object { $tableExtensions -contains $_.Extension.ToLowerInvariant() } |
-    Where-Object { $_.FullName -notmatch "\\.git\\" }
+    Where-Object { $_.FullName -notmatch "\\.git\\" -and $_.FullName -notmatch "\\output\\" }
 
 foreach ($file in $tableLikeFiles) {
     $rel = $file.FullName.Replace($Root, "").TrimStart("\")

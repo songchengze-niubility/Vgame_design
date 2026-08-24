@@ -39,6 +39,16 @@ def tree_token(root: Path, pattern: str) -> str:
 
 
 def snapshot() -> dict[str, str]:
+    numerical_token = hashlib.sha256(
+        "|".join(
+            [
+                tree_token(ROOT / "knowledge-base" / "numerical", "*.json"),
+                file_token(ROOT / "knowledge-base" / "registries" / "skill-registry.json"),
+                file_token(ROOT / "knowledge-base" / "registries" / "framework-nodes.json"),
+                file_token(ROOT / "knowledge-base" / "mappings" / "system-to-skill.json"),
+            ]
+        ).encode("ascii")
+    ).hexdigest()
     return {
         "client": file_token(CLIENT_GRAPH),
         "config": tree_token(DATAS, "*.xlsx"),
@@ -48,6 +58,7 @@ def snapshot() -> dict[str, str]:
                 for directory in ("design", "proposals", "tasks", "plans", "harness")
             ).encode("ascii")
         ).hexdigest(),
+        "numerical": numerical_token,
     }
 
 

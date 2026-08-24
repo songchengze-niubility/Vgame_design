@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 
 
@@ -19,10 +20,12 @@ def digest(path: Path) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--source", default=r"D:\数值文档\数值文档\框架v2")
+    parser.add_argument("--source", default=os.environ.get("VGAME_NUMERICAL_FRAMEWORK_ROOT"))
     parser.add_argument("--registry", default=str(Path(__file__).resolve().parents[2] / "knowledge-base" / "numerical" / "source-registry.json"))
     parser.add_argument("--report")
     args = parser.parse_args()
+    if not args.source:
+        raise SystemExit("source missing: pass --source or set VGAME_NUMERICAL_FRAMEWORK_ROOT")
     root = Path(args.source).resolve()
     registry = json.loads(Path(args.registry).read_text(encoding="utf-8-sig"))
     current = {p.relative_to(root).as_posix(): p for p in root.rglob("*") if p.is_file()}

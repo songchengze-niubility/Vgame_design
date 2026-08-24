@@ -1,19 +1,21 @@
 {
   "version": "1.0",
-  "generated_at": "2026-08-24T18:12:13",
+  "generated_at": "2026-08-24T19:33:40",
   "sources": {
     "client": 1550,
     "config": 332,
-    "design": 79
+    "design": 83,
+    "numerical": 1156
   },
-  "total_nodes": 1961,
-  "total_edges": 1218,
-  "lite_nodes": 492,
-  "lite_edges": 508,
-  "layer_count": 14,
+  "total_nodes": 3121,
+  "total_edges": 13428,
+  "lite_nodes": 1652,
+  "lite_edges": 12718,
+  "layer_count": 20,
   "source_availability": {
     "client": true,
     "config": true,
-    "design": true
+    "design": true,
+    "numerical": true
   }
 }

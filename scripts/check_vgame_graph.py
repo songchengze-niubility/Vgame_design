@@ -50,10 +50,24 @@ def main() -> int:
 
     config = load(KG / "config-schema.json")
     design = load(KG / "design-docs.json")
+    numerical = load(KG / "numerical-knowledge.json")
     graph = load(KG / ".understand-anything" / "knowledge-graph.json")
     lite = load(KG / ".understand-anything" / "knowledge-graph-lite.json")
     meta = load(KG / ".understand-anything" / "meta.json")
-    failures += sum(item is None for item in (config, design, graph, lite, meta))
+    failures += sum(item is None for item in (config, design, numerical, graph, lite, meta))
+
+    if numerical:
+        canonical = load(ROOT / "knowledge-base" / "numerical" / "atom-registry.json")
+        atom_nodes = [
+            node for node in numerical.get("nodes", [])
+            if str(node.get("id", "")).startswith("numerical-atom:")
+        ]
+        expected_atoms = canonical.get("count", -1) if canonical else -1
+        if len(atom_nodes) != expected_atoms:
+            print(f"[FAIL] 数值原子图谱覆盖 {len(atom_nodes)}/{expected_atoms}")
+            failures += 1
+        else:
+            print(f"[PASS] 数值原子图谱覆盖 {len(atom_nodes)}/{expected_atoms}")
 
     if graph:
         project = graph.get("project", {})
@@ -65,6 +79,12 @@ def main() -> int:
             print("[PASS] UA project metadata 完整")
 
         node_ids = {node.get("id") for node in graph.get("nodes", [])}
+        graph_atom_count = sum(str(node_id).startswith("numerical-atom:") for node_id in node_ids)
+        if numerical and graph_atom_count != numerical.get("statistics", {}).get("atoms"):
+            print(f"[FAIL] 统一图谱数值原子覆盖异常: {graph_atom_count}")
+            failures += 1
+        elif numerical:
+            print(f"[PASS] 统一图谱包含全部 {graph_atom_count} 个数值原子")
         invalid_nodes = [
             node for node in graph.get("nodes", [])
             if not isinstance(node.get("summary"), str)

@@ -68,6 +68,7 @@ def publish() -> dict:
             "client": CLIENT_GRAPH.exists(),
             "config": (KG / "config-schema.json").exists(),
             "design": (KG / "design-docs.json").exists(),
+            "numerical": (KG / "numerical-knowledge.json").exists(),
         },
     }
     (UA / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -92,6 +93,7 @@ def main() -> None:
         run("extract_vgame_config_schema.py", *extract_args)
 
     run("extract_vgame_design_docs.py")
+    run("extract_vgame_numerical_graph.py")
     run("merge_vgame_graph.py", "--client", str(args.client))
     meta = publish()
     print(

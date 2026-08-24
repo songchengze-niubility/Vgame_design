@@ -2,7 +2,7 @@
 
 ## 定位
 
-这里保存 Vgame 的只读事实索引：客户端代码结构、281 张注册配置表 Schema，以及本仓库的策划与治理文档。图谱用于定位证据和影响面，不替代真实 Excel、代码与项目 skill。
+这里保存 Vgame 的只读事实索引：客户端代码结构、281 张注册配置表 Schema、本仓库的策划与治理文档，以及 `knowledge-base/numerical/` 的权威数值原子层。图谱用于定位证据和影响面，不替代真实 Excel、代码、权威知识正文与项目 Skill。
 
 ## 核心产物
 
@@ -10,6 +10,7 @@
 |---|---|
 | `config-schema.json` | 注册配置表、字段、类型、公式列、推断引用与 C# 扫描命中 |
 | `design-docs.json` | Design、Proposal、Task、Plan、Harness 文档索引 |
+| `numerical-knowledge.json` | 数值原子、领域、Skill、系统、策划层与证据的关系子图 |
 | `knowledge-graph.json` | 统一图谱的仓库版本 |
 | `.understand-anything/knowledge-graph.json` | UA Dashboard 使用的总图 |
 | `.understand-anything/knowledge-graph-lite.json` | 排除函数节点后的精简图 |
@@ -22,6 +23,7 @@
 | 配置表 | `${VGAME_CONFIG_DATAS}` | 只读 |
 | 客户端图谱 | `${VGAME_CLIENT_GRAPH}` | 只读 |
 | 策划文档 | 当前仓库约定目录 | 读取并生成索引 |
+| 数值知识 | `knowledge-base/numerical/` 及其权威注册表 | 读取并生成数值子图 |
 
 ## 一键操作
 
@@ -58,3 +60,5 @@ python scripts/watch_vgame_graph.py --once
 | `vgame-config-quality-audit` | 查找跨表引用和潜在悬空关系 |
 | `vgame-economy-source-map` | 扫描物品产出、消耗和表级入口 |
 | `vgame-level-progression-map` | 定位 Level、Unlock、SystemOpen 与章节链 |
+| `vgame-knowledge-router` | 按问题路由到最小 ACTIVE 数值原子集合 |
+| `game-numerical-analysis` | 查询数值原子、公式、参数、系统和证据关系 |

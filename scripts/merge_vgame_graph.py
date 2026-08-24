@@ -20,6 +20,7 @@ DEFAULT_CLIENT_GRAPH = str(client_graph())
 SCRIPT_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CONFIG_SCHEMA = str(SCRIPT_ROOT / "knowledge-graph" / "config-schema.json")
 DEFAULT_DESIGN_GRAPH = str(SCRIPT_ROOT / "knowledge-graph" / "design-docs.json")
+DEFAULT_NUMERICAL_GRAPH = str(SCRIPT_ROOT / "knowledge-graph" / "numerical-knowledge.json")
 DEFAULT_OUTPUT = str(SCRIPT_ROOT / "knowledge-graph" / "knowledge-graph.json")
 
 
@@ -28,7 +29,7 @@ def load_json(path: str) -> dict:
         return json.load(f)
 
 
-def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
+def merge_graphs(client_path: str, config_path: str, design_path: str, numerical_path: str) -> dict:
     """合并客户端代码图谱、配置表 Schema 和设计文档图谱。"""
 
     nodes = []
@@ -105,7 +106,21 @@ def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
     else:
         print(f"[WARN] 设计文档图谱不存在: {design_path}")
 
-    # === 4. 构建跨源边（代码引用配置表）===
+    # === 4. 加载权威数值原子子图 ===
+    if os.path.exists(numerical_path):
+        numerical = load_json(numerical_path)
+        numerical_nodes = numerical.get("nodes", [])
+        numerical_edges = numerical.get("edges", [])
+        for node in numerical_nodes:
+            node["source"] = "numerical"
+        nodes.extend(numerical_nodes)
+        edges.extend(numerical_edges)
+        layers.extend(numerical.get("layers", []))
+        print(f"[INFO] 数值知识子图: {len(numerical_nodes)} 节点, {len(numerical_edges)} 边")
+    else:
+        print(f"[WARN] 数值知识子图不存在: {numerical_path}")
+
+    # === 5. 构建跨源边（代码引用配置表）===
     cross_edges = []
     # 从配置表的 cs_refs 字段中提取代码→配置表的引用关系
     if os.path.exists(config_path):
@@ -129,7 +144,7 @@ def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
     if cross_edges:
         print(f"[INFO] 跨源边（代码→配置表）: {len(cross_edges)} 条")
 
-    # === 5. 去重 ===
+    # === 6. 去重 ===
     # 节点按 ID 去重（保留最后出现的）
     seen_nodes = {}
     for node in nodes:
@@ -153,7 +168,7 @@ def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
             unique_edges.append(edge)
     edges = unique_edges
 
-    # === 6. 组装统一总图 ===
+    # === 7. 组装统一总图 ===
     unified = {
         "version": "1.0.0",
         "project": {
@@ -163,7 +178,7 @@ def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
             "frameworks": ["Unity", "Luban"],
             "analyzedAt": time.strftime("%Y-%m-%dT%H:%M:%SZ"),
             "gitCommitHash": client_project.get("gitCommitHash") or "uncommitted",
-            "sources": ["client-code", "config-tables", "design-docs"],
+            "sources": ["client-code", "config-tables", "design-docs", "numerical-knowledge"],
         },
         "nodes": nodes,
         "edges": edges,
@@ -178,6 +193,7 @@ def merge_graphs(client_path: str, config_path: str, design_path: str) -> dict:
                 "client": sum(1 for n in nodes if n.get("source") == "client"),
                 "config": sum(1 for n in nodes if n.get("source") == "config"),
                 "design": sum(1 for n in nodes if n.get("source") == "design"),
+                "numerical": sum(1 for n in nodes if n.get("source") == "numerical"),
             },
         },
     }
@@ -190,6 +206,7 @@ def main():
     parser.add_argument("--client", default=DEFAULT_CLIENT_GRAPH, help="客户端代码图谱路径")
     parser.add_argument("--config", default=DEFAULT_CONFIG_SCHEMA, help="配置表 Schema 路径")
     parser.add_argument("--design", default=DEFAULT_DESIGN_GRAPH, help="设计文档图谱路径")
+    parser.add_argument("--numerical", default=DEFAULT_NUMERICAL_GRAPH, help="数值知识子图路径")
     parser.add_argument("--output", default=DEFAULT_OUTPUT, help="输出统一总图路径")
     args = parser.parse_args()
 
@@ -197,8 +214,9 @@ def main():
     print(f"[INFO] 客户端: {args.client}")
     print(f"[INFO] 配置表: {args.config}")
     print(f"[INFO] 设计文档: {args.design}")
+    print(f"[INFO] 数值知识: {args.numerical}")
 
-    unified = merge_graphs(args.client, args.config, args.design)
+    unified = merge_graphs(args.client, args.config, args.design, args.numerical)
 
     # 写入
     os.makedirs(os.path.dirname(args.output), exist_ok=True)
@@ -219,7 +237,8 @@ def main():
         "  来源:   "
         f"客户端 {stats['sources']['client']} + "
         f"配置表 {stats['sources']['config']} + "
-        f"设计文档 {stats['sources']['design']}"
+        f"设计文档 {stats['sources']['design']} + "
+        f"数值知识 {stats['sources']['numerical']}"
     )
     print(f"  输出:   {args.output} ({output_size:.1f} KB)")
     print(f"{'='*50}")

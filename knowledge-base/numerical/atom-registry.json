@@ -1,6 +1,6 @@
 {
   "schema": "vgame-numerical-atom-registry/v2",
-  "generatedAt": "2026-08-24T11:21:08.718145+00:00",
+  "generatedAt": "2026-08-24T11:33:39.981856+00:00",
   "count": 999,
   "atoms": [
     {
@@ -747,9 +747,9 @@
         "| 专武（已废弃） | 历史源表与旧配置，仅供追溯 | `03_沉淀MD/养成/专武数值沉淀-2026-07-07.md`、`03_沉淀MD/经济/19_养成_专武经济消耗沉淀-2026-07-09.md` | `04_数值文档/养成/专武_数值文档.xlsx`（历史残留） | 不接入当前验算 | `DEPRECATED`；当前版本已移除专武系统，不得作为当前生成、配置或 AI 判断输入，旧消耗不得迁移到收容物 |",
         "| 养成总览/战力总线 | `01_源表/养成属性分配.xlsx`、`01_源表/属性定价.xlsx`、`01_源表/战斗属性.xlsx`、`01_源表/战斗公式.xlsx` | `03_沉淀MD/养成/养成总览数值沉淀-2026-07-07.md`、`03_沉淀MD/养成/玩家战力曲线数值沉淀-2026-07-07.md`、`03_沉淀MD/养成/收容物养成数值沉淀-2026-07-24.md`、`03_沉淀MD/养成/养成主链路收口-2026-07-07.md` | `04_数值文档/养成/养成总览_数值文档.xlsx`、`04_数值文档/养成/玩家战力曲线_数值文档.xlsx` | `05_验算核算/动态验算总表.xlsx` | 房车已接入过渡曲线；当前曲线仍含已废弃专武且未接收容物，需按现行养成重建后再作为全玩法终态基线 |",
         "| 经济总账 | `01_源表/道具定价.xlsx`、`01_源表/经济口径.xlsx`、`01_源表/术语表.xlsx`、`01_源表/养成属性分配.xlsx`（仅涉及养成预算时） | `03_沉淀MD/经济/经济总账收口-2026-07-07.md` | `04_数值文档/经济/经济总账_数值文档.xlsx`、`04_数值文档/经济/资源养成_阅读版_数值文档.xlsx`、`04_数值文档/经济/模块产销表/*.xlsx` | `05_验算核算/经济/经济验算核算.xlsx` | P4 首版正式交付已归档；DropId/RewardId、UIlevel/Drop 强展开和未开发系统经济口径保留待办 |",
-        "| 资源副本 | 正式`UIlevel.xlsx`、`level.xlsx`、`LevelType.xlsx`、`ChallengeDungeonSupport.xlsx`、`Drop_dungeon.xlsx`、`CoinLevel.xlsx`、`Unlock.xlsx`、`SystemOpen.xlsx` | `03_沉淀MD/经济/03_玩法_资源副本经济沉淀-2026-07-08.md`、`D:/Vgame_design/design/资源副本五层重构与舱室材料副本-2026-08-20.md` | `06_最终配置/资源副本/` | `06_最终配置/资源副本/资源副本配置校验.json`、`_reports/资源副本最终配置镜像-2026-08-20.md` | 四类×5层06评审镜像已生成；舱室3-5层首通已改单物品包，无需人工新增Drop行；每类共享3次/日仍需程序接入；SVN未修改 |",
+        "| 资源副本 | 正式`UIlevel.xlsx`、`level.xlsx`、`LevelType.xlsx`、`ChallengeDungeonSupport.xlsx`、`Drop_dungeon.xlsx`、`CoinLevel.xlsx`、`Unlock.xlsx`、`SystemOpen.xlsx` | `03_沉淀MD/经济/03_玩法_资源副本经济沉淀-2026-07-08.md`、`design/资源副本五层重构与舱室材料副本-2026-08-20.md` | `06_最终配置/资源副本/` | `06_最终配置/资源副本/资源副本配置校验.json`、`_reports/资源副本最终配置镜像-2026-08-20.md` | 四类×5层06评审镜像已生成；舱室3-5层首通已改单物品包，无需人工新增Drop行；每类共享3次/日仍需程序接入；SVN未修改 |",
         "| 角色与收容物抽卡 | 正式 `DrawCard.xlsx`、`DrawCardPool.xlsx`、`DrawCardWeight.xlsx`、`DrawSpecialChooseGacha.xlsx`、`Drop_draw.xlsx`、`HeroExtraReward.xlsx`、`ShopGoods.xlsx`、`Items.xlsx` | `03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md` | 待角色口径确认后生成；旧 `21_抽卡_概率经济沉淀-2026-07-09.md` 仅供历史追溯 | 待接入 | `IN_REVIEW`；专武抽卡已废弃；角色现网观察值待策划确认，新版收容物概率、价格和保底待设计；SVN未修改 |",
-        "| 公会系统 | 正式 `Datas/Guild/*.xlsx`、`Skill/Effect.xlsx`、`globals_conf.xlsx`、`Shop.xlsx`、`ShopGoods.xlsx`、`Items.xlsx`、`Chest.xlsx` | `03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md`、`D:/Vgame_design/design/公会系统Design Doc.md` | `06_最终配置/公会/` | `_reports/公会最终配置镜像-2026-07-23.md` | 12个最终配置镜像已生成并回读校验；个人科技已重排为基础主线—双支线—汇合终点；Effect.Id为1~23并同步科技引用；任务与贡献细项待后续设计；本次正式 Datas 未修改 |",
+        "| 公会系统 | 正式 `Datas/Guild/*.xlsx`、`Skill/Effect.xlsx`、`globals_conf.xlsx`、`Shop.xlsx`、`ShopGoods.xlsx`、`Items.xlsx`、`Chest.xlsx` | `03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md`、`design/公会系统Design Doc.md` | `06_最终配置/公会/` | `_reports/公会最终配置镜像-2026-07-23.md` | 12个最终配置镜像已生成并回读校验；个人科技已重排为基础主线—双支线—汇合终点；Effect.Id为1~23并同步科技引用；任务与贡献细项待后续设计；本次正式 Datas 未修改 |",
         "| 跑商玩法 | 用户确认；正式 `TradeEvent.xlsx` 提供事件 Id/文案/UnlockId，其余旧配置数值不作为设计源 | `03_沉淀MD/经济/跑商玩法数值设计文档-2026-07-06.md` | `04_数值文档/经济/跑商玩法_数值文档.xlsx`；`06_最终配置/跑商/` | `经济/scripts/validate_trade_workbook.py`、`02_AI规则/validate_trade_final_mirrors.py`；`05_验算核算` 总表待接入 | V19 已同步：购入价 80%-105%、普通收购价 90%-120%、急需 160%-200%；事件继续采用固定 1 条、75%/15%/10% 品级概率与双选奖励；无载货养成约 91 天毕业，数值 Excel 与 06 镜像已校验，SVN 未修改 |",
         "| 开放节奏 | `01_源表/节奏口径.xlsx`、`01_源表/术语表.xlsx` | `03_沉淀MD/节奏/开放节奏收口-2026-07-07.md`、`03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md` | `04_数值文档/节奏/开放节奏总览_数值文档.xlsx`、`04_数值文档/节奏/主角等级_数值文档.xlsx`、`04_数值文档/节奏/全玩法难度线_数值文档.xlsx` | `05_验算核算/节奏/节奏验算核算.xlsx` | 主线正式105关，汇总缺61~105关；PVPVE按双方属性对算、不配怪物等级；BOSS挑战正式70档等级齐全但尚未接入汇总；无限挑战本轮排除 |",
         "| 战斗模型 | `01_源表/战斗属性.xlsx`、`01_源表/战斗公式.xlsx`、`01_源表/属性定价.xlsx`、`01_源表/节奏口径.xlsx` | `03_沉淀MD/战斗/战斗模型收口-2026-07-07.md` | `04_数值文档/战斗/战斗知识工具页_镜像.xlsx`、`04_数值文档/战斗/怪物标准模型_数值文档.xlsx` | `05_验算核算/战斗/战斗验算核算.xlsx` | 正式交付已归档；P3c 武将系数离群校验、后期投放口径裁决待办 |",
@@ -4571,15 +4571,15 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "growth",
       "title": "证据",
-      "statement": "`D:/Vgame_design/design/房车养成系统小分叉重设计-2026-07-14.md` `D:/Vgame_design/design/房车设备数值设计-2026-07-21.md` `D:/Vgame_design/output/rv_growth/03-specialist-results/numeric.md` `D:/Vgame_design/output/rv_growth/房车养成重设计方案-小分叉-v2.xlsx` `D:/Vgame_design/output/rv_growth/12-tower-talent-material-reward-design-draft.md` `D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/08_玩法_爬塔经济沉淀-2026-07-09.md` `D:/数值文档/数值文档/框架v2/06_最终配置/房车/` 2026-08-20 房车舱室单材料升级方案及工作台成长材料向上合成方案已写入沉淀MD与`06_最终配置/房车`；真实SVN未修改。",
+      "statement": "`design/房车养成系统小分叉重设计-2026-07-14.md` `design/房车设备数值设计-2026-07-21.md` `output/rv_growth/03-specialist-results/numeric.md` `output/rv_growth/房车养成重设计方案-小分叉-v2.xlsx` `output/rv_growth/12-tower-talent-material-reward-design-draft.md` `vgame-numeric-source://框架v2/03_沉淀MD/经济/08_玩法_爬塔经济沉淀-2026-07-09.md` `vgame-numeric-source://框架v2/06_最终配置/房车/` 2026-08-20 房车舱室单材料升级方案及工作台成长材料向上合成方案已写入沉淀MD与`06_最终配置/房车`；真实SVN未修改。",
       "numericStatements": [
-        "- `D:/Vgame_design/design/房车养成系统小分叉重设计-2026-07-14.md`",
-        "- `D:/Vgame_design/design/房车设备数值设计-2026-07-21.md`",
-        "- `D:/Vgame_design/output/rv_growth/03-specialist-results/numeric.md`",
-        "- `D:/Vgame_design/output/rv_growth/房车养成重设计方案-小分叉-v2.xlsx`",
-        "- `D:/Vgame_design/output/rv_growth/12-tower-talent-material-reward-design-draft.md`",
-        "- `D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/08_玩法_爬塔经济沉淀-2026-07-09.md`",
-        "- `D:/数值文档/数值文档/框架v2/06_最终配置/房车/`",
+        "- `design/房车养成系统小分叉重设计-2026-07-14.md`",
+        "- `design/房车设备数值设计-2026-07-21.md`",
+        "- `output/rv_growth/03-specialist-results/numeric.md`",
+        "- `output/rv_growth/房车养成重设计方案-小分叉-v2.xlsx`",
+        "- `output/rv_growth/12-tower-talent-material-reward-design-draft.md`",
+        "- `vgame-numeric-source://框架v2/03_沉淀MD/经济/08_玩法_爬塔经济沉淀-2026-07-09.md`",
+        "- `vgame-numeric-source://框架v2/06_最终配置/房车/`",
         "> 2026-08-20 房车舱室单材料升级方案及工作台成长材料向上合成方案已写入沉淀MD与`06_最终配置/房车`；真实SVN未修改。"
       ],
       "sourceId": "NSRC-E0C15464A199",
@@ -4613,7 +4613,7 @@
         "TRACE_ONLY",
         "DO_NOT_ROUTE_AS_CURRENT"
       ],
-      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为 D:/Vgame/_design。"
+      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为本仓库根目录。"
     },
     {
       "atomId": "NATOM-12762337A280",
@@ -6297,11 +6297,11 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "combat",
       "title": "口径来源",
-      "statement": "| 来源 | 用途 | 状态 | | 本文 | 映射装备养成属性规则与数值 | 唯一权威口径 | | `01_源表/养成属性分配.xlsx`、`01_源表/属性定价.xlsx` | 总预算与跨属性换算的回源证据 | 不直接覆盖本文，需确认后沉淀 | | `D:/Vgame_design/design/映射装备系统数值设计文档-2026-07-03.md`、同名 XLSX | 历史设计与推导过程 | 非权威，仅供追溯 | | `D:/Vgame_design/design/映射装备数值超级爆改-2026-08-14.md` | 2026-08-14 讨论过程和变更记录 | 已停止维护，非权威 | | `养成/scripts/gen_mapping_equip.py` 与旧生成报告 | 旧框架主属性切片与复现对照 | 不再作为沉淀文档入口 | 旧 5 张原始表只作为复现对照基准，不修改。",
+      "statement": "| 来源 | 用途 | 状态 | | 本文 | 映射装备养成属性规则与数值 | 唯一权威口径 | | `01_源表/养成属性分配.xlsx`、`01_源表/属性定价.xlsx` | 总预算与跨属性换算的回源证据 | 不直接覆盖本文，需确认后沉淀 | | `design/映射装备系统数值设计文档-2026-07-03.md`、同名 XLSX | 历史设计与推导过程 | 非权威，仅供追溯 | | `design/映射装备数值超级爆改-2026-08-14.md` | 2026-08-14 讨论过程和变更记录 | 已停止维护，非权威 | | `养成/scripts/gen_mapping_equip.py` 与旧生成报告 | 旧框架主属性切片与复现对照 | 不再作为沉淀文档入口 | 旧 5 张原始表只作为复现对照基准，不修改。",
       "numericStatements": [
         "| `01_源表/养成属性分配.xlsx`、`01_源表/属性定价.xlsx` | 总预算与跨属性换算的回源证据 | 不直接覆盖本文，需确认后沉淀 |",
-        "| `D:/Vgame_design/design/映射装备系统数值设计文档-2026-07-03.md`、同名 XLSX | 历史设计与推导过程 | 非权威，仅供追溯 |",
-        "| `D:/Vgame_design/design/映射装备数值超级爆改-2026-08-14.md` | 2026-08-14 讨论过程和变更记录 | 已停止维护，非权威 |"
+        "| `design/映射装备系统数值设计文档-2026-07-03.md`、同名 XLSX | 历史设计与推导过程 | 非权威，仅供追溯 |",
+        "| `design/映射装备数值超级爆改-2026-08-14.md` | 2026-08-14 讨论过程和变更记录 | 已停止维护，非权威 |"
       ],
       "sourceId": "NSRC-D90FE2780E8D",
       "sourceLocator": "03_沉淀MD/养成/映射装备养成数值沉淀-2026-07-07.md#L26:口径来源",
@@ -6331,7 +6331,7 @@
         "TRACE_ONLY",
         "DO_NOT_ROUTE_AS_CURRENT"
       ],
-      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为 D:/Vgame/_design。"
+      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为本仓库根目录。"
     },
     {
       "atomId": "NATOM-5B5D3067AC9D",
@@ -7069,11 +7069,11 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "growth",
       "title": "输入来源",
-      "statement": "| 来源 | 读取结论 | | `D:\\Vgame_design\\harness\\numerical-design-workflow.md` | 数值先在对话中给方案，再沉淀 MD；本次不直接改正式配置。 | | `D:\\Vgame_design\\design\\映射装备系统数值设计文档-2026-07-03.md` | 旧版合成使用 9 件装备合 1 件装备；旧版制作为 9 档，材料分武器/防具/首饰三类。 | | `D:\\Vgame\\Config\\GameConfig\\Datas\\Rubik\\Craft.xlsx` | 当前正式表观察到宝石合成配方，现状是 8 色宝石、1-7级、3合1、金币 1000；不直接代表本次装备合成落地表。 | | `D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentGenerate.xlsx` | 当前正式表包含装备生成与等级上限生成列表，后续若落配置需确认等级池/权重字段承接方式。 |",
+      "statement": "| 来源 | 读取结论 | | `harness/numerical-design-workflow.md` | 数值先在对话中给方案，再沉淀 MD；本次不直接改正式配置。 | | `design/映射装备系统数值设计文档-2026-07-03.md` | 旧版合成使用 9 件装备合 1 件装备；旧版制作为 9 档，材料分武器/防具/首饰三类。 | | `D:/Vgame/Config/GameConfig/Datas/Rubik/Craft.xlsx` | 当前正式表观察到宝石合成配方，现状是 8 色宝石、1-7级、3合1、金币 1000；不直接代表本次装备合成落地表。 | | `D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentGenerate.xlsx` | 当前正式表包含装备生成与等级上限生成列表，后续若落配置需确认等级池/权重字段承接方式。 |",
       "numericStatements": [
-        "| `D:\\Vgame_design\\design\\映射装备系统数值设计文档-2026-07-03.md` | 旧版合成使用 9 件装备合 1 件装备；旧版制作为 9 档，材料分武器/防具/首饰三类。 |",
-        "| `D:\\Vgame\\Config\\GameConfig\\Datas\\Rubik\\Craft.xlsx` | 当前正式表观察到宝石合成配方，现状是 8 色宝石、1-7级、3合1、金币 1000；不直接代表本次装备合成落地表。 |",
-        "| `D:\\数值文档\\数值文档\\框架v2\\01_源表\\道具定价.xlsx` | 当前已有宝石、映射装备、金币等资源定价锚点；本次不改源表。 |"
+        "| `design/映射装备系统数值设计文档-2026-07-03.md` | 旧版合成使用 9 件装备合 1 件装备；旧版制作为 9 档，材料分武器/防具/首饰三类。 |",
+        "| `D:/Vgame/Config/GameConfig/Datas/Rubik/Craft.xlsx` | 当前正式表观察到宝石合成配方，现状是 8 色宝石、1-7级、3合1、金币 1000；不直接代表本次装备合成落地表。 |",
+        "| `vgame-numeric-source://框架v2/01_源表/道具定价.xlsx` | 当前已有宝石、映射装备、金币等资源定价锚点；本次不改源表。 |"
       ],
       "sourceId": "NSRC-6C3CD7C2D013",
       "sourceLocator": "03_沉淀MD/养成/映射装备合成制作8档调整-2026-07-06.md#L14:输入来源",
@@ -7108,7 +7108,7 @@
         "TRACE_ONLY",
         "DO_NOT_ROUTE_AS_CURRENT"
       ],
-      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为 D:/Vgame/_design。"
+      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为本仓库根目录。"
     },
     {
       "atomId": "NATOM-0ED713E69800",
@@ -14507,12 +14507,12 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "combat",
       "title": "配置落地约束",
-      "statement": "44 个支线关卡必须分别使用独立一级 DropId，禁止继续共用旧的战斗/小游戏/宝箱公共包 `10000016/10000017/10000018`。 新一级 DropId 使用 `10002001～10002044`，按 `LevelId` 升序一一对应；该范围已在全部正式逻辑 Drop 源表中查重，无占用。 `UIlevel.LevelFPDrop` 与 `FirstRewardDrop` 同步指向新包；`LevelPPDrop`、`FallRewardDrop` 保持空值。 `UIlevel.FirstReward` 与 `LevelEndVisualDropItems` 同步实际一次性奖励；`MidVisualDropItems` 清空、`MidVisualDropChance=0`。 本次仅写入 `06_最终配置/主线高难` 交付包，不修改 `D:\\Vgame` SVN 正式配置。",
+      "statement": "44 个支线关卡必须分别使用独立一级 DropId，禁止继续共用旧的战斗/小游戏/宝箱公共包 `10000016/10000017/10000018`。 新一级 DropId 使用 `10002001～10002044`，按 `LevelId` 升序一一对应；该范围已在全部正式逻辑 Drop 源表中查重，无占用。 `UIlevel.LevelFPDrop` 与 `FirstRewardDrop` 同步指向新包；`LevelPPDrop`、`FallRewardDrop` 保持空值。 `UIlevel.FirstReward` 与 `LevelEndVisualDropItems` 同步实际一次性奖励；`MidVisualDropItems` 清空、`MidVisualDropChance=0`。 本次仅写入 `06_最终配置/主线高难` 交付包，不修改 `D:/Vgame` SVN 正式配置。",
       "numericStatements": [
         "- 44 个支线关卡必须分别使用独立一级 DropId，禁止继续共用旧的战斗/小游戏/宝箱公共包 `10000016/10000017/10000018`。",
         "- 新一级 DropId 使用 `10002001～10002044`，按 `LevelId` 升序一一对应；该范围已在全部正式逻辑 Drop 源表中查重，无占用。",
         "- `UIlevel.FirstReward` 与 `LevelEndVisualDropItems` 同步实际一次性奖励；`MidVisualDropItems` 清空、`MidVisualDropChance=0`。",
-        "- 本次仅写入 `06_最终配置/主线高难` 交付包，不修改 `D:\\Vgame` SVN 正式配置。"
+        "- 本次仅写入 `06_最终配置/主线高难` 交付包，不修改 `D:/Vgame` SVN 正式配置。"
       ],
       "sourceId": "NSRC-567988926637",
       "sourceLocator": "03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md#L379:配置落地约束",
@@ -14606,13 +14606,13 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "reward-drop",
       "title": "CHG-003（2026-08-18）ItemSweep 与真实重复掉落同步",
-      "statement": "状态：`verified` 问题：正式旧 `ItemSweep.xlsx` 仅有 111 条主线/高难索引；相对新版有效关卡，缺少 23 条映射，且已有映射中 91 条仍指向旧材料或旧宝石顺序。 权威链：`UIlevel.FallRewardDrop/LevelPPDrop -> Drop_mainlevel` 的真实重复掉落为扫荡奖励权威；`ItemSweep` 仅维护 `LevelId -> ItemId` 的目标道具/获取途径索引。 新口径：全量生成 134 条有效索引，覆盖普通主线 99 关与高难 35 关；普通主线登记当关常规材料，高难登记同色 1/2 级宝石。 排除项：44 个支线关卡只有一次性奖励，不进入 `ItemSweep`；首通、章节星级和支线一次性奖励不得作为定向扫荡目标。 排序：普通主线按序章至第七章排列为 `Sort=1～99`；高难第一至第七章排列为 `Sort=100～134`。 配置边界：只更新 `06_最终配置/主线高难/ItemSweep.xlsx` 与交付校验，不修改 `D:\\Vgame` SVN 正式配置。",
+      "statement": "状态：`verified` 问题：正式旧 `ItemSweep.xlsx` 仅有 111 条主线/高难索引；相对新版有效关卡，缺少 23 条映射，且已有映射中 91 条仍指向旧材料或旧宝石顺序。 权威链：`UIlevel.FallRewardDrop/LevelPPDrop -> Drop_mainlevel` 的真实重复掉落为扫荡奖励权威；`ItemSweep` 仅维护 `LevelId -> ItemId` 的目标道具/获取途径索引。 新口径：全量生成 134 条有效索引，覆盖普通主线 99 关与高难 35 关；普通主线登记当关常规材料，高难登记同色 1/2 级宝石。 排除项：44 个支线关卡只有一次性奖励，不进入 `ItemSweep`；首通、章节星级和支线一次性奖励不得作为定向扫荡目标。 排序：普通主线按序章至第七章排列为 `Sort=1～99`；高难第一至第七章排列为 `Sort=100～134`。 配置边界：只更新 `06_最终配置/主线高难/ItemSweep.xlsx` 与交付校验，不修改 `D:/Vgame` SVN 正式配置。",
       "numericStatements": [
         "- 问题：正式旧 `ItemSweep.xlsx` 仅有 111 条主线/高难索引；相对新版有效关卡，缺少 23 条映射，且已有映射中 91 条仍指向旧材料或旧宝石顺序。",
         "- 新口径：全量生成 134 条有效索引，覆盖普通主线 99 关与高难 35 关；普通主线登记当关常规材料，高难登记同色 1/2 级宝石。",
         "- 排除项：44 个支线关卡只有一次性奖励，不进入 `ItemSweep`；首通、章节星级和支线一次性奖励不得作为定向扫荡目标。",
         "- 排序：普通主线按序章至第七章排列为 `Sort=1～99`；高难第一至第七章排列为 `Sort=100～134`。",
-        "- 配置边界：只更新 `06_最终配置/主线高难/ItemSweep.xlsx` 与交付校验，不修改 `D:\\Vgame` SVN 正式配置。"
+        "- 配置边界：只更新 `06_最终配置/主线高难/ItemSweep.xlsx` 与交付校验，不修改 `D:/Vgame` SVN 正式配置。"
       ],
       "sourceId": "NSRC-567988926637",
       "sourceLocator": "03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md#L395:CHG-003（2026-08-18）ItemSweep 与真实重复掉落同步",
@@ -16474,7 +16474,7 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "growth",
       "title": "源表与产物",
-      "statement": "经济模块产销表：`经济/模块产销表/04_玩法_旅券副本.xlsx`。 经济总账来源口径：`经济/全资源产销总表.xlsx` 记录原始源表为 `D:\\数值文档\\数值文档\\Vgame经济框架.xlsx`。 正式配置：`level/UIlevel.xlsx`、`level/level.xlsx`、`level/LevelType.xlsx`、`system_open/SystemOpen.xlsx`、`unlock/Unlock.xlsx`、`Drop/Drop_dungeon.xlsx`、`items/Items.xlsx`、`strategy/StrategyCards.xlsx`。 模块产物页签：`阅读摘要`、`产销阅读`、`玩法产出`、`资源汇总`、`机器明细`。 当前模块产销表记录：288 条。 当前模块产销表资源：51 项。 当前模块方向分布：产出 104 条、引用 134 条、消耗 50 条。 正式旅券副本关卡：4 类，每类 10 层，共 40 层。",
+      "statement": "经济模块产销表：`经济/模块产销表/04_玩法_旅券副本.xlsx`。 经济总账来源口径：`经济/全资源产销总表.xlsx` 记录原始源表为 `vgame-numeric-source://Vgame经济框架.xlsx`。 正式配置：`level/UIlevel.xlsx`、`level/level.xlsx`、`level/LevelType.xlsx`、`system_open/SystemOpen.xlsx`、`unlock/Unlock.xlsx`、`Drop/Drop_dungeon.xlsx`、`items/Items.xlsx`、`strategy/StrategyCards.xlsx`。 模块产物页签：`阅读摘要`、`产销阅读`、`玩法产出`、`资源汇总`、`机器明细`。 当前模块产销表记录：288 条。 当前模块产销表资源：51 项。 当前模块方向分布：产出 104 条、引用 134 条、消耗 50 条。 正式旅券副本关卡：4 类，每类 10 层，共 40 层。",
       "numericStatements": [
         "- 经济模块产销表：`经济/模块产销表/04_玩法_旅券副本.xlsx`。",
         "- 当前模块产销表记录：288 条。",
@@ -17915,12 +17915,12 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "growth",
       "title": "来源与优先级",
-      "statement": "| 优先级 | 来源 | 用途 | | P0 | `D:\\Vgame_design\\design\\映射装备系统数值设计文档-2026-07-03.md` | 最新设计主口径，含副本、宝箱、首通、合成、制作、分解、配置影响；洗练本版本先不做 | | P0 | `D:\\Vgame_design\\design\\映射装备系统数值设计文档-2026-07-03.xlsx` | 同名数值框架 Excel，用于核对 8 档制作/合成调整 | | P1 | `D:\\数值文档\\数值文档\\框架v2\\03_沉淀MD\\养成\\映射装备合成制作8档调整-2026-07-06.md` | 8 档合成/制作覆盖口径 | | P2 | `D:\\Vgame\\Config\\GameConfig\\Datas` | 当前正式配置观察，仅用于识别未落地差异 |",
+      "statement": "| 优先级 | 来源 | 用途 | | P0 | `design/映射装备系统数值设计文档-2026-07-03.md` | 最新设计主口径，含副本、宝箱、首通、合成、制作、分解、配置影响；洗练本版本先不做 | | P0 | `design/映射装备系统数值设计文档-2026-07-03.xlsx` | 同名数值框架 Excel，用于核对 8 档制作/合成调整 | | P1 | `vgame-numeric-source://框架v2/03_沉淀MD/养成/映射装备合成制作8档调整-2026-07-06.md` | 8 档合成/制作覆盖口径 | | P2 | `D:/Vgame/Config/GameConfig/Datas` | 当前正式配置观察，仅用于识别未落地差异 |",
       "numericStatements": [
-        "| P0 | `D:\\Vgame_design\\design\\映射装备系统数值设计文档-2026-07-03.md` | 最新设计主口径，含副本、宝箱、首通、合成、制作、分解、配置影响；洗练本版本先不做 |",
-        "| P0 | `D:\\Vgame_design\\design\\映射装备系统数值设计文档-2026-07-03.xlsx` | 同名数值框架 Excel，用于核对 8 档制作/合成调整 |",
-        "| P1 | `D:\\数值文档\\数值文档\\框架v2\\03_沉淀MD\\养成\\映射装备合成制作8档调整-2026-07-06.md` | 8 档合成/制作覆盖口径 |",
-        "| P2 | `D:\\Vgame\\Config\\GameConfig\\Datas` | 当前正式配置观察，仅用于识别未落地差异 |"
+        "| P0 | `design/映射装备系统数值设计文档-2026-07-03.md` | 最新设计主口径，含副本、宝箱、首通、合成、制作、分解、配置影响；洗练本版本先不做 |",
+        "| P0 | `design/映射装备系统数值设计文档-2026-07-03.xlsx` | 同名数值框架 Excel，用于核对 8 档制作/合成调整 |",
+        "| P1 | `vgame-numeric-source://框架v2/03_沉淀MD/养成/映射装备合成制作8档调整-2026-07-06.md` | 8 档合成/制作覆盖口径 |",
+        "| P2 | `D:/Vgame/Config/GameConfig/Datas` | 当前正式配置观察，仅用于识别未落地差异 |"
       ],
       "sourceId": "NSRC-9BE63B3B29D8",
       "sourceLocator": "03_沉淀MD/经济/05_玩法_映射副本经济沉淀-2026-07-08.md#L19:来源与优先级",
@@ -17954,7 +17954,7 @@
         "TRACE_ONLY",
         "DO_NOT_ROUTE_AS_CURRENT"
       ],
-      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为 D:/Vgame/_design。"
+      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为本仓库根目录。"
     },
     {
       "atomId": "NATOM-211597FC6830",
@@ -19066,7 +19066,7 @@
         "| P1 | `D:/Vgame/Config/GameConfig/Datas/neural_roam/NR_StartProgress.xlsx` | 起始进度折损/跳层相关配置 |",
         "| P1 | `D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx`、`unlock/Unlock.xlsx` | 系统入口和开放条件 |",
         "| P2 | `D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx`、`level/LevelType.xlsx`、`level/level.xlsx` | 入口/站点观察和旧无限 BOSS 配置差异 |",
-        "| P2 | `D:/数值文档/数值文档/框架v2/经济/模块产销表/06_玩法_无限挑战.xlsx` | 模块产销汇总和“neural_roam 归入无限挑战”裁决 |"
+        "| P2 | `vgame-numeric-source://框架v2/经济/模块产销表/06_玩法_无限挑战.xlsx` | 模块产销汇总和“neural_roam 归入无限挑战”裁决 |"
       ],
       "sourceId": "NSRC-D2CD567CE8EA",
       "sourceLocator": "03_沉淀MD/经济/06_玩法_无限挑战经济沉淀-2026-07-08.md#L98:来源与优先级",
@@ -19992,7 +19992,7 @@
         "| P1 | `D:/Vgame/Config/GameConfig/Datas/Arena/Battery.xlsx`、`BatteryLv.xlsx` | 竞技场炮台和校准元件消耗去向 |",
         "| P1 | `D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx`、`unlock/Unlock.xlsx` | 系统入口和开放条件 |",
         "| P2 | `D:/Vgame/Config/GameConfig/Datas/level/LevelType.xlsx`、`UIlevel.xlsx` | PVPVE 战斗入口观察 |",
-        "| P2 | `D:/数值文档/数值文档/框架v2/经济/模块产销表/07_玩法_竞技场.xlsx` | 模块口径：14 天赛季、单场失败、次数描述、商店汇总 |",
+        "| P2 | `vgame-numeric-source://框架v2/经济/模块产销表/07_玩法_竞技场.xlsx` | 模块口径：14 天赛季、单场失败、次数描述、商店汇总 |",
         "| P2 | `D:/Vgame/HorizonFlyProject/Lua/UI/PVPPVE/UIPVPPVEGetView.lua` | 门票获取弹窗硬编码任务 4001/4002；本轮保留任务，因此客户端无需修改 |"
       ],
       "sourceId": "NSRC-4C953BA17866",
@@ -20866,9 +20866,9 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "growth",
       "title": "2026-07-28 最终配置镜像",
-      "statement": "目录：`D:/数值文档/数值文档/框架v2/06_最终配置/竞技场` | 镜像文件 | 正式目标 | 本轮处理 | | --- | --- | --- | | `globals_conf.xlsx` | `Datas/globals_conf/globals_conf.xlsx` | 评审镜像已同步：胜利参数90、失败参数30、每日补票1、赛季14天 | | `ShopGoods.xlsx` | `Datas/Shop/ShopGoods.xlsx` | 评审镜像已完整收录1109001~1109010共10项竞技场商品；熔晶/定轨组件采用新价格与限购，A/S炮台采用1000/2000，1109002~1109007沿用正式源表现值；另保留2004001门票商店参考行 | | `ArenaWinStreak.xlsx` | `Datas/Arena/ArenaWinStreak.xlsx` | 评审镜像已同步：9档门槛为3/6/9/12/15/18/24/27/30 |",
+      "statement": "目录：`vgame-numeric-source://框架v2/06_最终配置/竞技场` | 镜像文件 | 正式目标 | 本轮处理 | | --- | --- | --- | | `globals_conf.xlsx` | `Datas/globals_conf/globals_conf.xlsx` | 评审镜像已同步：胜利参数90、失败参数30、每日补票1、赛季14天 | | `ShopGoods.xlsx` | `Datas/Shop/ShopGoods.xlsx` | 评审镜像已完整收录1109001~1109010共10项竞技场商品；熔晶/定轨组件采用新价格与限购，A/S炮台采用1000/2000，1109002~1109007沿用正式源表现值；另保留2004001门票商店参考行 | | `ArenaWinStreak.xlsx` | `Datas/Arena/ArenaWinStreak.xlsx` | 评审镜像已同步：9档门槛为3/6/9/12/15/18/24/27/30 |",
       "numericStatements": [
-        "目录：`D:/数值文档/数值文档/框架v2/06_最终配置/竞技场`",
+        "目录：`vgame-numeric-source://框架v2/06_最终配置/竞技场`",
         "| `globals_conf.xlsx` | `Datas/globals_conf/globals_conf.xlsx` | 评审镜像已同步：胜利参数90、失败参数30、每日补票1、赛季14天 |",
         "| `ShopGoods.xlsx` | `Datas/Shop/ShopGoods.xlsx` | 评审镜像已完整收录1109001~1109010共10项竞技场商品；熔晶/定轨组件采用新价格与限购，A/S炮台采用1000/2000，1109002~1109007沿用正式源表现值；另保留2004001门票商店参考行 |",
         "| `ArenaWinStreak.xlsx` | `Datas/Arena/ArenaWinStreak.xlsx` | 评审镜像已同步：9档门槛为3/6/9/12/15/18/24/27/30 |",
@@ -21095,11 +21095,11 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "combat",
       "title": "来源与优先级",
-      "statement": "| 优先级 | 来源 | 用途 | | --- | --- | --- | | P0 | 2026-07-29 用户确认；`D:/Vgame_design/output/rv_growth/12-tower-talent-material-reward-design-draft.md` | CHG-026/034/035版：首通自选箱递增曲线、30层起挂机、天赋树消耗和行商供给口径 | | P0 | 2026-07-29 用户确认；`D:/Vgame_design/output/rv_growth/09-tower-first-clear-reward-draft.md` | CHG-032当前1-100层逐层首通奖励；三层型结构及总量 | | P0 | `D:/数值文档/数值文档/框架v2/06_最终配置/爬塔/` | CHG-042最终配置评审镜像：100个首通包、218条首通明细（含100条房车零件）、100层挂机配置，非首通奖励已停用；尚未同步SVN |",
+      "statement": "| 优先级 | 来源 | 用途 | | --- | --- | --- | | P0 | 2026-07-29 用户确认；`output/rv_growth/12-tower-talent-material-reward-design-draft.md` | CHG-026/034/035版：首通自选箱递增曲线、30层起挂机、天赋树消耗和行商供给口径 | | P0 | 2026-07-29 用户确认；`output/rv_growth/09-tower-first-clear-reward-draft.md` | CHG-032当前1-100层逐层首通奖励；三层型结构及总量 | | P0 | `vgame-numeric-source://框架v2/06_最终配置/爬塔/` | CHG-042最终配置评审镜像：100个首通包、218条首通明细（含100条房车零件）、100层挂机配置，非首通奖励已停用；尚未同步SVN |",
       "numericStatements": [
-        "| P0 | 2026-07-29 用户确认；`D:/Vgame_design/output/rv_growth/12-tower-talent-material-reward-design-draft.md` | CHG-026/034/035版：首通自选箱递增曲线、30层起挂机、天赋树消耗和行商供给口径 |",
-        "| P0 | 2026-07-29 用户确认；`D:/Vgame_design/output/rv_growth/09-tower-first-clear-reward-draft.md` | CHG-032当前1-100层逐层首通奖励；三层型结构及总量 |",
-        "| P0 | `D:/数值文档/数值文档/框架v2/06_最终配置/爬塔/` | CHG-042最终配置评审镜像：100个首通包、218条首通明细（含100条房车零件）、100层挂机配置，非首通奖励已停用；尚未同步SVN |",
+        "| P0 | 2026-07-29 用户确认；`output/rv_growth/12-tower-talent-material-reward-design-draft.md` | CHG-026/034/035版：首通自选箱递增曲线、30层起挂机、天赋树消耗和行商供给口径 |",
+        "| P0 | 2026-07-29 用户确认；`output/rv_growth/09-tower-first-clear-reward-draft.md` | CHG-032当前1-100层逐层首通奖励；三层型结构及总量 |",
+        "| P0 | `vgame-numeric-source://框架v2/06_最终配置/爬塔/` | CHG-042最终配置评审镜像：100个首通包、218条首通明细（含100条房车零件）、100层挂机配置，非首通奖励已停用；尚未同步SVN |",
         "| P0 | 2026-07-09 用户确认新版口径 | 全奖励一次性；删除扫荡/常规奖励、商店、代币；新增挂机奖励 |",
         "| P0 | `D:/Vgame/Config/GameConfig/Datas/TowerTrial/TowerFirstReward.xlsx` | 1-100 层首通奖励 DropId |",
         "| P0 | `D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx` | 400 个爬塔关卡、旧重复奖励 DropId、UI 预览待清理 |",
@@ -21111,7 +21111,7 @@
         "| P1 | `D:/Vgame/Config/GameConfig/Datas/TowerTrial/TowerFall.xlsx` | 旧层级掉落映射；新版待重配 |",
         "| P1 | `D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx`、`unlock/Unlock.xlsx` | 系统入口和开放条件 |",
         "| P2 | `D:/Vgame/Config/GameConfig/Datas/level/level.xlsx`、`LevelType.xlsx`、`ChallengeDungeonSupport.xlsx` | 战斗底表、LevelType/挑战入口观察 |",
-        "| P2 | `D:/数值文档/数值文档/框架v2/经济/模块产销表/08_玩法_爬塔.xlsx` | 模块旧口径对照；新版奖励重做后需回填 |"
+        "| P2 | `vgame-numeric-source://框架v2/经济/模块产销表/08_玩法_爬塔.xlsx` | 模块旧口径对照；新版奖励重做后需回填 |"
       ],
       "sourceId": "NSRC-166D33C4647E",
       "sourceLocator": "03_沉淀MD/经济/08_玩法_爬塔经济沉淀-2026-07-09.md#L35:来源与优先级",
@@ -21153,7 +21153,7 @@
         "TRACE_ONLY",
         "DO_NOT_ROUTE_AS_CURRENT"
       ],
-      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为 D:/Vgame/_design。"
+      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为本仓库根目录。"
     },
     {
       "atomId": "NATOM-A0FAFB87AF1B",
@@ -22728,7 +22728,7 @@
         "| P1 | D:/Vgame/Config/GameConfig/Datas/mythic_dungeon/SeasonRankReward.xlsx | 排行字段观察；当前不计入产出 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/mythic_dungeon/WeekBalanceDownLayer.xlsx | 周结算降层规则观察 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/mythic_dungeon/AffixSchedule.xlsx 与 Affix.xlsx | 赛季词缀/难度节奏观察；无直接经济投放 |",
-        "| P2 | D:/数值文档/数值文档/框架v2/经济/模块产销表/09_玩法_大秘境.xlsx | 模块产销表对照；与正式配置不一致处列为待确认 |",
+        "| P2 | vgame-numeric-source://框架v2/经济/模块产销表/09_玩法_大秘境.xlsx | 模块产销表对照；与正式配置不一致处列为待确认 |",
         "| P2 | D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx 与 unlock/Unlock.xlsx | 入口、开放等级、关闭状态 |"
       ],
       "sourceId": "NSRC-12A6D6558FED",
@@ -23701,7 +23701,7 @@
         "| P1 | D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx 与 unlock/Unlock.xlsx | 入口、开放等级、挑战父入口观察 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/level/LevelType.xlsx | LevelType_BossDungeonChallenges 结算 UI 和默认展示 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/level/BossBattleTime.xlsx | Boss 战时长配置观察；当前仅主线行有有效样例 |",
-        "| P2 | D:/数值文档/数值文档/框架v2/经济/模块产销表/10_玩法_BOSS挑战.xlsx | 模块产销表对照；BestReward 作为引用观察 |"
+        "| P2 | vgame-numeric-source://框架v2/经济/模块产销表/10_玩法_BOSS挑战.xlsx | 模块产销表对照；BestReward 作为引用观察 |"
       ],
       "sourceId": "NSRC-45181BCCCC31",
       "sourceLocator": "03_沉淀MD/经济/10_玩法_BOSS挑战经济沉淀-2026-07-09.md#L124:来源与优先级",
@@ -24734,7 +24734,7 @@
         "| P0 | D:/Vgame/Config/GameConfig/Datas/task/Task.xlsx | 任务本体与 DropId；空 IsValid 按有效观察，显式 false 才排除 |",
         "| P0 | D:/Vgame/Config/GameConfig/Datas/Drop/*.xlsx | 逻辑 Drop 展开；不按 Drop.IsValid 过滤 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx 与 unlock/Unlock.xlsx | 入口开放条件观察 |",
-        "| P2 | D:/数值文档/数值文档/框架v2/经济/模块产销表/11_外循环_任务.xlsx | 模块表对照 |"
+        "| P2 | vgame-numeric-source://框架v2/经济/模块产销表/11_外循环_任务.xlsx | 模块表对照 |"
       ],
       "sourceId": "NSRC-A756B85BB35E",
       "sourceLocator": "03_沉淀MD/经济/11_外循环_任务_01_每日每周任务经济沉淀-2026-07-09.md#L129:来源与口径",
@@ -26755,7 +26755,7 @@
         "| P0 | D:/Vgame/Config/GameConfig/Datas/task/Task.xlsx | 任务本体与 DropId；空 IsValid 按有效观察，显式 false 才排除 |",
         "| P0 | D:/Vgame/Config/GameConfig/Datas/Drop/*.xlsx | 逻辑 Drop 展开 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/level/ChapterTasks.xlsx | 旧章节任务链异常参考 |",
-        "| P2 | D:/数值文档/数值文档/框架v2/经济/模块产销表/22_外循环_章节任务.xlsx | 模块产销表对照 |"
+        "| P2 | vgame-numeric-source://框架v2/经济/模块产销表/22_外循环_章节任务.xlsx | 模块产销表对照 |"
       ],
       "sourceId": "NSRC-B01C72F99A10",
       "sourceLocator": "03_沉淀MD/经济/11_外循环_任务_04_章节任务经济沉淀-2026-07-09.md#L80:来源与口径",
@@ -27327,7 +27327,7 @@
         "| P0 | D:/Vgame/Config/GameConfig/Datas/SignInReward/SevenDaySign.xlsx | 新手七日签到直接奖励 |",
         "| P0 | D:/Vgame/Config/GameConfig/Datas/Drop/*.xlsx | 逻辑 Drop 展开，任务奖励和活跃箱真实内容 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx 与 unlock/Unlock.xlsx | 任务/日常/周常/手札/开服挑战/签到入口开放条件 |",
-        "| P2 | D:/数值文档/数值文档/框架v2/经济/模块产销表/11_外循环_任务.xlsx | 模块产销表对照，含直接设计行和正式引用行 |"
+        "| P2 | vgame-numeric-source://框架v2/经济/模块产销表/11_外循环_任务.xlsx | 模块产销表对照，含直接设计行和正式引用行 |"
       ],
       "sourceId": "NSRC-F80E9F8F0D43",
       "sourceLocator": "03_沉淀MD/经济/11_外循环_任务经济沉淀-2026-07-09.md#L40:来源与优先级",
@@ -28595,7 +28595,7 @@
         "| P1 | D:/Vgame/Config/GameConfig/Datas/SignInReward/TravelAccumulate.xlsx | 生涯累计签到奖励 | 保持不变 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/SignInReward/SevenDaySign.xlsx | 新手七日签到正式配置 | 正式源表与 06 最终配置镜像均未同步 2026-08-20 变更 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx 与 unlock/Unlock.xlsx | 签到入口开放条件 | 本次不改 |",
-        "| P2 | D:/数值文档/数值文档/框架v2/经济/模块产销表/12_外循环_签到.xlsx | 模块产销表对照 | 仍是旧口径，待同步 |"
+        "| P2 | vgame-numeric-source://框架v2/经济/模块产销表/12_外循环_签到.xlsx | 模块产销表对照 | 仍是旧口径，待同步 |"
       ],
       "sourceId": "NSRC-672CCE34DFF4",
       "sourceLocator": "03_沉淀MD/经济/12_外循环_签到经济沉淀-2026-07-09.md#L26:来源与优先级",
@@ -29338,7 +29338,7 @@
         "| P0 | D:/Vgame/Config/GameConfig/Datas/Drop/Drop_BattlePass.xlsx | 通行证奖励包真实展开 |",
         "| P0 | D:/Vgame/Config/GameConfig/Datas/Avy_time_config/AvyTime.xlsx | OpenTime 赛季周期 |",
         "| P1 | D:/Vgame/Config/GameConfig/Datas/task/DailyActiveReward.xlsx 与 Drop_other.xlsx | 通行证经验(26)来源观察；不重复并入日常任务经济 |",
-        "| P2 | D:/数值文档/数值文档/框架v2/经济/模块产销表/13_外循环_通行证.xlsx | 模块产销表对照；旧口径差异观察 |"
+        "| P2 | vgame-numeric-source://框架v2/经济/模块产销表/13_外循环_通行证.xlsx | 模块产销表对照；旧口径差异观察 |"
       ],
       "sourceId": "NSRC-6A11B26BFBB3",
       "sourceLocator": "03_沉淀MD/经济/13_外循环_通行证经济沉淀-2026-07-09.md#L19:来源与优先级",
@@ -38977,10 +38977,10 @@
       "atomType": "NUMERIC_KNOWLEDGE_SECTION",
       "domain": "probability",
       "title": "来源表",
-      "statement": "| 模块 | 表 | 用途 | | --- | --- | --- | | 经济源表 | D:/数值文档/数值文档/框架v2/01_源表/经济口径.xlsx | 抽卡系统归类、材料敏感度、核算线 | | 模块产销表 | D:/数值文档/数值文档/框架v2/04_数值文档/经济/模块产销表/21_抽卡_概率.xlsx | 抽卡概率阅读版 | | 正式配置 | D:/Vgame/Config/GameConfig/Datas/Activity/DrawCard/DrawCard.xlsx | 卡池入口、消耗、保底引用 | | 正式配置 | D:/Vgame/Config/GameConfig/Datas/Activity/DrawCard/DrawCardPool.xlsx | 品质概率描述、奖池列表、UP 展示 | | 正式配置 | D:/Vgame/Config/GameConfig/Datas/Activity/DrawCard/DrawCardWeight.xlsx | 单抽权重曲线 |",
+      "statement": "| 模块 | 表 | 用途 | | --- | --- | --- | | 经济源表 | vgame-numeric-source://框架v2/01_源表/经济口径.xlsx | 抽卡系统归类、材料敏感度、核算线 | | 模块产销表 | vgame-numeric-source://框架v2/04_数值文档/经济/模块产销表/21_抽卡_概率.xlsx | 抽卡概率阅读版 | | 正式配置 | D:/Vgame/Config/GameConfig/Datas/Activity/DrawCard/DrawCard.xlsx | 卡池入口、消耗、保底引用 | | 正式配置 | D:/Vgame/Config/GameConfig/Datas/Activity/DrawCard/DrawCardPool.xlsx | 品质概率描述、奖池列表、UP 展示 | | 正式配置 | D:/Vgame/Config/GameConfig/Datas/Activity/DrawCard/DrawCardWeight.xlsx | 单抽权重曲线 |",
       "numericStatements": [
-        "| 经济源表 | D:/数值文档/数值文档/框架v2/01_源表/经济口径.xlsx | 抽卡系统归类、材料敏感度、核算线 |",
-        "| 模块产销表 | D:/数值文档/数值文档/框架v2/04_数值文档/经济/模块产销表/21_抽卡_概率.xlsx | 抽卡概率阅读版 |"
+        "| 经济源表 | vgame-numeric-source://框架v2/01_源表/经济口径.xlsx | 抽卡系统归类、材料敏感度、核算线 |",
+        "| 模块产销表 | vgame-numeric-source://框架v2/04_数值文档/经济/模块产销表/21_抽卡_概率.xlsx | 抽卡概率阅读版 |"
       ],
       "sourceId": "NSRC-9E70D622C786",
       "sourceLocator": "03_沉淀MD/经济/21_抽卡_概率经济沉淀-2026-07-09.md#L21:来源表",
@@ -47101,7 +47101,7 @@
         "- 2026-08-05 `CHG-005`：依据节奏参数基线纠正主线映射：当前章节0～7的105个计划节点覆盖 Lv1～39、Day1～8。用户进一步确认主线难度可以设计得更长，105关仅为本轮使用范围；因此新增可扩展的 Lv1～60、Day1～65 难度母曲线，未来关卡在有正式 LevelId 后继续绑定。",
         "- 2026-08-05 `CHG-006`：用户补充上阵人数存在解锁条件。回源确认5个阵位通过 `SystemOpen.Id=28～32` 与 `UnlockId=4025～4029` 逐步开放；本轮快照改为1～2关1人、3～6关2人、7～9关3人、10～19关4人、20关起5人，废止“全程5人队”假设。",
         "- 2026-08-04：建立全玩法难度线独立沉淀；记录现有专武废弃、收容物未接入、PVPVE和BOSS挑战战斗参数缺失等P0缺口。",
-        "- 2026-08-06：依据 `01_源表/全玩法难度填写表.xlsx`（修正版V3）生成 `06_最终配置/全玩法难度/` 最终配置镜像（CHG-012）。level.xlsx 按 LevelId 更新 Grade 共 921 行（910 更新 + 11 同值），覆盖主线99、困难主线35、角色经验/金币/收容经验各9、旅券40、映射150、爬塔400、Boss挑战70、大秘境100 共 10 个玩法；RoguelikeLevel 5 档 Grade 同步（150/210/285/340/361）；PVPVE 不落表。生命/攻击/防御系数保持源表现值（填写表系数空白按 DL-R04 不回填）。生成器 `D:\\Vgame_design\\scripts\\build_all_difficulty_final_config.py`，校验 PASS。正式源表（`D:\\Vgame\\Config\\GameConfig\\Datas`）仍只读，落地由用户执行。",
+        "- 2026-08-06：依据 `01_源表/全玩法难度填写表.xlsx`（修正版V3）生成 `06_最终配置/全玩法难度/` 最终配置镜像（CHG-012）。level.xlsx 按 LevelId 更新 Grade 共 921 行（910 更新 + 11 同值），覆盖主线99、困难主线35、角色经验/金币/收容经验各9、旅券40、映射150、爬塔400、Boss挑战70、大秘境100 共 10 个玩法；RoguelikeLevel 5 档 Grade 同步（150/210/285/340/361）；PVPVE 不落表。生命/攻击/防御系数保持源表现值（填写表系数空白按 DL-R04 不回填）。生成器 `scripts/build_all_difficulty_final_config.py`，校验 PASS。正式源表（`D:/Vgame/Config/GameConfig/Datas`）仍只读，落地由用户执行。",
         "- 2026-08-11 `CHG-013`：用户确认 BOSS挑战目标结构改为“基础推演7个Boss×6层=42个一次性节点；认知负载另设10层周常奖励”。原70档仍是SVN正式配置观察，不再代表目标结构；本轮沿用各Boss原1～6层 LevelId/Grade 作为基础推演候选，认知负载战斗LevelId与怪物系数仍待战斗/程序配置确认，奖励先进入 `06_最终配置/BOSS挑战/` 评审镜像。"
       ],
       "sourceId": "NSRC-E1DD1D362B36",
@@ -47150,7 +47150,7 @@
         "TRACE_ONLY",
         "DO_NOT_ROUTE_AS_CURRENT"
       ],
-      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为 D:/Vgame/_design。"
+      "legacyPathNote": "历史路径仅用于证据追溯；当前权威仓库为本仓库根目录。"
     },
     {
       "atomId": "NATOM-7543410CAF42",
@@ -47716,7 +47716,7 @@
         "1. 全局事实变化先改 `01_源表`；系统参数或公式变化改对应参数基线/单系统 MD，并记录所有权与影响范围。",
         "2. 先运行 `sync_global_sources_to_md.py`（需要落盘时显式 `--write`），再运行 `python run_all.py`。",
         "4. 用 `05_验算核算/scripts/validate_rebuild.py --target <staging>` 做动态门禁，并由 Excel 完整重算公式。",
-        "> 想要单跑某类：`cd 框架v2\\养成\\scripts ; python gen_growth_budget.py`"
+        "> 想要单跑某类：`cd 框架v2/养成/scripts ; python gen_growth_budget.py`"
       ],
       "sourceId": "NSRC-B33563055168",
       "sourceLocator": "README.md#L77:日常用法",

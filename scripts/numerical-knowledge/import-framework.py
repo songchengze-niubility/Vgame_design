@@ -10,6 +10,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import zipfile
 from collections import Counter, defaultdict
@@ -178,6 +179,14 @@ def clean_summary(body: str, title: str) -> str:
     return summary or f"{title}（源章节未提供可直接摘要的自然语言正文）"
 
 
+def normalize_portable_text(value: str) -> str:
+    """把旧机绝对路径转换为仓库相对路径或逻辑证据 URI。"""
+    value = re.sub(r"(?i)[a-z]:[\\/]+vgame_design[\\/]+", "", value)
+    value = re.sub(r"(?i)[a-z]:[\\/]+数值文档[\\/]+数值文档[\\/]+框架v2[\\/]+", "vgame-numeric-source://框架v2/", value)
+    value = re.sub(r"(?i)[a-z]:[\\/]+数值文档[\\/]+数值文档[\\/]+", "vgame-numeric-source://", value)
+    return value.replace("\\", "/")
+
+
 def numeric_statements(body: str) -> list[str]:
     out = []
     for raw in body.splitlines():
@@ -213,7 +222,7 @@ def apply_latest_ruling_status(atom: dict) -> dict:
         atom["sourceNature"] = "SOURCE_EXPLICIT_HISTORICAL"
         atom["validation"] = ["TRACE_ONLY", "DO_NOT_ROUTE_AS_CURRENT"]
         if re.search(r"d:[/\\]vgame_design", blob, re.I):
-            atom["legacyPathNote"] = "历史路径仅用于证据追溯；当前权威仓库为 D:/Vgame/_design。"
+            atom["legacyPathNote"] = "历史路径仅用于证据追溯；当前权威仓库为本仓库根目录。"
     return atom
 
 
@@ -236,9 +245,11 @@ def authoritative_markdown(rel: str) -> bool:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--source", default=r"D:\数值文档\数值文档\框架v2")
+    parser.add_argument("--source", default=os.environ.get("VGAME_NUMERICAL_FRAMEWORK_ROOT"))
     parser.add_argument("--repo", default=str(Path(__file__).resolve().parents[2]))
     args = parser.parse_args()
+    if not args.source:
+        raise SystemExit("source missing: pass --source or set VGAME_NUMERICAL_FRAMEWORK_ROOT")
     source = Path(args.source).resolve()
     repo = Path(args.repo).resolve()
     out = repo / "knowledge-base" / "numerical"
@@ -294,7 +305,11 @@ def main() -> int:
                     "configCandidates": config_candidates(combined), "frameworkNodeIds": FRAMEWORK_BY_DOMAIN[atom_domain],
                     "sourceNature": "SOURCE_EXPLICIT", "status": "ACTIVE", "validation": ["SOURCE_HASH_MATCH", "ROUTE_RESOLVES", "NO_LIVE_INFERENCE"],
                 }
-                atoms.append(apply_latest_ruling_status(atom))
+                atom = apply_latest_ruling_status(atom)
+                atom["statement"] = normalize_portable_text(atom["statement"])
+                atom["numericStatements"] = [normalize_portable_text(value) for value in atom["numericStatements"]]
+                statements = atom["numericStatements"]
+                atoms.append(atom)
                 for statement in statements:
                     if "=" in statement or re.search(r"公式|计算|倍率|期望|概率|权重", statement):
                         formulas.append({
