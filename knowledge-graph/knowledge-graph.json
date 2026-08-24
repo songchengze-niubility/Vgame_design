@@ -11,7 +11,7 @@
       "Unity",
       "Luban"
     ],
-    "analyzedAt": "2026-08-24T18:10:09Z",
+    "analyzedAt": "2026-08-24T18:12:13Z",
     "gitCommitHash": "49c40c44e30c5c2d3bde08bfd6d2ee9bc5989485",
     "sources": [
       "client-code",
@@ -49671,7 +49671,7 @@
       "metadata": {
         "category": "design",
         "line_count": 361,
-        "sha256": "9b1b9e90b95806437b79d25d20c04738d688e2ccc5452784ff54a51ba86b84ae"
+        "sha256": "b5437da3c99d066c2f8ac8a5423de21ba65444a301e6d944cf6ee909bae98f3a"
       },
       "source": "design"
     },
@@ -49891,7 +49891,7 @@
       "metadata": {
         "category": "design",
         "line_count": 182,
-        "sha256": "166a3ec3a1aa18dbb3bb0d7de752dfef4cfbfc97a2f9eb775b5d256602263637"
+        "sha256": "2ae64e3582541b1d49a12fd152924e30c7e017d6ad176a5d809a529caca9b512"
       },
       "source": "design"
     },
@@ -50151,7 +50151,7 @@
       "metadata": {
         "category": "design",
         "line_count": 1184,
-        "sha256": "d82c7764eb5630db88a0221e73abc7c6e39db677b5479cf587dd3acd97d9b25c"
+        "sha256": "c3923ec5ebb3efa4938b911c64325997b5fcb284d1abc11c10b577c3be31d712"
       },
       "source": "design"
     },
@@ -50231,7 +50231,7 @@
       "metadata": {
         "category": "design",
         "line_count": 85,
-        "sha256": "e50b4cc2bdada40575c6fa3b99de534c17697bef1e98a0c82ee29f64fe56bc4e"
+        "sha256": "0488d44ed5c8d9a7cedc06f97ca4ba3817aacd9b60dbd712e34bf4bf5512a6e3"
       },
       "source": "design"
     },

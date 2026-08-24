@@ -28,7 +28,7 @@
 
 ### 2.1 UIlevel 新增字段
 
-源表为 `D:\Vgame\Config\GameConfig\Datas\level\UIlevel.xlsx`，sheet `level`，逻辑表 `UILevel`。
+源表为 `${VGAME_CONFIG_DATAS}/level/UIlevel.xlsx`，sheet `level`，逻辑表 `UILevel`。
 
 | 字段 | 类型 | 配置格式 | 用途 |
 |---|---|---|---|

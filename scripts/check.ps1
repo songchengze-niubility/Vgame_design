@@ -166,6 +166,8 @@ $portableExtensions = @(".md", ".html", ".toml", ".py", ".ps1", ".bat")
 $trackedFiles = git -c core.quotepath=false -C $Root ls-files 2>$null
 foreach ($relativePath in $trackedFiles) {
     if ($relativePath -like "knowledge-graph/understand-anything-new/*") { continue }
+    # archive/ 是原始历史证据快照；机器路径属于证据内容，不能为了可移植性改写原文。
+    if ($relativePath -like "archive/*") { continue }
     $extension = [System.IO.Path]::GetExtension($relativePath).ToLowerInvariant()
     if ($portableExtensions -notcontains $extension) { continue }
     $fullPath = Join-Path $Root $relativePath
@@ -180,6 +182,7 @@ $largeDocs = Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction Silent
     Where-Object { $_.Extension -eq ".md" } |
     Where-Object {
         $_.FullName -notmatch "\\.git\\" -and
+        $_.FullName -notmatch "\\archive\\" -and
         $_.FullName -notmatch "\\knowledge-graph\\understand-anything-new\\"
     } |
     ForEach-Object {
