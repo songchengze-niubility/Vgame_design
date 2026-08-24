@@ -1,0 +1,501 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GR-03",
+  "name": "角色升星",
+  "revision": "2026-08-18.4",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本（只读）+ 数值沉淀（框架v2）",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE；升星扣除与属性刷新的服务端权威不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径（沉淀已确认），不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程或边界，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-GR-03-R02"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "角色升星是 Vgame 最高价值角色养成线：消费角色碎片（同名重复+万能碎片）与金币驱动 0→6 星推进，在星3/星5投放全属性%与二级属性偏向，在星1/2/4/6解锁天赋技能，为角色提供长期付费深度与高价值成长节点。",
+    "inScope": [
+      "角色星级（0-6）推进与星序不可跳跃规则",
+      "升星消耗资格（HeroStarAttrUp.CostItem 碎片+金币；当前星<6）",
+      "升星属性投放结构（星3/星5 全属性%+二级属性偏向；星1/2/4/6 天赋）",
+      "升星裸体属性分项更新与天赋技能激活（TalentSkill 引用）",
+      "升星在养成预算中的位置（最终基础属性%预算 0.9、二级属性偏向 0.6）"
+    ],
+    "outOfScope": [
+      "抽卡池规则、概率、保底与重复角色转化（HeroExtraReward）；该内容归 SYS-OUT-SU-01 抽卡，升星只消费碎片结果",
+      "碎片回收/招募商店与万能碎片投放渠道；该内容归 SYS-OUT-SU-03",
+      "具体升星碎片消耗数量与每级属性系数数值；该内容归 NUM-02 养成数值与经济消耗沉淀",
+      "天赋技能自身的效果与配置链；该内容归 SYS-IN-03/CH-R03，升星只引用 TalentSkill ID",
+      "角色升级/突破、星盘/能效、专武/收容物成长；各归独立养成系统"
+    ],
+    "inputs": [
+      "角色碎片增量（同名重复转化+万能碎片，由抽卡/商店/活动产出）",
+      "金币增量（猎鹰金币1）",
+      "HeroStarAttrUp 升星消耗与效果（CostItem/TalentSkill/30+属性系数）",
+      "HeroExtraReward 重复英雄补偿（抽卡侧维护，升星只消费碎片结果）"
+    ],
+    "outputs": [
+      "角色星数提升（0→6）与升星裸体属性分项更新",
+      "天赋技能激活（星1/2/4/6 对应 TalentSkill）",
+      "升星事件驱动红点刷新与裸体重算"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "现行最高价值角色养成线",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "角色升星作为天赋解锁与稀有属性投放的高价值成长节点没有争议；重复转化归抽卡，升星只消费碎片结果。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "6星节点结构、属性投放与预算已沉淀确认",
+      "status": "CONFIRMED_TARGET",
+      "note": "角色升星数值沉淀已确认星3/星5显式属性节点（全属性各0.15+二级属性0.3）、最终基础属性%预算0.9、二级属性偏向0.6、稀有二级属性当前为0。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "HeroStarAttrUp/HeroExtraReward 表存在；客户端 HeroSystem 升星资格校验可见",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；HeroStarAttrUp 注册为 TbHeroStarAttrUp，HeroSystem.CheckHeroCanStarUp 按 HeroId+Star 匹配并校验 CostItem。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "升星链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表与客户端实现证据，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在升星有序操作序列（校验碎片/金币→扣除→星数+1→属性/天赋生效→重算）"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在星序不可跳跃、当前星<6、碎片与金币充足条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "养成系统只消耗碎片/金币转化为属性与天赋，不发放奖励；重复角色转化补偿归 SYS-OUT-SU-01 抽卡"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在满星处理、天赋引用缺失、SR/R 星级结构差异与3/5星加算/累乘待确认边界"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在升星界面、星数展示、下一星效果预览与升星红点"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 HeroStarAttrUp/HeroExtraReward/Hero 配置源"
+    }
+  },
+  "flows": [
+    {
+      "id": "SYS-OUT-GR-03-F01",
+      "name": "角色升星流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-03-F01-S01",
+          "name": "预览下一星节点",
+          "description": "玩家在升星界面预览下一星效果（天赋名+属性加成数值）与碎片/金币消耗（HeroStarAttrUp.CostItem）。"
+        },
+        {
+          "id": "SYS-OUT-GR-03-F01-S02",
+          "name": "校验升星资格",
+          "description": "校验当前星数<6、星序依次推进（不可跳跃）、碎片（CostItem 指定 ItemId+数量）与金币充足（见 SYS-OUT-GR-03-C01/C02）。"
+        },
+        {
+          "id": "SYS-OUT-GR-03-F01-S03",
+          "name": "扣除与升星",
+          "description": "服务端扣除碎片+金币，星数+1；客户端 CRespHeroRisingStar 回包触发 HeroStarUp 事件。"
+        },
+        {
+          "id": "SYS-OUT-GR-03-F01-S04",
+          "name": "属性与天赋生效",
+          "description": "星3/星5 投放全属性%+二级属性偏向并更新裸体升星分项；星1/2/4/6 激活 TalentSkill 指定天赋技能（见 SYS-OUT-GR-03-R04）。"
+        },
+        {
+          "id": "SYS-OUT-GR-03-F01-S05",
+          "name": "刷新红点与面板",
+          "description": "RefreshHeroUpgradeRedDot 重估升星红点（所有角色）；面板展示星数与属性/天赋变化。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GR-03-R01",
+      "name": "六星节点结构与星序推进",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "角色从0星到6星依次推进，星序不可跳跃（不可跨星激活）；星1/2/4/6 解锁天赋，星3/5 投放全属性%+二级属性偏向。",
+      "sourceFact": "HeroStarAttrUp.xlsx 注册为 TbHeroStarAttrUp，按 HeroId+Star 索引；HeroSystem.InitHeroMaxStarAttrDic 遍历 TbHeroStarAttrUp 取最大 Star，CheckHeroCanStarUp 按 HeroId+当前 Star 匹配下一星级配置；沉淀确认 6 星节点结构与显式属性节点在星3/星5。",
+      "acceptance": "升星只能逐星推进；每个 HeroId+Star 有唯一 HeroStarAttrUp 行；满星后不可继续升星。",
+      "relatedIds": [
+        "SYS-OUT-SU-01",
+        "SYS-IN-03",
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV01",
+        "SYS-OUT-GR-03-EV03",
+        "SYS-OUT-GR-03-EV04",
+        "SYS-OUT-GR-03-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-03-R02",
+      "name": "升星碎片与金币消耗",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "升星消耗角色碎片（同名重复转化+万能碎片）+金币，由 HeroStarAttrUp.CostItem 定义每次升星的 ItemId 与数量；具体碎片数量只在 NUM-02/经济消耗沉淀维护，本正文不复制数字。",
+      "sourceFact": "HeroSystem.CheckHeroCanStarUp 读取 nextStarCfg.CostItem 并逐项校验持有量；反推 Design R-02 指出碎片来源为同名重复+万能碎片，具体数量以 HeroStarAttrUp.CostItem 为准。(万能碎片存在性见EX03/Q03，待确认)",
+      "acceptance": "升星消耗只读 HeroStarAttrUp.CostItem；碎片身份与堆叠归 SYS-OUT-SU-04，碎片来源与重复转化归 SYS-OUT-SU-01/SYS-OUT-SU-03。",
+      "relatedIds": [
+        "SYS-OUT-SU-01",
+        "SYS-OUT-SU-03",
+        "SYS-OUT-SU-04",
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV01",
+        "SYS-OUT-GR-03-EV04",
+        "SYS-OUT-GR-03-EV05",
+        "SYS-OUT-GR-03-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-03-R03",
+      "name": "升星属性投放与预算",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "星3/星5 投放全属性%（各0.15，显式合计0.30）+二级属性偏向（每次0.3，合计0.6）；最终基础属性%预算0.9（含星1/2/4/6天赋战力折算）；稀有二级属性当前为0。",
+      "sourceFact": "角色升星数值沉淀确认星3/星5 显式属性节点、最终基础属性%预算0.9、二级属性偏向0.6、稀有二级属性0；反推 Design R-03 提及 30+ 属性系数字段（HpCoef/PhysicsAttackCoef 等）。",
+      "acceptance": "升星属性投放结构与预算以 NUM-02 升星沉淀为权威；具体属性系数以 HeroStarAttrUp 字段为准，本正文不复制数字。",
+      "relatedIds": [
+        "NUM-02",
+        "CB-R03",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV03",
+        "SYS-OUT-GR-03-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-03-R04",
+      "name": "天赋解锁与技能引用",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "到达星1/2/4/6 时激活 HeroStarAttrUp.TalentSkill 指定的天赋技能 ID，角色技能池更新；天赋技能效果与配置链归 SYS-IN-03/CH-R03，本正文只引用不复制。",
+      "sourceFact": "HeroSystem.GenerateHeroDataByCfg 读取 starAttrUpCfg.TalentSkill，>0 则加入技能；反推 Design R-04 指出 TalentSkill 为空时本星不投放天赋，引用技能 ID 不存在时记录配置错误。",
+      "acceptance": "天赋激活只读 TalentSkill ID；技能效果正文归 SYS-IN-03/CH-R03；TalentSkill 引用缺失时记录配置错误而非崩溃。",
+      "relatedIds": [
+        "SYS-IN-03",
+        "CH-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV01",
+        "SYS-OUT-GR-03-EV04",
+        "SYS-OUT-GR-03-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-03-R05",
+      "name": "重复角色转化归属边界",
+      "status": "CONFIRMED_TARGET_AUTHORITY_EXTERNAL",
+      "targetRule": "重复角色转化（抽卡获得已拥有同名角色→碎片补偿，HeroExtraReward）由 SYS-OUT-SU-01 抽卡拥有，升星只消费碎片结果；本正文不复制抽卡转化规则。",
+      "sourceFact": "HeroExtraReward.xlsx 注册为 HeroExtraRewardModel；反推 Design R-05 描述重复英雄补偿触发与发放，落地点为 HeroExtraReward→Drop 逻辑表（抽卡掉落重复转化），属抽卡侧；沉淀明确升星不定义碎片来源或经济供给。",
+      "acceptance": "重复转化规则归 SYS-OUT-SU-01；升星系统只消费碎片，不维护第二套转化规则。",
+      "relatedIds": [
+        "SYS-OUT-SU-01",
+        "SYS-OUT-SU-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV02",
+        "SYS-OUT-GR-03-EV03",
+        "SYS-OUT-GR-03-EV04"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GR-03-C01",
+      "name": "升星资格",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "可升星需：存在下一星级 HeroStarAttrUp 配置（HeroId+当前Star）、CostItem 非空且碎片/金币充足、当前星<6；HeroSystem.CheckHeroCanStarUp 逐项校验 CostItem。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV01",
+        "SYS-OUT-GR-03-EV04",
+        "SYS-OUT-GR-03-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-03-C02",
+      "name": "星序不可跳跃",
+      "status": "CONFIRMED_TARGET",
+      "rule": "升星必须按 0→1→2→3→4→5→6 依次推进，不可跨星激活（如直接从2星跳4星）；下一星级配置不存在即视为满星。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV03",
+        "SYS-OUT-GR-03-EV04"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GR-03-EX01",
+      "name": "SR/R 星级结构差异待确认",
+      "status": "P2_GAP",
+      "rule": "反推 Design R-06 工作假设 SR/R 品质是否同样6星结构（还是4星/5星）待确认；天赋/属性节点可能少于 SSR。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-03-EX02",
+      "name": "3/5星属性加成加算/累乘待确认",
+      "status": "P2_GAP",
+      "rule": "反推 Design 工作假设 3星和5星的全属性+15%是累乘还是加算、是否与品质系数形成不同乘区待确认；需以 HeroStarAttrUp 实际字段为准。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-03-EX03",
+      "name": "万能碎片存在性与 ItemId 待确认",
+      "status": "P2_GAP",
+      "rule": "反推 Design 工作假设万能碎片（跨角色）是否存在及 ItemId 待确认；影响升星碎片供给与 F2P 升星速度。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV04"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GR-03-UI01",
+      "name": "升星界面",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示星数（空心/实心星）、下一星效果预览（天赋名+属性加成数值）、碎片/金币消耗与获取途径；满星后不可继续升星。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-03-UI02",
+      "name": "升星红点",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "HeroSystem 对所有角色维护 StarUpPrefix 红点，CheckHeroCanStarUp 为真时点亮升星红点。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV04"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GR-03-CFG01",
+      "name": "HeroStarAttrUp",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\HeroStarAttrUp.xlsx",
+      "role": "升星消耗与效果：HeroId+Star→CostItem(碎片)+TalentSkill+30+属性系数",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-03-CFG02",
+      "name": "HeroExtraReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\HeroExtraReward.xlsx",
+      "role": "重复英雄补偿（抽卡侧维护，升星只消费碎片结果）",
+      "status": "WORKING_COPY_SOURCE_AUTHORITY_EXTERNAL"
+    },
+    {
+      "id": "SYS-OUT-GR-03-CFG03",
+      "name": "Hero",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\Hero.xlsx",
+      "role": "角色基础信息 HeroId/Quality/HeroClass",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GR-03-REL01",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-01",
+      "targetName": "角色/新手卡池",
+      "description": "升星消费抽卡重复转化的角色碎片结果；重复转化规则归 SYS-OUT-SU-01，升星不复制。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV02"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GR-03-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-03",
+      "targetName": "碎片回收/招募商店",
+      "description": "升星消费碎片回收/招募商店提供的角色碎片与万能碎片。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV02"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GR-03-REL03",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-03",
+      "targetName": "技能、Buff 与效果",
+      "description": "来源：HeroStarAttrUp.TalentSkill 字段(EV01)与 HeroSystem.GenerateHeroDataByCfg 读取逻辑(EV05)显示星1/2/4/6 激活天赋技能 ID。推导：升星到达指定星数时 TalentSkill>0 则加入角色技能池，构成 builds 关系指向 SYS-IN-03 技能系统。推导边界：TalentSkill 字段存在与客户端读取逻辑已由工作副本确认，但技能池刷新的服务端权威不可见，天赋技能实际生效链路属推断。UNKNOWN：服务端是否在升星回包后同步刷新技能池、天赋技能是否需额外激活条件仍未知。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-03-REL04",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "CB-R03",
+      "targetName": "属性与计算",
+      "description": "来源：角色升星数值沉淀(EV03)确认星3/星5投放全属性%+二级属性偏向，HeroStarAttrUp 属性系数字段(EV01)为配置源。推导：升星到达星3/5时按系数字段加算属性，经裸体属性分项进入战斗属性计算(CB-R03)，构成 builds 关系。推导边界：属性投放结构与预算已由沉淀确认，但具体系数值与品质差异的服务端计算权威不可见，属性如何并入战斗公式乘区属推断。UNKNOWN：SR/R品质是否同结构、3/5星加算还是累乘仍待确认(见Q01/Q02)。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-03-REL05",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-02",
+      "targetName": "养成数值",
+      "description": "升星属性投放预算与碎片消耗曲线由养成数值域约束。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV03"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-GR-03-REL06",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：角色升星经济消耗沉淀(EV06)定义升星碎片/金币消耗与供需口径，HeroStarAttrUp.CostItem(EV01)为消耗配置源。推导：升星每次消耗的碎片数量与金币量由经济数值域(NUM-04)定价与平衡，碎片价值由抽卡重复转化与万能碎片供给决定，构成 prices/incoming 关系。推导边界：消耗曲线与碎片定价已在沉淀中给出口径，但万能碎片是否存在及 ItemId 未确认(EV04/Q03)，碎片实际市场价值属推断。UNKNOWN：万能碎片供给渠道与跨角色碎片经济影响仍未知。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GR-03-EV01",
+      "kind": "source-excel",
+      "label": "HeroStarAttrUp.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/hero/HeroStarAttrUp.xlsx",
+      "location": "本机SVN工作副本；逻辑表 TbHeroStarAttrUp；HeroId+Star→CostItem/TalentSkill/30+属性系数；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-03-EV02",
+      "kind": "source-excel",
+      "label": "HeroExtraReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/hero/HeroExtraReward.xlsx",
+      "location": "本机SVN工作副本；逻辑表 HeroExtraReward；重复英雄补偿 HeroId→碎片ItemId+数量（抽卡侧权威）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_AUTHORITY_EXTERNAL"
+    },
+    {
+      "id": "SYS-OUT-GR-03-EV03",
+      "kind": "numeric-deposit",
+      "label": "角色升星数值沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/角色升星数值沉淀-2026-07-07.md",
+      "location": "核心口径、各角色升星属性选择、验算结论、边界说明",
+      "status": "CONFIRMED_TARGET"
+    },
+    {
+      "id": "SYS-OUT-GR-03-EV04",
+      "kind": "reverse-design",
+      "label": "角色升星 Design Doc",
+      "path": "design/角色升星Design Doc.md",
+      "location": "R-01~R-06、风险评估、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GR-03-EV05",
+      "kind": "source-code",
+      "label": "HeroSystem.lua(升星)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Hero/HeroSystem.lua",
+      "location": "InitHeroMaxStarAttrDic(267)/CheckHeroCanStarUp(743) 按 HeroId+Star 匹配并校验 CostItem；CRespHeroRisingStar(202)；GenerateHeroDataByCfg(70) 读取 TalentSkill",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-03-EV06",
+      "kind": "numeric-deposit",
+      "label": "角色升星经济消耗沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/17_养成_角色升星经济消耗沉淀-2026-07-08.md",
+      "location": "升星碎片/金币消耗与供需口径（权威关系索引）",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GR-03-Q01",
+      "priority": "P2",
+      "question": "SR/R 品质是否同样为 6 星结构，还是缩减星数上限或节点内容？",
+      "impact": "影响不同品质升星消耗与天赋/属性投放差异定义。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV04"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-03-Q02",
+      "priority": "P2",
+      "question": "3星和5星的全属性+15%是累乘还是加算，是否与品质系数形成不同乘区？",
+      "impact": "影响属性天花板与全满星战力验算。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV04"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-03-Q03",
+      "priority": "P2",
+      "question": "万能碎片（跨角色）是否存在，ItemId 是什么？",
+      "impact": "影响升星碎片供给与 F2P 升星速度判断。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-03-EV04"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ]
+}

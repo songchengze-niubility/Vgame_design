@@ -1,0 +1,1287 @@
+{
+  "schema": "vgame-knowledge-authoring-source-map/v1",
+  "version": "1.0.0",
+  "systems": [
+    {
+      "systemId": "SYS-IN-01",
+      "packageId": "W1-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-IN-01.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-IN-02",
+      "packageId": "W1-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-hero-skill-config-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-IN-02.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-IN-03",
+      "packageId": "W1-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-hero-skill-config-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-IN-03.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-IN-04",
+      "packageId": "W1-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-IN-04.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-IN-05",
+      "packageId": "W1-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-level-design-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-IN-05.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-IN-06",
+      "packageId": "W1-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-level-design-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-IN-06.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-IN-07",
+      "packageId": "W1-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "accessibility-compliance",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-tutorial-onboarding-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-IN-07.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-IN-08",
+      "packageId": "W1-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-IN-08.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-02",
+      "packageId": "W2-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-02.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-03",
+      "packageId": "W2-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-03.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-04",
+      "packageId": "W2-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-04.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-05",
+      "packageId": "W2-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-05.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-06",
+      "packageId": "W2-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-06.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-07",
+      "packageId": "W2-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-07.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-08",
+      "packageId": "W2-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-08.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-09",
+      "packageId": "W2-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-09.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-10",
+      "packageId": "W2-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-10.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-11",
+      "packageId": "W1-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-11.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GP-12",
+      "packageId": "W2-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GP-12.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-01",
+      "packageId": "W1-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-01.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-02",
+      "packageId": "W2-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-hero-skill-config-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-02.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-03",
+      "packageId": "W2-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-hero-skill-config-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-03.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-04",
+      "packageId": "W2-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-hero-skill-config-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-04.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-05",
+      "packageId": "W2-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-05.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-06",
+      "packageId": "W3-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-06.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-07",
+      "packageId": "W3-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-07.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-08",
+      "packageId": "W3-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-08.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-09",
+      "packageId": "W3-A",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-09.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-GR-10",
+      "packageId": "W2-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-hero-skill-config-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-GR-10.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-01",
+      "packageId": "W3-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-01.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-02",
+      "packageId": "W3-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-02.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-03",
+      "packageId": "W3-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-03.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-04",
+      "packageId": "W1-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-04.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-05",
+      "packageId": "W1-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-05.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-06",
+      "packageId": "W3-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-06.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-07",
+      "packageId": "W3-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-07.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-08",
+      "packageId": "W3-B",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-08.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-09",
+      "packageId": "W3-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-09.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-10",
+      "packageId": "W3-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-10.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-11",
+      "packageId": "W3-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-11.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-12",
+      "packageId": "W3-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-12.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-13",
+      "packageId": "W1-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "accessibility-compliance",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-level-progression-map",
+        "vgame-outer-loop-system-map",
+        "vgame-tutorial-onboarding-map",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-13.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-14",
+      "packageId": "W3-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "planning-liveops-readiness",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-14.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    },
+    {
+      "systemId": "SYS-OUT-SU-15",
+      "packageId": "W3-C",
+      "recommendedSkills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ],
+      "seedDesignDocs": [],
+      "seedKnowledgeRefs": [
+        "knowledge-base/system-details/SYS-OUT-SU-15.json"
+      ],
+      "configAreas": [],
+      "codeAreas": [],
+      "risks": [
+        "工作副本观察不得冒充 LIVE 状态",
+        "跨来源推导必须标注 provenance"
+      ],
+      "sourceStatus": "DIRECT"
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "schema": "vgame-shared-contract-registry/v1",
+  "version": "0.3",
+  "updatedAt": "2026-08-24",
+  "note": "这些条目是去重与路由契约，不是已经冻结的游戏规则；具体规则仍以系统正文和证据状态为准。",
+  "contracts": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "name": "玩法进入与资格校验",
+      "summary": "统一表达入口开放、节点前置、挑战成本、次数、编队和加载前校验。",
+      "keywords": [
+        "进入",
+        "资格",
+        "前置",
+        "成本",
+        "体力",
+        "储能",
+        "次数",
+        "编队"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "status": "FRAMEWORK_CONTRACT"
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "name": "胜负、评价与结果上报",
+      "summary": "统一表达战斗胜负、评价条件、战利品触发和系统侧结果消费。",
+      "keywords": [
+        "胜负",
+        "评价",
+        "星级",
+        "通关",
+        "结果",
+        "结算触发"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "status": "FRAMEWORK_CONTRACT"
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "name": "奖励与结算分层",
+      "summary": "统一区分首通、重复、周期、排行、展示预览和真实入账。",
+      "keywords": [
+        "首通",
+        "重复奖励",
+        "掉落",
+        "Drop",
+        "预览",
+        "入账",
+        "奖励"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "status": "FRAMEWORK_CONTRACT",
+      "decisionRefs": [
+        "DC-B",
+        "DC-C",
+        "DC-R"
+      ]
+    },
+    {
+      "id": "CONTRACT-SWEEP",
+      "name": "扫荡与快速结算",
+      "summary": "统一表达玩法级扫荡资格：主线/高难为三星；其他玩法仅使用各自已确认规则，未确认者保持 UNKNOWN；同时覆盖成本、批量、多倍、定向扫荡、奖励边界与幂等结算。",
+      "keywords": [
+        "扫荡",
+        "快速结算",
+        "多倍",
+        "首通门槛",
+        "三星门槛",
+        "定向扫荡",
+        "批量"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "status": "APPROVED_TARGET_IMPLEMENTATION_PENDING",
+      "decisionRefs": [
+        "DC-E"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "name": "解锁、系统开放与引导",
+      "summary": "统一表达Unlock、SystemOpen、功能入口、节点开放和引导承接；配置存在不等于功能开放，系统入口开放与关卡层级开放分开判定。",
+      "keywords": [
+        "Unlock",
+        "SystemOpen",
+        "开放",
+        "解锁",
+        "引导",
+        "门槛",
+        "入口开放"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "status": "FRAMEWORK_CONTRACT"
+    },
+    {
+      "id": "CONTRACT-TASK-REPORT",
+      "name": "任务进度上报",
+      "summary": "统一表达玩法事件如何驱动章节、每日、每周及活动任务。",
+      "keywords": [
+        "任务",
+        "章节任务",
+        "进度",
+        "上报",
+        "Task"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "status": "FRAMEWORK_CONTRACT"
+    },
+    {
+      "id": "CONTRACT-FAILURE-STATE",
+      "name": "战斗失败与单位死亡状态",
+      "summary": "统一表达单位死亡、全员死亡、普通战斗失败和失败结果触发；不包含断线重试、补发或防重复入账。",
+      "keywords": [
+        "死亡",
+        "全员死亡",
+        "战斗失败",
+        "失败结果",
+        "GameOver(false)"
+      ],
+      "facets": [
+        "UNIT_DEATH",
+        "BATTLE_FAILURE",
+        "FAILURE_RESULT"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "status": "FRAMEWORK_CONTRACT"
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "name": "异常退出、重试与结算幂等",
+      "summary": "统一表达断线重连、异常退出、加载失败、重复请求、补发、回滚和防重复入账。",
+      "keywords": [
+        "断线",
+        "重连",
+        "异常退出",
+        "加载失败",
+        "幂等",
+        "重复请求",
+        "重复结算",
+        "补发",
+        "回滚"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "status": "FRAMEWORK_CONTRACT",
+      "facets": [
+        "ABNORMAL_EXIT",
+        "RETRY",
+        "IDEMPOTENCY",
+        "COMPENSATION"
+      ]
+    },
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "name": "物品、货币与资源账本",
+      "summary": "统一表达资源身份字段、类型枚举、堆叠计数、来源去向与增减日志边界；具体产销台账归经济数值域。",
+      "keywords": [
+        "物品",
+        "货币",
+        "资源身份",
+        "堆叠",
+        "账本",
+        "ItemType",
+        "ItemSubType",
+        "来源去向"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "status": "FRAMEWORK_CONTRACT",
+      "decisionRefs": [
+        "DC-O"
+      ]
+    }
+  ]
+}

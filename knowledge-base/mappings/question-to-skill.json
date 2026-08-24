@@ -1,0 +1,341 @@
+{
+  "schema": "vgame-question-to-skill/v1",
+  "rules": [
+    {
+      "id": "QSK-01",
+      "signals": [
+        "Implement WCAG 2.2 compliant interfaces with mobile accessibility, inclusive design patterns, and assistive technology support. Use when auditing accessibility, implementing ARIA patterns, building for screen readers, or ensuring inclusive user experiences.",
+        "问题明确涉及 accessibility-compliance 的职责边界"
+      ],
+      "primarySkill": "accessibility-compliance",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-02",
+      "signals": [
+        "How to read experiment results without fooling yourself. Confidence intervals, p-values, multiple testing, sequential testing, CUPED, heterogeneous treatment effects, ratio metrics, network effects, dashboard reconciliation, and the interpretation failures that produce confidently wrong shipping decisions.",
+        "问题明确涉及 experimentation-analytics 的职责边界"
+      ],
+      "primarySkill": "experimentation-analytics",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-03",
+      "signals": [
+        "Expertise in F2P economics, virtual currencies, and ethical monetization strategies. Use when game monetization, IAP, battle pass, gacha, virtual economy, LTV, ARPU, retention, pricing, or microtransactions are involved.",
+        "问题明确涉及 game-monetization 的职责边界"
+      ],
+      "primarySkill": "game-monetization",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-04",
+      "signals": [
+        "\"Game numerical design and experience analysis expert. Deep analysis of game economy systems, progression curves, resource loops, combat balance, and player experience pacing. Use this skill whenever the user mentions: game numerical design (游戏数值), economy loop (经济循环), progression curve (成长曲线), resource sink/source (资源投放/消耗), combat balance (战斗平衡), power curve (战力曲线), monetization model (付费模型), level design numbers (关卡数值), stamina/energy system (体力系统), gacha/draw probability (抽卡概率), equipment enhancement (装备强化), or any game system that involves numerical tuning and player experience evaluation. Also trigger when the user provides game design documents, numerical tables, or asks to review/optimize game parameters.\"",
+        "问题明确涉及 game-numerical-analysis 的职责边界"
+      ],
+      "primarySkill": "game-numerical-analysis",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-05",
+      "signals": [
+        "Adapt products and UI across languages and cultures, including i18n readiness, RTL layouts, text expansion, cultural assumptions, regional formats, localization testing and market-specific compliance.",
+        "问题明确涉及 localize 的职责边界"
+      ],
+      "primarySkill": "localize",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-06",
+      "signals": [
+        "Use when designing or reviewing outer-loop level progression, feature unlock schedules, reward-per-level tables, daily income pacing, upgrade thresholds, idle/dispatch/economy systems, or Excel/MD numerical plans where unlock content, capacity, subsidy/supply, price modifiers, event rewards, income, and progression time must stay synchronized.",
+        "问题明确涉及 outer-loop-progression-pacing 的职责边界"
+      ],
+      "primarySkill": "outer-loop-progression-pacing",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-07",
+      "signals": [
+        "把冻结后的游戏策划规则转成 Given-When-Then 验收用例，并建立规则、UI、配置、实现、Excel 和测试证据的追踪矩阵。用户说验收标准、测试用例、规则对账、追踪矩阵、如何证明完成时使用。",
+        "问题明确涉及 planning-acceptance-traceability 的职责边界"
+      ],
+      "primarySkill": "planning-acceptance-traceability",
+      "dependsOnSkills": [
+        "planning-feature-workflow"
+      ]
+    },
+    {
+      "id": "QSK-08",
+      "signals": [
+        "为游戏功能设计指标体系、埋点事件与属性、漏斗、留存、经济护栏和实验观测方案。用户说埋点、数据指标、漏斗、留存、上线后看什么、A/B 测试或数据复盘时使用。",
+        "问题明确涉及 planning-analytics-instrumentation 的职责边界"
+      ],
+      "primarySkill": "planning-analytics-instrumentation",
+      "dependsOnSkills": [
+        "planning-feature-workflow"
+      ]
+    },
+    {
+      "id": "QSK-09",
+      "signals": [
+        "在游戏策划需求、规则、数值、配置、UI 或实现发生变化后，分析影响并同步契约、设计、UI、Excel、验收用例和追踪矩阵。用户说需求改了、版本调整、同步改动、配置变化、补变更记录时使用。",
+        "问题明确涉及 planning-change-sync 的职责边界"
+      ],
+      "primarySkill": "planning-change-sync",
+      "dependsOnSkills": [
+        "planning-feature-workflow",
+        "planning-acceptance-traceability"
+      ]
+    },
+    {
+      "id": "QSK-10",
+      "signals": [
+        "游戏策划功能从需求想法、逐条澄清、专业设计到正式 Excel、UI、验收追踪、变更同步和人工验收的完整流程。用户问策划流程、下一步、当前进度、继续上次任务、完整策划交付、需求变化、design-lead 或 planning-workflow 时使用。",
+        "问题明确涉及 planning-feature-workflow 的职责边界"
+      ],
+      "primarySkill": "planning-feature-workflow",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-11",
+      "signals": [
+        "为游戏活动或版本功能设计 LiveOps 排期、开放范围、功能开关、灰度、回滚、补偿、跨活动冲突、上线观察和复盘。用户说上线方案、活动排期、灰度、补偿、回滚、运营配置或复盘时使用。",
+        "问题明确涉及 planning-liveops-readiness 的职责边界"
+      ],
+      "primarySkill": "planning-liveops-readiness",
+      "dependsOnSkills": [
+        "planning-feature-workflow",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "id": "QSK-12",
+      "signals": [
+        "将游戏策划需求契约中的歧义、缺口和方向分歧整理为澄清队列，并与用户每次只确认一个带选项的问题。用户说需求澄清、逐条确认、边界怎么定、还有哪些问题、需求没想清楚时使用。",
+        "问题明确涉及 planning-requirement-clarification 的职责边界"
+      ],
+      "primarySkill": "planning-requirement-clarification",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-13",
+      "signals": [
+        "Design or audit product analytics instrumentation, including event taxonomy, properties, schema versions, identity, funnels, retention cohorts, North Star metrics and data-quality debt. Use for new feature tracking plans or untrusted analytics data.",
+        "问题明确涉及 product-analytics-setup 的职责边界"
+      ],
+      "primarySkill": "product-analytics-setup",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-14",
+      "signals": [
+        "面向卡牌游戏、长线成长与 Excel 数值规划的资深游戏经济与奖励设计工作流。当 Codex 需要以资深数值策划视角设计、评审或落地奖励表、成长曲线、商店定价、里程碑奖励或经济结构时使用，尤其适用于需要遵循现有表格结构、命名口径和策划思路的场景。",
+        "问题明确涉及 senior-game-economy 的职责边界"
+      ],
+      "primarySkill": "senior-game-economy",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-15",
+      "signals": [
+        "Use for Vgame battle content configuration mapping across monsters, bosses, skills, buffs, AI behavior trees, level wave spawns, elite/boss mechanics, combat events, bullet patterns, damage effects, summons, environmental hazards, and battle feedback configuration. Trigger when asked which tables control monster stats, how a boss is configured, where skill/buff data lives, how waves are spawned in a level, what AI drives enemy behavior, how damage formulas reference config, or how battle content is authored from Excel to runtime.",
+        "问题明确涉及 vgame-battle-content-map 的职责边界"
+      ],
+      "primarySkill": "vgame-battle-content-map",
+      "dependsOnSkills": [
+        "vgame-core-understanding",
+        "vgame-config-schema"
+      ]
+    },
+    {
+      "id": "QSK-16",
+      "signals": [
+        "Use for Vgame battle difficulty tuning, character strength validation, benchmark-calibrated character comparison, full-max all-character visual quantification, peer comparison, role contribution benchmarks, standard validation scenarios, DPS calculation, TTK estimation, survival analysis, monster stat lookup by level, player power curve comparison, difficulty coefficient adjustment, mechanic value conversion, and what-if combat scenarios. Trigger when asked how long a player takes to kill a boss at stage X, whether a monster level is too hard/easy, what DPS a player needs to clear in time, whether a character is too strong or weak, how all characters compare in a quantified table, how characters compare against same-role peers or high-confidence benchmark characters, how attack/defense/support roles should be benchmarked, how changing a coefficient affects difficulty, or comparing expected vs actual combat performance at any progression point.",
+        "问题明确涉及 vgame-battle-tuning-helper 的职责边界"
+      ],
+      "primarySkill": "vgame-battle-tuning-helper",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-17",
+      "signals": [
+        "Use for Vgame character and hero kit design analysis, including role positioning, normal attacks, auto skills, ultimates, talents, energy/passive effects, star-up nodes, signature weapons, travel-ticket set skills, mapping-equipment affixes, common passives, team synergy, combat mechanism feasibility, and character-design source workbooks. Trigger when asked about a character's kit, skill logic, hero identity, role archetype, passive/talent design, weapon or equipment synergy, skill implementation risk, or how character design should route into battle, growth, config, and tuning skills.",
+        "问题明确涉及 vgame-character-kit-design-map 的职责边界"
+      ],
+      "primarySkill": "vgame-character-kit-design-map",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-18",
+      "signals": [
+        "Use for read-only Vgame configuration QA and delivery-gate audits across Datas Excel source tables, __tables__.xlsx registration, logical Drop references, UIlevel reward references, PropType formats, ItemId/DropId/RewardId integrity, shop price/item checks, DrawCard reward and price references, task/battle-pass/activity/mail reward references, and common source-vs-generated mistakes. Trigger when asked to check config quality, validate a change before delivery, audit broken references, inspect whether tables are registered, verify reward/config chains after edits, or run a read-only config QA script.",
+        "问题明确涉及 vgame-config-quality-audit 的职责边界"
+      ],
+      "primarySkill": "vgame-config-quality-audit",
+      "dependsOnSkills": [
+        "vgame-core-understanding",
+        "vgame-config-schema"
+      ]
+    },
+    {
+      "id": "QSK-19",
+      "signals": [
+        "Use for Vgame configuration-source discovery, Excel schema reading, Luban table mapping, generated JSON/code export tracing, new config table onboarding, and config validation. Trigger when a task mentions Vgame config files, Datas Excel, server_json, Luban, __tables__.xlsx, __beans__.xlsx, __enums__.xlsx, Drop/UIlevel schemas, source-vs-generated decisions, adding/registering a new config table, or asks which table/field/export/check command should be used.",
+        "问题明确涉及 vgame-config-schema 的职责边界"
+      ],
+      "primarySkill": "vgame-config-schema",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-20",
+      "signals": [
+        "Use as the Vgame project-level master skill and default project adapter for all Vgame planning, economy, progression, combat, configuration, reward, item/source-sink, feature, and gameplay-analysis tasks, including requests to read numerical-design \"沉淀 MD\". Apply this first for any Vgame request to establish project facts, route to the right specialist skill, protect source-table and evidence rules, and decide whether the task is high-level design, read-only analysis, config implementation, validation, or delivery review.",
+        "问题明确涉及 vgame-core-understanding 的职责边界"
+      ],
+      "primarySkill": "vgame-core-understanding",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-21",
+      "signals": [
+        "Use for Vgame resource-ledger and economy source/sink tracing across Items, Drop, UIlevel, level, Shop, Task, BattlePass, SignInReward, Activity, MonthCard, Mail, DrawCard, PlayerLv, ItemAccess, and related source Excel configs. Trigger when the task asks where a currency, item, ticket, stamina, growth material, equipment resource, reward package, shop cost, task reward, activity reward, gacha cost, or paid/economy resource is produced, consumed, previewed, unlocked, or economically risky.",
+        "问题明确涉及 vgame-economy-source-map 的职责边界"
+      ],
+      "primarySkill": "vgame-economy-source-map",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-22",
+      "signals": [
+        "将已评审通过的 Vgame 策划规则和 UI 规格制作成可由 UI/UE、策划与程序继续编辑的 Figma 游戏界面、组件库、Prototype 交互流和程序/UE/UMG 交接清单。用户要求正式可编辑 UI、Figma 源文件、游戏 HUD/菜单、组件变体、切图标记、UE/UMG 或 Unity/uGUI 开发交接，或从 HTML 原型升级为 Figma 交付时使用；不要用于仅需 HTML 示意图或直接修改引擎 Prefab/Widget Blueprint 的任务。",
+        "问题明确涉及 vgame-figma-ui 的职责边界"
+      ],
+      "primarySkill": "vgame-figma-ui",
+      "dependsOnSkills": [
+        "planning-feature-workflow"
+      ]
+    },
+    {
+      "id": "QSK-23",
+      "signals": [
+        "Use for Vgame growth-to-combat conversion analysis across character level/breakthrough, star map, star-up, signature weapon, travel-ticket equipment, mapping equipment, gems, inscriptions, turret/base-related growth, battle attributes, panel conversion, standard player model, power curve, and formal gameplay verification. Trigger when asked how a growth system affects combat performance, which gameplay modes verify a growth line, what a resource or module ultimately improves, or how mainline/resource dungeons/gacha/equipment progression converts into DPS, survival, uptime, boss handling, endurance, PVPVE efficiency, tower depth, or mythic-dungeon readiness.",
+        "问题明确涉及 vgame-growth-combat-conversion-map 的职责边界"
+      ],
+      "primarySkill": "vgame-growth-combat-conversion-map",
+      "dependsOnSkills": [
+        "vgame-core-understanding",
+        "vgame-character-kit-design-map"
+      ]
+    },
+    {
+      "id": "QSK-24",
+      "signals": [
+        "Use for Vgame hero/character definition, skill system configuration, buff system, hero attributes, hero ascension/breakthrough, hero star-up, exclusive weapon config, efficiency/star-map nodes, skill editor workflow, skill action types, buff effects, skill data serialization pipeline, hero-skill-buff cross-table relationships, and any task involving how characters and their abilities are configured from Excel to runtime. Trigger when asked how a hero is defined, how skills are configured, how buffs work, how the skill editor produces runtime data, how hero stats scale, how ascension/star/efficiency systems are configured, or how to add/modify a hero's skill or buff.",
+        "问题明确涉及 vgame-hero-skill-config-map 的职责边界"
+      ],
+      "primarySkill": "vgame-hero-skill-config-map",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-25",
+      "signals": [
+        "自动为 Vgame 项目事实、系统盘点、规则流程、系统关系、设计影响、当前状态、配置字段、源码与证据核验问题选择最小知识包。用于任何需要从项目级策划知识库定位系统、共享契约或原始证据的请求；会自动区分 quick、design、audit 深度，并明确 Design、工作副本、镜像与 Production/LIVE 的来源边界。",
+        "问题明确涉及 vgame-knowledge-router 的职责边界"
+      ],
+      "primarySkill": "vgame-knowledge-router",
+      "dependsOnSkills": [
+        "vgame-core-understanding"
+      ]
+    },
+    {
+      "id": "QSK-26",
+      "signals": [
+        "Use for Vgame level design, terrain layout, encounter pacing, loop zone design, moving platform configuration, camera boundary setup, level editor workflow, scene serialization pipeline, spawn placement, gameplay mode differences, level ID conventions, and the relationship between Excel config and Unity scene authoring. Trigger when asked how to design a new level, how terrain is structured, how loop zones work, how spawns are placed, how the level editor works, how to adjust encounter pacing, how level data flows from Excel to runtime, or how different gameplay modes affect level structure.",
+        "问题明确涉及 vgame-level-design-map 的职责边界"
+      ],
+      "primarySkill": "vgame-level-design-map",
+      "dependsOnSkills": [
+        "vgame-core-understanding",
+        "vgame-config-schema",
+        "vgame-battle-content-map"
+      ]
+    },
+    {
+      "id": "QSK-27",
+      "signals": [
+        "Use for Vgame level progression, chapter mapping, LevelId and LevelType tracing, gameplay unlock chains, SystemOpen/Unlock references, stamina and sweep checks, and formal gameplay config chains across mainline, resource dungeons, travel-ticket dungeons, special-equipment dungeons, infinite challenge, PVPVE, tower, mythic dungeon, and boss challenge. Use when asked where a gameplay mode is configured, when it unlocks, which level tables it touches, or how UIlevel/mainline/chapter/system-open configs connect.",
+        "问题明确涉及 vgame-level-progression-map 的职责边界"
+      ],
+      "primarySkill": "vgame-level-progression-map",
+      "dependsOnSkills": [
+        "vgame-core-understanding",
+        "vgame-config-schema"
+      ]
+    },
+    {
+      "id": "QSK-28",
+      "signals": [
+        "Use for Vgame outer-loop system mapping across gacha/draw-card, shop, tasks, daily/weekly active rewards, sign-in, battle pass, activities, mail, month card, sweep, player level rewards, social loops, paid products, quick purchase, retention cadence, monetization support, and resource-supplement relationships. Trigger when asked how Vgame's non-combat systems connect, which systems drive retention or monetization, how rewards are organized across daily/weekly/seasonal/activity loops, or how outer-loop systems supplement growth and verification gameplay.",
+        "问题明确涉及 vgame-outer-loop-system-map 的职责边界"
+      ],
+      "primarySkill": "vgame-outer-loop-system-map",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-29",
+      "signals": [
+        "Use for Vgame player progression simulation, resource accumulation modeling, day-by-day income/expense projection, growth milestone estimation, gacha expected pulls, stamina budget planning, bottleneck detection, economy validation, and what-if scenario comparison. Trigger when asked how long it takes to reach a growth milestone, how many days to max a character/weapon, what the daily/weekly resource income looks like, where players will get stuck, whether a reward change breaks the economy curve, or when comparing different economy scenarios.",
+        "问题明确涉及 vgame-player-progression-simulator 的职责边界"
+      ],
+      "primarySkill": "vgame-player-progression-simulator",
+      "dependsOnSkills": [
+        "vgame-core-understanding",
+        "senior-game-economy"
+      ]
+    },
+    {
+      "id": "QSK-30",
+      "signals": [
+        "Use for Vgame reward implementation and validation across Drop and UIlevel source Excel configs, including first-clear rewards, repeat drops, fixed rewards, random weighted packages, DropId allocation, UI preview Reward/FirstReward fields, and logical Drop reference checks.",
+        "问题明确涉及 vgame-reward-drop-sync 的职责边界"
+      ],
+      "primarySkill": "vgame-reward-drop-sync",
+      "dependsOnSkills": [
+        "vgame-core-understanding",
+        "vgame-config-schema",
+        "vgame-economy-source-map"
+      ]
+    },
+    {
+      "id": "QSK-31",
+      "signals": [
+        "Use for Vgame newbie guide system, battle tutorial triggers, out-of-battle guide sequences/steps, SystemOpen feature unlock gating, unlock condition chains, guide editor workflow, guide progression timeline, forced vs soft guide design, guide skip/failure logic, and the relationship between planning docs and runtime config. Trigger when asked how tutorials work, how to add a new guide step, how SystemOpen controls feature visibility, how unlock conditions chain, what the new player first-hour experience looks like, how to configure battle guides, or how guide data flows from editor to runtime.",
+        "问题明确涉及 vgame-tutorial-onboarding-map 的职责边界"
+      ],
+      "primarySkill": "vgame-tutorial-onboarding-map",
+      "dependsOnSkills": []
+    },
+    {
+      "id": "QSK-32",
+      "signals": [
+        "将 Vgame 策划需求契约、核心规则和 UI 规格转成可交互 HTML 原型、真实渲染的页面/组件 PNG 与可追踪的 ui-asset-manifest.json。策划交付档位为 UI_ONLY 或 DOC_UI，或用户要求搭建 UI 原型图、页面流程、组件状态、交互演示、策划案嵌图时使用。",
+        "问题明确涉及 vgame-ui-prototype 的职责边界"
+      ],
+      "primarySkill": "vgame-ui-prototype",
+      "dependsOnSkills": [
+        "planning-feature-workflow"
+      ]
+    },
+    {
+      "id": "QSK-33",
+      "signals": [
+        "Use for Vgame version milestone tracking, feature release status, feature switches (SystemOpen/功能开关), AB test mapping, gray release tracking, hotfix history, deprecated feature lifecycle, and build/branch/environment mapping. Trigger when asked which features are live/gray/pending/deprecated, what version introduced a feature, how SystemOpen controls runtime availability, which features are behind AB flags, what the release cadence looks like, or how to plan content for an upcoming version.",
+        "问题明确涉及 vgame-version-release-map 的职责边界"
+      ],
+      "primarySkill": "vgame-version-release-map",
+      "dependsOnSkills": []
+    }
+  ]
+}

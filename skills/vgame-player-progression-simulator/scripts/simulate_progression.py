@@ -32,6 +32,8 @@ def load_from_excel() -> Tuple[dict, dict, dict, dict, dict, dict]:
     从 Vgame经济框架.xlsx 自动读取最新数据。
     返回: (CHARACTER_LEVEL_EXP, CHARACTER_LEVEL_GOLD, WEAPON_LEVEL_EXP, WEAPON_LEVEL_GOLD, MAINLINE_REWARDS, MAINLINE_STAGE_COUNT)
 
+    注意：旧经济框架中的专武成本已废弃。为保持函数返回结构兼容，专武字典固定返回空，不参与默认模拟。
+
     Excel 结构约定（已验证）:
     - Sheet "角色升级": Row 7-66, B=等级, E=累计经验, G=累计金币
     - Sheet "专武": Row 7-66, B=等级, E=累计经验(SSR), G=累计金币
@@ -65,19 +67,9 @@ def load_from_excel() -> Tuple[dict, dict, dict, dict, dict, dict]:
                 char_exp[level] = int(cum_exp)
                 char_gold[level] = int(cum_gold) if cum_gold else int(cum_exp * 0.5)
 
-    # === 专武 ===
-    ws = wb["专武"]
+    # 旧专武成本已废弃：保留空字典以兼容调用方，但不读取旧 Sheet。
     weap_exp = {}
     weap_gold = {}
-    for row in range(7, 67):  # Row 7-66, Level 1-60
-        level = ws.cell(row=row, column=2).value  # Col B
-        cum_exp = ws.cell(row=row, column=5).value  # Col E
-        cum_gold = ws.cell(row=row, column=7).value  # Col G
-        if level is not None and cum_exp is not None:
-            level = int(level)
-            if level % 5 == 0 or level in (10, 20, 30, 40, 50, 60):
-                weap_exp[level] = int(cum_exp)
-                weap_gold[level] = int(cum_gold) if cum_gold else int(cum_exp * 0.1)
 
     # === 主线副本 ===
     ws = wb["主线副本"]
@@ -158,17 +150,12 @@ CHARACTER_LEVEL_GOLD = {
     35: 85000, 40: 140000, 45: 210000, 50: 315000, 55: 550000, 60: 961250
 }
 
-# 专武升级 EXP 需求（累计，SSR）
-WEAPON_LEVEL_EXP = {
-    5: 5000, 10: 15000, 20: 60000, 30: 210000, 40: 560000, 50: 1260000, 60: 2634500
-}
+# 旧专武成长曲线已废弃。空表确保默认模拟不会消费历史成本。
+WEAPON_LEVEL_EXP = {}
+WEAPON_LEVEL_GOLD = {}
 
-# 专武升级金币需求
-WEAPON_LEVEL_GOLD = {
-    5: 500, 10: 1500, 20: 6000, 30: 21000, 40: 56000, 50: 126000, 60: 263450
-}
-
-# 主线首通奖励
+# 主线首通奖励。第 5–7 章在旧经济框架中无可用参数，内置模型明确按 0 处理，
+# 不用第 4 章外推冒充当前奖励。需精确模拟时必须回源当前 UIlevel/Drop。
 MAINLINE_REWARDS = {
     # chapter: (gold_normal, gold_boss, exp_type, exp_qty_normal, exp_qty_boss, diamond_per_stage)
     0: (5000, 10000, 500, 6, 10, 20),      # 5关, 经验低(500)
@@ -176,9 +163,13 @@ MAINLINE_REWARDS = {
     2: (15000, 30000, 2000, 8, 12, 20),     # 15关, 经验中
     3: (20000, 40000, 2000, 12, 20, 20),    # 15关, 经验中
     4: (25000, 50000, 2000, 16, 24, 20),    # 15关, 经验中
+    5: (0, 0, 0, 0, 0, 0),
+    6: (0, 0, 0, 0, 0, 0),
+    7: (0, 0, 0, 0, 0, 0),
 }
 
-MAINLINE_STAGE_COUNT = {0: 5, 1: 10, 2: 15, 3: 15, 4: 15}
+# 2026-08-20 MainLevel.xlsx 工作副本观察：99 个 LevelType_Main 节点，章节 0–7。
+MAINLINE_STAGE_COUNT = {0: 4, 1: 8, 2: 12, 3: 15, 4: 15, 5: 15, 6: 15, 7: 15}
 
 
 @dataclass
@@ -198,7 +189,7 @@ class ResourceState:
 class ProgressState:
     """进度状态"""
     day: int = 0
-    mainline_stage: int = 0  # 已通关的总关卡数 (0-60)
+    mainline_stage: int = 0  # 已通关的总节点数，上限由 MAINLINE_STAGE_COUNT 动态决定
     character_level: int = 1
     character_exp_used: int = 0
     character_gold_used: int = 0
@@ -237,7 +228,7 @@ class ScenarioParams:
     sign_in_daily_diamond: int = 20   # 签到日均钻石
     resource_dungeon_gold: int = 30000   # 金币本日收入
     resource_dungeon_char_exp: int = 12000  # 角色经验本日收入（EXP值）
-    resource_dungeon_weap_exp: int = 8000   # 专武经验本日收入（EXP值）
+    resource_dungeon_weap_exp: int = 0      # 旧专武产量已废弃；默认模型固定为 0
     mainline_stages_per_day: int = 4  # 每日主线推进关卡数
     gacha_strategy: str = "save_for_pity"
     stamina_waste_ratio: float = 0.0  # 体力浪费比例
@@ -256,7 +247,7 @@ def get_scenario(name: str) -> ScenarioParams:
             daily_task_gold=20000, daily_task_diamond=30, daily_task_exp=4000,
             weekly_task_diamond=150, sign_in_daily_gold=5000, sign_in_daily_diamond=20,
             resource_dungeon_gold=30000, resource_dungeon_char_exp=12000,
-            resource_dungeon_weap_exp=8000, mainline_stages_per_day=4,
+            resource_dungeon_weap_exp=0, mainline_stages_per_day=4,
         ),
         "f2p_casual": ScenarioParams(
             name="f2p_casual",
@@ -265,7 +256,7 @@ def get_scenario(name: str) -> ScenarioParams:
             daily_task_gold=14000, daily_task_diamond=20, daily_task_exp=2800,
             weekly_task_diamond=100, sign_in_daily_gold=5000, sign_in_daily_diamond=20,
             resource_dungeon_gold=20000, resource_dungeon_char_exp=8000,
-            resource_dungeon_weap_exp=5000, mainline_stages_per_day=3,
+            resource_dungeon_weap_exp=0, mainline_stages_per_day=3,
             stamina_waste_ratio=0.3,
         ),
         "light_spender": ScenarioParams(
@@ -275,7 +266,7 @@ def get_scenario(name: str) -> ScenarioParams:
             daily_task_gold=20000, daily_task_diamond=30, daily_task_exp=4000,
             weekly_task_diamond=150, sign_in_daily_gold=5000, sign_in_daily_diamond=20,
             resource_dungeon_gold=40000, resource_dungeon_char_exp=16000,
-            resource_dungeon_weap_exp=10000, mainline_stages_per_day=5,
+            resource_dungeon_weap_exp=0, mainline_stages_per_day=5,
         ),
         "medium_spender": ScenarioParams(
             name="medium_spender",
@@ -284,7 +275,7 @@ def get_scenario(name: str) -> ScenarioParams:
             daily_task_gold=20000, daily_task_diamond=30, daily_task_exp=4000,
             weekly_task_diamond=150, sign_in_daily_gold=5000, sign_in_daily_diamond=20,
             resource_dungeon_gold=50000, resource_dungeon_char_exp=20000,
-            resource_dungeon_weap_exp=14000, mainline_stages_per_day=5,
+            resource_dungeon_weap_exp=0, mainline_stages_per_day=5,
         ),
     }
     return scenarios.get(name, scenarios["f2p_active"])
@@ -292,7 +283,7 @@ def get_scenario(name: str) -> ScenarioParams:
 
 def get_mainline_reward(stage_index: int) -> Dict[str, int]:
     """获取某关的首通奖励"""
-    # stage_index 从 0 开始 (0-59)
+    # stage_index 从 0 开始，上限由 MAINLINE_STAGE_COUNT 动态决定。
     cumulative = 0
     for chapter, count in MAINLINE_STAGE_COUNT.items():
         if stage_index < cumulative + count:
@@ -365,7 +356,7 @@ def simulate(params: ScenarioParams, days: int) -> List[DailyReport]:
         resources.weapon_exp += dungeon_weap_exp
 
         # 3. 主线首通（一次性）
-        stages_today = min(params.mainline_stages_per_day, 60 - progress.mainline_stage)
+        stages_today = min(params.mainline_stages_per_day, sum(MAINLINE_STAGE_COUNT.values()) - progress.mainline_stage)
         mainline_gold_today = 0
         mainline_diamond_today = 0
         mainline_exp_today = 0
@@ -460,14 +451,15 @@ def print_summary(reports: List[DailyReport], scenario_name: str):
 
     # 关键时间点
     checkpoints = [1, 3, 7, 14, 30, 60, 90]
-    print(f"\n{'天数':<6}{'角色等级':<10}{'专武等级':<10}{'主线进度':<10}{'金币存量':<12}{'钻石存量':<10}")
+    total_mainline_stages = sum(MAINLINE_STAGE_COUNT.values())
+    print(f"\n{'天数':<6}{'角色等级':<10}{'主线进度':<14}{'金币存量':<12}{'钻石存量':<10}")
     print("-" * 58)
     for cp in checkpoints:
         if cp <= len(reports):
             r = reports[cp - 1]
             t = r.totals
-            print(f"Day {cp:<3}{t['character_level']:<10}{t['weapon_level']:<10}"
-                  f"{t['mainline_stage']}/60{'':<5}{t['gold']:<12}{t['diamond']:<10}")
+            print(f"Day {cp:<3}{t['character_level']:<10}"
+                  f"{t['mainline_stage']}/{total_mainline_stages}{'':<5}{t['gold']:<12}{t['diamond']:<10}")
 
     # 里程碑时间线
     print(f"\n里程碑:")
@@ -488,12 +480,11 @@ def print_summary(reports: List[DailyReport], scenario_name: str):
     final = reports[-1].totals
     print(f"\n最终状态 (Day {len(reports)}):")
     print(f"  角色等级: Lv{final['character_level']}")
-    print(f"  专武等级: Lv{final['weapon_level']}")
-    print(f"  主线进度: {final['mainline_stage']}/60")
+    print(f"  主线进度: {final['mainline_stage']}/{total_mainline_stages}")
     print(f"  金币存量: {final['gold']:,}")
     print(f"  钻石存量: {final['diamond']:,}")
     print(f"  角色经验余量: {final['character_exp']:,}")
-    print(f"  专武经验余量: {final['weapon_exp']:,}")
+    print("  C-001: 已确认专武向收容物迁移并保留一个大版本兼容期；实施与数据方案仍待完成，本模拟不输出专武成长结论。")
 
 
 def main():

@@ -3,11 +3,19 @@
 ## 检索优先级
 
 1. 用户当前明确给出的文件、表名、功能名、ID、页签。
-2. `${VGAME_OUTPUT_ROOT}` 中已有任务产物。
-3. `vgame-core-understanding` 与 `senior-game-economy` 的 references。
-4. `${VGAME_ROOT}\策划` 下的项目策划文档。
-5. `${VGAME_ROOT}\Config` 下的源表、导出配置、Luban 工具和规则文档。
-6. `${VGAME_ROOT}\HorizonFlyProject` 下的客户端实现、资源和 UI。
+2. 用户说“沉淀 MD / 沉淀md / 数值沉淀”时，先查 `${VGAME_SOURCE_DOCS_ROOT}\框架v2\03_沉淀MD`；这是该术语的默认且强制入口。
+3. `${VGAME_OUTPUT_ROOT}` 中已有任务产物。
+4. `vgame-core-understanding` 与 `senior-game-economy` 的 references。
+5. `${VGAME_ROOT}\策划` 下的项目策划文档。
+6. `${VGAME_ROOT}\Config` 下的源表、导出配置、Luban 工具和规则文档。
+7. `${VGAME_ROOT}\HorizonFlyProject` 下的客户端实现、资源和 UI。
+
+## “沉淀 MD”术语规则
+
+- 必须在 `${VGAME_SOURCE_DOCS_ROOT}\框架v2\03_沉淀MD` 内按功能名、旧名、配置名和别名共同检索。
+- 不得用 `design/*.md`、skill 的 `references/*.md`、`_reports/*.md` 或 Excel 替代用户指定的“沉淀 MD”。
+- 只有沉淀 MD 不存在或用户要求交叉验证时，才补读其它来源，并明确标注来源层级。
+- 已知别名示例：`无限挑战` = `无限之旅` = `neural_roam`。
 
 ## 主要资料入口
 

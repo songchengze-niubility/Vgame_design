@@ -1,0 +1,844 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GR-06",
+  "name": "旅券",
+  "revision": "2026-08-18.4",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本（只读）+ design 草稿 + 客户端 Lua 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在 strategy 配置族与客户端入口线索，不证明 Production/LIVE；旅券的装备/合成/升级/套装生效与属性转化的服务端权威不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径（反推草稿或 ConfigReady 表），不代表已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（strategy 配置族或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由 Design 草稿 + 配置表 + 客户端线索归纳出的流程或边界，需主策确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-GR-06-R05",
+        "SYS-OUT-GR-06-R06",
+        "SYS-OUT-GR-06-R07"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "旅券（Strategy/锦囊）是角色6槽位装备式成长线：通过4+2套装结构、品质与随机副属性驱动配装深度与长线追深，把旅券等级、品质、主副属性与套装效果转成角色战斗属性与机制增强，是中后期稳定属性与套装构筑的来源。",
+    "inScope": [
+      "旅券6槽位装备绑定与套装激活判定（2件套属性 / 4件套技能）",
+      "旅券品质、主属性（PrimAttr）、副属性（SecAttr）与权重池规则",
+      "旅券等级成长（StrategyLv 升级经验）与主属性随等级成长",
+      "旅券三级合成（StrategyCraft：基础/高级/特级）产出规则与消耗",
+      "旅券分解回收（StrategyResolve）与推荐配装（StrategyRecommendation）",
+      "旅券套装属性与4件套技能（StrategySuits/SetAttr/SetSkill）到战斗属性/Buff 的转化入口"
+    ],
+    "outOfScope": [
+      "旅券的掉落产出与旅券副本玩法；该内容归 SYS-OUT-GP-04（旅券副本产出旅券），本系统只消费产出的旅券实例",
+      "旅券作为物品的身份、堆叠与背包账本；该内容归 SYS-OUT-SU-04",
+      "旅券副本首通/复刷奖励与 Drop 数量；该内容归 SYS-OUT-SU-05",
+      "4件套技能/Buff 在局内的具体效果与状态机；该内容归 SYS-IN-03",
+      "战斗属性最终聚合与公式；该内容归 CB-R03/NUM-03",
+      "升级/合成/分解的具体数值曲线（经验、消耗、回收系数）；该内容归 NUM-02/NUM-04"
+    ],
+    "inputs": [
+      "旅券实例（SetId/Part/Quality/Lv/MainAttr/SubAttrs，由旅券副本等玩法产出）",
+      "升级材料（旅券经验券/fodder）与金币（StrategyLv.UpgradeCostExp）",
+      "合成材料（同品质旅券×3 + 合成石/锁定符，StrategyCraft.CostItem/RandomCostItem/FixMainAttrCostItem）",
+      "PrimAttr/PrimAttrWeight/SecAttr/SecAttrWeight/StrategyQuality 属性与权重配置",
+      "StrategySuits 套装定义与 SetAttr2/SetSkill/SetAtt4"
+    ],
+    "outputs": [
+      "旅券装备状态与角色6槽位绑定",
+      "2件套/4件套激活状态与套装属性/技能生效",
+      "旅券等级提升与主属性成长（写入角色属性）",
+      "合成产出的新旅券（红品质）与分解回收产出（经验/材料碎片）",
+      "供战斗属性聚合与 Buff 系统消费的旅券属性与套装效果"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "中后期角色装备式成长线（6槽位+套装）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "旅券作为角色6槽位装备+4+2套装成长线在 Design 草稿、strategy 配置族与知识库总览中身份一致；与旅券副本（GP-04 供给）是两条独立链路。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "6槽位4+2套装、4档品质、主32%/副68%权重、三级合成、等级0-5",
+      "status": "DRAFT_TARGET_REVERSE_ENGINEERED",
+      "note": "旅券系统Design Doc 为反推 Draft，含 R-01~R-07 工作假设，多项（33套一次性实装、6槽全旅券、副属性不可洗炼）标记待确认。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "strategy 配置族11表 + item_craft/StrategyCraft 已 ConfigReady；客户端仅 ItemSubType 枚举与锦囊商店骨架，核心消费链未实装",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；StrategyCards 723行、StrategySuits 33套、StrategyCraft 30条合成均已存在，但客户端 Lua 未观察到旅券装备/套装生效/属性转化的消费方，StrategyShopSystem 网络处理器被注释。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "配置存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表与配置镜像，但缺集中版本—开关—发布时间台账，且客户端核心消费链未实装，不能盖为 LIVE。"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在装备/合成/升级/分解多条有序操作序列（校验→扣除→生成/升级→套装重判→属性刷新）"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在等级上限、合成材料资格、套装件数判定与背包空位条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "旅券养成只消耗资源转化为属性/新旅券，不发放奖励；旅券掉落与首通产出归 SYS-OUT-GP-04/SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在材料不足、背包满、同旅券多角色冲突、断线回退与服务端权威不可见等边界"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在旅券装备页签、合成界面、升级/分解界面与套装效果面板等玩家可见界面"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 strategy 配置族11表 + item_craft/StrategyCraft 共12个策划配置源"
+    }
+  },
+  "flows": [
+    {
+      "id": "SYS-OUT-GR-06-F01",
+      "name": "旅券装备流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-06-F01-S01",
+          "name": "选择角色与槽位",
+          "description": "玩家在角色旅券页签选择6个槽位中的目标槽位（前槽/后槽由 Part 区分）。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F01-S02",
+          "name": "校验装备资格",
+          "description": "校验旅券未装备于其他角色、同套装同部位冲突规则与背包可用（见 SYS-OUT-GR-06-C01）；不满足走异常提示。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F01-S03",
+          "name": "装备绑定",
+          "description": "旧旅券（如有）退回背包，新旅券绑定至该槽位；装备操作免费。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F01-S04",
+          "name": "套装重判",
+          "description": "统计该角色各套装件数，重新判定2件套/4件套激活（见 SYS-OUT-GR-06-R02）；先卸除旧效果再加成。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F01-S05",
+          "name": "属性刷新",
+          "description": "触发角色属性重算，旅券主副属性与套装属性进入战斗属性聚合（见 SYS-OUT-GR-06-R04）。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-F02",
+      "name": "旅券三级合成流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-06-F02-S01",
+          "name": "选择合成等级",
+          "description": "玩家选择基础/高级/特级入口；预览消耗（3件旅券 ± 合成石/锁定符）与产出确定度（套装→+槽位→+主属性）。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F02-S02",
+          "name": "校验合成资格",
+          "description": "校验被消耗旅券未装备、未锁定、背包空位≥1、合成石/锁定符充足（见 SYS-OUT-GR-06-C02）。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F02-S03",
+          "name": "扣除与生成",
+          "description": "服务端扣除材料，生成1件红品质旅券（品质固定=1、等级固定=0、副属性随机）；基础套装随机、高级槽位确定、特级主属性确定。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F02-S04",
+          "name": "入库与刷新",
+          "description": "新旅券入背包，触发背包与战力面板刷新；合成不直接装备。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-F03",
+      "name": "旅券升级流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-06-F03-S01",
+          "name": "选择旅券与材料",
+          "description": "玩家选择旅券执行升级，投入升级材料（旅券经验券/fodder）与金币，预览升级后主属性变化。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F03-S02",
+          "name": "校验升级资格",
+          "description": "校验当前等级 < 最大等级（5）、材料与金币充足、旅券未处于异常状态（见 SYS-OUT-GR-06-C03）。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F03-S03",
+          "name": "扣除与升级",
+          "description": "扣除材料与金币，等级+1，主属性按等级系数成长；副属性不受等级影响。"
+        },
+        {
+          "id": "SYS-OUT-GR-06-F03-S04",
+          "name": "属性刷新",
+          "description": "触发角色属性重算，更新主属性；满级时升级入口替换为 MAX。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GR-06-R01",
+      "name": "旅券装备与槽位绑定",
+      "status": "DRAFT_TARGET_WORKING_COPY_CONFIGURED",
+      "targetRule": "每个角色可装备6件旅券，按 Part 槽位分为前槽（基础属性）与后槽（百分比/等级/伤害标签）；同一旅券不可同时装备于多个角色；装备操作免费。",
+      "sourceFact": "旅券系统Design Doc R-01 描述6槽位+前后槽划分与装备绑定；StrategyCards.xlsx 含 Part 字段；StrategyQuality/PrimAttrWeight 按 Part 区分主属性池。客户端 Lua 未观察到 EquipManager/装备消费方。",
+      "acceptance": "6槽位由 Part 配置驱动；同旅券不可多角色共存；装备/卸下触发套装重判与属性刷新；运行权威仍待代码确认。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV06",
+        "SYS-OUT-GR-06-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-R02",
+      "name": "套装效果激活判定（4+2结构）",
+      "status": "WORKING_COPY_CONFIGURED",
+      "targetRule": "同套装达到2件激活2件套属性、达到4件激活4件套技能；2件套与4件套独立判定；6槽位下4件套至多1个，2件套可2+2+2并存；套装变更先卸效果再加成。",
+      "sourceFact": "StrategySuits.xlsx 33套含 SetAttr2（2件套属性）、SetSkill（4件套技能）、SetAtt4（4件套属性）；SetAttr.xlsx 提供套装属性数值；Design Doc R-02 描述4+2结构与独立判定。客户端 SetEffectManager 未观察到。",
+      "acceptance": "套装件数统计与2/4件套激活只读 StrategySuits.SetAttr2/SetSkill/SetAtt4；激活状态由装备变更驱动重判。",
+      "relatedIds": [
+        "SYS-IN-03",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV07",
+        "SYS-OUT-GR-06-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-R03",
+      "name": "品质与主副属性权重体系",
+      "status": "WORKING_COPY_CONFIGURED_DESIGN_DRAFT",
+      "targetRule": "GAP：品质4档（蓝0.4/紫0.6/橙0.8/红1）决定主属性值；主属性按 Part 从 PrimAttrWeight 池抽取，副属性从 SecAttrWeight 公共池随机；主属性权重32%、副属性权重68%用于战力估值。上述品质系数与32/68权重为反推草稿数值（来源 EV01 DRAFT_REVERSE_ENGINEERED，需逐档确认），最终口径待主策与配置逐档确认后才可作为定稿规则。",
+      "sourceFact": "PrimAttr.xlsx 按品质提供 Hp/Attack/Armor 及其 Bonus/DmgBonus 与 Grow；PrimAttrWeight.xlsx 按 Part×Attr 映射；SecAttr.xlsx 提供 Crit/CritDmg/Bonus 池；SecAttrWeight.xlsx 提供 AttributeKey×Weight；StrategyQuality.xlsx 定义 InitialSecondaryAttrNum/MaxSecondaryAttrNum/LvLimited。Design Doc R-03 给出品质系数与32/68权重。具体品质档数与系数需与配置逐档对齐。",
+      "acceptance": "主副属性生成只读 PrimAttr/PrimAttrWeight/SecAttr/SecAttrWeight/StrategyQuality；品质系数与槽位属性池规则需主策与配置逐档确认。",
+      "relatedIds": [
+        "NUM-02",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV03",
+        "SYS-OUT-GR-06-EV04",
+        "SYS-OUT-GR-06-EV05",
+        "SYS-OUT-GR-06-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-R04",
+      "name": "旅券属性到战斗属性转化",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "targetRule": "旅券主副属性与套装属性进入角色属性聚合，4件套技能进入 Buff/技能系统；旅券不受角色品质系数缩放（与裸体+专武区分）。",
+      "sourceFact": "Design Doc R-03 与角色升级沉淀（品质系数边界）指出旅券不受品质系数缩放；StrategySuits.SetSkill 指向4件套技能；但客户端 Lua 未观察到旅券属性写入战斗属性的消费方，转化链路为跨源归纳。",
+      "acceptance": "旅券属性转化需有明确消费方代码与数值验收；转化是否受品质系数需以养成总览/数值沉淀为准，本正文不复制数字。",
+      "relatedIds": [
+        "CB-R03",
+        "SYS-IN-03",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-R05",
+      "name": "旅券等级成长",
+      "status": "WORKING_COPY_CONFIGURED",
+      "targetRule": "旅券等级0-5，升级消耗经验券/fodder+金币（StrategyLv.UpgradeCostExp）；升级只提升主属性（基础×品质系数×等级系数），副属性不变；等级系数递减控制膨胀。",
+      "sourceFact": "StrategyLv.xlsx 注册 ID/Lv/Quality/UpgradeCostExp；StrategyQuality.LvLimited 提供品质等级上限；Design Doc R-05 描述等级0-5与递减系数。具体经验/金币曲线权威在 NUM-02/NUM-04。",
+      "acceptance": "升级门槛只读 StrategyLv.UpgradeCostExp 与 StrategyQuality.LvLimited；具体曲线以数值沉淀为权威，本正文不复制数字。",
+      "relatedIds": [
+        "NUM-02",
+        "NUM-04",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV02",
+        "SYS-OUT-GR-06-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-R06",
+      "name": "三级合成产出规则",
+      "status": "WORKING_COPY_CONFIGURED_DESIGN_DRAFT",
+      "targetRule": "合成消耗3件旅券（基础）+ 合成石（高级/特级）+ 锁定符（特级），产出1件红品质旅券（品质1/等级0/副属性随机）；基础套装随机、高级套装+槽位确定、特级套装+槽位+主属性确定；合成仅产红，蓝紫橙仅靠掉落。",
+      "sourceFact": "item_craft/StrategyCraft.xlsx 30条合成含 StrategySuitId/StrategyType/StrategyCards/RandomCostItem/CostItem/FixMainAttrCostItem/CostCurrency/SetEffect/SortType；Design Doc R-04 描述三级合成与红品质专有。StrategyType/SortType 字段语义需与设计逐条对齐。",
+      "acceptance": "合成消耗与产出确定度只读 StrategyCraft（StrategyType/FixMainAttrCostItem 等）；红品质专有与三级递进需主策确认。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-R07",
+      "name": "分解回收闭环",
+      "status": "WORKING_COPY_CONFIGURED",
+      "targetRule": "未装备/未锁定的旅券可分解，按品质产出经验与材料碎片（StrategyResolve.Exp/ResolveGetItem）；回收率控制在合成消耗的60-70%防止无限循环。",
+      "sourceFact": "StrategyResolve.xlsx 注册 Quality/Exp/ResolveGetItem；Design Doc R-07 描述分解产出与回收率约束。具体回收系数权威在 NUM-04。",
+      "acceptance": "分解产出只读 StrategyResolve；回收率以经济数值域为权威，本正文不复制系数。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-R08",
+      "name": "推荐配装接口",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "StrategyRecommendation 按角色提供推荐旅券与主副属性优先级，作为配装引导；不强制约束玩家选择。",
+      "sourceFact": "StrategyRecommendation.xlsx 115条含 HeroId/Priority/StrategyId/PrimAttr/SecAttr；Design Doc 未单列推荐规则，此为配置观察。",
+      "acceptance": "推荐配装只读 StrategyRecommendation，按 HeroId 索引；仅作引导，不替代玩家配装自由。",
+      "relatedIds": [
+        "SYS-OUT-GR-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV10"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GR-06-C01",
+      "name": "装备资格",
+      "status": "DRAFT_TARGET",
+      "rule": "可装备需：旅券未装备于其他角色、同套装同部位冲突时以最后装备为准、背包可接收退回旅券；装备操作免费。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-C02",
+      "name": "合成资格",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "基础合成需3件任意同品质或更高品质旅券；高级额外消耗合成石、特级额外消耗锁定符；被消耗旅券未装备未锁定；背包空位≥1。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-C03",
+      "name": "升级资格",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "可升级需：当前等级 < StrategyQuality.LvLimited、升级材料与金币充足、旅券未处于出战且未锁定的异常状态。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV02",
+        "SYS-OUT-GR-06-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-C04",
+      "name": "套装件数判定",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "2件套需同套装≥2件、4件套需同套装≥4件；6槽位下4件套至多1个、2件套可2+2+2并存；0件不触发任何效果。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV09"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GR-06-EX01",
+      "name": "客户端核心消费链未实装",
+      "status": "P1_GAP",
+      "rule": "客户端 Lua 仅观察到 ItemSubType.Strategy 枚举与锦囊商店骨架（网络处理器被注释），未观察到旅券装备/套装生效/属性转化/合成/升级的服务端与客户端消费方；ConfigReady 不等于已上线。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV13",
+        "SYS-OUT-GR-06-EV14"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-EX02",
+      "name": "Design 草稿工作假设待确认",
+      "status": "P2_GAP",
+      "rule": "Design Doc 工作假设中33套一次性实装、6槽全旅券不含其他装备混装、副属性不可洗炼三项标记待确认；与映射装备差异化口径需主策裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-EX03",
+      "name": "服务端扣除与套装生效原子性不可见",
+      "status": "P2_GAP",
+      "rule": "装备/合成/升级/分解的服务端扣除、套装效果先卸后加与属性刷新的原子性、断线回退与重复请求防护在客户端不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-EX04",
+      "name": "背包满与掉落补发边界",
+      "status": "P2_GAP",
+      "rule": "背包满时合成/掉落产出的旅券是否进邮件/临时仓库、断线未领取是否进补偿邮箱，Design 提出但服务端权威不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GR-06-UI01",
+      "name": "角色旅券页签",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示6槽位、已装备旅券、套装件数(2/4、4/4)与激活高亮、战力实时预测对比；槽位图标按品质边框色区分。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-UI02",
+      "name": "合成界面",
+      "status": "TARGET_REQUIRED",
+      "rule": "提供基础/高级/特级入口，展示消耗预览与产出确定度（随机套装→+槽位→+主属性）；材料不足时按钮灰化并提示获取途径。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-UI03",
+      "name": "升级/分解界面",
+      "status": "TARGET_REQUIRED",
+      "rule": "升级展示材料消耗与主属性成长预览，满级替换为 MAX；分解支持批量筛选低品质（单次≤20）并预览回收产出；锁定旅券不可选中。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06-UI04",
+      "name": "套装效果面板",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示当前角色各套装2/4件套效果文字与激活状态，首次激活弹窗提示；4件套技能入口指向技能/Buff 说明。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV09"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GR-06-CFG01",
+      "name": "StrategySuits",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategySuits.xlsx",
+      "role": "33套套装定义：Id/Name/Icon/SetAttr2(2件套属性)/SetSkill(4件套技能)/SetAtt4(4件套属性)/ShowStrategyType/GotoId",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG02",
+      "name": "StrategyCards",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyCards.xlsx",
+      "role": "旅券卡片模板：Id/StrategySuit/Name/Part/Lv/Quality/Pic（723行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG03",
+      "name": "StrategyQuality",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyQuality.xlsx",
+      "role": "品质规则：Quality/InitialSecondaryAttrNum/MaxSecondaryAttrNum/LvLimited",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG04",
+      "name": "StrategyLv",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyLv.xlsx",
+      "role": "升级经验：ID/Lv/Quality/UpgradeCostExp（曲线权威在 NUM-02）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG05",
+      "name": "PrimAttr",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\PrimAttr.xlsx",
+      "role": "主属性按品质：Hp/Attack/Armor 及 Bonus/DmgBonus 与各自 Grow",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG06",
+      "name": "PrimAttrWeight",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\PrimAttrWeight.xlsx",
+      "role": "槽位(Part)×主属性权重映射",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG07",
+      "name": "SecAttr",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\SecAttr.xlsx",
+      "role": "副属性按品质：CritLevel/CritDmgBonusLevel/AttackBonus/HpBonus/ArmorBonus",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG08",
+      "name": "SecAttrWeight",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\SecAttrWeight.xlsx",
+      "role": "副属性抽取权重：AttributeKey/Name/Weight",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG09",
+      "name": "SetAttr",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\SetAttr.xlsx",
+      "role": "套装属性数值：HpBonus/AttackBonus/ArmorBonus/CritLevel/CritDmgBonusLevel/EnergyPreAddBonusLevel/CoolDownReduceLevel",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG10",
+      "name": "StrategyResolve",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyResolve.xlsx",
+      "role": "分解产出：Quality/Exp/ResolveGetItem（回收系数权威在 NUM-04）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG11",
+      "name": "StrategyRecommendation",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyRecommendation.xlsx",
+      "role": "推荐配装：HeroId/Priority/StrategyId/PrimAttr/SecAttr",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-CFG12",
+      "name": "StrategyCraft",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\item_craft\\StrategyCraft.xlsx",
+      "role": "三级合成/制作：StrategySuitId/StrategyType/StrategyCards/RandomCostItem/CostItem/FixMainAttrCostItem/CostCurrency/SetEffect/SortType（30条）",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GR-06-REL01",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-04",
+      "targetName": "旅券副本",
+      "description": "来源：旅券副本Design Doc(EV14)定义旅券副本产出，current-gameplay(EV16)确认旅券副本到旅券成长链路，旅券系统Design Doc(EV01)定义旅券养成输入。推导：旅券副本(GP-04)产出旅券实例与升级材料作为旅券养成输入，旅券掉落与首通产出归GP-04，本系统只消费产出的旅券，构成 supplies/incoming 关系。推导边界：产出链路已由设计文档与current-gameplay确认，但旅券副本产出数量在GP-04/Drop权威源维护。UNKNOWN：旅券副本产出节奏与旅券养成消耗曲线的供需平衡仍待经济域核算。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：StrategyLv.xlsx(EV02)定义升级消耗，StrategyCraft.xlsx(EV11)定义合成消耗，StrategyResolve.xlsx(EV10)定义分解回收，StrategyShopSystem.lua(EV13)执行操作。推导：旅券升级/合成/分解消耗旅券经验券、合成石、锁定符、金币等，扣除操作走物品账本，资源身份与堆叠归SYS-OUT-SU-04，构成 consumes/outgoing 关系。推导边界：消耗配置与客户端操作逻辑已由工作副本确认，但服务端扣除权威不可见，资源身份归属为知识目录分域结论。UNKNOWN：旅券专属资源(经验券/合成石/锁定符)的完整ItemId与获取渠道仍待SU-04确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-REL03",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "CB-R03",
+      "targetName": "属性与计算",
+      "description": "来源：PrimAttr.xlsx(EV03)/SecAttr.xlsx(EV04)定义主副属性，StrategySuits.xlsx(EV06)/SetAttr.xlsx(EV08)定义套装属性，StrategyQuality.xlsx(EV07)定义品质系数，旅券系统Design Doc(EV01)描述属性聚合。推导：旅券主副属性与套装属性进入角色战斗属性聚合(CB-R03)，旅券不受角色品质系数缩放，构成 builds/outgoing 关系。推导边界：属性配置与品质系数已由工作副本确认，但旅券属性如何并入战斗公式乘区、与其他养成属性的叠加规则属推断。UNKNOWN：旅券属性与其他养成属性的乘区归属与叠加优先级仍待战斗数值域确认。",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-REL04",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-03",
+      "targetName": "技能与Buff",
+      "description": "来源：StrategySuits.xlsx(EV06)定义套装4件套技能(SetSkill)，SetAttr.xlsx(EV08)定义套装属性触发，旅券系统Design Doc(EV01)描述套装技能。推导：旅券4件套技能(SetSkill)进入技能/Buff系统生效，具体技能效果与状态机归SYS-IN-03，构成 builds/outgoing 关系。推导边界：套装技能配置已由工作副本确认，但技能触发与Buff生效链路的服务端权威不可见，技能效果本体在SYS-IN-03侧维护。UNKNOWN：套装技能与角色固有技能/星盘技能的优先级与冲突处理仍待确认。",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-REL05",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-02",
+      "targetName": "养成数值",
+      "description": "来源：StrategyQuality.xlsx(EV07)定义品质系数，PrimAttr.xlsx(EV03)/SecAttr.xlsx(EV04)定义属性成长，StrategyLv.xlsx(EV02)定义等级系数，旅券系统Design Doc(EV01)描述成长结构。推导：旅券品质系数、主副属性成长与等级系数由养成数值域(NUM-02)约束与平衡，构成 balances/incoming 关系。推导边界：成长配置已由工作副本确认，但品质系数与属性成长在整体养成预算中的占比属养成数值域维护。UNKNOWN：旅券在整体养成预算中的占比与各品质旅券的战力差距仍待养成数值域确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-REL06",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：StrategyLv.xlsx(EV02)定义升级经验/金币消耗，StrategyCraft.xlsx(EV11)定义合成消耗，StrategyResolve.xlsx(EV10)定义分解回收系数，旅券系统Design Doc(EV01)描述经济结构。推导：旅券升级经验/金币、合成消耗与分解回收系数由经济数值域(NUM-04)定价与平衡，构成 prices/incoming 关系。推导边界：消耗与回收配置已由工作副本确认，但定价权重与经济账占比属经济数值域维护。UNKNOWN：旅券养成全周期经济成本与分解回收的经济平衡仍待经济域核算。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-REL07",
+      "type": "validates",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "来源：旅券系统Design Doc(EV01)与知识目录关系定义主线与Boss玩法为旅券验证层，current-gameplay(EV16)确认旅券配装在玩法中的验证。推导：主线(GP-01)与Boss/挑战玩法作为旅券配装与战力的阶段验证，玩家需旅券属性达到对应水平才能推进，构成 validates/incoming 关系。推导边界：验证关系为知识目录跨源归纳，本正文证据仅覆盖旅券成长曲线，玩法难度曲线在各自GP系统侧维护。UNKNOWN：各玩法对应的目标旅券配装与属性门槛的精确映射仍待节奏数值域确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GR-06-EV01",
+      "kind": "reverse-design",
+      "label": "旅券系统 Design Doc",
+      "path": "design/旅券系统Design Doc.md",
+      "location": "R-01~R-07、工作假设、风险评估",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV02",
+      "kind": "source-excel",
+      "label": "StrategyLv.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/StrategyLv.xlsx",
+      "location": "本机SVN工作副本；sheet StrategyLv；ID/Lv/Quality/UpgradeCostExp；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV03",
+      "kind": "source-excel",
+      "label": "PrimAttr.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/PrimAttr.xlsx",
+      "location": "本机SVN工作副本；sheet PrimAttr；按品质 Hp/Attack/Armor 及 Bonus/DmgBonus 与 Grow；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV04",
+      "kind": "source-excel",
+      "label": "PrimAttrWeight.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/PrimAttrWeight.xlsx",
+      "location": "本机SVN工作副本；sheet PrimAttrWeight；Part×Attr 权重；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV05",
+      "kind": "source-excel",
+      "label": "SecAttr.xlsx/SecAttrWeight.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/SecAttr.xlsx",
+      "location": "本机SVN工作副本；SecAttr 按 Quality 提供副属性池，SecAttrWeight 提供 AttributeKey×Weight；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV06",
+      "kind": "source-excel",
+      "label": "StrategyCards.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/StrategyCards.xlsx",
+      "location": "本机SVN工作副本；sheet StrategyCards；723行 Id/StrategySuit/Name/Part/Lv/Quality/Pic；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV07",
+      "kind": "source-excel",
+      "label": "StrategySuits.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/StrategySuits.xlsx",
+      "location": "本机SVN工作副本；sheet StrategySuits；33套 Id/Name/SetAttr2/SetSkill/SetAtt4；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV08",
+      "kind": "source-excel",
+      "label": "StrategyQuality.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/StrategyQuality.xlsx",
+      "location": "本机SVN工作副本；sheet StrategyQuality；Quality/InitialSecondaryAttrNum/MaxSecondaryAttrNum/LvLimited；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV09",
+      "kind": "source-excel",
+      "label": "SetAttr.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/SetAttr.xlsx",
+      "location": "本机SVN工作副本；sheet SetAttr；套装属性 HpBonus/AttackBonus/ArmorBonus/CritLevel/CritDmgBonusLevel/EnergyPreAddBonusLevel/CoolDownReduceLevel；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV10",
+      "kind": "source-excel",
+      "label": "StrategyRecommendation.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/StrategyRecommendation.xlsx",
+      "location": "本机SVN工作副本；sheet StrategyRecommendation；115条 HeroId/Priority/StrategyId/PrimAttr/SecAttr；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV11",
+      "kind": "source-excel",
+      "label": "StrategyResolve.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/strategy/StrategyResolve.xlsx",
+      "location": "本机SVN工作副本；sheet StrategyResolve；Quality/Exp/ResolveGetItem；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV12",
+      "kind": "source-excel",
+      "label": "StrategyCraft.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/item_craft/StrategyCraft.xlsx",
+      "location": "本机SVN工作副本；sheet StrategyCraft；30条 StrategySuitId/StrategyType/StrategyCards/RandomCostItem/CostItem/FixMainAttrCostItem/CostCurrency/SetEffect/SortType；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV13",
+      "kind": "source-code",
+      "label": "Enums.lua(旅券物品类型)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Const/Enums.lua",
+      "location": "line 382-383：ItemSubType.Strategy = 20（旅券）；客户端旅券物品类型身份定义",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV14",
+      "kind": "source-code",
+      "label": "StrategyShopSystem.lua(锦囊商店骨架)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Shop/StrategyShopSystem.lua",
+      "location": "line 5/10-35：锦囊商店定义，NetHandler(GET/BUY/REFRESH/NOTIFY) 全部被注释；核心消费链未实装",
+      "status": "WORKING_COPY_SOURCE_NOT_ACTIVE"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV15",
+      "kind": "design-target",
+      "label": "旅券副本 Design Doc",
+      "path": "design/旅券副本Design Doc.md",
+      "location": "R-01~R-07、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV16",
+      "kind": "knowledge-ref",
+      "label": "战斗外系统总览(旅券)",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "location": "line 50：SYS-OUT-GR-06 旅券 装备属性/套装/构筑成长，旅券副本供给、Boss/挑战验证",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GR-06-EV17",
+      "kind": "knowledge-ref",
+      "label": "current-gameplay(旅券副本→旅券成长)",
+      "path": "D:/Vgame_design/skills/vgame-core-understanding/references/current-gameplay.md",
+      "location": "line 36/144-145：旅券副本 → 旅券成长 链路",
+      "status": "KNOWLEDGE_CURRENT"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GR-06-Q01",
+      "priority": "P0",
+      "question": "旅券装备/套装生效/属性转化/合成/升级的服务端与客户端消费方是否已实装？",
+      "impact": "客户端 Lua 仅见枚举与商店骨架，ConfigReady 不等于已上线；决定旅券是否可计入现行供给与战力。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV13",
+        "SYS-OUT-GR-06-EV14"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-Q02",
+      "priority": "P1",
+      "question": "33套套装是否一次性实装、6槽位是否全为旅券槽位？",
+      "impact": "影响套装平衡、配装深度与开放节奏；Design 工作假设标记待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV07"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-Q03",
+      "priority": "P1",
+      "question": "StrategyCraft 的 StrategyType/SortType 字段如何对应基础/高级/特级三级合成？FixMainAttrCostItem 是否即锁定主属性消耗？",
+      "impact": "决定三级合成产出确定度与消耗映射的正确性。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV12"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-Q04",
+      "priority": "P1",
+      "question": "旅券品质系数（蓝0.4/紫0.6/橙0.8/红1）是否与 StrategyQuality/PrimAttr 逐档一致？品质档数是否为4？",
+      "impact": "决定主副属性生成与战力估值口径。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01",
+        "SYS-OUT-GR-06-EV03",
+        "SYS-OUT-GR-06-EV08"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-Q05",
+      "priority": "P2",
+      "question": "副属性是否不可通过洗炼修改（与映射装备差异化）？",
+      "impact": "影响旅券长线追深模型与道具规划。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-06-Q06",
+      "priority": "P2",
+      "question": "旅券4件套技能(SetSkill)如何接入 SYS-IN-03 技能/Buff 系统？",
+      "impact": "决定套装机制生效链路与战斗验证方式。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-06-EV07",
+        "SYS-OUT-GR-06-EV09"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ]
+}

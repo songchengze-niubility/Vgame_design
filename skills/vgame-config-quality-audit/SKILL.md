@@ -27,6 +27,7 @@ This skill is read-only by default. It does not design rewards, decide economic 
 Covered in v1:
 
 - source table registration and missing input Excel detection
+- first-column `##` disabled/placeholder data-row filtering for structural checks
 - duplicate input filename ambiguity under `Datas`
 - logical `Drop` source aggregation from `__tables__.xlsx`
 - Drop internal reference checks: quantity ranges, `DropId2`, `DropItem_id`

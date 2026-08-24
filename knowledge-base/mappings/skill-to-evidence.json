@@ -1,0 +1,318 @@
+{
+  "schema": "vgame-skill-to-evidence/v1",
+  "mappings": [
+    {
+      "skillId": "accessibility-compliance",
+      "evidenceSources": [
+        "skills/accessibility-compliance/SKILL.md",
+        "skills/accessibility-compliance/references/aria-patterns.md",
+        "skills/accessibility-compliance/references/details.md",
+        "skills/accessibility-compliance/references/mobile-accessibility.md",
+        "skills/accessibility-compliance/references/wcag-guidelines.md"
+      ]
+    },
+    {
+      "skillId": "experimentation-analytics",
+      "evidenceSources": [
+        "skills/experimentation-analytics/SKILL.md",
+        "skills/experimentation-analytics/references/analytics-platform-comparison.md",
+        "skills/experimentation-analytics/references/common-interpretation-failures.md",
+        "skills/experimentation-analytics/references/confidence-interval-cheatsheet.md",
+        "skills/experimentation-analytics/references/dashboard-vs-experiment-reconciliation.md",
+        "skills/experimentation-analytics/references/p-value-interpretation-guide.md",
+        "skills/experimentation-analytics/references/result-presentation-templates.md",
+        "skills/experimentation-analytics/references/statistical-method-reference.md"
+      ]
+    },
+    {
+      "skillId": "game-monetization",
+      "evidenceSources": [
+        "skills/game-monetization/SKILL.md",
+        "skills/game-monetization/references/patterns.md",
+        "skills/game-monetization/references/sharp_edges.md",
+        "skills/game-monetization/references/validations.md"
+      ]
+    },
+    {
+      "skillId": "game-numerical-analysis",
+      "evidenceSources": [
+        "skills/game-numerical-analysis/SKILL.md"
+      ]
+    },
+    {
+      "skillId": "localize",
+      "evidenceSources": [
+        "skills/localize/SKILL.md"
+      ]
+    },
+    {
+      "skillId": "outer-loop-progression-pacing",
+      "evidenceSources": [
+        "skills/outer-loop-progression-pacing/SKILL.md"
+      ]
+    },
+    {
+      "skillId": "planning-acceptance-traceability",
+      "evidenceSources": [
+        "skills/planning-acceptance-traceability/SKILL.md",
+        "skills/planning-acceptance-traceability/references/acceptance-cases-template.md",
+        "skills/planning-acceptance-traceability/references/traceability-matrix-template.md"
+      ]
+    },
+    {
+      "skillId": "planning-analytics-instrumentation",
+      "evidenceSources": [
+        "skills/planning-analytics-instrumentation/SKILL.md",
+        "skills/planning-analytics-instrumentation/references/analytics-template.md"
+      ]
+    },
+    {
+      "skillId": "planning-change-sync",
+      "evidenceSources": [
+        "skills/planning-change-sync/SKILL.md",
+        "skills/planning-change-sync/references/change-log-template.md"
+      ]
+    },
+    {
+      "skillId": "planning-feature-workflow",
+      "evidenceSources": [
+        "skills/planning-feature-workflow/SKILL.md",
+        "skills/planning-feature-workflow/references/planning-workflow-gate-contract.md",
+        "skills/planning-feature-workflow/references/workflow-state.example.json"
+      ]
+    },
+    {
+      "skillId": "planning-liveops-readiness",
+      "evidenceSources": [
+        "skills/planning-liveops-readiness/SKILL.md",
+        "skills/planning-liveops-readiness/references/live-review-template.md",
+        "skills/planning-liveops-readiness/references/liveops-template.md"
+      ]
+    },
+    {
+      "skillId": "planning-requirement-clarification",
+      "evidenceSources": [
+        "skills/planning-requirement-clarification/SKILL.md",
+        "skills/planning-requirement-clarification/references/clarification-log-template.md"
+      ]
+    },
+    {
+      "skillId": "product-analytics-setup",
+      "evidenceSources": [
+        "skills/product-analytics-setup/SKILL.md",
+        "skills/product-analytics-setup/references/cohort-definition-patterns.md",
+        "skills/product-analytics-setup/references/common-failures.md",
+        "skills/product-analytics-setup/references/event-taxonomy-template.md",
+        "skills/product-analytics-setup/references/funnel-design-templates.md",
+        "skills/product-analytics-setup/references/instrumentation-audit-checklist.md",
+        "skills/product-analytics-setup/references/naming-convention-reference.md",
+        "skills/product-analytics-setup/references/north-star-metric-selection.md",
+        "skills/product-analytics-setup/references/property-design-patterns.md",
+        "skills/product-analytics-setup/references/schema-versioning-patterns.md"
+      ]
+    },
+    {
+      "skillId": "senior-game-economy",
+      "evidenceSources": [
+        "skills/senior-game-economy/SKILL.md",
+        "skills/senior-game-economy/references/card-game-economy.md",
+        "skills/senior-game-economy/references/excel-delivery.md",
+        "skills/senior-game-economy/references/infinite-rewards.md",
+        "skills/senior-game-economy/references/vgame-battle-framework-overview.md",
+        "skills/senior-game-economy/references/vgame-battle-system.md",
+        "skills/senior-game-economy/references/vgame-onboarding-and-unlock-overview.md",
+        "skills/senior-game-economy/references/vgame-progression-structure.md",
+        "skills/senior-game-economy/references/vgame-terminology.md"
+      ]
+    },
+    {
+      "skillId": "vgame-battle-content-map",
+      "evidenceSources": [
+        "skills/vgame-battle-content-map/SKILL.md",
+        "skills/vgame-battle-content-map/references/ai-behavior-config-map.md",
+        "skills/vgame-battle-content-map/references/battle-content-overview.md",
+        "skills/vgame-battle-content-map/references/monster-boss-config-map.md",
+        "skills/vgame-battle-content-map/references/skill-buff-config-map.md",
+        "skills/vgame-battle-content-map/references/wave-level-config-map.md"
+      ]
+    },
+    {
+      "skillId": "vgame-battle-tuning-helper",
+      "evidenceSources": [
+        "skills/vgame-battle-tuning-helper/SKILL.md",
+        "skills/vgame-battle-tuning-helper/references/character-benchmark-set.md",
+        "skills/vgame-battle-tuning-helper/references/character-fullmax-quantification.md",
+        "skills/vgame-battle-tuning-helper/references/character-strength-report-template.md",
+        "skills/vgame-battle-tuning-helper/references/combat-math-reference.md",
+        "skills/vgame-battle-tuning-helper/references/difficulty-line-reference.md",
+        "skills/vgame-battle-tuning-helper/references/mechanic-value-conversion.md",
+        "skills/vgame-battle-tuning-helper/references/monster-scaling-reference.md",
+        "skills/vgame-battle-tuning-helper/references/peer-comparison-rules.md",
+        "skills/vgame-battle-tuning-helper/references/role-strength-benchmarks.md",
+        "skills/vgame-battle-tuning-helper/references/standard-validation-scenarios.md"
+      ]
+    },
+    {
+      "skillId": "vgame-character-kit-design-map",
+      "evidenceSources": [
+        "skills/vgame-character-kit-design-map/SKILL.md",
+        "skills/vgame-character-kit-design-map/references/character-kit-audit-checklist.md",
+        "skills/vgame-character-kit-design-map/references/character-kit-overview.md",
+        "skills/vgame-character-kit-design-map/references/hero-design-workbook-map.md",
+        "skills/vgame-character-kit-design-map/references/kit-composition-map.md"
+      ]
+    },
+    {
+      "skillId": "vgame-config-quality-audit",
+      "evidenceSources": [
+        "skills/vgame-config-quality-audit/SKILL.md",
+        "skills/vgame-config-quality-audit/references/audit-checklist.md",
+        "skills/vgame-config-quality-audit/references/audit-overview.md",
+        "skills/vgame-config-quality-audit/references/automated-checks.md",
+        "skills/vgame-config-quality-audit/references/known-baselines.md"
+      ]
+    },
+    {
+      "skillId": "vgame-config-schema",
+      "evidenceSources": [
+        "skills/vgame-config-schema/SKILL.md",
+        "skills/vgame-config-schema/references/config-pipeline.md",
+        "skills/vgame-config-schema/references/new-config-table-onboarding.md",
+        "skills/vgame-config-schema/references/schema-map.md",
+        "skills/vgame-config-schema/references/validation.md"
+      ]
+    },
+    {
+      "skillId": "vgame-core-understanding",
+      "evidenceSources": [
+        "skills/vgame-core-understanding/SKILL.md",
+        "skills/vgame-core-understanding/references/character-kit-routing.md",
+        "skills/vgame-core-understanding/references/config-index.md",
+        "skills/vgame-core-understanding/references/current-gameplay.md",
+        "skills/vgame-core-understanding/references/delivery-gates.md",
+        "skills/vgame-core-understanding/references/evidence-map.md",
+        "skills/vgame-core-understanding/references/project-control-workflow.md",
+        "skills/vgame-core-understanding/references/project-profile.md"
+      ]
+    },
+    {
+      "skillId": "vgame-economy-source-map",
+      "evidenceSources": [
+        "skills/vgame-economy-source-map/SKILL.md",
+        "skills/vgame-economy-source-map/references/economy-config-map.md",
+        "skills/vgame-economy-source-map/references/economy-risk-notes.md",
+        "skills/vgame-economy-source-map/references/resource-ledger-overview.md",
+        "skills/vgame-economy-source-map/references/source-sink-audit-checklist.md"
+      ]
+    },
+    {
+      "skillId": "vgame-figma-ui",
+      "evidenceSources": [
+        "skills/vgame-figma-ui/SKILL.md",
+        "skills/vgame-figma-ui/references/figma-game-ui-handoff-contract.md"
+      ]
+    },
+    {
+      "skillId": "vgame-growth-combat-conversion-map",
+      "evidenceSources": [
+        "skills/vgame-growth-combat-conversion-map/SKILL.md",
+        "skills/vgame-growth-combat-conversion-map/references/combat-conversion-fields.md",
+        "skills/vgame-growth-combat-conversion-map/references/growth-combat-overview.md",
+        "skills/vgame-growth-combat-conversion-map/references/growth-module-map.md",
+        "skills/vgame-growth-combat-conversion-map/references/verification-mode-map.md"
+      ]
+    },
+    {
+      "skillId": "vgame-hero-skill-config-map",
+      "evidenceSources": [
+        "skills/vgame-hero-skill-config-map/SKILL.md",
+        "skills/vgame-hero-skill-config-map/references/buff-system-config.md",
+        "skills/vgame-hero-skill-config-map/references/hero-config-schema.md",
+        "skills/vgame-hero-skill-config-map/references/skill-system-architecture.md"
+      ]
+    },
+    {
+      "skillId": "vgame-knowledge-router",
+      "evidenceSources": [
+        "skills/vgame-knowledge-router/SKILL.md",
+        "skills/vgame-knowledge-router/references/prompt-patterns.md"
+      ]
+    },
+    {
+      "skillId": "vgame-level-design-map",
+      "evidenceSources": [
+        "skills/vgame-level-design-map/SKILL.md",
+        "skills/vgame-level-design-map/references/encounter-pacing-guide.md",
+        "skills/vgame-level-design-map/references/level-architecture-overview.md",
+        "skills/vgame-level-design-map/references/level-editor-pipeline.md",
+        "skills/vgame-level-design-map/references/terrain-and-loop-design.md"
+      ]
+    },
+    {
+      "skillId": "vgame-level-progression-map",
+      "evidenceSources": [
+        "skills/vgame-level-progression-map/SKILL.md",
+        "skills/vgame-level-progression-map/references/level-config-map.md",
+        "skills/vgame-level-progression-map/references/progression-audit-checklist.md",
+        "skills/vgame-level-progression-map/references/progression-overview.md",
+        "skills/vgame-level-progression-map/references/unlock-system-map.md"
+      ]
+    },
+    {
+      "skillId": "vgame-outer-loop-system-map",
+      "evidenceSources": [
+        "skills/vgame-outer-loop-system-map/SKILL.md",
+        "skills/vgame-outer-loop-system-map/references/cycle-monetization-map.md",
+        "skills/vgame-outer-loop-system-map/references/outer-loop-audit-checklist.md",
+        "skills/vgame-outer-loop-system-map/references/outer-loop-config-map.md",
+        "skills/vgame-outer-loop-system-map/references/outer-loop-overview.md"
+      ]
+    },
+    {
+      "skillId": "vgame-player-progression-simulator",
+      "evidenceSources": [
+        "skills/vgame-player-progression-simulator/SKILL.md",
+        "skills/vgame-player-progression-simulator/references/daily-income-model.md",
+        "skills/vgame-player-progression-simulator/references/growth-cost-model.md",
+        "skills/vgame-player-progression-simulator/references/scenario-templates.md",
+        "skills/vgame-player-progression-simulator/references/simulation-model-overview.md"
+      ]
+    },
+    {
+      "skillId": "vgame-reward-drop-sync",
+      "evidenceSources": [
+        "skills/vgame-reward-drop-sync/SKILL.md",
+        "skills/vgame-reward-drop-sync/references/drop-uilevel-rules.md",
+        "skills/vgame-reward-drop-sync/references/id-ranges-and-tables.md",
+        "skills/vgame-reward-drop-sync/references/validation.md"
+      ]
+    },
+    {
+      "skillId": "vgame-tutorial-onboarding-map",
+      "evidenceSources": [
+        "skills/vgame-tutorial-onboarding-map/SKILL.md",
+        "skills/vgame-tutorial-onboarding-map/references/battle-guide-config.md",
+        "skills/vgame-tutorial-onboarding-map/references/newbie-guide-config.md",
+        "skills/vgame-tutorial-onboarding-map/references/system-open-unlock-chain.md",
+        "skills/vgame-tutorial-onboarding-map/references/tutorial-system-architecture.md"
+      ]
+    },
+    {
+      "skillId": "vgame-ui-prototype",
+      "evidenceSources": [
+        "skills/vgame-ui-prototype/SKILL.md",
+        "skills/vgame-ui-prototype/references/ui-asset-contract.md"
+      ]
+    },
+    {
+      "skillId": "vgame-version-release-map",
+      "evidenceSources": [
+        "skills/vgame-version-release-map/SKILL.md",
+        "skills/vgame-version-release-map/references/feature-switch-map.md",
+        "skills/vgame-version-release-map/references/hotfix-and-rollback-log.md",
+        "skills/vgame-version-release-map/references/release-status-registry.md",
+        "skills/vgame-version-release-map/references/version-milestone-overview.md"
+      ]
+    }
+  ]
+}

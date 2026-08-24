@@ -1,0 +1,867 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-03",
+  "name": "金币/角色经验资源副本",
+  "revision": "2026-08-19.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-03-R03",
+        "SYS-OUT-GP-03-R04",
+        "SYS-OUT-GP-03-C01",
+        "SYS-OUT-GP-03-C02",
+        "SYS-OUT-GP-03-C03"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GP-03-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-03-R06",
+        "SYS-OUT-GP-03-R07"
+      ]
+    },
+    {
+      "id": "CONTRACT-SWEEP",
+      "ruleRefs": [
+        "SYS-OUT-GP-03-R08"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GP-03-R02"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "金币/角色经验资源副本是日常基础资源稳定供给管道：金币副本通过 CoinMode 拾取驱动产出金币，角色经验副本通过效率刷怪产出经验道具（记录盘），两者共享资源副本 UI 框架与 9 档难度阶梯，但奖励、战斗模式与用途不可合并。",
+    "inScope": [
+      "金币副本（LevelType_Gold）与角色经验副本（LevelType_Exp）的 9 档难度、开放、体力与挑战",
+      "金币副本 CoinMode 战斗的金币拾取、死亡惩罚与 CoinLevel 公式结算",
+      "角色经验副本的效率刷怪、经验道具掉落与标准 Drop 结算",
+      "资源副本的扫荡接口引用与系统开放输出",
+      "两副本共享资源副本 UI 框架但奖励/门槛/用途各自独立维护"
+    ],
+    "outOfScope": [
+      "金币与经验道具的身份与堆叠；该内容归 SYS-OUT-SU-04",
+      "具体奖励数值的唯一维护；具体数量回到数值框架 v2 与 Drop 源表（SYS-OUT-SU-05）",
+      "体力上限、恢复与购买；该内容归 SYS-OUT-GR-01",
+      "角色升级与突破的完整规则；该内容归 SYS-OUT-GR-02",
+      "扫荡资格/成本/批量/幂等 canonical；该内容归 SYS-OUT-GP-11",
+      "映射装备副本（LevelType_Equip_*）与旅券副本（LevelType_Strategy_*）；归各自系统"
+    ],
+    "inputs": [
+      "玩家体力（储能 ItemId=3）、等级与主线进度",
+      "UIlevel/level/CoinLevel 配置（9 档难度、Vitality、Drop 引用）",
+      "Drop_dungeon 真实奖励包（首通 210010xx、常规 210000xx）",
+      "SystemOpen 301/302 开放条件与 globals_conf 开关"
+    ],
+    "outputs": [
+      "金币（猎鹰金币 ItemId=1）与角色经验道具（记录盘 100/101/102）",
+      "玩家经验（程序默认结算）与首通/常规奖励入账",
+      "资源副本通关进度（供扫荡资格消费）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "日常基础资源稳定供给副本（金币+经验双本）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "金币副本与角色经验副本共享资源副本 UI 框架与 9 档难度结构，但拥有独立 LevelType、独立奖励层与独立战斗模式，不可合并为单一系统。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "9 档难度、每日 3-5 次、体力 15、金币 CoinMode/经验 NormalMode",
+      "status": "DRAFT_TARGET_WORKING_COPY_DIVERGENT",
+      "note": "Design Doc 为反推 Draft，提出每日 3-5 次与体力 15；工作副本 UIlevel.RefreshType=Unlimited（无日限）、Vitality=3,15，目标口径与工作副本存在分歧。"
+    },
+    {
+      "axis": "当前工作副本源表",
+      "value": "Exp/Gold 各 9 行齐全；金币本无 FallRewardDrop；体力与奖励双源冲突",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；UIlevel Exp/Gold 各 9 行（210001-9/220001-9），level 各 9 行；level.Vitality=1 vs UIlevel.Vitality=3,15，level.FallReward=20000000 vs UIlevel 逐关 DropId。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程主链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表、Drop 与客户端实现证据，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-03-F01",
+      "name": "资源副本挑战流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-03-F01-S01",
+          "name": "选择副本与难度",
+          "description": "玩家在资源副本主界面选择金币/经验副本 Tab，进入难度选择界面，展示 9 档难度与解锁状态。"
+        },
+        {
+          "id": "SYS-OUT-GP-03-F01-S02",
+          "name": "校验开放与前置",
+          "description": "校验 SystemOpen 301/302 开放、玩家等级与难度解锁条件。"
+        },
+        {
+          "id": "SYS-OUT-GP-03-F01-S03",
+          "name": "校验体力与次数",
+          "description": "校验储能是否满足 Vitality 要求；RefreshType=Unlimited 无日限，但扫荡与自动挑战可能受其他约束。"
+        },
+        {
+          "id": "SYS-OUT-GP-03-F01-S04",
+          "name": "进入战斗或扫荡",
+          "description": "金币副本进入 CoinMode 拾取战斗；经验副本进入效率刷怪战斗；满足资格时可走扫荡，canonical 归 SYS-OUT-GP-11。"
+        },
+        {
+          "id": "SYS-OUT-GP-03-F01-S05",
+          "name": "执行结算",
+          "description": "金币副本按 CoinLevel 公式（拾取×系数-死亡惩罚，上限 MaxCoin）结算；经验副本按标准 Drop 结算经验道具；首通额外结算首通包。"
+        },
+        {
+          "id": "SYS-OUT-GP-03-F01-S06",
+          "name": "更新进度",
+          "description": "写入通关状态，供扫荡资格消费；反馈奖励与下一难度解锁。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-03-R01",
+      "name": "双副本责任边界",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "金币副本与角色经验副本共享资源副本 UI 框架与 9 档难度结构，但拥有独立 LevelType（Gold=3/Exp=2）、独立奖励层与独立战斗模式，不可合并为单一系统。",
+      "sourceFact": "LevelType.xlsx 定义 LevelType_Exp=2（资源本）、LevelType_Gold=3（金币本）；UIlevel Exp 9 行（210001-9）、Gold 9 行（220001-9）；BattleSystem.ResourceLevelType 将两者均映射为资源本；金币本使用 CoinLevel.xlsx 公式结算，经验本使用标准 Drop。",
+      "acceptance": "两副本在表、枚举、战斗模式和结算方式上各自独立；正文不把金币与经验奖励规则混为一谈。",
+      "relatedIds": [
+        "SYS-OUT-GR-02",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-R02",
+      "name": "系统开放与解锁",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_DIVERGENT",
+      "targetRule": "金币副本与角色经验副本均在通关主线后经 SystemOpen 开启；Design Doc 反推为通关主线 1-6。",
+      "sourceFact": "SystemOpen.xlsx 中 SO 301（角色经验副本）UnlockId=4301、SO 302（金币副本）UnlockId=4302；UnlockId 指向 Unlock.xlsx 的具体条件（需继续解析）。GP-01 记录资源本开放点为 2-4，与反推 Design 的 1-6 存在分歧。",
+      "acceptance": "每个副本的开放可追溯到 SystemOpen.UnlockId → Unlock 条件 → 主线节点；两副本开放节点需与 GP-01 的 SystemOpen 口径一致。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-R03",
+      "name": "9 档难度阶梯",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "金币与经验副本各设 9 档难度，逐级解锁，高难度产出更多；怪物等级从低到高递增。",
+      "sourceFact": "UIlevel Exp 9 行（210001-210009）、Gold 9 行（220001-220009）；CoinLevel 9 行（220001-220009），OnceCoinDrop/MaxCoin/TimeLimit 递增；经验本 Reward 展示字段从 101/100（低档）到 102/101/100（高档）反映经验道具品质递增。",
+      "acceptance": "两副本各 9 档；高难度产出不低于低难度；解锁条件逐级递增。",
+      "relatedIds": [
+        "NUM-03",
+        "NUM-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV07",
+        "SYS-OUT-GP-03-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-R04",
+      "name": "挑战成本与次数",
+      "status": "WORKING_COPY_CONFLICT_RUNTIME_AUTHORITY",
+      "targetRule": "GAP：资源本体力消耗与日限的正式策划口径未冻结；Design Doc反推每日3-5次、体力15，工作副本UIlevel.Vitality=3,15、RefreshType=Unlimited，二者冲突需主策裁决（见sourceFact与Q02/Q03）。",
+      "sourceFact": "UIlevel Exp/Gold 35...9 行 Vitality 均为 '3,15'、RefreshType=Unlimited、RefreshNum=None（无日限）；level.xlsx Vitality=1；globals_conf 无资源本独立日限开关。运行时权威与 '3,15' 语义待代码确认。 工作副本观察：UIlevel.Vitality=3,15、RefreshType=Unlimited（无日限）。",
+      "acceptance": "挑战成本与次数只能有一个运行权威；手动挑战与扫荡复用同一扣除口径；日限口径在目标与工作副本间需统一。",
+      "relatedIds": [
+        "SYS-OUT-GR-01",
+        "SYS-OUT-GP-11"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-R05",
+      "name": "金币副本 CoinMode 战斗与公式结算",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "金币副本使用 CoinMode 拾取驱动战斗：击杀掉落金币→拾取→倒计时结束结算；FinalCoin = min(拾取×PerCoinDrop - 死亡×DeathCoinDrop, MaxCoin)，首通额外加 OnceCoinDrop。",
+      "sourceFact": "CoinLevel.xlsx 9 行含 OnceCoinDrop/PerCoinDrop/DeathCoinDrop/MaxCoin/TimeLimit/BossId/MonsterId；UIlevel Gold FallRewardDrop=None（金币不走标准 Drop 重复，由公式结算）；HasCoinLevel 含 LevelType_Gold；LevelType_Gold.Reward='1,-1;4,-1'（金币+玩家经验展示）。",
+      "acceptance": "金币副本结算由 CoinLevel 公式闭环；MaxCoin 为硬上限；首通与常规分层；FallRewardDrop 为空符合公式结算设计。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV07",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-R06",
+      "name": "经验副本标准 Drop 结算",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "角色经验副本使用效率刷怪战斗，击杀按概率掉落经验道具（记录盘 100/101/102），按标准 Drop 结算；首通额外结算首通包。",
+      "sourceFact": "UIlevel Exp FirstRewardDrop=21001011-21001019（首通）、FallRewardDrop=21000011-21000019（常规），均在 Drop_dungeon 中存在；Reward 展示 101/100（低档）到 102/101/100（高档）反映品质递增；level.xlsx FallReward=20000000 为共享冲突值。",
+      "acceptance": "经验副本首通与常规各有独立 DropId；经验道具为记录盘（ItemSubType_HeroExp）；品质随难度递增。",
+      "relatedIds": [
+        "SYS-OUT-GR-02",
+        "SYS-OUT-SU-04",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-R07",
+      "name": "首通与常规奖励分层",
+      "status": "WORKING_COPY_OBSERVED_DUAL_SOURCE_CONFLICT",
+      "targetRule": "首次通关结算首通包（金币本 OnceCoinDrop/经验本 FirstRewardDrop），已通关后只走常规（金币本公式/经验本 FallRewardDrop）；预览字段不拥有真实入账权威。",
+      "sourceFact": "UIlevel Exp/Gold FirstRewardDrop=210010xx（首通）、Exp FallRewardDrop=210000xx（常规）、Gold FallRewardDrop=None；但 level.xlsx FirstReward=None、FallReward=20000000（所有 18 行共享同一 DropId），与 UIlevel 逐关 DropId 冲突，运行时消费方必须裁决。",
+      "acceptance": "每种奖励类型只有一个真实 Drop 权威；level.xlsx 的 FallReward=20000000 不得被运行时误用为资源本常规奖励。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-R08",
+      "name": "扫荡接口（规则权威移交）",
+      "status": "WORKING_COPY_FIELD_RULE_GAP",
+      "targetRule": "资源副本支持扫荡已通关内容；扫荡的资格、成本、批量/多倍、奖励边界与幂等 canonical 已移交 SYS-OUT-GP-11，本正文只保留资源副本侧接口并引用其规则。",
+      "sourceFact": "level.xlsx Exp/Gold 18 行 MopUp 均为 1；globals_conf.EnableMoppingUpLevel 含 LevelType_Exp;LevelType_Gold；UIlevel MultiSettlementTimes=None（不支持多倍）；UIResourceLevelDetailView 提供扫荡入口与自动挑战。",
+      "acceptance": "资源副本侧不再重复维护扫荡规则；资格/成本/幂等口径以 SYS-OUT-GP-11 为准；资源副本不支持多倍结算。",
+      "relatedIds": [
+        "SYS-OUT-GP-11",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV10",
+        "SYS-OUT-GP-03-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-R09",
+      "name": "失败、异常退出与重复结算",
+      "status": "DESIGN_GAP",
+      "targetRule": "失败、断线、异常退出、加载失败、重复请求和补发必须有一致的成本、状态回滚和结算幂等规则。",
+      "sourceFact": "反推 Design 提出体力不足提示、网络超时补偿体力、掉线快照结算与背包满发邮件；失败是否扣体力、重试方式、重复结算防护和补发没有冻结策划口径；服务端结算校验逻辑不可见。",
+      "acceptance": "正常胜利、失败、主动退出、断线重连、加载失败、重复结算六类路径都有明确状态变化和可执行验收。",
+      "relatedIds": [
+        "SYS-IN-01",
+        "SYS-IN-08",
+        "SYS-OUT-SU-09"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-03-C01",
+      "name": "系统入口开放",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "金币副本 SystemOpen SO 302（UnlockId=4302）、角色经验副本 SO 301（UnlockId=4301）；入口开放经 SystemOpen → Unlock → 主线节点条件。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV09",
+        "SYS-OUT-GP-03-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-C02",
+      "name": "难度解锁",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "9 档难度逐级解锁，依赖玩家等级/主线进度；高难度需满足更低难度通关或等级门槛（具体 Unlock 配置待逐条解析）。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-C03",
+      "name": "体力与次数门槛",
+      "status": "WORKING_COPY_CONFLICT_RUNTIME_AUTHORITY",
+      "rule": "储能需满足挑战成本（UIlevel.Vitality=3,15、level.Vitality=1、Design=15 待裁决）；RefreshType=Unlimited 无日限，扫荡与自动挑战可能受其他约束。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV10"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-03-RW01",
+      "name": "金币副本首通与公式结算",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "金币首通 DropId=21001001-21001009；常规由 CoinLevel 公式结算（拾取×PerCoinDrop - 死亡×DeathCoinDrop，上限 MaxCoin），FallRewardDrop 为空符合设计。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV07",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-RW02",
+      "name": "经验副本首通与常规",
+      "status": "WORKING_COPY_CONFIGURED_DUAL_SOURCE_CONFLICT",
+      "rule": "经验首通 DropId=21001011-21001019、常规 DropId=21000011-21000019（Drop_dungeon）；level.xlsx FallReward=20000000 为冲突值；经验道具为记录盘 100/101/102（ItemSubType_HeroExp）。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-RW03",
+      "name": "玩家经验程序默认结算",
+      "status": "CROSS_SOURCE_SYNTHESIS",
+      "rule": "通关获得玩家经验由程序默认结算（ StaminaCostDropRatio=10），不进入 Drop 预览；具体数量回到 SYS-OUT-GR-01 与数值源。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV10",
+        "SYS-OUT-GP-03-EV13"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-03-EX01",
+      "name": "体力字段冲突",
+      "status": "P1_CONFLICT",
+      "rule": "资源本 level.Vitality=1 而 UIlevel.Vitality=3,15；Design 反推为 15；真实扣除逻辑待代码确认。与主线/高难共享同一双源冲突。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-EX02",
+      "name": "奖励双源冲突",
+      "status": "P0_CONFLICT",
+      "rule": "level.xlsx 资源本 18 行 FirstReward=None、FallReward=20000000（共享），与 UIlevel 逐关 FirstRewardDrop/FallRewardDrop 冲突；运行时消费方必须裁决权威源。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-EX03",
+      "name": "日限口径分歧",
+      "status": "P1_CONFLICT",
+      "rule": "Design Doc 反推每日 3-5 次，工作副本 UIlevel.RefreshType=Unlimited（无日限）；目标口径与工作副本分歧需统一。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-EX04",
+      "name": "Design Doc 表名错引",
+      "status": "P2_GAP",
+      "rule": "角色经验副本 Design Doc 反推引用 EquipmentLevel.xlsx 作为经验本配置，但工作副本 EquipmentLevel.xlsx（150 行，UiLevelId 250011）实际为映射装备副本配置；经验本无独立战斗配置表，复用 level.xlsx + Drop_dungeon。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-EX05",
+      "name": "失败与断线规则缺口",
+      "status": "P1_GAP",
+      "rule": "失败是否扣体力、断线恢复、异常退出、重复结算和补发尚无正式系统规则；服务端结算校验不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-03-UI01",
+      "name": "资源副本主界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIResourceLevelMainView 提供 Tab 切换（金币/经验等），Tab→LevelType 由 ChallengeDungeonSupport 动态构建；展示副本入口与解锁状态。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV12",
+        "SYS-OUT-GP-03-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-UI02",
+      "name": "难度详情与挑战",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIResourceLevelDetailView 展示 9 档难度、推荐战力、怪物预览、奖励预览、剩余次数、挑战/扫荡/自动挑战入口；体力不足时提示。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV12",
+        "SYS-OUT-GP-03-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-UI03",
+      "name": "资源副本结算页",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIResourceLevelSettlementWin 展示奖励明细（金币公式构成/经验道具品质）、首通标记与下一难度；失败走 UIResourceLevelSettlementFail。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV12",
+        "SYS-OUT-GP-03-EV10"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-03-CFG01",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "Exp 9 行（210001-9）Gold 9 行（220001-9）LevelType/RefreshType=Unlimited/Vitality=3,15/FirstRewardDrop/FallRewardDrop（Gold 为空）/Reward 展示",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-03-CFG02",
+      "name": "level",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx",
+      "role": "Exp 9 行（Type=2）Gold 9 行（Type=3）Unlock=None/Vitality=1/FirstReward=None/FallReward=20000000/MopUp=1",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-03-CFG03",
+      "name": "CoinLevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\CoinLevel.xlsx",
+      "role": "金币副本 9 行战斗配置：OnceCoinDrop/PerCoinDrop/DeathCoinDrop/MaxCoin/TimeLimit/BossId/MonsterId",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-03-CFG04",
+      "name": "LevelType",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelType.xlsx",
+      "role": "LevelType_Exp=2（资源本，SystemId=301）/LevelType_Gold=3（金币本，SystemId=302）枚举与展示奖励",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-03-CFG05",
+      "name": "Drop_dungeon",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_dungeon.xlsx",
+      "role": "资源本首通 210010xx 与常规 210000xx 真实奖励包",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-03-CFG06",
+      "name": "SystemOpen",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx",
+      "role": "SO 301（角色经验副本 UnlockId=4301）/SO 302（金币副本 UnlockId=4302）入口开放",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-03-CFG07",
+      "name": "globals_conf",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\globals_conf\\globals_conf.xlsx",
+      "role": "EnableMoppingUpLevel 含 Exp/Gold；HasCoinLevel 含 Gold；StaminaCostDropRatio=10",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-03-REL01",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-02",
+      "targetName": "角色升级与突破",
+      "description": "经验副本产出记录盘（角色经验道具）与金币，供给角色升级与突破消耗。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV11"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-03-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家等级",
+      "description": "资源副本挑战消耗储能（ItemId=3），体力上限/恢复归 GR-01。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV11"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-03-REL03",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "金币副本进入 CoinMode、经验副本进入效率刷怪战斗实例。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV07",
+        "SYS-OUT-GP-03-EV08"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-03-REL04",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "经验副本首通/常规经 Drop_dungeon 入账，金币副本经 CoinLevel 公式入账；预览/真实分离权威归 SU-05。推导边界：由 Drop_dungeon/CoinLevel 配置观察与 SU-05 权威分工归纳；服务端入账执行链未核，入账时点 UNKNOWN。",
+      "status": "CONFLICT_NEEDS_RUNTIME_AUTHORITY",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-03-REL05",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GP-11",
+      "targetName": "扫荡",
+      "description": "已满足资格的资源本可进入快速结算路径；资源本不支持多倍。",
+      "status": "RULE_GAP",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV07",
+        "SYS-OUT-GP-03-EV08"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-03-REL06",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "SystemOpen 301/302 经 Unlock 条件开放资源副本入口。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV09"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-03-REL07",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "金币与经验产出进入日常经济账，具体数量只在数值/Drop 权威源维护。推导边界：由资源副本产出配置与经济总账结构归纳；具体数量不在本正文维护，产出-消耗闭环校验归框架v2。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-03-REL08",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家等级",
+      "description": "通关产出玩家经验（程序默认结算），推动账号等级。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV11"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-03-EV01",
+      "kind": "reverse-design",
+      "label": "金币副本 Design Doc",
+      "path": "design/金币副本Design Doc.md",
+      "location": "R-01～R-06、技术方案、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV02",
+      "kind": "reverse-design",
+      "label": "角色经验副本 Design Doc",
+      "path": "design/角色经验副本Design Doc.md",
+      "location": "R-01～R-06、技术方案、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV03",
+      "kind": "knowledge-ref",
+      "label": "12-战斗外系统",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "location": "§2.1 金币/角色经验资源副本行",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV04",
+      "kind": "knowledge-ref",
+      "label": "current-gameplay 参考",
+      "path": "D:/Vgame_design/skills/vgame-core-understanding/references/current-gameplay.md",
+      "location": "资源副本相关章节",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV05",
+      "kind": "knowledge-ref",
+      "label": "SYS-OUT-GP-01 主线正文",
+      "path": "archive/legacy-output-20260824/knowledge-base/system-details/SYS-OUT-GP-01.json",
+      "location": "R09 SystemOpen 资源本开放点 2-4",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV06",
+      "kind": "source-excel",
+      "label": "UIlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "location": "本机SVN工作副本；Exp 9 行 210001-9 RefreshType=Unlimited Vitality=3,15 FirstRewardDrop=210010xx FallRewardDrop=210000xx；Gold 9 行 220001-9 FallRewardDrop=None；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV07",
+      "kind": "source-excel",
+      "label": "CoinLevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/CoinLevel.xlsx",
+      "location": "本机SVN工作副本；9 行 220001-9 OnceCoinDrop/PerCoinDrop/DeathCoinDrop/MaxCoin/TimeLimit/BossId/MonsterId；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV08",
+      "kind": "source-excel",
+      "label": "level.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/level.xlsx",
+      "location": "本机SVN工作副本；Exp 9 行 Type=2 Gold 9 行 Type=3 Vitality=1 FirstReward=None FallReward=20000000 MopUp=1；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV09",
+      "kind": "source-excel",
+      "label": "SystemOpen.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "location": "本机SVN工作副本；SO 301 角色经验副本 UnlockId=4301、SO 302 金币副本 UnlockId=4302；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV10",
+      "kind": "source-excel",
+      "label": "globals_conf.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/globals_conf/globals_conf.xlsx",
+      "location": "本机SVN工作副本；EnableMoppingUpLevel 含 Exp/Gold、HasCoinLevel 含 Gold、StaminaCostDropRatio=10；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV11",
+      "kind": "source-excel",
+      "label": "Drop_dungeon.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Drop/Drop_dungeon.xlsx",
+      "location": "本机SVN工作副本；Exp 首通 21001011-19/常规 21000011-19、Gold 首通 21001001-09 存在；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV12",
+      "kind": "source-code",
+      "label": "UIResourceLevelDetailView.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/Level/Resource/UIResourceLevelDetailView.lua",
+      "location": "难度选择、挑战/扫荡/自动挑战入口、体力校验、结算跳转",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-03-EV13",
+      "kind": "source-code",
+      "label": "BattleSystem.lua 资源本",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Battle/BattleSystem.lua",
+      "location": "28-30 行 ResourceLevelType 映射 Exp/Gold、516 行结算 UI",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-03-Q01",
+      "priority": "P0",
+      "question": "资源本真实奖励运行时以 level 还是 UIlevel 字段为权威？level.FallReward=20000000 为共享值。",
+      "impact": "18 个资源本关卡常规奖励指向错误包，影响金币/经验产出。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08",
+        "SYS-OUT-GP-03-EV11"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-03-Q02",
+      "priority": "P1",
+      "question": "资源本真实挑战成本读取 level.Vitality=1 还是 UIlevel.Vitality=3,15？'3,15' 语义是什么？",
+      "impact": "决定手动挑战、扫荡与资源本每日节奏。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06",
+        "SYS-OUT-GP-03-EV08"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-03-Q03",
+      "priority": "P1",
+      "question": "资源本日限口径：Design 反推每日 3-5 次 vs 工作副本 RefreshType=Unlimited，正式口径是哪个？",
+      "impact": "决定资源本每日总产出与经济节奏。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV06"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-03-Q04",
+      "priority": "P1",
+      "question": "资源本开放节点是主线 1-6（Design 反推）还是 2-4（GP-01 SystemOpen 记录）？",
+      "impact": "影响资源本开放时机与新手资源节奏。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV05",
+        "SYS-OUT-GP-03-EV09"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "当前工作副本链路为 SystemOpen 301/302/303 → Unlock 4301/4302/4303 → MainLevel 100204（主线 2-4）。旧文档中的 1-6 为过期反推口径。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV05",
+        "SYS-OUT-GP-03-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03-Q05",
+      "priority": "P1",
+      "question": "失败、主动退出和断线重连是否扣体力，如何防重复结算？",
+      "impact": "影响资源安全、玩家体验与补偿处理。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV01",
+        "SYS-OUT-GP-03-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-03-Q06",
+      "priority": "P2",
+      "question": "角色经验副本是否需要独立战斗配置表（当前无 CoinLevel 类似表，复用 level+Drop）？",
+      "impact": "影响经验本怪物组/波次/掉落概率的独立维护能力。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-03-EV02",
+        "SYS-OUT-GP-03-EV07",
+        "SYS-OUT-GP-03-EV08"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在从选择副本/难度到结算的有序挑战流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在系统入口开放、难度解锁、体力与次数门槛条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "本系统拥有金币公式结算、经验标准 Drop 与首通/常规分层的发放规则"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在体力冲突、奖励双源冲突、日限口径分歧、表名错引与失败断线缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在资源副本主界面、难度详情与结算页"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 UIlevel/level/CoinLevel/LevelType/Drop_dungeon/SystemOpen/globals_conf 配置源"
+    }
+  }
+}

@@ -1,0 +1,944 @@
+{
+  "schema": "vgame-decision-card-registry/v1",
+  "updatedAt": "2026-08-24",
+  "cards": [
+    {
+      "id": "DC-A",
+      "file": "DC-A-专武收容物迁移.md",
+      "cluster": "A",
+      "priority": "P0",
+      "theme": "专武→收容物迁移（C-001）",
+      "confirmedFacts": [
+        "AnomalySystem 已接管旧 ExclusiveWeapon 消息；旧入口 4016 工作副本条件为玩家等级34。"
+      ],
+      "conflicts": [
+        "旧表、旧子类型、经验本与收容物配置仍有并存痕迹。"
+      ],
+      "options": [
+        {
+          "id": 1,
+          "name": "专武线废弃并迁移",
+          "description": "冻结迁移版本和数据方案，旧专武线停止新增投入。"
+        },
+        {
+          "id": 2,
+          "name": "两线长期并存",
+          "description": "专武与收容物都是独立现行系统。"
+        },
+        {
+          "id": 3,
+          "name": "限时双轨过渡",
+          "description": "给出过渡边界、切换日期和最终归宿。"
+        }
+      ],
+      "affectedSystems": [
+        "GR-10",
+        "GR-05",
+        "SU-02"
+      ],
+      "aiRecommendation": "建议选择“专武线废弃并迁移”，但必须同时冻结生效版本、兼容期和数据迁移方案。",
+      "singleQuestion": "专武与收容物两条养成线采用哪一种产品关系？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GR-10-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 1,
+      "selectedOptionName": "专武线废弃并迁移",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T02:45:05.433Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "迁移版本、兼容期、数据迁移、旧表/入口/投放清理尚未实施。"
+    },
+    {
+      "id": "DC-B",
+      "file": "DC-B-奖励权威字段.md",
+      "cluster": "B",
+      "priority": "P0",
+      "theme": "关卡奖励运行时权威源",
+      "confirmedFacts": [
+        "高难 Type=37 的 level.FirstReward/FallReward 均为1，指向 Drop_draw 的R卡随机包；UIlevel 指向分章高难包。"
+      ],
+      "conflicts": [
+        "普通主线、高难、资源本、旅券均观察到 level/UIlevel 双源不一致。"
+      ],
+      "options": [
+        {
+          "id": 1,
+          "name": "UIlevel Drop字段权威",
+          "description": "FirstRewardDrop/FallRewardDrop 是真实入账引用，level 奖励列退出消费。"
+        },
+        {
+          "id": 2,
+          "name": "level 奖励字段权威",
+          "description": "level.FirstReward/FallReward 是真实入账引用，UIlevel 仅展示。"
+        },
+        {
+          "id": 3,
+          "name": "按玩法显式映射",
+          "description": "建立玩法级权威映射表，禁止隐式双读和 fallback。"
+        }
+      ],
+      "affectedSystems": [
+        "GP-01",
+        "GP-02",
+        "GP-03",
+        "GP-04",
+        "SU-05"
+      ],
+      "aiRecommendation": "建议选择 UIlevel Drop 字段权威；若运行时确有分场景差异，则选择显式映射并补消费方测试。",
+      "singleQuestion": "关卡真实奖励在运行时采用哪一种权威源？",
+      "closeableQuestionIds": [
+        "SYS-OUT-SU-05-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 1,
+      "selectedOptionName": "UIlevel Drop字段权威",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:13:42.483Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "需修改并验证运行消费链，使关卡真实奖励只读 UIlevel Drop 字段；当前工作副本不据此改判。"
+    },
+    {
+      "id": "DC-C",
+      "file": "DC-C-章节任务断引用.md",
+      "cluster": "C",
+      "priority": "P0",
+      "theme": "章节任务断引用处置",
+      "confirmedFacts": [],
+      "conflicts": [
+        "50000006 在逻辑 Drop 中断引用。"
+      ],
+      "options": [
+        {
+          "id": 1,
+          "name": "替换为已有有效包",
+          "description": "按获批奖励内容选择现有 DropId。"
+        },
+        {
+          "id": 2,
+          "name": "新建专用奖励包",
+          "description": "分配新 DropId 并同步预览和引用。"
+        },
+        {
+          "id": 3,
+          "name": "移除该奖励节点",
+          "description": "确认该节点不发奖励并清空引用。"
+        }
+      ],
+      "affectedSystems": [
+        "GP-01",
+        "SU-05",
+        "SU-07"
+      ],
+      "aiRecommendation": "建议先按任务奖励目标核对内容；无等价现有包时新建专用包。",
+      "singleQuestion": "ChapterTasks.DropId=50000006 的处置方式是哪一种？",
+      "closeableQuestionIds": [
+        "SYS-OUT-SU-05-Q02"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 1,
+      "selectedOptionName": "替换为已有有效包",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:14:16.851Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "需依据已批准奖励内容选定一个现有有效 DropId 并替换 50000006；用户未指定具体 DropId。"
+    },
+    {
+      "id": "DC-D",
+      "file": "DC-D-大秘境封存.md",
+      "cluster": "D",
+      "priority": "P0",
+      "theme": "大秘境产品状态",
+      "confirmedFacts": [
+        "SystemOpen(202).CloseSys=true。"
+      ],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "临时封存待重开",
+          "description": "保留内容，指定目标版本与重开门禁。"
+        },
+        {
+          "id": 2,
+          "name": "长期维护性关闭",
+          "description": "保留兼容但不承诺重开版本。"
+        },
+        {
+          "id": 3,
+          "name": "正式废弃归档",
+          "description": "停止演进并建立清理/迁移清单。"
+        }
+      ],
+      "affectedSystems": [
+        "GP-09"
+      ],
+      "aiRecommendation": "缺发布台账时建议先定为长期维护性关闭，避免把工作副本存在误写为 LIVE。",
+      "singleQuestion": "大秘境 CloseSys=true 应采用哪一种产品状态？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GP-09-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 2,
+      "selectedOptionName": "长期维护性关闭",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:14:49.154Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "已确认长期维护性关闭的产品目标；发布台账、开关与兼容清单仍待落地。"
+    },
+    {
+      "id": "DC-E",
+      "file": "DC-E-扫荡资格.md",
+      "cluster": "E",
+      "priority": "P0",
+      "theme": "扫荡资格门槛",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "首次通关即可",
+          "description": "首次胜利后开放扫荡。"
+        },
+        {
+          "id": 2,
+          "name": "三星通关",
+          "description": "只有三星关卡可扫荡。"
+        },
+        {
+          "id": 3,
+          "name": "玩法级配置",
+          "description": "每个 LevelType 显式选择首通/三星/关闭。"
+        }
+      ],
+      "affectedSystems": [
+        "GP-11"
+      ],
+      "aiRecommendation": "建议玩法级配置；它能承接旅券与主线现有差异，且不把幂等实现混入本卡。",
+      "singleQuestion": "扫荡资格采用哪一种互斥门槛？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GP-11-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 3,
+      "selectedOptionName": "玩法级配置",
+      "userComment": "只有主线、高难需要三星",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:16:57.468Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "主线/高难三星门槛已确认；其他玩法必须逐项沿用既有已确认规则，否则保持 UNKNOWN，且服务端校验尚待核验。"
+    },
+    {
+      "id": "DC-F",
+      "file": "DC-F-炮台基地立项.md",
+      "cluster": "F",
+      "priority": "P0",
+      "theme": "炮台/基地系统立项",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "独立系统立项",
+          "description": "补独立 Design、配置边界、验收和负责人。"
+        },
+        {
+          "id": 2,
+          "name": "归入PVPVE子系统",
+          "description": "不建独立系统，规则并入竞技场/PVPVE。"
+        },
+        {
+          "id": 3,
+          "name": "停止演进并归档",
+          "description": "保留当前实现兼容，不继续产品化。"
+        }
+      ],
+      "affectedSystems": [
+        "GR-08",
+        "GP-07"
+      ],
+      "aiRecommendation": "建议归入 PVPVE 子系统；若需要跨玩法复用，再升级为独立系统。",
+      "singleQuestion": "炮台/基地是否作为独立正式系统立项？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GR-08-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 2,
+      "selectedOptionName": "归入PVPVE子系统",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:16:57.545Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "知识归属改为 PVPVE 子系统；Design 章节、配置归属和验收仍待同步实现。"
+    },
+    {
+      "id": "DC-G",
+      "file": "DC-G-异常战斗结算策略.md",
+      "cluster": "G",
+      "priority": "P0",
+      "theme": "异常战斗结算策略",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "服务端终局权威",
+          "description": "服务端原子结算，客户端只展示最终状态。"
+        },
+        {
+          "id": 2,
+          "name": "可续局优先",
+          "description": "有效快照内恢复原战斗，过期后服务端终局结算。"
+        },
+        {
+          "id": 3,
+          "name": "按玩法显式配置",
+          "description": "每个玩法声明续局、判负或无损退出。"
+        }
+      ],
+      "affectedSystems": [
+        "IN-01"
+      ],
+      "aiRecommendation": "建议“按玩法显式配置”，并以服务端幂等终局作为所有选项的共同实现底线。",
+      "singleQuestion": "异常退出时的产品策略采用服务端终局权威、可续局优先，还是按玩法显式配置？",
+      "closeableQuestionIds": [
+        "SYS-IN-01-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 3,
+      "selectedOptionName": "按玩法显式配置",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:17:13.713Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "需为每个玩法显式配置续局、判负或无损退出；服务端幂等终局仍为实现底线。"
+    },
+    {
+      "id": "DC-H",
+      "file": "DC-H-技能Buff自动同步.md",
+      "cluster": "H",
+      "priority": "P0",
+      "theme": "技能/Buff 枚举同步机制",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "源码生成文档和校验",
+          "description": "从枚举/注册器生成清单并在 CI 对表。"
+        },
+        {
+          "id": 2,
+          "name": "配置生成运行注册",
+          "description": "以配置 Schema 为源生成运行代码与文档。"
+        },
+        {
+          "id": 3,
+          "name": "双向契约校验",
+          "description": "两侧各自维护，但 CI 对 ID/数量/名称做严格一致性检查。"
+        }
+      ],
+      "affectedSystems": [
+        "IN-03"
+      ],
+      "aiRecommendation": "建议源码生成文档并对配置做 CI 校验，迁移成本最低。",
+      "singleQuestion": "Skill Action、Buff Effect 与表结构采用哪一种同步机制？",
+      "closeableQuestionIds": [
+        "SYS-IN-03-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 1,
+      "selectedOptionName": "源码生成文档和校验",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:17:26.758Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "需建设从源码枚举/注册器生成文档并在 CI 对表的自动链路。"
+    },
+    {
+      "id": "DC-I",
+      "file": "DC-I-映射装备口径继承.md",
+      "cluster": "I",
+      "priority": "P0",
+      "theme": "映射装备文档继承关系",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "07-03完整取代旧文档",
+          "description": "旧文档整体标 SUPERSEDED，仅保留历史。"
+        },
+        {
+          "id": 2,
+          "name": "逐章节继承矩阵",
+          "description": "逐条标继承/改写/废弃，07-03为主入口。"
+        },
+        {
+          "id": 3,
+          "name": "并行有效",
+          "description": "三份文档分别拥有明确且不重叠的规则范围。"
+        }
+      ],
+      "affectedSystems": [
+        "GR-07"
+      ],
+      "aiRecommendation": "建议逐章节继承矩阵，避免把仍有效的结构信息随旧文档整体丢弃。",
+      "singleQuestion": "07-03 数值文档与更早两份文档采用哪一种继承关系？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GR-07-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 3,
+      "selectedOptionName": "并行有效",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:17:57.162Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "三份映射装备文档按并行有效处理，但各自不重叠的适用范围尚待继承矩阵明确；不得补造范围。"
+    },
+    {
+      "id": "DC-J",
+      "file": "DC-J-金币带出权威.md",
+      "cluster": "J",
+      "priority": "P0",
+      "theme": "局内金币带出权威",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "获批Design为权威",
+          "description": "字段和服务端实现必须回写到获批设计。"
+        },
+        {
+          "id": 2,
+          "name": "当前配置字段为权威",
+          "description": "以工作副本 globals_conf 字段冻结规则。"
+        },
+        {
+          "id": 3,
+          "name": "服务端消费链为权威",
+          "description": "先以服务端行为反写 Design 与配置。"
+        }
+      ],
+      "affectedSystems": [
+        "IN-08",
+        "GP-03"
+      ],
+      "aiRecommendation": "建议获批 Design 为权威；当前工作副本字段只能证明候选实现，不证明产品口径。",
+      "singleQuestion": "局内金币带出规则采用哪一种权威来源？",
+      "closeableQuestionIds": [
+        "SYS-IN-08-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 1,
+      "selectedOptionName": "获批Design为权威",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:12.609Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "获批 Design 成为目标权威；配置字段和服务端消费链需回写/对齐后才算实施。"
+    },
+    {
+      "id": "DC-K",
+      "file": "DC-K-房车旧设计归档.md",
+      "cluster": "K",
+      "priority": "P0",
+      "theme": "房车旧出行指南归档",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "SUPERSEDED",
+          "description": "由当前房车设备/养成设计取代。"
+        },
+        {
+          "id": 2,
+          "name": "CURRENT",
+          "description": "仍是现行结构，后续设计必须对齐。"
+        },
+        {
+          "id": 3,
+          "name": "PARTIAL",
+          "description": "保留指定章节，其余标废弃并列继承矩阵。"
+        }
+      ],
+      "affectedSystems": [
+        "GR-09"
+      ],
+      "aiRecommendation": "建议 PARTIAL，并明确仍继承的章节；不要继续同时标 CurrentDecision 和被替代。",
+      "singleQuestion": "07-09 出行指南 130 节点结构应处于哪一种文档状态？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GR-09-Q02"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 3,
+      "selectedOptionName": "PARTIAL",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:25.473Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "07-09 房车出行指南按 PARTIAL 处理；保留章节与废弃章节尚待继承矩阵明确。"
+    },
+    {
+      "id": "DC-L",
+      "file": "DC-L-重复角色碎片转化.md",
+      "cluster": "L",
+      "priority": "P0",
+      "theme": "重复角色碎片转化",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "按品质固定",
+          "description": "R/A/S 各配置固定碎片数。"
+        },
+        {
+          "id": 2,
+          "name": "按当前星级递增",
+          "description": "重复角色星级越高，转化碎片越多。"
+        },
+        {
+          "id": 3,
+          "name": "按卡池配置",
+          "description": "每个卡池/角色显式配置转化数量。"
+        }
+      ],
+      "affectedSystems": [
+        "SU-03",
+        "SU-01"
+      ],
+      "aiRecommendation": "建议按品质固定并配置化，便于经济审计；具体数量需由数值案另行给出。",
+      "singleQuestion": "重复角色转化采用哪一种配置模型？",
+      "closeableQuestionIds": [
+        "SYS-OUT-SU-03-Q06"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 1,
+      "selectedOptionName": "按品质固定",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:42.150Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "重复角色转化模型确定为按品质固定；R/A/S 具体碎片数仍由数值案另行裁决。"
+    },
+    {
+      "id": "DC-M",
+      "file": "DC-M-LiveOps状态台账权威.md",
+      "cluster": "M",
+      "priority": "P0",
+      "theme": "LiveOps 状态台账权威",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "建立且强制门禁",
+          "description": "没有发布/开关证据不得标 LIVE。"
+        },
+        {
+          "id": 2,
+          "name": "建立但仅供参考",
+          "description": "系统文档可独立维护状态。"
+        },
+        {
+          "id": 3,
+          "name": "不建立集中台账",
+          "description": "继续由各系统分别维护。"
+        }
+      ],
+      "affectedSystems": [
+        "SU-14"
+      ],
+      "aiRecommendation": "建议建立且强制门禁；配置或代码存在一律只能标 UNKNOWN_LIVE。",
+      "singleQuestion": "是否建立集中版本—功能—开关—灰度—回滚台账，并将其作为 LIVE/GRAY/MAINTAIN 状态的唯一权威源？",
+      "closeableQuestionIds": [
+        "SYS-OUT-SU-14-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 1,
+      "selectedOptionName": "建立且强制门禁",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:48.384Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "需建立集中版本—功能—开关—灰度—回滚台账及强制门禁；台账尚未建成，不能据此标 LIVE。"
+    },
+    {
+      "id": "DC-N",
+      "file": "DC-N-章节编号统一.md",
+      "cluster": "N",
+      "priority": "P0",
+      "theme": "第七章 ChapterId",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "统一为10007",
+          "description": "修正源表与全部引用。"
+        },
+        {
+          "id": 2,
+          "name": "保留现值并文档化",
+          "description": "确认现值是有意的特殊编码。"
+        },
+        {
+          "id": 3,
+          "name": "先修读取兼容再迁移",
+          "description": "运行时兼容旧值，分版本迁移到10007。"
+        }
+      ],
+      "affectedSystems": [
+        "GP-01"
+      ],
+      "aiRecommendation": "建议统一为10007，并先做全量引用扫描。",
+      "singleQuestion": "第七章 100701..100715 的 ChapterId 采用哪一种处置？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GP-01-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 1,
+      "selectedOptionName": "统一为10007",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:51.786Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "ChapterId=10007 是获批目标；源表及全部引用尚未修改。"
+    },
+    {
+      "id": "DC-O",
+      "file": "DC-O-友情点货币身份.md",
+      "cluster": "O",
+      "priority": "P1",
+      "theme": "友情点资源身份",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "可支配货币",
+          "description": "进入统一物品/货币账本并有明确产销。"
+        },
+        {
+          "id": 2,
+          "name": "不可支配统计值",
+          "description": "只记录社交行为，不进入钱包或兑换。"
+        },
+        {
+          "id": 3,
+          "name": "受限社交资源",
+          "description": "可消费，但只在社交域使用并单独记账。"
+        }
+      ],
+      "affectedSystems": [
+        "SU-12",
+        "SU-04"
+      ],
+      "aiRecommendation": "建议先选受限社交资源；当前只观察到 ReceivedFriendPoint/FriendsGiftPoint 字段，尚无完整钱包入账证据。",
+      "singleQuestion": "友情点的产品资源身份采用可支配货币、不可支配统计值，还是受限社交资源？",
+      "closeableQuestionIds": [
+        "SYS-OUT-SU-12-Q07"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 3,
+      "selectedOptionName": "受限社交资源",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:19:04.231Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "友情点产品身份确定为受限社交资源；钱包、社交域账本与真实入账链仍待实现/核验。"
+    },
+    {
+      "id": "DC-P",
+      "file": "DC-P-竞技场段位与奖励口径.md",
+      "cluster": "P",
+      "priority": "P1",
+      "theme": "竞技场段位口径",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "工作副本回写Design",
+          "description": "以当前 ArenaRank/奖励表和服务端行为为基线。"
+        },
+        {
+          "id": 2,
+          "name": "Draft目标改造实现",
+          "description": "以 Draft 为产品目标，配置/代码按目标改造。"
+        },
+        {
+          "id": 3,
+          "name": "逐条混合继承",
+          "description": "建立段位、升降段、单场、累胜、达段、赛季的继承矩阵。"
+        }
+      ],
+      "affectedSystems": [
+        "GP-07"
+      ],
+      "aiRecommendation": "建议逐条混合继承；这一个来源选择同时决定段位和奖励两组相互耦合的规则。",
+      "singleQuestion": "竞技场段位/星级规则采用哪一种权威源？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GP-07-Q05"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 3,
+      "selectedOptionName": "逐条混合继承",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:19:10.672Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "竞技场段位采用逐条混合继承；具体继承矩阵尚未由用户提供，不能自行补齐。"
+    },
+    {
+      "id": "DC-Q",
+      "file": "DC-Q-高难主线缺失节点.md",
+      "cluster": "Q",
+      "priority": "P0",
+      "theme": "高难主线地图节点处置",
+      "confirmedFacts": [],
+      "conflicts": [],
+      "options": [
+        {
+          "id": 1,
+          "name": "补齐35节点",
+          "description": "补齐 MainLevel 地图节点和所有跳转/解锁。"
+        },
+        {
+          "id": 2,
+          "name": "正式收缩为15节点",
+          "description": "确认只展示2/3/4章，并修正文档与奖励范围。"
+        },
+        {
+          "id": 3,
+          "name": "分版本扩充",
+          "description": "冻结本期15节点和后续章节批次。"
+        }
+      ],
+      "affectedSystems": [
+        "GP-02"
+      ],
+      "aiRecommendation": "建议分版本扩充；选项不预设必须补齐，由主策明确本期范围。",
+      "singleQuestion": "高难主线当前缺失的 1/5/6/7 章共20个地图节点采用哪一种处置？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GP-02-Q01"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 1,
+      "selectedOptionName": "补齐35节点",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:19:18.614Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "高难主线目标补齐至 35 节点；20 个缺失节点、跳转与解锁尚未写入工作副本。"
+    },
+    {
+      "id": "DC-R",
+      "file": "DC-R-竞技场奖励口径.md",
+      "cluster": "R",
+      "priority": "P1",
+      "theme": "竞技场奖励口径",
+      "confirmedFacts": [],
+      "conflicts": [
+        "Draft 的每日/每周排名邮件与当前工作副本的手动领取+赛季结算不一致。"
+      ],
+      "options": [
+        {
+          "id": 1,
+          "name": "工作副本回写Design",
+          "description": "以当前奖励表和服务端行为为基线。"
+        },
+        {
+          "id": 2,
+          "name": "Draft目标改造",
+          "description": "按每日/每周排名邮件目标改造。"
+        },
+        {
+          "id": 3,
+          "name": "分奖励类型继承",
+          "description": "分别裁决单场、累胜、首次达段与赛季奖励。"
+        }
+      ],
+      "affectedSystems": [
+        "GP-07"
+      ],
+      "aiRecommendation": "建议分奖励类型建立继承矩阵，但本卡只关闭奖励规则源选择。",
+      "singleQuestion": "竞技场奖励分层采用哪一种权威源？",
+      "closeableQuestionIds": [
+        "SYS-OUT-GP-07-Q06"
+      ],
+      "supplementaryItems": [],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "selectedOptionId": 2,
+      "selectedOptionName": "Draft目标改造",
+      "userComment": "",
+      "suggestion": "",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "exportedReviewUpdatedAt": "2026-08-24T03:19:40.635Z",
+      "decisionEvidence": {
+        "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+        "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+        "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json"
+      },
+      "implementationNote": "竞技场奖励采用 Draft 目标改造；每日/每周排名邮件等配置、服务端与幂等链尚未实施。"
+    }
+  ],
+  "decisionImport": {
+    "status": "HUMAN_DECISION_CONFIRMED",
+    "approvalStatus": "APPROVED_TARGET",
+    "implementationStatus": "IMPLEMENTATION_PENDING",
+    "totalCards": 18,
+    "confirmedCards": 18,
+    "confirmedAt": "2026-08-24T03:34:25.926Z",
+    "sourcePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+    "sourceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+    "auditPath": "review/decisions/vgame-decision-cards-2026-08-24.audit.json",
+    "sourceThreadId": "019fff2d-5b87-7ca3-9911-22a7950c2bb5"
+  }
+}

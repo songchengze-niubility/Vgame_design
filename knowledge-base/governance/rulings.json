@@ -1,0 +1,44 @@
+{
+  "schema": "vgame-human-rulings/v1",
+  "version": "1.0.0",
+  "rulings": [
+    {
+      "rulingId": "RULING-RV-C",
+      "systemIds": [
+        "SYS-OUT-GR-09"
+      ],
+      "decisionLabel": "C",
+      "decision": "房车采用随机强化 +30/+60/+100，权重 50/30/20。",
+      "status": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "WORKING_COPY_ALIGNED_UNKNOWN_LIVE",
+      "decidedAt": "2026-08-24",
+      "supersedesEvidenceRefs": [
+        "ARCHIVE-RV-PRE-C-01",
+        "ARCHIVE-RV-PRE-C-02"
+      ]
+    },
+    {
+      "rulingId": "RULING-EW-B",
+      "systemIds": [
+        "SYS-OUT-GR-10",
+        "SYS-OUT-GR-05"
+      ],
+      "decisionLabel": "B",
+      "decision": "专武向收容物迁移，并保留一个大版本的兼容迁移期。",
+      "status": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "decidedAt": "2026-08-24",
+      "unknowns": [
+        "兼容期起止版本",
+        "旧数据读写边界",
+        "入口与投放切换点",
+        "最终清理版本"
+      ],
+      "supersedesEvidenceRefs": [
+        "ARCHIVE-EW-PRE-B-01",
+        "ARCHIVE-EW-PRE-B-02",
+        "ARCHIVE-EW-PRE-B-03"
+      ]
+    }
+  ]
+}

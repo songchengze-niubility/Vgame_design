@@ -1,0 +1,587 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GR-02",
+  "name": "角色升级与突破",
+  "revision": "2026-08-18.3",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本（只读）+ 数值沉淀（框架v2）",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE；升级/突破的服务端扣除与属性刷新权威不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径（沉淀已确认），不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程或边界，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-GR-02-R01",
+        "SYS-OUT-GR-02-R05"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "角色升级与突破是 Vgame 角色基础属性底盘养成线：消费角色经验道具与金币驱动角色 1→60 级成长，通过 0→4 次突破逐次放开 10 级等级上限，为角色提供稳定基础三维（生命/攻击/防御）底盘，并把升级/突破事件交给裸体属性重算与开放条件评估。",
+    "inScope": [
+      "角色等级（1-60）与升级经验门槛（HeroLv.UpgradeCost）",
+      "角色突破阶段门控（HeroAscendLv：AscendId/LvLimit/LvUpperLimit/PlayerLv）",
+      "突破材料消耗资格（HeroAscendMaterial 按 Quality×AscendId）",
+      "角色升级带来的基础属性成长（HeroAttribute 按 HeroId×1000+Lv 索引）",
+      "裸体属性中角色等级与突破分项的归属与重算触发"
+    ],
+    "outOfScope": [
+      "具体成长数值（每级三维、升级经验/金币曲线、突破材料数量）；该内容归 NUM-02 养成数值与经济消耗沉淀",
+      "玩家等级与玩家经验（行旅帧片4）；该内容归 SYS-OUT-GR-01",
+      "角色经验道具身份与堆叠；该内容归 SYS-OUT-SU-04（记录盘100/101/102=HeroExp）",
+      "角色升星、星盘/能效、专武/收容物成长；各归独立养成系统",
+      "裸体→面板最终聚合与战斗公式；该内容归 CB-R03/NUM-03"
+    ],
+    "inputs": [
+      "角色经验道具增量（记录盘100/101/102，由资源副本/主线/任务等产出）",
+      "金币增量（猎鹰金币1）",
+      "HeroLv 每级升级消耗、HeroAscendLv 突破门控、HeroAscendMaterial 突破材料消耗",
+      "HeroAttribute 每角色每级三维配置、Hero 品质/职业"
+    ],
+    "outputs": [
+      "角色等级提升与经验溢出结转",
+      "突破阶段（AscendId）推进与等级上限放开",
+      "裸体属性中等级分项与突破分项更新（触发裸体重算）",
+      "升级/突破事件驱动红点刷新与开放条件重评估"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "现行角色基础属性底盘养成线",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "角色升级与突破作为角色三维底盘的稳定来源没有争议，与玩家等级（GR-01）是两条独立资源线。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "升级曲线、突破门控与属性成长预算已沉淀确认",
+      "status": "CONFIRMED_TARGET",
+      "note": "角色升级数值沉淀已确认升级系数4.8、标准人满预算24000/7200/4800、Lv1-60累计经验1,922,500/金币961,250（SSR）；突破门控20→30→40→50→60。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Hero/HeroLv/HeroAscendLv/HeroAscendMaterial/HeroAttribute/HeroStarAttrUp 表存在；客户端 HeroSystem 消费链可见",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；配置表与客户端红点/资格校验可见，服务端扣除与属性刷新权威不可见。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "养成链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表与客户端实现证据，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在升级与突破两条有序操作序列（校验→扣除→等级/阶段推进→属性重算）"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在等级上限、突破资格、玩家等级门槛与材料充足条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "养成系统只消耗资源转化为属性，不发放奖励；升级/突破里程碑奖励归 SYS-OUT-GR-01 玩家等级与各玩法"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在经验/金币不足、已达上限、突破材料缺口与突破是否直接加属性的待确认边界"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在角色详情升级/突破界面、属性面板与红点引导"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 HeroLv/HeroAscendLv/HeroAscendMaterial/HeroAttribute/Hero 配置源"
+    }
+  },
+  "flows": [
+    {
+      "id": "SYS-OUT-GR-02-F01",
+      "name": "角色升级流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-02-F01-S01",
+          "name": "选择升级次数与消耗",
+          "description": "玩家在角色详情页选择升级，客户端按 HeroLv.UpgradeCost 与持有记录盘(100/101/102)+金币预览消耗。"
+        },
+        {
+          "id": "SYS-OUT-GR-02-F01-S02",
+          "name": "校验前置",
+          "description": "校验角色经验道具与金币充足且当前等级 < 当前突破 LvLimit（见 SYS-OUT-GR-02-C01/C02）；不足走异常提示。"
+        },
+        {
+          "id": "SYS-OUT-GR-02-F01-S03",
+          "name": "扣除与升级",
+          "description": "服务端扣除经验道具+金币，角色等级提升，经验溢出结转支持连升；客户端 CRespHeroUpgrade 回包后触发 HeroUpgrade 事件。"
+        },
+        {
+          "id": "SYS-OUT-GR-02-F01-S04",
+          "name": "属性重算",
+          "description": "按 HeroAttribute(HeroId×1000+Lv) 取新等级三维，触发裸体属性重算（见 SYS-OUT-GR-02-R04）。"
+        },
+        {
+          "id": "SYS-OUT-GR-02-F01-S05",
+          "name": "刷新红点与面板",
+          "description": "RefreshHeroUpgradeRedDot 重估升级/突破/升星红点；面板展示新等级与三维变化。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-F02",
+      "name": "角色突破流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-02-F02-S01",
+          "name": "触发突破",
+          "description": "角色达到当前 LvLimit 时玩家点击突破，客户端预览突破材料与金币消耗。"
+        },
+        {
+          "id": "SYS-OUT-GR-02-F02-S02",
+          "name": "校验突破资格",
+          "description": "校验玩家等级 >= HeroAscendLv.PlayerLv、突破材料（HeroAscendMaterial 按 Quality×AscendId）与金币充足（见 SYS-OUT-GR-02-C03）。"
+        },
+        {
+          "id": "SYS-OUT-GR-02-F02-S03",
+          "name": "扣除与阶段推进",
+          "description": "服务端扣除材料+金币，AscendId+1，LvUpperLimit 放开至下一阶段（20→30→40→50→60）；客户端 CRespHeroBreakthrough 回包触发 HeroAscend 事件。"
+        },
+        {
+          "id": "SYS-OUT-GR-02-F02-S04",
+          "name": "上限更新与重算",
+          "description": "更新角色等级上限（GetHeroMaxLv 取 LvLimit），突破本身是否直接加属性待确认（见 SYS-OUT-GR-02-EX01）；触发裸体重算。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GR-02-R01",
+      "name": "角色等级身份与资源线边界",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "角色等级是角色基础属性底盘养成线，消费角色经验道具（记录盘100/101/102=ItemSubType_HeroExp）+ 金币；与玩家等级（行旅帧片4=ItemSubType_Exp）是两条独立资源线，不得混列。",
+      "sourceFact": "角色升级数值沉淀明确角色升级属养成主链路、消费角色经验；Items.xlsx 中记录盘(100/101/102) ItemSubType=ItemSubType_HeroExp（ParaList=500/2000/10000），行旅帧片(4) ItemSubType=ItemSubType_Exp。",
+      "acceptance": "角色经验与玩家经验在产销账中拆列；角色升级不得误用玩家经验曲线，玩家升级不得误用记录盘。",
+      "relatedIds": [
+        "SYS-OUT-GR-01",
+        "SYS-OUT-SU-04",
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV03",
+        "SYS-OUT-GR-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-R02",
+      "name": "升级经验门槛与溢出结转",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "角色经验累加到当前经验，达到 HeroLv.UpgradeCost 时升级，溢出结转支持连升；具体每级经验/金币曲线只在 NUM-02/经济消耗沉淀维护，本正文不复制数字。",
+      "sourceFact": "HeroSystem.CheckHeroCanUpgrade 读取 curLvTable.UpgradeCost - heroData.CurLvExp 判定可升级；HeroLv.xlsx 注册为 HeroLvModel；沉淀确认 Lv1→60 累计经验 1,922,500、金币 961,250（SSR），金币=经验×0.5。",
+      "acceptance": "升级门槛只读 HeroLv.UpgradeCost；经验溢出可连升；具体数值以 NUM-02/经济沉淀为权威，本正文不维护第二套曲线。",
+      "relatedIds": [
+        "NUM-02",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV02",
+        "SYS-OUT-GR-02-EV03",
+        "SYS-OUT-GR-02-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-R03",
+      "name": "突破阶段门控与等级上限",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "角色达到当前 LvLimit 后需突破才能继续升级；突破阶段 AscendId 递增，LvLimit/LvUpperLimit 按 20→30→40→50→60 逐步放开，并要求玩家等级 >= HeroAscendLv.PlayerLv。",
+      "sourceFact": "HeroAscendLv.xlsx 注册为 HeroAscendLvModel；HeroSystem.CheckHeroCanAscend 校验 curAscendLvTable.LvUpperLimit、playerLv < curAscendLvTable.PlayerLv 则不可突破；GetHeroMaxLv 取 min(heroMaxLv, ascendLvLimit)；反推 Design 与沉淀均确认 0→4 次突破、逐次放开 10 级。",
+      "acceptance": "等级上限只读 HeroAscendLv.LvLimit/LvUpperLimit；未突破不得超越当前 LvLimit；突破玩家等级门槛由 HeroAscendLv.PlayerLv 维护。",
+      "relatedIds": [
+        "SYS-OUT-GR-01",
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV01",
+        "SYS-OUT-GR-02-EV04",
+        "SYS-OUT-GR-02-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-R04",
+      "name": "升级基础属性成长与裸体重算",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "升级后角色三维按 HeroAttribute(HeroId×1000+Lv) 取值增长，进入裸体属性等级分项；任何养成模块变更后触发裸体重算（初始+等级+星盘+突破×品阶系数）。",
+      "sourceFact": "HeroAttribute.xlsx 注册为 TbHeroAttribute；沉淀确认运行时等级属性由 HeroAttribute 承接、AttributeID=HeroId×1000+等级、每级三维按 ROUND(基础属性×(1+等级×0.08),0) 写入；HeroData 读取 Config.EnergyEfficiencyAttrList 与 HeroEnergyEfficiencyAttr 参与裸体重算。",
+      "acceptance": "等级属性只读 HeroAttribute；裸体重算由升级/突破/星盘/升星共同触发；具体三维数值以 NUM-02 为权威。",
+      "relatedIds": [
+        "SYS-OUT-GR-04",
+        "SYS-OUT-GR-03",
+        "CB-R03",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV01",
+        "SYS-OUT-GR-02-EV03",
+        "SYS-OUT-GR-02-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-R05",
+      "name": "突破材料消耗资格",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "突破消耗按角色品质（SSR/SR/R）× AscendId 从 HeroAscendMaterial 取材料+金币；材料按攻/防/辅分支区分，具体数量只在 NUM-02/经济沉淀维护。",
+      "sourceFact": "HeroAscendMaterial.xlsx 注册为 HeroAscendMaterialModel；HeroSystem.CheckHeroCanAscend 遍历 HeroAscendMaterial 匹配 AscendId 与 Quality；反推 Design 提及材料按攻/防/辅三分支且具体数量未完整反推。",
+      "acceptance": "突破材料消耗只读 HeroAscendMaterial（Quality×AscendId）；具体材料数量以 NUM-02/经济沉淀为权威，本正文不复制数字。",
+      "relatedIds": [
+        "NUM-02",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV05",
+        "SYS-OUT-GR-02-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-R06",
+      "name": "品质系数作用范围",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "品质系数（SSR=1, SR=0.8, R=0.7）只影响裸体模块（初始+等级+星盘+突破）与专武/收容物属性，不影响旅券/映射装备；不同品质升级/突破消耗不同。",
+      "sourceFact": "角色升级沉淀与养成总览确认品质系数作用于裸体属性；反推 Design R-05 明确品质系数只影响裸体+专武，不影响旅券/映射装备；Hero.xlsx 有 Quality 字段。",
+      "acceptance": "品质系数只作用于裸体与专武/收容物属性；旅券/映射装备不受品质系数缩放。",
+      "relatedIds": [
+        "SYS-OUT-GR-04",
+        "SYS-OUT-GR-10",
+        "SYS-OUT-GR-05",
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV01",
+        "SYS-OUT-GR-02-EV03",
+        "SYS-OUT-GR-02-EV09"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GR-02-C01",
+      "name": "升级资格",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "可升级需：角色经验道具充足、金币充足、当前等级 < 当前突破 LvLimit；HeroSystem.CheckHeroCanUpgrade 按 UpgradeCost-CurLvExp 与持有量判定。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV02",
+        "SYS-OUT-GR-02-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-C02",
+      "name": "等级上限（突破门控）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "角色等级不得超过当前 AscendId 的 LvLimit；达到 LvLimit 后必须突破放开 LvUpperLimit 才能继续升级；GetHeroMaxLv=min(heroMaxLv, ascendLvLimit)。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV04",
+        "SYS-OUT-GR-02-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-C03",
+      "name": "突破玩家等级门槛",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "突破要求玩家等级 >= HeroAscendLv.PlayerLv；HeroSystem.CheckHeroCanAscend 中 playerLv < curAscendLvTable.PlayerLv 则不可突破。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV04",
+        "SYS-OUT-GR-02-EV07"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GR-02-EX01",
+      "name": "突破是否直接加属性待确认",
+      "status": "P2_GAP",
+      "rule": "反推 Design R-03 工作假设「突破不直接加属性，只做门槛控制」标记待确认；需确认突破是否仅放开上限还是同时投放偏向属性。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-EX02",
+      "name": "突破材料完整数值未反推",
+      "status": "P2_GAP",
+      "rule": "反推 Design 风险项指出 HeroAscendMaterial 未完整反推、材料按攻/防/辅分支可能供需失衡；具体数量以 NUM-02/经济沉淀为权威。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV05",
+        "SYS-OUT-GR-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-EX03",
+      "name": "服务端扣除与属性刷新权威不可见",
+      "status": "P2_GAP",
+      "rule": "客户端只观察到 CRespHeroUpgrade/CRespHeroBreakthrough 回包与红点刷新，服务端扣除、经验溢出结转与属性刷新的原子性不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV07"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GR-02-UI01",
+      "name": "角色详情升级/突破界面",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示角色当前等级、经验进度、等级上限、升级消耗预览（记录盘+金币）、突破入口与材料预览；资源不足时提示获取途径。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02-UI02",
+      "name": "升级/突破红点",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "HeroSystem.RegisterHeroUpgradeRedDots/RefreshHeroUpgradeRedDot 按角色维护 LvUpAscendPrefix 红点（仅主线阵容角色），可升级或可突破时点亮。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV07"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GR-02-CFG01",
+      "name": "HeroLv",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\HeroLv.xlsx",
+      "role": "每级升级消耗 UpgradeCost（经验/金币曲线权威在 NUM-02）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-CFG02",
+      "name": "HeroAscendLv",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\HeroAscendLv.xlsx",
+      "role": "突破阶段门控 AscendId/LvLimit/LvUpperLimit/PlayerLv",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-CFG03",
+      "name": "HeroAscendMaterial",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\HeroAscendMaterial.xlsx",
+      "role": "突破材料消耗按 Quality×AscendId（材料数量权威在 NUM-02）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-CFG04",
+      "name": "HeroAttribute",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\HeroAttribute.xlsx",
+      "role": "每角色每级三维（ID=HeroId×1000+Lv）；角色升级最终配置镜像在 06_最终配置/角色升级配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-CFG05",
+      "name": "Hero",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\Hero.xlsx",
+      "role": "角色基础信息 HeroId/Name/Quality/HeroClass/EnergyEfficiencyAttrList",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GR-02-REL01",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：HeroLv.xlsx(EV02)定义升级经验/金币消耗，Items.xlsx(EV06)定义角色经验道具身份(记录盘100/101/102)，HeroSystem.lua(EV07)执行扣除。推导：升级时读取 HeroLv 消耗表逐项校验并扣除经验道具与金币，扣除操作走物品账本，资源身份与堆叠归 SYS-OUT-SU-04，构成 consumes/outgoing 关系。推导边界：消耗配置与客户端扣除逻辑已由工作副本确认，但服务端扣除与回滚的权威不可见，账本身份归属为知识目录分域结论。UNKNOWN：服务端扣除幂等与失败回滚规则仍未知。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-02-REL02",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-03",
+      "targetName": "金币/角色经验资源副本",
+      "description": "来源：角色升级数值沉淀(EV03)确认角色经验道具与金币为主要升级消耗，SYS-OUT-GP-03 资源副本正文定义产出。推导：资源副本(GP-03)产出角色经验道具与金币，作为本系统升级消耗的供给来源，构成 supplies/incoming 关系。推导边界：升级消耗需求已由沉淀确认，但 GP-03 产出数量与本系统消耗的供需平衡关系在各自正文侧维护，本正文未直接核到产出到消耗的完整链路。UNKNOWN：资源副本产出节奏是否匹配升级消耗曲线的供需平衡仍待经济域核算。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-02-REL03",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "CB-R03",
+      "targetName": "属性与计算",
+      "description": "来源：HeroAttribute.xlsx(EV01)定义角色基础属性，HeroLv.xlsx(EV02)定义等级属性成长，HeroAscendLv.xlsx(EV04)定义突破阶段等级上限，角色升级数值沉淀(EV03)确认裸体基础三维底盘。推导：角色等级提升按 HeroLv 系数增长基础三维，突破按 HeroAscendLv 放开等级上限，裸体属性进入战斗属性计算(CB-R03)，构成 builds/outgoing 关系。推导边界：基础属性配置与等级成长已由工作副本确认，但裸体属性如何并入战斗公式乘区属推断，突破对属性的间接影响(通过放开等级上限)需在战斗数值侧确认。UNKNOWN：突破是否直接投放属性(而非仅放开等级上限)仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-02-REL04",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-02",
+      "targetName": "养成数值",
+      "description": "升级曲线、突破门控与属性成长预算由养成数值域约束。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV03"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-GR-02-REL05",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：角色升级数值沉淀(EV03)定义升级经验/金币成本曲线，HeroAscendMaterial.xlsx(EV05)定义突破材料消耗，角色升级与突破Design Doc(EV09)描述消耗结构。推导：升级经验/金币成本与突破材料消耗量由经济数值域(NUM-04)定价与平衡，构成 prices/incoming 关系。推导边界：消耗配置已由工作副本与沉淀确认，但消耗曲线在整体经济账中的占比与定价权重属经济数值域维护，本正文不复制具体数值。UNKNOWN：突破材料的经济价值与升级成本在日周经济账中的占比仍待经济域核算。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-02-REL06",
+      "type": "validates",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "来源：角色升级与突破Design Doc(EV09)与知识目录关系定义主线关卡为角色成长验证层，角色升级数值沉淀(EV03)定义成长曲线。推导：主线关卡(GP-01)难度曲线作为角色等级与基础属性成长的阶段验证，玩家需角色等级/属性达到对应水平才能通关，构成 validates/incoming 关系。推导边界：主线难度与角色成长的对应关系为知识目录跨源归纳，本正文证据仅覆盖角色成长曲线，主线难度曲线在 GP-01 侧维护。UNKNOWN：主线各章节对应的目标角色等级与属性门槛的精确映射仍待节奏数值域确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GR-02-EV01",
+      "kind": "source-excel",
+      "label": "HeroAttribute.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/hero/HeroAttribute.xlsx",
+      "location": "本机SVN工作副本；逻辑表 TbHeroAttribute；每角色每级三维 ID=HeroId×1000+Lv；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-EV02",
+      "kind": "source-excel",
+      "label": "HeroLv.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/hero/HeroLv.xlsx",
+      "location": "本机SVN工作副本；逻辑表 HeroLv；每级 UpgradeCost；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-EV03",
+      "kind": "numeric-deposit",
+      "label": "角色升级数值沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/角色升级数值沉淀-2026-07-07.md",
+      "location": "核心口径、各角色升级属性、经济引用、验算结论、当前状态",
+      "status": "CONFIRMED_TARGET"
+    },
+    {
+      "id": "SYS-OUT-GR-02-EV04",
+      "kind": "source-excel",
+      "label": "HeroAscendLv.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/hero/HeroAscendLv.xlsx",
+      "location": "本机SVN工作副本；逻辑表 HeroAscendLv；AscendId/LvLimit/LvUpperLimit/PlayerLv；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-EV05",
+      "kind": "source-excel",
+      "label": "HeroAscendMaterial.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/hero/HeroAscendMaterial.xlsx",
+      "location": "本机SVN工作副本；逻辑表 HeroAscendMaterial；按 Quality×AscendId 的突破材料消耗；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-EV06",
+      "kind": "source-excel",
+      "label": "Items.xlsx(角色经验道具)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/items/Items.xlsx",
+      "location": "本机SVN工作副本；记录盘100/101/102 ItemSubType=ItemSubType_HeroExp(ParaList 500/2000/10000)、行旅帧片4=ItemSubType_Exp；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-EV07",
+      "kind": "source-code",
+      "label": "HeroSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Hero/HeroSystem.lua",
+      "location": "CRespHeroUpgrade(192)/CRespHeroBreakthrough(197)/CRespHeroRisingStar(202)；CheckHeroCanUpgrade(667)/CheckHeroCanAscend(697)/GetHeroMaxLv(502)；红点 RegisterHeroUpgradeRedDots(541)/RefreshHeroUpgradeRedDot(629)",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-EV08",
+      "kind": "source-code",
+      "label": "HeroData.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Hero/HeroData.lua",
+      "location": "GetCurHeroAscendLvTable(161)、GetEnergyEfficiencyNodeCfg(462)/GetEnergyEfficiencyNodeLv(478) 参与裸体重算",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-02-EV09",
+      "kind": "reverse-design",
+      "label": "角色升级与突破 Design Doc",
+      "path": "design/角色升级与突破Design Doc.md",
+      "location": "R-01~R-07、风险评估、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GR-02-Q01",
+      "priority": "P2",
+      "question": "突破是否只放开等级上限，还是同时投放偏向属性？",
+      "impact": "决定裸体属性中突破分项的归属与养成总览的突破预算口径。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV09"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-02-Q02",
+      "priority": "P2",
+      "question": "HeroAscendMaterial 按 Quality×AscendId 的完整材料数量是否已与 NUM-02 经济沉淀对齐？",
+      "impact": "反推 Design 指出材料未完整反推且按攻/防/辅分支可能供需失衡。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV05",
+        "SYS-OUT-GR-02-EV09"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-02-Q03",
+      "priority": "P2",
+      "question": "角色升级/突破的服务端扣除与属性刷新是否原子幂等？",
+      "impact": "客户端不可见服务端权威，影响并发升级与异常恢复边界。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-02-EV07"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ]
+}

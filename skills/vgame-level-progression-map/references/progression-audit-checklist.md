@@ -65,7 +65,7 @@
 | LevelType 分组是否正确 | `LevelType.xlsx / Group` |
 | 是否有关联系统入口 | `LevelType.xlsx / SystemId` |
 | 系统入口是否存在 | `SystemOpen.xlsx / Id` |
-| 系统是否有效 | `SystemOpen.xlsx / IsValid` |
+| 系统是否可用 | `SystemOpen.xlsx / CloseSys`、Unlock 条件、服务器开关与运行时证据；当前源表无具名 `IsValid` |
 | 系统是否关闭 | `SystemOpen.xlsx / CloseSys` |
 | 系统是否隐藏 | `SystemOpen.xlsx / HideInSys` |
 | 解锁条件是否存在 | `SystemOpen.xlsx / UnlockId` -> `Unlock.xlsx / Id` |

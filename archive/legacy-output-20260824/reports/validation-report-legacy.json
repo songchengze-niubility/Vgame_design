@@ -1,0 +1,493 @@
+{
+  "schema": "vgame-planning-knowledge-validation/v1",
+  "generatedAt": "2026-08-24T09:32:51.425Z",
+  "passed": true,
+  "summary": {
+    "checks": 91,
+    "modules": 5,
+    "systems": 45,
+    "detailedSystems": 45,
+    "specialistModules": 2,
+    "detailAtoms": 2644,
+    "moduleSections": 20,
+    "questionRecords": 240,
+    "openQuestions": 209,
+    "questionStats": {
+      "P0": 36,
+      "P1": 127,
+      "P2": 77
+    },
+    "questionLifecycleStats": {
+      "OPEN": 209,
+      "ANSWERED": 0,
+      "CLOSED": 31
+    },
+    "questionOwnerStats": {
+      "AI_EVIDENCE": 13,
+      "HUMAN_DECISION": 41,
+      "RUNTIME_OWNER": 118,
+      "DEFERRED_DETAIL": 68
+    },
+    "decisionCards": 18,
+    "combatEntries": 15,
+    "numericEntries": 7,
+    "relationTypes": 12
+  },
+  "checks": [
+    {
+      "name": "schema",
+      "pass": true,
+      "detail": "vgame-planning-knowledge/v0.4"
+    },
+    {
+      "name": "detail-schema",
+      "pass": true,
+      "detail": "vgame-system-detail/v1"
+    },
+    {
+      "name": "five-main-modules",
+      "pass": true,
+      "detail": "project, system, combat, numeric, relations"
+    },
+    {
+      "name": "system-groups",
+      "pass": true,
+      "detail": "4"
+    },
+    {
+      "name": "all-systems-have-valid-group",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-count",
+      "pass": true,
+      "detail": "45"
+    },
+    {
+      "name": "battle-in-count",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "outer-gameplay-count",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "outer-growth-count",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "outer-support-count",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "combat-two-entries",
+      "pass": true,
+      "detail": "8/7"
+    },
+    {
+      "name": "numeric-v2-domains",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "typed-relations",
+      "pass": true,
+      "detail": "12"
+    },
+    {
+      "name": "unique-entity-ids",
+      "pass": true,
+      "detail": "72/72"
+    },
+    {
+      "name": "system-summaries",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-files",
+      "pass": true,
+      "detail": "45"
+    },
+    {
+      "name": "system-detail-exact-coverage",
+      "pass": true,
+      "detail": "catalog=45 details=45"
+    },
+    {
+      "name": "system-detail-schema-and-level",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-ids",
+      "pass": true,
+      "detail": "SYS-IN-01, SYS-IN-02, SYS-IN-03, SYS-IN-04, SYS-IN-05, SYS-IN-06, SYS-IN-07, SYS-IN-08, SYS-OUT-GP-01, SYS-OUT-GP-02, SYS-OUT-GP-03, SYS-OUT-GP-04, SYS-OUT-GP-05, SYS-OUT-GP-06, SYS-OUT-GP-07, SYS-OUT-GP-08, SYS-OUT-GP-09, SYS-OUT-GP-10, SYS-OUT-GP-11, SYS-OUT-GP-12, SYS-OUT-GR-01, SYS-OUT-GR-02, SYS-OUT-GR-03, SYS-OUT-GR-04, SYS-OUT-GR-05, SYS-OUT-GR-06, SYS-OUT-GR-07, SYS-OUT-GR-08, SYS-OUT-GR-09, SYS-OUT-GR-10, SYS-OUT-SU-01, SYS-OUT-SU-02, SYS-OUT-SU-03, SYS-OUT-SU-04, SYS-OUT-SU-05, SYS-OUT-SU-06, SYS-OUT-SU-07, SYS-OUT-SU-08, SYS-OUT-SU-09, SYS-OUT-SU-10, SYS-OUT-SU-11, SYS-OUT-SU-12, SYS-OUT-SU-13, SYS-OUT-SU-14, SYS-OUT-SU-15"
+    },
+    {
+      "name": "system-detail-unique",
+      "pass": true,
+      "detail": "45/45"
+    },
+    {
+      "name": "system-detail-sections",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-substantive-sections",
+      "pass": true,
+      "detail": "statusAxes, rules, evidence"
+    },
+    {
+      "name": "system-detail-section-applicability",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-source-snapshot",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-unambiguous-status",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-atom-ids",
+      "pass": true,
+      "detail": "2644/2644"
+    },
+    {
+      "name": "system-detail-evidence-refs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-rule-required-fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-rule-links",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-typed-relations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-evidence-paths",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-markdown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-contract-refs-field",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-contract-refs-namespace",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "shared-contract-registry",
+      "pass": true,
+      "detail": "9"
+    },
+    {
+      "name": "system-detail-contract-refs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "retrieval-policy",
+      "pass": true,
+      "detail": "vgame-knowledge-retrieval-policy/v1"
+    },
+    {
+      "name": "router-manifest",
+      "pass": true,
+      "detail": "0.4/45"
+    },
+    {
+      "name": "router-detail-refs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "lightweight-catalog",
+      "pass": true,
+      "detail": "98894 bytes"
+    },
+    {
+      "name": "lightweight-search-index",
+      "pass": true,
+      "detail": "2664"
+    },
+    {
+      "name": "lazy-detail-chunks",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "knowledge-dates-not-future",
+      "pass": true,
+      "detail": " > today 2026-08-24"
+    },
+    {
+      "name": "system-detail-relationship-evidence",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-relationship-provenance-valid",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-relationship-provenance-compatible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-synthesis-boundary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-open-questions-fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "question-lifecycle-and-closure",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "system-detail-evidence-fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "markdown-refs-exist-and-consistent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "generated-chunks-match-canonical",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "router-manifest-consistent-with-canonical",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "generated-catalog-registry-consistent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "generated-search-index-consistent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "generated-markdown-matches-canonical",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "generated-markdown-deep-equal",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "deterministic-build-hash",
+      "pass": true,
+      "detail": "expected=d49e972057f77d38 actual=d49e972057f77d38"
+    },
+    {
+      "name": "work-package-waves-complete",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mainline-full-detail",
+      "pass": true,
+      "detail": "12/9"
+    },
+    {
+      "name": "project-entry-unlocks-synced",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "knowledge-router-skill",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "knowledge-router-project-wiring",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "work-package-schema",
+      "pass": true,
+      "detail": "vgame-knowledge-work-packages/v1"
+    },
+    {
+      "name": "work-package-unique-ids",
+      "pass": true,
+      "detail": "13/13"
+    },
+    {
+      "name": "work-package-exact-system-coverage",
+      "pass": true,
+      "detail": "44/44/44"
+    },
+    {
+      "name": "work-package-valid-system-ids",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "authoring-source-map-schema",
+      "pass": true,
+      "detail": "vgame-knowledge-authoring-source-map/v1"
+    },
+    {
+      "name": "authoring-source-map-coverage",
+      "pass": true,
+      "detail": "44/44/44"
+    },
+    {
+      "name": "authoring-source-map-fields",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "authoring-source-map-paths",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "authoring-source-map-skills",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "local-source-files",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "module-details-schema",
+      "pass": true,
+      "detail": "M01, M02"
+    },
+    {
+      "name": "module-details-sections",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "module-details-cross-refs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "module-details-conflict-refs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "module-chunks-match-canonical",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "router-manifest-modules-consistent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "workflow-timeline-consistent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "handoff-stats-consistent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "l1-status-consistent-with-details",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "atom-question-refs-resolve",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "p0-question-classification",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "p1p2-question-classification",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "decision-card-registry",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "human-decision-import",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "web-module-registry",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "m02-mapping-claim-consistent",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "source-document-hashes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "relation-types-includes-migrates-to",
+      "pass": true,
+      "detail": "migrates-to-missing"
+    }
+  ]
+}

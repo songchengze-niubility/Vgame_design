@@ -30,7 +30,7 @@ Use this checklist for read-only resource audits.
 | 抽卡 | `DrawCard.DropId`, `TenDropId`, `OnePrice`, `TenPrice`, `DrawCardPool.Pool` |
 | 商店 | `ShopGoods.ItemId`, `ShopGoods.Price`, `PayProduct` |
 
-Drop 产出扫描不要按 `IsValid` 过滤；该字段在 Drop 行中为无效/占位字段。
+Drop 产出扫描不要按 `IsValid` 过滤：当前 8 个 Drop 源没有具名 `IsValid` 字段；`Drop_dungeon`/`Drop_mainlevel` 第 16 列为空表头。有效数据行按第 1 列 `##` 占位约定识别。
 
 ## 4. 查消耗口
 

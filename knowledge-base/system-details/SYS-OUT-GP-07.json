@@ -1,0 +1,981 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-07",
+  "name": "竞技场（PVPVE）",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE。匹配/对手模拟/段位结算/赛季结算的服务端权威不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / DRAFT_TARGET",
+      "meaning": "目标设计或反推 Draft 口径；竞技场 Design Doc 为反推 Draft，PVPVE 怪物伤害为已确认数值目标。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua/C#），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-07-R05",
+        "SYS-OUT-GP-07-C01",
+        "SYS-OUT-GP-07-C02"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GP-07-R02",
+        "SYS-OUT-GP-07-R04"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-07-R07",
+        "SYS-OUT-GP-07-RW01",
+        "SYS-OUT-GP-07-RW02",
+        "SYS-OUT-GP-07-RW03"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GP-07-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-GP-07-EX04",
+        "SYS-OUT-GP-07-RW02"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "竞技场是 Vgame 唯一的异步 PVPVE 玩法：双方在同图竞速清怪，击杀己侧敌人会向对手输送敌人，未清理敌人攻击水晶/基地，先破基地者负；以段位、累胜、赛季与排名奖励形成竞争与社交目标。",
+    "inScope": [
+      "竞技场入口开放、对手刷新、挑战门票与挑战流程",
+      "PVPVE 杀敌送敌、水晶/基地 HP 与胜负判定的玩法壳层",
+      "段位/星级、累胜、首次达段、赛季与排名奖励的发放边界",
+      "PVPVE 怪物伤害数值口径（已批准部分）的引用与落地边界",
+      "竞技场防守阵容与炮台装配入口的壳层职责"
+    ],
+    "outOfScope": [
+      "炮台/基地养成（属性、升级、重铸、品质）归 SYS-OUT-GR-08；本系统只管装配入口与对局内表现",
+      "局内战斗目标、胜负判定与战斗变体规则归 SYS-IN-06 / CB-R07",
+      "怪物机制（Prefab、AI、属性三层叠加）归 SYS-IN-04",
+      "奖励真实入账数量与 Drop 包内容归 SYS-OUT-SU-05 与数值/Drop 权威源",
+      "资源身份（门票、荣誉道具）归 SYS-OUT-SU-04",
+      "玩家等级/体力归 SYS-OUT-GR-01"
+    ],
+    "inputs": [
+      "SystemOpen(36)/Unlock(4112) 开放条件与主线关卡进度",
+      "ArenaTicket 门票（globals_conf）与 ArenaCurrentOpponentsRefreshNum 刷新上限",
+      "ArenaRank/ArenaRankReward/ArenaWinReward/ArenaWinStreak/ArenaWinStreakBonus 段位与奖励配置",
+      "ArenaMonsterMultiplier/ArenaMonsterAttribute 怪物属性倍率",
+      "Battery/BatteryAttribute/BatteryLv 炮台配置（养成归 GR-08）",
+      "服务端下发的 ArenaInfo（分数、排名、对手、炮台、赛季）"
+    ],
+    "outputs": [
+      "竞技场分数、段位/星级、胜场与累胜进度",
+      "赛季结束时间、上赛季战报与排名快照",
+      "向任务、排行、奖励入账消费方上报的玩法事件"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "现行框架·竞技场（PVPVE）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "knowledge-model 将竞技场列为现行框架；SystemOpenID.PVPPVE=36，UIViewName=UIPVPPVEMainView。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "反推 Draft + PVPVE怪物伤害已确认数值目标（部分落地）",
+      "status": "DRAFT_TARGET_WITH_PARTIAL_CONFIRMED_NUMERIC",
+      "note": "竞技场Design Doc 为反推 Draft（状态 Draft/HIGH 风险）；PVPVE怪物伤害数值设计 v1.0 数值目标已确认但仅部分工程同步（status-conflict-register C-010）。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "ArenaSystem/PVPVEMode 实装存在；Draft 入口等级20 vs 现行主线2-7；ArenaRobot.xlsx 缺失",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于2026-08-18；unlock.lua 4112=UnLockType2/100207=主线2-7；Draft R-01 写玩家等级>=20 未回源；Arena 目录无 ArenaRobot.xlsx。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表、客户端系统与 PVPVE 战斗模式代码，但匹配/段位结算/赛季结算服务端权威不可见，无集中发布台账，不能盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-P=逐条混合继承；DC-R=Draft目标改造",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-07-F01",
+      "name": "竞技场挑战流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-07-F01-S01",
+          "name": "校验入口开放",
+          "description": "SystemOpen(36) 经 CloseSys→ParentId→Unlock(4112)；4112=UnLockType2/主线2-7(100207)通关。"
+        },
+        {
+          "id": "SYS-OUT-GP-07-F01-S02",
+          "name": "刷新与选择对手",
+          "description": "ReqRefreshCurrentOpponents 刷新对手列表（受 ArenaCurrentOpponentsRefreshNum 限制）；从 currentOpponents 中选择对手。"
+        },
+        {
+          "id": "SYS-OUT-GP-07-F01-S03",
+          "name": "校验门票",
+          "description": "CanChallenge 校验 ArenaTicket>=1，不足则跳购买入口。"
+        },
+        {
+          "id": "SYS-OUT-GP-07-F01-S04",
+          "name": "进入 PVPVE 战斗",
+          "description": "ARENA_CMD_ARENA_CHALLENGE 进入同图 PVPVE 对局（ArenaLevelId=700000），双方竞速清怪、杀敌送敌、攻击对手水晶。"
+        },
+        {
+          "id": "SYS-OUT-GP-07-F01-S05",
+          "name": "判定胜负与结算",
+          "description": "水晶 HP 先归零（PVPVEMode.OnEntityDeath L304-306→BattlleEnd(false)）或投降（GWCombat.PVPVESurrender L534-543→PVPVEMode.HandleLogicMsg case Surrender L365-367→BattlleEnd(false)）判负；经 OnBattleEndTimer→World.SetGameOver(isWin)（PVPVEMode.cs L440-450）；胜者加分、败者扣分；更新段位/星级、胜场与累胜。结算走竞技场专用协议 CNotifyArenaFightOverResult（BattleSystem.lua L578-601）而非通用 LevelType 结算路由。"
+        },
+        {
+          "id": "SYS-OUT-GP-07-F01-S06",
+          "name": "领取段位/累胜/赛季奖励",
+          "description": "首次达段（ReqReceivedFirstRankReward）、累胜（ReqReceivedWinStreakReward）手动领取；赛季结算按 ArenaRankReward 发放。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-07-R01",
+      "name": "系统身份与 PVPVE 壳层",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "竞技场是异步 PVPVE 玩法壳层：匹配/对手、门票、段位、赛季、排名与炮台装配入口；炮台/基地养成归 SYS-OUT-GR-08。",
+      "sourceFact": "ArenaSystem.lua 维护分数/排名/对手/炮台/赛季；PVPVEMode.cs/PVPVECombat 承载同图对局；Battery/BatteryAttribute/BatteryLv 为炮台配置，但养成 canonical 归 GR-08。",
+      "acceptance": "本正文只维护玩法壳层；炮台升级/重铸/属性成长规则不在此展开，只引用 GR-08。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-OUT-GR-08",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV05",
+        "SYS-OUT-GP-07-EV10",
+        "SYS-OUT-GP-07-EV20"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-R02",
+      "name": "杀敌送敌与水晶/基地胜负",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "双方同图竞速；击杀己侧敌人向对手输送（PVPVEDeployMonsterAction）；未清理敌人攻击水晶，水晶 HP 先归零者负。水晶最终生命=10000+炮台生命加成。",
+      "sourceFact": "PVPVEDeployMonsterAction.cs 实现杀敌送敌（EV06）；PVPVEMode.OnEntityDeath 水晶死亡→BattlleEnd(false) L304-306（基地归零判负，EV05）；LCrystalAttributeComponent.cs 维护水晶属性（EV07）；PVPVE怪物伤害数值设计 PVPVE-DMG-001 水晶生命=10000+炮台生命加成；Draft R-02/R-03 描述同机制。",
+      "acceptance": "杀敌送敌与水晶胜负以 PVPVE 战斗代码 + PVPVE怪物伤害数值设计为工作副本权威；具体怪物伤害数值回该数值文档与 SYS-IN-04。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-04",
+        "SYS-OUT-GR-08"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV02",
+        "SYS-OUT-GP-07-EV05",
+        "SYS-OUT-GP-07-EV06",
+        "SYS-OUT-GP-07-EV07",
+        "SYS-OUT-GP-07-EV08"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-07-Q02",
+        "SYS-OUT-GP-07-Q04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-R03",
+      "name": "PVPVE 怪物伤害数值（已批准·部分落地）",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "targetRule": "六类怪物（50001/50002/50003/50004/51001/51002）碰撞与远程伤害目标值已确认（2026-07-27）；水晶单次受伤=配置固定伤害+炮台攻击加成（逐次结算）。",
+      "sourceFact": "PVPVE怪物伤害数值设计 v1.0 列六类目标值与 ArenaMonsterMultiplier 现状；工程同步快照显示 50002/50003/51001 等多处「待修改/场景待刷新」（C-010）；ArenaMonsterMultiplier.xlsx 存在 AttackMultiplier/HpMultiplier。",
+      "acceptance": "数值目标以 PVPVE怪物伤害数值设计为确认口径；落地状态以工程同步快照为准，不得把目标值当成已 LIVE。",
+      "relatedIds": [
+        "SYS-IN-04",
+        "NUM-03",
+        "SYS-OUT-GR-08"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV02",
+        "SYS-OUT-GP-07-EV09",
+        "SYS-OUT-GP-07-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-R04",
+      "name": "段位与星级",
+      "status": "APPROVED_TARGET_IMPLEMENTATION_PENDING",
+      "targetRule": "段位/星级采用逐条混合继承；具体继承矩阵尚待明确，当前工作副本观察不得自动升级为正式目标。",
+      "sourceFact": "ArenaSystem.CalculateRankAndStar 遍历 ArenaRank 按 MinScore/MaxScore 定段，按 RankGap 计星（上限3）；GetCurrentRankCfg 区分上榜段位奖励与普通段位。Draft R-05（反推稿）未描述星级制与 ArenaRank 结构。",
+      "acceptance": "段位、升降段、扣分与保底逐条标明继承来源并通过实现核验；空白项保持 UNKNOWN。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV12"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-07-Q05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-R05",
+      "name": "入口开放条件",
+      "status": "WORKING_COPY_OBSERVED_DRAFT_CONFLICT",
+      "targetRule": "GAP：Draft R-01 写玩家等级>=20；现行 SystemOpen(36)→Unlock(4112) 为主线2-7通关。开放口径待确认。",
+      "sourceFact": "systemopen.lua [36] UnlockId=4112；unlock.lua [4112] UnLockType=2,UnLockParams={100207}=主线2-7。current-gameplay.md（refreshed 2026-08-17）亦记主线2-7。Draft R-01 写等级20。",
+      "acceptance": "入口开放以 SystemOpen(36)/Unlock(4112)/主线2-7 为工作副本权威；等级20 旧口径不再作为现行事实。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV13",
+        "SYS-OUT-GP-07-EV14",
+        "SYS-OUT-GP-07-EV15"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-07-Q01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-R06",
+      "name": "对手刷新与机器人",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：Draft R-07 描述匹配超时降级机器人（ArenaRobot.xlsx）且隐藏标识；现行实装为服务端下发对手列表（CurrentOpponentsInfo），客户端无 ArenaRobot 配置，机器人逻辑不可见。",
+      "sourceFact": "ArenaSystem 维护 currentOpponents（服务端下发），ReqRefreshCurrentOpponents 刷新；CanRefreshOpponents 受 ArenaCurrentOpponentsRefreshNum 限制；Arena 目录无 ArenaRobot.xlsx（Draft 称「已有」）。",
+      "acceptance": "对手来源与机器人降级以服务端为权威；ArenaRobot.xlsx 缺失需补配置或修正 Draft。",
+      "relatedIds": [
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV16"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-07-Q03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-R07",
+      "name": "奖励分层与发放边界",
+      "status": "APPROVED_TARGET_IMPLEMENTATION_PENDING",
+      "targetRule": "奖励分层采用 Draft 目标改造，包括 Draft 定义的每日/每周排名邮件方向；具体奖励数值和实现链仍需落地。",
+      "sourceFact": "ArenaWinReward 单场、ArenaWinStreak/ArenaWinStreakBonus 累胜、ArenaRankReward 首次达段+赛季（DropId/RankSeasonReward）；ReqReceivedFirstRankReward/ReqReceivedWinStreakReward 手动领取，claimed 列表幂等。Draft R-06（反推稿）为每日/每周排名邮件结算，未见任何已确认设计描述现行奖励结构。",
+      "acceptance": "单场、累胜、首次达段、每日/每周排名与赛季奖励均有目标规则、真实 Drop、领取幂等和服务端实现证据后才可视为完成。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV12",
+        "SYS-OUT-GP-07-EV19"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-07-Q06"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-07-C01",
+      "name": "入口开放（SystemOpen/Unlock）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "SystemOpen(36) 经 CloseSys→ParentId→Unlock(4112)；4112=UnLockType2/主线2-7(100207)通关。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV13",
+        "SYS-OUT-GP-07-EV14",
+        "SYS-OUT-GP-07-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-C02",
+      "name": "挑战门票",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "每次挑战需 ArenaTicket>=1（globals_conf.ArenaTicket）；不足时跳购买入口（UIPVPPVEGetView）。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-C03",
+      "name": "防守阵容",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "竞技场需设置防守阵容（BLT_ArenaDefense）；未设防守阵容时红点提示。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-07-RW01",
+      "name": "单场胜利奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "ArenaWinReward 定义单场胜利奖励；胜者获积分+奖励，败者获参与奖励。具体数量回 Drop 权威源。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-RW02",
+      "name": "累胜与首次达段奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "ArenaWinStreak/ArenaWinStreakBonus 累胜、ArenaRankReward 首次达段（BasicScore）；手动领取，claimed 列表幂等。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV12",
+        "SYS-OUT-GP-07-EV19"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-RW03",
+      "name": "赛季排名奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "赛季结算按 ArenaRankReward（上榜 RankMin/BasicScore/DropId）与 ArenaRank.RankSeasonReward 发放；上赛季战报可查（ReqGetArenaLastSeasonReport）。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV12",
+        "SYS-OUT-GP-07-EV19"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-07-EX01",
+      "name": "Draft 入口等级20 vs 现行主线2-7",
+      "status": "P1_CONFLICT",
+      "rule": "Draft R-01 写玩家等级>=20，现行 SystemOpen(36)/Unlock(4112) 为主线2-7；二者轴不同，需统一。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV13",
+        "SYS-OUT-GP-07-EV14"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-07-Q01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-EX02",
+      "name": "PVPVE怪物伤害已批准但仅部分落地（C-010）",
+      "status": "P1_CONFLICT",
+      "rule": "PVPVE怪物伤害数值目标已确认（2026-07-27），但工程同步快照显示多处待修改/场景待刷新；不能代表全系统 LIVE。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV02",
+        "SYS-OUT-GP-07-EV11"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-07-Q02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-EX03",
+      "name": "ArenaRobot.xlsx 缺失",
+      "status": "P2_GAP",
+      "rule": "Draft R-07 称 ArenaRobot.xlsx「已有」用于机器人降级，但 Arena 目录无该表；机器人逻辑在服务端，客户端不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV16"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-07-Q03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-EX04",
+      "name": "匹配/断线/结算幂等缺口",
+      "status": "P1_GAP",
+      "rule": "匹配超时降级、对手断线模拟、投降判负（已核源码：GWCombat.PVPVESurrender L534-543→PVPVEMode.HandleLogicMsg case Surrender L365-367→BattlleEnd(false)）、重复结算防护与补发无正式客户端可见口径。PVPVE override GenerateBattleResult 丢失 ResultHash/Version/BattleRecord（PVPVEMode.cs L452-481），战报可追溯性=UNKNOWN。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV05",
+        "SYS-OUT-GP-07-EV21",
+        "SYS-OUT-GP-07-EV22"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-07-Q04"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-07-UI01",
+      "name": "竞技场主界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIPVPPVEMainView 展示分数/段位/星级、对手列表、赛季倒计时与挑战入口；炮台装配入口跳转 GR-08。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV17"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-UI02",
+      "name": "战斗内 PVPVE HUD",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIBattlePVPVE 展示双方水晶 HP、敌人队列压力与杀敌送敌预警；投降入口（UIBattleArenaSurrender）。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV05",
+        "SYS-OUT-GP-07-EV18"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-UI03",
+      "name": "结算与赛季奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIPVPPVESettlementView/SettlementFailView 展示胜负、分数变化与奖励；UIPVPPVESeasonRewardView 展示赛季奖励预览。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV17"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-07-CFG01",
+      "name": "ArenaRank",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaRank.xlsx",
+      "role": "段位定义（MinScore/MaxScore/RankGap/RankSeasonReward）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-CFG02",
+      "name": "ArenaRankReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaRankReward.xlsx",
+      "role": "上榜排名奖励与首次达段奖励（RankMin/BasicScore/DropId）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-CFG03",
+      "name": "ArenaWinReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaWinReward.xlsx",
+      "role": "单场胜利奖励",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-CFG04",
+      "name": "ArenaWinStreak/ArenaWinStreakBonus",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaWinStreak.xlsx",
+      "role": "累胜奖励档位与加成",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-CFG05",
+      "name": "ArenaMonsterMultiplier",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaMonsterMultiplier.xlsx",
+      "role": "竞技场怪物属性倍率（AttackMultiplier/HpMultiplier）",
+      "status": "WORKING_COPY_SOURCE_PARTIAL_LANDED"
+    },
+    {
+      "id": "SYS-OUT-GP-07-CFG06",
+      "name": "ArenaMonsterAttribute",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaMonsterAttribute.xlsx",
+      "role": "竞技场怪物属性配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-CFG07",
+      "name": "Battery/BatteryAttribute/BatteryLv",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\Battery.xlsx",
+      "role": "炮台配置（养成 canonical 归 SYS-OUT-GR-08，此处仅登记入口）",
+      "status": "WORKING_COPY_SOURCE_DELEGATED_TO_GR08"
+    },
+    {
+      "id": "SYS-OUT-GP-07-CFG08",
+      "name": "SystemOpen/Unlock",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx",
+      "role": "入口开放：SystemOpen(36)→Unlock(4112)=主线2-7",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-07-REL01",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "SystemOpen(36)/Unlock(4112) 以主线2-7通关为条件开放竞技场入口。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV13",
+        "SYS-OUT-GP-07-EV14"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-07-REL02",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "选定对手后进入 PVPVE 战斗实例，局内目标/胜负归 SYS-IN-06。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-07-REL03",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-08",
+      "targetName": "炮台/基地",
+      "description": "竞技场提供炮台装配入口与对局内基地表现；炮台/基地养成 canonical 归 GR-08。",
+      "status": "KNOWLEDGE_CURRENT_DELEGATED",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV10"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-07-REL04",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "单场/累胜/段位/赛季奖励配置了 DropId（配置存在），但 DropId 配置存在不等于真实入账已验证。推导边界：DropId 在 Drop_dungeon/SysOpenReward 等表中已配置（工作副本观察），客户端领取链存在（ArenaSystem 请求/响应），但服务端是否实际发放、入账是否成功无台账（UNKNOWN_LIVE）。不得把配置存在直接升级为真实入账。",
+      "status": "WORKING_COPY_OBSERVED_WITH_UNKNOWN",
+      "provenance": "WORKING_COPY_OBSERVED",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07-REL05",
+      "type": "validates",
+      "direction": "outgoing",
+      "targetId": "PF-04",
+      "targetName": "多玩法验证",
+      "description": "竞技场验证竞速效率、基地生存与赛季竞争。来源：竞技场 Design Doc(EV01) 描述同图竞速与基地 HP 验证；PVPVEMode.cs 代码实现杀敌送敌与基地判负(EV05)。推导边界：仅描述验证维度，不含数值验收模型。不得只用知识库自身文本循环证明定位。",
+      "status": "WORKING_COPY_OBSERVED",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV05"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-07-REL06",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "PVPVE 怪物伤害与水晶 HP 需用 DPS/TTK 与双方属性对算模型验收（PVPVE怪物伤害数值设计 §5/§8 为该验收的数值权威入口，对算链待闭环）。",
+      "status": "MODEL_NOT_CLOSED",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV02"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-GP-07-REL07",
+      "type": "conflicts-with",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-04",
+      "targetName": "敌人、AI 与 Boss",
+      "description": "PVPVE 怪物伤害数值已批准但仅部分落地（C-010），与怪物系统共用 Prefab/子弹存在边界冲突（PVPVE-DMG-003 已改用专用 Prefab/子弹规避，落地未完成）。",
+      "status": "P1_PARTIAL_LANDED",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV02",
+        "SYS-OUT-GP-07-EV11"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-07-EV01",
+      "kind": "reverse-design",
+      "label": "竞技场 Design Doc",
+      "path": "design/竞技场Design Doc.md",
+      "location": "R-01～R-07、工作假设；状态 Draft/HIGH 风险",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV02",
+      "kind": "design-target",
+      "label": "PVPVE怪物伤害数值设计",
+      "path": "design/PVPVE怪物伤害数值设计-2026-07-27.md",
+      "location": "§2～§9、机器可读参数；v1.0 已确认数值目标，部分工程待同步",
+      "status": "CONFIRMED_TARGET_PARTIAL_LANDED"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV03",
+      "kind": "source-code",
+      "label": "ArenaSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/ArenaSystem.lua",
+      "location": "分数/排名/对手/炮台/赛季/累胜/段位/历史战绩全流程",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV05",
+      "kind": "source-code",
+      "label": "PVPVEMode.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/PVPVEMode.cs",
+      "location": "PVPVEMode:BaseGameMode L87；OnEntityDeath 水晶死亡→BattlleEnd(false) L304-306（基地归零判负）；HandleLogicMsg case PVPVEMsgType.Surrender→BattlleEnd(false) L365-367（投降判负）；OnRespOppBattleResult 对账 L418-438；OnBattleEndTimer→World.SetGameOver(isWin) L440-450；override GenerateBattleResult L452-481（不赋 ResultHash/Version/BattleRecord）；DeployMonsterToOpp L310-325（杀敌送敌）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV06",
+      "kind": "source-code",
+      "label": "PVPVEDeployMonsterAction.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/SkillSystem/Actions/PVPVEDeployMonsterAction.cs",
+      "location": "杀敌送敌动作",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV07",
+      "kind": "source-code",
+      "label": "LCrystalAttributeComponent.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Components/LCrystalAttributeComponent.cs",
+      "location": "水晶/基地属性与受伤逻辑",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV08",
+      "kind": "source-code",
+      "label": "PVPVECombat 目录",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.GameLogic/Runtime/Combat/PVPVECombat/PVPVECombat.cs",
+      "location": "PVPVE 战斗构建与权威/镜像端点",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV09",
+      "kind": "source-excel",
+      "label": "globals_conf.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/globals_conf/globals_conf.xlsx",
+      "location": "ArenaTicket、ArenaCurrentOpponentsRefreshNum；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV10",
+      "kind": "source-excel",
+      "label": "Battery.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/Battery.xlsx",
+      "role": "炮台配置（养成归 GR-08）",
+      "location": "本机SVN工作副本；炮台身份/技能；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_DELEGATED"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV11",
+      "kind": "source-excel",
+      "label": "ArenaMonsterMultiplier.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/ArenaMonsterMultiplier.xlsx",
+      "location": "AttackMultiplier/HpMultiplier；部分目标未同步（C-010）",
+      "status": "WORKING_COPY_SOURCE_PARTIAL_LANDED"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV12",
+      "kind": "source-excel",
+      "label": "ArenaRank.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/ArenaRank.xlsx",
+      "location": "段位 MinScore/MaxScore/RankGap/RankSeasonReward；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV13",
+      "kind": "source-excel",
+      "label": "SystemOpen.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "location": "[36] PVPPVE, UnlockId=4112, CloseSys=false；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV14",
+      "kind": "source-excel",
+      "label": "Unlock.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/unlock/Unlock.xlsx",
+      "location": "[4112] UnLockType=2, UnLockParams={100207}=主线2-7；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV15",
+      "kind": "decision-record",
+      "label": "current-gameplay 快照",
+      "path": "D:/Vgame_design/skills/vgame-core-understanding/references/current-gameplay.md",
+      "location": "竞技场 unlock=主线2-7（refreshed 2026-08-17）；season 14天",
+      "status": "CROSS_SOURCE_SNAPSHOT"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV16",
+      "kind": "source-excel",
+      "label": "Arena 目录清单",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/ArenaWinReward.xlsx",
+      "location": "Arena 目录无 ArenaRobot.xlsx（仅有 ArenaMonsterAttribute/Multiplier/Rank/RankReward/WinReward/WinStreak/WinStreakBonus/Battery/BatteryAttribute/BatteryLv）",
+      "status": "WORKING_COPY_SOURCE_MISSING_ROBOT"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV17",
+      "kind": "source-code",
+      "label": "PVPPVE UI 集合",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/PVPPVE/UIPVPPVEMainView.lua",
+      "location": "主界面/防守/炮台/赛季奖励/战绩 UI 集合",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV18",
+      "kind": "source-code",
+      "label": "UIBattlePVPVE.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.GameLogic/Runtime/Combat/BattleUI/GameModePanel/UIBattlePVPVE.cs",
+      "location": "战斗内 PVPVE HUD",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV19",
+      "kind": "source-excel",
+      "label": "ArenaRankReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/ArenaRankReward.xlsx",
+      "location": "本机SVN工作副本；上榜排名（RankMin/DropId）与首次达段（BasicScore/DropId）档位；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV20",
+      "kind": "knowledge-ref",
+      "label": "12-战斗外系统",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "location": "§2.2 竞技场（PVPVE）行（现行框架定位与「竞速、基地生存和赛季竞争」验证意图）",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV21",
+      "kind": "source-code",
+      "label": "GWCombat.cs（PVPVE 投降客户端触发）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.GameLogic/Runtime/GameWorld/Combat/GWCombat.cs",
+      "location": "GWCombat.PVPVESurrender() L534-543：构造 PVPVEMsg{MsgType=PVPVEMsgType.Surrender}，经 LogicProxy.LMsg_DispatchPVPVEMsg(msg) 下发逻辑层（对接 PVPVEMode.HandleLogicMsg case Surrender L365-367→BattlleEnd(false)）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV22",
+      "kind": "source-code",
+      "label": "BattleSystem.lua（竞技场专用结算 CNotifyArenaFightOverResult）",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Battle/BattleSystem.lua",
+      "location": "BattleSystem:CRespNotifyArenaFightOverResult L578-601：处理服务器 CNotifyArenaFightOverResult，SetGameOver/PauseGame/CloseUIBattleView，按 isAttackerWin 开 UIPVPPVESettlementView（胜）/UIPVPPVESettlementFailView（败）；竞技场结算走专用协议不经通用 LevelType WinSettlementUI/LoseSettlementUI 路由",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV23",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-P 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-P].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GP-07-EV24",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-R 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-R].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-07-Q01",
+      "priority": "P1",
+      "question": "Draft 入口玩家等级20 与现行主线2-7 以哪个为正式口径？",
+      "impact": "影响入口开放节奏与新手流程。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV14"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-07-Q02",
+      "priority": "P1",
+      "question": "PVPVE 怪物伤害目标值（C-010）何时全量同步至 Prefab/子弹/场景运行数据？",
+      "impact": "影响水晶承伤平衡与双方属性对算闭环。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV02",
+        "SYS-OUT-GP-07-EV11"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-07-Q03",
+      "priority": "P2",
+      "question": "ArenaRobot.xlsx 是否应补建，还是机器人逻辑改为纯服务端？",
+      "impact": "Draft R-07 机器人降级与隐藏标识无配置载体。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV16"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-07-Q04",
+      "priority": "P1",
+      "question": "匹配超时降级、对手断线模拟、投降判负与重复结算幂等的服务端口径为何？",
+      "impact": "影响竞争公平与异常恢复。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV05",
+        "SYS-OUT-GP-07-EV21"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-07-Q05",
+      "priority": "P2",
+      "question": "段位/星级的正式策划口径是否冻结？3 星制、ArenaRank 字段结构、升降段与保底扣分规则以服务端为权威，Draft R-05 未定义，需主策确认。",
+      "impact": "决定段位结算与赛季结算的权威口径；当前仅工作副本 ArenaRank 观察。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV12"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-P",
+      "answer": "用户正式选择「逐条混合继承」：建立段位、升降段、单场、累胜、达段、赛季的继承矩阵。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GP-07-EV23"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GP-07-Q06",
+      "priority": "P2",
+      "question": "奖励分层（单场/累胜/首次达段/赛季）的正式发放口径是否冻结？Draft R-06 为每日/每周排名邮件结算，与现行手动领取+赛季结算口径不同，需主策确认。",
+      "impact": "决定竞技场奖励入账边界与领取幂等口径；当前仅工作副本观察。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-07-EV01",
+        "SYS-OUT-GP-07-EV03",
+        "SYS-OUT-GP-07-EV19"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-R",
+      "answer": "用户正式选择「Draft目标改造」：按每日/每周排名邮件目标改造。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GP-07-EV24"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在入口→刷新对手→挑战→结算→领奖的有序玩家流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在入口开放、门票与防守阵容条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "本系统拥有单场/累胜/段位/赛季奖励发放边界"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在入口口径冲突、C-010 部分落地、ArenaRobot 缺失与幂等缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在主界面、战斗 HUD 与结算/赛季 UI"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 Arena 段位/奖励/怪物配置与 SystemOpen/Unlock 开放配置"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-P",
+      "closeableQuestionId": "SYS-OUT-GP-07-Q05",
+      "selectedOptionId": 3,
+      "selectedOptionName": "逐条混合继承",
+      "approvedTarget": "选择「逐条混合继承」：建立段位、升降段、单场、累胜、达段、赛季的继承矩阵。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:19:10.672Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "竞技场段位采用逐条混合继承；具体继承矩阵尚未由用户提供，不能自行补齐。",
+      "evidenceRef": "SYS-OUT-GP-07-EV23",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    },
+    {
+      "cardId": "DC-R",
+      "closeableQuestionId": "SYS-OUT-GP-07-Q06",
+      "selectedOptionId": 2,
+      "selectedOptionName": "Draft目标改造",
+      "approvedTarget": "选择「Draft目标改造」：按每日/每周排名邮件目标改造。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:19:40.635Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "竞技场奖励采用 Draft 目标改造；每日/每周排名邮件等配置、服务端与幂等链尚未实施。",
+      "evidenceRef": "SYS-OUT-GP-07-EV24",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

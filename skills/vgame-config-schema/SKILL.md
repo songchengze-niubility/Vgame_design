@@ -23,6 +23,8 @@ Use this skill to decide where a Vgame config fact comes from, how an Excel sour
 - Confirm the logical table in `__tables__.xlsx` before editing a source file. Some logical tables merge multiple Excel files.
 - For any new config table, register it through `__tables__.xlsx`, confirm the actual `Datas` path, and update the config table application/relationship maps.
 - Read row 1 `##var`, row 2 `##type`, row 3 `##group`, and row 4 comments before changing any Excel table.
+- New tables and full-table replacements must use ascending, contiguous effective-row IDs by default. If compatibility or reserved ranges require gaps, preserve the required IDs and record the reason explicitly; never leave unexplained gaps.
+- When renumbering IDs, update every foreign-key/reference field in the same delivery and validate both ID continuity and reference completeness before declaring readiness.
 - Preserve formulas, row ordering conventions, existing enum strings, and source grouping unless the user explicitly requests a schema migration.
 - For every proposed config change, report source workbook, sheet, key field, old value, new value, generated output, and validation method.
 
@@ -70,7 +72,7 @@ Datas 配表中存在公式列，写入时必须遵守以下规则：
 
 | 表 | 可安全写入的列 | 说明 |
 |---|---|---|
-| `Drop_dungeon.xlsx` | Col 7+(DropType, DropMinNum, DropMaxNum, DropItem_id, DropItemNumMin, DropItemNumMax, DropWeight, ShowItemID, IsValid) | 第7列起全部是纯数据 |
+| `Drop_dungeon.xlsx` | Col 7-9、11-15（DropType, DropMinNum, DropMaxNum, DropItem_id, DropItemNumMin, DropItemNumMax, DropWeight, ShowItemID） | Col 10 是注释列；当前具名数据字段止于 Col 15。Col 16 无表头，不得当作 `IsValid` 写入 |
 | `UIlevel.xlsx` | 全部列 | 无公式 |
 | `level.xlsx` | 全部列 | 无公式 |
 | `MonsterAttribute.xlsx` | 除 Col 7 (MagicAttack) 外 | Col 7 是 =PhysicsAttack 公式 |
@@ -85,7 +87,8 @@ Datas 配表中存在公式列，写入时必须遵守以下规则：
 5. Check `__beans__.xlsx` for compound field formats and `__enums__.xlsx` for enum values.
 6. If editing, back up the source workbook first.
 7. Export with the narrowest appropriate command, then run validation.
-8. Put the result into a config impact matrix.
+8. Validate effective-row IDs: uniqueness, ascending order, and continuity for new/full-replacement tables; document any intentional exception.
+9. Put the result into a config impact matrix.
 
 ## Output Contract
 

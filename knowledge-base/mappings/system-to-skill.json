@@ -1,0 +1,871 @@
+{
+  "schema": "vgame-system-to-skill/v1",
+  "expectedSystemCount": 45,
+  "coverage": "100%",
+  "mappings": [
+    {
+      "systemId": "SYS-IN-01",
+      "systemName": "战斗实例与状态",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-IN-02",
+      "systemName": "单位、阵营与队伍",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-hero-skill-config-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-IN-03",
+      "systemName": "技能、Buff 与效果",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-hero-skill-config-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-IN-04",
+      "systemName": "敌人、AI 与 Boss",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-IN-05",
+      "systemName": "关卡空间与遭遇",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-level-design-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-IN-06",
+      "systemName": "玩法局内规则",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-level-design-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-IN-07",
+      "systemName": "战斗 UI、反馈与引导",
+      "primarySkill": "accessibility-compliance",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "accessibility-compliance",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-tutorial-onboarding-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-IN-08",
+      "systemName": "胜负、结果与结算触发",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-01",
+      "systemName": "主线",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-tutorial-onboarding-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-02",
+      "systemName": "高难主线",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-03",
+      "systemName": "金币/角色经验资源副本",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-04",
+      "systemName": "旅券副本",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-05",
+      "systemName": "映射装备副本",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-06",
+      "systemName": "无限挑战",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-07",
+      "systemName": "竞技场（PVPVE）",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-08",
+      "systemName": "爬塔",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-09",
+      "systemName": "大秘境",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-10",
+      "systemName": "BOSS 挑战",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-11",
+      "systemName": "扫荡",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-12",
+      "systemName": "跑商",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-battle-content-map",
+        "vgame-battle-tuning-helper",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-growth-combat-conversion-map",
+        "vgame-level-design-map",
+        "vgame-level-progression-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-01",
+      "systemName": "玩家等级",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-02",
+      "systemName": "角色升级与突破",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-hero-skill-config-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-03",
+      "systemName": "角色升星",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-hero-skill-config-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-04",
+      "systemName": "角色星盘/能效",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-hero-skill-config-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-05",
+      "systemName": "收容物",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-06",
+      "systemName": "旅券",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-07",
+      "systemName": "映射装备",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-08",
+      "systemName": "炮台/基地",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-09",
+      "systemName": "房车",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-10",
+      "systemName": "专武",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-character-kit-design-map",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-growth-combat-conversion-map",
+        "vgame-hero-skill-config-map",
+        "vgame-player-progression-simulator",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-01",
+      "systemName": "角色/新手卡池",
+      "primarySkill": "game-monetization",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-02",
+      "systemName": "收容物抽卡",
+      "primarySkill": "game-monetization",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-03",
+      "systemName": "碎片回收/招募商店",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-04",
+      "systemName": "物品与货币",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-05",
+      "systemName": "掉落与奖励",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-06",
+      "systemName": "商店",
+      "primarySkill": "game-monetization",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-07",
+      "systemName": "任务与章节任务",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-08",
+      "systemName": "签到",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-09",
+      "systemName": "邮件",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-10",
+      "systemName": "通行证",
+      "primarySkill": "game-monetization",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-player-progression-simulator",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-11",
+      "systemName": "公会",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-12",
+      "systemName": "好友/聊天",
+      "primarySkill": "game-numerical-analysis",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-13",
+      "systemName": "新手引导与系统开放",
+      "primarySkill": "accessibility-compliance",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "accessibility-compliance",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-level-progression-map",
+        "vgame-outer-loop-system-map",
+        "vgame-tutorial-onboarding-map",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-14",
+      "systemName": "活动、赛季与 LiveOps",
+      "primarySkill": "game-monetization",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "planning-liveops-readiness",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-15",
+      "systemName": "月卡、礼包与付费商品",
+      "primarySkill": "game-monetization",
+      "skills": [
+        "vgame-core-understanding",
+        "vgame-knowledge-router",
+        "game-monetization",
+        "game-numerical-analysis",
+        "outer-loop-progression-pacing",
+        "senior-game-economy",
+        "vgame-config-quality-audit",
+        "vgame-config-schema",
+        "vgame-economy-source-map",
+        "vgame-outer-loop-system-map",
+        "vgame-reward-drop-sync",
+        "vgame-version-release-map"
+      ]
+    }
+  ]
+}

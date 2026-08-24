@@ -64,7 +64,8 @@ Sheet: `SystemOpen`
 | `UIViewName` | `string` | 界面脚本名，通常与 prefab 同名。 |
 | `JumpParams` | `(array#sep=;),ViewParam` | 额外跳转参数。 |
 | `ForceJump` | `bool` | 是否强制跳转。 |
-| `IsValid` | `bool` | 当前行是否有效。 |
+
+当前工作副本的 `SystemOpen.xlsx` 没有具名 `IsValid` 字段。不得按列序猜测该字段。
 
 ## 常见引用路径
 
@@ -91,22 +92,21 @@ ChapterLevel.Unlock / ChapterLevel.DifficultUnlock
 
 ## 已观察样例：金币副本
 
-2026-06-16 只读观察：
+2026-08-20 只读观察：
 
 ```text
 LevelType_Gold
--> LevelType.SystemId = 302
--> SystemOpen.Id = 302
+-> SystemOpen.Id = 301
 -> SystemOpen.Name = 金币副本
--> SystemOpen.UnlockId = 4302
--> Unlock.Id = 4302
+-> SystemOpen.UnlockId = 4301
+-> Unlock.Id = 4301
 -> Unlock.UnLockType = UnLock_UUT_Level
--> Unlock.UnLockParams = 100106
--> level.xlsx.LevelId = 100106
--> level.xlsx.Number = 1-6
+-> Unlock.UnLockParams = 100204
+-> level.xlsx.LevelId = 100204
+-> level.xlsx.Number = 2-4
 ```
 
-因此“金币副本主线 1-6 开放”的配置级证据链是成立的。
+因此当前工作副本的配置级结论是“金币副本主线 2-4 开放”。角色经验本与旧专武经验本分别为 `302→4302→100204` 和 `303→4303→100204`；这些观察不证明 LIVE。
 
 金币副本的层级开放另在 `UIlevel.Unlock` 中配置：
 
@@ -122,9 +122,9 @@ LevelType_Gold
 - 关卡展示/出现优先查 `UIlevel.Unlock` 和 `UIlevel.AppearIdParamList`。
 - 主线章节开放优先查 `ChapterLevel.Unlock` 和 `DifficultUnlock`。
 - 若 LevelType 表存在 `SystemId`，要追到 `SystemOpen`。
-- 若 `SystemOpen.IsValid` 为 false 或 `CloseSys` 为 true，不能只因存在 Unlock 条件就认为系统正式开放。
+- 若 `CloseSys` 为 true，或缺少服务器开关/运行时开放证据，不能只因存在 Unlock 条件就认为系统正式开放。
 - 解锁文案来自 `UnlockDesc`，但文案不等于真实条件。
-- 高层口径如 `主线1-6` 必须追到实际 LevelId 和 `level.xlsx.Number`，不要用字符串相似度猜。
+- 高层口径如 `主线2-4` 必须追到实际 LevelId 和 `level.xlsx.Number`，不要用字符串相似度猜。
 
 ## 输出要求
 

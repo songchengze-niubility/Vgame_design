@@ -1,0 +1,579 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-IN-01",
+  "name": "战斗实例与状态",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在代码与配置线索，不证明 Production/LIVE；缺集中版本—开关—发布时间台账。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / SOURCE",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE，也不等于正式策划口径。"
+    },
+    {
+      "prefix": "CURRENT_DESIGN / KNOWLEDGE_CURRENT",
+      "meaning": "当前知识身份或关系口径，不是运行状态。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-IN-01-R05",
+        "SYS-IN-01-R06"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-IN-01-R02",
+        "SYS-IN-01-R07",
+        "SYS-IN-01-C04",
+        "SYS-IN-01-EX01",
+        "SYS-IN-01-EX02",
+        "SYS-IN-01-EX03",
+        "SYS-IN-01-EX04",
+        "SYS-IN-01-EX05"
+      ]
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在进入请求、世界加载、运行、结束判定与结算的顺序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在防重入、直通、快速战斗与结束幂等的前置条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "战斗实例只生成结果并触发结算，真实奖励入账归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在超时、重入、断线、顶号、续局与构建失败等异常路径"
+    },
+    "ui": {
+      "state": "N/A",
+      "reason": "战斗 HUD 与结算界面内容归 SYS-IN-07，本系统只触发打开/关闭"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "实例消费 level/UIlevel 的关卡、玩法与场景配置"
+    }
+  },
+  "overview": {
+    "purpose": "战斗实例是 Vgame 全部战斗玩法的运行时容器：接收玩法/关卡/编队快照，加载战斗世界，驱动开始、暂停、结束，并把确定性战斗结果交回战斗外结算。",
+    "inScope": [
+      "战斗上下文（BattleContext）的创建、字段与销毁",
+      "进入战斗请求的防重入、超时与双 notify 防护",
+      "战斗世界加载与过渡（StartBattle / NextBattle / RepeatBattle / QuickBattle）",
+      "进程重启后的续局重建（RebuildLastBattle / ResumableBattleDataHeader）",
+      "结束判定（DoGameOver / SetGameOver）与确定性结果生成（CReqFightOver；BattleRecord/ResultHash/Version 仅 NormalMessageProcessor 路径）",
+      "暂停与结算界面打开触发，以及异常退出路径"
+    ],
+    "outOfScope": [
+      "各玩法的胜负/评价条件本身；该内容归 SYS-IN-06",
+      "真实奖励入账与首通/重复结算；该内容归 SYS-OUT-SU-05",
+      "关卡空间、波次与刷怪；该内容归 SYS-IN-05",
+      "战斗 HUD、结算界面内容与反馈；该内容归 SYS-IN-07",
+      "胜负、评价、统计与任务事件上报后的消费；该内容归 SYS-IN-08"
+    ],
+    "inputs": [
+      "玩法 Intent（类型、关卡 ID、战斗模式）与编队快照",
+      "关卡 ID、关卡类型与怪物属性修正 ID（MonsterAttributeCorrectId）",
+      "玩家 ID、BattleVersion 与战前剧情/首通标记"
+    ],
+    "outputs": [
+      "战斗世界实例（CombatWorld）与运行状态",
+      "确定性战斗结果（含 MD5 ResultHash 的 CReqFightOver）",
+      "暂停/结束/结算界面打开事件",
+      "异常退出与可续局状态（ResumableBattleDataHeader）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式项目战斗容器",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "BattleSystem/BattleContext/Lockstep GameMode/LLevelMgr 构成从入口到胜负判定的运行链，战斗实例是所有玩法的共同底座。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "无权威目标设计冻结；R01-R07 目标口径均为 GAP，仅有工作副本代码观察",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "note": "进入、加载、结束与结果哈希有明确实现，但全部规则均无 Design Doc/数值文档/正式决议冻结；正文引用的 CONTRACT-BATTLE-RESULT 与 CONTRACT-FAILURE-IDEMPOTENCY 均为 FRAMEWORK_CONTRACT（去重/路由契约，不构成口径权威）；失败/断线/主动退出/顶号/进程重启的状态回滚与结算幂等无正式策划口径（P0 缺口）。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "BattleSystem.lua（608行）、BattleContext.lua、GameModeBase.cs、LLevelMgr.cs 均在",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对 2026-08-18；进入防重入、30秒超时、DoGameOver 幂等守卫与 CReqFightOver MD5 哈希均可溯源到代码。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程主链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在代码与配置证据，但无集中版本—开关—发布时间台账，不能把所有实现直接盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-G=按玩法显式配置",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-IN-01-F01",
+      "name": "战斗实例主流程",
+      "steps": [
+        {
+          "id": "SYS-IN-01-F01-S01",
+          "name": "发起进入请求",
+          "description": "玩法 Intent 调用 BeginEnterCombatRequest 建立防重入状态并启动 30 秒超时计时，再发出关卡挑战请求。"
+        },
+        {
+          "id": "SYS-IN-01-F01-S02",
+          "name": "接收进入战斗通知",
+          "description": "CRespNotifyEnterFight 经 TryAcquireEnterFightNotify 防双 notify；宝箱/剧情/钓鱼/小游戏等 LevelType 直接走 RequestFightOver 直通结算，不进入战斗世界。"
+        },
+        {
+          "id": "SYS-IN-01-F01-S03",
+          "name": "构建并切换战斗世界",
+          "description": "DoEnterFight 生成 CombatWorldCreateData，按 intentType 走 StartBattle/NextBattle/RepeatBattle 或 QuickBattle，ChangeWorld 进入战斗世界。"
+        },
+        {
+          "id": "SYS-IN-01-F01-S04",
+          "name": "运行战斗",
+          "description": "GameMode 与 LLevelMgr 驱动波次/Loop/击杀计数，达成条件后触发胜利，或全员死亡触发失败。"
+        },
+        {
+          "id": "SYS-IN-01-F01-S05",
+          "name": "结束判定",
+          "description": "BaseGameMode.DoGameOver(isWin) 以 IsGameOver 守卫保证幂等，生成 CReqFightOver（LevelID/BattleID/BattleResult）；BattleRecord/ResultHash/Version 仅在 NormalMessageProcessor 路径赋值。"
+        },
+        {
+          "id": "SYS-IN-01-F01-S06",
+          "name": "暂停并打开结算",
+          "description": "服务端结算回包到达后 world:SetGameOver() 与 PauseGame(\"GameOver\")，关闭 UIBattleView 并打开胜负结算界面。"
+        },
+        {
+          "id": "SYS-IN-01-F01-S07",
+          "name": "退出并销毁上下文",
+          "description": "离开战斗世界时 DestroyBattleContext 清理 BattleContext 与防重入状态。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-IN-01-R01",
+      "name": "战斗上下文生命周期",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「战斗上下文生命周期」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "BattleContext.lua 注释明确“每次开始新战斗时 new，退出战斗世界时销毁”；BattleSystem.lua InitBattleContext/DestroyBattleContext 实现新建与销毁，且切换新战斗前删除旧上下文；上下文承载 currentIntent/intentType/levelId/battleId/isFirstPass/isQuickBattle 等动态参数。（工作副本代码观察）",
+      "acceptance": "从任一玩法进入战斗可追到 BattleContext 创建与销毁，切换战斗不残留旧上下文。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "CB-R01"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-01-EV01",
+        "SYS-IN-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-R02",
+      "name": "进入请求防重入与超时",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：尚无权威目标设计冻结「进入请求防重入与超时」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "BeginEnterCombatRequest 用 enterCombatPending/enteringCombatWorld/nextGameLock 三标志防重入，TryAcquireEnterFightNotify 防双 notify，EnterCombatWaitTimeout=30 秒超时后 CancelEnterCombatRequest；该 30 秒为代码常量，未见策划冻结口径。（工作副本代码观察）",
+      "acceptance": "同一时刻只有一条进入战斗请求在途；30 秒无 notify 自动回退；阈值有策划正式口径。",
+      "relatedIds": [
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-01-EV02",
+        "SYS-IN-01-EV01"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-R03",
+      "name": "战斗世界加载与过渡",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「战斗世界加载与过渡」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "DoEnterFight 按 intentType（Start/Next/Repeat/SpecificLevel/Continue）分发到 StartBattle/NextBattle/RepeatBattle，统一经 CombatWorldCreateData 构建战斗世界；StartBattle 先判断 IsCombatWorld 防重复，QuickBattle 走本地纯逻辑，QuickBattle 不进入战斗 View；NextBattle 经 NextGame 过渡（云朵动画+资源重载）。（工作副本代码观察）",
+      "acceptance": "四类过渡入口复用同一世界构建与校验；重复进入被拒绝；快速战斗不进入战斗 View。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-05"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-R04",
+      "name": "非战斗关卡直通结算",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「非战斗关卡直通结算」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "CRespNotifyEnterFight 对 LevelType_Chest/Chat/Fish/KeyPuzzleUnlock/CircuitConnect/Question 直接 CancelEnterCombatRequest 并 FireEvent EnterFightNotify，由调用方发送 RequestFightOver 以胜利直通结算。（工作副本代码观察）",
+      "acceptance": "上述 LevelType 不创建战斗世界且结算以 isAttackerWin=true 直通。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-IN-08"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-R05",
+      "name": "结束判定与确定性结果",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「结束判定与确定性结果」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "BaseGameMode.DoGameOver 以 IsGameOver 守卫幂等，OnWin/OnLose 生成 CReqFightOver（字段含 LevelID/BattleID/BattleResult）；其中 BattleRecord/ResultHash/Version 仅在 GameModeBase.GenerateBattleResult 且 World.Endpoint.MessageProcessor 为 NormalMessageProcessor 时赋值（GameModeBase.cs L73-79：BattleRecord L76 取自 NormalMessageProcessor.BattleRecord、ResultHash L77 由 GetGameOverMD5Hash(battleresult) 对 BattleResult 计算 MD5、Version L78 取 BattleVersion.Revision）。BattleRecord 是另行写入的回放记录（取自 MessageProcessor.BattleRecord），与 ResultHash 的计算对象（BattleResult）不同。PVPVEMode 重写 GenerateBattleResult（PVPVEMode.cs L452-481）仅算 hash 打日志 L476-477、不赋这三字段；Replay/NetworkMessageProcessor 非 NormalMessageProcessor 时同样不赋值。NormalMode 复用 BaseGameMode 默认胜负路径。（工作副本代码观察）",
+      "acceptance": "同一局只结算一次；ResultHash 与 BattleRecord 仅在 NormalMessageProcessor 路径可回放；结果字段与 SYS-IN-08 消费侧一致。PVPVE/Replay 路径的 ResultHash/Version/BattleRecord 缺失为已知 GAP。",
+      "relatedIds": [
+        "SYS-IN-08",
+        "CB-R01"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-01-EV03",
+        "SYS-IN-01-EV04"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-R06",
+      "name": "暂停与结算触发",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「暂停与结算触发」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "CRespNotifyFightOver 调用 world:SetGameOver()、world:PauseGame(\"GameOver\")、CloseUIPanel(UIBattleView)，再按 LevelType 走 BossDungeon/PVP 专用处理或按 LevelType 的 WinSettlementUI/LoseSettlementUI 打开结算（胜负界面由关卡类型决定）；PVPVE 有独立结算协议。（工作副本代码观察）",
+      "acceptance": "结算打开时战斗世界已暂停且 HUD 已关闭；每个 LevelType 的胜负界面可解析。",
+      "relatedIds": [
+        "SYS-IN-07",
+        "SYS-IN-08"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-01-EV02",
+        "SYS-IN-01-EV03"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-R07",
+      "name": "异常退出与续局",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：尚无权威目标设计冻结「异常退出与续局」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "OnReconnectServer 为空实现；RebuildLastBattle 依据 ResumableBattleDataHeader（battleVersion/playerId/startTime/lastSnapshotTime/intentJson/frameCount）重建上一场战斗，说明存在续局能力；但断线/顶号/失败是否扣成本、如何防重复结算无冻结口径。（工作副本代码观察）",
+      "acceptance": "正常胜利、失败、主动退出、断线重连、顶号、进程重启六类路径都有明确状态变化与可执行验收。",
+      "relatedIds": [
+        "SYS-IN-08",
+        "SYS-OUT-SU-09"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-01-EV02",
+        "SYS-IN-01-EV01"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-IN-01-C01",
+      "name": "进入战斗防重入",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "enterCombatPending/enteringCombatWorld/nextGameLock 任一为真时拒绝新的进入请求或忽略重复 notify。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-C02",
+      "name": "非战斗关卡直通",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "LevelType 属于 Chest/Chat/Fish/KeyPuzzleUnlock/CircuitConnect/Question 时跳过战斗世界，直接以胜利结算。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-C03",
+      "name": "快速战斗条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "ctx.isQuickBattle 为真时走 QuickBattleRunner 本地纯逻辑，不进战斗 View。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV01",
+        "SYS-IN-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-C04",
+      "name": "结束判定幂等",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "IsGameOver 为真时 DoGameOver 直接返回，保证同局只生成一次结算结果。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV03"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-IN-01-EX01",
+      "name": "进入请求超时",
+      "status": "P1_GAP",
+      "rule": "进入战斗请求 30 秒未收到 notify 时自动取消；30 秒阈值为代码常量，未确认是否策划冻结口径。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-EX02",
+      "name": "双 notify 与重入",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "TryAcquireEnterFightNotify 拒绝第二次进入 notify；重复挑战请求由 BeginEnterCombatRequest 拒绝。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-EX03",
+      "name": "断线重连与顶号缺口",
+      "status": "P0_GAP",
+      "rule": "OnReconnectServer 为空实现；顶号时 CRespNotifyFightOver 若 battleContext 为空直接返回，可能丢结算；断线恢复、失败成本与重复结算防护无正式规则。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02",
+        "SYS-IN-01-EV01"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-EX04",
+      "name": "进程重启续局",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "RebuildLastBattle 依据 ResumableBattleDataHeader 重建上一场未完成战斗；header 的 intentJson/frameCount/lastSnapshotTime 决定续局起点，完整恢复语义待确认。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-01-EX05",
+      "name": "战斗世界构建失败",
+      "status": "P1_GAP",
+      "rule": "GenerateCombatWorldCreateData 返回 nil 时 CancelEnterCombatRequest 并记录错误；无补偿或重试正式规则。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ]
+    }
+  ],
+  "ui": [],
+  "configs": [
+    {
+      "id": "SYS-IN-01-CFG01",
+      "name": "level",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx",
+      "role": "战斗关卡底表：LevelId、LevelType、Grade、LevelDataPath 场景、编队与怪物系数等，供实例加载与玩法判定",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-01-CFG02",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "LevelType 决定直通结算、玩法模式与胜负界面路由，LevelStartPlot/LevelFinishPlot 决定战前/战后剧情",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-IN-01-REL01",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-08",
+      "targetName": "胜负、结果与结算触发",
+      "description": "实例结束时生成并上报确定性结果（CReqFightOver，含 BattleResult）；其中 BattleRecord/ResultHash/Version 仅在 GameModeBase.GenerateBattleResult 且 MessageProcessor 为 NormalMessageProcessor 时赋值，PVPVEMode 重写后不赋这三字段。结果交由结果层触发战斗外结算；评价、统计与战利品触发的规则权威归 SYS-IN-08。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-01-EV03",
+        "SYS-IN-01-EV02"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-IN-01-REL02",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "各玩法的 GameMode 在战斗实例内实例化，约束实例的加载、暂停、胜负与结束口径。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-01-EV04"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-IN-01-EV01",
+      "kind": "source-code",
+      "label": "BattleContext.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Battle/BattleContext.lua",
+      "location": "类注释与 ctor 字段（currentIntent/intentType/levelId/battleId/isFirstPass/isQuickBattle）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-01-EV02",
+      "kind": "source-code",
+      "label": "BattleSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Battle/BattleSystem.lua",
+      "location": "BeginEnterCombatRequest/TryAcquireEnterFightNotify/DoEnterFight/CRespNotifyEnterFight/CRespNotifyFightOver/RebuildLastBattle/OnReconnectServer",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-01-EV03",
+      "kind": "source-code",
+      "label": "GameModeBase.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/GameModeBase.cs",
+      "location": "DoGameOver/OnWin/OnLose/GenerateBattleResult/GetGameOverMD5Hash",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-01-EV04",
+      "kind": "source-code",
+      "label": "NormalMode.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/NormalMode.cs",
+      "location": "class NormalMode : BaseGameMode（默认胜负路径）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-01-EV05",
+      "kind": "source-code",
+      "label": "LLevelMgr.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Managers/LLevelMgr.cs",
+      "location": "Initialize/TryStopLoop/ShouldStopLoop/GetEntityTypeForLoopType（BossKill/EliteKill/OrdinaryKill 与 ShowBattleWin）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-01-EV06",
+      "kind": "reverse-design",
+      "label": "战斗内知识域审查",
+      "path": "archive/legacy-output-20260824/research/combat-domain-audit.md",
+      "location": "§4.2 运行分层、§12 配置与生产工具",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-01-EV07",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-G 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-G].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-IN-01-Q01",
+      "priority": "P0",
+      "question": "异常退出时的产品策略采用服务端终局权威、可续局优先，还是按玩法显式配置？",
+      "impact": "OnReconnectServer 为空实现、顶号可能丢结算，直接决定资源安全与补偿处理。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02",
+        "SYS-IN-01-EV01"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-G",
+      "answer": "用户正式选择「按玩法显式配置」：每个玩法声明续局、判负或无损退出。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-IN-01-EV07"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-IN-01-Q02",
+      "priority": "P1",
+      "question": "进入战斗请求 30 秒超时阈值是否正式冻结为策划口径？",
+      "impact": "影响加载失败判定与用户等待体验，需策划与程序对齐。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-01-Q03",
+      "priority": "P1",
+      "question": "战斗世界构建失败（GenerateCombatWorldCreateData 返回 nil）是否有补偿或重试规则？",
+      "impact": "构建失败目前只记错误并取消，缺玩家侧恢复路径。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-01-Q04",
+      "priority": "P2",
+      "question": "ResumableBattleDataHeader 的 lastSnapshotTime/frameCount 续局恢复语义是否与服务器权威一致？",
+      "impact": "决定进程重启续局的确定性边界，需程序确认回放与校验逻辑。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-01-Q05",
+      "priority": "P0",
+      "question": "断线、主动退出、顶号和进程重启在当前客户端/服务端实际调用链中各自如何恢复、判负与幂等结算？",
+      "impact": "这是运行证据问题，不得随产品策略单选自动关闭。",
+      "evidenceRefs": [
+        "SYS-IN-01-EV01"
+      ],
+      "lifecycle": "OPEN",
+      "resolutionOwner": "RUNTIME_OWNER"
+    }
+  ],
+  "humanDecisions": [
+    {
+      "cardId": "DC-G",
+      "closeableQuestionId": "SYS-IN-01-Q01",
+      "selectedOptionId": 3,
+      "selectedOptionName": "按玩法显式配置",
+      "approvedTarget": "选择「按玩法显式配置」：每个玩法声明续局、判负或无损退出。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:17:13.713Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "需为每个玩法显式配置续局、判负或无损退出；服务端幂等终局仍为实现底线。",
+      "evidenceRef": "SYS-IN-01-EV07",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

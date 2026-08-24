@@ -1,0 +1,596 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GR-04",
+  "name": "角色星盘/能效",
+  "revision": "2026-08-18.3",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本（只读）+ 数值沉淀（框架v2）",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE；新口径已写入06最终配置镜像，但真实SVN配置仍只读未同步。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径（沉淀已确认），不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程或边界，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-GR-04-R07"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "角色星盘/能效是 Vgame 角色中长期个性化养成线：通过职业差异化的节点树（属性节点+技能/被动节点）按前提链解锁，让同职业角色产生有意义的构筑分化，投放基础三维、二级属性偏向与技能/被动升级，是角色差异与构筑方向的主要来源。",
+    "inScope": [
+      "星盘/能效节点树结构（19唯一节点/51次激活，按职业 DPS/Tank/Support 分图）",
+      "节点前提链与解锁顺序（HeroEnergyEfficiencyMap.PreId）",
+      "属性节点投放（4基础属性节点14次+6二级属性节点18次，累计替换配置）",
+      "技能/被动节点（NodeAddPassive/NodePassiveUp/SkillsMelee/SkillsPower/SkillsEvo）引用",
+      "校准点制作消耗与校准节点激活（CalibrationPoints/CalibrationPointsAttr）",
+      "星盘属性在裸体属性中的分项与重算触发"
+    ],
+    "outOfScope": [
+      "技能/被动节点的具体效果数值与配置链；该内容归 SYS-IN-03/CH-R03，星盘只引用技能/被动 ID",
+      "校准点与材料的具体消耗数量、金币与体力价值；该内容归 NUM-02/经济消耗沉淀",
+      "角色升级/突破/升星、专武/收容物成长；各归独立养成系统",
+      "旧能效本（能效玩法副本，已废弃）的关卡与结算规则；该内容归玩法副本体系，不是本养成系统",
+      "裸体→面板最终聚合与战斗公式；该内容归 CB-R03/NUM-03"
+    ],
+    "inputs": [
+      "校准点与材料增量（由日常/副本/活动产出，渠道待确认）",
+      "HeroEnergyEfficiencyMap 节点树定义（节点ID/类型/PreId/开放等级）",
+      "HeroEnergyEfficiencyAttr 每节点每级属性配置（32个AttrKey，累计替换）",
+      "CalibrationPoints/CalibrationPointsAttr 校准点制作消耗与等级属性",
+      "Hero.HeroClass（决定使用哪套星盘图）与 EnergyEfficiencyAttrList（32项属性索引）"
+    ],
+    "outputs": [
+      "节点激活/升级状态（未解锁→已激活，按等级推进）",
+      "星盘裸体属性分项更新（基础三维+二级属性偏向）",
+      "技能/被动/普攻/必杀升级与进化效果（引用技能系统）",
+      "星盘节点可升级红点与裸体重算触发"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "现行角色中长期个性化养成线（星盘=能效）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "角色星盘即角色能效，是角色差异与构筑方向的主要来源；须区分「能效本（玩法副本，已废弃）」与「星盘/能效成长系统（养成，现行）」。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "19节点/51激活新结构已确认；旧27节点口径已废弃",
+      "status": "CONFIRMED_TARGET",
+      "note": "角色星盘数值沉淀确认角色星盘=角色能效、19唯一节点/51次激活、4基础属性节点(14次)+6二级属性节点(18次)、二级属性总预算1.8、基础属性标准人满级6000/1800/1200(1.2标准人)；旧27节点(21免费+6校准)口径已废弃。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "SVN HeroEnergyEfficiencyMap/Attr 仍为旧结构；06最终配置镜像已落新结构",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；真实 SVN 配置仍只读未同步，06最终配置镜像已按新结构落地(Map153条/Attr992条)；源表模块规划星盘基础属性系数仍为0，与已确认1.2不一致。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "养成链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表与客户端实现证据，但没有集中版本—开关—发布时间台账，不能盖为 LIVE；新口径未同步正式SVN前不得视为运行事实。"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在节点激活/升级有序操作序列（校验前提链→校准点/材料→扣除→节点升级→属性/技能生效→重算）"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在前提链、开放等级、校准点/材料充足与节点类型条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "养成系统只消耗校准点/材料转化为属性与技能，不发放奖励"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在源表与镜像不一致、旧27节点口径废弃、前提链断链/环链风险与战斗工具旧展示算法"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在星盘树形图界面、节点点亮/灰显与校准点展示"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 HeroEnergyEfficiencyMap/Attr/CalibrationPoints/CalibrationPointsAttr/Hero 配置源"
+    }
+  },
+  "flows": [
+    {
+      "id": "SYS-OUT-GR-04-F01",
+      "name": "节点激活/升级流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-04-F01-S01",
+          "name": "选择节点",
+          "description": "玩家在星盘界面选择目标节点，客户端按 HeroEnergyEfficiencyMap 显示前提链与节点类型。"
+        },
+        {
+          "id": "SYS-OUT-GR-04-F01-S02",
+          "name": "校验前提链与开放等级",
+          "description": "沿 PreId 递归校验所有前置节点已激活且角色等级满足节点开放等级（见 SYS-OUT-GR-04-C01/C02）。"
+        },
+        {
+          "id": "SYS-OUT-GR-04-F01-S03",
+          "name": "校验消耗",
+          "description": "校准节点校验校准点+材料充足（CalibrationPoints）；HeroData.CheckEnergyUpgradeConsumeEnough 判定（见 SYS-OUT-GR-04-C03）。"
+        },
+        {
+          "id": "SYS-OUT-GR-04-F01-S04",
+          "name": "扣除与节点升级",
+          "description": "扣除校准点/材料，节点等级+1；属性节点读取新等级累计 AttrKey 配置（替换不叠加），技能/被动节点触发技能池更新。"
+        },
+        {
+          "id": "SYS-OUT-GR-04-F01-S05",
+          "name": "属性重算与红点",
+          "description": "触发裸体重算（星盘分项更新），CheckEnergyAnyNodeCanUpgrade 刷新可升级红点。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GR-04-R01",
+      "name": "星盘=能效身份与节点结构",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "角色星盘即角色能效，是角色中长期个性化养成线；当前设计为19唯一节点/51次激活，按职业(DPS/Tank/Support)分图，含4基础属性节点(14次)+6二级属性节点(18次)+技能/被动节点。",
+      "sourceFact": "角色星盘数值沉淀明确「角色星盘=角色能效」、19唯一节点/51次激活、4基础属性节点(14次)+6二级属性节点(18次)；HeroEnergyEfficiencyMap.xlsx 注册为 HeroEnergyEfficiencyMapModel；HeroData 读取 Config.EnergyEfficiencyAttrList(32项) 与 HeroEnergyEfficiencyAttr。",
+      "acceptance": "星盘与能效是同一养成系统；节点结构与激活次数以 NUM-02 星盘沉淀为权威；旧27节点(21免费+6校准)口径已废弃。",
+      "relatedIds": [
+        "SYS-IN-03",
+        "CH-R03",
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03",
+        "SYS-OUT-GR-04-EV04",
+        "SYS-OUT-GR-04-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-R02",
+      "name": "前提链与解锁顺序",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "每个节点按 HeroEnergyEfficiencyMap.PreId 定义前置节点，沿 PreId 链递归校验全部前置已激活才允许激活；环状依赖为配置错误。",
+      "sourceFact": "HeroEnergyEfficiencyMap.xlsx 有 PreId 字段；HeroData.CheckEnergyAnyNextNodeUnload/CheckEnergyCanUpgrade 按 prevNode 与节点等级判定；反推 Design R-07 提出环状依赖应被校验脚本检测。",
+      "acceptance": "节点激活必须满足 PreId 前提链；PreId 为空视为无前置；环状/断链为配置错误应被校验。",
+      "relatedIds": [
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV01",
+        "SYS-OUT-GR-04-EV04",
+        "SYS-OUT-GR-04-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-R03",
+      "name": "属性节点累计替换配置",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "属性节点升级采用「替换配置」而非数值叠加：同一节点每升一级读取一个更高的累计属性配置(AttrKey)；4基础属性节点共14次升级，6二级属性节点各3级共18次升级，AttrKey使用1~32。",
+      "sourceFact": "角色星盘沉淀 CHG-008 确认10个属性节点共32次属性激活分别配置32个AttrKey，Lv2/Lv3/Lv4使用更高累计值不与前级叠加；HeroEnergyEfficiencyAttr.xlsx 注册为 HeroEnergyEfficiencyAttrModel；HeroData.GetEnergyEfficiencyNodeCfg(nodeId, level) 按等级取对应行。",
+      "acceptance": "属性节点升级读取当前等级对应累计 AttrKey 行，不叠加低级行；AttrKey 统一为 HeroId×100+AttrKey 六位编号。",
+      "relatedIds": [
+        "NUM-02",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV02",
+        "SYS-OUT-GR-04-EV03",
+        "SYS-OUT-GR-04-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-R04",
+      "name": "星盘基础属性投放与逐角色偏移",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "星盘投放基础生命/攻击/防御，标准人满级合计6000/1800/1200(1.2标准人)；每个角色按养成属性分配的最终生命比/攻击比/防御比偏移；旧「星盘不投放基础属性」口径已废弃。",
+      "sourceFact": "角色星盘沉淀 CHG-005/CHG-010 确认星盘重新纳入基础三维投放、标准人满级6000/1800/1200、逐角色按最终比例偏移；沉淀明确旧「星盘不投放基础属性」口径自2026-08-13起废弃。",
+      "acceptance": "星盘基础属性预算以 NUM-02 星盘沉淀为权威；逐角色偏移以养成属性分配最终比例为入口。",
+      "relatedIds": [
+        "SYS-OUT-GR-02",
+        "NUM-02",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03",
+        "SYS-OUT-GR-04-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-R05",
+      "name": "二级属性偏向预算与A/B/C选择",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "6个二级属性节点各3级，二级属性总偏向预算1.8，A/B/C各承担0.6，每级投放0.1；每角色A/B/C属性类型以养成属性分配角色属性分配页签为准。",
+      "sourceFact": "角色星盘沉淀确认6二级属性节点18次升级、总预算1.8、A/B/C各0.6、每级0.1；各角色A/B/C属性选择已沉淀；HeroEnergyEfficiencyAttr 按AttrKey顺序登记32个ID。",
+      "acceptance": "二级属性偏向预算与每角色选择以 NUM-02 星盘沉淀为权威；具体二级属性数值不复制进规则正文。",
+      "relatedIds": [
+        "NUM-02",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03",
+        "SYS-OUT-GR-04-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-R06",
+      "name": "技能/被动节点引用边界",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "技能/被动节点(NodeAddPassive/NodePassiveUp/SkillsMelee/SkillsPower/SkillsEvo)激活时触发技能池更新，技能/被动效果与配置链归 SYS-IN-03/CH-R03，本正文只引用不复制。",
+      "sourceFact": "HeroEnergyEfficiencyMap 节点类型字段含 NodeAttr/NodeAddPassive/NodePassiveUp/SkillsMelee/SkillsPower/SkillsEvo；反推 Design R-04 描述各类型效果分工；技能正文归 SYS-IN-03/CH-R03。",
+      "acceptance": "星盘只维护节点类型与激活触发；技能/被动效果正文归 SYS-IN-03/CH-R03，不形成第二权威源。",
+      "relatedIds": [
+        "SYS-IN-03",
+        "CH-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV01",
+        "SYS-OUT-GR-04-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-R07",
+      "name": "校准点制作与校准节点",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "校准额外节点激活需消耗校准点+材料，按 CalibrationPoints(HeroClass×Node×HeroLv)与 CalibrationPointsAttr 定义；具体消耗数量只在 NUM-02/经济沉淀维护。",
+      "sourceFact": "CalibrationPoints.xlsx 注册为 CalibrationPointsModel、CalibrationPointsAttr.xlsx 注册为 CalibrationPointsAttrModel；反推 Design R-03 描述校准点制作消耗按 HeroClass×Node×HeroLv；新口径下校准节点拓扑已并入19节点结构。",
+      "acceptance": "校准点消耗只读 CalibrationPoints；具体数量以 NUM-02/经济沉淀为权威；校准点产出渠道待确认。",
+      "relatedIds": [
+        "NUM-02",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV06",
+        "SYS-OUT-GR-04-EV04"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GR-04-C01",
+      "name": "前提链满足",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "节点激活需 PreId 指向的所有前置节点均已激活；HeroData.CheckEnergyAnyNextNodeUnload 按 prevNode 与节点等级判定；PreId 为空视为无前置。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV01",
+        "SYS-OUT-GR-04-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-C02",
+      "name": "节点开放等级",
+      "status": "CONFIRMED_TARGET",
+      "rule": "属性节点按开放等级(Lv1/Lv10/Lv20/Lv30/Lv40/Lv50/Lv60)逐级解锁；二级属性A槽Lv30起、B/C槽Lv40起；角色等级需满足节点对应开放等级。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-C03",
+      "name": "校准点/材料充足",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "校准节点激活需校准点+材料充足，HeroData.CheckEnergyUpgradeConsumeEnough 判定；不足时灰显不可点。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV06",
+        "SYS-OUT-GR-04-EV07"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GR-04-EX01",
+      "name": "源表与最终配置镜像不一致",
+      "status": "P1_GAP",
+      "rule": "源表养成属性分配/模块规划中星盘基础属性投放系数仍为0，与已确认并写入06最终配置镜像的1.2不一致；源表待同步。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03",
+        "SYS-OUT-GR-04-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-EX02",
+      "name": "真实SVN配置未同步新结构",
+      "status": "P1_GAP",
+      "rule": "06最终配置镜像已按19节点/51激活新结构落地(Map153条/Attr992条)，但真实SVN HeroEnergyEfficiencyMap/Attr 仍为旧结构，正式接入前不得覆盖正式表。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03",
+        "SYS-OUT-GR-04-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-EX03",
+      "name": "战斗测试工具旧展示算法",
+      "status": "P2_GAP",
+      "rule": "沉淀 CHG-008 指出战斗测试工具仍存在 HeroId×10+AttrKey 旧展示算法，真实配置同步前需改为读取 EnergyEfficiencyAttrList；服务端也需排查相同十位编号假设。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-EX04",
+      "name": "校准点产出渠道未定义",
+      "status": "P2_GAP",
+      "rule": "反推 Design 工作假设校准点产出渠道(日常/副本/活动/商店)是否已定义待确认；影响F2P点满周期判断。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-EX05",
+      "name": "能效本（玩法副本）已废弃边界",
+      "status": "RESOLVED_BY_ACTIVE_RULE",
+      "rule": "旧「能效本」是能效玩法副本，已废弃；与本「星盘/能效成长系统」（现行养成）是两回事，不得因能效本废弃而误判星盘/能效成长系统废弃。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03",
+        "SYS-OUT-GR-04-EV04"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GR-04-UI01",
+      "name": "星盘树形图",
+      "status": "TARGET_REQUIRED",
+      "rule": "按职业显示节点树，已解锁/未解锁节点不同样式，前提链以连线表示；前置未满足节点灰显不可点；校准节点用特殊边框标示并显示当前校准点数量。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04-UI02",
+      "name": "节点可升级红点",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "HeroSystem.RegisterHeroUpgradeRedDots 中 isEnergyOpen 且 heroData:CheckEnergyAnyNodeCanUpgrade() 为真时点亮星盘可升级红点。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV07"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GR-04-CFG01",
+      "name": "HeroEnergyEfficiencyMap",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\HeroEnergyEfficiencyMap.xlsx",
+      "role": "星盘节点树定义：节点ID/类型/PreId/开放等级；真实SVN仍为旧结构，06最终配置镜像已落新结构(153条)",
+      "status": "WORKING_COPY_SOURCE_NOT_SYNCED_TO_TARGET"
+    },
+    {
+      "id": "SYS-OUT-GR-04-CFG02",
+      "name": "HeroEnergyEfficiencyAttr",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\HeroEnergyEfficiencyAttr.xlsx",
+      "role": "每节点每级属性配置(32个AttrKey累计替换)；真实SVN仍为旧结构，06最终配置镜像已落新结构(992条)",
+      "status": "WORKING_COPY_SOURCE_NOT_SYNCED_TO_TARGET"
+    },
+    {
+      "id": "SYS-OUT-GR-04-CFG03",
+      "name": "CalibrationPoints",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\CalibrationPoints.xlsx",
+      "role": "校准点制作消耗按 HeroClass×Node×HeroLv（数量权威在 NUM-02）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-04-CFG04",
+      "name": "CalibrationPointsAttr",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\CalibrationPointsAttr.xlsx",
+      "role": "校准等级属性加成，ID=HeroId×1000+校准层级",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-04-CFG05",
+      "name": "Hero(能效属性索引)",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\hero\\Hero.xlsx",
+      "role": "HeroClass 决定星盘图；EnergyEfficiencyAttrList 32项属性索引",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GR-04-REL01",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：HeroEnergyEfficiencyMap.xlsx(EV01)定义节点消耗，CalibrationPoints.xlsx(EV06)定义校准点身份，HeroSystem.lua(EV07)执行扣除。推导：星盘校准节点激活时消耗校准点与材料，扣除操作走物品账本，资源身份与堆叠归 SYS-OUT-SU-04，构成 consumes/outgoing 关系。推导边界：消耗配置与客户端扣除逻辑已由工作副本确认，但服务端扣除权威不可见，校准点作为专属货币的账本身份归属为知识目录分域结论。UNKNOWN：校准点的服务端扣除幂等与获取渠道的完整定义仍未知。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-04-REL02",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-03",
+      "targetName": "技能、Buff 与效果",
+      "description": "来源：HeroEnergyEfficiencyMap.xlsx(EV01)定义节点类型含技能/被动节点，HeroSystem.lua(EV07)读取节点配置并激活技能，角色星盘与能效Design Doc(EV04)描述技能节点。推导：星盘技能/被动节点激活时触发角色技能池更新，技能效果与配置链归 SYS-IN-03，本正文只引用技能 ID，构成 builds/outgoing 关系。推导边界：节点配置与客户端激活逻辑已由工作副本确认，但技能池刷新的服务端权威不可见，技能效果本体在 SYS-IN-03 侧维护。UNKNOWN：星盘技能与角色固有技能的优先级与冲突处理仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-04-REL03",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "CB-R03",
+      "targetName": "属性与计算",
+      "description": "来源：HeroEnergyEfficiencyAttr.xlsx(EV02)定义节点属性投放，角色星盘数值沉淀(EV03)确认基础三维与二级属性偏向预算。推导：星盘节点激活后投放基础三维与二级属性偏向，经裸体属性分项进入战斗属性计算(CB-R03)，构成 builds/outgoing 关系。推导边界：属性投放配置与预算已由工作副本与沉淀确认，但属性如何并入战斗公式乘区属推断，星盘属性与升星/装备属性的叠加规则需在战斗数值侧确认。UNKNOWN：星盘二级属性与升星二级属性是否共享乘区仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-04-REL04",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-02",
+      "targetName": "养成数值",
+      "description": "星盘节点结构、属性预算与校准点消耗由养成数值域约束。",
+      "status": "KNOWLEDGE_CURRENT_WITH_CONFLICT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-GR-04-REL05",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：角色星盘能效经济消耗沉淀(EV08)定义校准点与材料消耗曲线，CalibrationPoints.xlsx(EV06)定义校准点身份。推导：星盘校准点与材料消耗量、金币与体力价值由经济数值域(NUM-04)定价与平衡，构成 prices/incoming 关系。推导边界：消耗配置已由工作副本与沉淀确认，但消耗曲线在整体经济账中的占比属经济数值域维护，本正文不复制具体数值。UNKNOWN：校准点的获取速率与星盘全节点毕业的经济周期仍待经济域核算。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-04-REL06",
+      "type": "validates",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "来源：角色星盘与能效Design Doc(EV04)与知识目录关系定义主线关卡为星盘成长验证层，角色星盘数值沉淀(EV03)定义成长曲线。推导：主线关卡(GP-01)难度曲线作为星盘成长的中长期阶段验证，玩家需星盘属性达到对应水平才能推进，构成 validates/incoming 关系。推导边界：主线难度与星盘成长的对应关系为知识目录跨源归纳，本正文证据仅覆盖星盘成长曲线，主线难度曲线在 GP-01 侧维护。UNKNOWN：主线各章节对应的目标星盘进度与属性门槛的精确映射仍待节奏数值域确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GR-04-EV01",
+      "kind": "source-excel",
+      "label": "HeroEnergyEfficiencyMap.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/hero/HeroEnergyEfficiencyMap.xlsx",
+      "location": "本机SVN工作副本；逻辑表 HeroEnergyEfficiencyMap；节点ID/类型/PreId/开放等级；真实SVN仍为旧结构；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NOT_SYNCED"
+    },
+    {
+      "id": "SYS-OUT-GR-04-EV02",
+      "kind": "source-excel",
+      "label": "HeroEnergyEfficiencyAttr.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/hero/HeroEnergyEfficiencyAttr.xlsx",
+      "location": "本机SVN工作副本；逻辑表 HeroEnergyEfficiencyAttr；32个AttrKey累计替换属性；真实SVN仍为旧结构；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NOT_SYNCED"
+    },
+    {
+      "id": "SYS-OUT-GR-04-EV03",
+      "kind": "numeric-deposit",
+      "label": "角色星盘数值沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/角色星盘数值沉淀-2026-07-07.md",
+      "location": "当前权威结论、属性节点结构、各角色基础属性偏移、二级属性节点、变更记录 CHG-005~CHG-011、当前状态",
+      "status": "CONFIRMED_TARGET"
+    },
+    {
+      "id": "SYS-OUT-GR-04-EV04",
+      "kind": "reverse-design",
+      "label": "角色星盘与能效 Design Doc",
+      "path": "design/角色星盘与能效Design Doc.md",
+      "location": "R-01~R-07、风险评估、工作假设（旧27节点口径，已被沉淀新结构取代）",
+      "status": "DRAFT_REVERSE_ENGINEERED_DEPRECATED_STRUCTURE"
+    },
+    {
+      "id": "SYS-OUT-GR-04-EV05",
+      "kind": "delivery-mirror",
+      "label": "能效配置最终配置镜像",
+      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/能效配置/HeroEnergyEfficiencyMap.xlsx",
+      "location": "06最终配置镜像；Map153条/Attr992条新结构；00_配置清单.xlsx；未写入真实SVN",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    },
+    {
+      "id": "SYS-OUT-GR-04-EV06",
+      "kind": "source-excel",
+      "label": "CalibrationPoints.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/hero/CalibrationPoints.xlsx",
+      "location": "本机SVN工作副本；逻辑表 CalibrationPoints；校准点制作消耗按 HeroClass×Node×HeroLv；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-04-EV07",
+      "kind": "source-code",
+      "label": "HeroSystem.lua/HeroData.lua(能效)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Hero/HeroData.lua",
+      "location": "HeroData:GetEnergyEfficiencyNodeCfg(462)/GetEnergyEfficiencyNodeLv(478)/CheckEnergyCanUpgrade(295)/CheckEnergyUpgradeConsumeEnough(396)/CheckEnergyAnyNodeCanUpgrade(268)；HeroSystem.RegisterHeroUpgradeRedDots(541) isEnergyOpen 判定",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-04-EV08",
+      "kind": "numeric-deposit",
+      "label": "角色星盘能效经济消耗沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/18_养成_角色星盘能效经济消耗沉淀-2026-07-08.md",
+      "location": "星盘校准点/材料/金币/体力价值口径（权威关系索引）",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GR-04-Q01",
+      "priority": "P1",
+      "question": "源表养成属性分配/模块规划中星盘基础属性系数何时从0同步为已确认的1.2？",
+      "impact": "源表与06最终配置镜像不一致，影响生成器与玩家战力曲线重算。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03",
+        "SYS-OUT-GR-04-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-04-Q02",
+      "priority": "P1",
+      "question": "06最终配置镜像的新结构(19节点/51激活)何时同步至真实SVN HeroEnergyEfficiencyMap/Attr？",
+      "impact": "真实SVN仍为旧结构，新口径未同步前不得视为运行事实。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03",
+        "SYS-OUT-GR-04-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-04-Q03",
+      "priority": "P2",
+      "question": "战斗测试工具与服务端的 HeroId×10+AttrKey 旧展示算法是否已改为读取 EnergyEfficiencyAttrList？",
+      "impact": "旧十位编号假设会导致属性展示与取值错误。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-04-Q04",
+      "priority": "P2",
+      "question": "校准点产出渠道(日常/副本/活动/商店)是否已定义？",
+      "impact": "影响F2P玩家点满星盘校准节点的周期判断。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-04-EV04"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ]
+}

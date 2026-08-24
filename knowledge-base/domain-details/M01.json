@@ -1,0 +1,480 @@
+{
+  "schema": "vgame-module-detail/v1",
+  "moduleId": "M01",
+  "name": "战斗专业正文",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceDoc": "M01-战斗专业正文.md",
+  "parentModule": "combat",
+  "overview": {
+    "purpose": "为战斗域建立跨系统的专业视图：实例与胜负、单位与队伍、属性与计算、行动与技能、敌人与AI、关卡遭遇、玩法局内变体、反馈与结果、角色设计七层与战斗内容验证。",
+    "inScope": [
+      "CB-R01..R08 战斗规则的模块级组织与跨系统引用",
+      "CH-R01..R07 角色设计框架（逐角色正文为 GAP）",
+      "玩法局内模式差异（LevelType→GameMode→胜负/结算）",
+      "胜负与结算链（含 PVPVE 专用回调例外、金币带出 P0 冲突）",
+      "战斗内容与验证模型（DPS/EHP/TTK/难度链）的模块级汇总"
+    ],
+    "outOfScope": [
+      "各系统规则正文（归 system-details/SYS-IN-01..08 等，本模块只引用）",
+      "数值公式与参数（归 NUM-03 / 框架v2 参数基线）",
+      "外循环玩法壳层规则（归 SYS-OUT-GP-*）"
+    ],
+    "inputs": [
+      "SYS-IN-01..08 系统正文",
+      "9 个共享契约（FRAMEWORK_CONTRACT）",
+      "20-战斗框架.md 骨架",
+      "框架v2 战斗链路参数"
+    ],
+    "outputs": [
+      "战斗域专业视图",
+      "玩法局内模式映射",
+      "结算链与缺口清单（供主策裁决）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式知识模块（combat 模块专业展开）",
+      "status": "CURRENT_DESIGN_IDENTITY"
+    },
+    {
+      "axis": "目标设计",
+      "value": "战斗总纲未批准；多数战斗 Design 为反推 Draft",
+      "status": "DESIGN_GAP"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "实现链可追溯到代码（Mode/*.cs、BattleSystem.lua 等）",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "axis": "运行状态",
+      "value": "缺集中版本—开关—发布台账",
+      "status": "UNKNOWN_LIVE"
+    }
+  ],
+  "sections": [
+    {
+      "id": "M01-S0",
+      "anchor": "## 0. 阅读约定与来源标签",
+      "name": "阅读约定与来源标签",
+      "summary": "provenance/状态词定义与全局基调：战斗域目标设计轴普遍为 WORKING_COPY_OBSERVED_DESIGN_GAP。",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "M01-S1",
+      "anchor": "## 1. 战斗规则（CB-R01..R08）",
+      "name": "战斗规则 CB-R01..R08",
+      "summary": "实例与胜负（多结算入口）、单位与队伍、属性与计算（权威在 NUM-03）、行动与技能（Skill Action 74 / Buff Effect 15）、敌人与AI、关卡遭遇、反馈与结果。",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP"
+    },
+    {
+      "id": "M01-S2",
+      "anchor": "## 2. 角色设计（CH-R01..R07）",
+      "name": "角色设计 CH-R01..R07",
+      "summary": "角色设计七层框架与战斗/养成/数值职责边界；逐角色正文缺位（GAP）。",
+      "status": "DESIGN_GAP"
+    },
+    {
+      "id": "M01-S3",
+      "anchor": "## 3. 玩法局内模式（CB-R07 / SYS-IN-06 / SYS-OUT-GP-01..10）",
+      "name": "玩法局内模式",
+      "summary": "LevelType→GameMode 映射与 11 个玩法的局内差异；竞技场三层口径（§3.2.1）；CoinMode 胜利判据 UNKNOWN。",
+      "status": "WORKING_COPY_OBSERVED_WITH_UNKNOWN"
+    },
+    {
+      "id": "M01-S4",
+      "anchor": "## 4. 胜负与结算（SYS-IN-08 / SYS-IN-06 + 共享契约）",
+      "name": "胜负与结算",
+      "summary": "四触发点、ResultHash 对 BattleResult 计算哈希（仅 NormalMessageProcessor 路径赋值；BattleRecord 是回放记录，与 ResultHash 计算对象不同）、PVPVE override 丢失三字段、通用 CNotifyFightOver 不覆盖 PVPVE、幂等缺口、金币带出 P0 冲突。",
+      "status": "WORKING_COPY_OBSERVED_WITH_CONFLICTS"
+    },
+    {
+      "id": "M01-S5",
+      "anchor": "## 5. 战斗内容与验证",
+      "name": "战斗内容与验证",
+      "summary": "关卡/怪物/Boss 内容品类与 DPS/EHP/TTK/难度链验证模型；BOSS 挑战 7×10 vs 7×6+10 P0 冲突。",
+      "status": "WORKING_COPY_OBSERVED_WITH_CONFLICTS"
+    },
+    {
+      "id": "M01-S6",
+      "anchor": "## 6. 全局 GAP / UNKNOWN / 冲突清单",
+      "name": "全局缺口清单",
+      "summary": "战斗域 P0/P1 缺口汇总（总纲、幂等、金币带出、BOSS结构、技能同步）。",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "M01-S7",
+      "anchor": "## 7. 证据索引（关键路径）",
+      "name": "证据索引",
+      "summary": "系统正文/契约/代码/配置/数值/Design/冲突登记的路径索引。",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "M01-S8",
+      "anchor": "## 2026-08-24 人工裁决同步",
+      "name": "2026-08-24 人工裁决同步",
+      "summary": "5 项相关裁决已确认目标；全部实施状态仍为 IMPLEMENTATION_PENDING。",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING"
+    }
+  ],
+  "crossRefs": [
+    {
+      "targetType": "combat-rule",
+      "targetId": "CB-R01",
+      "systemIds": [
+        "SYS-IN-01"
+      ],
+      "note": "实例与胜负",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "combat-rule",
+      "targetId": "CB-R02",
+      "systemIds": [
+        "SYS-IN-02"
+      ],
+      "note": "单位与队伍",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "combat-rule",
+      "targetId": "CB-R03",
+      "systemIds": [
+        "SYS-IN-02",
+        "SYS-IN-03"
+      ],
+      "note": "属性与计算（公式权威在 NUM-03）",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "targetType": "combat-rule",
+      "targetId": "CB-R04",
+      "systemIds": [
+        "SYS-IN-03"
+      ],
+      "note": "行动与技能",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "combat-rule",
+      "targetId": "CB-R05",
+      "systemIds": [
+        "SYS-IN-04"
+      ],
+      "note": "敌人与 AI",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "combat-rule",
+      "targetId": "CB-R06",
+      "systemIds": [
+        "SYS-IN-05"
+      ],
+      "note": "关卡与遭遇",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "combat-rule",
+      "targetId": "CB-R07",
+      "systemIds": [
+        "SYS-IN-06"
+      ],
+      "note": "玩法局内变体",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "combat-rule",
+      "targetId": "CB-R08",
+      "systemIds": [
+        "SYS-IN-07",
+        "SYS-IN-08"
+      ],
+      "note": "反馈与结果",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "character-rule",
+      "targetId": "CH-R01",
+      "systemIds": [],
+      "note": "角色定位（框架级，逐角色 GAP）",
+      "status": "DESIGN_GAP"
+    },
+    {
+      "targetType": "character-rule",
+      "targetId": "CH-R02",
+      "systemIds": [],
+      "note": "战斗循环（框架级）",
+      "status": "DESIGN_GAP"
+    },
+    {
+      "targetType": "character-rule",
+      "targetId": "CH-R03",
+      "systemIds": [
+        "SYS-IN-03"
+      ],
+      "note": "技能组（配置链）",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "character-rule",
+      "targetId": "CH-R04",
+      "systemIds": [],
+      "note": "队伍协同（框架级）",
+      "status": "DESIGN_GAP"
+    },
+    {
+      "targetType": "character-rule",
+      "targetId": "CH-R05",
+      "systemIds": [],
+      "note": "环境适配（框架级）",
+      "status": "DESIGN_GAP"
+    },
+    {
+      "targetType": "character-rule",
+      "targetId": "CH-R06",
+      "systemIds": [
+        "SYS-OUT-GR-02",
+        "SYS-OUT-GR-03",
+        "SYS-OUT-GR-04",
+        "SYS-OUT-GR-05",
+        "SYS-OUT-GR-06",
+        "SYS-OUT-GR-07"
+      ],
+      "note": "成长接口",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "targetType": "character-rule",
+      "targetId": "CH-R07",
+      "systemIds": [],
+      "note": "强度验证（模型归 NUM-03）",
+      "status": "DESIGN_GAP"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-01",
+      "systemIds": [
+        "SYS-OUT-GP-01"
+      ],
+      "note": "主线局内模式",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-02",
+      "systemIds": [
+        "SYS-OUT-GP-02"
+      ],
+      "note": "高难主线局内模式",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-03",
+      "systemIds": [
+        "SYS-OUT-GP-03"
+      ],
+      "note": "资源副本局内模式（CoinMode 胜利 UNKNOWN）",
+      "status": "WORKING_COPY_OBSERVED_UNKNOWN"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-04",
+      "systemIds": [
+        "SYS-OUT-GP-04"
+      ],
+      "note": "旅券副本局内模式",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-05",
+      "systemIds": [
+        "SYS-OUT-GP-05"
+      ],
+      "note": "映射装备副本局内模式",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-06",
+      "systemIds": [
+        "SYS-OUT-GP-06"
+      ],
+      "note": "无限挑战局内模式（层内胜利非 GameOver）",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-07",
+      "systemIds": [
+        "SYS-OUT-GP-07"
+      ],
+      "note": "竞技场 PVPVE（三层口径 §3.2.1）",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_DRAFT"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-08",
+      "systemIds": [
+        "SYS-OUT-GP-08"
+      ],
+      "note": "爬塔（TowerMode 未定位）",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-09",
+      "systemIds": [
+        "SYS-OUT-GP-09"
+      ],
+      "note": "大秘境（MysteryMode 占位空类）",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-10",
+      "systemIds": [
+        "SYS-OUT-GP-10"
+      ],
+      "note": "BOSS 挑战（结构 P0 冲突）",
+      "status": "WORKING_COPY_OBSERVED_WITH_CONFLICTS"
+    },
+    {
+      "targetType": "system",
+      "targetId": "SYS-OUT-GP-12",
+      "systemIds": [
+        "SYS-OUT-GP-12"
+      ],
+      "note": "跑商（PVPMode 运行）",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "targetType": "contract",
+      "targetId": "CONTRACT-BATTLE-RESULT",
+      "systemIds": [
+        "SYS-IN-01",
+        "SYS-IN-06",
+        "SYS-IN-08",
+        "SYS-OUT-GP-09"
+      ],
+      "note": "FRAMEWORK_CONTRACT，非口径权威",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "targetType": "contract",
+      "targetId": "CONTRACT-REWARD-SETTLEMENT",
+      "systemIds": [
+        "SYS-IN-08"
+      ],
+      "note": "FRAMEWORK_CONTRACT",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "targetType": "contract",
+      "targetId": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "systemIds": [
+        "SYS-IN-01",
+        "SYS-IN-06",
+        "SYS-IN-08"
+      ],
+      "note": "FRAMEWORK_CONTRACT",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    }
+  ],
+  "aggregatedConflicts": [
+    {
+      "id": "M01-C01",
+      "priority": "P0",
+      "theme": "战斗总纲未批准（多数 Design 为反推 Draft）",
+      "externalQuestionRefs": [
+        "SYS-IN-01-Q01",
+        "SYS-IN-03-Q01",
+        "SYS-IN-08-Q01",
+        "SYS-IN-08-Q05"
+      ]
+    },
+    {
+      "id": "M01-C02",
+      "priority": "P0",
+      "theme": "金币带出三方不一致（Draft/字段/服务器消费链）",
+      "externalQuestionRefs": [
+        "SYS-IN-08-Q01"
+      ],
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "M01-C03",
+      "priority": "P0",
+      "theme": "BOSS 挑战结构 7×10 vs 7×6+10",
+      "externalQuestionRefs": []
+    },
+    {
+      "id": "M01-C04",
+      "priority": "P1",
+      "theme": "CoinMode 胜利判据 UNKNOWN（GameOverData 仅候选）",
+      "externalQuestionRefs": [
+        "SYS-IN-06-Q06"
+      ]
+    },
+    {
+      "id": "M01-C05",
+      "priority": "P1",
+      "theme": "爬塔 TowerMode 源码未定位",
+      "externalQuestionRefs": [
+        "SYS-IN-06-Q01"
+      ],
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "M01-C06",
+      "priority": "P1",
+      "theme": "竞技场段位/奖励正式口径未冻结",
+      "externalQuestionRefs": [
+        "SYS-OUT-GP-07-Q05",
+        "SYS-OUT-GP-07-Q06"
+      ],
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING"
+    }
+  ],
+  "humanDecisionSummary": [
+    {
+      "cardId": "DC-G",
+      "selectedOptionName": "按玩法显式配置",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-IN-01-Q01"
+    },
+    {
+      "cardId": "DC-H",
+      "selectedOptionName": "源码生成文档和校验",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-IN-03-Q01"
+    },
+    {
+      "cardId": "DC-J",
+      "selectedOptionName": "获批Design为权威",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-IN-08-Q01"
+    },
+    {
+      "cardId": "DC-P",
+      "selectedOptionName": "逐条混合继承",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-GP-07-Q05"
+    },
+    {
+      "cardId": "DC-R",
+      "selectedOptionName": "Draft目标改造",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-GP-07-Q06"
+    }
+  ]
+}

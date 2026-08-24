@@ -1,0 +1,252 @@
+{
+  "schema": "vgame-skill-to-layer/v1",
+  "mappings": [
+    {
+      "skillId": "accessibility-compliance",
+      "frameworkNodeIds": [
+        "PFN-18",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "experimentation-analytics",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "game-monetization",
+      "frameworkNodeIds": [
+        "PFN-04",
+        "PFN-08",
+        "PFN-09"
+      ]
+    },
+    {
+      "skillId": "game-numerical-analysis",
+      "frameworkNodeIds": [
+        "PFN-07",
+        "PFN-13",
+        "PFN-14"
+      ]
+    },
+    {
+      "skillId": "localize",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "outer-loop-progression-pacing",
+      "frameworkNodeIds": [
+        "PFN-07",
+        "PFN-13",
+        "PFN-14"
+      ]
+    },
+    {
+      "skillId": "planning-acceptance-traceability",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "planning-analytics-instrumentation",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "planning-change-sync",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "planning-feature-workflow",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "planning-liveops-readiness",
+      "frameworkNodeIds": [
+        "PFN-18",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "planning-requirement-clarification",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "product-analytics-setup",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "senior-game-economy",
+      "frameworkNodeIds": [
+        "PFN-07",
+        "PFN-13",
+        "PFN-14"
+      ]
+    },
+    {
+      "skillId": "vgame-battle-content-map",
+      "frameworkNodeIds": [
+        "PFN-03",
+        "PFN-10",
+        "PFN-12"
+      ]
+    },
+    {
+      "skillId": "vgame-battle-tuning-helper",
+      "frameworkNodeIds": [
+        "PFN-07",
+        "PFN-13",
+        "PFN-14"
+      ]
+    },
+    {
+      "skillId": "vgame-character-kit-design-map",
+      "frameworkNodeIds": [
+        "PFN-06",
+        "PFN-11",
+        "PFN-13"
+      ]
+    },
+    {
+      "skillId": "vgame-config-quality-audit",
+      "frameworkNodeIds": [
+        "PFN-18",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "vgame-config-schema",
+      "frameworkNodeIds": [
+        "PFN-18",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "vgame-core-understanding",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "vgame-economy-source-map",
+      "frameworkNodeIds": [
+        "PFN-07",
+        "PFN-13",
+        "PFN-14"
+      ]
+    },
+    {
+      "skillId": "vgame-figma-ui",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "vgame-growth-combat-conversion-map",
+      "frameworkNodeIds": [
+        "PFN-06",
+        "PFN-11",
+        "PFN-13"
+      ]
+    },
+    {
+      "skillId": "vgame-hero-skill-config-map",
+      "frameworkNodeIds": [
+        "PFN-06",
+        "PFN-11",
+        "PFN-13"
+      ]
+    },
+    {
+      "skillId": "vgame-knowledge-router",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "vgame-level-design-map",
+      "frameworkNodeIds": [
+        "PFN-03",
+        "PFN-10",
+        "PFN-12"
+      ]
+    },
+    {
+      "skillId": "vgame-level-progression-map",
+      "frameworkNodeIds": [
+        "PFN-03",
+        "PFN-10",
+        "PFN-12"
+      ]
+    },
+    {
+      "skillId": "vgame-outer-loop-system-map",
+      "frameworkNodeIds": [
+        "PFN-04",
+        "PFN-08",
+        "PFN-09"
+      ]
+    },
+    {
+      "skillId": "vgame-player-progression-simulator",
+      "frameworkNodeIds": [
+        "PFN-07",
+        "PFN-13",
+        "PFN-14"
+      ]
+    },
+    {
+      "skillId": "vgame-reward-drop-sync",
+      "frameworkNodeIds": [
+        "PFN-07",
+        "PFN-13",
+        "PFN-14"
+      ]
+    },
+    {
+      "skillId": "vgame-tutorial-onboarding-map",
+      "frameworkNodeIds": [
+        "PFN-04",
+        "PFN-08",
+        "PFN-09"
+      ]
+    },
+    {
+      "skillId": "vgame-ui-prototype",
+      "frameworkNodeIds": [
+        "PFN-17",
+        "PFN-19"
+      ]
+    },
+    {
+      "skillId": "vgame-version-release-map",
+      "frameworkNodeIds": [
+        "PFN-18",
+        "PFN-19"
+      ]
+    }
+  ]
+}

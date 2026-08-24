@@ -1,0 +1,630 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-13",
+  "name": "新手引导与系统开放",
+  "revision": "2026-08-18.4",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE；引导完成的服务端同步与系统开放的运行时生效需发布台账确认。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（表或代码），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "overview": {
+    "purpose": "新手引导与系统开放负责把主线/等级/任务等进度条件经 Unlock 与 SystemOpen 转成功能入口开放，并用 BattleGuide（局内）与 NewbieGuide（战斗外）教会玩家操作，以完成记录防止重复教学。",
+    "inScope": [
+      "BattleGuide 的触发（ZoneShowGuide）、动作类型与完成记录（HistoricalCompletedGuideIds）",
+      "NewbieGuide 序列/步骤的启动（StartType）、UnlockId 前置、FailureLevel 容错与完成同步",
+      "Unlock 条件体系（UnLockType/UnLockParams）与 SystemOpen 开放语义（CloseSys/ParentId/EntranceResident）",
+      "配置存在与功能开放不能等同的边界"
+    ],
+    "outOfScope": [
+      "BattleGuide 的局内 UI 呈现（HUD、遮罩、手指动画）；该内容归 SYS-IN-07",
+      "系统开放后各系统的具体玩法规则与奖励；该内容归各系统正文",
+      "首小时时间线与埋点验收；该内容归运营/专项 Skill 与数据埋点",
+      "剧情/过场 Timeline 系统；该内容归剧情模块"
+    ],
+    "inputs": [
+      "玩家进度事件（主线通关、等级提升、任务状态、获得道具/角色）",
+      "Unlock 条件（UnLockType/UnLockParams）与 SystemOpen 配置",
+      "BattleGuide/NewbieGuide 序列与步骤配置",
+      "登录同步的已完成引导记录（PlayerClientInfo）"
+    ],
+    "outputs": [
+      "系统入口开放状态与解锁事件（OnSystemUnlock/OnLevelUnlock）",
+      "引导序列的启动、步骤执行、完成与跳过状态",
+      "引导完成记录的服务端同步",
+      "系统开放提示与提示奖励"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "引导与开放的 canonical 权威",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "NewbieGuide/BattleGuide/Unlock/SystemOpen 与完成记录的触发、阻塞、完成与跳过唯一权威；局内 UI 呈现归 SYS-IN-07。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "双系统架构与三层开放链有反推 Design；首小时时间线缺埋点验证",
+      "status": "CONFIRMED_TARGET_WITH_GAP",
+      "note": "BattleGuide/NewbieGuide/SystemOpen 三层串联已稳定，但首小时 24 步时间线未与埋点/当前配置对齐。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Unlock 1137 条、SystemOpen 188 行无 IsValid、引导生成序列存在、4 种 UnLockType 未分派",
+      "status": "WORKING_COPY_OBSERVED_WITH_GAP",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；SystemOpen 无 IsValid 字段只有 CloseSys，GetIsUnLock 未分派 Character_Star/Neural_Roam/World_Grade/Task_Complete。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "引导与开放链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表与客户端实现证据，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-13-F01",
+      "name": "系统开放与引导触发流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-13-F01-S01",
+          "name": "进度条件变化",
+          "description": "主线通关、等级提升、任务状态或获得道具触发 OnConditionChanged（UnLock_UUT_Level/player_Grade 等）。"
+        },
+        {
+          "id": "SYS-OUT-SU-13-F01-S02",
+          "name": "评估系统开放",
+          "description": "ConditionSystem.IsSystemOpen 依次判定 CloseSys、ParentId 递归与 GetIsUnLock(UnlockId)，满足则广播 OnSystemUnlock。"
+        },
+        {
+          "id": "SYS-OUT-SU-13-F01-S03",
+          "name": "引导入队",
+          "description": "NewbieGuideSystem 监听解锁事件，检查序列 IsValid、未完成、未入队且 UnlockId 满足，按 SortOrder 入队。"
+        },
+        {
+          "id": "SYS-OUT-SU-13-F01-S04",
+          "name": "启动引导",
+          "description": "按 StartType 启动：ForceJumpUI 强制跳转目标界面，WaitUIOpen 等待玩家自然打开；进入步骤序列。"
+        },
+        {
+          "id": "SYS-OUT-SU-13-F01-S05",
+          "name": "执行步骤与容错",
+          "description": "依次执行 ClickTarget/Drag/Timer 步骤，按 FailureLevel 0-3 处理拦截、取消、跳步或跳过；目标缺失时超时降级。"
+        },
+        {
+          "id": "SYS-OUT-SU-13-F01-S06",
+          "name": "完成同步",
+          "description": "序列完成或跳过后经 PlayerClientInfo(SERVER_GUIDE_KEY=NewbieGuide) 同步服务端，登录时回放已完成集合。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-13-R01",
+      "name": "引导双系统身份",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "Vgame 用双系统引导：BattleGuide 负责局内战斗操作（C# 锁步），NewbieGuide 负责战斗外 UI 引导（Lua）；本系统维护触发与序列规则，局内 UI 呈现归 SYS-IN-07。",
+      "sourceFact": "BattleGuide.xlsx + GuideMgr.cs/ZoneShowGuide.cs 构成局内链路；GuideSequenceData_Auto/GuideStepData_Auto + NewbieGuideSystem.lua 构成战斗外链路。",
+      "acceptance": "战斗内与战斗外引导的触发、完成、跳过不混淆；局内呈现不在本系统重复维护。",
+      "relatedIds": [
+        "SYS-IN-07",
+        "SYS-IN-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV02",
+        "SYS-OUT-SU-13-EV04",
+        "SYS-OUT-SU-13-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-R02",
+      "name": "BattleGuide 触发与动作类型",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "BattleGuide 由关卡内 ZoneShowGuide 触发区激活，按 BattleGuideEnum 执行跳跃/下蹲/技能/必杀/图片/暂停/禁操作等动作。",
+      "sourceFact": "BattleGuide.xlsx 配置 HideUI/ShowUI/ChooseOperationType/JumpUp/JumpDown/UseSkill/ShowPic/DoubleJump/HideSkill/Pause/ForbidOperation/AllowOperation/UseLevelSkill/HideLevelSkill 等类型；GuideMgr.cs 的 TriggerGuide 写入 TriggerGuideIds 并分派 BattleGuideEnum。",
+      "acceptance": "每种 BattleGuide 类型有明确触发区、是否暂停与文本/图片引用。",
+      "relatedIds": [
+        "SYS-IN-05",
+        "SYS-IN-07"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV01",
+        "SYS-OUT-SU-13-EV02",
+        "SYS-OUT-SU-13-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-R03",
+      "name": "BattleGuide 完成记录",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "局内引导完成后写入 HistoricalCompletedGuideIds，防止同一引导重复触发；进入战斗时由 Lua 侧回传已完成集合。",
+      "sourceFact": "GuideMgr.cs 维护 HistoricalCompletedGuideIds 并暴露 SetHistoricalCompletedGuideIds；GWCombat.lua 进入战斗时把 LevelSystem.TutorialMap 传给 C# 侧。",
+      "acceptance": "已完成引导不再重复触发；集合在战斗实例间保持。",
+      "relatedIds": [
+        "SYS-IN-07"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV02",
+        "SYS-OUT-SU-13-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-R04",
+      "name": "NewbieGuide 序列与启动",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "NewbieGuide 序列以 UnlockId 为前置，StartType 分 ForceJumpUI（强制跳转）与 WaitUIOpen（等待自然打开）；序列按 SortOrder 入队，NextSequence 链式衔接。",
+      "sourceFact": "GuideSequenceData_Auto.lua 每序列含 Id/SortOrder/StartType/StartUI/SubTargetUI/FailureLevel/UnlockId/ExpireId/NextSequence/IsValid/AllowSkip；NewbieGuideSystem._CheckAndEnqueueSequences 校验 IsValid、未完成、未入队与 UnlockId。",
+      "acceptance": "序列只在 UnlockId 满足时入队；ForceJumpUI 与 WaitUIOpen 行为可区分；ExpireId 防过时引导。",
+      "relatedIds": [
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV04",
+        "SYS-OUT-SU-13-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-R05",
+      "name": "NewbieGuide 步骤与容错",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "步骤类型分 ClickTarget/Drag/Timer，FailureLevel 0-3 表达不可失败、允许取消、允许跳步、允许跳过整序列；遮罩/气泡/箭头/手指按步骤展示。",
+      "sourceFact": "NewbieGuideSystem 的 _SetupClickTargetDetection/_SetupDragDetection/_SetupTimerDetection 与 _HandleStepFailure 实现步骤检测与失败处理；GuideStepData_Auto 承载步骤字段。",
+      "acceptance": "FailureLevel 0-3 的拦截/取消/跳步/跳过行为可验收；目标缺失时超时降级不卡死。",
+      "relatedIds": [
+        "SYS-IN-07"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV04",
+        "SYS-OUT-SU-13-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-R06",
+      "name": "NewbieGuide 完成同步",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "引导完成/跳过状态同步服务端，登录时回放；断线或场景切换打断的 ForceJumpUI 序列可重入队恢复。",
+      "sourceFact": "NewbieGuideSystem 以 SERVER_GUIDE_KEY=NewbieGuide 经 CReqSetPlayerClientInfo 推送状态（_PushGuideStateToServer/_SyncSequenceComplete）；OnLoginSync 回放 completedSequences 与 startedSequence；_RetryInterruptedForceJumpSequences 重入队被打断序列。",
+      "acceptance": "引导完成不重复触发；断线恢复从当前阶段继续。",
+      "relatedIds": [
+        "SYS-OUT-SU-09"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-R07",
+      "name": "Unlock 条件体系",
+      "status": "WORKING_COPY_OBSERVED_WITH_GAP_MAINLINE_CONFIGURED",
+      "targetRule": "Unlock 以 UnLockType/UnLockParams 参数化表达关卡通关、玩家等级、任务、爬塔、房车、跑商、获得道具/角色等条件；主线章节3～7当前使用UnLock_UUT_player_Grade条件201～205（24/28/31/33/35），章节0～2不配置章节Unlock。",
+      "sourceFact": "Unlock.xlsx 中201～205已配置为UnLock_UUT_player_Grade(24/28/31/33/35)并由ChapterLevel 10003～10007引用；ConditionSystem.GetIsUnLock可判定该类型。全表仍存在UnLock_UUT_Character_Star/Neural_Roam/World_Grade/Task_Complete未分派并落到return false的既有缺口。",
+      "acceptance": "所有配置存在的 UnLockType 都有运行时判定；未分派类型不得静默永久锁定。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV06",
+        "SYS-OUT-SU-13-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-R08",
+      "name": "SystemOpen 开放语义",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "系统开放由 SystemOpen 定义：CloseSys=true 永关，ParentId 未开则子未开，UnlockId 条件满足则开放；EntranceResident 决定入口常驻，NoPopUp 决定是否弹开启提示。",
+      "sourceFact": "SystemOpen.xlsx 有效 188 行（CloseSys=True 19 个、UnlockId 非空 89 个、无 IsValid 字段）；ConditionSystem.IsSystemOpen 依 CloseSys→ParentId→GetIsUnLock 顺序判定。",
+      "acceptance": "系统入口开放与具体关卡/层开放分开；CloseSys 与 UnlockId 联合生效；无 IsValid 字段意味着有效性与 CloseSys 是同一口径。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV07",
+        "SYS-OUT-SU-13-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-R09",
+      "name": "配置存在不等于功能开放",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "SystemOpen/Unlock 配置存在只能证明「有开放定义」，功能是否真正开放由 CloseSys、UnlockId、父系统与服务端开关联合决定；不得把配置存在当开放。",
+      "sourceFact": "SystemOpen 存在「收容物——旧」CloseSys=True 与「收容物」并存，映射装备/专武等旧口径未随迁移同步；配置存在与功能开放不能等同。",
+      "acceptance": "任何功能开放结论都能追到 SystemOpen.CloseSys + UnlockId 的运行时判定，而非仅表存在。",
+      "relatedIds": [
+        "SYS-OUT-GR-10",
+        "SYS-OUT-GR-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV07",
+        "SYS-OUT-SU-13-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-R10",
+      "name": "旧开放口径漂移",
+      "status": "WORKING_COPY_OBSERVED_PROJECT_ENTRY_SYNCED",
+      "targetRule": "系统开放点以当前工作副本 SystemOpen→Unlock→LevelId 链为准；旧口径（如 1-6、2-15）降级为历史，不显示为当前事实。",
+      "sourceFact": "SYS-OUT-GP-01 R09 已记录「49 个 SystemOpen 关卡型条件全部指向普通主线节点，旧口径 1-6/2-15 已降级」；本系统回源核验当前工作副本承接该事实。",
+      "acceptance": "每个系统开放点能从 SystemOpen.UnlockId 追到 Unlock 与有效普通主线节点；旧开放口径不再作为当前事实。",
+      "relatedIds": [
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV06",
+        "SYS-OUT-SU-13-EV07"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-13-C01",
+      "name": "系统开放判定",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "IsSystemOpen 依次判定 CloseSys、ParentId 递归开放与 GetIsUnLock(UnlockId)；任一不满足则不开放。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV07",
+        "SYS-OUT-SU-13-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-C02",
+      "name": "引导入队条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "序列 IsValid=true、未完成、未入队且 UnlockId 满足时才入队；WaitUIOpen 还需目标 UI 已打开。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV04",
+        "SYS-OUT-SU-13-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-C03",
+      "name": "引导启动类型",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "StartType=ForceJumpUI 强制跳转目标界面；StartType=WaitUIOpen 等待玩家自然打开；目标 UI 加载失败降级为 WaitUIOpen。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV04",
+        "SYS-OUT-SU-13-EV05"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-13-RW01",
+      "name": "系统开放提示奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "系统开放时可领取 SystemOpenTips 提示奖励，经 ConditionSystem 领取；具体奖励内容归 SystemOpenTips 与 Drop。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV07",
+        "SYS-OUT-SU-13-EV08"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-13-EX01",
+      "name": "未分派 UnLockType 静默锁定",
+      "status": "P1_GAP",
+      "rule": "UnLock_UUT_Character_Star/Neural_Roam/World_Grade/Task_Complete 在 GetIsUnLock 未分派，落到 return false，可能静默永久锁定对应系统。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV06",
+        "SYS-OUT-SU-13-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-EX02",
+      "name": "CloseSys 与旧口径未同步",
+      "status": "P1_CONFLICT",
+      "rule": "「收容物——旧」CloseSys=True 与「收容物」并存，映射装备/专武旧入口未随迁移同步，可能造成入口残留。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-EX03",
+      "name": "引导目标缺失与超时",
+      "status": "WORKING_COPY_HANDLED",
+      "rule": "步骤目标 UI 不存在时超时降级（Level 0 卡住 30s 自动降级）；ForceJumpUI 目标加载失败降级 WaitUIOpen。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV04",
+        "SYS-OUT-SU-13-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-EX04",
+      "name": "首小时时间线缺埋点验证",
+      "status": "P2_GAP",
+      "rule": "首小时 24 步时间线来自专项 Skill 映射，未与埋点/当前引导配置对齐，不能作为验收基线。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV09"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-13-UI01",
+      "name": "引导遮罩/气泡/箭头/手指",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "NewbieGuideSystem._ShowGuideUI 与 UIGuideView 展示遮罩、气泡、箭头与手指动画；非目标区域半透明遮罩，目标区域高亮。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13-UI02",
+      "name": "系统开放提示",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "系统首次开放按 SystemOpenTips 弹提示，最多显示 SystemOpenTipsNum=4 条；NoPopUp 系统不弹。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV07",
+        "SYS-OUT-SU-13-EV08"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-13-CFG01",
+      "name": "BattleGuide",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guide\\BattleGuide.xlsx",
+      "role": "局内引导动作类型、是否暂停、文本与说明图引用",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-13-CFG02",
+      "name": "Introduction",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guide\\Introduction.xlsx",
+      "role": "引导说明图片与文本描述（GuideSequenceConfig）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-13-CFG03",
+      "name": "Unlock",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\unlock\\Unlock.xlsx",
+      "role": "解锁条件类型与参数；201～205承载主线章节3～7玩家等级门槛",
+      "status": "WORKING_COPY_SOURCE_CONFIGURED_WITH_GAP"
+    },
+    {
+      "id": "SYS-OUT-SU-13-CFG04",
+      "name": "SystemOpen",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx",
+      "role": "系统入口开放定义（CloseSys/ParentId/UnlockId/EntranceResident/NoPopUp）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-13-CFG05",
+      "name": "SystemOpenTips",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpenTips.xlsx",
+      "role": "系统开放提示与提示奖励",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-13-CFG06",
+      "name": "GuideSequenceData/GuideStepData_Auto",
+      "path": "D:\\Vgame\\HorizonFlyProject\\Lua\\Logic\\PlayerData\\Systems\\Guide",
+      "role": "引导编辑器导出的序列与步骤生成数据（非手编）",
+      "status": "WORKING_COPY_SOURCE_GENERATED"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-13-REL01",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "主线通关节点满足 Unlock 并触发 SystemOpen 与引导。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV07",
+        "SYS-OUT-SU-13-EV06"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-13-REL02",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家等级",
+      "description": "玩家等级达到 UnLock_UUT_player_Grade 条件时驱动系统或章节开放；当前主线章节3～7使用201～205。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV07",
+        "SYS-OUT-SU-13-EV06"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-13-REL03",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-07",
+      "targetName": "战斗 UI、反馈与引导",
+      "description": "来源：BattleGuide.xlsx(EV01)定义战斗引导触发与序列，GuideMgr.cs(EV02)实现引导管理，SYS-IN-07战斗UI正文定义战斗UI呈现。推导：BattleGuide触发与序列规则交给战斗UI(SYS-IN-07)呈现，构成 supplies/outgoing 关系。推导边界：BattleGuide配置与引导管理已由工作副本确认，但战斗UI呈现规则在SYS-IN-07侧维护。UNKNOWN：BattleGuide在战斗UI中的呈现时机与战斗引导的完整交互规则仍待SYS-IN-07确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-SU-13-R07",
+        "SYS-OUT-SU-13-R08",
+        "SYS-OUT-SU-13-R09",
+        "SYS-OUT-SU-13-C01",
+        "SYS-OUT-SU-13-C02"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-13-EV01",
+      "kind": "source-excel",
+      "label": "BattleGuide.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Guide/BattleGuide.xlsx",
+      "location": "本机SVN工作副本；sheet BattleGuide；动作类型/NeedPause/Text/IntroductionId；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-13-EV02",
+      "kind": "source-code",
+      "label": "GuideMgr.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.GameLogic/Runtime/Combat/GuideMgr.cs",
+      "location": "TriggerGuideIds、HistoricalCompletedGuideIds、SetHistoricalCompletedGuideIds、BattleGuideEnum 分派",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-13-EV03",
+      "kind": "source-code",
+      "label": "ZoneShowGuide.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/TriggerData/ZoneShowGuide.cs",
+      "location": "局内引导触发区数据",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-13-EV04",
+      "kind": "source-code",
+      "label": "NewbieGuideSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Guide/NewbieGuideSystem.lua",
+      "location": "_CheckAndEnqueueSequences（212 行起）、StartSequence/EndSequence/SkipSequence、_PushGuideStateToServer（1404-1421 行）、_RetryInterruptedForceJumpSequences（1375 行起）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-13-EV05",
+      "kind": "source-code",
+      "label": "GuideSequenceData_Auto.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Guide/GuideSequenceData_Auto.lua",
+      "location": "引导编辑器导出序列（Id/SortOrder/StartType/StartUI/FailureLevel/UnlockId/ExpireId/NextSequence/IsValid/AllowSkip）",
+      "status": "WORKING_COPY_SOURCE_GENERATED"
+    },
+    {
+      "id": "SYS-OUT-SU-13-EV06",
+      "kind": "source-excel",
+      "label": "Unlock.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/unlock/Unlock.xlsx",
+      "location": "本机SVN工作副本；sheet Unlock；201～205为UnLock_UUT_player_Grade(24/28/31/33/35)，由ChapterLevel 10003～10007引用；全表未分派类型缺口仍在；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_CONFIGURED_WITH_GAP"
+    },
+    {
+      "id": "SYS-OUT-SU-13-EV07",
+      "kind": "source-excel",
+      "label": "SystemOpen.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "location": "本机SVN工作副本；sheet SystemOpen；188 行、CloseSys=True 19、UnlockId 非空 89、无 IsValid 字段；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-13-EV08",
+      "kind": "source-code",
+      "label": "ConditionSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/ConditionSystem.lua",
+      "location": "IsSystemOpen（59-89 行）、GetIsUnLock 分派（117-182 行）、SystemOpenUnlockSubscribeInit（252-258 行）",
+      "status": "WORKING_COPY_SOURCE_WITH_GAP"
+    },
+    {
+      "id": "SYS-OUT-SU-13-EV09",
+      "kind": "reverse-design",
+      "label": "新手引导系统 Design Doc",
+      "path": "design/新手引导系统Design Doc.md",
+      "location": "R-01 BattleGuide、R-02/R-03 NewbieGuide、R-04 SystemOpen、R-05 时间线、R-06 完成同步、R-07 FailureLevel",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-SU-13-EV10",
+      "kind": "source-code",
+      "label": "GWCombat.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/GameWorld/GWCombat.lua",
+      "location": "SetHistoricalCompletedGuideIds 进入战斗回传（118-129 行）",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-13-Q01",
+      "priority": "P1",
+      "question": "UnLock_UUT_Character_Star/Neural_Roam/World_Grade/Task_Complete 是否需要在 GetIsUnLock 补运行时判定？",
+      "impact": "当前未分派会静默 return false，可能永久锁定对应系统。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV06",
+        "SYS-OUT-SU-13-EV08"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-13-Q02",
+      "priority": "P1",
+      "question": "「收容物——旧」CloseSys=True 与旧专武/映射装备入口是否已完整迁移关闭？",
+      "impact": "旧入口残留会与收容物新口径冲突。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV07"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-13-Q03",
+      "priority": "P2",
+      "question": "首小时引导时间线是否已用埋点与当前引导配置重新对齐？",
+      "impact": "当前时间线来自专项 Skill 映射，不能作为验收基线。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-13-EV09"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在进度条件→系统开放→引导入队→步骤执行→完成同步的有序流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在系统开放判定、引导入队与启动条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "存在系统开放提示奖励（SystemOpenTips）"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在未分派 UnLockType、旧口径未同步、引导超时与时间线缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在引导遮罩/气泡/手指与系统开放提示"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 BattleGuide/Introduction/Unlock/SystemOpen/SystemOpenTips/引导生成数据配置源"
+    }
+  }
+}

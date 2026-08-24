@@ -92,15 +92,15 @@ SystemOpen 的开放条件通常引用：
 
 | 功能 | 开关层级 | 状态 | 版本 | 备注 |
 |---|---|---|---|---|
-| 主线 | SystemOpen | LIVE | - | 基础功能 |
-| 资源副本 | SystemOpen | LIVE | - | 分类型开放 |
-| 旅券副本 | SystemOpen | LIVE | - | 4个副本分批 |
-| 映射装备副本 | SystemOpen | LIVE | - | 较晚开放 |
-| 无限挑战 | SystemOpen | LIVE | - | |
-| 竞技场 | SystemOpen | LIVE | - | |
-| 爬塔 | SystemOpen | LIVE | - | |
-| 大秘境 | SystemOpen | LIVE | - | 后期内容 |
-| BOSS挑战 | SystemOpen | LIVE | - | |
+| 主线 | SystemOpen | UNKNOWN_LIVE | - | 工作副本存在，缺发布证据 |
+| 资源副本 | SystemOpen | UNKNOWN_LIVE | - | 分类型开放；工作副本存在，缺发布证据 |
+| 旅券副本 | SystemOpen | UNKNOWN_LIVE | - | 4个副本分批；工作副本存在，缺发布证据 |
+| 映射装备副本 | SystemOpen | UNKNOWN_LIVE | - | 较晚开放；工作副本存在，缺发布证据 |
+| 无限挑战 | SystemOpen | UNKNOWN_LIVE | - | 工作副本存在，缺发布证据 |
+| 竞技场 | SystemOpen | UNKNOWN_LIVE | - | 工作副本存在，缺发布证据 |
+| 爬塔 | SystemOpen | UNKNOWN_LIVE | - | 工作副本存在，缺发布证据 |
+| 大秘境 | SystemOpen | UNKNOWN_LIVE | - | 后期内容；工作副本存在，缺发布证据 |
+| BOSS挑战 | SystemOpen | UNKNOWN_LIVE | - | 工作副本存在，缺发布证据 |
 | 世界Boss | - | DEPRECATED | - | 已废弃 |
 | 能效本 | - | DEPRECATED | - | 已废弃 |
 | 肉鸽 | - | DEPRECATED | - | 已废弃 |

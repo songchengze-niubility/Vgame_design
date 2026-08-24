@@ -1,0 +1,788 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-05",
+  "name": "掉落与奖励",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE；真实入账、补发与幂等的服务端消费链在客户端工作副本中不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "overview": {
+    "purpose": "掉落与奖励是 Vgame 的奖励入账权威：定义首通、重复、概率、排行、赛季与活动奖励的类型学，把战斗/玩法结果经逻辑 Drop 解析为真实物品入账，并与展示预览分离、保证结算幂等与补发。",
+    "inScope": [
+      "逻辑 Drop 的组成（8 个源文件合并）与行结构（DropType/DropId2/DropWeight/ShowItemID）",
+      "首通、重复、三星/星级、高额、排行、赛季、活动的奖励类型学",
+      "展示预览字段（UIlevel.Reward/FirstReward/LevelFPDrop/LevelPPDrop）与真实 Drop 引用的分离",
+      "奖励结算、入账、补发与幂等的消费链职责"
+    ],
+    "outOfScope": [
+      "具体 Drop 包内容、权重与逐项数量；该内容归 Drop 源表与数值框架 v2",
+      "主线/高难主线逐关奖励与星级节点的具体数值；该内容归 SYS-OUT-GP-01/SYS-OUT-GP-02 与数值框架",
+      "储能/道具的身份与账本；该内容归 SYS-OUT-SU-04",
+      "排行/赛季玩法的规则本体；该内容归 SYS-OUT-GP-07/SYS-OUT-GP-09/SYS-OUT-SU-14",
+      "邮件补发的文案与过期；该内容归 SYS-OUT-SU-09"
+    ],
+    "inputs": [
+      "战斗/玩法结果事件（胜负、评价、星级、排行、赛季分数）",
+      "逻辑 Drop 配置（DropId → 行 → DropItem_id/数量/权重）",
+      "UIlevel/level 的首通/重复/三星/高额奖励引用",
+      "活动与双倍掉落开关"
+    ],
+    "outputs": [
+      "真实奖励包（固定/随机/组合）的物品入账",
+      "供 UI 展示的奖励预览数据（DropSystem:GetDropDataList）",
+      "排行/赛季/活动结算的奖励发放事件",
+      "补发与幂等结算的可追溯入账"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "Drop/奖励入账权威",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "首通、重复、概率、排行、赛季与活动奖励的真实入账唯一权威，展示预览不得替代真实 Drop。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "类型学与预览/真实分离有沉淀；权威源未统一",
+      "status": "CONFIRMED_TARGET_WITH_CONFLICT",
+      "note": "奖励类型学与「预览与真实分离」有设计口径，但 level 与 UIlevel 双源冲突仍待运行时裁决。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "逻辑 Drop 8 文件、DropType 固定/随机/组合、无具名 IsValid、存在多起断引用",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；逻辑 Drop 合并 8 文件，展示与真实引用存在断引用与双源冲突。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "掉落结算链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表与客户端实现证据，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-B=UIlevel Drop字段权威；DC-C=替换为已有有效包",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-05-F01",
+      "name": "奖励结算入账流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-05-F01-S01",
+          "name": "接收结果事件",
+          "description": "接收战斗/玩法结果（胜负、评价、星级、排行、赛季或活动结算），区分首次与重复。"
+        },
+        {
+          "id": "SYS-OUT-SU-05-F01-S02",
+          "name": "解析真实 Drop 引用",
+          "description": "按首通/重复/三星/高额/排行/活动定位真实 DropId，经逻辑 Drop 解析 DropId2 二级链与权重。"
+        },
+        {
+          "id": "SYS-OUT-SU-05-F01-S03",
+          "name": "服务端结算入账",
+          "description": "服务端执行随机加权/固定掉落判定并写入物品账本，保证扣除/入账原子与幂等（客户端不可见）（幂等口径待服务端确认，见R08/EX05/Q04）。"
+        },
+        {
+          "id": "SYS-OUT-SU-05-F01-S04",
+          "name": "客户端展示",
+          "description": "客户端以 DropSystem:GetDropDataList 解析预览并经 ShowRewardUtility 展示，展示与真实入账分离。"
+        },
+        {
+          "id": "SYS-OUT-SU-05-F01-S05",
+          "name": "补发与恢复",
+          "description": "异常或断线时经邮件补发或重新结算，需有幂等与状态回滚保护（幂等口径待服务端确认，见R08/EX05/Q04）。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-05-R01",
+      "name": "逻辑 Drop 权威与合并",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "所有奖励引用指向逻辑 Drop（Tables.Drop），由 8 个源文件合并；展示字段与真实 Drop 引用必须分开。",
+      "sourceFact": "__tables__.xlsx 注册 Drop 逻辑表，输入为 Drop_draw/Drop_dungeon/Drop_mainlevel/Drop_other/Drop_GiftBox/Drop_TimeLimitedActivity/Drop_world/Drop_BattlePass 共 8 文件；DropSystem.Init 按 DropId 聚合行。",
+      "acceptance": "任何 DropId 能在逻辑 Drop 中解析；不得假设单个 Drop 文件拥有全部奖励。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "NUM-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV01",
+        "SYS-OUT-SU-05-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-R02",
+      "name": "奖励类型学",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "奖励按结算时机分首通（FirstRewardDrop）、重复（FallRewardDrop）、三星/星级（ThreeStarRewardDrop/ChapterStarReward）、高额（HighRewardDrop）、排行（RankAchieveReward/RankSeasonReward）、赛季与活动（DoubleDrop/TimeLimitedActivity）、宝箱（Chest/GiftBox）。",
+      "sourceFact": "UIlevel 提供 FirstRewardDrop/FallRewardDrop/ThreeStarRewardDrop/HighRewardDrop 字段；Drop 源含 Drop_BattlePass/Drop_TimeLimitedActivity/Drop_GiftBox；PVPVE 赛季与排行奖励走 RankAchieveReward/RankSeasonReward；DoubleDropActivity 为双倍掉落活动。",
+      "acceptance": "每种奖励类型只对应一种真实结算时机；首通、重复、周期、排行、活动不得互相混发。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GP-07",
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV07",
+        "SYS-OUT-SU-05-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-R03",
+      "name": "预览与真实入账分离",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "UIlevel.Reward/FirstReward 是展示预览（PropType），FirstRewardDrop/FallRewardDrop 是真实 DropId；预览只影响展示，真实入账只读 Drop。",
+      "sourceFact": "UIlevel 同时存在 Reward/FirstReward（预览）与 FirstRewardDrop/FallRewardDrop（真实）；主线 LevelFPDrop/LevelPPDrop 为关卡展示专用；DropSystem:GetDropDataList 解析预览，服务端执行真实结算。",
+      "acceptance": "预览改动不改变真实 Drop；真实 Drop 改动需同步预览，反之亦然。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV04",
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-R04",
+      "name": "Drop 行结构与二级链",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "Drop 行用 DropType 区分固定/随机/组合，DropId2 表达二级掉落链，DropWeight 表达权重，ShowItemID 表达预览道具。当前 8 个源均无具名 IsValid；数据行有效性按第 1 列 ## 占位约定识别。",
+      "sourceFact": "工作副本 DropType 原始值为 fixed_、random、fixed__random 与空；DropSystem.GetDropDatas 对 DropId2>0 递归读取二级 Drop；8 个源的具名字段均止于 ShowItemID（第 15 列），Drop_dungeon/Drop_mainlevel 的第 16 列为空表头，不是 IsValid。",
+      "acceptance": "DropId2 递归解析完整；权重与数量字段职责清晰；读取器不把无表头第 16 列当字段，并按第 1 列 ## 约定跳过占位行。",
+      "relatedIds": [
+        "NUM-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV02",
+        "SYS-OUT-SU-05-EV03",
+        "SYS-OUT-SU-05-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-R05",
+      "name": "首通与重复分层",
+      "status": "CONFIRMED_TARGET_WITH_CONFLICT",
+      "targetRule": "首次通关同时结算基础首通与常规奖励，且只领一次；已通关后的重复只走常规奖励；预览字段不拥有真实入账权威。",
+      "sourceFact": "主线奖励重设计确认「首次通关同时结算基础首通、附加首通材料与常规奖励」「玩家经验由程序默认结算不进入 Drop」；但 level.FirstReward/FallReward 与 UIlevel.FirstRewardDrop/FallRewardDrop 存在双源冲突（承接 SYS-OUT-GP-01）。",
+      "acceptance": "每种奖励类型只有一个真实 Drop 权威；首次通关不能重复领首通；重复结算具备幂等保护。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV06",
+        "SYS-OUT-SU-05-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-R06",
+      "name": "概率/权重掉落",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "随机加权掉落用多行同 DropId + DropWeight 表达，数量区间用 DropItemNumMin/Max；权重与区间按整数等概率处理。",
+      "sourceFact": "高难主线奖励重设计定义宝石单次判定概率（如 1 级 80%/2 级 20%）与独立判定次数；Drop 行 DropWeight 为权重、DropItemNumMin/Max 为数量区间。",
+      "acceptance": "权重总和与掉落概率口径一致；区间整数等概率；具体权重归 Drop 源表与数值框架。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-GP-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV08",
+        "SYS-OUT-SU-05-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-R07",
+      "name": "排行/赛季/活动奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "排行与赛季奖励按 RankAchieveReward（段位达成）与 RankSeasonReward（赛季结算）引用 Drop；活动与双倍掉落按活动开关限定窗口与次数。",
+      "sourceFact": "PVPVE 赛季奖励引用 RankAchieveReward/RankSeasonReward；Drop_TimeLimitedActivity 承载限时活动包；DropSystem:IsDailyDoubleDropActivityOpen/GetDailyDoubleDropActivityNum 控制每日双倍掉落次数。",
+      "acceptance": "排行/赛季/活动奖励有明确窗口、次数与领取幂等；活动时间由 SYS-OUT-SU-14 维护。",
+      "relatedIds": [
+        "SYS-OUT-GP-07",
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-R08",
+      "name": "奖励结算幂等与补发",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：缺「重复请求、断线、部分成功、补发与状态回滚」的一致口径；奖励入账必须幂等，补发走邮件且不重复入账。",
+      "sourceFact": "UNKNOWN：需要服务端奖励结算幂等实现证据；客户端只展示回包，无本地幂等；邮件补发在客户端 MappingEquipSystem 有预览展示线索，但结算权威在服务端。",
+      "acceptance": "正常、重复、断线、超时、补发五类路径都有明确状态变化与可执行验收。",
+      "relatedIds": [
+        "SYS-OUT-SU-09",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV04",
+        "SYS-OUT-SU-05-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-R09",
+      "name": "奖励权威源未统一",
+      "status": "P0_CONFLICT",
+      "targetRule": "GAP：需裁决主线真实奖励以 level 还是 UIlevel 字段为运行时权威；本系统承接该冲突为「奖励权威源未统一」的证据，不重复展开主线细节。",
+      "sourceFact": "level.FirstReward/FallReward 与 UIlevel.FirstRewardDrop/FallRewardDrop 在普通主线行不一致，部分 level 值落到 DropId=1（抽卡包）；展示断引用（LevelPPDrop=12000005）与章节任务断引用（ChapterTasks.DropId=50000006）已由 SYS-OUT-GP-01 记录。",
+      "acceptance": "奖励权威源唯一化后，预览与真实引用逐项一致，无断引用。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV06",
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV07"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-05-C01",
+      "name": "首通触发",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "关卡首次通关（未在 alreadyPassLevelDic）触发首通结算；首次同时结算基础首通与常规奖励，首通只发一次。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-C02",
+      "name": "重复结算",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "已通关内容再次挑战或扫荡只结算常规/重复奖励，不触发首通或星级一次性奖励。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-C03",
+      "name": "高额与双倍掉落",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "高额掉落按关卡类型组与每日次数上限启用（HighRewardChanceLimit=6）；每日双倍掉落按活动开关与次数限制。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV04",
+        "SYS-OUT-SU-05-EV05"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-05-RW01",
+      "name": "首通奖励",
+      "status": "WORKING_COPY_CONFIGURED_DUAL_SOURCE_CONFLICT",
+      "rule": "首通奖励经真实 Drop 包入账；level.FirstReward 与 UIlevel.FirstRewardDrop 双源冲突待裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV06",
+        "SYS-OUT-SU-05-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-RW02",
+      "name": "重复/常规奖励",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "重复奖励经 FallRewardDrop 真实包入账，客户端以 LevelPPDrop/Reward 预览；玩家经验由程序默认结算，不进入 Drop 预览。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-RW03",
+      "name": "星级/章节奖励",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "章节累计星级经 ChapterStarReward 引用真实 Drop；三星单关奖励走 ThreeStarRewardDrop（当前主线为空）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-RW04",
+      "name": "排行/赛季/活动奖励",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "排行与赛季奖励按 RankAchieveReward/RankSeasonReward 引用 Drop；活动奖励走 Drop_TimeLimitedActivity，双倍掉落按活动开关与次数。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV01",
+        "SYS-OUT-SU-05-EV05"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-05-EX01",
+      "name": "level 与 UIlevel 双源冲突",
+      "status": "P0_CONFLICT",
+      "rule": "普通主线 level.FirstReward/FallReward 与 UIlevel.FirstRewardDrop/FallRewardDrop 不一致，部分 level 值落到 DropId=1（抽卡包）；需代码消费方裁决权威源。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-EX02",
+      "name": "展示断引用",
+      "status": "P1_CONFLICT",
+      "rule": "主线 UIlevel.LevelPPDrop 存在 12000005 等展示断引用，真实 FallRewardDrop 为 12000004；展示与真实引用需逐项对账。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-EX03",
+      "name": "章节任务奖励断引用",
+      "status": "P0_CONFLICT",
+      "rule": "ChapterTasks 引用 DropId=50000006 在逻辑 Drop 中不存在（由 SYS-OUT-GP-01 记录，本系统承接为奖励断引用证据）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-EX04",
+      "name": "无表头第16列误判已关闭",
+      "status": "AI_EVIDENCE_RESOLVED",
+      "rule": "只读回源确认当前 8 个 Drop 源均无具名 IsValid；Drop_dungeon/Drop_mainlevel 第 16 列为空表头，其余 6 个源仅 15 列。不得按列序猜测字段，数据行按第 1 列 ## 占位约定识别。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV02",
+        "SYS-OUT-SU-05-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-EX05",
+      "name": "补发与幂等缺口",
+      "status": "P1_GAP",
+      "rule": "奖励补发与重复请求幂等在服务端不可见；需服务端确认原子结算与邮件补发不重复入账。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV04",
+        "SYS-OUT-SU-05-EV10"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-05-UI01",
+      "name": "奖励结算展示",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "ShowRewardUtility 统一展示奖励列表，合并相同道具；战斗结算、任务、商店、签到等复用同一展示入口。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05-UI02",
+      "name": "奖励预览",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "关卡/商店/排行等以 DropSystem:GetDropDataList 解析 DropId 生成预览，展示与真实入账分离。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV04"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-05-CFG01",
+      "name": "Drop 逻辑表",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop",
+      "role": "逻辑 Drop 的 8 个源文件（Drop_draw/dungeon/mainlevel/other/GiftBox/TimeLimitedActivity/world/BattlePass）",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-SU-05-CFG02",
+      "name": "__tables__",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\__tables__.xlsx",
+      "role": "Drop 逻辑表注册与 8 文件合并定义",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-05-CFG03",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "FirstRewardDrop/FallRewardDrop/ThreeStarRewardDrop/HighRewardDrop 与预览字段",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-SU-05-CFG04",
+      "name": "level",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx",
+      "role": "一套 FirstReward/FallReward 奖励引用（与 UIlevel 双源冲突）",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-05-REL01",
+      "type": "reports",
+      "direction": "incoming",
+      "targetId": "SYS-IN-08",
+      "targetName": "胜负、结果与结算触发",
+      "description": "来源：DropSystem.lua(EV04)实现掉落入账，UIlevel.xlsx(EV05)/level.xlsx(EV06)定义关卡奖励配置，SYS-IN-08战斗结果正文定义胜负评价上报。推导：战斗实例(SYS-IN-08)的胜负、评价与战利品触发上报给奖励结算(SU-05)，构成 reports/incoming 关系。推导边界：掉落入账逻辑已由工作副本确认，但战斗结果到奖励结算的完整链路在SYS-IN-08侧维护。UNKNOWN：战利品触发的服务端权威与结果上报到结算的幂等规则仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-05-REL02",
+      "type": "reports",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "来源：Drop_mainlevel.xlsx(EV02)定义主线掉落入账，主线关卡奖励重设计(EV07)定义奖励结构，主线经济沉淀(EV09)定义经济口径。推导：主线(GP-01)首通、重复、星级与支线奖励经真实Drop入账，构成 reports/incoming 关系。推导边界：掉落配置已由工作副本确认，但主线奖励的预览/真实分离与入账幂等在本系统侧维护。UNKNOWN：主线奖励的服务端入账幂等与首通/重复掉落的精确区分规则仍待确认。",
+      "status": "CONFLICT_NEEDS_RUNTIME_AUTHORITY",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-05-REL03",
+      "type": "reports",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-11",
+      "targetName": "扫荡",
+      "description": "来源：DropSystem.lua(EV04)实现掉落入账，UISweepLevelResultView.lua在GP-11侧展示扫荡结算，主线关卡系统Design Doc(EV09)定义扫荡掉落。推导：扫荡(GP-11)复用重复掉落经真实Drop入账，构成 reports/incoming 关系。推导边界：掉落入账逻辑已由工作副本确认，但扫荡掉落复用重复掉落的规则在GP-11侧维护。UNKNOWN：扫荡入账的服务端幂等与重复掉落复用的精确规则仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-05-REL04",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "首通/重复/排行等真实入账写入物品账本。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV02",
+        "SYS-OUT-SU-05-EV03",
+        "SYS-OUT-SU-05-EV04"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-05-REL05",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：主线经济沉淀(EV09)定义奖励经济口径，高难主线关卡奖励重设计(EV08)定义高难奖励，知识目录定义NUM-04经济数值域职责。推导：奖励价值与供给量由经济数值域(NUM-04)约束与平衡，构成 balances/incoming 关系。推导边界：奖励经济口径已由沉淀确认，但奖励价值与供给量的具体数值属经济数值域维护。UNKNOWN：各玩法奖励的权威定价与供给量在整体经济账中的占比仍待经济域核算确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-05-R02",
+        "SYS-OUT-SU-05-R03",
+        "SYS-OUT-SU-05-R05",
+        "SYS-OUT-SU-05-RW01",
+        "SYS-OUT-SU-05-RW02"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-SU-05-R02",
+        "SYS-OUT-SU-05-C01"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-05-R08",
+        "SYS-OUT-SU-05-EX05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-05-EV01",
+      "kind": "source-excel",
+      "label": "__tables__.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/__tables__.xlsx",
+      "location": "本机SVN工作副本；Drop 逻辑表输入 8 文件（Drop_draw/dungeon/mainlevel/other/GiftBox/TimeLimitedActivity/world/BattlePass）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV02",
+      "kind": "source-excel",
+      "label": "Drop_mainlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Drop/Drop_mainlevel.xlsx",
+      "location": "本机SVN工作副本；sheet Drop；具名字段止于第15列 ShowItemID；第16列无表头，不是 IsValid；核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV03",
+      "kind": "source-excel",
+      "label": "Drop_dungeon.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Drop/Drop_dungeon.xlsx",
+      "location": "本机SVN工作副本；sheet Drop；具名字段止于第15列 ShowItemID；第16列无表头，其余6个逻辑 Drop 源仅15列；核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV04",
+      "kind": "source-code",
+      "label": "DropSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/DropSystem.lua",
+      "location": "InitDropDataDic/GetDropDatas（57-102 行）DropId2 递归、GetDropDataList（133-141 行）、高额/双倍掉落（172-300 行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV05",
+      "kind": "source-excel",
+      "label": "UIlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "location": "本机SVN工作副本；sheet level；FirstRewardDrop/FallRewardDrop/ThreeStarRewardDrop/HighRewardDrop/Reward/FirstReward/LevelFPDrop/LevelPPDrop；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV06",
+      "kind": "source-excel",
+      "label": "level.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/level.xlsx",
+      "location": "本机SVN工作副本；sheet level；FirstReward/FallReward 与 UIlevel 双源冲突（部分值=1）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV07",
+      "kind": "design-target",
+      "label": "主线关卡奖励重设计",
+      "path": "design/主线关卡奖励重设计-2026-07-30.md",
+      "location": "§1 已确认口径、§3 章节基础奖励梯度、§4 逐关奖励表、§7 章节星级奖励",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV08",
+      "kind": "design-target",
+      "label": "高难主线关卡奖励重设计",
+      "path": "design/高难主线关卡奖励重设计-2026-07-30.md",
+      "location": "§2 宝石投放规则、§3 常规掉落梯度、§7 高难章节星级奖励",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV09",
+      "kind": "numeric-deposit",
+      "label": "主线经济沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "location": "经济职责、已确认口径、首通/重复/星级奖励（只作权威关系索引）",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV10",
+      "kind": "source-code",
+      "label": "ShowRewardUtility.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Utility/ShowRewardUtility.lua",
+      "location": "Show/ShowRawRewards 奖励展示队列（13-108 行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV11",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-B 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-B].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-SU-05-EV12",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-C 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-C].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-05-Q01",
+      "priority": "P0",
+      "question": "主线真实奖励运行时以 level 还是 UIlevel 字段为权威？",
+      "impact": "level 与 UIlevel 首通/重复引用不一致，部分落到抽卡包，错误选择影响真实入账。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV06"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-B",
+      "answer": "用户正式选择「UIlevel Drop字段权威」：FirstRewardDrop/FallRewardDrop 是真实入账引用，level 奖励列退出消费。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-05-EV11"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-SU-05-Q02",
+      "priority": "P0",
+      "question": "ChapterTasks.DropId=50000006 断引用应替换为何种有效奖励包？",
+      "impact": "章节任务奖励存在真实断引用（承接 SYS-OUT-GP-01）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05",
+        "SYS-OUT-SU-05-EV07"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-C",
+      "answer": "用户正式选择「替换为已有有效包」：按获批奖励内容选择现有 DropId。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-05-EV12"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-SU-05-Q03",
+      "priority": "P1",
+      "question": "展示断引用（LevelPPDrop=12000005）与真实 FallRewardDrop 的关系如何统一？",
+      "impact": "展示与真实引用不一致会影响玩家预览与实际入账对账。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-05-Q04",
+      "priority": "P1",
+      "question": "奖励结算的重复请求、断线、补发的服务端幂等如何保证？",
+      "impact": "决定重复入账与补发安全。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV04",
+        "SYS-OUT-SU-05-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-05-Q05",
+      "priority": "P2",
+      "question": "当前逻辑 Drop 的数据行有效性应如何识别？",
+      "impact": "防止读取器把无表头第16列误当 IsValid，并保证8源合并口径一致。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-05-EV02",
+        "SYS-OUT-SU-05-EV03"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "当前逻辑 Drop 源表没有可依赖的命名 IsValid 字段；数据行应以首列不是 ## 等元数据标记、且主键/DropId 可解析为有效数值为准，不得用空白尾列猜测有效性。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-05-EV02",
+        "SYS-OUT-SU-05-EV03"
+      ]
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在结果事件→解析 Drop→服务端入账→客户端展示的有序流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在首通、重复、高额与双倍掉落触发条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "掉落与奖励是首通/重复/星级/排行/活动奖励的入账权威"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在双源冲突、断引用与幂等缺口；无表头第16列误判已由AI证据关闭"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在奖励结算展示与预览责任"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 Drop 逻辑表、__tables__、UIlevel、level 配置源"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-B",
+      "closeableQuestionId": "SYS-OUT-SU-05-Q01",
+      "selectedOptionId": 1,
+      "selectedOptionName": "UIlevel Drop字段权威",
+      "approvedTarget": "选择「UIlevel Drop字段权威」：FirstRewardDrop/FallRewardDrop 是真实入账引用，level 奖励列退出消费。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:13:42.483Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "需修改并验证运行消费链，使关卡真实奖励只读 UIlevel Drop 字段；当前工作副本不据此改判。",
+      "evidenceRef": "SYS-OUT-SU-05-EV11",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    },
+    {
+      "cardId": "DC-C",
+      "closeableQuestionId": "SYS-OUT-SU-05-Q02",
+      "selectedOptionId": 1,
+      "selectedOptionName": "替换为已有有效包",
+      "approvedTarget": "选择「替换为已有有效包」：按获批奖励内容选择现有 DropId。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:14:16.851Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "需依据已批准奖励内容选定一个现有有效 DropId 并替换 50000006；用户未指定具体 DropId。",
+      "evidenceRef": "SYS-OUT-SU-05-EV12",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

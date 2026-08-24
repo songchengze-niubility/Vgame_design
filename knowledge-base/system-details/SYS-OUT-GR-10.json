@@ -1,0 +1,707 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GR-10",
+  "name": "专武",
+  "revision": "2026-08-24.2",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本（只读）+ 数值沉淀（框架v2）+ 状态冲突登记",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE；专武→收容物兼容迁移期已裁决、实施待完成，本正文记录双方证据，不代主策裁决。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程或边界，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据；P0_CONFLICT 表示两套现行口径不能同时成立。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-GR-10-R02"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GR-10-C02"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "专武（专属武器）是 Vgame 旧角色专属装备养成线：与角色深度绑定（RelatedHero），承载基础属性、偏向属性与技能机制，含升级/突破/升星三条子线与独立抽卡池、经验副本。当前处于专武→收容物迁移冲突中：核心口径仍把专武列为正式，而养成沉淀/抽卡文档称专武数值已废弃并转收容物；本正文记录双方证据，不代主策裁决。",
+    "inScope": [
+      "专武本体定义与角色绑定（ExclWeapon：Id51001+/RelatedHero/HeroClass/Quality/SkillList/AttrNameList）",
+      "专武升级/突破/升星三条养成子线的规则边界（ExclWeaponLv/ExclWeaponAscendLv/ExclWeaponStar）",
+      "专武→收容物迁移冲突的双方证据记录与裁决依赖（C-001）",
+      "专武抽卡池、经验副本、材料/商店/任务的迁移联动影响（只记录冲突边界，规则归各系统）"
+    ],
+    "outOfScope": [
+      "专武抽卡池的具体概率/保底/重复转化 canonical；归 SYS-OUT-SU-01（角色池）/收容物抽卡 SYS-OUT-SU-02，迁移裁决后归属待定",
+      "收容物养成的现行规则；归 SYS-OUT-GR-05（新口径）",
+      "专武/收容物具体养成数值；归 NUM-02（专武数值沉淀已DEPRECATED，收容物沉淀为准）",
+      "专武技能效果与配置链；归 SYS-IN-03/CH-R03",
+      "裸体→面板最终聚合与战斗公式；归 CB-R03/NUM-03"
+    ],
+    "inputs": [
+      "ExclWeapon 本体定义（Id51001+/RelatedHero/SkillList/AttrNameList/Hp/Grow）",
+      "ExclWeaponLv 升级消耗、ExclWeaponAscendLv/ExclWeaponAscendMaterial 突破门控、ExclWeaponStar 升星消耗",
+      "专武抽卡池（DrawCard 专武卡池，OnePrice=150）、专武经验副本（LevelType_Weapon）",
+      "迁移冲突裁决输入（C-001：核心Skill旧口径 vs 沉淀/抽卡文档新口径）"
+    ],
+    "outputs": [
+      "专武升级/突破/升星状态变化与属性/技能更新（旧口径）",
+      "专武→收容物迁移冲突的双方证据与裁决依赖（P0_CONFLICT）",
+      "迁移未完成的具体字段证据（收容凭证107旧命名、ExclWeapon表复用、经验道具108-110旧子类型）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "迁移兼容系统",
+      "status": "APPROVED_COMPATIBILITY_MIGRATION",
+      "note": "专武向收容物迁移，保留一个大版本兼容迁移期；兼容期起止版本和运行状态仍需发布台账。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "B：一个大版本兼容迁移期",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "旧专武表、入口和数据在兼容期内的读写边界需实施方案；被替代方案只保留于归档。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "ExclWeapon*表与__tables__注册仍在；ExclusiveWeaponSystem旧网络消息被AnomalySystem接管",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；ExclWeapon/ExclWeaponLv/ExclWeaponAscendLv/ExclWeaponAscendMaterial/ExclWeaponStar/ExclWeaponResolve/WeaponDuplicateReward 表仍存在且__tables__仍注册；ExclusiveWeaponSystem.lua 注释「该系统为旧系统，网络消息统一用 AnomalySystem 接管」、NetHandler={}；AnomalySystem.lua(2026-8-05)接管网络消息。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "兼容迁移期已裁决；生效版本与LIVE状态待发布证据",
+      "status": "UNKNOWN_LIVE",
+      "note": "人工裁决确定兼容期长度，不证明工作副本或Production/LIVE已切换。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "B=保留一个大版本的兼容迁移期",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "权威证据：knowledge-base/governance/rulings.json#RULING-EW-B。"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "旧口径存在升级/突破/升星有序操作序列；新口径迁移后流程归 SYS-OUT-GR-05，本正文记录旧口径冲突边界"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在升级上限/突破门控/升星资格/系统开放(PLv27)条件，均带迁移冲突标注"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "养成系统只消耗资源转化为属性/技能，不发放奖励；专武抽卡/经验副本产出归各系统"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "专武→收容物迁移冲突为本系统核心异常，须记录双方证据与裁决依赖"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在专武详情/升级/突破/升星界面与系统开放入口（迁移后可能由收容物界面替代，待裁决）"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 ExclWeapon* 配置源（被两套口径复用，迁移冲突）"
+    }
+  },
+  "flows": [
+    {
+      "id": "SYS-OUT-GR-10-F01",
+      "name": "专武升级流程（旧口径，迁移冲突）",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-10-F01-S01",
+          "name": "选择升级",
+          "description": "玩家在专武详情页选择升级，预览武器经验道具+金币消耗（ExclWeaponLv）。"
+        },
+        {
+          "id": "SYS-OUT-GR-10-F01-S02",
+          "name": "校验上限",
+          "description": "校验专武等级 < 当前突破 LvUpperLimit、经验道具与金币充足（见 SYS-OUT-GR-10-C01）。"
+        },
+        {
+          "id": "SYS-OUT-GR-10-F01-S03",
+          "name": "扣除与升级",
+          "description": "扣除武器经验道具+金币，专武等级+1，属性按 Grow 字段增长；迁移后此流程归收容物(AnomalySystem AddExp)。"
+        },
+        {
+          "id": "SYS-OUT-GR-10-F01-S04",
+          "name": "属性更新",
+          "description": "基础属性=初始+等级×Grow，受品质系数影响；迁移后属性口径以收容物沉淀为准。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-F02",
+      "name": "专武突破与升星流程（旧口径，迁移冲突）",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-10-F02-S01",
+          "name": "突破",
+          "description": "达到 LvLimit(20/30/40/50)后突破，校验玩家等级(PlayerLv)/材料/金币，AscendId+1 放开 LvUpperLimit 并获 AttrNameList 偏向属性（ExclWeaponAscendLv/Material）。"
+        },
+        {
+          "id": "SYS-OUT-GR-10-F02-S02",
+          "name": "升星",
+          "description": "消耗重复专武+万能材料+金币升星，星数+1 解锁 SkillList 对应技能槽（ExclWeaponStar）；迁移后升星归收容物(AnomalySystem RiseStar)。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GR-10-R01",
+      "name": "专武本体定义与角色绑定（旧口径）",
+      "status": "WORKING_COPY_OBSERVED_CONFLICT",
+      "targetRule": "旧口径：每个专武 Id51001+ 通过 RelatedHero 绑定角色，HeroClass 表示适配职业，Quality=SSR/SR，Star 表示初始星级，SkillList(6)按星级解锁技能槽，AttrNameList 定义突破偏向属性。",
+      "sourceFact": "ExclWeapon.xlsx 注册为 ExclWeaponModel，含 Id/Name/Star/Quailty/HeroClass/RelatedHero/SkillList/AttrNameList/Hp/HpGrow/PhysicsAttack/Grow 等字段；专武 Design Doc R-01 描述本体定义；但收容物沉淀复用 ExclWeapon.xlsx(Id51001+)承载收容物本体，两套口径共用一表。本机只读核对 2026-08-19：ExclWeapon.xlsx Eqpt 表 39 个数据行的 RelatedHero 列全部为空——字段存在只证明 schema 存在，不证明已建立现行专武-角色绑定。",
+      "acceptance": "ExclWeapon 表存在只证明旧配置在工作副本，不证明专武为现行 canonical；本体/绑定/技能槽规则归属待迁移裁决；RelatedHero 当前 39 行全空，不得声称专武-角色现行绑定已建立。",
+      "relatedIds": [
+        "SYS-OUT-GR-05",
+        "SYS-IN-03",
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV01",
+        "SYS-OUT-GR-10-EV05",
+        "SYS-OUT-GR-10-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-R02",
+      "name": "专武升级/突破/升星三条子线（旧口径）",
+      "status": "WORKING_COPY_OBSERVED_CONFLICT",
+      "targetRule": "旧口径：升级投基础属性(ExclWeaponLv)，突破投偏向属性并放开等级上限(ExclWeaponAscendLv/Material)，升星投技能机制成长(ExclWeaponStar)；SSR Lv1-60 累计经验2,634,500/金币263,450，突破金幣20000/50000/100000/200000，升星按星极递增。",
+      "sourceFact": "ExclWeaponLv/ExclWeaponAscendLv/ExclWeaponAscendMaterial/ExclWeaponStar 均在__tables__注册；专武 Design Doc R-02~R-04 描述三条子线与具体消耗；但专武数值沉淀(2026-07-07)已标 DEPRECATED(2026-07-24)，usable_as_current_input=false，replacement=收容物沉淀。",
+      "acceptance": "旧口径消耗数值不得作为当前养成/数值生成/配置落表或AI判断依据；三条子线归属待迁移裁决后由收容物(GR-05)或专武承接。",
+      "relatedIds": [
+        "SYS-OUT-GR-05",
+        "NUM-02",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV02",
+        "SYS-OUT-GR-10-EV03",
+        "SYS-OUT-GR-10-EV04",
+        "SYS-OUT-GR-10-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-R03",
+      "name": "专武→收容物兼容迁移策略",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "targetRule": "采用 B：专武向收容物迁移，并保留一个大版本的兼容迁移期。兼容期起止版本、旧数据读写、入口展示与最终清理点由实施方案和发布台账补齐。",
+      "sourceFact": "冲突登记 C-001：核心 Skill 仍把专武列为正式；2026-07-24 后养成沉淀和 2026-07-27 抽卡文档称专武数值/卡池废弃并转收容物；标记 CONFLICT。专武数值沉淀 DEPRECATED，replacement=收容物沉淀；养成总览将专武行标「已废弃历史值，不再参与当前预算」；但 ExclWeapon*表与__tables__注册仍存、ExclusiveWeaponSystem 旧网络消息被 AnomalySystem 接管、收容凭证107仍为旧专武 Item_Sub_DrawWeaponCard。",
+      "acceptance": "本正文记录双方证据，status 用 P0_CONFLICT，不选边；关闭条件为产品/主策给出 canonical 决策、版本生效点、数据迁移与废弃清单。",
+      "relatedIds": [
+        "SYS-OUT-GR-05",
+        "SYS-OUT-SU-01",
+        "SYS-OUT-SU-02",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV07",
+        "SYS-OUT-GR-10-EV08",
+        "SYS-OUT-GR-10-EV09",
+        "SYS-OUT-GR-10-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-R04",
+      "name": "专武属性计算与占比（旧口径，已废弃）",
+      "status": "HISTORICAL_DURING_COMPATIBILITY",
+      "targetRule": "旧口径：专武基础属性=初始+等级×Grow，突破属性=AttrNameList 对应 AscendId 加成，专武基础属性约占角色总属性15%，受品质系数(SSR1/SR0.8)影响；该口径只用于一个大版本兼容迁移期与历史追溯，不得作为迁移后长期数值输入。",
+      "sourceFact": "专武 Design Doc R-05 描述属性计算与15%占比；专武数值沉淀(2026-07-07)确认专武总投放标准人×4(生命20000/攻击6000/防御4000)、突破偏向0.6，但已标 DEPRECATED(2026-07-24)，usable_as_current_input=false；养成总览明确专武行「不再参与当前预算」。",
+      "acceptance": "旧数值仅供历史复现与追溯，不作为当前养成/数值生成或配置落表依据；专武属性口径是否废弃、现行角色配套属性是否改由收容物(GR-05)承接，属 C-001 迁移冲突，裁决前保持 UNKNOWN（见 R03/Q01）。",
+      "relatedIds": [
+        "SYS-OUT-GR-05",
+        "CB-R03",
+        "NUM-02",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV05",
+        "SYS-OUT-GR-10-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-R05",
+      "name": "专武抽卡与经验副本迁移联动（冲突边界）",
+      "status": "APPROVED_COMPATIBILITY_MIGRATION_PENDING",
+      "targetRule": "专武抽卡、经验副本、材料、商店与任务在一个大版本兼容迁移期内保持兼容；具体读写和投放边界待实施方案，不得推导为长期并存或已立即下线。",
+      "sourceFact": "专武 Design Doc R-06/R-07 描述专武抽卡(150钻石,60保底,Draft目标玩家等级27开放,SystemOpen.UnlockId=4016)与专武经验副本(LevelType_Weapon,9档难度)。当前工作副本有两条独立链：① unlock.lua L467 [4016] UnLockType=1/UnLockParams={34}，systemopen.lua L18/L44 由专武/收容凭证入口复用；② systemopen.lua L76 [303] 为 LevelType_WeaponExp，UnlockId=4303，unlock.lua L511 [4303] UnLockType=2/UnLockParams={100204}，即通关主线2-4。不得把经验副本303也写成等级34。冲突登记 C-001 明确专武副本/卡池/材料/商店/任务均需随裁决联动；收容凭证107旧命名残留是迁移未完成字段证据。",
+      "acceptance": "专武抽卡规则归 SYS-OUT-SU-01/SYS-OUT-SU-02、经验副本归玩法副本体系，迁移归属待裁决；本正文只记录冲突边界，不复制抽卡/副本规则。",
+      "relatedIds": [
+        "SYS-OUT-SU-01",
+        "SYS-OUT-SU-02",
+        "SYS-OUT-GP-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV07",
+        "SYS-OUT-GR-10-EV09",
+        "SYS-OUT-GR-10-EV10",
+        "SYS-OUT-GR-10-EV14",
+        "SYS-OUT-GR-10-EV15"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GR-10-C01",
+      "name": "升级上限（旧口径，迁移冲突）",
+      "status": "WORKING_COPY_OBSERVED_CONFLICT",
+      "rule": "旧口径：专武等级 < 当前突破 LvUpperLimit(20/30/40/50/60)；ExclWeaponAscendLv 承载门控；迁移后等级上限映射归收容物 MIN(玩家等级+5,60)。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV03",
+        "SYS-OUT-GR-10-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-C02",
+      "name": "收容物/旧专武入口开放（4016，迁移冲突）",
+      "status": "DESIGN_GAP",
+      "rule": "4016 入口开放等级三轴分层：①Draft目标=玩家等级≥27（来自反推 Draft Design Doc EV05/EV09，DRAFT_REVERSE_ENGINEERED_DEPRECATED）；②当前工作副本=玩家等级34（unlock.lua L467 [4016]；systemopen.lua L18/L44 由专武/收容凭证入口复用）；③正式目标/运行状态=待裁决。此条件不适用于专武经验副本303；303 当前经 4303 要求主线2-4。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV05",
+        "SYS-OUT-GR-10-EV09",
+        "SYS-OUT-GR-10-EV14",
+        "SYS-OUT-GR-10-EV15",
+        "SYS-OUT-GR-10-EV07"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GR-10-EX01",
+      "name": "专武→收容物兼容迁移策略已裁决",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "rule": "最新裁决 B：保留一个大版本的兼容迁移期；剩余缺口是实施边界与发布证据，不再是方向未裁决。",
+      "questionRefs": [
+        "SYS-OUT-GR-10-Q01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV07",
+        "SYS-OUT-GR-10-EV08",
+        "SYS-OUT-GR-10-EV09",
+        "SYS-OUT-GR-10-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-EX02",
+      "name": "ExclWeapon表被两套口径复用",
+      "status": "P0_CONFLICT",
+      "rule": "ExclWeapon/ExclWeaponLv/ExclWeaponStar 等表同时承载旧专武与收容物本体/养成，__tables__仍注册；收容物06镜像也写入ExclWeapon.xlsx；表归属与字段语义待迁移裁决。",
+      "questionRefs": [
+        "SYS-OUT-GR-10-Q02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV01",
+        "SYS-OUT-GR-10-EV06",
+        "SYS-OUT-GR-10-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-EX03",
+      "name": "收容凭证107与经验道具108-110旧命名残留",
+      "status": "P1_CONFLICT",
+      "rule": "收容凭证(107)ItemSubType仍为旧专武 Item_Sub_DrawWeaponCard；收容物经验道具108/109/110仍为 ItemSubType_WeaponExp；命名残留是迁移未完成的具体字段证据，影响抽卡/商店/任务资源链一致性。",
+      "questionRefs": [
+        "SYS-OUT-GR-10-Q03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV06",
+        "SYS-OUT-GR-10-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-EX04",
+      "name": "ExclusiveWeaponSystem旧网络消息被接管",
+      "status": "P1_CONFLICT",
+      "rule": "ExclusiveWeaponSystem.lua(2025-12-02)注释「该系统为旧系统，网络消息统一用 AnomalySystem 接管」、NetHandler={}；AnomalySystem.lua(2026-8-05)接管 ExclusiveEquipment 网络消息；客户端层已迁移但 canonical/数据迁移未定。",
+      "questionRefs": [
+        "SYS-OUT-GR-10-Q04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV10",
+        "SYS-OUT-GR-10-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-EX05",
+      "name": "玩家终态战力曲线含废弃专武",
+      "status": "P1_CONFLICT",
+      "rule": "冲突登记 C-002：当前玩家终态战力曲线仍含废弃专武且未完整接入收容物；仅作过渡基线，不宣称为最新养成终态。",
+      "questionRefs": [
+        "SYS-OUT-GR-10-Q01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV07",
+        "SYS-OUT-GR-10-EV08"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GR-10-UI01",
+      "name": "专武详情/养成界面（旧口径，迁移冲突）",
+      "status": "WORKING_COPY_OBSERVED_CONFLICT",
+      "rule": "旧口径：专武详情页展示绑定角色、品质、升级/突破/升星入口与技能槽；迁移后可能由收容物养成界面(AnomalySystem)替代，UI归属待裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV05",
+        "SYS-OUT-GR-10-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10-UI02",
+      "name": "收容物/旧专武开放入口（4016，迁移冲突）",
+      "status": "DESIGN_GAP",
+      "rule": "4016 入口三轴分层：①Draft目标=玩家等级≥27；②当前工作副本=玩家等级34（unlock.lua L467；systemopen.lua L18/L44 复用于旧专武与收容凭证入口）；③正式目标/运行状态=待裁决。专武经验副本303是另一条链：SystemOpen 303→Unlock 4303→主线2-4，不得机械套用34级。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV05",
+        "SYS-OUT-GR-10-EV09",
+        "SYS-OUT-GR-10-EV14",
+        "SYS-OUT-GR-10-EV15",
+        "SYS-OUT-GR-10-EV07"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GR-10-CFG01",
+      "name": "ExclWeapon(专武/收容物本体)",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeapon.xlsx",
+      "role": "专武本体定义(Id51001+/RelatedHero/SkillList/AttrNameList)；被收容物复用，两套口径冲突",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GR-10-CFG02",
+      "name": "ExclWeaponLv/Ascend/Star",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeaponLv.xlsx",
+      "role": "专武升级/突破/升星消耗(ExclWeaponLv/ExclWeaponAscendLv/ExclWeaponAscendMaterial/ExclWeaponStar)；旧口径，被收容物复用",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GR-10-CFG03",
+      "name": "ExclWeaponResolve/WeaponDuplicateReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeaponResolve.xlsx",
+      "role": "专武分解返还(ExclWeaponResolve)与重复奖励(WeaponDuplicateReward)；旧口径，迁移后归收容物/抽卡",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GR-10-REL01",
+      "type": "migrates-to",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-05",
+      "targetName": "收容物",
+      "description": "旧专武 GR-10 候选迁移至收容物 GR-05（旧→新，outgoing）；养成沉淀称收容物为专武迁移后的新口径养成线（候选迁移目标，主张承载旧专武角色配套职责）；核心口径仍列专武为正式，旧→新迁移未完成，替代关系是否成立待主策裁决（C-001），本边不预判。不得使用肯定式 supersedes。",
+      "status": "P0_CONFLICT_MIGRATION_PENDING",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-10-REL02",
+      "type": "conflicts-with",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-05",
+      "targetName": "收容物",
+      "description": "专武与收容物复用ExclWeapon表与ItemSubType_WeaponExp/DrawWeaponCard，两套现行口径不能同时成立；canonical归主策裁决(C-001)。",
+      "status": "P0_CONFLICT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV07"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-GR-10-REL03",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "CB-R03",
+      "targetName": "属性与计算",
+      "description": "旧口径专武在一个大版本兼容迁移期内仍需维持既有属性与技能机制；迁移后的职责由收容物承接，实施边界待方案。",
+      "status": "APPROVED_COMPATIBILITY_MIGRATION_PENDING",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-10-REL04",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-01",
+      "targetName": "角色/新手卡池",
+      "description": "旧口径专武抽卡池(150钻石/抽)归抽卡系统；迁移后归属待裁决。推导边界：旧口径由 DrawCard 专武池配置观察归纳；迁移后归属为 C-001 待裁决，不预判。",
+      "status": "P0_CONFLICT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-10-REL05",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "专武养成消耗武器经验道具/金币/重复专武，扣除走物品账本；收容凭证107旧命名残留。推导边界：由 Items/ExclWeaponLv 配置观察归纳；服务端扣除执行链未核，扣除时点 UNKNOWN。",
+      "status": "WORKING_COPY_WITH_CONFLICTS",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-10-REL06",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-03",
+      "targetName": "技能、Buff 与效果",
+      "description": "旧口径专武SkillList(6)按星级解锁技能槽；迁移后技能机制归属待裁决。推导边界：由 ExclWeapon.SkillList 字段结构观察归纳；迁移后技能机制归属 C-001 待裁决。",
+      "status": "P0_CONFLICT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GR-10-EV01",
+      "kind": "source-excel",
+      "label": "ExclWeapon.xlsx(SVN)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/ExclusiveWeapon/ExclWeapon.xlsx",
+      "location": "本机SVN工作副本；逻辑表 ExclWeapon；Id51001+/RelatedHero/SkillList/AttrNameList/Hp/Grow；被收容物复用；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV02",
+      "kind": "source-excel",
+      "label": "ExclWeaponLv.xlsx(SVN)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/ExclusiveWeapon/ExclWeaponLv.xlsx",
+      "location": "本机SVN工作副本；逻辑表 ExclWeaponLv；专武升级消耗(旧口径，被收容物复用)；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV03",
+      "kind": "source-excel",
+      "label": "ExclWeaponAscendLv.xlsx(SVN)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/ExclusiveWeapon/ExclWeaponAscendLv.xlsx",
+      "location": "本机SVN工作副本；逻辑表 ExclWeaponAscendLv；AscendId/LvLimit/LvUpperLimit/PlayerLv(旧口径)；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV04",
+      "kind": "source-excel",
+      "label": "ExclWeaponStar.xlsx(SVN)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/ExclusiveWeapon/ExclWeaponStar.xlsx",
+      "location": "本机SVN工作副本；逻辑表 ExclWeaponStar；升星消耗(旧口径，被收容物复用)；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV05",
+      "kind": "reverse-design",
+      "label": "专武系统 Design Doc",
+      "path": "design/专武系统Design Doc.md",
+      "location": "R-01~R-07、风险评估、工作假设（反推Draft旧口径）",
+      "status": "DRAFT_REVERSE_ENGINEERED_DEPRECATED"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV06",
+      "kind": "source-excel",
+      "label": "__tables__.xlsx(ExclWeapon注册)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/__tables__.xlsx",
+      "location": "本机SVN工作副本；ExclWeapon/ExclWeaponAscendLv/ExclWeaponAscendMaterial/ExclWeaponLv/ExclWeaponResolve/ExclWeaponStar/WeaponDuplicateReward/ExclWeaponLvLimit 仍注册；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV07",
+      "kind": "decision-record",
+      "label": "状态冲突登记 C-001/C-002",
+      "path": "archive/legacy-output-20260824/05-status-conflict-register.md",
+      "location": "§2 P0冲突 C-001 专武→收容物迁移；C-002 玩家终态战力曲线含废弃专武",
+      "status": "P0_CONFLICT_REGISTERED"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV08",
+      "kind": "numeric-deposit",
+      "label": "专武数值沉淀(已废弃)",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/专武数值沉淀-2026-07-07.md",
+      "location": "文档状态DEPRECATED(2026-07-24)、signature_weapon_system_removed、usable_as_current_input=false、replacement=收容物沉淀；旧专武属性/突破数值仅供历史追溯",
+      "status": "DEPRECATED"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV09",
+      "kind": "reverse-design",
+      "label": "专武经验副本 Design Doc",
+      "path": "design/专武经验副本Design Doc.md",
+      "location": "R-01~R-06、工作假设（PLv27开放/LevelType_Weapon/9档难度，反推Draft旧口径）",
+      "status": "DRAFT_REVERSE_ENGINEERED_DEPRECATED"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV10",
+      "kind": "source-code",
+      "label": "ExclusiveWeaponSystem.lua(旧系统)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/ExclusiveWeaponSystem.lua",
+      "location": "注释「该系统为旧系统，现在网络消息统一用 AnomalySystem 接管」；NetHandler={}；2025-12-02",
+      "status": "WORKING_COPY_DEPRECATED_NET_SUPERSEDED"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV11",
+      "kind": "source-code",
+      "label": "AnomalySystem.lua(接管)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/AnomalySystem.lua",
+      "location": "2026-8-05 接管 ExclusiveEquipment 网络消息；NetHandler 映射 GetList/PutOnSlot/RemoveSlot/AddExp/ChangeState/RiseStar/OneKeyRiseStar/Compose/NotifyList/NotifyDelete；收容物与专武共享后端 proto.cmsg.ExclusiveEquipmentInfo 与 SlotType（Main/Sub）",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV12",
+      "kind": "numeric-deposit",
+      "label": "养成总览(专武废弃标记)",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/养成总览数值沉淀-2026-07-07.md",
+      "location": "模块规划专武行标「已废弃历史值，不再参与当前预算」；当前总量口径含废弃专武仅供历史复现",
+      "status": "DEPRECATED"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV13",
+      "kind": "source-excel",
+      "label": "Items.xlsx(收容凭证107旧命名)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/items/Items.xlsx",
+      "location": "本机SVN工作副本；收容凭证107 ItemSubType=Item_Sub_DrawWeaponCard(旧专武命名残留)；108/109/110=ItemSubType_WeaponExp；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV14",
+      "kind": "source-code",
+      "label": "unlock.lua 4016入口与4303经验本条件",
+      "path": "D:/Vgame/HorizonFlyProject/LuaConfig/unlock.lua",
+      "location": "L467 [4016]: UnLockType=1/UnLockParams={34}，是收容物/旧专武入口玩家等级34；L511 [4303]: UnLockType=2/UnLockParams={100204}，是专武经验副本303的主线2-4条件。两者不得混写。",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV15",
+      "kind": "source-code",
+      "label": "systemopen.lua 4016入口与303经验本",
+      "path": "D:/Vgame/HorizonFlyProject/LuaConfig/systemopen.lua",
+      "location": "L18 [16] 与 L44 [43] 复用 UnlockId=4016，分别指向旧专武/收容凭证入口；L76 [303] 为 LevelType_WeaponExp，UnlockId=4303。工作副本观察不证明 LIVE。",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV16",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-A 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-A].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-10-EV17",
+      "kind": "human-decision",
+      "label": "2026-08-24 专武兼容迁移 B 裁决",
+      "path": "knowledge-base/governance/rulings.json",
+      "location": "RULING-EW-B",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GR-10-Q01",
+      "priority": "P0",
+      "question": "专武向收容物迁移采用哪种兼容策略？",
+      "impact": "C-001 核心冲突：两套现行口径不能同时成立，影响专武副本/卡池/材料/商店/任务全链与玩家终态战力曲线。（决策卡同 SYS-OUT-GR-05-Q01）",
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV07",
+        "SYS-OUT-GR-10-EV08",
+        "SYS-OUT-GR-10-EV12"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-A",
+      "answer": "2026-08-24 用户最新裁决 B：保留一个大版本的兼容迁移期。",
+      "resolvedBy": "用户当前对话明确裁决",
+      "resolvedAt": "2026-08-24T00:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-10-EV17"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GR-10-Q02",
+      "priority": "P0",
+      "question": "ExclWeapon/ExclWeaponLv/ExclWeaponStar 等表归属专武还是收容物？字段语义如何随迁移拆分？",
+      "impact": "表被两套口径复用，影响配置生成、程序接入与06镜像同步。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV01",
+        "SYS-OUT-GR-10-EV06",
+        "SYS-OUT-GR-10-EV08"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-10-Q03",
+      "priority": "P1",
+      "question": "收容凭证(107)与经验道具(108-110)的 ItemSubType 何时从旧专武命名迁移为收容物口径？",
+      "impact": "命名残留影响抽卡/商店/任务资源链一致性与类型判读。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV13",
+        "SYS-OUT-GR-10-EV07"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-10-Q04",
+      "priority": "P1",
+      "question": "ExclusiveWeaponSystem 旧网络消息被 AnomalySystem 接管后，专武养成入口与开放等级(PLv27)如何处置？",
+      "impact": "客户端层已迁移但 canonical/数据迁移未定，影响玩家入口与系统开放一致性。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-10-EV10",
+        "SYS-OUT-GR-10-EV11",
+        "SYS-OUT-GR-10-EV14",
+        "SYS-OUT-GR-10-EV15"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "humanDecisions": [
+    {
+      "cardId": "DC-A",
+      "closeableQuestionId": "SYS-OUT-GR-10-Q01",
+      "selectedOptionId": 2,
+      "selectedOptionName": "B：一个大版本兼容期",
+      "approvedTarget": "专武向收容物迁移，并保留一个大版本的兼容迁移期。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T02:45:05.433Z",
+      "confirmedAt": "2026-08-24T00:00:00+08:00",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "兼容期起止版本、读写边界、数据迁移、旧表/入口/投放清理尚未实施。",
+      "evidenceRef": "SYS-OUT-GR-10-EV17",
+      "evidencePath": "knowledge-base/governance/rulings.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

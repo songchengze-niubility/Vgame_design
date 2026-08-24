@@ -121,6 +121,9 @@ class Audit:
         for rownum, row in enumerate(ws.iter_rows(min_row=data_start, values_only=False), start=data_start):
             if not any(cell.value is not None for cell in row):
                 continue
+            # Project convention: a data row whose first column is "##" is disabled/placeholder data.
+            if row and row[0].value == "##":
+                continue
             record = {name: row[col - 1].value for name, col in hdr.items()}
             yield rownum, record
 

@@ -1,0 +1,657 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GR-08",
+  "name": "炮台/基地",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本（只读）+ 竞技场/PVPVE Design + 客户端 Lua/C# 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在 Arena/Battery 配置族与客户端/局内实现线索，不证明 Production/LIVE；炮台升级/重铸与水晶受伤的服务端权威不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径（PVPVE怪物伤害数值2026-07-27已确认），不代表已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（Arena/Battery 配置或客户端 Lua/C#），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由竞技场 Design + PVPVE 数值 + 配置 + 代码反推出的炮台/基地边界，无独立正式 Design。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据；缺独立炮台/基地正式 Design。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GR-08-R02"
+      ]
+    },
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-GR-08-R01"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "炮台/基地是竞技场 PVPVE 的局内成长与承伤底盘：炮台提供自动攻击与生命/攻击成长并可升级/重铸，基地（水晶）以'10000+炮台生命加成'为生命上限承受未清理怪物的碰撞/远程伤害，是 PVPVE 基地生存与杀敌送敌压力博弈的核心载体。",
+    "inScope": [
+      "炮台定义（Battery：品质/等级上限/CD/技能/模型）",
+      "炮台属性成长（BatteryAttribute：HP/Attack）",
+      "炮台升级与技能解锁（BatteryLv：UpgradeCost/SkillUnlockLv）",
+      "炮台装配/升级/重铸接口（ArenaSystem：EDIT/UPGRADE/REFORGE_ARENA_BATTERY）",
+      "基地（水晶）生命规则（10000+炮台生命加成）与局内投影（LCrystalEntity/CrystalAttributeComponent）",
+      "PVPVE 怪物对基地的伤害压力（六类怪物碰撞/远程伤害、ArenaMonsterMultiplier 倍率）"
+    ],
+    "outOfScope": [
+      "竞技场玩法匹配/段位/排名/奖励/机器人；该内容归 SYS-OUT-GP-07",
+      "竞技场单场胜利/连胜/排名奖励与 Drop 数量；该内容归 SYS-OUT-GP-07/SYS-OUT-SU-05",
+      "怪物/Boss 自身行为树、AI 与阶段；该内容归 SYS-IN-04",
+      "PVPVE 局内规则（杀敌送敌/同步/投降/结算触发）；该内容归 SYS-IN-06",
+      "战斗数值公式与最终结算；该内容归 CB-R03/NUM-03",
+      "炮台升级/重铸具体消耗数值曲线；该内容归 NUM-04"
+    ],
+    "inputs": [
+      "炮台实例（batteryId/quality/lv，由竞技场装配入口提供）",
+      "炮台升级/重铸资源（战斗内金币/资源，BatteryLv.UpgradeCost）",
+      "Battery/BatteryAttribute/BatteryLv 配置",
+      "ArenaMonsterMultiplier 怪物属性倍率与六类怪物伤害目标值",
+      "双方上阵角色平均属性（用于怪物生命增伤系数 K）"
+    ],
+    "outputs": [
+      "炮台等级/属性提升与技能解锁",
+      "基地（水晶）生命上限（10000+炮台生命加成）与局内 HP 状态",
+      "炮台自动攻击与受击/修复状态",
+      "未清理怪物对基地的碰撞/远程伤害结算（逐次叠加炮台攻击加成）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "竞技场 PVPVE 局内成长与承伤底盘（炮台+基地/水晶）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "炮台/基地作为竞技场 PVPVE 的局内成长与承伤载体在知识库总览、竞技场 Design 与 Battery 配置族中身份一致；主要影响 PVPVE 基地承伤，不外推所有玩法。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "炮台成长+水晶生命+六类怪物伤害已部分确认；缺独立炮台/基地正式 Design",
+      "status": "DRAFT_TARGET_REVERSE_ENGINEERED",
+      "note": "PVPVE怪物伤害数值2026-07-27已确认六类怪物伤害目标值与水晶生命规则；炮台成长规则主要由竞技场 Design R-04 与 Battery 配置族反推，无独立炮台/基地正式 Design。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Battery族3表 + ArenaMonster族2表 ConfigReady；客户端 ArenaSystem 炮台 edit/upgrade/reforge 实装；C# 局内 LCrystal/LBattery 实体可见",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；Battery.xlsx 56行/BatteryAttribute 183行/BatteryLv 126行存在；PVPVE怪物伤害部分源配置已符合、部分待修改（50002/50003/51001场景待刷新）。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "局内实体与客户端装配链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置与局内/客户端实现证据，但缺集中版本—开关—发布时间台账，且 PVPVE 怪物伤害部分场景数据未刷新，不能盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-F=归入PVPVE子系统",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在炮台装配/升级/重铸与基地承伤有序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在炮台等级上限、品质限制、升级消耗与玩家等级门槛条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "炮台/基地只消耗资源转化为局内成长与承伤，不发放奖励；竞技场排名/胜利奖励归 SYS-OUT-GP-07/SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在缺独立Design、PVPVE伤害部分场景未刷新、玩家与水晶共用碰撞伤害、断线基地继续承伤等边界"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在竞技场炮台装配/升级界面与局内基地HP条/炮台模型/升级按钮"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 Battery族3表 + ArenaMonster族2表 共5个策划配置源"
+    }
+  },
+  "flows": [
+    {
+      "id": "SYS-OUT-GR-08-F01",
+      "name": "炮台装配流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-08-F01-S01",
+          "name": "进入竞技场炮台装配",
+          "description": "玩家经竞技场入口（GP-07）进入炮台装配界面，查看 ownedBatteryList 与 arenaBatteryPosMap。"
+        },
+        {
+          "id": "SYS-OUT-GR-08-F01-S02",
+          "name": "校验装配资格",
+          "description": "校验炮台品质/等级与位置可用（见 SYS-OUT-GR-08-C01）。"
+        },
+        {
+          "id": "SYS-OUT-GR-08-F01-S03",
+          "name": "装配确认",
+          "description": "客户端发送 EDIT_ARENA_BATTERY，服务端更新位置→batteryId 映射；OnCRespEditArenaBattery 回包刷新。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-F02",
+      "name": "炮台升级流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-08-F02-S01",
+          "name": "选择炮台升级",
+          "description": "玩家选择已装配炮台执行升级，预览 UpgradeCost 与属性成长（BatteryAttribute HP/Attack）。"
+        },
+        {
+          "id": "SYS-OUT-GR-08-F02-S02",
+          "name": "校验升级资格",
+          "description": "校验当前等级 < Battery.LvLimit、升级资源充足、品质匹配（见 SYS-OUT-GR-08-C02）。"
+        },
+        {
+          "id": "SYS-OUT-GR-08-F02-S03",
+          "name": "扣除与升级",
+          "description": "客户端发送 UPGRADE_ARENA_BATTERY，服务端扣除资源、等级+1、按 SkillUnlockLv 解锁技能；OnCRespUpgradeArenaBattery 回包刷新炮台 HP/Attack 与基地生命上限。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GR-08-R01",
+      "name": "炮台定义与成长",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "炮台按品质/等级成长，Battery 定义品质/LvLimit/CD/技能/模型，BatteryAttribute 提供 HP/Attack，BatteryLv 提供升级消耗与技能解锁等级；炮台属性独立于角色。",
+      "sourceFact": "Battery.xlsx 含 Id/Name/Quailty/LvLimit/CD/Model/Skill/Icon/VideoId（56行）；BatteryAttribute.xlsx 含 Id/Name/HP/Attack（183行）；BatteryLv.xlsx 含 Id/Lv/Quality/UpgradeCost/SkillUnlockLv（126行）；竞技场 Design R-04 描述炮台自动攻击/升级/受损/修复。客户端 ArenaSystem 实装 EDIT/UPGRADE/REFORGE_ARENA_BATTERY。",
+      "acceptance": "炮台成长只读 Battery/BatteryAttribute/BatteryLv；炮台属性独立于角色；升级/重铸经客户端消费链；具体数值以配置/NUM-04 为权威。",
+      "relatedIds": [
+        "SYS-OUT-GP-07",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV01",
+        "SYS-OUT-GR-08-EV02",
+        "SYS-OUT-GR-08-EV03",
+        "SYS-OUT-GR-08-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-R02",
+      "name": "基地（水晶）生命规则",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "基地（水晶）生命 = 10000 + 炮台生命加成；基地 HP 归零则该方判负；基地生命上限由炮台生命成长驱动。",
+      "sourceFact": "PVPVE怪物伤害数值 §3（PVPVE-DMG-001）明确水晶最终生命=10000+炮台生命加成、基础生命占比以10000为分母；C# LCrystalEntity/LCrystalAttributeComponent 与 VCrystal 实现水晶实体与受伤逻辑；竞技场 Design R-03 描述基地HP与伤害系统。PVPVEConfig.asset 提供水晶基础配置。",
+      "acceptance": "基地生命只读 10000+炮台生命加成；基地HP归零判负；炮台生命成长经 BatteryAttribute 驱动基地上限。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV02",
+        "SYS-OUT-GR-08-EV08",
+        "SYS-OUT-GR-08-EV09",
+        "SYS-OUT-GR-08-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-R03",
+      "name": "PVPVE 怪物对基地伤害压力",
+      "status": "CONFIRMED_TARGET_PARTIAL_CONFIG_SYNC",
+      "targetRule": "六类怪物（普通50001/冲刺50002/普通射击50003/辅助50004/精英射击51001/巨型盾兵51002）对基地造成差异化碰撞/远程伤害；怪物每次有效命中水晶额外叠加一次炮台攻击加成；怪物生命由增伤系数K与 ArenaMonsterMultiplier 缩放。",
+      "sourceFact": "PVPVE怪物伤害数值 §4/§5/§10 已确认六类怪物碰撞/远程伤害目标值（500/800/200/200/400/1000；精英9发×100）与水晶单次受伤规则（配置固定伤害+炮台攻击加成，逐次叠加）；§7 工程同步快照显示 50002/50003/51001 场景数据待刷新；ArenaMonsterMultiplier.xlsx 含 AttackMultiplier/HpMultiplier。竞技场 Design R-03A 给出增伤系数K公式。",
+      "acceptance": "六类怪物伤害以 PVPVE数值2026-07-27 为权威；ArenaMonsterMultiplier 负责属性缩放不替代固定伤害；精英9发整轮预算单颗100为上限；部分场景数据待刷新后实机验收。",
+      "relatedIds": [
+        "SYS-IN-04",
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV02",
+        "SYS-OUT-GR-08-EV05",
+        "SYS-OUT-GR-08-EV06",
+        "SYS-OUT-GR-08-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-R04",
+      "name": "炮台局内投影与自动攻击",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "targetRule": "炮台在 PVPVE 局内作为实体自动攻击范围内敌人，可被敌人攻击受损，受损后需自动修复或消耗资源修复，修复期间敌人直接攻击基地。",
+      "sourceFact": "C# LBatteryEntity/VBattery 实现炮台局内实体；竞技场 Design R-04 描述炮台自动攻击/受损/修复；炮台属性与基地生命的局内投影链路为跨源归纳，服务端权威不可见。",
+      "acceptance": "炮台局内投影需有明确消费方与实机验收；受损/修复规则以竞技场 Design 为 Draft 目标，落地待确认。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV01",
+        "SYS-OUT-GR-08-EV08",
+        "SYS-OUT-GR-08-EV10"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GR-08-C01",
+      "name": "炮台装配资格",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "可装配需：炮台属于 ownedBatteryList、目标位置可用、品质/等级匹配；装配经 EDIT_ARENA_BATTERY。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-C02",
+      "name": "炮台升级资格",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "可升级需：当前等级 < Battery.LvLimit、UpgradeCost 资源充足、品质匹配；升级经 UPGRADE_ARENA_BATTERY。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV03",
+        "SYS-OUT-GR-08-EV07"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GR-08-EX01",
+      "name": "缺独立炮台/基地正式 Design",
+      "status": "P1_GAP",
+      "rule": "炮台/基地无独立正式 Design，当前主要由竞技场 Design R-03/R-04 与 PVPVE怪物伤害数值反推；炮台成长/修复/重铸完整规则需独立 Design 冻结。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV01",
+        "SYS-OUT-GR-08-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-EX02",
+      "name": "PVPVE 怪物伤害部分场景未刷新",
+      "status": "P1_GAP",
+      "rule": "PVPVE数值2026-07-27 §7 显示 50002/50003/51001 场景/生成数据待刷新（Prefab已改但 LogicData 未刷新）；源配置符合不等于运行数据生效。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV02",
+        "SYS-OUT-GR-08-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-EX03",
+      "name": "玩家与水晶共用碰撞伤害",
+      "status": "P2_GAP",
+      "rule": "当前配置无独立'仅水晶伤害'字段，怪物碰撞伤害同时作用于玩家角色与水晶（PVPVE-RISK-003）；玩家侧伤害需同步验收。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-EX04",
+      "name": "精英射击九发逐颗叠加炮台攻击",
+      "status": "P2_GAP",
+      "rule": "当前代码逐次结算炮台攻击加成，精英射击9颗全中在高炮台攻击档位可能直接清空健康水晶（PVPVE-RISK-001/002）；是否需实现层限制待实机采样。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV02",
+        "SYS-OUT-GR-08-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-EX05",
+      "name": "断线基地继续承伤",
+      "status": "P2_GAP",
+      "rule": "竞技场 Design R-03 指出一方断线时其基地继续被攻击正常扣HP；断线恢复与基地HP一致性的服务端权威不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV01"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GR-08-UI01",
+      "name": "炮台装配/升级界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示 ownedBatteryList、位置映射、炮台品质/等级/属性/技能、升级与重铸入口及消耗预览；ArenaSystem 驱动 EDIT/UPGRADE/REFORGE。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08-UI02",
+      "name": "局内基地HP条与炮台模型",
+      "status": "TARGET_REQUIRED",
+      "rule": "局内双方基地HP条实时显示，HP低于阈值红色闪烁；炮台模型+血条+升级按钮+攻击特效；炮台受损/修复状态反馈。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV01",
+        "SYS-OUT-GR-08-EV10"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GR-08-CFG01",
+      "name": "Battery",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\Battery.xlsx",
+      "role": "炮台定义：Id/Name/Quailty/LvLimit/CD/Model/Skill/Icon/VideoId（56行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-CFG02",
+      "name": "BatteryAttribute",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\BatteryAttribute.xlsx",
+      "role": "炮台属性：Id/Name/HP/Attack（183行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-CFG03",
+      "name": "BatteryLv",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\BatteryLv.xlsx",
+      "role": "炮台升级：Id/Lv/Quality/UpgradeCost/SkillUnlockLv（126行，消耗权威在 NUM-04）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-CFG04",
+      "name": "ArenaMonsterMultiplier",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaMonsterMultiplier.xlsx",
+      "role": "竞技场怪物属性倍率：Id/AttackMultiplier/HpMultiplier（10行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-CFG05",
+      "name": "ArenaMonsterAttribute",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaMonsterAttribute.xlsx",
+      "role": "竞技场怪物高低倍率：Name/HighMultiplier/LowMultiplier（16行）",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GR-08-REL01",
+      "type": "builds",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-07",
+      "targetName": "竞技场",
+      "description": "来源：竞技场Design Doc(EV01)定义PVPVE对局环境与炮台装配入口，ArenaSystem.lua(EV07)实现炮台装配/升级/重铸，战斗外系统总览(EV11)定义炮台/基地归属。推导：竞技场(GP-07)提供炮台装配入口与PVPVE对局环境，炮台/基地局内投影与承伤在竞技场对局中运行，玩法匹配/排名/奖励归GP-07，构成 builds/incoming 关系。推导边界：竞技场对局环境与炮台装配入口已由工作副本确认，但炮台/基地在PVPVE中的局内投影与承伤链路部分来自设计文档描述，服务端权威不可见。UNKNOWN：炮台/基地局内实体投影的服务端同步与承伤计算权威仍未知。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-08-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：BatteryLv.xlsx(EV03)定义炮台升级消耗，ArenaSystem.lua(EV07)执行升级/重铸扣除。推导：炮台升级/重铸消耗战斗内金币/资源，扣除操作走物品账本，资源身份与堆叠归 SYS-OUT-SU-04，构成 consumes/outgoing 关系。推导边界：消耗配置与客户端扣除逻辑已由工作副本确认，但服务端扣除权威不可见，战斗内金币/资源与账号金币的兑换关系属推断。UNKNOWN：战斗内金币/资源的服务端扣除幂等与跨对局结算规则仍未知。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-08-REL03",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "来源：LBatteryEntity(EV10)实现炮台局内实体投影与自动攻击，LCrystalEntity(EV09)实现水晶(基地)受伤与HP归零，PVPVE怪物伤害数值(EV02)定义承伤。推导：炮台/基地局内实体投影、自动攻击、承伤与基地HP归零判负进入PVPVE局内规则(SYS-IN-06)，构成 reports/outgoing 关系。推导边界：局内实体与承伤实现已由工作副本代码确认，但局内规则归属为知识目录分域结论，PVPVE局内规则本体在 SYS-IN-06 侧维护。UNKNOWN：PVPVE局内规则中炮台/基地专属逻辑与通用战斗规则的边界仍待确认。",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-08-REL04",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-04",
+      "targetName": "怪物与Boss",
+      "description": "来源：LCrystalEntity(EV09)实现水晶(基地)承伤，ArenaMonsterAttribute.xlsx(EV06)/ArenaMonsterMultiplier.xlsx(EV05)定义PVPVE怪物属性，PVPVE怪物伤害数值(EV02)为权威。推导：基地承受未清理怪物的碰撞/远程伤害，怪物实体与行为归 SYS-IN-04，PVPVE使用专用怪物Prefab，构成 consumes/outgoing 关系。推导边界：基地承伤与怪物配置已由工作副本确认，但怪物行为AI在PVPVE中的差异(专用Prefab)属推断，怪物行为本体在 SYS-IN-04 侧维护。UNKNOWN：PVPVE专用怪物Prefab与普通怪物的行为差异细节仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-08-REL05",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：PVPVE怪物伤害数值设计(EV02,2026-07-27)定义怪物伤害目标值，BatteryLv.xlsx(EV03)定义炮台升级消耗。推导：炮台升级/重铸消耗与怪物伤害目标值由经济/数值域(NUM-04/NUM-03)约束与平衡，构成 prices/incoming 关系。推导边界：PVPVE数值设计已确认为权威，但消耗与伤害的平衡关系在经济账中的占比属数值域维护，本正文不复制数值。UNKNOWN：炮台成长曲线与怪物伤害递增的长期平衡仍待数值域持续验收。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-08-REL06",
+      "type": "validates",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家等级",
+      "description": "来源：竞技场Design Doc(EV01)定义竞技场开放门槛为玩家等级≥20，知识目录定义玩家等级为开放条件源。推导：竞技场入口与炮台成长受玩家等级门槛约束(目标玩家等级≥20)，玩家等级(GR-01)驱动竞技场开放，构成 validates/incoming 关系。推导边界：竞技场开放门槛已由设计文档确认，但玩家等级对炮台成长曲线的具体影响(是否存在等级锁定)属推断，玩家等级本体在 GR-01 侧维护。UNKNOWN：炮台成长是否存在额外的玩家等级锁定仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GR-08-EV01",
+      "kind": "reverse-design",
+      "label": "竞技场 Design Doc",
+      "path": "design/竞技场Design Doc.md",
+      "location": "R-03 基地HP与伤害/R-03A 怪物生命增伤系数/R-04 炮台系统/R-05 结算；工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV02",
+      "kind": "numeric-deposit",
+      "label": "PVPVE怪物伤害数值设计(2026-07-27)",
+      "path": "design/PVPVE怪物伤害数值设计-2026-07-27.md",
+      "location": "§3 PVPVE-DMG-001/002 水晶生命与单次受伤、§4 六类怪物目标值、§5 精英九发模型、§7 工程同步快照、§10 机器可读参数",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV03",
+      "kind": "source-excel",
+      "label": "BatteryLv.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/BatteryLv.xlsx",
+      "location": "本机SVN工作副本；sheet BatteryLv；Id/Lv/Quality/UpgradeCost/SkillUnlockLv（126行）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV04",
+      "kind": "source-excel",
+      "label": "Battery.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/Battery.xlsx",
+      "location": "本机SVN工作副本；sheet Battery；Id/Name/Quailty/LvLimit/CD/Model/Skill/Icon/VideoId（56行）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV05",
+      "kind": "source-excel",
+      "label": "ArenaMonsterMultiplier.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/ArenaMonsterMultiplier.xlsx",
+      "location": "本机SVN工作副本；sheet ArenaMonterMultiplier；Id/AttackMultiplier/HpMultiplier（10行）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV06",
+      "kind": "source-excel",
+      "label": "ArenaMonsterAttribute.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/ArenaMonsterAttribute.xlsx",
+      "location": "本机SVN工作副本；sheet ArenaMonterAttribute；Name/HighMultiplier/LowMultiplier（16行）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV07",
+      "kind": "source-code",
+      "label": "ArenaSystem.lua(炮台装配/升级/重铸)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/ArenaSystem.lua",
+      "location": "arenaBatteryPosMap/ownedBatteryList(21-22)、ARENA_CMD_EDIT/UPGRADE/REFORGE_ARENA_BATTERY(39-41)、炮台数据更新(126-134)；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV08",
+      "kind": "source-excel",
+      "label": "BatteryAttribute.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Arena/BatteryAttribute.xlsx",
+      "location": "本机SVN工作副本；sheet BatteryAttribute；Id/Name/HP/Attack（183行）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV09",
+      "kind": "source-code",
+      "label": "LCrystalEntity/LCrystalAttributeComponent(水晶受伤)",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LCrystalEntity.cs",
+      "location": "LCrystalEntity/LCrystalAttributeComponent 实现水晶实体与受伤逻辑（逐次叠加炮台攻击加成）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV10",
+      "kind": "source-code",
+      "label": "LBatteryEntity/VBattery(炮台局内实体)",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LBatteryEntity.cs",
+      "location": "LBatteryEntity(Lockstep)/VBattery(GameLogic) 实现炮台局内实体；Battery/BatteryAttribute/BatteryLv 配置已生成；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV11",
+      "kind": "knowledge-ref",
+      "label": "战斗外系统总览(炮台/基地)",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "location": "line 52：SYS-OUT-GR-08 炮台/基地 竞技场基地生命/受怪压力/成长，主要影响PVPVE基地承伤",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV12",
+      "kind": "knowledge-ref",
+      "label": "outer-domain-audit(验证层PVPVE)",
+      "path": "archive/legacy-output-20260824/research/outer-domain-audit.md",
+      "location": "line 67：PVPVE 属正式验证层，验证竞争效率与基地生存；Design Doc 多为 Draft",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GR-08-EV13",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-F 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-F].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GR-08-Q01",
+      "priority": "P0",
+      "question": "是否需要为炮台/基地立项独立正式 Design？",
+      "impact": "当前炮台成长/修复/重铸规则由竞技场 Design 反推，缺独立权威，影响成长闭环与数值验收。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV01",
+        "SYS-OUT-GR-08-EV02"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-F",
+      "answer": "用户正式选择「归入PVPVE子系统」：不建独立系统，规则并入竞技场/PVPVE。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-08-EV13"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GR-08-Q02",
+      "priority": "P0",
+      "question": "PVPVE 怪物 50002/50003/51001 的场景/生成数据（LogicData）何时刷新到 2026-07-27 目标值？",
+      "impact": "Prefab已改但场景未刷新，源配置符合不等于运行数据生效，影响实际承伤体验。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV02",
+        "SYS-OUT-GR-08-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-08-Q03",
+      "priority": "P1",
+      "question": "精英射击怪九发全中在高炮台攻击档位是否需要实现层限制命中数？",
+      "impact": "当前逐颗叠加炮台攻击，九颗全中可能直接清空健康水晶（PVPVE-RISK-001/002）。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV02",
+        "SYS-OUT-GR-08-EV09"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-08-Q04",
+      "priority": "P1",
+      "question": "怪物碰撞伤害同时作用于玩家与水晶，玩家侧伤害是否可接受？是否需要独立'仅水晶伤害'字段？",
+      "impact": "当前无法仅靠配置拆分（PVPVE-RISK-003），影响玩家与基地承伤平衡。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-08-Q05",
+      "priority": "P2",
+      "question": "炮台受损后的修复规则（自动修复时长/消耗资源）与修复期间敌人直击基地的边界是否已冻结？",
+      "impact": "竞技场 Design R-04 提出但无独立 Design 确认，影响局内攻防博弈。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-08-Q06",
+      "priority": "P2",
+      "question": "炮台重铸（REFORGE_ARENA_BATTERY）的规则与产出是什么？",
+      "impact": "客户端已实装重铸入口但规则未在 Design 冻结，影响炮台长线成长路径。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-08-EV01",
+        "SYS-OUT-GR-08-EV07"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "humanDecisions": [
+    {
+      "cardId": "DC-F",
+      "closeableQuestionId": "SYS-OUT-GR-08-Q01",
+      "selectedOptionId": 2,
+      "selectedOptionName": "归入PVPVE子系统",
+      "approvedTarget": "选择「归入PVPVE子系统」：不建独立系统，规则并入竞技场/PVPVE。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:16:57.545Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "知识归属改为 PVPVE 子系统；Design 章节、配置归属和验收仍待同步实现。",
+      "evidenceRef": "SYS-OUT-GR-08-EV13",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

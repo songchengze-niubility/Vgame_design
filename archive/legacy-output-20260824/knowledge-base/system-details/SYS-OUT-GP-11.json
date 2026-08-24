@@ -1,0 +1,767 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-11",
+  "name": "扫荡",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE；扫荡资格、扣除与结算幂等的服务端口径在客户端工作副本中不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua），不代表 Production/LIVE，也不代表服务端口径。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "overview": {
+    "purpose": "扫荡是对满足条件的已通关内容跳过战斗实例、按关卡配置直接快速结算的功能，用于把重复挑战转化为受控的储能消耗与可重复奖励入账，是主线与资源本等重复产出的便利入口。",
+    "inScope": [
+      "扫荡入口与资格声明（level.MopUp 与 globals_conf.EnableMoppingUpLevel 两层口径）",
+      "扫荡成本（UIlevel.Vitality 的储能扣除）",
+      "单次扫荡、批量扫荡与定向扫荡（目标道具）的请求结构",
+      "高难主线扫荡的每日次数边界",
+      "扫荡奖励边界（复用重复掉落、不触发首通/战斗内表现奖励）"
+    ],
+    "outOfScope": [
+      "储能作为资源的身份、堆叠与增减账；该内容归 SYS-OUT-SU-04",
+      "储能的上限、自然恢复与购买；该内容归 SYS-OUT-GR-01 玩家等级/体力",
+      "扫荡产出的真实奖励包内容与权重；该内容归 SYS-OUT-SU-05 与 Drop 源表",
+      "具体可扫荡关卡的数量、概率与逐项数值；该内容归数值框架 v2 与各玩法正文"
+    ],
+    "inputs": [
+      "玩家已通关关卡状态（LevelSystem.alreadyPassLevelDic）",
+      "关卡配置（level.MopUp、UIlevel.Vitality/LevelPPDrop、EnableMoppingUpLevel）",
+      "玩家储能持有量（PropSystem.StaminaNum）",
+      "高难主线每日挑战次数（RefreshNum、difficultTotalChallengeLimit）",
+      "定向扫荡的目标道具与目标数量（可选）"
+    ],
+    "outputs": [
+      "扫荡结算奖励列表（每轮 reward_list，复用重复掉落）",
+      "储能扣除（服务端）与体力视图刷新",
+      "高难主线挑战次数刷新",
+      "供 SYS-OUT-SU-05 入账的可重复奖励事件"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式战斗外玩法便利层",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "主线扫荡列在项目核心 Skill 的正式外循环清单，是已通关内容的快速结算入口，不是独立成长线。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "资格、成本、批量/多倍、奖励边界与幂等规则均未冻结",
+      "status": "DESIGN_GAP",
+      "note": "反推 Design 只到「支持多倍结算」的片段，未形成扫荡资格（首通/三星）、扣除与幂等的正式策划口径。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "MopUp 全 1、成本读 UIlevel.Vitality、批量普通 10 次/高难按剩余次数、旅券扫荡口径冲突",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；表内只表达 MopUp=1，运行资格与多倍白名单需与设计口径对账。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "客户端扫荡链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表与客户端实现证据，但没有集中版本—开关—发布时间台账，服务端扣除/幂等口径亦不可见，不能盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-E=玩法级配置",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-11-F01",
+      "name": "扫荡快速结算流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-11-F01-S01",
+          "name": "打开扫荡入口",
+          "description": "从主线/资源本/高难主线已通关关卡打开扫荡确认面板；支线、钓鱼、接水管等小游戏关卡在 UI 层隐藏扫荡按钮。"
+        },
+        {
+          "id": "SYS-OUT-GP-11-F01-S02",
+          "name": "读取成本与次数",
+          "description": "读取 UIlevel.Vitality（PropType，如储能 3,10）与批量次数；高难主线按 RefreshNum 与每日总上限计算剩余可扫次数。"
+        },
+        {
+          "id": "SYS-OUT-GP-11-F01-S03",
+          "name": "校验储能与次数",
+          "description": "比对 PropSystem:GetStaminaNum 与成本；高难主线先校验剩余挑战次数，不足则弹提示并中止。"
+        },
+        {
+          "id": "SYS-OUT-GP-11-F01-S04",
+          "name": "发起扫荡请求",
+          "description": "发送 LEVEL_CMD_LEVEL_MOPPING_UP，携带 level_id、num、可选目标道具 item_id/item_num（定向扫荡模式）。"
+        },
+        {
+          "id": "SYS-OUT-GP-11-F01-S05",
+          "name": "服务端扣除与结算",
+          "description": "服务端按成本扣除储能并逐次结算重复掉落，返回每轮 reward_list；扣除与入账的原子性在客户端不可见。"
+        },
+        {
+          "id": "SYS-OUT-GP-11-F01-S06",
+          "name": "回包展示",
+          "description": "逐轮动画展示扫荡结果，合并相同道具；定向模式从结果中扣除目标道具并刷新剩余需求。"
+        },
+        {
+          "id": "SYS-OUT-GP-11-F01-S07",
+          "name": "刷新体力与次数",
+          "description": "刷新储能视图，并对高难主线刷新每日挑战次数。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-11-R01",
+      "name": "扫荡身份与责任边界",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "扫荡是已通关内容的快速结算，只复用真实重复掉落与挑战成本，不触发首通、星级或战斗内表现奖励；真实奖励内容归 SYS-OUT-SU-05，储能扣除归 SYS-OUT-SU-04。",
+      "sourceFact": "项目核心 Skill 将「主线扫荡」列为正式外循环；客户端 LevelSystem/UISweepLevel* 与 DropSystem:GetDropDataList(LevelPPDrop) 构成从入口到奖励预览的链路。",
+      "acceptance": "任何可扫荡玩法都能追到关卡配置、成本、次数与重复掉落引用；不得把扫荡写成独立奖励权威或复制主线/Drop 数值。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-SU-04",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV04",
+        "SYS-OUT-GP-11-EV05",
+        "SYS-OUT-GP-11-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-R02",
+      "name": "扫荡资格两层声明",
+      "status": "APPROVED_TARGET_IMPLEMENTATION_PENDING",
+      "targetRule": "扫荡采用玩法级门槛配置。主线与高难主线必须三星；其他玩法沿用各自已确认规则，未确认者保持 UNKNOWN，不得推断为首通或三星。",
+      "sourceFact": "level.xlsx 中 145 个有效主线行（普通 99+支线 44+特殊 2，含 6 个 ## 历史行被排除后）MopUp 均为 1；globals_conf.EnableMoppingUpLevel 用关卡类型白名单（Exp/Gold/Material_*/WeaponExp/WeaponMaterial_*/EnergyEfficiency_*/Main/Main_Difficult/SpecialEquipment）控制。",
+      "acceptance": "主线/高难仅三星可扫荡；其他玩法逐 LevelType 有明确、可追溯门槛或明确 UNKNOWN；服务端拒绝未满足资格的请求，且实现证据单独核验。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GP-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-R03",
+      "name": "扫荡成本读取 UIlevel.Vitality",
+      "status": "WORKING_COPY_CONFLICT_RUNTIME_AUTHORITY",
+      "targetRule": "GAP：扫荡与手动挑战复用同一成本权威；普通主线为储能 10（UIlevel.Vitality = PropType 3,10）——该规则尚未裁决：level.Vitality=0 与 UIlevel.Vitality=3,10 的分工需由代码裁决，冲突未解决。",
+      "sourceFact": "UIlevel.Vitality 对主线为「3,10」（ItemId=3 储能、数量 10）；level.Vitality 对主线全为 0。客户端 UISweepLevelResultView 读取 UIlevel.Vitality 作为成本，扣除由服务端执行。",
+      "acceptance": "挑战成本只能有一个运行权威；扫荡与手动挑战的扣除、多倍与失败口径一致；level.Vitality=0 与 UIlevel.Vitality=3,10 的分工需由代码裁决。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-SU-04",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV02",
+        "SYS-OUT-GP-11-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-R04",
+      "name": "批量扫荡与多倍结算边界",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：缺少「批量扫荡次数上限」与「主线是否支持多倍结算」的正式口径；当前普通主线批量按钮为 10 次，多倍结算白名单不含主线。",
+      "sourceFact": "UISweepLevelResultView.GetBatchSweepNum 对普通关卡固定返回 10，对高难主线返回剩余可挑战次数（RefreshNum 与 difficultTotalChallengeLimit 取小）；globals_conf.EnableMultiSettlementLevel 仅含 LevelType_Strategy_*（旅券副本），主线不在多倍白名单。",
+      "acceptance": "批量扫荡次数、多倍结算适用范围与成本倍数需冻结；多倍结算的扣除与奖励要按次数幂等展开。",
+      "relatedIds": [
+        "SYS-OUT-GP-02",
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV03",
+        "SYS-OUT-GP-11-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-R05",
+      "name": "定向扫荡（目标道具）",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "定向扫荡按「凑齐 N 个目标道具」发起，扫荡次数受批量上限与服务端裁决，不得形成无限扫荡。",
+      "sourceFact": "CReqLevelMoppingUp 携带可选 item_id/item_num（目标道具与数量）；UISweepLevelResultView 从结果中扣除目标道具并刷新剩余需求；ItemSweep.xlsx 以 LevelId→ItemId 维护关卡可扫材料映射，供获取途径与定向扫荡使用。",
+      "acceptance": "定向扫荡的目标判定、次数上限与「目标无法凑齐」时的终止条件需有可执行规则。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV04",
+        "SYS-OUT-GP-11-EV05",
+        "SYS-OUT-GP-11-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-R06",
+      "name": "扫荡奖励边界",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "扫荡只结算可重复奖励（FallRewardDrop 的真实包，客户端用 LevelPPDrop 预览），不触发首通、三星、章节星级或战斗内表现奖励。",
+      "sourceFact": "UISweepLevelResultView 对主线扫荡读取 LevelPPDrop 经 DropSystem:GetDropDataList 展开预览；真实 Drop 引用与服务端入账走 SYS-OUT-SU-05。",
+      "acceptance": "扫荡奖励列表与重复掉落一致；首通/星级/支线一次性奖励不在扫荡中重复发放。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV02",
+        "SYS-OUT-GP-11-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-R07",
+      "name": "首通/三星资格门槛",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：缺「扫荡需要首通、三星还是其他条件」的冻结规则；目标应区分「已通关即可扫荡」与「需达到星级才可扫荡」两种口径。",
+      "sourceFact": "UNKNOWN：需要「扫荡服务端是否校验首通/星级状态」的证据；客户端已通关关卡（alreadyPassLevelDic）才显示扫荡入口，但表内 MopUp=1 不表达三星/首通门槛。",
+      "acceptance": "策划冻结资格口径并写回表或服务端；与主线 R08/C04 的「MopUp=1、资格待裁决」形成单一权威，不重复展开。",
+      "relatedIds": [
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-R08",
+      "name": "扫荡幂等与失败恢复",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：缺「扫荡重复请求、断线、超时、部分成功与补发」的一致口径；扣除与入账必须原子，重复请求不得重复扣储能或重复入账。",
+      "sourceFact": "UNKNOWN：需要服务端 LEVEL_CMD_LEVEL_MOPPING_UP 的幂等实现证据；客户端仅发送请求并展示回包，无本地幂等或重试保护。",
+      "acceptance": "正常、重复请求、断线重连、超时、失败五类路径都有明确状态变化与可执行验收。",
+      "relatedIds": [
+        "SYS-OUT-SU-09",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV04"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-11-C01",
+      "name": "扫荡入口资格",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "扫荡按钮只在已通关关卡出现；level.MopUp=1 与 EnableMoppingUpLevel 关卡类型白名单共同决定「该内容可扫荡」，但不表达玩家侧首通/三星门槛。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV03",
+        "SYS-OUT-GP-11-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-C02",
+      "name": "储能成本校验",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "成本读 UIlevel.Vitality（储能 3,10）；客户端校验持有量，不足时打开储能获取面板或道具获取途径；扣除由服务端执行。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV02",
+        "SYS-OUT-GP-11-EV05",
+        "SYS-OUT-GP-11-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-C03",
+      "name": "高难主线次数限制",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "高难主线扫荡按关卡 RefreshNum（每关 3）与每日总上限（difficultTotalChallengeLimit）取剩余可扫次数，无剩余则弹提示并中止。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-C04",
+      "name": "定向扫荡目标",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "携带 targetItemId/targetItemNum 时按「凑齐目标道具」发起扫荡；目标数量影响实际扫荡次数，上限待规则冻结。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV04",
+        "SYS-OUT-GP-11-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-C05",
+      "name": "首通/三星资格门槛",
+      "status": "APPROVED_TARGET_IMPLEMENTATION_PENDING",
+      "rule": "用户确认：主线、高难需要三星；其他玩法只按已有确认规则处理，未确认者保持 UNKNOWN。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV03"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-11-RW01",
+      "name": "扫荡重复掉落",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "扫荡按关卡重复掉落结算，客户端以 LevelPPDrop 经 DropSystem 展开预览；真实包与入账归 SYS-OUT-SU-05。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV02",
+        "SYS-OUT-GP-11-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-RW02",
+      "name": "扫荡不重复首通/星级",
+      "status": "DESIGN_GAP",
+      "rule": "GAP：扫荡不得重复发放首通、三星、章节星级或支线一次性奖励；这些奖励只在手动首通/领奖时结算。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV05",
+        "SYS-OUT-GP-11-EV09"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-11-EX01",
+      "name": "储能不足",
+      "status": "WORKING_COPY_HANDLED",
+      "rule": "客户端校验储能不足时打开 UIStaminaView（体力补充）或道具获取途径；不影响服务端权威。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV05",
+        "SYS-OUT-GP-11-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-EX02",
+      "name": "高难次数耗尽",
+      "status": "WORKING_COPY_HANDLED",
+      "rule": "高难主线无剩余挑战次数时弹提示并阻止扫荡；每关与每日总上限分别提示。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-EX03",
+      "name": "旅券副本扫荡口径冲突",
+      "status": "P1_CONFLICT",
+      "rule": "体力补充沉淀 CHG-004（2026-07-13）声明旅券副本关闭扫荡，但工作副本 globals_conf.EnableMoppingUpLevel 仍含 LevelType_Strategy_*；需裁决以设计口径还是配置为准。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV03",
+        "SYS-OUT-GP-11-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-EX04",
+      "name": "扫荡资格门槛缺口",
+      "status": "IMPLEMENTATION_GAP",
+      "rule": "目标门槛已裁决，但工作副本无统一玩家侧门槛字段；主线/高难三星校验与其他玩法逐项规则仍需实现和验证。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-EX05",
+      "name": "幂等与重复请求缺口",
+      "status": "P1_GAP",
+      "rule": "客户端无本地幂等或重试保护；重复请求、断线、超时与补发在服务端不可见，需服务端确认原子结算。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV04"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-11-UI01",
+      "name": "扫荡确认面板",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UISweepLevelView 展示关卡名、单次成本、可选批量次数（普通 10、高难按剩余）与储能持有量；支线/小游戏关卡隐藏扫荡入口。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11-UI02",
+      "name": "扫荡结果面板",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UISweepLevelResultView 逐轮动画展示每轮 reward_list，合并相同道具，支持定向目标扣除与剩余需求展示；扫荡后刷新体力与高难次数。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV05"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-11-CFG01",
+      "name": "level",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx",
+      "role": "关卡底表的 MopUp 可扫荡声明（0/1）与一套 Vitality/奖励字段",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-11-CFG02",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "扫荡成本的 Vitality（储能 3,10）、重复掉落展示 LevelPPDrop、MultiSettlementTimes 与高难 RefreshNum",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-11-CFG03",
+      "name": "globals_conf",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\globals_conf\\globals_conf.xlsx",
+      "role": "EnableMoppingUpLevel 扫荡类型白名单、EnableMultiSettlementLevel 多倍类型白名单、StaminaCostDropRatio",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-11-CFG04",
+      "name": "ItemSweep",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\ItemSweep.xlsx",
+      "role": "关卡可扫材料映射（LevelId→ItemId），供获取途径与定向扫荡",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-11-REL01",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。主线已通关节点可进入扫荡快速结算路径。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV09",
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV02"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-11-REL02",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-02",
+      "targetName": "高难主线",
+      "description": "高难主线已通关节点可扫荡，受每关与每日次数限制。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV02",
+        "SYS-OUT-GP-11-EV04"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-11-REL03",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-03",
+      "targetName": "金币/角色经验资源副本",
+      "description": "资源副本作为稳定供给层进入扫荡白名单。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV02",
+        "SYS-OUT-GP-11-EV04"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-11-REL04",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：ItemSweep.xlsx(EV07)定义扫荡掉落配置，UISweepLevelResultView.lua(EV05)展示扫荡结算，LevelSystem.lua(EV04)执行扫荡逻辑。推导：扫荡结算复用重复掉落并交由真实Drop入账(SU-05)，构成 reports/outgoing 关系。推导边界：扫荡掉落配置与客户端逻辑已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：扫荡结算的服务端入账幂等与重复掉落的发放入账规则仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-11-REL05",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：ItemSweep.xlsx(EV07)定义扫荡消耗，globals_conf.xlsx(EV03)定义储能(ItemId=3)配置，PropSystem.lua(EV08)执行扣除。推导：扫荡消耗储能(ItemId=3)，扣除走物品/资源账本(SU-04)，构成 consumes/outgoing 关系。推导边界：消耗配置与客户端扣除逻辑已由工作副本确认，但服务端扣除权威不可见，储能身份归属为知识目录分域结论。UNKNOWN：储能的服务端扣除幂等与扫荡批量消耗的原子性仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-11-REL06",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家等级",
+      "description": "来源：globals_conf.xlsx(EV03)定义储能上限与恢复，体力补充经济沉淀(EV10)定义恢复节奏，SYS-OUT-GR-01玩家等级正文定义体力上限。推导：扫荡消耗的储能上限与恢复节奏由玩家等级/体力侧(GR-01)维护，构成 consumes/outgoing 关系。推导边界：储能配置已由工作副本确认，但体力上限与恢复节奏的权威在GR-01侧维护，玩家等级对体力上限的影响属推断。UNKNOWN：玩家等级对储能上限的具体影响公式与扫荡在日体力预算中的占比仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-SWEEP",
+      "ruleRefs": [
+        "SYS-OUT-GP-11-R02",
+        "SYS-OUT-GP-11-R03",
+        "SYS-OUT-GP-11-R04",
+        "SYS-OUT-GP-11-R05",
+        "SYS-OUT-GP-11-R06",
+        "SYS-OUT-GP-11-C02",
+        "SYS-OUT-GP-11-C03"
+      ]
+    },
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-11-C01",
+        "SYS-OUT-GP-11-C02"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-11-R06",
+        "SYS-OUT-GP-11-RW01"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-GP-11-R08",
+        "SYS-OUT-GP-11-EX05"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-11-EV01",
+      "kind": "source-excel",
+      "label": "level.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx",
+      "location": "本机SVN工作副本；sheet level；Type=1 主线 151 行中 145 有效行 MopUp=1、Vitality=0；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV02",
+      "kind": "source-excel",
+      "label": "UIlevel.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "location": "本机SVN工作副本；sheet level；LevelType_Main 的 Vitality=3,10、LevelPPDrop、MultiSettlementTimes 为空；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV03",
+      "kind": "source-excel",
+      "label": "globals_conf.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\globals_conf\\globals_conf.xlsx",
+      "location": "本机SVN工作副本；EnableMoppingUpLevel（含 Main/Main_Difficult/Strategy_* 等）、EnableMultiSettlementLevel（仅 Strategy_*）、StaminaCostDropRatio=10；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV04",
+      "kind": "source-code",
+      "label": "LevelSystem.lua",
+      "path": "D:\\Vgame\\HorizonFlyProject\\Lua\\Logic\\PlayerData\\Systems\\Level\\LevelSystem.lua",
+      "location": "CReqLevelMoppingUp（632-645 行）与 CRespLevelMoppingUp（787-792 行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV05",
+      "kind": "source-code",
+      "label": "UISweepLevelResultView.lua",
+      "path": "D:\\Vgame\\HorizonFlyProject\\Lua\\UI\\SweepLevel\\UISweepLevelResultView.lua",
+      "location": "GetBatchSweepNum（272-283 行）、CheckDifficultChallengeRemain（292-309 行）、成本与批量请求（33-55 行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV06",
+      "kind": "source-code",
+      "label": "UISweepLevelView.lua",
+      "path": "D:\\Vgame\\HorizonFlyProject\\Lua\\UI\\SweepLevel\\UISweepLevelView.lua",
+      "location": "扫荡确认面板、SelectNum 与成本展示（25-55 行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV07",
+      "kind": "source-excel",
+      "label": "ItemSweep.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\ItemSweep.xlsx",
+      "location": "本机SVN工作副本；sheet ItemAccess；LevelId→ItemId 关卡可扫材料映射 115 行；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV08",
+      "kind": "source-code",
+      "label": "PropSystem.lua",
+      "path": "D:\\Vgame\\HorizonFlyProject\\Lua\\Logic\\PlayerData\\Systems\\PropSystem.lua",
+      "location": "GetStaminaNum（150-157 行）与 StaminaItemId/StaminaNum 初始化（36-44 行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV09",
+      "kind": "reverse-design",
+      "label": "主线关卡系统 Design Doc",
+      "path": "D:\\Vgame_design\\design\\主线关卡系统Design Doc.md",
+      "location": "R-03 重复通关与多倍结算片段、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV10",
+      "kind": "numeric-deposit",
+      "label": "体力补充经济沉淀",
+      "path": "D:\\数值文档\\数值文档\\框架v2\\03_沉淀MD\\经济\\25_外循环_体力补充经济沉淀-2026-07-09.md",
+      "location": "CHG-004 邮票副本关闭扫荡（第 154-159 行）",
+      "status": "DESIGN_CONFIRMED_WORKING_COPY_NOT_SYNCED"
+    },
+    {
+      "id": "SYS-OUT-GP-11-EV11",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-E 正式人工裁决",
+      "path": "output/项目级策划知识框架/review/decisions/vgame-decision-cards-2026-08-24.json",
+      "location": "cards[id=DC-E].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-11-Q01",
+      "priority": "P0",
+      "question": "扫荡需要首通、三星还是其他资格门槛？",
+      "impact": "决定未达标内容是否可被快速结算，影响复刷效率与奖励安全。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV01",
+        "SYS-OUT-GP-11-EV03"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-E",
+      "answer": "用户正式选择「玩法级配置」，并原样确认：“只有主线、高难需要三星”。玩法级目标规则为：主线与高难主线要求三星；其他玩法只可使用各自已有的已确认规则，未确认者保持 UNKNOWN。状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING，不代表工作副本已实现或 LIVE。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GP-11-EV11"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GP-11-Q02",
+      "priority": "P0",
+      "question": "扫荡的储能扣除与奖励入账是否在服务端原子幂等？",
+      "impact": "决定重复请求、断线与超时是否会导致重复扣储能或重复入账。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV04"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-11-Q03",
+      "priority": "P1",
+      "question": "旅券副本扫荡口径以设计 CHG-004（关闭）还是工作副本 EnableMoppingUpLevel（含 Strategy_*）为准？",
+      "impact": "影响旅券副本是否可扫荡及体力消耗口径。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV03",
+        "SYS-OUT-GP-11-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-11-Q04",
+      "priority": "P1",
+      "question": "主线扫荡是否支持多倍结算，多倍的成本与奖励如何展开？",
+      "impact": "EnableMultiSettlementLevel 仅含旅券副本，但设计文档提到 MultiSettlementTimes，需冻结主线口径。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV02",
+        "SYS-OUT-GP-11-EV03",
+        "SYS-OUT-GP-11-EV09"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-11-Q05",
+      "priority": "P1",
+      "question": "定向扫荡的目标判定、次数上限与「目标无法凑齐」的终止条件？",
+      "impact": "避免定向扫荡形成无限/过度消耗与不可控产出。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-11-EV04",
+        "SYS-OUT-GP-11-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在玩家发起扫荡到服务端结算回包的有序流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在资格、成本、次数与定向目标等入口条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "扫荡拥有奖励边界责任（复用重复掉落、不重复首通/星级）"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在储能不足、次数耗尽、口径冲突与幂等缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在扫荡确认与结果面板"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 level/UIlevel/globals_conf/ItemSweep 扫荡配置源"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-E",
+      "closeableQuestionId": "SYS-OUT-GP-11-Q01",
+      "selectedOptionId": 3,
+      "selectedOptionName": "玩法级配置",
+      "approvedTarget": "选择「玩法级配置」：每个 LevelType 显式选择首通/三星/关闭。",
+      "userComment": "只有主线、高难需要三星",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:16:57.468Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "主线/高难三星门槛已确认；其他玩法必须逐项沿用既有已确认规则，否则保持 UNKNOWN，且服务端校验尚待核验。",
+      "evidenceRef": "SYS-OUT-GP-11-EV11",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

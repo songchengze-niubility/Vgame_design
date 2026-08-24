@@ -1,0 +1,655 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-IN-04",
+  "name": "敌人、AI 与 Boss",
+  "revision": "2026-08-18.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置、行为树与代码线索，不证明 Production/LIVE；缺集中版本—开关—发布时间台账。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / SOURCE",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE，也不等于正式策划口径。"
+    },
+    {
+      "prefix": "CURRENT_DESIGN / KNOWLEDGE_CURRENT",
+      "meaning": "当前知识身份或关系口径，不是运行状态。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-IN-04-R02"
+      ]
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在敌人实例化、行为决策、技能循环、Boss 阶段/狂暴的顺序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在行为树条件、阶段切换与狂暴触发条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "敌人死亡只触发视觉道具与掉落触发，真实掉落入账归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在行为树缺失回退、AI 覆盖未核与旧玩法残留等边界"
+    },
+    "ui": {
+      "state": "N/A",
+      "reason": "怪物血条、Boss Cut-in 与阶段提示渲染归 SYS-IN-07"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "消费 Monster/Boss/MonsterAttribute 系列与 UIMonster/SummonMonster 源表"
+    }
+  },
+  "overview": {
+    "purpose": "敌人、AI 与 Boss 定义普通怪、精英与 Boss 的实体、三层属性、行为树、目标选择、阶段、狂暴与召唤机制，构成玩家在战斗中的对抗压力源。",
+    "inScope": [
+      "敌人三层属性模型（Monster/MonsterAttribute/MonsterAttributeType/MonsterAttributeCorrect）",
+      "战斗单位类型（普通/精英/Boss，EBattleUnitType）与实体映射",
+      "AI 行为树（LBehaviourTreeComponent 与血量/距离/释放技能/Boss 狂暴节点）",
+      "Boss 阶段机制（阶段控制或血量百分比控制、入场保护、技能组切换）",
+      "Boss 狂暴机制（狂暴倒计时、狂暴技能）与死亡技能",
+      "召唤与子实体（BossData.unityIds、SummonMonster、SummonAction/CreateMonsterAction）",
+      "压制/控制响应（冲刺撞击响应技能、控制免疫、无敌）"
+    ],
+    "outOfScope": [
+      "具体怪物 HP/攻击/系数数值；该内容归 NUM-03",
+      "BOSS 挑战玩法的入口、难度层与专项奖励；该内容归 SYS-OUT-GP-10",
+      "关卡波次、刷怪位置与节奏；该内容归 SYS-IN-05",
+      "技能/Buff 机制本身；该内容归 SYS-IN-03",
+      "怪物血条、Boss Cut-in 与阶段提示渲染；该内容归 SYS-IN-07"
+    ],
+    "inputs": [
+      "Monster/Boss 配置与行为树资产",
+      "关卡刷怪数据与出生位置、触发距离",
+      "玩家位置、血量与冲刺撞击事件"
+    ],
+    "outputs": [
+      "敌人移动/攻击/技能/阶段/狂暴/召唤行为",
+      "敌人死亡与击杀统计（驱动胜负与掉落触发）",
+      "视觉道具掉落（LZoneEntity）触发"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式敌人/AI/Boss 底座",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "LMonster/LBossEntity/LBehaviourTreeComponent/LMultiStageSkillCtrl 构成普通怪、精英与 Boss 的行为底座。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "机制实现均为工作副本观察、无冻结正式策划口径；MonsterAi→行为树覆盖、仇恨机制、Boss.xlsx→场景数据桥接待确认",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "note": "怪物与Boss系统Design Doc 为 Draft（作者“反推整理”），不构成权威目标设计；行为树、Boss 阶段与狂暴均为工作副本实现观察；MonsterAi 到行为树资产覆盖、经典「仇恨」实现、Boss.xlsx 与场景 BossData 的桥接仍未核到明确口径。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Monster.xlsx(173)/Boss.xlsx(14)/行为树节点/LMultiStageSkillCtrl 均在",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对 2026-08-18；MonsterDataModel 字段、行为树节点类型、Boss 阶段/狂暴/死亡技能均可溯源。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程主链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置、行为树与代码证据，但无集中版本—开关—发布时间台账，不能把所有实现直接盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-IN-04-F01",
+      "name": "敌人实例化与行为循环",
+      "steps": [
+        {
+          "id": "SYS-IN-04-F01-S01",
+          "name": "实例化怪物",
+          "description": "按 Monster 配置读取 BattleUnitType/AttrId/AttrTypeId/SkillGroup/MonsterAi，初始化属性、技能与行为树组件。"
+        },
+        {
+          "id": "SYS-IN-04-F01-S02",
+          "name": "行为决策",
+          "description": "行为树按血量/距离/可移动等条件选择移动、释放技能或切换行为；无行为树时回退到 skillCtrl.CheckStart。"
+        },
+        {
+          "id": "SYS-IN-04-F01-S03",
+          "name": "技能循环",
+          "description": "普通怪经 LNormalSkillCtrl 释放普攻/技能，Boss 经 LMultiStageSkillCtrl 按技能组循环释放。"
+        },
+        {
+          "id": "SYS-IN-04-F01-S04",
+          "name": "死亡与掉落",
+          "description": "死亡时注册 EntityDeath，销毁物理体并触发视觉道具掉落与击杀计数。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-IN-04-F02",
+      "name": "Boss 阶段与狂暴生命周期",
+      "steps": [
+        {
+          "id": "SYS-IN-04-F02-S01",
+          "name": "入场保护",
+          "description": "Boss 创建后进入无敌且不可选中，直到触发距离内 CheckStart 移除保护并初始化阶段。"
+        },
+        {
+          "id": "SYS-IN-04-F02-S02",
+          "name": "阶段切换",
+          "description": "按阶段控制（stage）或血量百分比（percent）切换技能组，打断当前技能并换组。"
+        },
+        {
+          "id": "SYS-IN-04-F02-S03",
+          "name": "狂暴",
+          "description": "狂暴倒计时（time）归零后进入狂暴，打断当前技能并改为释放 rageSkill。"
+        },
+        {
+          "id": "SYS-IN-04-F02-S04",
+          "name": "死亡",
+          "description": "Boss 死亡后停止狂暴倒计时，打断当前技能并释放 dieSkill，结束后销毁自身。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-IN-04-R01",
+      "name": "敌人三层属性模型",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「敌人三层属性模型」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "怪物最终属性由基础属性（按等级）、类型系数与系统修正叠加而成，具体数值由 NUM-03 维护（工作副本代码/配置观察归纳，原目标口径表述）；MonsterDataModel 通过 AttrId/AttrTypeId 引用 MonsterAttribute 与 MonsterAttributeType；MonsterAttributeCorrect 提供系统倍率；LMonster/LBossEntity 经 EnemyAttributeComponent.InitByMonsterConfig 初始化属性。",
+      "acceptance": "每条怪物可沿 AttrId→MonsterAttribute、AttrTypeId→MonsterAttributeType、系统→MonsterAttributeCorrect 追到最终属性，公式权威归 NUM-03。",
+      "relatedIds": [
+        "NUM-03",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-04-EV01",
+        "SYS-IN-04-EV02",
+        "SYS-IN-04-EV03"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-R02",
+      "name": "战斗单位类型与实体映射",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「战斗单位类型与实体映射」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "普通怪、精英、Boss 由 EBattleUnitType 区分，映射到 NormalMonster/EliteMonster/Boss 实体类型（工作副本代码/配置观察归纳，原目标口径表述）；MonsterDataModel.BattleUnitType（普通/精英/Boss）；LMonster.GetEntityType 把 MonsterElite→EliteMonster、MonsterCommon→NormalMonster；LBossEntity.EntityType=Boss；EBattleUnitType 枚举含 MonsterBoss/Elite/Common/Ash。",
+      "acceptance": "普通/精英/Boss 的实体类型、血条与击杀统计映射一致。",
+      "relatedIds": [
+        "CB-R05",
+        "SYS-IN-02"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-04-EV01",
+        "SYS-IN-04-EV04",
+        "SYS-IN-04-EV05"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-R03",
+      "name": "AI 行为树实现",
+      "status": "WORKING_COPY_OBSERVED_WITH_UNKNOWN",
+      "targetRule": "GAP：尚无权威目标设计冻结「AI 行为树实现」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "怪物 AI 由行为树驱动，节点覆盖血量判断、距离判断、释放技能/技能组与 Boss 狂暴（工作副本代码/配置观察归纳，原目标口径表述）；LMonster/LBossEntity 经 LBehaviourTreeComponent.Start(name) 加载行为树并挂 BehaviourTreeRuntime；节点含 BT_CheckHp/BT_CheckDistance/BT_CheckCanMove（条件）、BT_CastSkill/BT_CastSkillGroup/BT_BossRage/BT_AutoOperate（动作）、Selector/Sequence/Parallel（组合）；useBehaviourTree 为假时回退 skillCtrl.CheckStart。MonsterAi 到具体 .bytes 的覆盖关系未核。",
+      "acceptance": "每个启用行为树的怪物能解析到行为树资产；MonsterAi 覆盖审计完成；行为树与 FSM 的口径以行为树为准。",
+      "relatedIds": [
+        "CB-R05"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-04-EV06",
+        "SYS-IN-04-EV07",
+        "SYS-IN-04-EV08",
+        "SYS-IN-04-EV09"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-R04",
+      "name": "Boss 阶段机制",
+      "status": "WORKING_COPY_OBSERVED_WITH_UNKNOWN",
+      "targetRule": "GAP：尚无权威目标设计冻结「Boss 阶段机制」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Boss 通过阶段控制（useStageControl=true）或血量百分比（percent）切换技能组，入场有短暂无敌保护（工作副本代码/配置观察归纳，原目标口径表述）；MultiStageSkillSpec 含 useStageControl/skillGroups（percent 或 stage + firstSkill + skills）；LMultiStageSkillCtrl.CheckStart 先加 Invincible|CantSelect 入场保护，触发后移除；ChangeGroupByStage 按阶段换组，ChangeGroupByPercent 按血量百分比前进换组。Boss.xlsx 与场景序列化 BossData 的桥接未核。",
+      "acceptance": "阶段切换可从血量阈值或阶段索引追到技能组；入场保护移除时机一致；Boss.xlsx 桥接有结论。",
+      "relatedIds": [
+        "CB-R05",
+        "SYS-IN-03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-04-EV10",
+        "SYS-IN-04-EV11",
+        "SYS-IN-04-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-R05",
+      "name": "Boss 狂暴机制",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「Boss 狂暴机制」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Boss 战时长（time）作为狂暴倒计时，归零后进入狂暴并循环释放 rageSkill（工作副本代码/配置观察归纳，原目标口径表述）；MultiStageSkillSpec.time（默认60秒）为狂暴时长；LMultiStageSkillCtrl.OnRageTimer 每秒递减，归零后 isRaging=true、打断当前技能，OnSkillEnd 在狂暴态循环 CastSkill(rageSkill)；行为树另有 BT_BossRage 节点；GuildBossMode 不显示狂暴倒计时。",
+      "acceptance": "狂暴倒计时、进入狂暴与 rageSkill 循环可执行；倒计时显示口径按模式区分。",
+      "relatedIds": [
+        "CB-R05",
+        "SYS-IN-03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-04-EV10",
+        "SYS-IN-04-EV11",
+        "SYS-IN-04-EV08"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-R06",
+      "name": "Boss 召唤与子实体",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「Boss 召唤与子实体」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Boss 通过 unityIds 子实体与技能召唤（SummonAction/CreateMonsterAction）生成子体/怪物，召唤物继承召唤者阵营（工作副本代码/配置观察归纳，原目标口径表述）；BossData.unityIds 定义子实体 ID 列表（LBossUnity）；SkillActionBase 含 SummonAction/CreateMonsterAction/ForceKillSummonAction；SummonMonster.xlsx 供召唤技能消费；LSummon.Camp 继承 Summoner?.Camp。",
+      "acceptance": "Boss 子实体与召唤技能可解析到 MonsterId/SummonMonster；召唤物阵营继承一致。",
+      "relatedIds": [
+        "SYS-IN-03",
+        "SYS-IN-02"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-04-EV12",
+        "SYS-IN-04-EV13"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-R07",
+      "name": "压制与冲刺撞击响应",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「压制与冲刺撞击响应」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Boss 被玩家冲刺撞击时触发响应技能或默认眩晕 Buff；死亡时释放死亡技能（工作副本代码/配置观察归纳，原目标口径表述）；LBossEntity.OnDashHitBoss 先按 defaultBuffId 加默认眩晕 Buff，再按 dashHitSkill 释放响应技能；LMultiStageSkillCtrl 在控制态跳过技能释放；OnBossDead 释放 dieSkill 或直接销毁。",
+      "acceptance": "冲刺撞击响应、控制免疫与死亡技能三条路径行为一致。",
+      "relatedIds": [
+        "SYS-IN-03",
+        "CB-R05"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-04-EV11",
+        "SYS-IN-04-EV14"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-IN-04-C01",
+      "name": "行为树决策条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "行为树按血量（BT_CheckHp）、距离（BT_CheckDistance）、可移动（BT_CheckCanMove）等条件选择分支。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV07"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-C02",
+      "name": "Boss 阶段切换条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "useStageControl 为真按 stage 索引切换，为假按血量百分比（percent）前进切换。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV10",
+        "SYS-IN-04-EV11"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-C03",
+      "name": "狂暴触发条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "Boss 战时长倒计时归零后进入狂暴；GuildBossMode 不显示倒计时但触发逻辑一致。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV11"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-C04",
+      "name": "入场保护条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "Boss 创建后处于 Invincible|CantSelect，直到玩家进入触发距离才移除保护。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV11"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-IN-04-EX01",
+      "name": "行为树缺失回退",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "怪物无行为树（behaviourTree 为空）时 useBehaviourTree=false，回退到 skillCtrl.CheckStart 的基础技能循环。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV06",
+        "SYS-IN-04-EV05"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-EX02",
+      "name": "MonsterAi 到行为树覆盖未核",
+      "status": "P1_GAP",
+      "rule": "MonsterDataModel.MonsterAi 为 int 数组，而运行时行为树由 InitData.behaviourTree（资产名）加载；两者覆盖关系与逐怪物映射未审计。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV01",
+        "SYS-IN-04-EV06"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-EX03",
+      "name": "Boss.xlsx 到场景数据桥接未核",
+      "status": "P1_GAP",
+      "rule": "Boss.xlsx（14×12，含等级/时间/出生/阶段/狂暴/死亡技能）与场景序列化 BossData（cfgId/skillSpec/behaviourTree/unityIds）的桥接方式未核。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV15",
+        "SYS-IN-04-EV12"
+      ]
+    },
+    {
+      "id": "SYS-IN-04-EX04",
+      "name": "旧玩法残留",
+      "status": "P2_CONFLICT",
+      "rule": "MonsterAttributeCorrect.xlsx 存在 ST_Rouge 等旧肉鸽玩法行，只能视为配置残留，不得据此恢复肉鸽正式玩法身份。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV16"
+      ]
+    }
+  ],
+  "ui": [],
+  "configs": [
+    {
+      "id": "SYS-IN-04-CFG01",
+      "name": "Monster",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\Monster.xlsx",
+      "role": "怪物定义：MonsterId、BattleUnitType、AttrId/AttrTypeId、SkillGroup、MonsterAi、碰撞与基础战斗字段",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-CFG02",
+      "name": "Boss",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\Boss.xlsx",
+      "role": "Boss 规则：等级、时间、出生技能、阶段技能组、狂暴与死亡技能",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-CFG03",
+      "name": "MonsterAttribute",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\MonsterAttribute.xlsx",
+      "role": "按等级索引的基础属性（HP/攻击/护甲/暴击/命中/攻速等）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-CFG04",
+      "name": "MonsterAttributeType",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\MonsterAttributeType.xlsx",
+      "role": "属性模板/类型系数（区分 Tank/DPS/Boss 定位差异）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-CFG05",
+      "name": "MonsterAttributeCorrect",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\MonsterAttributeCorrect.xlsx",
+      "role": "系统/玩法倍率；含 ST_Rouge 旧玩法残留行",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-04-CFG06",
+      "name": "UIMonster",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\UIMonster.xlsx",
+      "role": "面向关卡/界面的怪物展示信息（名称、血条、Cut-in）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-CFG07",
+      "name": "SummonMonster",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\SummonMonster.xlsx",
+      "role": "召唤物定义：MonsterId、属性与行为，供召唤技能消费",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-IN-04-REL01",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "怪物等级、属性与玩法系数由战斗数值模型约束，本系统只描述机制。（推导依据边界：NUM-03 战斗数值域划分来自知识目录；本系统侧证据仅覆盖 Monster/MonsterAttribute/Type/Correct 三层配置观察（SYS-IN-04-EV01/EV02，审计 §6.1 见 SYS-IN-04-EV16），无冻结数值基线文档直接约束本系统，本条为知识框架层跨源归纳，非单源文档结论。）",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-IN-04-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-03",
+      "targetName": "技能、Buff 与效果",
+      "description": "敌人/Boss 经 SkillGroup、阶段技能组与行为树释放节点消费技能、Buff、子弹与召唤机制。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-04-EV09",
+        "SYS-IN-04-EV10",
+        "SYS-IN-04-EV13"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-IN-04-REL03",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-08",
+      "targetName": "胜负、结果与结算触发",
+      "description": "敌人/Boss 死亡与击杀统计上报给结果层，驱动胜负判定与掉落触发。（推导依据边界：本系统证据仅覆盖实体层死亡——LMonster 监听 EntityDeath 后销毁物理体并触发视觉道具掉落（SYS-IN-04-EV05）、LMultiStageSkillCtrl.OnBossDead 释放死亡技能（SYS-IN-04-EV11）；击杀统计（LLevelMgr）与胜负→结算（GameMode→SYS-IN-08）链路不在本系统证据内，为跨系统链路推导。）",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-IN-04-EV01",
+      "kind": "source-code",
+      "label": "MonsterDataModel.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Common/Runtime/Config/Generated/MonsterDataModel.cs",
+      "location": "MonsterId/AttrId/AttrTypeId/BattleUnitType/SkillGroup/MonsterAi/HealthRatio 等全部字段",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV02",
+      "kind": "source-excel",
+      "label": "Monster.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Monster/Monster.xlsx",
+      "location": "sheet Monster；173×31（本机工作副本核对 2026-08-18）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV03",
+      "kind": "source-code",
+      "label": "EnemyAttributeComponent.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Components/EnemyAttributeComponent.cs",
+      "location": "InitByMonsterConfig 属性初始化入口",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV04",
+      "kind": "source-code",
+      "label": "EBattleUnitType.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Common/Runtime/Config/Generated/EBattleUnitType.cs",
+      "location": "enum EBattleUnitType（MonsterBoss/Elite/Common/Ash）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV05",
+      "kind": "source-code",
+      "label": "LMonster.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LMonster.cs",
+      "location": "Initialize/GetEntityType/ResolveMonsterCamp/InitBehaviourTree/InitSkill；EntityDeath 监听（销毁物理体+TriggerItemDrop 视觉掉落，L92-100/L238-268）；Tick 中 useBehaviourTree=false 回退 skillCtrl.CheckStart（L224-232）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV06",
+      "kind": "source-code",
+      "label": "LBehaviourTreeComponent.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Components/LBehaviourTreeComponent.cs",
+      "location": "Start(name) → LBTMgr.LoadAsset → BehaviourTreeRuntime",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV07",
+      "kind": "source-code",
+      "label": "BT_CheckHp.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/BehaviourTree/Conditions/BT_CheckHp.cs",
+      "location": "血量判断条件节点",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV08",
+      "kind": "source-code",
+      "label": "BT_BossRage.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/BehaviourTree/Actions/BT_BossRage.cs",
+      "location": "Boss 狂暴行为节点",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV09",
+      "kind": "source-code",
+      "label": "BT_CastSkillGroup.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/BehaviourTree/Actions/BT_CastSkillGroup.cs",
+      "location": "释放技能组行为节点",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV10",
+      "kind": "source-code",
+      "label": "SkillSpec.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/EntityData/SkillSpec.cs",
+      "location": "MultiStageSkillSpec（time/distance/useStageControl/skillGroups/rageSkill/dieSkill）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV11",
+      "kind": "source-code",
+      "label": "LMultiStageSkillCtrl.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Components/LMultiStageSkillCtrl.cs",
+      "location": "CheckStart/ChangeGroupByStage/ChangeGroupByPercent/OnRageTimer/OnBossDead/OnSkillEnd",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV12",
+      "kind": "source-code",
+      "label": "BossData.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/EntityData/BossData.cs",
+      "location": "cfgId/skillSpec/unityIds/behaviourTree/dashHitSkill 字段",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV13",
+      "kind": "source-code",
+      "label": "SkillActionBase.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/SkillSystem/Actions/SkillActionBase.cs",
+      "location": "SummonAction/CreateMonsterAction/ForceKillSummonAction/ChangeBossStageAction Union 条目",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV14",
+      "kind": "source-code",
+      "label": "LBossEntity.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LBossEntity.cs",
+      "location": "OnDashHitBoss/Tick/Initialize",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-04-EV15",
+      "kind": "source-excel",
+      "label": "Boss.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Monster/Boss.xlsx",
+      "location": "sheet Boss；14×12（本机工作副本核对 2026-08-18，字段级确认待补）",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-04-EV16",
+      "kind": "reverse-design",
+      "label": "战斗内知识域审查",
+      "path": "archive/legacy-output-20260824/research/combat-domain-audit.md",
+      "location": "§6.1 敌人配置分层、ST_Rouge 残留、§6.2 AI 真实实现",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-04-EV17",
+      "kind": "reverse-design",
+      "label": "怪物与 Boss 系统 Design Doc",
+      "path": "design/怪物与Boss系统Design Doc.md",
+      "location": "R-01~R-07（Draft，反向梳理）",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-IN-04-Q01",
+      "priority": "P1",
+      "question": "MonsterAi 字段（int 数组）到具体行为树资产（behaviourTree 名称）的完整覆盖关系是什么？",
+      "impact": "决定每个怪物的 AI 行为是否真正生效，需逐怪物 ID 映射审计。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV01",
+        "SYS-IN-04-EV06"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-04-Q02",
+      "priority": "P1",
+      "question": "“仇恨”是否有独立实现，还是仅由行为树条件、传感器与目标过滤器承担？",
+      "impact": "影响仇恨切换、Boss 机制转火与竞技场双方目标选择的理解。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV06",
+        "SYS-IN-04-EV07"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-04-Q03",
+      "priority": "P1",
+      "question": "Boss.xlsx（等级/时间/出生/阶段/狂暴/死亡技能）与场景序列化 BossData 的桥接方式是什么？",
+      "impact": "决定 Boss 配置的权威源与修改入口。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV15",
+        "SYS-IN-04-EV12"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-04-Q04",
+      "priority": "P2",
+      "question": "MonsterAttributeCorrect 的 ST_Rouge 等旧玩法残留行是否应清理或明确废弃？",
+      "impact": "避免把肉鸽残留误当正式玩法修正。",
+      "evidenceRefs": [
+        "SYS-IN-04-EV16"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    }
+  ]
+}

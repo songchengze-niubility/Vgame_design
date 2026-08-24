@@ -1,0 +1,693 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-03",
+  "name": "碎片回收/招募商店",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 数值沉淀只读核对",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "碎片回收 Design 为 InReview、回抽闭环未冻结、ShardRecycle 表未注册 Luban；配置存在不等于规则就绪或已上线。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "已确认策划口径（满星回收经济数值），不代表已落表或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本或数值沉淀只读观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由 Design、沉淀与配置组织出的流程或边界，需项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补服务端证据或补回抽测算。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-SU-03-R02",
+        "SYS-OUT-SU-03-C01",
+        "SYS-OUT-SU-03-C02"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-03-R04",
+        "SYS-OUT-SU-03-RW01",
+        "SYS-OUT-SU-03-RW02"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-03-R05",
+        "SYS-OUT-SU-03-EX03"
+      ]
+    },
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-SU-03-R04",
+        "SYS-OUT-SU-03-R05"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "碎片回收/招募商店是 Vgame 满星溢出碎片的消耗口与回抽链：在招募商店（Shop.Id=1107）提供碎片回收入口，允许玩家将已满最高星级角色/收容物的完整重复等价包回收为印象余音/残留余响，并经招募商店商品兑换回抽卡券，形成高敏感的满星回抽闭环。",
+    "inScope": [
+      "碎片回收入口（招募商店 Shop.Id=1107）、资格（满最高星级）、单包与余数规则",
+      "回收产出（角色S/A/R→21×15/5/9，收容物S/A/B→21×10/3、22×5）与不可逆、整包、手动规则",
+      "招募商店商品口径（印象余音/残留余响兑换旅券/收容凭证）与限购",
+      "回抽折算与高敏感回抽链风险记录",
+      "ShardRecycle 逻辑表建议与 Luban 注册边界",
+      "回收幂等、批量事务与少发/超发处理"
+    ],
+    "outOfScope": [
+      "通用商店页签、刷新、限购框架与购买契约；该内容归 SYS-OUT-SU-06",
+      "公会商店商品口径；该内容归 SYS-OUT-SU-11",
+      "抽卡的卡池、概率、保底与重复转化；该内容归 SYS-OUT-SU-01/SU-02",
+      "角色升星/收容物养成的星级与碎片消耗规则；该内容归 SYS-OUT-GR-03/GR-05",
+      "回收产出余音/碎片的真实物品入账；该内容归 SYS-OUT-SU-05",
+      "印象余音/残留余响/旅券/收容凭证的资源身份与账本；该内容归 SYS-OUT-SU-04",
+      "回抽率与经济护栏的具体数值测算；该内容归 NUM-04"
+    ],
+    "inputs": [
+      "玩家持有的角色/收容物同名碎片与当前星级",
+      "服务端当前配置最高星级（动态读取）",
+      "回收单包碎片量（收容物已确认S/A/B=100/50/20；角色待服务端回源）",
+      "招募商店商品配置（ShopGoods 1107 系列：余音兑换旅券/收容凭证）",
+      "回收请求（fragment_item_id, bundle_count, client_request_id, config_version）"
+    ],
+    "outputs": [
+      "回收消耗的同名碎片（整包，余数保留）",
+      "回收产出的印象余音(21)/残留余响(22)经入账",
+      "经招募商店兑换的旅券/收容凭证（回抽链）",
+      "回收结果、新余额与库存版本反馈",
+      "可回收红点与回收页角色/收容物分栏展示"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "满星碎片回收口 + 招募商店商品口径所有者",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "碎片回收作为满星溢出碎片消耗口与招募商店回抽链的规则所有者；通用商店框架归 SU-06，本系统只拥有招募商店商品口径与回收规则。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "回收规则已确认（InReview）；角色单包碎片量待回源，回抽闭环未冻结",
+      "status": "DRAFT_TARGET_PARTIAL_CONFIRMED",
+      "note": "碎片回收 Design §3 规则冻结 RULE-SR-001~015；沉淀 §4.8 满星回收经济数值 2026-08-18 已确认；但角色单包碎片量待服务端回源，回抽率测算未完成。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "ShardRecycle.xlsx 存在但未注册 Luban；招募商店商品在 ShopGoods",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "ShardRecycle.xlsx 在 SVN Shop 目录存在但 Design §7 明确'未注册 Luban 前不得称配置就绪'；招募商店 1107 商品在 ShopGoods.xlsx 存在。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "回抽闭环未冻结；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "Design 为 InReview、回抽闭环未冻结、ShardRecycle 未注册、无发布台账，不能盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-L=按品质固定",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-03-F01",
+      "name": "碎片回收流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-03-F01-S01",
+          "name": "进入招募商店回收入口",
+          "description": "玩家进入招募商店（Shop.Id=1107），系统根据可回收库存显示回收入口红点；功能关闭时隐藏入口并拒绝新请求。"
+        },
+        {
+          "id": "SYS-OUT-SU-03-F01-S02",
+          "name": "查看可回收条目",
+          "description": "回收页分角色/收容物分栏，仅显示至少可兑换1包且已达当前配置最高星级的条目。"
+        },
+        {
+          "id": "SYS-OUT-SU-03-F01-S03",
+          "name": "选择份数与预览",
+          "description": "玩家逐项选择份数或'全选可回收'，页面同步展示每项碎片消耗、余数与21/22总所得。"
+        },
+        {
+          "id": "SYS-OUT-SU-03-F01-S04",
+          "name": "二次确认",
+          "description": "玩家点击回收弹出不可逆二次确认。"
+        },
+        {
+          "id": "SYS-OUT-SU-03-F01-S05",
+          "name": "服务端原子执行",
+          "description": "服务端在同一事务内重新校验资格、库存、配置、开关与幂等性，再扣除碎片与发奖；批量请求全成或全败，不允许部分成功。"
+        },
+        {
+          "id": "SYS-OUT-SU-03-F01-S06",
+          "name": "返回结果",
+          "description": "成功返回实际消耗、21/22奖励汇总、剩余碎片与新余额；若库存/星级/配置/开关变化则整单失败并刷新列表。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-03-R01",
+      "name": "回收入口与资格",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "入口位于招募商店（Shop.Id=1107）；仅当前星级达到服务端配置最大星级的角色/收容物同名碎片可回收；最高星级动态读取，禁止硬编码6星；功能关闭时隐藏入口并拒绝新请求。",
+      "sourceFact": "碎片回收 Design §1/§3 RULE-SR-001/002 确认；沉淀 §4.8.1 确认最高星级动态读取、不硬编码。",
+      "acceptance": "回收资格由服务端当前成长配置动态判定；未满最高星级或功能关闭时不可回收。",
+      "relatedIds": [
+        "SYS-OUT-GR-03",
+        "SYS-OUT-GR-05",
+        "SYS-OUT-SU-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-R02",
+      "name": "单包与余数规则",
+      "status": "CONFIRMED_TARGET_PARTIAL",
+      "targetRule": "按'一个重复整件转化出的碎片量'作为一个完整重复等价包，只能整包回收；可兑换份数=floor(持有碎片/单包碎片数)，余数保留；回收不可逆、手动操作，历史库存不自动兑换。",
+      "sourceFact": "碎片回收 Design §3 RULE-SR-004/006/009 确认；沉淀 §4.8.1 确认整包回收、余数保留、手动不可逆、历史库存不自动兑换。",
+      "acceptance": "回收只消耗整包碎片，不足一包保留；批量请求全成或全败；历史库存满足资格时进入列表但不自动处理。",
+      "relatedIds": [
+        "SYS-OUT-SU-01",
+        "SYS-OUT-SU-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-R03",
+      "name": "单包碎片量与回收产出",
+      "status": "CONFIRMED_TARGET_WITH_PENDING_VALUE",
+      "targetRule": "收容物单包碎片量S/A/B=100/50/20，回收产出21×10/21×3/22×5；角色单包碎片量待服务端回源（禁止用升星单段60片反推），回收产出S→21×15、A→21×5、R→22×9（按重复获得奖励1.5倍，A 4.5向上取整为5）。",
+      "sourceFact": "沉淀 §4.8.2 已确认回收数值表；收容物单包沿用已确认重复整件转化量；角色单包碎片量明确'服务端重复转化量待回源'。",
+      "acceptance": "收容物回收数值可冻结；角色回收单包碎片量经服务端回源确认后方可落表，确认前角色行不得落表或进入联调。",
+      "relatedIds": [
+        "SYS-OUT-SU-01",
+        "SYS-OUT-SU-02",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV02",
+        "SYS-OUT-SU-03-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-R04",
+      "name": "回收产出货币与招募商店兑换",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "回收产出S/A→印象余音(21)，R角色/B收容物→残留余响(22)；招募商店提供印象余音×10→旅券×1或收容凭证×3（不限购）、残留余响×60→旅券×1或收容凭证×3（月限购）等商品。",
+      "sourceFact": "碎片回收 Design §4/§6 确认产出沿用10/3/6口径与招募商店兑换；沉淀 §4.6/§4.8.3 确认招募商店商品与回抽折算；ShopGoods.xlsx 存在1107系列商品。",
+      "acceptance": "回收产出货币经招募商店兑换回抽卡券；兑换商品口径由本系统拥有，购买框架归 SU-06。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "SYS-OUT-SU-06",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02",
+        "SYS-OUT-SU-03-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-R05",
+      "name": "批量事务与幂等",
+      "status": "CONFIRMED_TARGET_CONFIG_PENDING",
+      "targetRule": "服务端在同一事务内重新校验资格、库存、配置、开关与幂等性再扣除与发奖；批量请求全成或全败；请求带 client_request_id 与 config_version 按幂等处理；少发按日志补差，超发先停用并审计，不制造玩家负余额，不回滚已完成兑换。",
+      "sourceFact": "碎片回收 Design §3 RULE-SR-010/014、§7 协议建议确认；沉淀 §4.8 标记 DESIGN_CONFIRMED_CONFIG_PENDING。",
+      "acceptance": "回收具备事务原子性与幂等；部分成功不被允许；少发/超发有明确恢复边界。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-R06",
+      "name": "回抽链风险与上线门禁",
+      "status": "P1_GAP",
+      "targetRule": "GAP：满星回收21/22产能属高敏感回抽链（印象余音×10不限购兑换旅券×1，等价1次角色抽取或3次收容物抽取）；上线前必须用真实概率、成熟账号满星覆盖率、月均重复次数与历史库存完成专项测算，超护栏应优先调整限购/价格/回收档位。",
+      "sourceFact": "碎片回收 Design §6 经济风险与 §8 上线门禁确认；沉淀 §4.8.3 回抽折算表显示角色S满星回收约2.5抽、收容物S约3抽。",
+      "acceptance": "回抽率测算完成且未超护栏后方可上线；超护栏时优先调整招募商店限购/价格或回收产出，不改变整包回收规则。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-03-C01",
+      "name": "回收资格",
+      "status": "CONFIRMED_TARGET",
+      "rule": "仅当前星级达到服务端配置最大星级的角色/收容物同名碎片可回收；最高星级动态读取；未满最高星级不可回收。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-C02",
+      "name": "整包与显示条件",
+      "status": "CONFIRMED_TARGET",
+      "rule": "可兑换份数=floor(持有碎片/单包碎片数)≥1才显示为可回收条目；不足一包的碎片保留不显示；回收页分角色/收容物分栏。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-C03",
+      "name": "功能开关",
+      "status": "CONFIRMED_TARGET_CONFIG_PENDING",
+      "rule": "功能关闭时隐藏入口并拒绝新请求；开关与灰度由发布流程控制。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-03-RW01",
+      "name": "回收产出余音",
+      "status": "CONFIRMED_TARGET_CONFIG_PENDING",
+      "rule": "回收产出印象余音(21)/残留余响(22)经入账；具体入账权威归 SYS-OUT-SU-05，本系统决定何时发何货币；角色单包碎片量待回源前角色行不得落表。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-RW02",
+      "name": "招募商店兑换奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "招募商店商品（印象余音/残留余响兑换旅券/收容凭证）经购买入账；购买框架与限购归 SYS-OUT-SU-06，本系统只拥有商品口径。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV04",
+        "SYS-OUT-SU-03-EV01"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-03-EX01",
+      "name": "角色单包碎片量未回源",
+      "status": "P0_GAP",
+      "rule": "角色重复获得时实际转化碎片量待服务端回源；确认前 ShardRecycle 角色行不得落表或进入联调，不得用升星单段60片反推。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-EX02",
+      "name": "回抽率测算未完成",
+      "status": "P0_GAP",
+      "rule": "满星回收21/22新增产能、历史库存一次性释放量与抽卡券回抽率测算未完成；超护栏风险下不得直接上线。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-EX03",
+      "name": "ShardRecycle 未注册 Luban",
+      "status": "P1_GAP",
+      "rule": "ShardRecycle.xlsx 在 SVN 存在但未在 __tables__ 注册 Luban；未注册前不得称配置就绪，客户端/服务端导出与校验命令需评审通过。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-EX04",
+      "name": "回抽闭环未冻结",
+      "status": "P1_GAP",
+      "rule": "Design 状态 InReview、回抽闭环未冻结；招募商店不限购商品（印象余音×10→旅券×1）与回收产能联动需在测算后冻结或调整限购。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-EX05",
+      "name": "少发/超发处理",
+      "status": "CONFIRMED_TARGET_CONFIG_PENDING",
+      "rule": "少发按日志补差；超发先停用并审计，不制造玩家负余额，不回滚已完成兑换；需服务端确认实现。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-03-UI01",
+      "name": "招募商店回收入口",
+      "status": "TARGET_REQUIRED",
+      "rule": "招募商店内显示碎片回收入口与可回收红点；功能关闭时隐藏入口。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-UI02",
+      "name": "回收页分栏与预览",
+      "status": "TARGET_REQUIRED",
+      "rule": "回收页分角色/收容物分栏，仅显示至少可换1包条目；逐项展示碎片消耗、余数与21/22总所得；支持逐项选择与'全选可回收'。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-UI03",
+      "name": "不可逆二次确认",
+      "status": "TARGET_REQUIRED",
+      "rule": "点击回收弹出不可逆二次确认；提交后展示实际消耗、奖励汇总与新余额。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03-UI04",
+      "name": "招募商店商品展示",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "招募商店商品（余音兑换旅券/收容凭证）按通用商店展示规范呈现；展示框架归 SYS-OUT-SU-06。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV04",
+        "SYS-OUT-SU-03-EV05"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-03-CFG01",
+      "name": "ShardRecycle",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\ShardRecycle.xlsx",
+      "role": "建议新增逻辑表：Id/FragmentItemId/ObjectType/Quality/BundleCost/RewardItemId/RewardCount/Sort/IsValid；未注册 Luban 前不得称就绪",
+      "status": "WORKING_COPY_SOURCE_NOT_AUTHORIZED"
+    },
+    {
+      "id": "SYS-OUT-SU-03-CFG02",
+      "name": "Shop（招募商店页签）",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\Shop.xlsx",
+      "role": "招募商店 Shop.Id=1107 页签与刷新周期（框架归 SYS-OUT-SU-06）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-03-CFG03",
+      "name": "ShopGoods（招募商店商品）",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\ShopGoods.xlsx",
+      "role": "招募商店1107系列商品：印象余音/残留余响兑换旅券/收容凭证及限购",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-03-REL01",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-01",
+      "targetName": "角色/新手卡池",
+      "description": "来源：碎片回收Design Doc(EV01)定义满星回收消费碎片，角色与收容物抽卡数值沉淀(EV02)定义满星回收经济口径，SYS-OUT-SU-01抽卡正文定义重复转化。推导：角色抽卡(SU-01)重复转化的同名碎片供满星回收消费，角色单包碎片量待服务端回源，构成 supplies/incoming 关系。推导边界：碎片供给与回收消费关系已由沉淀确认，但角色单包碎片量的服务端实际值未确认(EV01标注待回源)。UNKNOWN：角色单包碎片量的服务端实际值与抽卡重复转化到回收的完整链路仍待确认。",
+      "status": "KNOWLEDGE_CURRENT_WITH_PENDING_VALUE",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-REL02",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-02",
+      "targetName": "收容物抽卡",
+      "description": "来源：碎片回收Design Doc(EV01)定义满星回收消费碎片，角色与收容物抽卡数值沉淀(EV02)定义收容物满星回收碎片量(S/A/B=100/50/20)，SYS-OUT-SU-02收容物抽卡正文定义重复转化。推导：收容物抽卡(SU-02)重复转化的同名碎片(S/A/B=100/50/20)供满星回收消费，构成 supplies/incoming 关系。推导边界：碎片供给量已由沉淀确认，但收容物重复转化的服务端实际发放规则在SU-02侧维护。UNKNOWN：收容物碎片量的服务端实际值与转化到回收的完整链路仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-REL03",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GR-03",
+      "targetName": "角色升星",
+      "description": "来源：碎片回收Design Doc(EV01)定义满星后溢出碎片回收转余音回抽链，角色与收容物抽卡数值沉淀(EV02)定义回抽经济口径，SYS-OUT-GR-03升星正文定义升星碎片消费。推导：升星(GR-03)消费碎片回收提供的碎片/回抽链，满星后溢出碎片经回收转余音再回抽，构成 consumes/incoming 关系。推导边界：回收回抽链已由Design Doc确认，但回抽闭环是否冻结(ShardRecycle表未注册Luban)未确认，升星碎片消费在GR-03侧维护。UNKNOWN：回抽闭环是否已落表上线与回抽折算的服务端实际规则仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-REL04",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：ShardRecycle.xlsx(EV03)定义回收消耗与产出，碎片回收Design Doc(EV01)定义回收规则。推导：回收消耗同名碎片、产出印象余音/残留余响，账本归物品与货币系统(SU-04)，构成 consumes/outgoing 关系。推导边界：回收消耗与产出配置已由工作副本确认，但ShardRecycle表未注册Luban(EV01)，服务端扣除与产出权威不可见。UNKNOWN：ShardRecycle表是否已注册Luban与回收的服务端实际执行规则仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-REL05",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：ShardRecycle.xlsx(EV03)定义回收产出，ShopGoods.xlsx(EV04)定义招募商店兑换奖励，碎片回收Design Doc(EV01)定义产出与兑换。推导：回收产出余音与招募商店兑换奖励经真实入账(SU-05)，入账权威归掉落与奖励系统，构成 reports/outgoing 关系。推导边界：产出与兑换配置已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：回收产出的服务端入账幂等与兑换奖励的入账规则仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-REL06",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-06",
+      "targetName": "商店",
+      "description": "来源：Shop.xlsx(EV05)定义招募商店(Shop.Id=1107)，ShopGoods.xlsx(EV04)定义招募商店商品，碎片回收Design Doc(EV01)定义回收入口与商品口径。推导：碎片回收入口与招募商店商品复用通用商店(SU-06)购买/限购/刷新契约，商品口径归本系统，构成 consumes/outgoing 关系。推导边界：商店配置已由工作副本确认，但通用商店契约在SU-06侧维护，本系统只复用契约不定义。UNKNOWN：招募商店的限购与刷新规则是否与通用商店完全一致仍待SU-06确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-REL07",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "回抽折算、回抽率与经济护栏由经济数值域约束与测算。",
+      "status": "KNOWLEDGE_CURRENT_WITH_PENDING_MEASUREMENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV04",
+        "SYS-OUT-SU-03-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-03-EV01",
+      "kind": "design-target",
+      "label": "碎片回收 Design Doc",
+      "path": "design/碎片回收Design Doc.md",
+      "location": "§1设计结论、§3规则冻结RULE-SR-001~015、§4兑换基线、§5玩家流程、§6经济风险、§7配置与协议建议、§8上线门禁",
+      "status": "DESIGN_IN_REVIEW"
+    },
+    {
+      "id": "SYS-OUT-SU-03-EV02",
+      "kind": "numeric-deposit",
+      "label": "角色与收容物抽卡数值沉淀（满星回收）",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "location": "§4.8满星碎片回收（4.8.1结算/4.8.2回收数值/4.8.3回抽折算）、§4.6招募商店联动",
+      "status": "CONFIRMED_TARGET_CONFIG_PENDING"
+    },
+    {
+      "id": "SYS-OUT-SU-03-EV03",
+      "kind": "source-excel",
+      "label": "ShardRecycle.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Shop/ShardRecycle.xlsx",
+      "location": "本机SVN工作副本；存在但未注册Luban，Design §7明确未注册前不得称就绪；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NOT_AUTHORIZED"
+    },
+    {
+      "id": "SYS-OUT-SU-03-EV04",
+      "kind": "source-excel",
+      "label": "ShopGoods.xlsx（招募商店商品）",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Shop/ShopGoods.xlsx",
+      "location": "本机SVN工作副本；招募商店1107系列商品（印象余音/残留余响兑换旅券/收容凭证）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-03-EV05",
+      "kind": "source-excel",
+      "label": "Shop.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Shop/Shop.xlsx",
+      "location": "本机SVN工作副本；招募商店Shop.Id=1107页签；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-03-EV06",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-L 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-L].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-03-Q01",
+      "priority": "P0",
+      "question": "角色重复获得时实际转化多少同名碎片？",
+      "impact": "决定角色回收单包消耗；确认前 ShardRecycle 角色行不得落表或进入联调。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-Q02",
+      "priority": "P0",
+      "question": "满星账号月度21/22新增产能、历史库存一次性释放量与抽卡券回抽率测算结果是否低于运营护栏？",
+      "impact": "决定回抽闭环能否冻结与上线；超护栏需调整限购/价格/回收档位。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV02"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-Q03",
+      "priority": "P1",
+      "question": "ShardRecycle 源表字段类型、Luban 注册与客户端/服务端导出校验何时评审通过？",
+      "impact": "决定回收配置是否就绪；未注册前不得称配置就绪。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-Q04",
+      "priority": "P1",
+      "question": "服务端最大星级读取源、批量事务、并发与幂等方案是否确认？",
+      "impact": "决定回收事务原子性与资产安全。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-Q05",
+      "priority": "P1",
+      "question": "招募商店印象余音×10不限购兑换旅券×1是否应在回收上线时改为限购？",
+      "impact": "影响回抽率与经济护栏，是回抽闭环冻结的关键调整点。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01",
+        "SYS-OUT-SU-03-EV04"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-03-Q06",
+      "priority": "P0",
+      "question": "重复角色转化采用按品质固定、按当前星级递增，还是按卡池/角色配置的模型？",
+      "impact": "决定配置 Schema 和经济审计维度；不代替具体碎片数值裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-03-EV01"
+      ],
+      "lifecycle": "CLOSED",
+      "resolutionOwner": "HUMAN_DECISION",
+      "decisionCardId": "DC-L",
+      "answer": "用户正式选择「按品质固定」：R/A/S 各配置固定碎片数。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-03-EV06"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在进入入口→查看条目→选择预览→二次确认→服务端原子执行→返回结果的有序回收流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在回收资格、整包显示与功能开关条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "回收产出余音与招募商店兑换奖励经入账，本系统决定何时发何货币与商品口径"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在角色单包未回源、回抽率测算未完成、ShardRecycle未注册、回抽闭环未冻结与少发超发处理"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在回收入口、分栏预览、二次确认与招募商店商品展示界面责任"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 ShardRecycle/Shop/ShopGoods 配置源"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-L",
+      "closeableQuestionId": "SYS-OUT-SU-03-Q06",
+      "selectedOptionId": 1,
+      "selectedOptionName": "按品质固定",
+      "approvedTarget": "选择「按品质固定」：R/A/S 各配置固定碎片数。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:42.150Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "重复角色转化模型确定为按品质固定；R/A/S 具体碎片数仍由数值案另行裁决。",
+      "evidenceRef": "SYS-OUT-SU-03-EV06",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

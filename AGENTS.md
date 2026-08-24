@@ -57,6 +57,7 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 | 需要新增玩法/系统设计 | `DESIGN.md`、`design/TEMPLATE.md` |
 | 需要形成落地方案 | `proposals/TEMPLATE.md` |
 | 需要拆任务 | `tasks/TEMPLATE.md` |
+| 需要做数值案、成长/经济/战斗/概率规划或落表 | `harness/numerical-design-workflow.md` |
 | 需要看仓库约束 | `golden-principles.md` |
 | 需要跑门禁 | `harness/maintenance-gates.md`、`scripts/check.ps1` |
 | 涉及跨仓改动 | `CROSS-REPO-CHANGES.md` |
@@ -69,11 +70,13 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 | 问题类型 | 优先 skill |
 |---|---|
 | 策划案交付、需求澄清、验收追踪 | `planning-feature-workflow`（每次发起需求必须加载） |
+| 查询项目框架、具体系统、规则、关系、状态或证据 | `vgame-knowledge-router`（先自动选择最小知识包） |
 | 项目总览、路由、边界 | `vgame-core-understanding` |
 | 配置字段、表结构、注册源表 | `vgame-config-schema` |
 | 奖励、Drop、UIlevel 同步 | `vgame-reward-drop-sync` / `vgame-drop-uilevel-sync` |
 | 关卡、章节、开放、体力、扫荡 | `vgame-level-progression-map` |
 | 道具产销、经济风险 | `vgame-economy-source-map`、`senior-game-economy` |
+| 外循环等级、解锁、收益与升级节奏 | `outer-loop-progression-pacing`、`senior-game-economy` |
 | 成长到战斗转化 | `vgame-growth-combat-conversion-map` |
 | 角色技能、配置链、强度验证 | `vgame-character-kit-design-map`、`vgame-hero-skill-config-map`、`vgame-battle-tuning-helper` |
 | 外循环系统 | `vgame-outer-loop-system-map` |

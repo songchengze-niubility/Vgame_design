@@ -1,0 +1,797 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-01",
+  "name": "角色/新手卡池",
+  "revision": "2026-08-19.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 数值沉淀只读核对",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置与数值沉淀线索，不证明 Production/LIVE；保底计数器与抽卡随机权威在服务端，客户端工作副本不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本或数值沉淀只读观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由 Design、沉淀与配置组织出的流程或边界，需项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则、补服务端证据或补发布台账。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-SU-01-R05",
+        "SYS-OUT-SU-01-C01",
+        "SYS-OUT-SU-01-C02",
+        "SYS-OUT-SU-01-C04"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-01-R06",
+        "SYS-OUT-SU-01-RW01",
+        "SYS-OUT-SU-01-RW02"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-01-EX04"
+      ]
+    },
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-SU-01-R05",
+        "SYS-OUT-SU-01-R06"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "角色/新手卡池是 Vgame 角色获取的抽卡权威：定义角色池与新手池的卡池类型、消耗、品质概率、保底、重复转化与卡池开放状态分层，把抽卡请求经服务端随机与保底判定转化为角色或重复奖励，并驱动角色升星碎片供给。",
+    "inScope": [
+      "角色卡池类型（新手招募、常驻招募、限时池、自选池）及其抽卡券、单抽/十连入口",
+      "角色品质基础概率（R/A/S）、十连保底、小保底、大保底/UP 与新手 S 包",
+      "抽卡消耗（旅券106、限时旅券111、元晶折算）与票券/钻石前置校验",
+      "重复角色转化规则（HeroExtraReward 首次/重复额外代币）与重复转化碎片量的所有权接口",
+      "卡池存在与当期开放的分层记录；限时池活动期与发布状态",
+      "软保底状态判定（DrawCardWeight 权重观察）",
+      "专武抽卡在一个大版本兼容迁移期内的读写与投放边界"
+    ],
+    "outOfScope": [
+      "收容物抽卡的卡池、概率、保底与重复转化；该内容归 SYS-OUT-SU-02",
+      "满星碎片回收的资格、单包、产出与回抽测算；该内容归 SYS-OUT-SU-03",
+      "抽卡结果的真实物品入账与 Drop 包内容；该内容归 SYS-OUT-SU-05（Drop_draw）",
+      "旅券/限时旅券/元晶/印象余音/残留余响的资源身份与账本；该内容归 SYS-OUT-SU-04",
+      "抽卡价格与期望成本的经济总账；该内容归 NUM-04",
+      "玩家等级、体力与主线进度作为抽卡前置的状态维护；该内容归 SYS-OUT-GR-01 / SYS-OUT-GP-01",
+      "抽卡入口的系统开放与引导；该内容归 SYS-OUT-SU-13",
+      "专武本体养成与迁移裁决；该内容归 SYS-OUT-GR-10 与 05-status-conflict-register.md C-001"
+    ],
+    "inputs": [
+      "抽卡请求（DrawType 单抽/十连、PoolId）",
+      "卡池配置（DrawCard 卡池类型与保底、DrawCardPool 池内角色清单与 UP、DrawCardWeight 权重）",
+      "玩家持有票券（106/111）与元晶余额、主线进度与玩家等级",
+      "限时池活动期开关与自选候选选择",
+      "HeroExtraReward 重复角色品质→代币映射"
+    ],
+    "outputs": [
+      "抽卡结果（角色整件、重复转化代币与碎片）经 Drop_draw 入账",
+      "保底计数器变化（服务端权威，客户端展示剩余）",
+      "供角色升星消费的同名碎片/代币（经 SYS-OUT-GR-03）",
+      "供满星碎片回收的重复等价包（经 SYS-OUT-SU-03）",
+      "抽卡动画、品质展示、保底剩余与已拥有标签反馈"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "角色抽卡权威（专武抽卡处于一个大版本兼容迁移期）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "角色/新手卡池作为角色获取的唯一抽卡权威无争议；C-001 已裁决专武迁移保留一个大版本兼容期，兼容期内的具体投放与读写边界待实施方案。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "角色抽卡数值待策划确认；保底/概率/重复转化口径有沉淀",
+      "status": "DRAFT_TARGET_PENDING_CONFIRMATION",
+      "note": "抽卡沉淀（21_抽卡）将角色部分标记为 SOURCE_OBSERVED_PENDING_USER_CONFIRMATION；保底、概率与重复转化代币有观察值但尚未由策划正式确认。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "DrawCard/DrawCardPool/Drop_draw/HeroExtraReward 存在；DrawCardWeight 1~60 行权重全为 0",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；配置表存在但逐抽权重全 0，只能确认硬保底，不能确认软保底；角色重复转化碎片量待服务端回源。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "抽卡链路存在；玩家可用版本与卡池当期开放待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置与客户端实现线索，但没有集中版本—开关—发布时间台账，且限时池当期开放由活动系统控制，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-01-F01",
+      "name": "角色抽卡流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-01-F01-S01",
+          "name": "选择卡池",
+          "description": "玩家在抽卡入口选择新手招募、常驻招募、限时池或自选池；卡池存在不等于当期开放，限时池需活动期内。"
+        },
+        {
+          "id": "SYS-OUT-SU-01-F01-S02",
+          "name": "校验资格与资源",
+          "description": "校验主线进度≥1-1、玩家等级（如适用）、持有票券或元晶是否满足单抽/十连消耗；不足则引导获取。"
+        },
+        {
+          "id": "SYS-OUT-SU-01-F01-S03",
+          "name": "扣除资源",
+          "description": "服务端先扣除对应票券或元晶（单抽1张/150元晶，十连10张/1500元晶），再执行随机；断线时结果先入库再补发。"
+        },
+        {
+          "id": "SYS-OUT-SU-01-F01-S04",
+          "name": "随机与保底判定",
+          "description": "服务端按 DrawCardPool 池内清单与品质基础概率随机；依次判定十连保底A、小保底S、大保底UP与新手S包；保底计数器由服务端按池独立维护。"
+        },
+        {
+          "id": "SYS-OUT-SU-01-F01-S05",
+          "name": "重复转化与入账",
+          "description": "已拥有角色按 HeroExtraReward 发放首次/重复额外代币，并经 Drop_draw 入账角色与转化奖励；具体入账权威归 SYS-OUT-SU-05。"
+        },
+        {
+          "id": "SYS-OUT-SU-01-F01-S06",
+          "name": "展示结果",
+          "description": "客户端播放抽卡动画，展示角色卡面与品质、保底剩余次数、已拥有标签与转化奖励；保底计数器客户端仅展示。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-01-R01",
+      "name": "卡池类型与池内构成",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：卡池类型与池内构成（含自选候选ID 1003;1004;1006;1007;1008;1013;1017）为工作副本观察值待确认；当前观察值见sourceFact，不得当作正式规则引用。",
+      "sourceFact": "抽卡沉淀 §3.3 列出四类卡池与保底；DrawCardPool.xlsx 与 DrawSpecialChooseGacha.xlsx 在工作副本中存在并登记候选；限时池酒渍青锋 DrawCard.UPItemId=311005，池内角色Id=1005。",
+      "acceptance": "每类卡池的抽卡券、单抽/十连入口、抽数限制与池内清单可从配置追到；卡池存在不等于当期开放，限时池需活动期开关。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-R02",
+      "name": "品质基础概率与池内分配",
+      "status": "DRAFT_TARGET_PENDING_CONFIRMATION",
+      "targetRule": "GAP：品质基础概率（R89%/A10%/S1%、UP 0.5%、新手S 0.3333%）为草稿数值待策划确认；当前观察值见sourceFact，不得当作正式规则引用。",
+      "sourceFact": "抽卡沉淀 §3.2 给出基础概率与池内分配，并标记为待策划确认；该数值为对正式配置的只读观察值，不代表本轮已修改配置。",
+      "acceptance": "概率口径由策划正式确认后方可称 canonical；池内角色数变化时均分基数同步变化。",
+      "relatedIds": [
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-R03",
+      "name": "保底规则",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：各池保底抽数（新手10抽、常驻70抽S、限时70抽小保底/140抽大保底）为工作副本观察值待确认；当前观察值见sourceFact，不得当作正式规则引用。",
+      "sourceFact": "抽卡沉淀 §3.3 列出各池保底；抽卡 Design R-03/R-04 描述软/硬保底机制但为反推 Draft；沉淀 §3.4 指出 DrawCardWeight 权重全0，当前只能确认硬保底。",
+      "acceptance": "每个池的保底抽数、保底产出与计数器归零规则唯一且可由服务端对账；保底继承/重置规则需补充确认。",
+      "relatedIds": [
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-R04",
+      "name": "软保底状态",
+      "status": "P1_GAP",
+      "targetRule": "GAP：当前 DrawCardWeight 1~60 抽权重增量全为0，OneDropArraysID 未形成有效引用，只能确认硬保底；是否存在随抽数递增的软保底待策划与配置确认。",
+      "sourceFact": "抽卡沉淀 §3.4 明确权重全0；抽卡 Design R-03 描述软保底约50-60区间权重阶梯提升，但该描述为反推 Draft，配置不支持。",
+      "acceptance": "软保底存在与否需由策划正式确认并配置非0权重；确认前不得宣称存在软保底。",
+      "relatedIds": [
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV04",
+        "SYS-OUT-SU-01-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-R05",
+      "name": "消耗与票券",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：抽卡消耗（单抽150元晶、十连1500元晶、旅券150元晶/张）为工作副本观察值；当前观察值见sourceFact，不得当作正式规则引用。",
+      "sourceFact": "抽卡沉淀 §3.1 给出价格；ShopGoods.xlsx 登记抽卡券元晶价格；抽卡 Design R-01/R-02 描述扣除流程。",
+      "acceptance": "单抽/十连消耗唯一；票券与元晶折算一致；资源扣除在服务端、先扣后抽。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV06",
+        "SYS-OUT-SU-01-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-R06",
+      "name": "重复角色转化",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：重复角色转化代币数值（R 22×3/6、A 21×1/3、S 21×2/10）为工作副本观察值；当前观察值见sourceFact，不得当作正式规则引用。",
+      "sourceFact": "抽卡沉淀 §3.6 给出 HeroExtraReward 额外货币，并明确'重复角色是否还同时转化角色碎片、转化多少尚未在本轮证据链中确认，不能由本表自行推断'；HeroExtraReward.xlsx 在工作副本中存在。",
+      "acceptance": "重复转化代币口径可从 HeroExtraReward 追到；角色重复转化碎片量经服务端回源确认后供升星与回收消费；确认前不得用升星单段60片反推重复转化量。",
+      "relatedIds": [
+        "SYS-OUT-GR-03",
+        "SYS-OUT-SU-03",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV05",
+        "SYS-OUT-SU-01-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-R07",
+      "name": "卡池开放与发布状态分层",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "targetRule": "卡池配置存在不等于当期开放：新手与常驻池为常驻开放，限时池由活动系统限定活动期，自选池开放规则待确认；当期开放状态需与发布台账、活动开关分层记录。",
+      "sourceFact": "抽卡沉淀 §3.3 标注限时池'活动期内'；05-status-conflict-register C-003 指出 SystemOpen、服务器开关、活动时间与发布记录未集中，配置存在只记为实现证据。",
+      "acceptance": "每类卡池的当期开放状态可由发布台账与活动开关确认，不因配置存在而判定开放。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-R08",
+      "name": "专武抽卡线废弃边界",
+      "status": "P0_CONFLICT",
+      "targetRule": "专武抽卡线（抽卡 Design R-05专武单抽、R-07重复武器转化）废弃为候选/目标口径（C-001 兼容迁移期已裁决）；裁决前旧专武池的概率、保底、抽卡券与重复转化不得自动迁移给新版收容物抽卡；本系统只保留角色抽卡口径，不预判迁移结果。",
+      "sourceFact": "抽卡 Design 顶部历史草案提示称专武双线与软保底不再作为现行结论（候选口径）；抽卡沉淀 §4.5 明确新版收容物抽卡不继承旧专武 R85%/A13%/S2%、60抽S、120抽UP等；05-status-conflict-register C-001 的历史冲突已归档；2026-08-24 B 裁决关闭方向问题，实施边界待完成。",
+      "acceptance": "本系统不再维护专武抽卡规则；专武本体与迁移裁决归 SYS-OUT-GR-10 与 C-001；新方案不得同时消费两套现行口径。",
+      "relatedIds": [
+        "SYS-OUT-GR-10",
+        "SYS-OUT-SU-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV07"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-01-C01",
+      "name": "抽卡前置",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "角色抽卡前置为主线进度≥1-1（抽卡 Design R-01）；主线进度状态由 SYS-OUT-GP-01 维护，玩家等级由 SYS-OUT-GR-01 维护，本系统只消费前置结果。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-C02",
+      "name": "资源持有",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "单抽需≥1张对应票券或≥150元晶；十连需≥10张票券或≥1500元晶；票券与元晶账本归 SYS-OUT-SU-04，本系统只校验与发起扣除。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-C03",
+      "name": "新手池抽数上限",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "新手招募最多10抽、无单抽入口，第10抽必得新手S包；超过10抽后不再可用。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-C04",
+      "name": "限时池活动期",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "rule": "限时池仅在活动期内开放，活动期由活动系统（SYS-OUT-SU-14）与发布台账控制；活动过期后对应奖励不可领但已领保留；具体过期与补领规则待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV07"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-01-RW01",
+      "name": "抽卡结果入账",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "抽卡结果（角色整件、品质）经 Drop_draw 真实包入账；具体Drop包内容、权重与数量归 SYS-OUT-SU-05 与 Drop_draw 源表，本系统只决定何时发何品质。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-RW02",
+      "name": "重复转化奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "重复角色按 HeroExtraReward 发放首次/重复额外代币（21/22），并可能转化同名碎片（数量待回源）；入账经 Drop_draw，代币与碎片账本归 SYS-OUT-SU-04。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV05",
+        "SYS-OUT-SU-01-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-RW03",
+      "name": "保底结果",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "保底触发时强制产出对应品质（十连保底A、小保底S、大保底UP、新手S包）；保底结果同样经 Drop_draw 入账，保底计数器归零。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV02"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-01-EX01",
+      "name": "软保底权重缺失",
+      "status": "P1_GAP",
+      "rule": "DrawCardWeight 1~60行权重全0，软保底无法在配置层确认；若策划确认需软保底，必须配置非0权重并验证分布。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-EX02",
+      "name": "角色重复转化碎片量未回源",
+      "status": "P1_GAP",
+      "rule": "角色重复获得时实际转化多少同名碎片尚未在证据链中确认；该数值决定角色升星碎片供给与满星回收单包消耗，确认前不得用升星单段60片反推。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-EX03",
+      "name": "专武抽卡废弃冲突",
+      "status": "P0_CONFLICT",
+      "rule": "专武抽卡线废弃为候选口径（C-001 兼容迁移期已裁决），核心口径仍可能与专武养成（SYS-OUT-GR-10）旧实现并存；禁止新方案同时消费角色抽卡与旧专武抽卡两套口径，裁决归 C-001。",
+      "questionRefs": [
+        "SYS-OUT-SU-01-Q01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-EX04",
+      "name": "断线补发与幂等缺口",
+      "status": "P1_GAP",
+      "rule": "抽卡 Design 提出'结果先入库再扣资源、断线补发'，但服务端扣除/入账原子性与重复请求幂等在客户端不可见，需服务端确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-EX05",
+      "name": "保底继承与自选池运行时规则待确认",
+      "status": "P2_GAP",
+      "rule": "各卡池保底计数器是否跨池继承/重置、自选池选择后的替换/过滤运行时逻辑尚未确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV03"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-01-UI01",
+      "name": "卡池选择与入口",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示可选卡池、当期开放状态、抽卡券类型与余额；限时池需展示活动期倒计时；未开放卡池不展示或置灰。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-UI02",
+      "name": "抽卡动画与结果展示",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "播放单抽/十连动画，展示角色卡面与品质；十连可跳过或逐张展示并汇总；标注已拥有标签与转化奖励。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-UI03",
+      "name": "保底剩余提示",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示当前池保底剩余次数；软保底弱引导不暴露具体数值；硬保底触发与普通SSR动画一致。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-UI04",
+      "name": "资源不足引导",
+      "status": "TARGET_REQUIRED",
+      "rule": "票券/元晶不足时弹窗引导获取票券或氪金；不阻断已满足条件的抽卡。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-01-CFG01",
+      "name": "DrawCard",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCard.xlsx",
+      "role": "卡池类型、抽卡券、单抽/十连、大小保底、UPItemId、QuickPurchase",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-01-CFG02",
+      "name": "DrawCardPool",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCardPool.xlsx",
+      "role": "品质概率说明、各池角色清单、UP角色",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-01-CFG03",
+      "name": "DrawCardWeight",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCardWeight.xlsx",
+      "role": "逐抽权重/软保底阶梯；1~60行权重当前全0",
+      "status": "WORKING_COPY_SOURCE_WITH_GAPS"
+    },
+    {
+      "id": "SYS-OUT-SU-01-CFG04",
+      "name": "DrawSpecialChooseGacha",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawSpecialChooseGacha.xlsx",
+      "role": "自选UP候选范围",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-01-CFG05",
+      "name": "Drop_draw",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_draw.xlsx",
+      "role": "基础、十连、小保底、大保底掉落包（入账权威归 SYS-OUT-SU-05）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-01-CFG06",
+      "name": "HeroExtraReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroExtraReward.xlsx",
+      "role": "首次及重复获得角色的额外代币（21/22）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-01-CFG07",
+      "name": "ShopGoods（抽卡券价格）",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\ShopGoods.xlsx",
+      "role": "旅券/限时旅券元晶价格与不限购标记",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-01-REL01",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "抽卡扣除旅券/限时旅券/元晶，重复转化发放印象余音/残留余响，账本归物品与货币系统。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV05",
+        "SYS-OUT-SU-01-EV08"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-01-REL02",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-03",
+      "targetName": "角色升星",
+      "description": "重复角色转化的同名碎片/代币供角色升星消费；角色重复转化碎片量待服务端回源。",
+      "status": "KNOWLEDGE_CURRENT_WITH_PENDING_VALUE",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV05",
+        "SYS-OUT-SU-01-EV08"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-01-REL03",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-03",
+      "targetName": "碎片回收/招募商店",
+      "description": "满星后重复等价包供碎片回收消费；回收单包碎片量与回抽测算归 SU-03。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV05",
+        "SYS-OUT-SU-01-EV08"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-01-REL04",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "抽卡结果经 Drop_draw 真实包入账，入账权威归掉落与奖励系统。推导边界：由 Drop_draw 配置观察与 SU-05 分工归纳；服务端入账执行链未核，UNKNOWN。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-01-REL05",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "主线进度≥1-1 作为角色抽卡前置，由主线系统维护进度状态。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV05",
+        "SYS-OUT-SU-01-EV08"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-01-REL06",
+      "type": "conflicts-with",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-10",
+      "targetName": "专武",
+      "description": "专武抽卡线废弃为候选口径（C-001 兼容迁移期已裁决），不得继承旧专武抽卡概率/保底/券/重复转化；专武本体迁移裁决归 GR-10。",
+      "status": "P0_CONFLICT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV07"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-SU-01-REL07",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "抽卡价格、期望成本与回抽折算由经济数值域约束。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV06"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-01-REL08",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "抽卡入口的系统开放与引导由新手引导与系统开放管理。推导边界：由 SystemOpen/Unlock 配置观察与 SU-13 职责分工归纳；开放状态的运行有效性 UNKNOWN_LIVE。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-01-EV01",
+      "kind": "reverse-design",
+      "label": "抽卡系统 Design Doc",
+      "path": "design/抽卡系统Design Doc.md",
+      "location": "R-01～R-07、工作假设、历史草案提示（2026-07-27 专武抽卡废弃）",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-SU-01-EV02",
+      "kind": "numeric-deposit",
+      "label": "角色与收容物抽卡数值沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "location": "§2配置证据、§3角色抽卡结论（待确认）、§3.4软保底状态、§3.6重复返还、§4.5不继承、§7变更记录",
+      "status": "IN_REVIEW_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-01-EV03",
+      "kind": "source-excel",
+      "label": "DrawSpecialChooseGacha.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Activity/DrawCard/DrawSpecialChooseGacha.xlsx",
+      "location": "本机SVN工作副本；自选候选1003;1004;1006;1007;1008;1013;1017；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-01-EV04",
+      "kind": "source-excel",
+      "label": "DrawCardWeight.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Activity/DrawCard/DrawCardWeight.xlsx",
+      "location": "本机SVN工作副本；1~60行权重增量当前全0；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_GAPS"
+    },
+    {
+      "id": "SYS-OUT-SU-01-EV05",
+      "kind": "source-excel",
+      "label": "HeroExtraReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Hero/HeroExtraReward.xlsx",
+      "location": "本机SVN工作副本；首次/重复获得角色额外货币 R→22×3/6、A→21×1/3、S→21×2/10；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-01-EV06",
+      "kind": "source-excel",
+      "label": "ShopGoods.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Shop/ShopGoods.xlsx",
+      "location": "本机SVN工作副本；旅券/限时旅券150元晶/张、不限购；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-01-EV07",
+      "kind": "decision-record",
+      "label": "系统状态冲突与事实漂移登记",
+      "path": "archive/legacy-output-20260824/05-status-conflict-register.md",
+      "location": "C-001 专武→收容物迁移、C-003 功能是否LIVE",
+      "status": "CONFLICT_REGISTER"
+    },
+    {
+      "id": "SYS-OUT-SU-01-EV08",
+      "kind": "source-excel",
+      "label": "Drop_draw.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Drop/Drop_draw.xlsx",
+      "location": "本机SVN工作副本；基础/十连/小保底/大保底掉落包；入账权威归 SYS-OUT-SU-05；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-01-Q01",
+      "priority": "P0",
+      "question": "专武抽卡线（候选）废弃口径下，角色抽卡与专武养成旧实现是否还存在配置/代码层面的双口径并存？（C-001 兼容迁移期已裁决）",
+      "impact": "影响抽卡概率、保底与重复转化是否被旧专武口径污染，关系 C-001 裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV07"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "是。在 C-001 兼容迁移期已裁决前，当前工作副本同时保留角色抽卡与 ExclWeapon/专武旧配置、消息或成长链痕迹，属于双口径并存观察；本答案不裁决专武线的产品去留。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-01-EV01",
+        "SYS-OUT-SU-01-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01-Q02",
+      "priority": "P1",
+      "question": "角色品质基础概率 R89%/A10%/S1% 与各池保底抽数是否由策划正式确认为 canonical？",
+      "impact": "决定抽卡期望成本、经济总账与商业化定价是否可冻结。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-01-Q03",
+      "priority": "P1",
+      "question": "角色重复获得时实际转化多少同名碎片？",
+      "impact": "决定角色升星碎片供给与满星回收单包消耗，确认前不得用升星单段60片反推。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV05"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-01-Q04",
+      "priority": "P1",
+      "question": "是否存在软保底？若存在，DrawCardWeight 非零权重与阶梯区间何时配置？",
+      "impact": "影响抽卡体验与期望成本，当前权重全0只能确认硬保底。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV04"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-01-Q05",
+      "priority": "P1",
+      "question": "各卡池保底计数器是否跨池继承/重置？自选池选择后的运行时替换/过滤规则如何？",
+      "impact": "影响玩家保底体验与跨池策略。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV02",
+        "SYS-OUT-SU-01-EV03"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-01-Q06",
+      "priority": "P1",
+      "question": "限时票券过期处理方式与断线补发的服务端幂等如何保证？",
+      "impact": "影响玩家资产安全与补发正确性。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-01-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在选择卡池→校验→扣除→随机保底→入账→展示的有序抽卡流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在抽卡前置、资源持有、新手池抽数上限与限时池活动期条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "抽卡结果、重复转化与保底结果经 Drop_draw 入账，本系统决定何时发何品质"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在软保底缺失、碎片量未回源、专武废弃冲突、断线补发与保底继承缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在卡池选择、抽卡动画、保底提示与资源不足引导界面责任"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 DrawCard/DrawCardPool/DrawCardWeight/DrawSpecialChooseGacha/Drop_draw/HeroExtraReward/ShopGoods 配置源"
+    }
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "schema": "vgame-framework-nodes/v1",
+  "version": "1.0.0",
+  "formalEntry": "knowledge-base/README.md",
+  "expectedCount": 19,
+  "nodes": [
+    {
+      "id": "PFN-01",
+      "order": 1,
+      "name": "项目总览与核心循环",
+      "layer": "project",
+      "responsibility": "Vgame 身份、玩家长期目标与核心循环。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-02",
+      "order": 2,
+      "name": "系统框架",
+      "layer": "system",
+      "responsibility": "全系统目录、边界与共同契约。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-03",
+      "order": 3,
+      "name": "战斗内系统",
+      "layer": "system-in",
+      "responsibility": "战斗实例、单位、技能、关卡空间、胜负与反馈。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-04",
+      "order": 4,
+      "name": "战斗外系统",
+      "layer": "system-out",
+      "responsibility": "战斗外玩法、养成、资源、商业化和辅助域总入口。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-05",
+      "order": 5,
+      "name": "战斗外·玩法",
+      "layer": "system-out-gameplay",
+      "responsibility": "挑战入口、层级、周期与玩法结算壳。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-06",
+      "order": 6,
+      "name": "战斗外·养成",
+      "layer": "system-out-growth",
+      "responsibility": "资源向属性、机制、构筑与阵容宽度的转化。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-07",
+      "order": 7,
+      "name": "经济资源",
+      "layer": "economy",
+      "responsibility": "物品、货币、来源、消耗、掉落与奖励账本。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-08",
+      "order": 8,
+      "name": "商业化",
+      "layer": "monetization",
+      "responsibility": "抽卡、月卡、礼包、付费商品与经济敏感边界。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-09",
+      "order": 9,
+      "name": "周边、运营与辅助系统",
+      "layer": "support",
+      "responsibility": "任务、签到、邮件、通行证、社交、引导与 LiveOps。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-10",
+      "order": 10,
+      "name": "战斗规则",
+      "layer": "combat-rules",
+      "responsibility": "战斗状态、单位、技能 Buff、胜负与结算规则。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-11",
+      "order": 11,
+      "name": "角色设计",
+      "layer": "character-design",
+      "responsibility": "角色定位、技能循环、成长挂接与配置链。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-12",
+      "order": 12,
+      "name": "战斗内容",
+      "layer": "battle-content",
+      "responsibility": "敌人、Boss、AI、波次、地形与关卡遭遇。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-13",
+      "order": 13,
+      "name": "数值框架 V2",
+      "layer": "numeric-v2",
+      "responsibility": "共享底座、养成、战斗、经济、节奏和配置交付。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-14",
+      "order": 14,
+      "name": "系统输入与输出",
+      "layer": "relations-io",
+      "responsibility": "每个系统消费什么并向下游提供什么。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-15",
+      "order": 15,
+      "name": "系统依赖",
+      "layer": "relations-dependency",
+      "responsibility": "前置、共享契约、配置和运行依赖。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-16",
+      "order": 16,
+      "name": "系统循环",
+      "layer": "relations-loop",
+      "responsibility": "核心、成长、经济、留存与 LiveOps 循环。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-17",
+      "order": 17,
+      "name": "Skill 注册与调用层",
+      "layer": "skill-routing",
+      "responsibility": "33 个 Skill 的注册、依赖与最小按需调用。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-18",
+      "order": 18,
+      "name": "证据、状态与来源边界",
+      "layer": "evidence-status",
+      "responsibility": "来源性质、工作副本/LIVE 边界与证据账本。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-19",
+      "order": 19,
+      "name": "人工裁决与治理",
+      "layer": "governance",
+      "responsibility": "裁决、冲突、归档、发布与门禁治理。",
+      "status": "ACTIVE"
+    }
+  ]
+}

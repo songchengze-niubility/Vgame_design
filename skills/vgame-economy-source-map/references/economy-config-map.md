@@ -1,5 +1,7 @@
 # Economy Config Map
 
+> 2026-08-24 人工裁决 DC-O：友情点的产品身份确认为“受限社交资源”，只允许在社交域消费并单独记账。钱包、账本与真实入账调用链仍待运行证据，状态为 APPROVED_TARGET / IMPLEMENTATION_PENDING。
+
 ## 已确认根路径
 
 | 类型 | 路径 | 说明 |
@@ -32,7 +34,7 @@
 | 逻辑/源表 | 已观察字段 | 用途 | 注意 |
 |---|---|---|---|
 | `Drop` 逻辑表 | `__tables__.xlsx` 输入为多个 Drop 文件 | 全局奖励包逻辑表。 | 不要假设单个 Drop 文件就是全部。 |
-| `Datas\Drop\Drop_dungeon.xlsx` | `ID`, `DropId`, `DropName`, `DropId2`, `DropType`, `DropMinNum`, `DropMaxNum`, `DropItem_id`, `DropItemNumMin`, `DropItemNumMax`, `DropWeight`, `ShowItemID`, `IsValid` | 副本/关卡类奖励包候选。 | 奖励包内容交给 `vgame-reward-drop-sync`。 |
+| `Datas\Drop\Drop_dungeon.xlsx` | `ID`, `DropId`, `DropName`, `DropId2`, `DropType`, `DropMinNum`, `DropMaxNum`, `DropItem_id`, `DropItemNumMin`, `DropItemNumMax`, `DropWeight`, `ShowItemID` | 副本/关卡类奖励包候选；当前第 16 列无表头，不是具名 `IsValid`。 | 奖励包内容交给 `vgame-reward-drop-sync`。 |
 | `Datas\Drop\Drop_mainlevel.xlsx` | 同 Drop schema | 主线奖励包候选。 | `level.xlsx` 和章节奖励会引用。 |
 | `Datas\Drop\Drop_other.xlsx` | 同 Drop schema | 任务、杂项、系统奖励候选。 | 需要按 DropId 反查。 |
 | `Datas\Drop\Drop_BattlePass.xlsx` | 同 Drop schema | 通行证奖励包候选。 | `BattlePassReward` 常引用。 |

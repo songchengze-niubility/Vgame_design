@@ -1,0 +1,10 @@
+{
+  "schema": "vgame-knowledge-authority/v1",
+  "repository": "D:/Vgame/_design",
+  "formalEntry": "knowledge-base/README.md",
+  "canonicalContentRoot": "knowledge-base/",
+  "skillSourceRoot": "skills/",
+  "generatedOutputRoot": "output/knowledge-framework/",
+  "archiveRoot": "archive/",
+  "rule": "只有 formalEntry 是正式权威入口；output 不得作为正文源。"
+}

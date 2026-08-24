@@ -1,0 +1,1165 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GR-09",
+  "name": "房车",
+  "revision": "2026-08-24.2",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本（只读）+ 4份房车Design + 客户端 Lua 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在 Car/ 配置族（含 Facility/ 子目录）与客户端 RVSystem 全链路实现，不证明 Production/LIVE；服务端权威与发布台账不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径（07-14小分叉已用户确认），不代表已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（Car/ 配置族或客户端 RVSystem），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份 Design + 配置 + 代码反推出的房车系统边界。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据；Design 间版本冲突或 ItemId 待分配。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-GR-09-R02",
+        "SYS-OUT-GR-09-R05",
+        "SYS-OUT-GR-09-R06",
+        "SYS-OUT-GR-09-R07",
+        "SYS-OUT-GR-09-R08"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "房车是账号级中长期养成底盘，由三条独立线组成：房车整备提供账号全局固定基础属性（生命/攻击/防御），出行指南按职业生效提供百分比属性与二级属性（小分叉天赋树），房车设备提供五设备持续生产基础资源与跑商载货量联动。房车不替代角色/装备/旅券/映射装备等主养成，而是给玩家一个'常玩玩法会慢慢推高全队底盘'的中长期目标。",
+    "inScope": [
+      "房车整备：账号全局固定属性成长（RvAttribute/RvLvUp），100级线性成长",
+      "房车强化：单次/一键强化与强化结果档（RvStrengthenResult）",
+      "出行指南：5职业×62节点小分叉天赋树（RvGuide/RvStage/RvGuideNode/RvGuideNodeLv），A/B非互斥分支",
+      "房车设备：5设备10级持续生产（RvDevice/DeviceLvUp），驾驶台/工作台/车载电脑/储藏架/夜航调律灯",
+      "工作台合成：加工零件合成基础经验材料（DeviceCraft）",
+      "溢出经验兑换：驾驶台满级后溢出经验兑换资源（ExpExchange）",
+      "储藏架与跑商联动：载货量30→36提升跑商单次利润效率"
+    ],
+    "outOfScope": [
+      "房车零件/便签指南的来源玩法产出节奏；爬塔挂机归 SYS-OUT-GP-08，跑商归 SYS-OUT-GP-12",
+      "房车建材的正式产出玩法与日均投放量；待来源玩法确定",
+      "玩家等级/体力/邮票精力的自身恢复与上限规则；归 SYS-OUT-GR-01/SYS-OUT-SU-04",
+      "角色/专武经验材料的使用与突破；归 SYS-OUT-GR-02/对应养成系统",
+      "跑商玩法本身的商店供货与订单逻辑；归 SYS-OUT-GP-12",
+      "房车属性进入战力曲线的最终核算；归 NUM-02/NUM-04",
+      "行商商店商品筹码与兑换逻辑；归 SYS-OUT-GP-12"
+    ],
+    "inputs": [
+      "房车零件（ItemId 1074，爬塔挂机产出）+ 金币 → 房车整备升级",
+      "便签指南（ItemId 1075-1079，跑商产出）+ 金币 → 出行指南节点激活/升级",
+      "房车建材（低/中/高三级，ItemId待规划）→ 房车设备升级",
+      "加工零件（工作台产出）→ 工作台合成基础经验材料",
+      "溢出经验（驾驶台满级后产出）→ 溢出经验兑换",
+      "RvAttribute/RvLvUp/RvStrengthenResult/RvGuide/RvStage/RvGuideNode/RvGuideNodeLv/RvDevice/DeviceLvUp/DeviceCraft/ExpExchange 配置",
+      "玩家等级（驾驶台产出经验与等级上限判定）"
+    ],
+    "outputs": [
+      "账号全局固定基础属性（生命/攻击/防御，RvAttribute Value+Grow×growLv）",
+      "职业百分比属性与二级属性（出行指南节点激活）",
+      "持续生产资源（玩家经验/加工零件/邮票精力/金币/体力）",
+      "跑商载货量提升（储藏架30→36）",
+      "基础经验材料（工作台合成：低阶/中阶记录盘、泛黄档案、录像带、沿途随笔）",
+      "溢出经验兑换资源（金币/房车零件/加工零件/体力）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "账号级中长期养成底盘（整备+指南+设备三线）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "房车作为账号级养成底盘在知识库总览、4份Design与Car/配置族中身份一致；三线独立养成、不替代主养成。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "整备与指南已确认（07-14小分叉已用户批准）；设备InReview（07-21规则与数值已确认待配置方案与经济验算）",
+      "status": "DRAFT_TARGET_MULTI_VERSION",
+      "note": "07-09当前版本与07-14小分叉重设计在出行指南结构上存在版本替代关系（130节点→310节点）；07-21设备为新增模块InReview。三线Design均为Draft/InReview，无正式冻结。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Car/ 7表 + Car/Facility/ 4表 ConfigReady；客户端 RVSystem 1258行全链路实装（整备+指南+设备+合成+兑换）",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机SVN工作副本核对于2026-08-18；RvGuideNode 314行对应310节点+表头；DeviceLvUp 54行对应5设备×10级+表头；RVSystem.lua含全部11个NetHandler。07-14文档称'SVN未修改'但配置已存在，可能为框架V2镜像导入。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "配置与客户端全链路存在；服务端权威与发布台账不可见",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置与客户端实现证据，但缺集中版本—开关—发布时间台账，且Design均为Draft/InReview，不能盖为LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-K=PARTIAL",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    },
+    {
+      "axis": "最新规则裁决",
+      "value": "C：随机强化 +30/+60/+100；权重50/30/20",
+      "status": "HUMAN_DECISION_CONFIRMED",
+      "note": "工作副本配置/代码观察与目标规则一致；LIVE仍需发布证据。"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在整备强化、指南节点升级、设备升级/领取、工作台合成、溢出经验兑换等有序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在整备等级上限、指南阶段房车等级门槛与前置节点、设备解锁与升级资格条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "设备持续生产与领取、工作台合成产出、溢出经验兑换产出均为奖励发放"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在强化结果档与07-09口径冲突、07-09 vs 07-14结构替代、设备Design InReview、建材ItemId待分配等边界"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在房车主界面、整备升级、指南节点、设备、工作台合成、溢出兑换全套UI"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 Car/ 7表 + Car/Facility/ 4表共11个策划配置源"
+    }
+  },
+  "flows": [
+    {
+      "id": "SYS-OUT-GR-09-F01",
+      "name": "房车整备强化流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-09-F01-S01",
+          "name": "请求整备信息",
+          "description": "玩家进入房车整备界面，客户端发送 RV_CMD_RV_UPGRADE_INFO，服务端回 CRespRvUpgradeInfo(CurLv, CurProgress)。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F01-S02",
+          "name": "校验强化资格",
+          "description": "校验当前等级 < 最大等级、房车零件与金币充足（见 SYS-OUT-GR-09-C01）。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F01-S03",
+          "name": "单次/一键强化",
+          "description": "客户端发送 RV_CMD_RV_STRENGTHEN 或 RV_CMD_RV_BATCH_STRENGTHEN；服务端扣除房车零件+金币、结算强化结果档（RvStrengthenResult AddProgress/Weight）、进度满100则等级+1、回 CurLv/CurProgress。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F01-S04",
+          "name": "属性刷新",
+          "description": "RefreshBaseInfo 更新 rvLv/rvProgress，RefreshAttrMap 按 RvAttribute(Value+Grow×growLv) 重算账号全局属性。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-F02",
+      "name": "出行指南节点激活/升级流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-09-F02-S01",
+          "name": "请求指南信息",
+          "description": "客户端发送 RV_CMD_RV_GUIDE_INFO，服务端回 CRespRvGuideInfo(CurStageList)，含各指南当前解锁阶段与节点列表。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F02-S02",
+          "name": "校验节点资格",
+          "description": "校验阶段已解锁、节点 NeedRvLv 满足、PrepositionGradeList 前置满足（任一即可）、便签指南+金币充足（见 SYS-OUT-GR-09-C02/C03）。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F02-S03",
+          "name": "节点升级",
+          "description": "客户端发送 RV_CMD_RV_GUIDE_NODE_UPGRADE(NodeId)；服务端扣除便签指南+金币、节点等级+1、回 NodeInfo(CurLv, CanUpgrade)。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F02-S04",
+          "name": "阶段推进",
+          "description": "当前阶段末节点激活后，下一阶段按房车等级门槛(15/35/50)解锁；服务端下发新阶段节点列表。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-F03",
+      "name": "房车设备升级流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-09-F03-S01",
+          "name": "请求设备信息",
+          "description": "客户端发送 RV_CMD_RV_DEVICE_INFO，服务端回 CRespRvDeviceInfo(DeviceList)，含各设备 Level/ProduceBaseTime/Accumulated。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F03-S02",
+          "name": "校验升级资格",
+          "description": "校验设备已解锁（UnlockId）、当前等级 < 10、房车建材充足（见 SYS-OUT-GR-09-C04）。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F03-S03",
+          "name": "设备升级",
+          "description": "客户端发送 RV_CMD_RV_DEVICE_UPGRADE(DeviceId)；服务端扣除房车建材、等级+1、回 NewState；客户端弹 UIRVDeviceUpgradePopup 展示升级效果。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-F04",
+      "name": "设备产出领取流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-09-F04-S01",
+          "name": "计算累积产出",
+          "description": "CalcDeviceProduce 按 ProduceNum×elapsed/3600+Accumulated 计算当前累积，上限 maxProduce=ProduceNum×CumulativeTime。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F04-S02",
+          "name": "单设备/一键领取",
+          "description": "客户端发送 RV_CMD_RV_DEVICE_COLLECT(DeviceId) 或 RV_CMD_RV_DEVICE_COLLECT_ALL；服务端发放 ProduceItem 对应资源、重置 Accumulated、回 NewState。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F04-S03",
+          "name": "奖励展示",
+          "description": "ShowDeviceCollectRewards 按 ProduceItem/CollectedAmount 展示领取奖励；驾驶台满级后产出进入溢出经验池。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-F05",
+      "name": "工作台合成流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-09-F05-S01",
+          "name": "选择配方",
+          "description": "玩家在工作台界面选择 DeviceCraft 配方（低阶/中阶记录盘、泛黄档案、录像带、沿途随笔），预览加工零件消耗与产出。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F05-S02",
+          "name": "批量合成",
+          "description": "客户端发送 RV_CMD_RV_DEVICE_CRAFT(CraftId, Count)；服务端扣除加工零件×Count、发放产出×Count、回 Count。"
+        },
+        {
+          "id": "SYS-OUT-GR-09-F05-S03",
+          "name": "合成完成",
+          "description": "OnCRespRvDeviceCraft 展示产出奖励；FireEvent OnDeviceCraftCompleted 通知 UI 刷新。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GR-09-R01",
+      "name": "房车整备属性成长",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "房车整备为账号全局固定属性成长，等级上限100，Lv1属性为0，Lv2-Lv100线性成长到满额（生命25000/攻击7500/防御5000）；属性= RvAttribute.Value + growLv × RvAttribute.Grow，growLv = max(lv - InitialRvLv, 0)。",
+      "sourceFact": "07-09 Design §房车整备：100级/Lv1=0/满级25000HP+7500ATK+5000DEF；RvAttribute.xlsx 7行含 Id/Attribute/Value/Grow；RvLvUp.xlsx 103行含 Id/TargetLv/CostItemNum/CostCurrencyNum；RVSystem.lua CalcAttrMap(lv) 按 Value+Grow×growLv 计算。",
+      "acceptance": "整备属性只读 RvAttribute/RvLvUp；Lv1=0、Lv100=满额；属性对所有角色生效（账号全局）；具体数值以配置/NUM-02为权威。",
+      "relatedIds": [
+        "NUM-02",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV05",
+        "SYS-OUT-GR-09-EV09",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-R02",
+      "name": "房车整备升级消耗与强化结果",
+      "status": "HUMAN_DECISION_CONFIRMED_WORKING_COPY_ALIGNED",
+      "targetRule": "房车整备采用随机强化：每次结果增加 +30/+60/+100 进度，权重依次为 50/30/20；进度达到100时升级，消耗仍按 RvLvUp 与物品账本结算。",
+      "sourceFact": "2026-08-24 用户最新裁决选择 C；本机工作副本 RvStrengthenResult.xlsx 与 RVSystem.lua 已观察到 AddProgress/Weight 与 ResultId 消费链。工作副本一致不等于 Production/LIVE。",
+      "acceptance": "仅允许 +30/+60/+100 三档，权重严格为 50/30/20；单次与一键强化均走同一结果表；达到100的溢出/进位规则须由实现验收；被替代口径仅按归档证据 ID 追溯。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV10",
+        "SYS-OUT-GR-09-EV11",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-R03",
+      "name": "出行指南小分叉天赋树结构",
+      "status": "WORKING_COPY_OBSERVED_CONFIRMED",
+      "targetRule": "出行指南为5职业×62节点=310节点小分叉天赋树，4阶段（基础8/中级15/高级19/精通20），A/B非互斥分支，汇合节点要求全部前置支路激活，所有节点等级上限1，最终可全部点满。",
+      "sourceFact": "07-14 Design §设计结论：62节点/职业、310合计、四阶段A/B小分叉非互斥、NodeLvMax=1；RvGuide.xlsx 9行(5职业+表头)、RvGuideNode.xlsx 314行(310节点+表头)、RvGuideNodeLv.xlsx 314行(每节点1级配置)、RvStage.xlsx 24行(5职业×4阶段+表头)；RVSystem.lua InitGuideData 按 RvGuide/RvStage/RvGuideNode 构建指南架构，RvGuideNode.NodeLvMax 读取节点上限。",
+      "acceptance": "指南结构以07-14小分叉为CURRENT权威（已用户确认合入框架V2）；07-09的130节点结构已替代；RvGuideNode 314行确认配置已同步。",
+      "relatedIds": [
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV02",
+        "SYS-OUT-GR-09-EV06",
+        "SYS-OUT-GR-09-EV07",
+        "SYS-OUT-GR-09-EV08",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-R04",
+      "name": "出行指南节点激活与阶段解锁",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "节点激活需满足 NeedRvLv（房车等级门槛）与 PrepositionGradeList（前置节点，任一即可）；阶段解锁采用双门槛：房车等级15/35/50 + 上一阶段末节点已激活；角色只吃自己职业对应指南。",
+      "sourceFact": "RvGuideNodeLv.xlsx 含 NeedRvLv/PrepositionGradeList；RVSystem.lua GetGuideNodeCantUpgradeTipList 检查 NeedRvLv 与 PrepositionGradeList（UnlockAnyPrepositionNode）；07-09 Design §阶段结构：中级15/高级35/精通50双门槛；07-14确认阶段门槛不变。",
+      "acceptance": "节点激活条件以 RvGuideNodeLv 为权威；阶段双门槛以07-09/07-14 Design 为权威；角色只吃对应职业指南。",
+      "relatedIds": [
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV02",
+        "SYS-OUT-GR-09-EV08",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-R05",
+      "name": "房车设备定义与升级",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "五个设备（驾驶台/工作台/车载电脑/储藏架/夜航调律灯）分别独立养成，等级上限10级，设备升级不受房车本体等级限制，只消耗房车建材（低/中/高三级可混合），不消耗房车零件。",
+      "sourceFact": "07-21 Design RV-EQ-R01：五设备独立10级、无房车等级门槛、只消耗房车建材；RvDevice.xlsx 17行含 Id/Name/DeviceType/Icon/ProduceItem/UnlockId；DeviceLvUp.xlsx 54行含 Id/DeviceId/TargetLv/ProduceNum/CumulativeTime/BuffGainTypeList/CostItemList/CostCurrencyNum；RVSystem.lua InitDeviceData/RefreshDeviceRuntimeData/BuildDeviceUpgradeCostList 读 RvDevice/DeviceLvUp 配置，CanUpgradeDevice 校验 nextLvCfg 与材料。",
+      "acceptance": "设备定义与升级以 RvDevice/DeviceLvUp 为权威；设备升级不扣房车零件；房车建材 ItemId 待规划（07-21 Design §待确认）。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV14",
+        "SYS-OUT-GR-09-EV15",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-R06",
+      "name": "设备持续生产与领取",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "五设备按时间连续生产（ProduceNum/时或天），达到最大累积（ProduceNum×CumulativeTime）后停止累积，领取后恢复生产；一键领取按各设备当前累积一次性发放；体力和邮票精力领取可突破持有上限。",
+      "sourceFact": "07-21 Design RV-EQ-R02：持续生产/最大累积/一键领取/超上限领取；RVSystem.lua CalcDeviceProduce 按 ProduceNum×elapsed/3600+Accumulated 计算，maxProduce=ProduceNum×CumulativeTime；ReqRvDeviceCollect/CollectAll 发送领取请求；ShowDeviceCollectRewards 按 ProduceItem/CollectedAmount 发奖。",
+      "acceptance": "生产与领取以 RvDevice.ProduceItem/DeviceLvUp.ProduceNum/CumulativeTime 为权威；超上限领取以07-21 Design为Draft目标。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV14",
+        "SYS-OUT-GR-09-EV15",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-R07",
+      "name": "工作台合成配方",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "工作台生产加工零件，加工零件用于合成基础经验类材料（低阶/中阶记录盘、泛黄档案、录像带、沿途随笔）；所有配方随工作台开放，支持批量合成，不消耗额外金币，不合成突破材料或高级资源。",
+      "sourceFact": "07-21 Design RV-EQ-R03 + §7配方表：5配方（低阶记录盘100/中阶记录盘101/泛黄档案108/录像带109/邮票经验6）；DeviceCraft.xlsx 9行含 CraftId/CostItem/CostCurrency/UnlockId/Tab；RVSystem.lua BuildDeviceCraftDataList/BuildDeviceCraftCostList/GetMaxDeviceCraftCount 读 DeviceCraft 配置，ReqRvDeviceCraft 发送合成请求。",
+      "acceptance": "合成配方以 DeviceCraft 为权威；工作台不合成突破材料/高级资源以07-21 Design为约束。",
+      "relatedIds": [
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV16",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-R08",
+      "name": "驾驶台满级转化与溢出经验兑换",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "驾驶台(DeviceId=1)产出玩家经验；玩家未满级时直接增加经验，满级后产出进入溢出经验池（上限200000）；溢出经验可兑换金币/房车零件/加工零件/体力，每次20000经验一档，每日共享1次，04:00刷新。",
+      "sourceFact": "07-21 Design RV-EQ-R05 + §8溢出经验兑换表；RVSystem.lua OverflowExpDeviceId=1，RefreshDriverDeskOverflowState/UpdateDriverDeskOverflowExp 管理溢出状态，ReqRvDeviceExpExchange(ExchangeId,Count) 发送兑换请求，OnCRespRvDeviceExpExchange 读 Tables.ExpExchange 配置；ExpExchange.xlsx 8行含 Id/ExchangeId/CostExp。",
+      "acceptance": "溢出经验兑换以 ExpExchange 为权威；池上限200000/每日1次/04:00刷新以07-21 Design为Draft目标。",
+      "relatedIds": [
+        "SYS-OUT-GR-01",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV17",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-R09",
+      "name": "储藏架与跑商联动",
+      "status": "CROSS_SOURCE_SYNTHESIS",
+      "targetRule": "储藏架同时提供持续金币产出和跑商单次载货量提升（30→36），不增加跑商商店每日货物供给量；跑商发车过程中升级储藏架，新载货量从下一次发车生效。",
+      "sourceFact": "07-21 Design RV-EQ-R04：载货量30→36/不增加供货/发车中升级下一次生效/利润效率+9%~11%；RVSystem.lua DeviceLvUp.ProduceNum 对应储藏架金币日产，载货量联动需跑商系统读取（跨源归纳）。",
+      "acceptance": "储藏架金币产出以 DeviceLvUp 为权威；载货量联动以07-21 Design为Draft目标，跑商读取方式待确认。",
+      "relatedIds": [
+        "SYS-OUT-GP-12",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV15",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GR-09-C01",
+      "name": "房车整备强化资格",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "可强化需：当前等级 < GetMaxLv（由RvLvUp最大TargetLv决定）、RvLvUp.CostItemNum房车零件充足、CostCurrencyNum金币充足；CanStrengthen 校验。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV09",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-C02",
+      "name": "出行指南节点激活条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "节点可激活需：阶段已解锁、NeedRvLv ≤ 当前房车等级、PrepositionGradeList中任一前置已解锁、RvGuideNodeLv.CostItemList便签指南+CostCurrencyNum金币充足；GetGuideNodeCantUpgradeTipList展示未满足条件。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV08",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-C03",
+      "name": "出行指南阶段解锁双门槛",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "阶段解锁需：房车等级 ≥ 15/35/50（中级/高级/精通）且 上一阶段末节点已激活；基础阶段默认解锁。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-C04",
+      "name": "房车设备升级资格",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "可升级需：设备已解锁（RvDevice.UnlockId 满足）、当前等级 < 10（nextLvCfg存在）、DeviceLvUp.CostItemList房车建材充足；CanUpgradeDevice 校验。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV14",
+        "SYS-OUT-GR-09-EV15",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-C05",
+      "name": "房车设备解锁条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "设备解锁由 RvDevice.UnlockId 决定；UnlockId ≤ 0 时默认解锁，否则需 ConditionSystem:GetIsUnLock(UnlockId) 通过；IsDeviceUnlocked 校验。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV14",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GR-09-RW01",
+      "name": "设备持续生产领取",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "设备领取按 ProduceItem 对应资源发放 CollectedAmount 数量；单设备领取(COLLECT)与一键领取(COLLECT_ALL)均经服务端结算，ShowDeviceCollectRewards 展示。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV13",
+        "SYS-OUT-GR-09-EV14",
+        "SYS-OUT-GR-09-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-RW02",
+      "name": "工作台合成产出",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "工作台合成按 DeviceCraft 配方产出对应道具（低阶/中阶记录盘、泛黄档案、录像带、沿途随笔），批量合成按 Count 倍数发放；UIUtil.ShowReward 展示。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV13",
+        "SYS-OUT-GR-09-EV16"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-RW03",
+      "name": "溢出经验兑换产出",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "溢出经验兑换按 ExpExchange.ExchangeId 配置发放对应资源（金币/房车零件/加工零件/体力），每次消耗 CostExp×Count 经验；UIUtil.ShowReward 展示。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV13",
+        "SYS-OUT-GR-09-EV17"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GR-09-EX01",
+      "name": "强化结果档裁决已关闭",
+      "status": "RESOLVED_BY_HUMAN_DECISION",
+      "rule": "最新权威规则为 +30/+60/+100，权重50/30/20；被替代口径仅见 archive/legacy-output-20260824。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV10",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-EX02",
+      "name": "07-09 vs 07-14 出行指南结构版本替代",
+      "status": "P0_CONFLICT_RESOLVED",
+      "rule": "07-09 Design 定义130节点(5×26)，07-14小分叉重设计改为310节点(5×62)并已用户确认合入框架V2；RvGuideNode.xlsx 314行确认07-14版本ConfigReady。07-09出行指南结构已替代，但07-09文档仍标注'CurrentDecision'未更新状态。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV02",
+        "SYS-OUT-GR-09-EV06",
+        "SYS-OUT-GR-09-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-EX03",
+      "name": "房车设备Design InReview但配置与代码已存在",
+      "status": "P1_GAP",
+      "rule": "07-21 Design 状态为 InReview（规则与数值方案已确认，待配置方案与经济验算），但 Car/Facility/ 4表配置与 RVSystem.lua RVDevice 全链路实现已存在；实现可能先行于Design正式冻结。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV14",
+        "SYS-OUT-GR-09-EV15",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-EX04",
+      "name": "房车建材ItemId未分配",
+      "status": "P1_GAP",
+      "rule": "07-21 Design §待确认：低/中/高三级房车建材均未分配正式ItemId；DeviceLvUp.CostItemList 已有消耗配置但ItemId身份待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-EX05",
+      "name": "ShopGoods旧ItemId引用待更新",
+      "status": "P2_GAP",
+      "rule": "07-14 Design §合入与实施门禁：ShopGoods.xlsx 商品1109011-1109015的旧ItemId 302-306需更正为1075-1079；需用户批准06镜像后才可执行。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-EX06",
+      "name": "房车系统开放时机未确认",
+      "status": "P2_GAP",
+      "rule": "07-09 Design §战力曲线接入：开放时机需结合爬塔挂机、跑商和系统开放表确认；设备开放条件07-21确认不设房车等级门槛但系统入口何时开放未定。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-EX07",
+      "name": "07-14称SVN未修改但配置已存在",
+      "status": "P2_GAP",
+      "rule": "07-14 Design 明确'SVN未修改'，但本机SVN工作副本 Car/ 7表含314行RvGuideNode已存在；可能为框架V2镜像导入SVN后未更新文档状态，或配置为独立导入路径。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV02",
+        "SYS-OUT-GR-09-EV06",
+        "SYS-OUT-GR-09-EV07"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GR-09-UI01",
+      "name": "房车主界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIRVMainView+UIRVMainTabView 提供房车主界面与标签切换（整备/指南/设备）；RVEvent 驱动数据刷新。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV18",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-UI02",
+      "name": "房车整备升级界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIRVUpgradeView/UIRVCarUpgradeView 展示当前等级/进度条/属性列表(GetAttrShowList)/消耗预览(BuildStrengthenCostList)/单次+一键强化按钮/强化结果动画。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV19",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-UI03",
+      "name": "出行指南节点界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIRVBonusView/UIRVBonusNode/UIRVGuideNodeInfo/UIRVNodeActivateView/UIRVNodeUpgradeView 展示5职业标签/阶段节点地图(A/B小分叉)/节点属性/激活与升级按钮/前置与房车等级条件提示。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV20",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-UI04",
+      "name": "房车设备界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIRVDeviceView/UIRVDeviceUpgradeView/UIRVDeviceUpgradePopup 展示5设备列表/当前等级/累积产出进度条/领取与一键领取按钮/升级消耗预览/升级弹窗。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV21",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-UI05",
+      "name": "工作台合成界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIRVCraftView 展示DeviceCraft配方列表/加工零件消耗/产出预览/批量合成数量选择/最大合成数(GetMaxDeviceCraftCount)。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV22",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-UI06",
+      "name": "溢出经验兑换界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIRVExpExchangeView 展示溢出经验池余额/4种兑换选项(金币/房车零件/加工零件/体力)/每日剩余次数/兑换按钮。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV23",
+        "SYS-OUT-GR-09-EV13"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GR-09-CFG01",
+      "name": "RvAttribute",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvAttribute.xlsx",
+      "role": "房车整备属性：Id/Attribute/Value/Grow（7行，属性类型→基础值+成长系数）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG02",
+      "name": "RvLvUp",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvLvUp.xlsx",
+      "role": "房车整备升级：Id/TargetLv/CostItemNum/CostCurrencyNum（103行，每级房车零件+金币消耗）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG03",
+      "name": "RvStrengthenResult",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvStrengthenResult.xlsx",
+      "role": "房车强化结果档：Id/Name/AddProgress/Weight（7行，随机强化进度与权重；与07-09口径冲突）",
+      "status": "WORKING_COPY_SOURCE_CONFLICT"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG04",
+      "name": "RvGuide",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvGuide.xlsx",
+      "role": "出行指南职业定义：Id/Name/HeroJob（9行，5职业指南）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG05",
+      "name": "RvStage",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvStage.xlsx",
+      "role": "出行指南阶段：Id/GuideId/Name/NextStageId（24行，5职业×4阶段链式）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG06",
+      "name": "RvGuideNode",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvGuideNode.xlsx",
+      "role": "出行指南节点：Id/StageId/Name/Icon/ColIdx/NextNodeIdList/NodeLvMax（314行，310节点+表头，小分叉拓扑）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG07",
+      "name": "RvGuideNodeLv",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvGuideNodeLv.xlsx",
+      "role": "出行指南节点等级：Id/NodeId/TargetLv/PrepositionGradeList/NeedRvLv/Attribute/Value/CostItemList/CostCurrencyNum（314行，每节点1级配置）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG08",
+      "name": "RvDevice",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\Facility\\RvDevice.xlsx",
+      "role": "房车设备定义：Id/Name/DeviceType/Icon/ProduceItem/UnlockId（17行，5设备+表头）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG09",
+      "name": "DeviceLvUp",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\Facility\\DeviceLvUp.xlsx",
+      "role": "设备升级：Id/DeviceId/TargetLv/ProduceNum/CumulativeTime/BuffGainTypeList/CostItemList/CostCurrencyNum（54行，5设备×10级+表头）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG10",
+      "name": "DeviceCraft",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\Facility\\DeviceCraft.xlsx",
+      "role": "工作台合成配方：CraftId/CostItem/CostCurrency/UnlockId/Tab（9行，8配方+表头）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-CFG11",
+      "name": "ExpExchange",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\Facility\\ExpExchange.xlsx",
+      "role": "溢出经验兑换：Id/ExchangeId/CostExp（8行，7兑换项+表头）",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GR-09-REL01",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-08",
+      "targetName": "爬塔",
+      "description": "来源：房车养成系统小分叉重设计(EV02,2026-07-14)给出爬塔挂机产出房车零件(1074)的逐层递增公式，RvLvUp.xlsx(EV09)定义整备升级消耗。推导：爬塔挂机(GP-08)产出房车零件(1074)作为房车整备升级主材料，产出量按公式30+ROUNDUP((F-1)x220/99,0)个/日递增，构成 consumes/incoming 关系。推导边界：产出公式已由重设计文档确认，但爬塔挂机产出是否已落表与上线未确认，零件到整备升级的供需平衡属推断。UNKNOWN：爬塔挂机产出的服务端实际发放量与公式是否一致仍待运行验证。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-REL02",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-12",
+      "targetName": "跑商",
+      "description": "来源：房车养成系统小分叉重设计(EV02)定义跑商产出便签指南(1075-1079)与储藏架反哺关系，RvGuideNodeLv.xlsx(EV07)定义指南升级消耗。推导：跑商(GP-12)产出便签指南(1075-1079)作为出行指南升级材料，储藏架载货量30到36反哺跑商单次利润效率提升9%至11%，构成 consumes/incoming 关系。推导边界：产出与反哺关系已由重设计文档确认，但跑商产出是否已落表与上线未确认，反哺效率提升的实际经济影响属推断。UNKNOWN：跑商产出的服务端实际发放量与反哺效率提升的实机验证仍待确认。",
+      "status": "CROSS_SOURCE_SYNTHESIS",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-REL03",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：RvLvUp.xlsx(EV09)/RvGuideNodeLv.xlsx(EV07)/DeviceLvUp.xlsx(EV14)定义各项消耗，RVSystem.lua(EV13)执行扣除，房车养成系统数值设计文档(EV04)定义资源清单。推导：房车零件/便签指南/房车建材/加工零件/金币/邮票精力/体力的ItemId与账本由SYS-OUT-SU-04维护，房车只消费不定义资源身份，构成 consumes/outgoing 关系。推导边界：消耗配置与客户端扣除逻辑已由工作副本确认，但资源身份归属为知识目录分域结论，服务端扣除权威不可见。UNKNOWN：房车专属资源(零件/建材/加工零件)的完整ItemId清单与堆叠规则仍待SU-04确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-REL04",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家等级",
+      "description": "来源：房车养成系统当前版本设计(EV01)定义驾驶台产出玩家经验(Lv.10日3000)，ExpExchange.xlsx(EV17)定义溢出经验兑换，RvGuideNode.xlsx(EV06)定义指南阶段解锁门槛。推导：驾驶台产出玩家经验(Lv.10日3000)作为玩家等级(GR-01)升级来源，满级后转溢出池；出行指南阶段解锁受房车等级(非玩家等级)门槛约束，构成 consumes/outgoing 关系。推导边界：驾驶台产出与溢出机制已由设计文档确认，但产出是否已落表与上线未确认，玩家经验从房车到玩家等级的入账链路属推断。UNKNOWN：驾驶台经验产出的服务端实际发放量与溢出池兑换规则仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-REL05",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：房车养成系统数值设计文档(EV04)定义消耗曲线与定价(房车零件0.5钻/个、加工零件40个=1钻)，RvLvUp.xlsx(EV09)/DeviceLvUp.xlsx(EV14)定义消耗配置。推导：房车整备/指南/设备消耗曲线与设备产出价值由经济数值域(NUM-04)约束与定价，构成 prices/incoming 关系。推导边界：消耗与定价已由数值文档确认，但消耗曲线在整体经济账中的占比属经济数值域维护，本正文不复制全部数值。UNKNOWN：房车养成全周期经济成本与设备产出价值的长期平衡仍待经济域核算。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-REL06",
+      "type": "validates",
+      "direction": "incoming",
+      "targetId": "NUM-02",
+      "targetName": "养成数值",
+      "description": "来源：房车养成系统当前版本设计(EV01)定义房车属性投放，RvStrengthenResult.xlsx(EV10)/RvAttribute.xlsx(EV05)定义属性配置，战斗外系统总览(EV24)定义房车在战力曲线中的位置。推导：房车整备+指南属性进入玩家战力曲线，由养成数值域(NUM-02)核算，构成 validates/incoming 关系。推导边界：属性配置已由工作副本确认，但房车属性在玩家战力曲线中的占比与开放起点属推断，需后续重算。UNKNOWN：房车属性在整体战力预算中的占比与开放起点仍待养成数值域重算确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-REL07",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "CB-R03",
+      "targetName": "属性与计算",
+      "description": "来源：RvStrengthenResult.xlsx(EV10)定义整备固定值属性，RvAttribute.xlsx(EV05)定义指南百分比/二级属性，房车养成系统当前版本设计(EV01)描述属性投放结构。推导：房车整备固定值+指南百分比/二级属性最终进入角色属性计算(生命/攻击/防御/暴击/暴伤/能量/冷却/增伤)，属性计算归CB-R03，构成 reports/outgoing 关系。推导边界：属性配置已由工作副本确认，但属性如何并入战斗公式乘区、与角色裸体/升星/星盘/装备属性的叠加规则属推断。UNKNOWN：房车属性与其他养成属性的乘区归属与叠加优先级仍待战斗数值域确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GR-09-EV01",
+      "kind": "reverse-design",
+      "label": "房车养成系统当前版本设计(2026-07-09)",
+      "path": "design/房车养成系统当前版本设计-2026-07-09.md",
+      "location": "§房车整备/§出行指南/§升级进度裁决/§阶段结构/§经济口径；Draft/CurrentDecision，出行指南结构部分被07-14替代",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV02",
+      "kind": "reverse-design",
+      "label": "房车养成系统小分叉重设计(2026-07-14)",
+      "path": "design/房车养成系统小分叉重设计-2026-07-14.md",
+      "location": "§设计结论(62节点/310合计/A/B非互斥)/§路线结构/§单节点属性与成本规则/§爬塔挂机产出对接；已用户确认合入框架V2",
+      "status": "CONFIRMED_TARGET"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV03",
+      "kind": "reverse-design",
+      "label": "房车设备数值设计(2026-07-21)",
+      "path": "design/房车设备数值设计-2026-07-21.md",
+      "location": "§4核心规则(RV-EQ-R01~R05)/§5设备10级数值/§6建材消耗/§7工作台配方/§8溢出经验兑换/§9跨系统影响；InReview",
+      "status": "DRAFT_TARGET"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV04",
+      "kind": "reverse-design",
+      "label": "房车养成系统数值设计文档(2026-07-03)",
+      "path": "design/房车养成系统数值设计文档-2026-07-03.md",
+      "location": "§数值点清单(RV-N01~N14)/§设计原则；历史草稿，出行指南结构与消耗已被07-14替代",
+      "status": "SUPERSEDED"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV05",
+      "kind": "source-excel",
+      "label": "RvAttribute.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/RvAttribute.xlsx",
+      "location": "本机SVN工作副本；Id/Attribute/Value/Grow（7行）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV06",
+      "kind": "source-excel",
+      "label": "RvGuideNode.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/RvGuideNode.xlsx",
+      "location": "本机SVN工作副本；Id/StageId/Name/Icon/ColIdx/NextNodeIdList/NodeLvMax（314行=310节点+表头）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV07",
+      "kind": "source-excel",
+      "label": "RvGuideNodeLv.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/RvGuideNodeLv.xlsx",
+      "location": "本机SVN工作副本；Id/NodeId/TargetLv/PrepositionGradeList/NeedRvLv/Attribute/Value/CostItemList/CostCurrencyNum（314行）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV08",
+      "kind": "source-excel",
+      "label": "RvStage.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/RvStage.xlsx",
+      "location": "本机SVN工作副本；Id/GuideId/Name/NextStageId（24行=5职业×4阶段+表头）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV09",
+      "kind": "source-excel",
+      "label": "RvLvUp.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/RvLvUp.xlsx",
+      "location": "本机SVN工作副本；Id/TargetLv/CostItemNum/CostCurrencyNum（103行=100级+表头）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV10",
+      "kind": "source-excel",
+      "label": "RvStrengthenResult.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/RvStrengthenResult.xlsx",
+      "location": "本机SVN工作副本；Id/Name/AddProgress/Weight（7行）；与07-09口径冲突；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE_CONFLICT"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV11",
+      "kind": "source-excel",
+      "label": "RvGuide.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/RvGuide.xlsx",
+      "location": "本机SVN工作副本；Id/Name/HeroJob（9行=5职业+表头）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV12",
+      "kind": "source-excel",
+      "label": "RvDevice.xlsx(Facility)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/Facility/RvDevice.xlsx",
+      "location": "本机SVN工作副本；Id/Name/DeviceType/Icon/ProduceItem/UnlockId（17行=5设备×3+表头或含扩展行）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV13",
+      "kind": "source-code",
+      "label": "RVSystem.lua(房车养成全链路)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/RVSystem.lua",
+      "location": "1258行；RVUpgrade(单次/一键强化)/RVGuide(节点激活升级)/RVDevice(升级/领取/合成/兑换)三大region全实装；11个NetHandler；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV14",
+      "kind": "source-excel",
+      "label": "DeviceLvUp.xlsx(Facility)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/Facility/DeviceLvUp.xlsx",
+      "location": "本机SVN工作副本；Id/DeviceId/TargetLv/ProduceNum/CumulativeTime/BuffGainTypeList/CostItemList/CostCurrencyNum（54行）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV15",
+      "kind": "source-code",
+      "label": "RVSystem.lua(RVDevice region)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/RVSystem.lua",
+      "location": "843-1206行；InitDeviceData/CalcDeviceProduce/CanUpgradeDevice/BuildDeviceUpgradeCostList/BuildDeviceCraftDataList/ReqRvDeviceExpExchange；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV16",
+      "kind": "source-excel",
+      "label": "DeviceCraft.xlsx(Facility)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/Facility/DeviceCraft.xlsx",
+      "location": "本机SVN工作副本；CraftId/CostItem/CostCurrency/UnlockId/Tab（9行=8配方+表头）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV17",
+      "kind": "source-excel",
+      "label": "ExpExchange.xlsx(Facility)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Car/Facility/ExpExchange.xlsx",
+      "location": "本机SVN工作副本；Id/ExchangeId/CostExp（8行=7兑换项+表头）；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV18",
+      "kind": "source-code",
+      "label": "UIRVMainView.lua(房车主界面)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/RV/UIRVMainView.lua",
+      "location": "房车主界面+标签切换；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV19",
+      "kind": "source-code",
+      "label": "UIRVUpgradeView.lua(整备升级界面)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/RV/RVUpgrade/UIRVUpgradeView.lua",
+      "location": "整备升级界面；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV20",
+      "kind": "source-code",
+      "label": "UIRVNodeActivateView.lua(指南节点界面)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/RV/RVGuide/UIRVNodeActivateView.lua",
+      "location": "指南节点激活/升级界面；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV21",
+      "kind": "source-code",
+      "label": "UIRVDeviceView.lua(设备界面)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/RV/RVDevice/UIRVDeviceView.lua",
+      "location": "设备列表与升级界面；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV22",
+      "kind": "source-code",
+      "label": "UIRVCraftView.lua(工作台合成界面)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/RV/RVDevice/UIRVCraftView.lua",
+      "location": "工作台合成界面；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV23",
+      "kind": "source-code",
+      "label": "UIRVExpExchangeView.lua(溢出经验兑换界面)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/RV/RVDevice/UIRVExpExchangeView.lua",
+      "location": "溢出经验兑换界面；核对2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV24",
+      "kind": "knowledge-ref",
+      "label": "战斗外系统总览(房车)",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "location": "line 53：SYS-OUT-GR-09 房车 账号属性、职业树、设备、生产与经营连接",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV25",
+      "kind": "knowledge-ref",
+      "label": "outer-domain-audit(验证层)",
+      "path": "archive/legacy-output-20260824/research/outer-domain-audit.md",
+      "location": "房车属战斗外养成验证层；Design Doc多为Draft/InReview",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV26",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-K 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-K].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-09-EV27",
+      "kind": "human-decision",
+      "label": "2026-08-24 房车随机强化 C 裁决",
+      "path": "knowledge-base/governance/rulings.json",
+      "location": "RULING-RV-C",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GR-09-Q01",
+      "priority": "P0",
+      "question": "RvStrengthenResult 随机强化结果档采用哪组进度和权重？",
+      "impact": "影响整备升级进度与材料消耗预算；若随机档生效则单级消耗不确定，经济总耗需重新核算。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV10",
+        "SYS-OUT-GR-09-EV13"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "answer": "2026-08-24 用户最新裁决 C：随机强化 +30/+60/+100，权重 50/30/20。",
+      "resolvedBy": "用户当前对话明确裁决",
+      "resolvedAt": "2026-08-24T00:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-09-EV27"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "WORKING_COPY_ALIGNED_UNKNOWN_LIVE"
+    },
+    {
+      "id": "SYS-OUT-GR-09-Q02",
+      "priority": "P0",
+      "question": "07-09 Design出行指南结构(130节点)是否已正式标注为SUPERSEDED？文档仍标CurrentDecision。",
+      "impact": "影响策划口径一致性；07-14小分叉(310节点)已确认并ConfigReady，但旧文档状态未更新可能误导。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV02",
+        "SYS-OUT-GR-09-EV06"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-K",
+      "answer": "用户正式选择「PARTIAL」：保留指定章节，其余标废弃并列继承矩阵。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-09-EV26"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GR-09-Q03",
+      "priority": "P1",
+      "question": "房车建材(低/中/高三级)的正式ItemId何时分配？DeviceLvUp.CostItemList已有消耗配置但ItemId身份待确认。",
+      "impact": "影响设备升级材料入账与来源玩法产出配置；ItemId未分配则无法落表与测试。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV14"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-Q04",
+      "priority": "P1",
+      "question": "房车设备Design(07-21)InReview状态下配置与代码已存在，是否需先正式冻结Design再保留实现？",
+      "impact": "影响变更管控；实现先行可能导致Design与代码不一致或后续返工。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV13",
+        "SYS-OUT-GR-09-EV14"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-Q05",
+      "priority": "P1",
+      "question": "储藏架载货量联动跑商的读取方式是否已确认？跑商系统如何读取储藏架等级或载货量加成？",
+      "impact": "影响跑商利润效率+9%~11%目标是否可达；读取方式未确认则联动无法验收。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV03",
+        "SYS-OUT-GR-09-EV15"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-Q06",
+      "priority": "P2",
+      "question": "ShopGoods.xlsx旧ItemId 302-306是否已更新为1075-1079？07-14称需用户批准06镜像后才可执行。",
+      "impact": "影响便签指南在行商商店的可购买性；旧引用导致购买产出错误道具。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV02"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "当前 ShopGoods.xlsx 中目标商店行已使用 ItemId 1075–1079（GoodsId 1109011–1109015），未在同一目标行集观察到旧 302–306 口径。这只是当前工作副本观察。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-09-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09-Q07",
+      "priority": "P2",
+      "question": "房车系统入口何时对玩家开放？07-09称需结合爬塔/跑商/系统开放表确认，07-21确认设备无房车等级门槛但入口时机未定。",
+      "impact": "影响房车三线养成对玩家可见与可参与的时机；开放过晚则中长期目标感不足。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV01",
+        "SYS-OUT-GR-09-EV03"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-09-Q08",
+      "priority": "P2",
+      "question": "07-14称'SVN未修改'但Car/配置已存在(314行RvGuideNode)，配置是通过框架V2镜像导入还是独立路径？",
+      "impact": "影响配置变更管控与文档状态一致性；需确认配置导入路径以建立可追踪链路。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-09-EV02",
+        "SYS-OUT-GR-09-EV06"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "humanDecisions": [
+    {
+      "cardId": "DC-K",
+      "closeableQuestionId": "SYS-OUT-GR-09-Q02",
+      "selectedOptionId": 3,
+      "selectedOptionName": "PARTIAL",
+      "approvedTarget": "选择「PARTIAL」：保留指定章节，其余标废弃并列继承矩阵。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:25.473Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "07-09 房车出行指南按 PARTIAL 处理；保留章节与废弃章节尚待继承矩阵明确。",
+      "evidenceRef": "SYS-OUT-GR-09-EV26",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

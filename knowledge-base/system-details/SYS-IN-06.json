@@ -1,0 +1,905 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-IN-06",
+  "name": "玩法局内规则",
+  "revision": "2026-08-19.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置与实现线索，不证明 Production/LIVE。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份设计、源码、配置或 Skill 归纳出的结构，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-IN-06-R03",
+        "SYS-IN-06-R08"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-IN-06-R08"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "玩法局内规则维护各玩法在战斗实例内的目标、压力与胜负变体：主线、副本、PVPVE、爬塔、大秘境与 BOSS 挑战在同一战斗底座上如何走向胜负。",
+    "inScope": [
+      "各玩法 LevelType 到运行模式（GameMode）的映射",
+      "普通/副本（NormalMode）、资源本（CoinMode）的局内目标与胜负",
+      "无限挑战（NeuralMode）的波次循环与切层",
+      "竞技场 PVPVE 的局内施压、基地承伤与对账胜负",
+      "爬塔、大秘境、BOSS 挑战的局内变体与运行模式复用",
+      "胜负判定、失败/超时条件与战斗结果生成入口"
+    ],
+    "outOfScope": [
+      "各玩法的入口、次数、门票、奖励、赛季与排行；归对应外循环系统 SYS-OUT-GP-01..10",
+      "竞技场段位、门票与赛季；归 SYS-OUT-GP-07",
+      "具体刷怪数值、怪物等级与难度线；归 NUM-03",
+      "地形、Loop 与流送实现；归 SYS-IN-05",
+      "战斗实例加载/暂停/异常退出；归 SYS-IN-01",
+      "结算触发之后的真实入账与发奖；归 SYS-IN-08 与 SYS-OUT-SU-05"
+    ],
+    "inputs": [
+      "玩法身份、关卡 ID 与模式上下文（来自外循环 enters）",
+      "编队、角色最终属性与技能快照",
+      "难度档、环境词缀、匹配或赛季上下文",
+      "关卡空间与波次结构（来自 SYS-IN-05）"
+    ],
+    "outputs": [
+      "胜负判定（isWin）与玩法专属统计",
+      "战斗结果（CReqFightOver）交结算触发 SYS-IN-08",
+      "各玩法目标达成/失败事件（切层、基地归零、超时）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式战斗内系统",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "玩法局内规则是战斗内系统的组成项，目录登记为正式，没有争议。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "正式玩法边界清楚；分玩法细节文档多为 Draft",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "note": "主线/资源本/无限/竞技场等正式身份来自核心理解资料；竞技场/无限/爬塔/大秘境 Design Doc 均为 Draft，细节不能直接升格为正式规则。"
+    },
+    {
+      "axis": "当前工作副本源表",
+      "value": "GameMode 实现链已核；TowerMode 未定位",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于2026-08-18：NormalMode/CoinMode/NeuralMode/PVPVEMode/MysteryMode/AdvancedBossMode 等存在，但无 TowerMode 类，爬塔运行时复用待确认。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程实现链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源码与配置证据，但缺集中版本—开关—发布时间台账，不能把所有模式直接盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-IN-06-F01",
+      "name": "玩法局内胜负判定流程",
+      "steps": [
+        {
+          "id": "SYS-IN-06-F01-S01",
+          "name": "接收玩法上下文",
+          "description": "从玩法外壳 receives LevelType、关卡 ID、难度档、词缀或匹配上下文与编队快照。"
+        },
+        {
+          "id": "SYS-IN-06-F01-S02",
+          "name": "装载运行模式",
+          "description": "按 LevelType 解析到对应 GameMode（NormalMode/CoinMode/NeuralMode/PVPVEMode 等）并初始化。"
+        },
+        {
+          "id": "SYS-IN-06-F01-S03",
+          "name": "执行玩法目标与压力",
+          "description": "驱动波次循环、金币目标、基地承伤、词缀或阶段目标，产生玩法专属状态。"
+        },
+        {
+          "id": "SYS-IN-06-F01-S04",
+          "name": "判定胜负或超时",
+          "description": "胜利、失败或超时条件成立时经实际结算触发点（BaseGameMode.DoGameOver / World.SetGameOver / PVPMode.OnLose 内联 / GameOverData 关卡触发）进入结果生成。"
+        },
+        {
+          "id": "SYS-IN-06-F01-S05",
+          "name": "生成结果并上报",
+          "description": "GenerateBattleResult 组装战斗结果并交结算触发 SYS-IN-08 消费。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-IN-06-R01",
+      "name": "局内规则与玩法外壳分权",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "本系统只维护战斗实例内的目标、压力与胜负变体；入口、次数、门票、奖励、赛季与排行归对应外循环系统，不在此正文复制。",
+      "sourceFact": "核心理解资料将主线、资源副本（金币/角色经验/专武）、旅券、映射装备、无限挑战、竞技场、爬塔、大秘境、BOSS 挑战列为正式玩法，并在玩法条目内描述解锁、奖励与赛季等外循环口径；战斗域审计 §13 明确「玩法身份和周期不由战斗域单独决定」，战斗域只承担 GameMode、玩法增益与胜负/结算事件。",
+      "acceptance": "任何局内规则都能回到 GameMode 实现或关卡/玩法配置；入口与奖励只通过 enters/reports 关系引用外循环 ID。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GP-07",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-06-EV11",
+        "SYS-IN-06-EV12"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-R02",
+      "name": "玩法到运行模式映射",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「玩法到运行模式映射」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "每种玩法经 LevelType 映射到对应 GameMode；映射为 LGameModeMgr.InitGameMode 单一 switch（L25-45：LevelType_Neural_Roam→NeuralMode、LevelType_PVPVE→PVPVEMode、LevelType_Gold→CoinMode、LevelType_Mystery→MysteryMode、LevelType_BossDungeonChallenges_Hard→AdvancedBossMode、LevelType_PVP/LevelType_PVP_BOSS/LevelType_Trade→PVPMode、LevelType_RougeLike→RogueMode、LevelType_Guilidboss→GuildBossMode、默认→NormalMode）。代码中未见 LevelType→Intent→GameMode 的三段式「Intent」层，仅 LevelType 直接 switch 到 GameMode（Intent 层=UNKNOWN，见 SYS-IN-06-Q08）。关键玩法链路回源（正式玩法→LevelType→Intent→GameMode→配置→SceneData→胜负/结算）：①主线=SYS-OUT-GP-01→LevelType(default/Normal)→Intent=UNKNOWN→NormalMode→level.xlsx/LevelType.xlsx→SceneData=UNKNOWN→GameOverData 触发 World.SetGameOver(isWin)（GameOverData.cs L37/L91）；②竞技场=SYS-OUT-GP-07→LevelType_PVPVE→Intent=UNKNOWN→PVPVEMode→Arena 配置（ArenaLevelId=700000）→SceneData=PVPVE 同图→水晶死亡/投降→BattlleEnd(false)→OnBattleEndTimer→World.SetGameOver（PVPVEMode.cs L304-306/L365-367/L440-450）；③金币副本=SYS-OUT-GP-03→LevelType_Gold→Intent=UNKNOWN→CoinMode→CoinLevel.xlsx→SceneData=UNKNOWN→超时 DoGameOver(false)（CoinMode.cs L276-280），胜利判据=UNKNOWN（见 SYS-IN-06-Q06）；④爬塔=SYS-OUT-GP-08→LevelType=UNKNOWN（无 TowerMode 类，落入默认 NormalMode）→Intent=UNKNOWN→GameMode=UNKNOWN→配置=UNKNOWN→SceneData=UNKNOWN→胜负=UNKNOWN（见 SYS-IN-06-Q01）；⑤无限挑战=SYS-OUT-GP-06→LevelType_Neural_Roam→Intent=UNKNOWN→NeuralMode→配置=UNKNOWN→SceneData=UNKNOWN→OnWin 切层非终局（NeuralMode.cs）。（工作副本代码/配置观察）；LGameModeMgr.cs L25-45；LevelType.xlsx 含 SystemId、WinSettlementUI/LoseSettlementUI 等字段。",
+      "acceptance": "正式玩法能映射到运行模式；废弃玩法（Rogue/世界Boss）不因模式类残留被恢复为正式。链路中任一 UNKNOWN 环节不得当作已确认结论引用。",
+      "relatedIds": [
+        "SYS-IN-01",
+        "SYS-IN-05"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-06-EV10",
+        "SYS-IN-06-EV13",
+        "SYS-IN-06-EV12",
+        "SYS-IN-06-EV16"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q01",
+        "SYS-IN-06-Q06",
+        "SYS-IN-06-Q08"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-R03",
+      "name": "主线/副本通用胜负",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「主线/副本通用胜负」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "普通推进类玩法经 NormalMode 运行，但 NormalMode 为占位空类（继承 BaseGameMode，无自定义结算路径）；胜负由关卡外部触发器 GameOverData（TriggerData\\GameOverData.cs 调 World.SetGameOver(isWin)）或技能失败动作等驱动。胜利口径未见 NormalMode 自身断言，不能把「最后 Loop 结束即胜利」当作源码级结论。（工作副本代码/配置观察）；NormalMode.cs 为 6 行空类；GameOverData.cs L37/L91 调 entity.World.SetGameOver(isWin)。",
+      "acceptance": "主线与普通副本的胜负可追到 GameOverData 或模式内结算触发（SetGameOver/DoGameOver）；具体胜利判定实现由关卡触发或其它模式补充，NormalMode 自身不含结算逻辑。",
+      "relatedIds": [
+        "SYS-IN-05",
+        "SYS-IN-08",
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-06-EV05",
+        "SYS-IN-06-EV06",
+        "SYS-IN-06-EV12"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q02"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-R04",
+      "name": "资源副本局内目标",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「资源副本局内目标」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "金币类资源本经 CoinMode 运行，倒计时结束判定失败，Boss/小怪死亡发放局内金币进入战斗结果；CoinMode 代码内仅有超时失败结算（Update 中 elapsedTime≥timeLimit 调 World.LGameModeMgr.DoGameOver(false)，CoinMode.cs L276-280），未重写 OnWin、无 DoGameOver(true)、无 OnWin 触发路径，金币累计（OnHpChanged/OnEntityDeath→AddCoinReward→World.BattleResult.AddCoin，L203-210）仅为奖励产出、不触发胜负。CoinMode 自身未发现任何胜利判据代码：sourceFact=UNKNOWN（缺胜利判据证据，见 SYS-IN-06-Q06）。不得臆造「胜利来自 GameOverData」——GameOverData 是通用关卡触发器机制（可 SetGameOver(isWin=true)），但未回源确认金币副本关卡是否实际挂载 isWin=true 的 GameOverData 触发器，故金币副本胜利判据=UNKNOWN。（工作副本代码/配置观察）；CoinMode.cs L108-210/L255-303。",
+      "acceptance": "金币本超时判负与金币累计能回到 CoinMode 实现；胜利判据在源码未核到前保持 UNKNOWN，不得引用未回源的 GameOverData 假设；具体金币数量与真实入账口径归数值与 SYS-OUT-SU-05。",
+      "relatedIds": [
+        "SYS-IN-08",
+        "SYS-OUT-GP-03",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-06-EV07",
+        "SYS-IN-06-EV12"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q06"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-R05",
+      "name": "无限挑战局内循环",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「无限挑战局内循环」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "无限挑战经 NeuralMode 运行，普通→精英→Boss 三波循环，每轮难度递增；层内胜利是切层而非真正 GameOver。（工作副本代码/配置观察）；NeuralMode.cs 的 OnWin 注释明确胜利是切层，会重置 IsGameOver=false 继续 tick；OnShowWin 处理 Boss 血量分段；Design Doc（Draft）描述三阶段循环。",
+      "acceptance": "无限挑战的循环与切层行为能回到 NeuralMode；最佳深度/周奖励归外循环 SYS-OUT-GP-06。",
+      "relatedIds": [
+        "SYS-OUT-GP-06",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-06-EV08",
+        "SYS-IN-06-EV02",
+        "SYS-IN-06-EV12"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q04"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-R06",
+      "name": "竞技场 PVPVE 局内施压与基地承伤",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_DRAFT",
+      "targetRule": "GAP：尚无权威目标设计冻结「竞技场PVPVE局内施压与基地承伤」的正式策划口径；本条仅有Draft反推与工作副本代码/配置观察（见sourceFact），观察不得当作正式规则引用。Draft描述竞技场双方同图竞速、未清理敌人攻击基地、先破基地判负、炮台影响基地HP与承伤，但Q03明确该口径未冻结。",
+      "sourceFact": "PVPVEMode.cs 存在 ReqBattleResult/RespBattleResult 消息与 isWin 对账；核心理解资料确认「未清怪攻击基地、先破基地判负、炮台影响基地承伤」。竞技场 Design Doc（Draft）详述杀敌送敌与基地 HP。 Draft反推口径：竞技场双方同图竞速，未清理的敌人攻击己方基地，先破基地一方判负；炮台影响基地 HP 与承伤。该口径来自Draft Design Doc(EV01)，Q03(P1)明确未冻结。",
+      "acceptance": "局内施压、基地承伤与对账胜负能回到 PVPVEMode；段位/门票/赛季归 SYS-OUT-GP-07，炮台/基地成长归 SYS-OUT-GR-08。",
+      "relatedIds": [
+        "SYS-OUT-GP-07",
+        "SYS-OUT-GR-08"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-06-EV09",
+        "SYS-IN-06-EV01",
+        "SYS-IN-06-EV11"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q03"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-R07",
+      "name": "爬塔/大秘境/BOSS挑战局内变体",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "targetRule": "GAP：尚无权威目标设计冻结「爬塔/大秘境/BOSS挑战局内变体」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "大秘境经 MysteryMode 注入环境词缀修改规则，BOSS 挑战经 AdvancedBossMode 运行；爬塔局内层推进的运行模式复用待确认。（工作副本代码/配置观察）；MysteryMode.cs 与 AdvancedBossMode.cs 存在；Mode 目录无 TowerMode 类，爬塔 Design Doc（Draft）声称新增 TowerMode 但未在源码定位到。",
+      "acceptance": "大秘境词缀与 BOSS 挑战模式能回到实现；爬塔不得用通用模式或 Draft 推断为已落地，需源码级确认。",
+      "relatedIds": [
+        "SYS-OUT-GP-08",
+        "SYS-OUT-GP-09",
+        "SYS-OUT-GP-10"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-06-EV10",
+        "SYS-IN-06-EV03",
+        "SYS-IN-06-EV04",
+        "SYS-IN-06-EV12"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q01",
+        "SYS-IN-06-Q05"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-R08",
+      "name": "胜负判定与失败/超时",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：尚无权威目标设计冻结「胜负判定与失败/超时」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "不存在单一「DoGameOver 唯一结算入口」；实际有多个结算触发点：①BaseGameMode.DoGameOver（幂等保护 IsGameOver，分发 OnWin/OnLose，GameModeBase.cs L36-46）；②World.SetGameOver（LogicWorld.cs L341-347→LGameModeMgr.DoGameOver，PVPVE、GameOverData 关卡触发、技能失败动作、玩家死亡等直接调用）；③PVPMode.OnLose 内联结算（PVPMode.cs L72-84，手动置 IsGameOver=true 绕过 DoGameOver 守卫）；④GameOverData 触发器（TriggerData\\GameOverData.cs L37/L91 调 World.SetGameOver(isWin)）。BaseGameMode.DoGameOver 做幂等保护并分发 OnWin/OnLose（幂等仅限经 DoGameOver 的路径，PVPMode.OnLose 内联路径自行置 IsGameOver，其他模式结算幂等性已并入 SYS-IN-08-Q05 统一裁决（两问合并））；CoinMode 超时判负（仅超时失败，无胜利判据，见 SYS-IN-06-Q06）；PVPVE 投降已实现（GWCombat.PVPVESurrender→LogicProxy.LMsg_DispatchPVPVEMsg(PVPVEMsgType.Surrender)→PVPVEMode.HandleLogicMsg case Surrender→BattlleEnd(false)，GWCombat.cs L534-543 / PVPVEMode.cs L365-367）。（工作副本代码/配置观察）。胜负结果的 ResultHash 对 BattleResult 计算哈希，BattleRecord 是回放记录；ResultHash/Version/BattleRecord 仅在 GameModeBase.GenerateBattleResult 且 MessageProcessor 为 NormalMessageProcessor 时赋值；PVPVEMode 重写后这三字段缺失（赋值条件详见 SYS-IN-08-R01）。",
+      "acceptance": "正常胜利、失败、超时、投降四类路径有已核实的结算触发点（SetGameOver/DoGameOver/OnLose 内联/GameOverData）；断线重连/判定的可执行性=UNKNOWN（无源码证据，不得声称断线已有可执行判定）；未冻结项显式进入问题清单。",
+      "relatedIds": [
+        "SYS-IN-08",
+        "SYS-IN-01"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-06-EV05",
+        "SYS-IN-06-EV07",
+        "SYS-IN-06-EV09",
+        "SYS-IN-06-EV14",
+        "SYS-IN-06-EV15",
+        "SYS-IN-06-EV17",
+        "SYS-IN-06-EV12"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q02",
+        "SYS-IN-06-Q06"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-IN-06-C01",
+      "name": "普通/副本胜利条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "普通/副本的胜负由关卡触发器 GameOverData 或模式内/技能动作触发 World.SetGameOver(isWin) 进入结果生成；NormalMode 自身为空类不直接判定胜利。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV06",
+        "SYS-IN-06-EV05"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-C02",
+      "name": "金币本时间限制",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "CoinMode 记录关卡时间限制，倒计时结束仍未达成目标则 DoGameOver(false)（CoinMode.cs L276-280）。CoinMode 自身无胜利判据，胜利口径=UNKNOWN。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV07"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q06"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-C03",
+      "name": "无限挑战波次循环",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_DRAFT",
+      "rule": "波次按普通→精英→Boss 三阶段循环，难度递增；层内胜利走切层而非终局。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV08",
+        "SYS-IN-06-EV02"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q04"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-C04",
+      "name": "竞技场基地归零判负",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_DRAFT",
+      "rule": "未清怪攻击基地，基地 HP 先归零一方判负；胜负经 PVPVE 结果消息对账。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV09",
+        "SYS-IN-06-EV11"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q03"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-C05",
+      "name": "爬塔运行模式复用",
+      "status": "RULE_UNKNOWN",
+      "rule": "爬塔是否复用通用模式、TowerMode 是否实现，未在源码定位到，需源码级确认。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV10",
+        "SYS-IN-06-EV03"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q01"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-IN-06-EX01",
+      "name": "爬塔运行模式缺口",
+      "status": "P1_GAP",
+      "rule": "Mode 目录无 TowerMode 类，爬塔局内层推进的运行实现未核到，不能按 Draft 断言已落地。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV10",
+        "SYS-IN-06-EV03"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q01"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-EX02",
+      "name": "PVPVE 同归零与投降鲁棒性",
+      "status": "P1_GAP",
+      "rule": "PVPVE 投降已确认源码实现（GWCombat.PVPVESurrender L534-543→LogicProxy.LMsg_DispatchPVPVEMsg(PVPVEMsgType.Surrender)→PVPVEMode.HandleLogicMsg case Surrender L365-367→BattlleEnd(false)）；但双方基地几乎同时归零的并发判负、投降确认弹窗的 Lua 回调归属与机器人对手的胜负一致性仍需服务器权威口径确认。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV01",
+        "SYS-IN-06-EV09",
+        "SYS-IN-06-EV14",
+        "SYS-IN-06-EV15"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q02",
+        "SYS-IN-06-Q03"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-EX03",
+      "name": "失败/超时/断线胜负口径",
+      "status": "P1_GAP",
+      "rule": "失败是否扣成本、断线重连是否继续、超时是否统一判负，各玩法口径未冻结，不能在局内规则层选边。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV12",
+        "SYS-IN-06-EV05"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q02"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-EX04",
+      "name": "专武经验本本体冲突",
+      "status": "P1_CONFLICT",
+      "rule": "专武经验副本局内规则存在，但专武→收容物采用一个大版本兼容期；经验本在兼容期内的维护与下线点由实施方案确定，局内规则服从发布台账。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV12"
+      ],
+      "questionRefs": [
+        "SYS-IN-06-Q09"
+      ]
+    }
+  ],
+  "ui": [],
+  "configs": [
+    {
+      "id": "SYS-IN-06-CFG01",
+      "name": "LevelType",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelType.xlsx",
+      "role": "LevelType 枚举、SystemId 玩法归属、WinSettlementUI/LoseSettlementUI 结算 UI 路由、金币带出开关",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-CFG02",
+      "name": "level",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx",
+      "role": "关卡 LevelType 引用，将具体关卡绑定到玩法局内规则",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-IN-06-REL01",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-01",
+      "targetName": "战斗实例与状态",
+      "description": "玩法局内规则在战斗实例内装载对应 GameMode 并驱动胜负。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV05",
+        "SYS-IN-06-EV13"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-IN-06-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-05",
+      "targetName": "关卡空间与遭遇",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。玩法目标与胜负条件消费地形、Loop 与波次结构。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV06",
+        "SYS-IN-06-EV12"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-06-REL03",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-08",
+      "targetName": "胜负、结果与结算触发",
+      "description": "上报胜负、目标达成与玩法专属统计，进入结算触发。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-IN-06-REL04",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。主线把场景、关卡规则与编队交给局内规则。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV11",
+        "SYS-IN-06-EV12"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-06-REL05",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-03",
+      "targetName": "金币/角色经验资源副本",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。资源副本把关卡与限时/金币目标交给局内规则。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV07",
+        "SYS-IN-06-EV11"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-06-REL06",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-04",
+      "targetName": "旅券副本",
+      "description": "旅券副本把 Boss 式关卡交给局内规则。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV11"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-IN-06-REL07",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-05",
+      "targetName": "映射装备副本",
+      "description": "映射装备副本把短循环刷取关卡交给局内规则。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV12"
+      ],
+      "provenance": "DESIGN_PROPOSAL"
+    },
+    {
+      "id": "SYS-IN-06-REL08",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-06",
+      "targetName": "无限挑战",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。无限挑战把波次循环与难度递增上下文交给局内规则。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV08",
+        "SYS-IN-06-EV02"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-06-REL09",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-07",
+      "targetName": "竞技场（PVPVE）",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。竞技场把匹配与段位上下文交给局内施压/基地承伤规则。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV09",
+        "SYS-IN-06-EV01"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-06-REL10",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-08",
+      "targetName": "爬塔",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。爬塔把楼层推进上下文交给局内规则。（楼层推进口径来自 Draft 设计文档与核心理解资料；运行模式复用未源码级确认，见 SYS-IN-06-Q01。）",
+      "status": "RULE_GAP",
+      "evidenceRefs": [
+        "SYS-IN-06-EV03",
+        "SYS-IN-06-EV11"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-06-REL11",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-09",
+      "targetName": "大秘境",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。大秘境把赛季与词缀上下文交给局内规则。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV04",
+        "SYS-IN-06-EV10"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-06-REL12",
+      "type": "enters",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-10",
+      "targetName": "BOSS 挑战",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。BOSS 挑战把一次性 Boss 验证上下文交给局内规则。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-06-EV10",
+        "SYS-IN-06-EV11"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-06-REL13",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "玩法难度线与怪物等级/系数约束局内目标强度。（推导依据边界：数值约束关系来自知识目录 NUM-03 战斗数值域划分；本系统侧证据仅覆盖各模式时限/金币/波次等目标实现（SYS-IN-06-EV05/EV07/EV08），无冻结的玩法难度线文档直接约束本系统，本条为知识框架层跨源归纳，非单源文档结论。）",
+      "status": "MODEL_NOT_CLOSED",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-IN-06-EV01",
+      "kind": "reverse-design",
+      "label": "竞技场 Design Doc",
+      "path": "design/竞技场Design Doc.md",
+      "href": "../../../design/竞技场Design Doc.md",
+      "location": "R-02 杀敌送敌、R-03 基地 HP、R-04 炮台、R-05 结算胜负",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-06-EV02",
+      "kind": "reverse-design",
+      "label": "无限挑战 Design Doc",
+      "path": "design/无限挑战Design Doc.md",
+      "href": "../../../design/无限挑战Design Doc.md",
+      "location": "R-01 三阶段循环、R-02 等级增长、R-06 续航",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-06-EV03",
+      "kind": "reverse-design",
+      "label": "爬塔 Design Doc",
+      "path": "design/爬塔Design Doc.md",
+      "href": "../../../design/爬塔Design Doc.md",
+      "location": "R-01 楼层结构、R-05 解锁、技术方案 TowerMode",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-06-EV04",
+      "kind": "reverse-design",
+      "label": "大秘境 Design Doc",
+      "path": "design/大秘境Design Doc.md",
+      "href": "../../../design/大秘境Design Doc.md",
+      "location": "R-02 25层、R-03 词缀、技术方案 MysteryMode",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-06-EV05",
+      "kind": "source-code",
+      "label": "GameModeBase.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/GameModeBase.cs",
+      "location": "BaseGameMode.DoGameOver(bool isWin) L36-46（IsGameOver 幂等守卫 L38-39，置 IsGameOver=true L41，分发 OnWin/OnLose L42-45）；OnWin L48-52 / OnLose L54-58 调 GenerateBattleResult+VMsg_GameOver；GenerateBattleResult L60-83（仅当 MessageProcessor is NormalMessageProcessor 时 L73-79 赋 ResultHash(L77,对BattleResult计算MD5)/Version(L78)/BattleRecord(L76,回放记录)）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV06",
+      "kind": "source-code",
+      "label": "NormalMode.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/NormalMode.cs",
+      "location": "NormalMode 继承 BaseGameMode",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV07",
+      "kind": "source-code",
+      "label": "CoinMode.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/CoinMode.cs",
+      "location": "CoinMode : BaseGameMode；Update L255-282 倒计时（elapsedTime>=timeLimit → World.LGameModeMgr.DoGameOver(false) L276-280，仅超时判负）；OnLose L287-303 传 Boss 血量到 Lua 后调 base.OnLose；AddCoinReward L203-210 → World.BattleResult.AddCoin（仅奖励产出）；无 OnWin 重写、无 DoGameOver(true)、无胜利判据代码",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV08",
+      "kind": "source-code",
+      "label": "NeuralMode.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/NeuralMode.cs",
+      "location": "OnWin 切层、OnShowWin Boss 血量分段（L125-218）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV09",
+      "kind": "source-code",
+      "label": "PVPVEMode.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/PVPVEMode.cs",
+      "location": "PVPVEMode:BaseGameMode L87；OnEntityDeath 水晶死亡→BattlleEnd(false) L304-306；HandleLogicMsg case PVPVEMsgType.Surrender→BattlleEnd(false) L365-367；OnRespOppBattleResult L418-438（置 isWin/isBattleEnd、起定时器）；OnBattleEndTimer L440-450→World.SetGameOver(isWin) L449；override GenerateBattleResult L452-481（仅算 hash 打日志 L476-477，不赋 req.ResultHash/Version/BattleRecord，三字段丢失）；BattlleEnd L483-520",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV10",
+      "kind": "source-code",
+      "label": "Mode 目录",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode",
+      "location": "Normal/Coin/Neural/PVPVE/PVP/Mystery/AdvancedBoss/GuildBoss/Rogue；无 TowerMode",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV11",
+      "kind": "design-target",
+      "label": "当前玩法快照",
+      "path": "D:/Vgame_design/skills/vgame-core-understanding/references/current-gameplay.md",
+      "location": "Formal Main Gameplay：主线、资源副本（金币/角色经验/专武）、旅券、映射装备、无限挑战、竞技场、爬塔、大秘境、BOSS 挑战的角色/解锁/结构注记",
+      "status": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-IN-06-EV12",
+      "kind": "reverse-design",
+      "label": "战斗域审计",
+      "path": "archive/legacy-output-20260824/research/combat-domain-audit.md",
+      "location": "§9 玩法战斗规则、§4.4 胜负波次、§13 跨域输入输出、§15 缺口",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-06-EV13",
+      "kind": "source-excel",
+      "label": "LevelType.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/LevelType.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/LevelType.xlsx",
+      "location": "本机SVN工作副本；LevelType/SystemId/WinSettlementUI/LoseSettlementUI 字段核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV14",
+      "kind": "source-code",
+      "label": "GameOverData.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/TriggerData/GameOverData.cs",
+      "location": "GameOverData 关卡触发器；OnEnter L82-98（!useDelayAction → entity.World.SetGameOver(isWin) L91）；PlayExit L33-80 延迟分支 → entity.World.SetGameOver(isWin) L37；isWin 字段 L17（默认 true）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV15",
+      "kind": "source-code",
+      "label": "GWCombat.cs（PVPVE 投降客户端触发）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.GameLogic/Runtime/GameWorld/Combat/GWCombat.cs",
+      "location": "GWCombat.PVPVESurrender() L534-543：构造 PVPVEMsg{MsgType=PVPVEMsgType.Surrender}，经 LogicProxy.LMsg_DispatchPVPVEMsg(msg) 下发逻辑层（对接 PVPVEMode.HandleLogicMsg case Surrender）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV16",
+      "kind": "source-code",
+      "label": "LGameModeMgr.cs（LevelType→GameMode 映射）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Managers/LGameModeMgr.cs",
+      "location": "LGameModeMgr.InitGameMode L25-45：levelType switch（LevelType_Neural_Roam→NeuralMode、LevelType_PVPVE→PVPVEMode、LevelType_Gold→CoinMode、LevelType_Mystery→MysteryMode、LevelType_BossDungeonChallenges_Hard→AdvancedBossMode、LevelType_PVP/PVP_BOSS/Trade→PVPMode、LevelType_RougeLike→RogueMode、LevelType_Guilidboss→GuildBossMode、默认→NormalMode）；DoGameOver L60-64→currentGameMode.DoGameOver+EventGameOver",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-06-EV17",
+      "kind": "source-code",
+      "label": "LogicWorld.cs（World.SetGameOver 总调度）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/LogicWorld.cs",
+      "location": "World.SetGameOver(bool isWin) L341-347：调 LGameModeMgr.DoGameOver(isWin) L343，#if UNITY_EDITOR 调 BattleMonitor.MarkBattleEnded L345",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-IN-06-Q01",
+      "priority": "P1",
+      "question": "爬塔运行时复用哪个 GameMode，TowerMode 是否已实现？",
+      "impact": "决定爬塔局内层推进、失败与结算的实现口径，当前源码未定位。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV10",
+        "SYS-IN-06-EV03"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "当前工作副本没有 TowerMode。TowerSystem 使用 LevelType_PVP_BOSS，LGameModeMgr 将其直接映射到 PVPMode；这是工作副本实现观察，不代表 LIVE 或正式产品裁决。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-IN-06-EV10",
+        "SYS-IN-06-EV03"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-Q02",
+      "priority": "P1",
+      "question": "各玩法失败、超时、断线与投降的正式胜负口径是什么？",
+      "impact": "影响失败扣成本、重连继续、超时判负与补发的一致性。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV05",
+        "SYS-IN-06-EV12"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-06-Q03",
+      "priority": "P1",
+      "question": "PVPVE 杀敌送敌、基地承伤与炮台升级的正式规则是否已冻结？",
+      "impact": "竞技场局内施压是 Draft，实机口径未关闭。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV01",
+        "SYS-IN-06-EV09"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-06-Q04",
+      "priority": "P2",
+      "question": "无限挑战波次间 HP/MP 是否恢复，怪物等级 cap 与公式参数是否冻结？",
+      "impact": "影响无限挑战续航与难度线验收。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV02",
+        "SYS-IN-06-EV08"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-06-Q05",
+      "priority": "P2",
+      "question": "大秘境词缀组合的规则引擎落地状态与词缀冲突优先级？",
+      "impact": "决定大秘境赛季差异化是否可运行，Draft 仅描述设计意图。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV04",
+        "SYS-IN-06-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-06-Q06",
+      "priority": "P1",
+      "question": "金币副本（CoinMode）的胜利判据是否存在？CoinMode 源码仅有超时判负、无 OnWin/DoGameOver(true)，是否由关卡挂载 isWin=true 的 GameOverData 触发器实现胜利？",
+      "impact": "金币副本若无胜利判据则无法正常通关结算；当前源码未核到胜利路径，胜利口径=UNKNOWN，不得臆造来自 GameOverData。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV07",
+        "SYS-IN-06-EV14"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-06-Q08",
+      "priority": "P2",
+      "question": "是否存在 LevelType→Intent→GameMode 三段式「Intent」中间层？现行代码仅 LevelType 直接 switch 到 GameMode，Intent 层=UNKNOWN。",
+      "impact": "影响玩法链路映射的正式口径；当前仅工作副本代码观察，无 Intent 层证据。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV16",
+        "SYS-IN-06-EV13"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "当前客户端工作副本中是 LevelType 直接 switch 到 GameMode，未观察到 LevelType→Intent→GameMode 的独立 Intent 中间层。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-IN-06-EV16",
+        "SYS-IN-06-EV13"
+      ]
+    },
+    {
+      "id": "SYS-IN-06-Q09",
+      "priority": "P2",
+      "question": "专武经验副本在专武→收容物迁移后本体与经验本是否保留？局内规则归属哪个外循环系统裁决？",
+      "impact": "决定专武经验本在一个大版本兼容期内的维护范围与最终下线点；局内规则服从发布台账。",
+      "evidenceRefs": [
+        "SYS-IN-06-EV12"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在接收上下文、装载模式、目标判定与结果上报的有序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "胜利、超时、波次循环、基地归零与模式复用均为目标/胜负条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "本系统只上报胜负与统计，奖励与真实入账归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "爬塔模式缺口、PVPVE 投降、断线超时与专武经验本冲突存在"
+    },
+    "ui": {
+      "state": "N/A",
+      "reason": "玩家可见战斗 UI 归 SYS-IN-07，本系统不维护页面"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "LevelType 与 level 的玩法绑定字段是真实配置源"
+    }
+  }
+}

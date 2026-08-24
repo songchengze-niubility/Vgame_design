@@ -1,0 +1,2147 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-24T03:54:08.001Z",
+  "project": "Vgame",
+  "frameworkPrinciples": [
+    "玩家系统先分战斗内与战斗外。",
+    "战斗外继续细分玩法、养成、经济、获取、留存、商业化、社交、引导与运营。",
+    "玩法是跨域对象：战斗外壳层与战斗内实例规则分别归类。",
+    "配置、数值、UI、数据、QA和知识治理属于项目支撑与治理层，不是第三类玩家系统。",
+    "Design、运行开放、配置存在和证据权威使用不同状态轴。"
+  ],
+  "statusModel": {
+    "designLifecycle": [
+      "DRAFT",
+      "IN_REVIEW",
+      "APPROVED",
+      "TEMPORARY",
+      "ARCHIVED",
+      "DEPRECATED",
+      "REFERENCE",
+      "UNKNOWN"
+    ],
+    "runtimeRelease": [
+      "PLAN",
+      "DEV",
+      "INTERNAL_TEST",
+      "GRAY",
+      "LIVE",
+      "MAINTENANCE",
+      "NOT_OPEN",
+      "CLOSED",
+      "DEPRECATED",
+      "REMOVED",
+      "UNKNOWN"
+    ],
+    "landingEvidence": [
+      "DESIGN_ONLY",
+      "CONFIG_MIRROR",
+      "DATAS",
+      "CLIENT",
+      "SERVER",
+      "PARTIAL",
+      "VERIFIED",
+      "MIXED",
+      "UNKNOWN"
+    ],
+    "resolution": [
+      "CLEAR",
+      "OPEN",
+      "CONFLICT"
+    ]
+  },
+  "graphSources": {
+    "currentRepositoryGraph": {
+      "path": ".understand-anything/knowledge-graph.json",
+      "analyzedAt": "2026-08-14T08:19:13.395Z",
+      "nodes": 3013,
+      "edges": 2327,
+      "usage": "本框架 52 份 Design 文档映射与当前仓库导航。"
+    },
+    "legacyCrossRepositoryGraph": {
+      "path": "knowledge-graph/.understand-anything/knowledge-graph.json",
+      "analyzedAt": "2026-06-23T21:27:43Z",
+      "nodes": 1896,
+      "edges": 1200,
+      "usage": "历史 client/config/design 快照；不得用于证明 2026-08-14 的最新配置或完整文档覆盖。"
+    }
+  },
+  "taxonomy": [
+    {
+      "id": "ROOT",
+      "parent": null,
+      "name": "Vgame 项目级策划知识",
+      "kind": "root",
+      "definition": "覆盖玩家体验、系统规则、内容生产、数值经济、版本状态与交付治理。"
+    },
+    {
+      "id": "PF",
+      "parent": "ROOT",
+      "name": "项目定位与核心闭环",
+      "kind": "foundation",
+      "definition": "5人小队养成驱动的跑酷战斗射击；成长通过正式玩法转化并验证。"
+    },
+    {
+      "id": "SYS",
+      "parent": "ROOT",
+      "name": "玩家系统",
+      "kind": "system-layer",
+      "definition": "所有面向玩家的系统在此层只允许先分为战斗内与战斗外两类。"
+    },
+    {
+      "id": "BI",
+      "parent": "SYS",
+      "name": "战斗内系统",
+      "kind": "player-domain",
+      "definition": "进入战斗实例后直到胜负/结算触发前的实时规则、内容、表现与操作。"
+    },
+    {
+      "id": "BI-01",
+      "parent": "BI",
+      "name": "战斗规则底座",
+      "kind": "subdomain",
+      "definition": "实体、属性、伤害、命中、暴击、格挡、护盾、治疗、能量、冷却和胜负基础规则。"
+    },
+    {
+      "id": "BI-02",
+      "parent": "BI",
+      "name": "角色与队伍战斗",
+      "kind": "subdomain",
+      "definition": "角色定位、五人编队、普攻、自动技能、手动必杀、天赋与战斗协同。"
+    },
+    {
+      "id": "BI-03",
+      "parent": "BI",
+      "name": "敌人与 AI",
+      "kind": "subdomain",
+      "definition": "普通怪、精英、Boss、阶段、行为树、仇恨、召唤和压制机制。"
+    },
+    {
+      "id": "BI-04",
+      "parent": "BI",
+      "name": "技能、Buff 与效果",
+      "kind": "subdomain",
+      "definition": "技能状态机、时间轴、Action、伤害效果、Buff、子弹、召唤和机制事件。"
+    },
+    {
+      "id": "BI-05",
+      "parent": "BI",
+      "name": "关卡空间与遭遇",
+      "kind": "subdomain",
+      "definition": "跑酷地形、Loop、波次、刷怪、机关、移动平台、镜头边界和战斗节奏。"
+    },
+    {
+      "id": "BI-06",
+      "parent": "BI",
+      "name": "玩法战斗变体",
+      "kind": "subdomain",
+      "definition": "各玩法进入战斗后的独特模式规则、胜负条件和压力结构。"
+    },
+    {
+      "id": "BI-07",
+      "parent": "BI",
+      "name": "战斗数值与难度验证",
+      "kind": "subdomain",
+      "definition": "定义各玩法的战斗目标、标准场景、难度档与验收阈值，并消费共享模型的仿真结果。"
+    },
+    {
+      "id": "BI-08",
+      "parent": "BI",
+      "name": "战斗引导、UI 与反馈",
+      "kind": "subdomain",
+      "definition": "战斗教学、HUD、掉落表现、命中特效、镜头、音效和异常反馈。"
+    },
+    {
+      "id": "BI-09",
+      "parent": "BI",
+      "name": "战斗结果与结算触发",
+      "kind": "subdomain",
+      "definition": "胜负、评价、战利品记录、局内产出带出和结算事件边界。"
+    },
+    {
+      "id": "BO",
+      "parent": "SYS",
+      "name": "战斗外系统",
+      "kind": "player-domain",
+      "definition": "战斗实例之外组织玩法、成长、资源、留存、社交、付费和版本内容的系统。"
+    },
+    {
+      "id": "BO-01",
+      "parent": "BO",
+      "name": "玩法与内容编排",
+      "kind": "subdomain",
+      "definition": "主线、供给玩法、验证玩法的入口、层级、赛季、次数、体力、扫荡、排名和结算壳层。"
+    },
+    {
+      "id": "BO-02",
+      "parent": "BO",
+      "name": "养成与战力构建",
+      "kind": "subdomain",
+      "definition": "账号、角色、收容物、旅券、映射装备、炮台和房车等成长线。"
+    },
+    {
+      "id": "BO-03",
+      "parent": "BO",
+      "name": "获取与阵容扩展",
+      "kind": "subdomain",
+      "definition": "抽卡、卡池、碎片、重复转化、招募商店和 box breadth。"
+    },
+    {
+      "id": "BO-04",
+      "parent": "BO",
+      "name": "资源、经济与奖励",
+      "kind": "subdomain",
+      "definition": "货币道具、来源消耗、掉落包、首通/重复/周期奖励、商店兑换和经济总账。"
+    },
+    {
+      "id": "BO-05",
+      "parent": "BO",
+      "name": "任务与留存",
+      "kind": "subdomain",
+      "definition": "章节、日常、周常、签到、战令、目标、活跃和周期回访。"
+    },
+    {
+      "id": "BO-06",
+      "parent": "BO",
+      "name": "商业化",
+      "kind": "subdomain",
+      "definition": "付费货币、月卡、付费战令、礼包、快捷购买、抽卡和价值敏感点。"
+    },
+    {
+      "id": "BO-07",
+      "parent": "BO",
+      "name": "社交与组织",
+      "kind": "subdomain",
+      "definition": "公会、好友、聊天、协作、竞争关系和组织成长。"
+    },
+    {
+      "id": "BO-08",
+      "parent": "BO",
+      "name": "引导、解锁与节奏",
+      "kind": "subdomain",
+      "definition": "主角等级、主线门槛、SystemOpen、Unlock、新手流程、功能教学和开放节奏。"
+    },
+    {
+      "id": "BO-09",
+      "parent": "BO",
+      "name": "版本内容、活动与 LiveOps",
+      "kind": "subdomain",
+      "definition": "负责玩家可见的版本内容、活动/赛季编排、周期重置、运营奖励与内容日历；技术发布治理不在本域。"
+    },
+    {
+      "id": "BO-10",
+      "parent": "BO",
+      "name": "战斗外 UI 与信息架构",
+      "kind": "subdomain",
+      "definition": "系统入口、页面流程、红点、预览、弹窗优先级和跨系统导航。"
+    },
+    {
+      "id": "XS",
+      "parent": "ROOT",
+      "name": "项目支撑与治理层（非玩家系统分类）",
+      "kind": "supporting-layer",
+      "definition": "不属于第三类玩家系统，而是同时覆盖战斗内与战斗外的项目能力。"
+    },
+    {
+      "id": "XS-01",
+      "parent": "XS",
+      "name": "数值框架与仿真",
+      "kind": "subdomain",
+      "definition": "维护战斗、养成、经济、节奏四链的共享模型、公式、玩家/怪物基线、生成与仿真能力。"
+    },
+    {
+      "id": "XS-02",
+      "parent": "XS",
+      "name": "配置与数据管线",
+      "kind": "subdomain",
+      "definition": "Excel 源表、Schema、Luban、生成物、引用完整性和跨仓落地。"
+    },
+    {
+      "id": "XS-03",
+      "parent": "XS",
+      "name": "内容生产工具",
+      "kind": "subdomain",
+      "definition": "关卡、技能、引导等编辑器及其序列化和运行时消费链。"
+    },
+    {
+      "id": "XS-04",
+      "parent": "XS",
+      "name": "UI/UX 与表现规范",
+      "kind": "subdomain",
+      "definition": "战斗内外页面、交互、可读性、反馈、安全区和资产交接。"
+    },
+    {
+      "id": "XS-05",
+      "parent": "XS",
+      "name": "数据、埋点与实验分析",
+      "kind": "subdomain",
+      "definition": "负责指标、埋点、漏斗、留存、经济监控、实验设计与效果判定，不负责版本部署。"
+    },
+    {
+      "id": "XS-06",
+      "parent": "XS",
+      "name": "QA、验收与发布治理",
+      "kind": "subdomain",
+      "definition": "负责规则验收、配置审计、自动门禁、测试矩阵、功能开关、实验分流部署、灰度、Hotfix、发布和回滚。"
+    },
+    {
+      "id": "XS-07",
+      "parent": "XS",
+      "name": "知识、证据与生命周期治理",
+      "kind": "subdomain",
+      "definition": "Design/Proposal/Task、知识图谱、权威源、状态冲突、归档和变更追踪。"
+    },
+    {
+      "id": "XS-08",
+      "parent": "XS",
+      "name": "叙事、文案与本地化",
+      "kind": "subdomain",
+      "definition": "世界观、剧情、角色叙事、系统文案、术语和多语言一致性。"
+    },
+    {
+      "id": "XS-09",
+      "parent": "XS",
+      "name": "合规、安全与玩家支持",
+      "kind": "subdomain",
+      "definition": "概率公示、未成年人/付费约束、作弊防护、申诉、补偿和客服口径。"
+    }
+  ],
+  "documents": [
+    {
+      "sourcePath": "design/抽卡系统Design Doc.md",
+      "sourceSha256": "123601e78370d4489db27c40d4e6bd5dc4e0f724d0dcd829d1e609c01913d19c",
+      "system": "抽卡系统",
+      "primaryDomainId": "BO-03",
+      "primaryDomain": "获取与阵容扩展",
+      "secondaryDomainIds": [
+        "BO-06",
+        "BO-04",
+        "BO-05"
+      ],
+      "secondaryDomains": [
+        "商业化",
+        "资源、经济与奖励",
+        "任务与留存"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/抽卡系统Design Doc.md",
+      "graphSummary": "定义角色和专武单抽/十连、SSR 软硬保底以及重复角色和武器的碎片转化规则。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/大秘境Design Doc.md",
+      "sourceSha256": "a08fe7f48bb888941154c8db300213bb416c14efc0440d17136f8bbe88409c0b",
+      "system": "大秘境",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BI-07",
+        "BO-05",
+        "BO-04"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "战斗数值与难度验证",
+        "任务与留存",
+        "资源、经济与奖励"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/大秘境Design Doc.md",
+      "graphSummary": "定义 28 天大秘境赛季、25 层难度、环境词缀、周奖励、赛季结算、解锁和阵容广度验证。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/房车设备数值设计-2026-07-21.md",
+      "sourceSha256": "4397d7603d8d0187e265ed2646c028dcc987026884a73b1f1e3865337e29e5ce",
+      "system": "房车设备数值",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BO-09",
+        "XS-01"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "版本内容、活动与 LiveOps",
+        "数值框架与仿真"
+      ],
+      "declaredStatus": "`Confirmed`（设备规则与数值已确认；舱室单材料升级方案已同步06评审镜像）",
+      "statusAxes": {
+        "designLifecycle": "APPROVED",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/房车设备数值设计-2026-07-21.md",
+      "graphSummary": "定义房车设备等级、持续生产、工作台合成、储藏架跑商、满级转化及升级建材消耗。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/房车养成系统当前版本设计-2026-07-09.md",
+      "sourceSha256": "d341fbde6466d97f62fbb2590b0d3686efa074eda957be4bfb4acd57ad449a15",
+      "system": "房车养成当前版本",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BI-02",
+        "XS-01"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "角色与队伍战斗",
+        "数值框架与仿真"
+      ],
+      "declaredStatus": "`Draft / CurrentDecision`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/房车养成系统当前版本设计-2026-07-09.md",
+      "graphSummary": "沉淀房车养成当前版本的玩家循环、整备与出行指南模块、升级裁决、职业节点、经济口径和验收清单。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/房车养成系统数值设计文档-2026-07-03.md",
+      "sourceSha256": "0a7371f691534a9a6682648c167301eea8c42872e1697c5007de6249bccfc8c5",
+      "system": "房车养成数值",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-04",
+        "XS-01"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "数值框架与仿真"
+      ],
+      "declaredStatus": "`InReview`",
+      "statusAxes": {
+        "designLifecycle": "IN_REVIEW",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/房车养成系统数值设计文档-2026-07-03.md",
+      "graphSummary": "规划房车整备、强化进度、出行阶段、职业天赋、节点消耗与战力接入的完整数值框架及校验状态。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/房车养成系统小分叉重设计-2026-07-14.md",
+      "sourceSha256": "781a57c0fc223fae65cb13ce1f3450e16a1865be6e4dbfb38ede3f4a26fdc29f",
+      "system": "房车养成小分叉重设计",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-04",
+        "XS-01",
+        "XS-02"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "数值框架与仿真",
+        "配置与数据管线"
+      ],
+      "declaredStatus": "数值与产出方案已确认，已合入框架V2的06最终配置镜像；SVN未修改",
+      "statusAxes": {
+        "designLifecycle": "APPROVED",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "CONFIG_MIRROR",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/房车养成系统小分叉重设计-2026-07-14.md",
+      "graphSummary": "调整房车养成路线为小分叉结构，明确爬塔挂机产出对接、单节点属性成本、满级预算与实施门禁。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/高难主线关卡奖励重设计-2026-07-30.md",
+      "sourceSha256": "c44302e666a21b9a3ec433f20944be3a303bfa04fc547a2d811167c9d18cec8b",
+      "system": "高难主线奖励重设计",
+      "primaryDomainId": "BO-04",
+      "primaryDomain": "资源、经济与奖励",
+      "secondaryDomainIds": [
+        "BO-01",
+        "BI-06",
+        "XS-01"
+      ],
+      "secondaryDomains": [
+        "玩法与内容编排",
+        "玩法战斗变体",
+        "数值框架与仿真"
+      ],
+      "declaredStatus": "关卡结构、首通奖励、常规掉落与星级奖励均已确认",
+      "statusAxes": {
+        "designLifecycle": "APPROVED",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/高难主线关卡奖励重设计-2026-07-30.md",
+      "graphSummary": "重设高难主线的宝石投放、常规掉落、逐关奖励、首通总量、养成时间与章节星级奖励。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/公会系统Design Doc.md",
+      "sourceSha256": "c50dcfc966bde34cd407a31e99d22b8dc6670f9e12edcd8f52ed1011d639d26c",
+      "system": "公会系统",
+      "primaryDomainId": "BO-07",
+      "primaryDomain": "社交与组织",
+      "secondaryDomainIds": [
+        "BO-05",
+        "BO-04",
+        "BI-06",
+        "BO-02"
+      ],
+      "secondaryDomains": [
+        "任务与留存",
+        "资源、经济与奖励",
+        "玩法战斗变体",
+        "养成与战力构建"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/公会系统Design Doc.md",
+      "graphSummary": "全面定义公会创建与成员管理、贡献任务、派遣、商店、公会战、补给和个人/公会科技树数值节奏。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/怪物与Boss系统Design Doc.md",
+      "sourceSha256": "361cff1b52c4a76786aeafa90b1dc27d8730991d9e66b24bc543bda56bcc75b0",
+      "system": "怪物与 Boss",
+      "primaryDomainId": "BI-03",
+      "primaryDomain": "敌人与 AI",
+      "secondaryDomainIds": [
+        "BI-04",
+        "BI-05",
+        "BI-07",
+        "XS-02"
+      ],
+      "secondaryDomains": [
+        "技能、Buff 与效果",
+        "关卡空间与遭遇",
+        "战斗数值与难度验证",
+        "配置与数据管线"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/怪物与Boss系统Design Doc.md",
+      "graphSummary": "定义怪物属性叠加、战斗单位类型、Boss 多阶段与演出、AI 行为树、召唤配置和系统修正。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/关卡编辑器Design Doc.md",
+      "sourceSha256": "f7a9a3da9a0388c40d60f89a96aa07daa8da1f42e567d489a342747f662cabf4",
+      "system": "关卡编辑器",
+      "primaryDomainId": "XS-03",
+      "primaryDomain": "内容生产工具",
+      "secondaryDomainIds": [
+        "BI-05",
+        "XS-02",
+        "BI-08"
+      ],
+      "secondaryDomains": [
+        "关卡空间与遭遇",
+        "配置与数据管线",
+        "战斗引导、UI 与反馈"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/关卡编辑器Design Doc.md",
+      "graphSummary": "定义关卡编辑器入口、地形与实体放置、移动平台路径、摄像机边界、序列化和运行时加载。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/技能系统Design Doc.md",
+      "sourceSha256": "0d3cc1592c287dae59dab78a6a6ce68ffea23b63bac16d77c38d864714b69c96",
+      "system": "技能系统",
+      "primaryDomainId": "BI-04",
+      "primaryDomain": "技能、Buff 与效果",
+      "secondaryDomainIds": [
+        "BI-02",
+        "BI-03",
+        "XS-03",
+        "XS-02"
+      ],
+      "secondaryDomains": [
+        "角色与队伍战斗",
+        "敌人与 AI",
+        "内容生产工具",
+        "配置与数据管线"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/技能系统Design Doc.md",
+      "graphSummary": "定义技能编辑与序列化、运行时加载、SkillLine 状态机、事件条件、冷却、跨表关联和 ActionClip 类型。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/角色经验副本Design Doc.md",
+      "sourceSha256": "d8bf06f054b3a883fa8d962bd9beb7d1edef7849ec5267014db0ff00d3264aa7",
+      "system": "角色经验副本",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BO-04",
+        "BO-08"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "资源、经济与奖励",
+        "引导、解锁与节奏"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/角色经验副本Design Doc.md",
+      "graphSummary": "定义角色经验副本开放、体力次数、效率刷怪模式、经验结算、九档难度和每日产出上限。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/角色升级与突破Design Doc.md",
+      "sourceSha256": "6879f97da89183f8d0ea4621f65670a15805a17ee484ca53b468177e7a053849",
+      "system": "角色升级与突破",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BI-02",
+        "BO-04",
+        "BO-08"
+      ],
+      "secondaryDomains": [
+        "角色与队伍战斗",
+        "资源、经济与奖励",
+        "引导、解锁与节奏"
+      ],
+      "declaredStatus": "`Draft`（反推草稿，待评审）",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/角色升级与突破Design Doc.md",
+      "graphSummary": "定义角色升级消耗、属性成长、突破门控、裸体属性、品质系数、消耗曲线和经验道具。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/角色升星Design Doc.md",
+      "sourceSha256": "422c2c1b52b9d07cd896fd3171884f8397b7401e4575e6d341aa7eacce6bd9c9",
+      "system": "角色升星",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BI-02",
+        "BO-03",
+        "BO-06"
+      ],
+      "secondaryDomains": [
+        "角色与队伍战斗",
+        "获取与阵容扩展",
+        "商业化"
+      ],
+      "declaredStatus": "`Draft`（反推草稿，待评审）",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/角色升星Design Doc.md",
+      "graphSummary": "定义角色六星节点、碎片消耗、属性放大、天赋技能绑定、重复英雄补偿和品质差异。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/角色星盘与能效Design Doc.md",
+      "sourceSha256": "e6c3f0b043f585d2f759f3ca611ef17cffa732779db1caacee7a761e7c1bb4bf",
+      "system": "角色星盘与能效",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BI-02",
+        "XS-01"
+      ],
+      "secondaryDomains": [
+        "角色与队伍战斗",
+        "数值框架与仿真"
+      ],
+      "declaredStatus": "`Draft`（反推草稿，待评审）",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/角色星盘与能效Design Doc.md",
+      "graphSummary": "定义角色星盘节点、免费与校准激活、节点效果、属性计算、总量平衡和前提链。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/金币副本Design Doc.md",
+      "sourceSha256": "c5258bca616494570251d1f15ccbe831cd94215a9dded66ddad7bf92223059f3",
+      "system": "金币副本",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BO-04",
+        "BO-08"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "资源、经济与奖励",
+        "引导、解锁与节奏"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/金币副本Design Doc.md",
+      "graphSummary": "定义金币副本解锁、体力与进入、CoinMode 收集战斗、结算、难度产出曲线和每日次数。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/竞技场Design Doc.md",
+      "sourceSha256": "735897a99bbcbe9cb16ceac18cde512c0a8396173177a7db8d491dc5b06a0432",
+      "system": "竞技场（PVPVE）",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BI-07",
+        "BO-05",
+        "BO-04",
+        "BO-07"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "战斗数值与难度验证",
+        "任务与留存",
+        "资源、经济与奖励",
+        "社交与组织"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/竞技场Design Doc.md",
+      "graphSummary": "定义竞技场匹配、PVPVE 杀敌送敌、基地伤害、炮台、结算排名与机器人对手。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/局内金币带出Design Doc.md",
+      "sourceSha256": "8488905dccc08374c2c5e6487c14904bd8591590a77d9cb080f8d91b532bfaf5",
+      "system": "局内金币带出",
+      "primaryDomainId": "BI-09",
+      "primaryDomain": "战斗结果与结算触发",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BI-06",
+        "XS-02"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "玩法战斗变体",
+        "配置与数据管线"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/局内金币带出Design Doc.md",
+      "graphSummary": "定义按关卡类型与倍率带出局内金币、最高记录、扫荡追加收益、配置链和经济验收规则。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/旅券副本Design Doc.md",
+      "sourceSha256": "d2456c65b2078cc395262ed3f4960a519c866bee22401b090b7bae61b34c42ef",
+      "system": "旅券副本",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BO-04",
+        "BO-08",
+        "BI-07"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "资源、经济与奖励",
+        "引导、解锁与节奏",
+        "战斗数值与难度验证"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/旅券副本Design Doc.md",
+      "graphSummary": "定义旅券副本解锁、Boss 选择与单人战斗、时间限制、装备掉落、首通复刷差异及阶段机制。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/旅券系统Design Doc.md",
+      "sourceSha256": "2b614a7f52df69773e20a2368926f1afee5644baa8706dbda3dad67268ba8e7e",
+      "system": "旅券系统",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BI-02",
+        "BO-03"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "角色与队伍战斗",
+        "获取与阵容扩展"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/旅券系统Design Doc.md",
+      "graphSummary": "定义旅券槽位、4+2 套装、品质属性、三级合成、等级成长、掉落产出和经济回收闭环。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/爬塔Design Doc.md",
+      "sourceSha256": "0d36ff196f9e8a96db011b41d509496e81fc95eb99a9b57ab9565a2d603e29b7",
+      "system": "爬塔",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BI-07",
+        "BO-05",
+        "BO-04"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "战斗数值与难度验证",
+        "任务与留存",
+        "资源、经济与奖励"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/爬塔Design Doc.md",
+      "graphSummary": "定义爬塔楼层类型、怪物等级、首通与复刷奖励、周期刷新、解锁、排名和 60 天推进节奏。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/跑商玩法数值设计文档-2026-07-06.md",
+      "sourceSha256": "779070b21abe378f134ee25942b4229e316c0dd34a2554adc7169a477b4b8e70",
+      "system": "跑商玩法",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BO-09",
+        "BO-02"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "版本内容、活动与 LiveOps",
+        "养成与战力构建"
+      ],
+      "declaredStatus": "Unstated",
+      "statusAxes": {
+        "designLifecycle": "UNKNOWN",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/跑商玩法数值设计文档-2026-07-06.md",
+      "graphSummary": "作为跑商玩法数值设计的索引页，指向当前权威设计与配置沉淀位置。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/配置表管线Design Doc.md",
+      "sourceSha256": "1c4b3995efb2480a7ba57d6cb2f8196e029c6efae711efb9052e2d221eab1cee",
+      "system": "配置表管线",
+      "primaryDomainId": "XS-02",
+      "primaryDomain": "配置与数据管线",
+      "secondaryDomainIds": [
+        "XS-06",
+        "XS-07"
+      ],
+      "secondaryDomains": [
+        "QA、验收与发布治理",
+        "知识、证据与生命周期治理"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/配置表管线Design Doc.md",
+      "graphSummary": "定义 Excel 源表规范、注册机制、Luban 导出、JSON 使用、公式保护、枚举 Bean 管理和质量审计。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/签到系统Design Doc.md",
+      "sourceSha256": "b9b8353ad68f3af59fe34decae85775935ae973461d382b46e74895a40187010",
+      "system": "签到系统",
+      "primaryDomainId": "BO-05",
+      "primaryDomain": "任务与留存",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BO-09"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "版本内容、活动与 LiveOps"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/签到系统Design Doc.md",
+      "graphSummary": "定义每日、七日、月度累计和长期旅行签到，以及首周总投放校验规则。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/任务系统Design Doc.md",
+      "sourceSha256": "20f124af241a971583bbd71d26a36aea565d5a489c5a090d0a10a34a5e5f8ddc",
+      "system": "任务系统",
+      "primaryDomainId": "BO-05",
+      "primaryDomain": "任务与留存",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BO-08",
+        "BO-09"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "引导、解锁与节奏",
+        "版本内容、活动与 LiveOps"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/任务系统Design Doc.md",
+      "graphSummary": "定义每日任务分配、进度累积、奖励领取、活跃阈值、任务链、系统引导与章节任务规则。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/伤害计算公式Design Doc.md",
+      "sourceSha256": "886c85a986d877cf542c041de526ba7f3c5d4e83f5d7175c1bb38fb5a6ad5648",
+      "system": "伤害计算公式",
+      "primaryDomainId": "BI-01",
+      "primaryDomain": "战斗规则底座",
+      "secondaryDomainIds": [
+        "BI-04",
+        "BI-07",
+        "XS-01"
+      ],
+      "secondaryDomains": [
+        "技能、Buff 与效果",
+        "战斗数值与难度验证",
+        "数值框架与仿真"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/伤害计算公式Design Doc.md",
+      "graphSummary": "规定标准伤害流水线、命中判定、标签增伤、真实伤害、治疗、护盾以及公式精度常量。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/商店系统Design Doc.md",
+      "sourceSha256": "ef140ff698f6aadbbbe464f626f57edb0f7427faa5217479633613740af55dce",
+      "system": "商店系统",
+      "primaryDomainId": "BO-04",
+      "primaryDomain": "资源、经济与奖励",
+      "secondaryDomainIds": [
+        "BO-06",
+        "BO-05",
+        "BO-10"
+      ],
+      "secondaryDomains": [
+        "商业化",
+        "任务与留存",
+        "战斗外 UI 与信息架构"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/商店系统Design Doc.md",
+      "graphSummary": "定义商品购买、周期与手动刷新、限购、直购、售罄隐藏及多货币价签展示。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/收容物养成数值Design Doc.md",
+      "sourceSha256": "1190af890bd8bc9e45c8b63cd11f4fb5c893431609f8a3c31f90e3f633c86b74",
+      "system": "收容物养成",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-03",
+        "BI-02",
+        "XS-01",
+        "XS-02"
+      ],
+      "secondaryDomains": [
+        "获取与阵容扩展",
+        "角色与队伍战斗",
+        "数值框架与仿真",
+        "配置与数据管线"
+      ],
+      "declaredStatus": "`ConfigReady`（属性与养成数值已生成 06 最终配置镜像；SVN Datas/程序接入待完成）",
+      "statusAxes": {
+        "designLifecycle": "APPROVED",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "CONFIG_MIRROR",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/收容物养成数值Design Doc.md",
+      "graphSummary": "汇总收容物养成的权威数值入口、已确认等级与消耗口径，以及配置和实现边界。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/碎片回收Design Doc.md",
+      "sourceSha256": "e50b4cc2bdada40575c6fa3b99de534c17697bef1e98a0c82ee29f64fe56bc4e",
+      "system": "碎片回收",
+      "primaryDomainId": "BO-03",
+      "primaryDomain": "获取与阵容扩展",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BO-06",
+        "XS-02"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "商业化",
+        "配置与数据管线"
+      ],
+      "declaredStatus": "规则评审就绪；角色“单次重复转化碎片量”尚待服务端回源，未达到配置实施门禁",
+      "statusAxes": {
+        "designLifecycle": "IN_REVIEW",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "PARTIAL",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/碎片回收Design Doc.md",
+      "graphSummary": "冻结角色与养成碎片回收的兑换基线、玩家流程、经济风险、配置协议建议和上线门禁。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/通行证系统Design Doc.md",
+      "sourceSha256": "0b0eb94b9be11372bd004fa8987372e52210ce4f8d9cf295d081d52b049972cb",
+      "system": "通行证系统",
+      "primaryDomainId": "BO-05",
+      "primaryDomain": "任务与留存",
+      "secondaryDomainIds": [
+        "BO-06",
+        "BO-04",
+        "BO-09"
+      ],
+      "secondaryDomains": [
+        "商业化",
+        "资源、经济与奖励",
+        "版本内容、活动与 LiveOps"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/通行证系统Design Doc.md",
+      "graphSummary": "定义通行证经验与等级、免费付费奖励线、购买解锁、关键等级展示、预览和赛季结束。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/无限挑战Design Doc.md",
+      "sourceSha256": "3c767a0723ad90fddf33236b8bfb072542de772c93f06276d033668544ca5bfb",
+      "system": "无限挑战",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BI-07",
+        "BO-05",
+        "BO-04"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "战斗数值与难度验证",
+        "任务与留存",
+        "资源、经济与奖励"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/无限挑战Design Doc.md",
+      "graphSummary": "定义无限挑战的三阶段循环波次、怪物非线性成长、最佳深度、周结算、解锁和续航机制。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/新手引导系统Design Doc.md",
+      "sourceSha256": "b720f12ffe07b2f5f1ed864d6c41a109450f453567423a7a20dfe694cf1b5499",
+      "system": "新手引导",
+      "primaryDomainId": "BO-08",
+      "primaryDomain": "引导、解锁与节奏",
+      "secondaryDomainIds": [
+        "BI-08",
+        "BO-10",
+        "XS-03"
+      ],
+      "secondaryDomains": [
+        "战斗引导、UI 与反馈",
+        "战斗外 UI 与信息架构",
+        "内容生产工具"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/新手引导系统Design Doc.md",
+      "graphSummary": "定义战斗内引导、NewbieGuide 编辑与运行时步骤、SystemOpen 渐进解锁、玩家时间线、完成同步和容错。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/映射装备数值超级爆改-2026-08-14.md",
+      "sourceSha256": "84fef8dc4a3b8738218383188b83495fdbe50a8029c9dc39d274e5d05aac653b",
+      "system": "映射装备数值变更追溯",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-04",
+        "XS-01",
+        "XS-07"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "数值框架与仿真",
+        "知识、证据与生命周期治理"
+      ],
+      "declaredStatus": "已停止维护，非权威，仅保留为 2026-08-14 讨论与变更追溯记录。",
+      "statusAxes": {
+        "designLifecycle": "DEPRECATED",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/映射装备数值超级爆改-2026-08-14.md",
+      "graphSummary": "提出映射装备部位主属性重映射、主副属性预算重算和副属性条数调整，并列出待确认项。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/映射装备系统数值调整草案-2026-07-02.md",
+      "sourceSha256": "c2a6b30865c006d0cfbc4375fb2cb64baf83ce38cc1e3ef4caaa449d50e0a8a9",
+      "system": "映射装备数值调整草案",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-04",
+        "XS-01",
+        "XS-07"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "数值框架与仿真",
+        "知识、证据与生命周期治理"
+      ],
+      "declaredStatus": "Draft",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/映射装备系统数值调整草案-2026-07-02.md",
+      "graphSummary": "记录映射装备品质系数、主副属性成长、宝箱权重和 30 层副本掉落概率的调整草案与期望测算。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/映射装备系统数值设计文档-2026-07-03.md",
+      "sourceSha256": "d82c7764eb5630db88a0221e73abc7c6e39db677b5479cf587dd3acd97d9b25c",
+      "system": "映射装备数值设计",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-04",
+        "XS-01",
+        "XS-02"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "数值框架与仿真",
+        "配置与数据管线"
+      ],
+      "declaredStatus": "Draft，已追加 2026-07-06 合成/制作 8 档变更、2026-07-09 红宝箱外显变更、2026-08-17 映射之匙任务投放调整、2026-08-20 CHG-014/CHG-015 首通展示职责拆分，待策划评审",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/映射装备系统数值设计文档-2026-07-03.md",
+      "graphSummary": "系统规划映射装备等级品质、主副属性公式、宝箱档位、副本掉落、洗练与超限的完整数值模型。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/映射装备系统Design Doc.md",
+      "sourceSha256": "18ea6fda33b89d437b458ea54a7c54803ba86171f206c72edb6af4b91bc79292",
+      "system": "映射装备系统",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BO-01",
+        "BI-02"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "玩法与内容编排",
+        "角色与队伍战斗"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/映射装备系统Design Doc.md",
+      "graphSummary": "定义映射装备八槽位、品质等级、随机副属性、孔位镶嵌、洗练、超限和掉落经济平衡。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/邮件系统Design Doc.md",
+      "sourceSha256": "295aa1d2832d4acde6b3646f954138a9386283e780a838056fdef27ca81c1d10",
+      "system": "邮件系统",
+      "primaryDomainId": "BO-05",
+      "primaryDomain": "任务与留存",
+      "secondaryDomainIds": [
+        "BO-04",
+        "BO-09",
+        "BO-10"
+      ],
+      "secondaryDomains": [
+        "资源、经济与奖励",
+        "版本内容、活动与 LiveOps",
+        "战斗外 UI 与信息架构"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/邮件系统Design Doc.md",
+      "graphSummary": "定义系统与预发送邮件、附件领取、过期清理、一键领取、已读删除和补偿经济隔离。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/月卡系统Design Doc.md",
+      "sourceSha256": "50c70d9afc3e93ee2c5425f1d60b70e7b7cbebe37b19e511d42aab63c24e9dee",
+      "system": "月卡系统",
+      "primaryDomainId": "BO-06",
+      "primaryDomain": "商业化",
+      "secondaryDomainIds": [
+        "BO-05",
+        "BO-04",
+        "BO-09"
+      ],
+      "secondaryDomains": [
+        "任务与留存",
+        "资源、经济与奖励",
+        "版本内容、活动与 LiveOps"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/月卡系统Design Doc.md",
+      "graphSummary": "定义月卡购买、每日领取、体力上限提升、过期、奖励预览及多档月卡共存规则。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/战斗掉落Icon表现Design Doc.md",
+      "sourceSha256": "166a3ec3a1aa18dbb3bb0d7de752dfef4cfbfc97a2f9eb775b5d256602263637",
+      "system": "战斗掉落 Icon 表现",
+      "primaryDomainId": "BI-08",
+      "primaryDomain": "战斗引导、UI 与反馈",
+      "secondaryDomainIds": [
+        "BI-09",
+        "XS-04",
+        "XS-02"
+      ],
+      "secondaryDomains": [
+        "战斗结果与结算触发",
+        "UI/UX 与表现规范",
+        "配置与数据管线"
+      ],
+      "declaredStatus": "InReview",
+      "statusAxes": {
+        "designLifecycle": "IN_REVIEW",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/战斗掉落Icon表现Design Doc.md",
+      "graphSummary": "定义 UIlevel 掉落展示字段、关中与关底掉落合并、Icon 动画、异常处理、配置示例和验收标准。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/战力系统Design Doc.md",
+      "sourceSha256": "6042d6b3824880327acc2cd85c3ecd46b2f5fc528587bdec71a23abbba2a617f",
+      "system": "战力系统",
+      "primaryDomainId": "BI-07",
+      "primaryDomain": "战斗数值与难度验证",
+      "secondaryDomainIds": [
+        "BO-02",
+        "XS-01",
+        "BO-10"
+      ],
+      "secondaryDomains": [
+        "养成与战力构建",
+        "数值框架与仿真",
+        "战斗外 UI 与信息架构"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/战力系统Design Doc.md",
+      "graphSummary": "定义总战力公式、基础与二级属性区间、排除规则、当前倍率配置及实现影响。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/章节任务重设计讨论稿-2026-07-22.md",
+      "sourceSha256": "db6611cd7d5e60d03ce262e66493a1d7baea3fe808a36a31746ed48571a88ac9",
+      "system": "章节任务重设计",
+      "primaryDomainId": "BO-05",
+      "primaryDomain": "任务与留存",
+      "secondaryDomainIds": [
+        "BO-01",
+        "BO-04",
+        "BO-08"
+      ],
+      "secondaryDomains": [
+        "玩法与内容编排",
+        "资源、经济与奖励",
+        "引导、解锁与节奏"
+      ],
+      "declaredStatus": "`Design Confirmed / Config Applied`",
+      "statusAxes": {
+        "designLifecycle": "APPROVED",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/章节任务重设计讨论稿-2026-07-22.md",
+      "graphSummary": "讨论七章章节任务数量、开启约束、单项与章节奖励、任务类型依赖及配置落地边界。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/主角等级Design Doc.md",
+      "sourceSha256": "6f7c43dd8e0d6fbb7cfc1c7881f24cfcd0738c639b0b9a8d990062678ef65ba5",
+      "system": "主角等级",
+      "primaryDomainId": "BO-08",
+      "primaryDomain": "引导、解锁与节奏",
+      "secondaryDomainIds": [
+        "BO-02",
+        "BO-01",
+        "XS-01"
+      ],
+      "secondaryDomains": [
+        "养成与战力构建",
+        "玩法与内容编排",
+        "数值框架与仿真"
+      ],
+      "declaredStatus": "`Draft`（反推草稿，待评审）",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/主角等级Design Doc.md",
+      "graphSummary": "定义主角升级经验、体力返还、等级奖励、章节关卡映射、系统开放及成长节奏。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/主线关卡奖励重设计-2026-07-30.md",
+      "sourceSha256": "9b1b9e90b95806437b79d25d20c04738d688e2ccc5452784ff54a51ba86b84ae",
+      "system": "主线关卡奖励重设计",
+      "primaryDomainId": "BO-04",
+      "primaryDomain": "资源、经济与奖励",
+      "secondaryDomainIds": [
+        "BO-01",
+        "BO-08",
+        "XS-01"
+      ],
+      "secondaryDomains": [
+        "玩法与内容编排",
+        "引导、解锁与节奏",
+        "数值框架与仿真"
+      ],
+      "declaredStatus": "`Draft / 已确认基础首通、角色材料、章底舱室建材与章节星级奖励口径`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/主线关卡奖励重设计-2026-07-30.md",
+      "graphSummary": "重设主线 99 关的逐关奖励、章节梯度、特殊首通、星级奖励与材料总投放，并列出落地项。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/主线关卡系统Design Doc.md",
+      "sourceSha256": "3035146316318226f55ca11d36cfd8e857a5f449325a1dcb7d954cf0b8de93b5",
+      "system": "主线关卡系统",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BO-08",
+        "BO-04",
+        "BI-09"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "引导、解锁与节奏",
+        "资源、经济与奖励",
+        "战斗结果与结算触发"
+      ],
+      "declaredStatus": "`Draft`（反推草稿，待评审）",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/主线关卡系统Design Doc.md",
+      "graphSummary": "定义主线推进、首通与重复奖励、三星评价、章节进度奖励和关卡难度线。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/专武经验副本Design Doc.md",
+      "sourceSha256": "78d193ea41f3565faa20ce8156c803b1be05ca6b8be077ab11cee798b3011375",
+      "system": "专武经验副本",
+      "primaryDomainId": "BO-01",
+      "primaryDomain": "玩法与内容编排",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BO-04",
+        "BO-08"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "资源、经济与奖励",
+        "引导、解锁与节奏"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/专武经验副本Design Doc.md",
+      "graphSummary": "定义专武经验副本的解锁等级、体力与次数、经验道具掉落、九档难度及结算反作弊。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/专武系统Design Doc.md",
+      "sourceSha256": "b5d6a8e2be6c91679361fb2be053bf8b107473c9eca4bf7028d836fd1cfac775",
+      "system": "专武系统",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BO-03",
+        "BI-02",
+        "BO-04"
+      ],
+      "secondaryDomains": [
+        "获取与阵容扩展",
+        "角色与队伍战斗",
+        "资源、经济与奖励"
+      ],
+      "declaredStatus": "`Draft`（反推草稿，待评审）",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/专武系统Design Doc.md",
+      "graphSummary": "定义专属武器的角色绑定、升级、突破、升星、属性占比、获得方式和系统开放规则。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/archive/宝石与铭文Design Doc.md",
+      "sourceSha256": "deb2aa68348d8b1cb4b08b349eba239ec6877bc4757823d3a16d08f6d523e1ef",
+      "system": "宝石与铭文（归档）",
+      "primaryDomainId": "BO-02",
+      "primaryDomain": "养成与战力构建",
+      "secondaryDomainIds": [
+        "BI-02",
+        "BO-04",
+        "XS-07"
+      ],
+      "secondaryDomains": [
+        "角色与队伍战斗",
+        "资源、经济与奖励",
+        "知识、证据与生命周期治理"
+      ],
+      "declaredStatus": "Archived",
+      "statusAxes": {
+        "designLifecycle": "ARCHIVED",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/archive/宝石与铭文Design Doc.md",
+      "graphSummary": "归档的宝石与铭文系统设计文档，说明成长、镶嵌、属性和资源循环。",
+      "evidenceRole": "historical-only"
+    },
+    {
+      "sourcePath": "design/Buff系统Design Doc.md",
+      "sourceSha256": "ba35e65121185f10fe9a74ef6d90d7ec3c1ccfb2653c10e474aff419890f4e7c",
+      "system": "Buff 系统",
+      "primaryDomainId": "BI-04",
+      "primaryDomain": "技能、Buff 与效果",
+      "secondaryDomainIds": [
+        "BI-02",
+        "BI-03",
+        "BI-01",
+        "XS-02"
+      ],
+      "secondaryDomains": [
+        "角色与队伍战斗",
+        "敌人与 AI",
+        "战斗规则底座",
+        "配置与数据管线"
+      ],
+      "declaredStatus": "`Draft`",
+      "statusAxes": {
+        "designLifecycle": "DRAFT",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/Buff系统Design Doc.md",
+      "graphSummary": "定义 Buff 数据模型、叠加与持续时间、移除条件、效果类型及运行时组件行为。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/PVPVE怪物伤害数值设计-2026-07-27.md",
+      "sourceSha256": "c20296d557264970ac69cdd3a4c12398feabec1422da903481ebc08be11a8170",
+      "system": "PVPVE 怪物伤害数值",
+      "primaryDomainId": "BI-07",
+      "primaryDomain": "战斗数值与难度验证",
+      "secondaryDomainIds": [
+        "BI-06",
+        "BO-01",
+        "XS-01"
+      ],
+      "secondaryDomains": [
+        "玩法战斗变体",
+        "玩法与内容编排",
+        "数值框架与仿真"
+      ],
+      "declaredStatus": "数值目标已确认，部分工程配置仍待同步",
+      "statusAxes": {
+        "designLifecycle": "APPROVED",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "PARTIAL",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/PVPVE怪物伤害数值设计-2026-07-27.md",
+      "graphSummary": "制定 PVPVE 水晶承伤口径、六类怪物目标伤害、精英射击模型、属性倍率与验证标准。",
+      "evidenceRole": "design-input-requires-source-validation"
+    },
+    {
+      "sourcePath": "design/README.md",
+      "sourceSha256": "fe13d1a4fe667d6d3d83b070ea47cc95e85d07f37f8e5a8c862c967f34dc9da1",
+      "system": "Design 目录入口",
+      "primaryDomainId": "XS-07",
+      "primaryDomain": "知识、证据与生命周期治理",
+      "secondaryDomainIds": [],
+      "secondaryDomains": [],
+      "declaredStatus": "Reference",
+      "statusAxes": {
+        "designLifecycle": "REFERENCE",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/README.md",
+      "graphSummary": "作为 design 目录入口，说明正式设计文档的存放位置。",
+      "evidenceRole": "governance-reference"
+    },
+    {
+      "sourcePath": "design/REVERSE-ENGINEERING-TEMPLATE.md",
+      "sourceSha256": "14ccc2ff52e1d4279da8a1701c28618407eb9094eba5eb6d4a7dd6ec33bc2ff3",
+      "system": "系统反推模板",
+      "primaryDomainId": "XS-07",
+      "primaryDomain": "知识、证据与生命周期治理",
+      "secondaryDomainIds": [
+        "XS-02",
+        "XS-06"
+      ],
+      "secondaryDomains": [
+        "配置与数据管线",
+        "QA、验收与发布治理"
+      ],
+      "declaredStatus": "Reference",
+      "statusAxes": {
+        "designLifecycle": "REFERENCE",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/REVERSE-ENGINEERING-TEMPLATE.md",
+      "graphSummary": "提供系统反推文档模板，覆盖入口、配置字段、流程链路、确认结论、风险与 Skill 回写。",
+      "evidenceRole": "governance-reference"
+    },
+    {
+      "sourcePath": "design/TEMPLATE.md",
+      "sourceSha256": "8dbbed6ee49eba22dedb46044b44814caad35a7336a912dd9e34357daeb81109",
+      "system": "Design Doc 模板",
+      "primaryDomainId": "XS-07",
+      "primaryDomain": "知识、证据与生命周期治理",
+      "secondaryDomainIds": [
+        "XS-06"
+      ],
+      "secondaryDomains": [
+        "QA、验收与发布治理"
+      ],
+      "declaredStatus": "Reference",
+      "statusAxes": {
+        "designLifecycle": "REFERENCE",
+        "runtimeRelease": "UNKNOWN",
+        "landingEvidence": "DESIGN_ONLY",
+        "resolution": "OPEN",
+        "note": "文档记录不能单独证明系统当前上线或完整落地；运行与落地状态须查 systemStatusRegister 或回源。"
+      },
+      "graphNodeId": "document:design/TEMPLATE.md",
+      "graphSummary": "提供标准 Design Doc 模板，约束元信息、目标、核心规则、技术方案、数据接口、风险与假设。",
+      "evidenceRole": "governance-reference"
+    }
+  ],
+  "systemStatusRegister": [
+    {
+      "id": "exclusive-weapon-chain",
+      "name": "专武本体、抽卡与经验副本链",
+      "domainIds": [
+        "BO-02",
+        "BO-03",
+        "BO-04",
+        "BO-01",
+        "BI-02"
+      ],
+      "designLifecycle": "UNKNOWN",
+      "runtimeRelease": "UNKNOWN",
+      "landingEvidence": "MIXED",
+      "resolution": "CONFLICT",
+      "note": "较新证据明确废弃专武抽卡/数值贡献并迁移到收容物，但专武本体和专武经验副本是否保留尚无单一项目裁决。三者在裁决前均不得无条件标为正式。",
+      "evidence": [
+        "05-status-conflict-register.md#2-p0-冲突",
+        "research/outer-domain-audit.md",
+        "research/combat-domain-audit.md"
+      ]
+    },
+    {
+      "id": "containment",
+      "name": "收容物",
+      "domainIds": [
+        "BO-02",
+        "BO-03",
+        "BI-02"
+      ],
+      "designLifecycle": "APPROVED",
+      "runtimeRelease": "UNKNOWN",
+      "landingEvidence": "CONFIG_MIRROR",
+      "resolution": "OPEN",
+      "note": "设计/数值达到 ConfigReady；SVN Datas 与程序接入仍待确认。",
+      "evidence": [
+        "design/收容物养成数值Design Doc.md"
+      ]
+    },
+    {
+      "id": "great-rift",
+      "name": "大秘境",
+      "domainIds": [
+        "BO-01",
+        "BI-06",
+        "BI-07"
+      ],
+      "designLifecycle": "DRAFT",
+      "runtimeRelease": "NOT_OPEN",
+      "landingEvidence": "UNKNOWN",
+      "resolution": "OPEN",
+      "note": "正式验证玩法结构有项目口径，但 Design Doc 为 Draft，当前经济沉淀记录未开放。",
+      "evidence": [
+        "design/大秘境Design Doc.md",
+        "01-project-evidence.md"
+      ]
+    },
+    {
+      "id": "battle-pass",
+      "name": "通行证",
+      "domainIds": [
+        "BO-05",
+        "BO-06",
+        "BO-09"
+      ],
+      "designLifecycle": "DRAFT",
+      "runtimeRelease": "NOT_OPEN",
+      "landingEvidence": "MIXED",
+      "resolution": "OPEN",
+      "note": "正式外循环概念与配置族存在，但当前版本沉淀记录为不开/封存。",
+      "evidence": [
+        "design/通行证系统Design Doc.md",
+        "01-project-evidence.md"
+      ]
+    },
+    {
+      "id": "guild",
+      "name": "公会",
+      "domainIds": [
+        "BO-07",
+        "BO-05",
+        "BO-04"
+      ],
+      "designLifecycle": "DRAFT",
+      "runtimeRelease": "MAINTENANCE",
+      "landingEvidence": "MIXED",
+      "resolution": "OPEN",
+      "note": "系统与实现证据存在，但当前口径为临时版本且计划大改。",
+      "evidence": [
+        "design/公会系统Design Doc.md",
+        "research/outer-domain-audit.md"
+      ]
+    },
+    {
+      "id": "gem-inscription",
+      "name": "宝石与铭文",
+      "domainIds": [
+        "BO-02",
+        "BI-02"
+      ],
+      "designLifecycle": "ARCHIVED",
+      "runtimeRelease": "REMOVED",
+      "landingEvidence": "MIXED",
+      "resolution": "CLEAR",
+      "note": "文档归档，铭文当前废弃；残留不能恢复为正式需求。",
+      "evidence": [
+        "design/archive/宝石与铭文Design Doc.md"
+      ]
+    },
+    {
+      "id": "pvpve-monster-damage",
+      "name": "PVPVE 怪物伤害专项",
+      "domainIds": [
+        "BI-07",
+        "BI-06",
+        "BO-01"
+      ],
+      "designLifecycle": "APPROVED",
+      "runtimeRelease": "UNKNOWN",
+      "landingEvidence": "PARTIAL",
+      "resolution": "OPEN",
+      "note": "数值目标已确认，部分 Prefab、SceneData 与实机验证仍未闭环。",
+      "evidence": [
+        "design/PVPVE怪物伤害数值设计-2026-07-27.md"
+      ]
+    },
+    {
+      "id": "battle-drop-icon",
+      "name": "战斗掉落 Icon 表现",
+      "domainIds": [
+        "BI-08",
+        "BI-09",
+        "XS-04"
+      ],
+      "designLifecycle": "IN_REVIEW",
+      "runtimeRelease": "UNKNOWN",
+      "landingEvidence": "CLIENT",
+      "resolution": "OPEN",
+      "note": "客户端实现链存在，但设计与产品最终验收未关闭。",
+      "evidence": [
+        "design/战斗掉落Icon表现Design Doc.md",
+        "research/combat-domain-audit.md"
+      ]
+    }
+  ],
+  "domainCoverage": [
+    {
+      "domainId": "BI-01",
+      "documentReferences": 2,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-02",
+      "documentReferences": 11,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-03",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-04",
+      "documentReferences": 4,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-05",
+      "documentReferences": 2,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-06",
+      "documentReferences": 13,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-07",
+      "documentReferences": 9,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-08",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-09",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-01",
+      "documentReferences": 16,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-02",
+      "documentReferences": 19,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-03",
+      "documentReferences": 6,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-04",
+      "documentReferences": 35,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-05",
+      "documentReferences": 13,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-06",
+      "documentReferences": 6,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-07",
+      "documentReferences": 2,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-08",
+      "documentReferences": 11,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-09",
+      "documentReferences": 7,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-10",
+      "documentReferences": 4,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-01",
+      "documentReferences": 15,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-02",
+      "documentReferences": 12,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-03",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-04",
+      "documentReferences": 1,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-05",
+      "documentReferences": 0,
+      "coverageState": "STRUCTURAL_PLACEHOLDER",
+      "note": "项目级结构必须保留，但当前 52 份 Design Markdown 中没有权威文档映射。"
+    },
+    {
+      "domainId": "XS-06",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-07",
+      "documentReferences": 7,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-08",
+      "documentReferences": 0,
+      "coverageState": "STRUCTURAL_PLACEHOLDER",
+      "note": "项目级结构必须保留，但当前 52 份 Design Markdown 中没有权威文档映射。"
+    },
+    {
+      "domainId": "XS-09",
+      "documentReferences": 0,
+      "coverageState": "STRUCTURAL_PLACEHOLDER",
+      "note": "项目级结构必须保留，但当前 52 份 Design Markdown 中没有权威文档映射。"
+    }
+  ],
+  "responsibilityBoundaries": [
+    {
+      "topic": "版本内容与发布治理",
+      "businessOwner": "BO-09",
+      "supportOwners": [
+        "XS-05",
+        "XS-06"
+      ],
+      "boundary": "BO-09 负责玩家可见活动/赛季/运营内容；XS-05 负责指标与实验判定；XS-06 负责开关、分流部署、灰度、Hotfix、发布和回滚。"
+    },
+    {
+      "topic": "战斗难度与共享仿真",
+      "businessOwner": "BI-07",
+      "supportOwners": [
+        "XS-01"
+      ],
+      "boundary": "BI-07 定义具体玩法的目标、基准场景与验收阈值；XS-01 维护共享公式、玩家/怪物模型、生成器和仿真版本。"
+    }
+  ],
+  "sourceSummary": {
+    "markdownCount": 52,
+    "graphMatched": 52,
+    "primaryDomainCounts": {
+      "BO-03": 2,
+      "BO-01": 10,
+      "BO-02": 15,
+      "BO-04": 3,
+      "BO-07": 1,
+      "BI-03": 1,
+      "XS-03": 1,
+      "BI-04": 2,
+      "BI-09": 1,
+      "XS-02": 1,
+      "BO-05": 5,
+      "BI-01": 1,
+      "BO-08": 2,
+      "BO-06": 1,
+      "BI-08": 1,
+      "BI-07": 2,
+      "XS-07": 3
+    },
+    "declaredStatusCounts": {
+      "`Draft`": 27,
+      "`Confirmed`（设备规则与数值已确认；舱室单材料升级方案已同步06评审镜像）": 1,
+      "`Draft / CurrentDecision`": 1,
+      "`InReview`": 1,
+      "数值与产出方案已确认，已合入框架V2的06最终配置镜像；SVN未修改": 1,
+      "关卡结构、首通奖励、常规掉落与星级奖励均已确认": 1,
+      "`Draft`（反推草稿，待评审）": 6,
+      "Unstated": 1,
+      "`ConfigReady`（属性与养成数值已生成 06 最终配置镜像；SVN Datas/程序接入待完成）": 1,
+      "规则评审就绪；角色“单次重复转化碎片量”尚待服务端回源，未达到配置实施门禁": 1,
+      "已停止维护，非权威，仅保留为 2026-08-14 讨论与变更追溯记录。": 1,
+      "Draft": 1,
+      "Draft，已追加 2026-07-06 合成/制作 8 档变更、2026-07-09 红宝箱外显变更、2026-08-17 映射之匙任务投放调整、2026-08-20 CHG-014/CHG-015 首通展示职责拆分，待策划评审": 1,
+      "InReview": 1,
+      "`Design Confirmed / Config Applied`": 1,
+      "`Draft / 已确认基础首通、角色材料、章底舱室建材与章节星级奖励口径`": 1,
+      "Archived": 1,
+      "数值目标已确认，部分工程配置仍待同步": 1,
+      "Reference": 3
+    }
+  }
+}

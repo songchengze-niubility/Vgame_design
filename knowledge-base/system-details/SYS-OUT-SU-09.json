@@ -1,0 +1,664 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-09",
+  "name": "邮件",
+  "revision": "2026-08-18.3",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 客户端 Lua 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置模板与客户端投递/领取/过期实现线索，不证明 Production/LIVE；运营后台下发、附件服务端结算与幂等在客户端不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED / DRAFT_TARGET",
+      "meaning": "目标设计或已确认策划口径；Draft 表示反推草稿，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（Excel 或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程或边界，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-09-R01",
+        "SYS-OUT-SU-09-R04",
+        "SYS-OUT-SU-09-R06"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-SU-09-R03"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-09-R03",
+        "SYS-OUT-SU-09-R04",
+        "SYS-OUT-SU-09-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-SU-09-R07"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "邮件系统承担游戏内消息推送与补偿/运营奖励发放的职能：把系统通知、运营投放、活动与异常补偿以邮件实例形式投递到玩家邮箱，附件奖励经 Drop 入账，并按过期时间自动清理，使补偿投放与日常收入核算解耦。",
+    "inScope": [
+      "系统邮件（纯文本模板）下发与展示",
+      "预发送邮件（PresendMail）的 Unlock 条件触发与附件投递",
+      "邮件附件领取、一键领取、已读、删除与过期清理的时机与状态规则",
+      "补偿投放与日常收入核算的来源类型隔离",
+      "邮件实例的状态机（未读/已读、含附件/已领取/已删除/已过期）"
+    ],
+    "outOfScope": [
+      "附件 Drop 包的具体内容、权重与数量；该内容归 SYS-OUT-SU-05 与 Drop 源表",
+      "附件入账后的物品身份与账本；该内容归 SYS-OUT-SU-04",
+      "PresendMail Unlock 条件的具体参数定义；Unlock/系统开放权威归 SYS-OUT-SU-13",
+      "运营后台的发放批次、灰度与发布台账；该内容归 SYS-OUT-SU-14 与版本运营",
+      "玩家间邮件/私信（明确非目标）"
+    ],
+    "inputs": [
+      "运营后台/活动系统/补偿系统发起的邮件下发请求",
+      "Mail.xlsx 模板（Title, Text, ExpirationTime）",
+      "PresendMail.xlsx 预发送条目（Unlock, MailId, Drop）与玩家进度事件",
+      "玩家打开邮箱、领取附件、一键领取、删除与已读操作"
+    ],
+    "outputs": [
+      "玩家邮箱中的邮件实例与状态变化（未读/已读/已领取/已过期/已删除）",
+      "附件 Drop 领取触发的事件，交由 SYS-OUT-SU-05 执行真实入账",
+      "过期清理结果（删除或补发未领附件）",
+      "邮箱红点与列表刷新反馈"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式外循环支撑系统（消息/补偿/运营发放）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "邮件作为系统通知、运营奖励与异常补偿的投递入口在项目总 Skill 和发布状态登记中均为正式外循环。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "反推 Draft，结构清晰但多个工作假设待确认",
+      "status": "DRAFT_TARGET_PARTIAL",
+      "note": "Design Doc 状态为 Draft/反推整理；R-01～R-07 结构清晰，但邮箱容量上限、过期附件默认补发/丢弃、补偿标记字段等仍为待确认工作假设。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Mail.xlsx + PresendMail.xlsx 存在；MailSystem.lua 实现投递/领取/过期",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；客户端 MailSystem.lua 提供 CheckMailExpire/ReceiveAllReward/ReadMail/DeleteMail 等消费方线索，服务端下发与幂等不可见。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "实现线索存在；缺集中版本—开关—发布台账",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置与客户端实现证据，但没有集中版本、功能开关、灰度范围与发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-09-F01",
+      "name": "系统邮件下发与展示流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-09-F01-S01",
+          "name": "发起下发",
+          "description": "运营后台/活动系统/补偿系统发起邮件下发，指定 Mail 模板 Id。"
+        },
+        {
+          "id": "SYS-OUT-SU-09-F01-S02",
+          "name": "校验模板",
+          "description": "校验 Mail 模板 Id 在 Mail.xlsx 中存在；不存在则下发失败告警。"
+        },
+        {
+          "id": "SYS-OUT-SU-09-F01-S03",
+          "name": "创建邮件实例",
+          "description": "读取模板 Title/Text/ExpirationTime，创建玩家邮件实例，状态=未读。"
+        },
+        {
+          "id": "SYS-OUT-SU-09-F01-S04",
+          "name": "写入邮箱",
+          "description": "写入玩家邮箱并触发红点与列表新增条目。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-F02",
+      "name": "预发送邮件触发与附件领取流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-09-F02-S01",
+          "name": "匹配 Unlock 条件",
+          "description": "玩家进度达到 PresendMail 条目的 Unlock 条件（等级/任务/活动进度）。"
+        },
+        {
+          "id": "SYS-OUT-SU-09-F02-S02",
+          "name": "去重校验",
+          "description": "按 PresendId + 玩家 ID 判定是否已发；已发则不再触发。"
+        },
+        {
+          "id": "SYS-OUT-SU-09-F02-S03",
+          "name": "创建含附件邮件",
+          "description": "读取 MailId 获取模板、读取 Drop 字段获取附件，创建含附件邮件实例，状态=未读+含附件。"
+        },
+        {
+          "id": "SYS-OUT-SU-09-F02-S04",
+          "name": "玩家领取附件",
+          "description": "玩家打开含附件邮件并点击领取或一键领取；本系统校验未过期/未领取后触发 Drop 入账。"
+        },
+        {
+          "id": "SYS-OUT-SU-09-F02-S05",
+          "name": "标记已领取/已读",
+          "description": "附件状态变为已领取，邮件变为已读；真实入账由 SYS-OUT-SU-05 执行。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-F03",
+      "name": "过期清理流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-09-F03-S01",
+          "name": "定时扫描",
+          "description": "定时任务扫描玩家邮箱，对比创建时间 + ExpirationTime 与当前时间。"
+        },
+        {
+          "id": "SYS-OUT-SU-09-F03-S02",
+          "name": "处理过期邮件",
+          "description": "删除过期邮件；若含未领取附件，按配置补发 Drop 或直接丢弃（补发/丢弃策略待确认）。"
+        },
+        {
+          "id": "SYS-OUT-SU-09-F03-S03",
+          "name": "刷新列表",
+          "description": "邮箱列表自动刷新，移除过期邮件；补发失败需日志记录。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-09-R01",
+      "name": "邮件类型与职责边界",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "邮件分两类：纯文本模板邮件（Mail.xlsx）仅做消息通知，无附件；预发送邮件（PresendMail.xlsx）可附带 Drop 奖励，用于运营补偿、活动奖励下发。补偿类一次性大量投放不应计入日常收入核算。",
+      "sourceFact": "Design Doc 背景与目标明确两类邮件职责；Mail.xlsx 承载 Title/Text/ExpirationTime，PresendMail.xlsx 承载 Unlock/MailId/Drop。",
+      "acceptance": "纯文本邮件不产生附件入账；含附件邮件的奖励经真实 Drop 入账；补偿投放与日常收入在统计侧可区分。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04",
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV02",
+        "SYS-OUT-SU-09-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-R02",
+      "name": "系统邮件下发",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "系统邮件基于 Mail.xlsx 模板 Id 下发，含标题、正文、过期时间；模板 Id 不存在则下发失败告警。",
+      "sourceFact": "Design Doc R-01 描述读取模板→创建实例→写入邮箱；MailSystem.lua 提供 CRespNotifyNewMail/CRespGetMailList 回包消费方；模板校验在服务端，客户端不可见。",
+      "acceptance": "每个系统邮件实例可追溯到 Mail 模板 Id；模板缺失有告警记录。",
+      "relatedIds": [
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-R03",
+      "name": "预发送邮件触发与去重",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "PresendMail 绑定 Unlock 条件 + Drop 奖励，玩家达到条件后自动下发；同一 PresendMail 重复触发按 PresendId + 玩家 ID 去重。",
+      "sourceFact": "Design Doc R-02 描述条件匹配→读取 MailId 与 Drop→创建含附件邮件；去重机制为玩家维度记录已触发的 PresendId 集合。PresendMail Unlock 条件参数权威归 SYS-OUT-SU-13。",
+      "acceptance": "每个 PresendMail 对每名玩家最多触发一次；去重由服务端保证，客户端不可绕过。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-R04",
+      "name": "附件领取与奖励所有权边界",
+      "status": "DRAFT_TARGET_AUTHORITY_DELEGATED",
+      "targetRule": "邮件附件领取验证 DropId 有效性后触发奖励发放；本系统决定何时/为何发，具体发什么/发多少由 SYS-OUT-SU-05 经真实 Drop 入账决定。附件已领取重复点击应拒绝。",
+      "sourceFact": "Design Doc R-03 描述验证 DropId→发放 Drop→标记已领取/已读；MailSystem.lua ReceiveAllReward/CRespReceiveMail 提供领取消费方。真实入账与幂等在服务端，客户端不可见。",
+      "acceptance": "附件领取只触发一次；真实入账权威归 SYS-OUT-SU-05；本系统不复制 Drop 包内容或具体数量。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-R05",
+      "name": "过期清理与未领附件处理",
+      "status": "DRAFT_TARGET_PARTIAL_GAP",
+      "targetRule": "邮件创建时间 + ExpirationTime < 当前时间时过期清理；含未领附件的过期邮件按配置补发 Drop 或丢弃。大量邮件同时过期需分批处理防卡顿。",
+      "sourceFact": "Design Doc R-04 描述定时扫描→删除过期→补发或丢弃；MailSystem.lua CheckMailExpire 提供客户端过期检查线索。补发还是丢弃、邮箱容量上限 100 封、定时执行时间（建议每日 5:00）均为待确认工作假设。",
+      "acceptance": "过期邮件从邮箱移除；未领附件的处理策略（补发/丢弃）有明确配置口径且可追溯。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-R06",
+      "name": "一键领取与已读/删除",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "一键领取遍历所有含未领取附件的邮件批量汇总 Drop 并一次性发放，单封无效跳过不阻塞其余；删除含未领附件邮件需二次确认；打开邮件标记已读。",
+      "sourceFact": "Design Doc R-05/R-06 描述批量汇总、跳过无效、二次确认与已读标记；MailSystem.lua ReceiveAllReward/ReadMail/DeleteMail 提供对应消费方。",
+      "acceptance": "一键领取不因单封无效而阻塞全部；删除含未领附件有二次确认；已读标记不可逆。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-R07",
+      "name": "补偿投放经济隔离",
+      "status": "DRAFT_TARGET_GAP",
+      "targetRule": "补偿类 PresendMail 需标记来源类型=补偿，统计时区分日常收入与补偿收入，不计入日常收入核算。",
+      "sourceFact": "Design Doc R-07 描述标记来源类型→统计侧区分；但补偿标记字段在 PresendMail.xlsx 中的具体列名与字段未在文档中确认，统计侧区分实现不可见。",
+      "acceptance": "补偿投放可被统计侧识别并从日常收入中剥离；补偿标记缺失有兜底处理口径。",
+      "relatedIds": [
+        "SYS-OUT-SU-14",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV03"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-09-C01",
+      "name": "系统邮件下发前置",
+      "status": "DRAFT_TARGET",
+      "rule": "系统邮件下发前置为 Mail 模板 Id 在 Mail.xlsx 中存在；模板 Id 不存在则下发失败告警。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-C02",
+      "name": "预发送邮件触发条件",
+      "status": "DRAFT_TARGET_DELEGATED",
+      "rule": "PresendMail 触发前置为玩家达到条目 Unlock 条件且该 PresendId 未对该玩家触发过；Unlock 条件参数权威归 SYS-OUT-SU-13。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-C03",
+      "name": "附件领取前置",
+      "status": "DRAFT_TARGET",
+      "rule": "附件领取前置为邮件未过期且附件未领取；一键领取前置为邮箱存在 ≥1 封含未领取附件的邮件。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-C04",
+      "name": "删除前置",
+      "status": "DRAFT_TARGET",
+      "rule": "删除含未领取附件邮件需二次确认或拒绝删除；删除无附件或已领取附件邮件可直接删除。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-09-RW01",
+      "name": "邮件附件领取时机",
+      "status": "DRAFT_TARGET_AUTHORITY_DELEGATED",
+      "rule": "邮件附件在玩家领取（单封或一键）时触发 Drop 入账；本系统拥有何时/为何发的时机权威，具体发什么/发多少归 SYS-OUT-SU-05 经真实 Drop 决定，本系统不维护 Drop 包内容。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-RW02",
+      "name": "过期未领附件补发/丢弃",
+      "status": "DRAFT_TARGET_PARTIAL_GAP",
+      "rule": "过期邮件含未领附件时按配置补发 Drop 至背包或直接丢弃；补发需幂等且不重复入账，具体策略待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV04"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-09-EX01",
+      "name": "过期附件补发策略缺口",
+      "status": "P1_GAP",
+      "rule": "过期邮件未领附件是补发还是丢弃、补发是否幂等、补发失败如何对账均无冻结策划口径；Design Doc 列为待确认工作假设。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-EX02",
+      "name": "邮箱容量与自动清理",
+      "status": "P2_GAP",
+      "rule": "邮箱容量上限（Design Doc 假设 100 封）、超上限自动删除最旧已读邮件的策略为待确认工作假设；运行时容量与清理规则待服务端确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-EX03",
+      "name": "补偿标记字段未确认",
+      "status": "P1_GAP",
+      "rule": "补偿类 PresendMail 的来源类型标记字段在 PresendMail.xlsx 中的具体列名未在文档中确认；补偿标记缺失时的兜底统计处理口径未冻结。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-EX04",
+      "name": "服务端幂等与重复领取",
+      "status": "P1_GAP",
+      "rule": "附件领取、一键领取与过期补发的服务端幂等在客户端不可见；重复请求、断线、部分成功的状态回滚需服务端确认原子结算。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-EX05",
+      "name": "全服邮件性能",
+      "status": "P2_GAP",
+      "rule": "全服邮件下发性能瓶颈（Design Doc 评估中/高影响）需分批写入；分批策略与延迟可接受度待运营与服务端确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-09-UI01",
+      "name": "邮箱列表与红点",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "邮箱图标在有未读/含未领附件邮件时显示红点；列表展示邮件标题、发送时间、已读/未读、含附件图标与过期时间；客户端 UIMailView/UIMailItem 承载列表与条目展示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-UI02",
+      "name": "邮件详情与附件领取",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "打开邮件展示正文与附件信息；含附件邮件提供领取/已领取按钮（领取后置灰）；一键领取按钮汇总全部附件；奖励飞入由通用展示入口承接。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-UI03",
+      "name": "删除与二次确认",
+      "status": "DRAFT_TARGET",
+      "rule": "删除含未领附件邮件弹出二次确认；删除无附件或已领取邮件可直接删除；UIMailDeleteView 承载批量删除入口。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV05"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-09-CFG01",
+      "name": "Mail.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mail\\Mail.xlsx",
+      "role": "纯文本邮件模板（Id, Title, Text, ExpirationTime）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-09-CFG02",
+      "name": "PresendMail.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mail\\PresendMail.xlsx",
+      "role": "预发送邮件（Unlock, MailId, Drop）；补偿来源标记字段待确认",
+      "status": "WORKING_COPY_SOURCE_NEEDS_FIELD_CONFIRMATION"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-09-REL01",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：Mail.xlsx(EV02)定义邮件附件，MailSystem.lua(EV04)实现附件领取，邮件系统Design Doc(EV01)定义邮件规则。推导：邮件附件领取触发Drop入账(SU-05)，本系统决定何时/为何发，真实入账归SYS-OUT-SU-05，构成 reports/outgoing 关系。推导边界：邮件附件配置与领取逻辑已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：邮件附件入账的服务端幂等与领取后邮件状态回滚规则仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-09-REL02",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：Mail.xlsx(EV02)定义邮件附件物品，MailSystem.lua(EV04)实现附件领取，Items.xlsx在SU-04侧定义物品身份。推导：附件Drop入账后写入物品账本(SU-04)，账本身份与堆叠归SYS-OUT-SU-04，构成 supplies/outgoing 关系。推导边界：附件物品配置已由工作副本确认，但物品账本身份在SU-04侧维护，服务端写入权威不可见。UNKNOWN：附件入账的服务端写入幂等与物品堆叠规则仍待SU-04确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-09-REL03",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "来源：PresendMail.xlsx(EV03)定义预发送邮件Unlock条件，邮件系统Design Doc(EV01)定义PresendMail规则，SYS-OUT-SU-13新手引导正文定义Unlock体系。推导：PresendMail的Unlock条件由SYS-OUT-SU-13的Unlock体系定义与校验，构成 consumes/incoming 关系。推导边界：PresendMail配置已由工作副本确认，但Unlock条件体系在SU-13侧维护。UNKNOWN：PresendMail各类型的Unlock条件与服务端校验规则仍待SU-13确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-09-REL04",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-14",
+      "targetName": "活动、赛季与 LiveOps",
+      "description": "来源：邮件系统Design Doc(EV01)定义运营补偿投递，Mail.xlsx(EV02)定义邮件类型，SYS-OUT-SU-14活动正文定义活动结算与运营补偿。推导：活动/赛季结算与运营补偿经邮件投递，发布台账与活动时间归SYS-OUT-SU-14，构成 consumes/incoming 关系。推导边界：邮件投递配置已由工作副本确认，但活动时间与发布台账在SU-14侧维护。UNKNOWN：活动补偿邮件的投递时机与服务端发放规则仍待SU-14确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-09-REL05",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：邮件系统Design Doc(EV01)定义补偿投递规则，知识目录定义NUM-04经济数值域职责。推导：补偿投放需与日常收入核算解耦，经济账区分日常与补偿来源(NUM-04)，构成 balances/incoming 关系。推导边界：补偿投递规则已由Design Doc确认，但补偿与日常的经济解耦模型属经济数值域维护。UNKNOWN：补偿投放的权威定价与日常/补偿经济解耦的具体规则仍待经济域确认。",
+      "status": "KNOWLEDGE_CURRENT_WITH_GAP",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-09-EV01",
+      "kind": "reverse-design",
+      "label": "邮件系统 Design Doc",
+      "path": "design/邮件系统Design Doc.md",
+      "href": "../../../design/邮件系统Design Doc.md",
+      "location": "元信息(Draft)、背景与目标、R-01～R-07、技术方案、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-SU-09-EV02",
+      "kind": "source-excel",
+      "label": "Mail.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/mail/Mail.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/mail/Mail.xlsx",
+      "location": "本机SVN工作副本；邮件模板 Id/Title/Text/ExpirationTime；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-09-EV03",
+      "kind": "source-excel",
+      "label": "PresendMail.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/mail/PresendMail.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/mail/PresendMail.xlsx",
+      "location": "本机SVN工作副本；预发送邮件 Unlock/MailId/Drop；补偿标记字段待确认；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NEEDS_FIELD_CONFIRMATION"
+    },
+    {
+      "id": "SYS-OUT-SU-09-EV04",
+      "kind": "source-code",
+      "label": "MailSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Mail/MailSystem.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/MailSystem.lua",
+      "location": "CheckMailExpire(49-68)、GetMailList(69)、ReceiveAllReward(78-92)、ReadMail(93-109)、DeleteMail(110-118)、CRespNotifyNewMail(170)；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-09-EV05",
+      "kind": "source-code",
+      "label": "UIMailView/UIMailItem",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/Mail/UIMailView.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/UI/Mail/UIMailView.lua",
+      "location": "邮箱列表与详情 UI；同目录 UIMailItem.lua/UIMailDeleteView.lua；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-09-Q01",
+      "priority": "P1",
+      "question": "过期邮件含未领附件时是补发还是丢弃？补发是否幂等、补发失败如何对账？",
+      "impact": "影响资源安全、玩家体验与补偿处理；当前为待确认工作假设。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV04"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-09-Q02",
+      "priority": "P1",
+      "question": "补偿类 PresendMail 的来源类型标记字段在 PresendMail.xlsx 中的具体列名是什么？统计侧如何区分日常与补偿？",
+      "impact": "决定补偿投放经济隔离是否可落地；标记缺失会污染日常收入核算。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV03"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "PresendMail.xlsx 当前 Mail 工作表列为 ##var/Id/Unlock/MailId/Drop，未观察到“日常/补偿”来源类型列。因此统计侧不能仅从该表可靠区分，需新增枚举字段或由发送链携带可追踪标记。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-09-EV01",
+        "SYS-OUT-SU-09-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09-Q03",
+      "priority": "P1",
+      "question": "附件领取、一键领取与过期补发的服务端幂等如何保证原子结算与防重复入账？",
+      "impact": "决定重复入账与补发安全；客户端只展示回包无本地幂等。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV04"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-09-Q04",
+      "priority": "P2",
+      "question": "邮箱容量上限与超上限自动清理策略（Design Doc 假设 100 封、删最旧已读）是否为正式口径？",
+      "impact": "影响邮箱可用性与老邮件保留。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-09-Q05",
+      "priority": "P2",
+      "question": "全服邮件下发是否采用分批写入？分批策略与延迟可接受度如何定义？",
+      "impact": "影响全服补偿时的性能与到达时延。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-09-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在系统邮件下发、预发送触发与附件领取、过期清理等有序流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在模板存在性、Unlock 触发、未过期/未领取、删除二次确认等前置条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "邮件拥有附件领取时机权威；具体 Drop 内容归 SYS-OUT-SU-05，本系统只记录时机与所有权边界"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在补发策略缺口、容量缺口、补偿标记缺口与服务端幂等缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在邮箱列表、红点、详情、附件领取与删除二次确认等玩家可见界面"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 Mail.xlsx 与 PresendMail.xlsx 两个独立策划配置源"
+    }
+  }
+}

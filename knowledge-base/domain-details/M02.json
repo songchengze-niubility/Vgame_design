@@ -1,0 +1,423 @@
+{
+  "schema": "vgame-module-detail/v1",
+  "moduleId": "M02",
+  "name": "数值框架v2专业正文",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceDoc": "M02-数值框架v2专业正文.md",
+  "parentModule": "numeric",
+  "overview": {
+    "purpose": "为数值域建立框架 v2 视角的跨系统映射视图：共享底座、养成、战斗、经济、节奏与配置交付六域的权威链、真实映射边界与双权威冲突。",
+    "inScope": [
+      "NUM-00..06 六域的模块级组织与权威链",
+      "41 个显式引用映射（其中养成域 GR-01..GR-10 共 10 系统与配置交付域 17 模块为行级映射，战斗/经济/节奏域为域级引用，非行级）+ 4 个域级占位映射（SU-09/SU-10/SU-12/SU-14 为域级引用，非行级数值映射），合计覆盖45个系统，见 §0.5",
+      "玩家等级经验曲线双权威（278,180 vs 302,950）P0 冲突",
+      "06 镜像 VERIFIED_MIRROR_NOT_LIVE_PROOF 边界（17 模块行级）",
+      "养成 10 系统行级映射（沉淀/镜像/SVN 状态）"
+    ],
+    "outOfScope": [
+      "各系统规则正文（归 system-details，本模块只引用）",
+      "行级产销/公式对照（归框架v2 各域沉淀与模块产销表）",
+      "正式 SVN Datas 写入（未经用户批准禁止）"
+    ],
+    "inputs": [
+      "框架v2 全部源表与沉淀 MD",
+      "45 系统正文",
+      "共享契约注册表"
+    ],
+    "outputs": [
+      "数值域专业视图",
+      "系统↔数值域映射",
+      "双权威/冲突清单（供主策裁决）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式知识模块（numeric 模块专业展开）",
+      "status": "CURRENT_DESIGN_IDENTITY"
+    },
+    {
+      "axis": "目标设计",
+      "value": "框架 v2 权威链已收口；个别双权威待裁决",
+      "status": "CONFIRMED_TARGET_WITH_CONFLICT"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "01_源表/03_沉淀MD 为权威；正式 Datas 只读",
+      "status": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "axis": "运行状态",
+      "value": "06 镜像已验算但未批准写 SVN",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    }
+  ],
+  "sections": [
+    {
+      "id": "M02-S0",
+      "anchor": "## 0. 阅读约定与来源标签",
+      "name": "阅读约定与来源标签",
+      "summary": "provenance 定义与权威链（01_源表→03_沉淀MD→04→05→06→批准→Datas）。",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "M02-S05",
+      "anchor": "## 0.5 系统映射边界（真实映射清单）",
+      "name": "系统映射边界",
+      "summary": "NUM 域×系统映射：41 个显式引用映射（养成域 10 系统与配置交付域 17 模块为行级，战斗/经济/节奏域为域级引用）+ 4 个域级占位映射（SU-09/SU-10/SU-12/SU-14），合计覆盖45个系统。行级仅限养成(§2)与配置交付(§6.1)，不得把所有显式映射称为行级。域级占位明确标记为非行级映射，后续补证责任人=数值策划+对应系统策划。",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "M02-S1",
+      "anchor": "## 1. 共享底座（N1 / NUM-01）",
+      "name": "共享底座",
+      "summary": "属性定义/标准人/道具定价/参数基线五域权威。",
+      "status": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "M02-S2",
+      "anchor": "## 2. 养成数值（N2 / NUM-02）",
+      "name": "养成数值（行级映射）",
+      "summary": "10 养成线逐系统：沉淀 MD / 06 镜像 / SVN 状态；专武与收容物 P0 冲突。",
+      "status": "CONFIRMED_TARGET_WITH_CONFLICT"
+    },
+    {
+      "id": "M02-S3",
+      "anchor": "## 3. 战斗数值（N3 / NUM-03）",
+      "name": "战斗数值",
+      "summary": "公式事实/模型假设/经验权重/验证模型与缺口。",
+      "status": "SOURCE_EXPLICIT_WITH_GAPS"
+    },
+    {
+      "id": "M02-S4",
+      "anchor": "## 4. 经济数值（N4 / NUM-04）",
+      "name": "经济数值",
+      "summary": "价值链五环节、P4 总账与 GAP（随机包展开/UIlevel 强校验/未开发系统口径）。",
+      "status": "SOURCE_EXPLICIT_WITH_GAPS"
+    },
+    {
+      "id": "M02-S5",
+      "anchor": "## 5. 节奏与开放（N5 / NUM-05）",
+      "name": "节奏与开放",
+      "summary": "节奏参数/开放节奏与玩家等级经验曲线双权威 P0 冲突（278,180 vs 302,950）。",
+      "status": "P0_CONFLICT"
+    },
+    {
+      "id": "M02-S6",
+      "anchor": "## 6. 配置与验证（N6 / NUM-06）",
+      "name": "配置与验证（行级映射）",
+      "summary": "06 镜像17个模块行（全部 VERIFIED_MIRROR_NOT_LIVE_PROOF）；结构化 crossRef 列出18个受影响系统ID，明确非一一对应；05验算与Datas同步状态。",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    },
+    {
+      "id": "M02-S7",
+      "anchor": "## 7. 全局 GAP / UNKNOWN / 冲突清单",
+      "name": "全局缺口清单",
+      "summary": "数值域 P0/P1/P2 缺口汇总。",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "M02-S8",
+      "anchor": "## 8. 证据索引（关键路径）",
+      "name": "证据索引",
+      "summary": "源表/AI规则/参数基线/沉淀/验算/镜像路径索引。",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "M02-S9",
+      "anchor": "## 2026-08-24 人工裁决同步",
+      "name": "2026-08-24 人工裁决同步",
+      "summary": "11 项相关裁决已确认目标；全部实施状态仍为 IMPLEMENTATION_PENDING。",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING"
+    }
+  ],
+  "crossRefs": [
+    {
+      "targetType": "numeric",
+      "targetId": "NUM-00",
+      "systemIds": [],
+      "note": "总纲与权威链（约束全部系统，域级）",
+      "mappingDepth": "domain",
+      "status": "SOURCE_EXPLICIT"
+    },
+    {
+      "targetType": "numeric",
+      "targetId": "NUM-01",
+      "systemIds": [
+        "SYS-OUT-GR-02",
+        "SYS-OUT-GR-03",
+        "SYS-OUT-GR-04",
+        "SYS-OUT-GR-05",
+        "SYS-OUT-GR-07",
+        "SYS-OUT-SU-04"
+      ],
+      "note": "共享底座（属性/定价消费方，域级）",
+      "mappingDepth": "domain",
+      "status": "SOURCE_EXPLICIT"
+    },
+    {
+      "targetType": "numeric",
+      "targetId": "NUM-02",
+      "systemIds": [
+        "SYS-OUT-GR-01",
+        "SYS-OUT-GR-02",
+        "SYS-OUT-GR-03",
+        "SYS-OUT-GR-04",
+        "SYS-OUT-GR-05",
+        "SYS-OUT-GR-06",
+        "SYS-OUT-GR-07",
+        "SYS-OUT-GR-08",
+        "SYS-OUT-GR-09",
+        "SYS-OUT-GR-10"
+      ],
+      "note": "养成数值（10 系统行级映射，§2）",
+      "mappingDepth": "row",
+      "status": "CONFIRMED_TARGET_WITH_CONFLICT"
+    },
+    {
+      "targetType": "numeric",
+      "targetId": "NUM-03",
+      "systemIds": [
+        "SYS-IN-01",
+        "SYS-IN-02",
+        "SYS-IN-03",
+        "SYS-IN-04",
+        "SYS-IN-05",
+        "SYS-IN-06",
+        "SYS-IN-07",
+        "SYS-IN-08"
+      ],
+      "note": "战斗数值（8 系统经 M01 引用，域级）",
+      "mappingDepth": "domain",
+      "status": "SOURCE_EXPLICIT"
+    },
+    {
+      "targetType": "numeric",
+      "targetId": "NUM-04",
+      "systemIds": [
+        "SYS-OUT-SU-01",
+        "SYS-OUT-SU-02",
+        "SYS-OUT-SU-03",
+        "SYS-OUT-SU-04",
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-06",
+        "SYS-OUT-SU-09",
+        "SYS-OUT-SU-10",
+        "SYS-OUT-SU-12",
+        "SYS-OUT-SU-14",
+        "SYS-OUT-SU-15",
+        "SYS-OUT-GP-03",
+        "SYS-OUT-GP-04",
+        "SYS-OUT-GP-05",
+        "SYS-OUT-GP-12"
+      ],
+      "note": "经济数值（产出玩法+获取流通+付费+周边支撑，域级；行级权威在经济/模块产销表）。其中 SU-09(邮件)/SU-10(通行证)/SU-12(好友聊天)/SU-14(活动LiveOps) 为域级占位映射：这4个系统在数值框架v2中无行级数值映射，仅在域级作为经济/留存流转的消费方被引用；后续补证责任人为数值策划+对应系统策划，补证条件为各系统独立Design冻结后建立行级产销映射。",
+      "mappingDepth": "domain",
+      "status": "SOURCE_EXPLICIT"
+    },
+    {
+      "targetType": "numeric",
+      "targetId": "NUM-05",
+      "systemIds": [
+        "SYS-OUT-GR-01",
+        "SYS-OUT-SU-13",
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GP-02",
+        "SYS-OUT-GP-03",
+        "SYS-OUT-GP-04",
+        "SYS-OUT-GP-05",
+        "SYS-OUT-GP-06",
+        "SYS-OUT-GP-07",
+        "SYS-OUT-GP-08",
+        "SYS-OUT-GP-09",
+        "SYS-OUT-GP-10",
+        "SYS-OUT-GP-11",
+        "SYS-OUT-GP-12"
+      ],
+      "note": "节奏数值（等级/开放/难度线，域级；行级权威在全玩法难度线）",
+      "mappingDepth": "domain",
+      "status": "SOURCE_EXPLICIT"
+    },
+    {
+      "targetType": "numeric",
+      "targetId": "NUM-06",
+      "systemIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GP-02",
+        "SYS-OUT-GP-03",
+        "SYS-OUT-GP-04",
+        "SYS-OUT-GP-05",
+        "SYS-OUT-GP-06",
+        "SYS-OUT-GP-08",
+        "SYS-OUT-GP-09",
+        "SYS-OUT-GP-10",
+        "SYS-OUT-GP-12",
+        "SYS-OUT-GR-02",
+        "SYS-OUT-GR-04",
+        "SYS-OUT-GR-05",
+        "SYS-OUT-GR-09",
+        "SYS-OUT-SU-02",
+        "SYS-OUT-SU-07",
+        "SYS-OUT-SU-08",
+        "SYS-OUT-SU-11"
+      ],
+      "note": "配置交付含17个镜像模块行；systemIds列出18个受影响系统，因一个镜像可服务多个系统且废弃玩法镜像未映射为现行系统，两者不是一一对应。",
+      "mappingDepth": "row",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    },
+    {
+      "targetType": "contract",
+      "targetId": "CONTRACT-ITEM-LEDGER",
+      "systemIds": [
+        "SYS-OUT-SU-04"
+      ],
+      "note": "资源身份契约（FRAMEWORK_CONTRACT）",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "targetType": "contract",
+      "targetId": "CONTRACT-REWARD-SETTLEMENT",
+      "systemIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "note": "奖励结算分层契约（FRAMEWORK_CONTRACT）",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "targetType": "contract",
+      "targetId": "CONTRACT-SWEEP",
+      "systemIds": [
+        "SYS-OUT-GP-11"
+      ],
+      "note": "扫荡结算契约（FRAMEWORK_CONTRACT）",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "targetType": "contract",
+      "targetId": "CONTRACT-LEVEL-ENTRY",
+      "systemIds": [
+        "SYS-OUT-GP-01"
+      ],
+      "note": "玩法进入条件契约（FRAMEWORK_CONTRACT）",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    }
+  ],
+  "aggregatedConflicts": [
+    {
+      "id": "M02-C01",
+      "priority": "P0",
+      "theme": "玩家等级经验曲线双权威（PlayerLv 278,180 vs v2 单源 302,950）",
+      "externalQuestionRefs": [
+        "SYS-OUT-GR-01-Q01"
+      ]
+    },
+    {
+      "id": "M02-C02",
+      "priority": "P0",
+      "theme": "专武与收容物迁移（C-001）",
+      "externalQuestionRefs": [
+        "SYS-OUT-GR-10-Q01",
+        "SYS-OUT-GR-05-Q01"
+      ]
+    },
+    {
+      "id": "M02-C03",
+      "priority": "P1",
+      "theme": "玩家终态战力曲线过渡基线",
+      "externalQuestionRefs": []
+    },
+    {
+      "id": "M02-C04",
+      "priority": "P1",
+      "theme": "战斗后期投放口径 ruling②（6.4 vs 8.1）",
+      "externalQuestionRefs": []
+    },
+    {
+      "id": "M02-C05",
+      "priority": "P2",
+      "theme": "P6 Luban 导出未启动；全部 06 镜像非 LIVE 证明",
+      "externalQuestionRefs": []
+    }
+  ],
+  "humanDecisionSummary": [
+    {
+      "cardId": "DC-A",
+      "selectedOptionName": "B：一个大版本兼容迁移期",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-GR-10-Q01"
+    },
+    {
+      "cardId": "DC-B",
+      "selectedOptionName": "UIlevel Drop字段权威",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-SU-05-Q01"
+    },
+    {
+      "cardId": "DC-C",
+      "selectedOptionName": "替换为已有有效包",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-SU-05-Q02"
+    },
+    {
+      "cardId": "DC-E",
+      "selectedOptionName": "玩法级配置",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-GP-11-Q01"
+    },
+    {
+      "cardId": "DC-L",
+      "selectedOptionName": "按品质固定",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-SU-03-Q06"
+    },
+    {
+      "cardId": "DC-M",
+      "selectedOptionName": "建立且强制门禁",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-SU-14-Q01"
+    },
+    {
+      "cardId": "DC-N",
+      "selectedOptionName": "统一为10007",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-GP-01-Q01"
+    },
+    {
+      "cardId": "DC-O",
+      "selectedOptionName": "受限社交资源",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-SU-12-Q07"
+    },
+    {
+      "cardId": "DC-P",
+      "selectedOptionName": "逐条混合继承",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-GP-07-Q05"
+    },
+    {
+      "cardId": "DC-Q",
+      "selectedOptionName": "补齐35节点",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-GP-02-Q01"
+    },
+    {
+      "cardId": "DC-R",
+      "selectedOptionName": "Draft目标改造",
+      "approvalStatus": "APPROVED_TARGET",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "closeableQuestionId": "SYS-OUT-GP-07-Q06"
+    }
+  ]
+}

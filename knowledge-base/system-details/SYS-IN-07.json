@@ -1,0 +1,623 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-IN-07",
+  "name": "战斗 UI、反馈与引导",
+  "revision": "2026-08-18.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置与实现线索，不证明 Production/LIVE。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份设计、源码、配置或 Skill 归纳出的结构，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-IN-07-R04"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "战斗 UI、反馈与引导负责把战斗状态变成玩家可读、可操作、可理解的反馈：HUD、技能位、Buff、计时、Boss 提示、命中/受击、掉落表现与局内战斗引导。",
+    "inScope": [
+      "战斗 HUD 构成（技能位、暂停/自动、Buff、计时、Boss 血条、Cut-in）",
+      "命中/受击、预警、Boss 提示与阶段反馈",
+      "战斗掉落 Icon 的纯客户端视觉表现",
+      "BattleGuide 的局内呈现与教学承接（触发、序列与完成记录权威归 SYS-OUT-SU-13）",
+      "战斗 UI 信息层级与可读性责任",
+      "局内胜负反馈页（UIBattleWinView/UIBattleFailView）与结算触发后的界面承接（由 SYS-IN-08 下发驱动；结算数据与结算界面路由权威归 SYS-IN-08）"
+    ],
+    "outOfScope": [
+      "战斗外新手引导 NewbieGuide、SystemOpen 与 Unlock；归 SYS-OUT-SU-13",
+      "掉落 Icon 对应的真实掉落与入账；归 SYS-OUT-SU-05",
+      "伤害数值计算与命中判定本身；归 CB-R03/CB-R04 与 SYS-IN-03",
+      "结算数据与结算界面路由；归 SYS-IN-08。玩法专用结算页 UI（Lua UI/Settlement 目录）归各玩法外壳",
+      "UI 视觉资产尺寸/颜色/字体；归 UI 规格与原型"
+    ],
+    "inputs": [
+      "单位血量、技能、Buff、计时与 Boss 阶段状态（来自 SYS-IN-02/SYS-IN-03/SYS-IN-04）",
+      "BattleGuide.xlsx 与 Introduction.xlsx 引导配置",
+      "UIlevel 的视觉掉落字段（MidVisualDropItems/Chance/LevelEndVisualDropItems）",
+      "镜头边界、Loop 事件与 ZoneShowGuide 触发点（来自 SYS-IN-05）",
+      "SYS-IN-08 的结算触发（VMsg_GameOver 表现层下发与 CNotifyFightOver 结算路由，驱动界面切换与清理）"
+    ],
+    "outputs": [
+      "实时 HUD、技能位、Buff、计时、Boss 血条与 Cut-in 展示",
+      "命中/受击/预警反馈",
+      "战斗掉落 Icon 飞行表现（纯视觉）",
+      "局内引导的暂停、提示与操作教学",
+      "胜负页/失败页展示（承接 SYS-IN-08 结算触发的胜负结果）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式战斗内 UI 系统",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "战斗 HUD、反馈与局内引导是战斗内系统的组成项，目录登记为正式，没有争议。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "HUD 与引导已实现；掉落表现 InReview、信息优先级待验收",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "note": "HUD 与 BattleGuide 有实现与配置证据；战斗掉落 Icon 设计文档为 InReview，遮挡与信息优先级最终验收未关闭。"
+    },
+    {
+      "axis": "当前工作副本源表",
+      "value": "UIBattleView/UIBattlePanel/BattleGuide 已核；视觉掉落字段已落表",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于2026-08-18：Lua 战斗 UI 目录、C# UIBattlePanel、BattleGuide.xlsx、Introduction.xlsx 与 UIlevel 视觉掉落字段均存在。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程实现链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源码与配置证据，但缺集中版本—开关—发布时间台账，不能把工作副本观察盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-IN-07-F01",
+      "name": "局内战斗引导执行流程",
+      "steps": [
+        {
+          "id": "SYS-IN-07-F01-S01",
+          "name": "承接 ZoneShowGuide 触发",
+          "description": "SYS-OUT-SU-13 维护的 ZoneShowGuide 触发区在角色到达 X 坐标时发出引导触发；本系统承接对应 guideId 的局内呈现。"
+        },
+        {
+          "id": "SYS-IN-07-F01-S02",
+          "name": "注册并查表",
+          "description": "GuideMgr 注册 guideId，读取 BattleGuide.xlsx 的 Type、NeedPause、SkillPos、Text 等配置。"
+        },
+        {
+          "id": "SYS-IN-07-F01-S03",
+          "name": "暂停与展示",
+          "description": "若 NeedPause 暂停游戏时间，下发 VMsg_ShowGuide 显示提示、高亮与手指位置。"
+        },
+        {
+          "id": "SYS-IN-07-F01-S04",
+          "name": "等待玩家操作",
+          "description": "按引导类型等待玩家完成跳跃、技能使用、图片点击或定时结束。"
+        },
+        {
+          "id": "SYS-IN-07-F01-S05",
+          "name": "完成并恢复",
+          "description": "CompleteGuide 隐藏引导、恢复时间，并记录到 HistoricalCompletedGuideIds 防止重复触发。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-IN-07-R01",
+      "name": "战斗 HUD 职责与构成",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「战斗 HUD 职责与构成」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Lua UIBattleView/UIBattleView_Auto 与 C# UIBattlePanel 实现主要 HUD 构成；Lua UI Battle 目录含 UIBattleWinView/FailView/Pause、BossCutIn、HeroCutIn、UIBossComingView、UIBossRageView、UILevelCountDownView 等。",
+      "acceptance": "每个 HUD 构成项能回到对应 Lua/C# 实现；纯视觉细节不在本系统复制。",
+      "relatedIds": [
+        "SYS-IN-02",
+        "SYS-IN-03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-07-EV01",
+        "SYS-IN-07-EV02",
+        "SYS-IN-07-EV03"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-R02",
+      "name": "BattleGuide 呈现职责与权威分权",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "本系统维护局内战斗引导的 UI 呈现、暂停展示与教学承接；BattleGuide 触发、动作类型、序列与完成记录权威归 SYS-OUT-SU-13，本系统只引用不复制。",
+      "sourceFact": "新手引导 Design Doc（Draft）明确双系统：BattleGuide 负责关卡内引导，NewbieGuide 负责 UI 引导；核心理解 Skill 亦把战斗引导与战斗外引导分层。",
+      "acceptance": "局内教学承接不复制 NewbieGuide/SystemOpen 规则；只记录触发、暂停、文本与完成承接。",
+      "relatedIds": [
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-07-EV06",
+        "SYS-IN-07-EV08"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-R03",
+      "name": "BattleGuide 局内呈现与类型承接",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「BattleGuide 局内呈现与类型承接」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用；与 SYS-OUT-SU-13 的分权边界另见 R02。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "BattleGuide.xlsx 含 Type/SkillPos/NeedPause/Text/IntroductionId/CircleScale/CirclePos/Text2 字段，字段名已核对存在；battle-guide-config Skill 参考列 16 种 BattleGuideEnum 与完成判定。",
+      "acceptance": "每种引导类型有完成条件；未知类型跳过并告警；NeedPause 不在高空/掉落中误暂停。",
+      "relatedIds": [
+        "SYS-IN-05"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-07-EV04",
+        "SYS-IN-07-EV08"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-R04",
+      "name": "视觉掉落不等于真实结算",
+      "status": "WORKING_COPY_OBSERVED_IN_REVIEW",
+      "targetRule": "GAP：战斗掉落 Icon 表现 Design Doc 尚在 InReview，未冻结「视觉掉落不等于真实结算」的正式策划口径；本条现有 InReview 设计稿与工作副本代码/配置观察（见 sourceFact），评审通过前不得当作正式规则引用；「视觉掉落/战利品记录/真实入账」三层分权的知识边界见 SYS-IN-08-R05。",
+      "sourceFact": "战斗掉落 Icon Design Doc（InReview）与 UIBattlePanel.cs 的 InitVisualDrop/OnMonsterDeadVisualDrop/OnLevelEndVisualDrop/SpawnAndFlyDropIcon 实现一致；UIlevel 已含 MidVisualDropItems/MidVisualDropChance/LevelEndVisualDropItems 字段。",
+      "acceptance": "视觉掉落任何失败不阻塞死亡/胜利/结算；关底合并只按权威胜利事件；真实入账归 SYS-OUT-SU-05。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-07-EV02",
+        "SYS-IN-07-EV07",
+        "SYS-IN-07-EV09"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-R05",
+      "name": "命中/受击/预警/Boss 提示反馈",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「命中/受击/预警/Boss 提示反馈」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "CoinMode.cs 通知 UI 显示 Boss 血条分割线阈值；Lua UI Battle 目录含 UIBossComingView/UIBossRageView；UIBattlePanel 维护 Boss 血条与角色血量。",
+      "acceptance": "Boss 技能预警、伤害来源、控制/免疫与失败原因的最终验收未关闭，进入问题清单。",
+      "relatedIds": [
+        "SYS-IN-04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-07-EV02",
+        "SYS-IN-07-EV03",
+        "SYS-IN-07-EV10"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-R06",
+      "name": "信息优先级与遮挡验收",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：缺少五角色技能位、Buff、Boss 条、Cut-in 与掉落表现之间的遮挡与信息优先级正式验收口径。",
+      "sourceFact": "审计列出「自动战斗下技能与大招窗口可读性、遮挡、弱引导、降级方案」为待回答问题；未核到正式验收规则。",
+      "acceptance": "高信息密度与低性能场景有降级方案；遮挡与可读性有可执行验收标准。",
+      "relatedIds": [
+        "SYS-IN-03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-07-EV10"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-IN-07-C01",
+      "name": "BattleGuide 呈现承接条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "触发权威归 SYS-OUT-SU-13（ZoneShowGuide 到达 X 坐标触发）；本系统承接呈现，完成记录 HistoricalCompletedGuideIds 由权威侧维护、防止重复触发。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV08"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-C02",
+      "name": "引导暂停条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "NeedPause=true 时暂停游戏时间，完成后恢复；应避免在高空/掉落中暂停。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV04",
+        "SYS-IN-07-EV08"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-C03",
+      "name": "视觉掉落概率条件",
+      "status": "WORKING_COPY_OBSERVED_IN_REVIEW",
+      "rule": "普通小怪死亡按 MidVisualDropChance（万分比）判定是否播放 1 个视觉 Icon，命中后从剩余池随机抽取。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV02",
+        "SYS-IN-07-EV07"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-C04",
+      "name": "关底合并播放条件",
+      "status": "WORKING_COPY_OBSERVED_IN_REVIEW",
+      "rule": "关底怪死亡并正式胜利（且首次通关）时，合并剩余关中池与关底固定池一次性飞出，不再执行关中抽取。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV02",
+        "SYS-IN-07-EV07"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-IN-07-EX01",
+      "name": "未知引导类型跳过",
+      "status": "WORKING_COPY_OBSERVED_RISK",
+      "rule": "GuideType 未知应跳过并告警，资源缺失用默认文字替代；该行为来自 Draft 文档，运行时兜底未核到。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV06",
+        "SYS-IN-07-EV08"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-EX02",
+      "name": "掉落表现失败不阻塞结算",
+      "status": "WORKING_COPY_OBSERVED_IN_REVIEW",
+      "rule": "HUD 目标不存在、隐藏或已销毁时跳过飞行表现并记录错误，不得阻塞怪物死亡、胜利、场景切换或结算。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV07",
+        "SYS-IN-07-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-EX03",
+      "name": "失败/断线清理视觉池",
+      "status": "WORKING_COPY_OBSERVED_IN_REVIEW",
+      "rule": "失败、退出、断线、超时、跳关、场景卸载时清理本局视觉池，不补播、不发奖、不重播。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV07"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-EX04",
+      "name": "遮挡与信息优先级未验收",
+      "status": "P1_GAP",
+      "rule": "技能位、Buff、Boss 条、Cut-in 与掉落表现互相遮挡的风险未验收，缺正式降级与可读性规则。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV10"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-IN-07-UI01",
+      "name": "战斗 HUD 主界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示技能位、暂停/自动、Buff、计时、Boss 血条与角色血量，信息层级由本系统维护。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV01",
+        "SYS-IN-07-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-UI02",
+      "name": "技能位与操作控制",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "5 个技能/角色技能位，含暂停、自动战斗与关卡技能位。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV01",
+        "SYS-IN-07-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-UI03",
+      "name": "Buff 与计时",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示 Buff 列表、Frenzy/时间信息与关卡倒计时。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV01",
+        "SYS-IN-07-EV03"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-UI04",
+      "name": "Boss/Hero Cut-in 与预警",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "Boss 出场、狂暴、Hero 入场 Cut-in 与 Boss 血条分割线/阶段提示。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV03"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-UI05",
+      "name": "战斗掉落 Icon 表现",
+      "status": "WORKING_COPY_OBSERVED_IN_REVIEW",
+      "rule": "Icon 从怪物位置弹出飞入左上角战利品宝箱，只显示 Icon，无品质框/名称/数量文字。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV02",
+        "SYS-IN-07-EV07"
+      ]
+    },
+    {
+      "id": "SYS-IN-07-UI06",
+      "name": "BattleGuide 引导 UI",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "显示引导提示、高亮圈、手指位置与图片序列，支持暂停与操作教学。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV04",
+        "SYS-IN-07-EV05"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-IN-07-CFG01",
+      "name": "BattleGuide",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guide\\BattleGuide.xlsx",
+      "role": "局内战斗引导配置：Type、SkillPos、NeedPause、Text、IntroductionId、CircleScale、CirclePos",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-07-CFG02",
+      "name": "Introduction",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guide\\Introduction.xlsx",
+      "role": "引导图片序列（BattleGuide.IntroductionId 引用）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-07-CFG03",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "战斗掉落 Icon 视觉表现字段：MidVisualDropItems/MidVisualDropChance/LevelEndVisualDropItems",
+      "status": "WORKING_COPY_SOURCE_IN_REVIEW"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-IN-07-REL01",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-02",
+      "targetName": "单位、阵营与队伍",
+      "description": "HUD 消费队伍血量、受击与目标状态用于展示。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-07-EV01",
+        "SYS-IN-07-EV02"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-IN-07-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-03",
+      "targetName": "技能、Buff 与效果",
+      "description": "HUD 消费技能位、Buff 与计时状态用于展示。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-07-EV01",
+        "SYS-IN-07-EV03"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-IN-07-REL03",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-IN-05",
+      "targetName": "关卡空间与遭遇",
+      "description": "关卡空间与遭遇提供 ZoneShowGuide 触发点（角色到达 X 坐标触发 guideId）与关卡事件供战斗引导与 UI 消费；镜头边界/Loop 事件的消费链未单独核证。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-07-EV08"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-IN-07-REL04",
+      "type": "reports",
+      "direction": "incoming",
+      "targetId": "SYS-IN-08",
+      "targetName": "胜负、结果与结算触发",
+      "description": "结算触发下发胜负与统计，驱动胜负页、结算页与掉落表现。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-07-EV02",
+        "SYS-IN-07-EV03",
+        "SYS-IN-07-EV11"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-IN-07-EV01",
+      "kind": "source-code",
+      "label": "UIBattleView.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/Battle/UIBattleView.lua",
+      "location": "Lua 战斗 HUD 主视图与绑定",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-07-EV02",
+      "kind": "source-code",
+      "label": "UIBattlePanel.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.GameLogic/Runtime/Combat/BattleUI/UIBattlePanel.cs",
+      "location": "InitVisualDrop/OnMonsterDeadVisualDrop/OnLevelEndVisualDrop/SpawnAndFlyDropIcon（L549-2100）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-07-EV03",
+      "kind": "source-code",
+      "label": "Lua 战斗 UI 目录",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/Battle",
+      "location": "UIBattleWinView/FailView/Pause、BossCutIn、HeroCutIn、UIBossComingView、UIBossRageView、UILevelCountDownView、UIBattleGuideView",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-07-EV04",
+      "kind": "source-excel",
+      "label": "BattleGuide.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Guide/BattleGuide.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Guide/BattleGuide.xlsx",
+      "location": "本机SVN工作副本；Type/SkillPos/NeedPause/Text/CircleScale/CirclePos 字段核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-07-EV05",
+      "kind": "source-excel",
+      "label": "Introduction.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Guide/Introduction.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Guide/Introduction.xlsx",
+      "location": "本机SVN工作副本；引导图片序列 1001-1003；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-07-EV06",
+      "kind": "reverse-design",
+      "label": "新手引导系统 Design Doc",
+      "path": "design/新手引导系统Design Doc.md",
+      "href": "../../../design/新手引导系统Design Doc.md",
+      "location": "R-01 BattleGuide、R-02~R-04 NewbieGuide/SystemOpen、R-05 时间线",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-07-EV07",
+      "kind": "reverse-design",
+      "label": "战斗掉落 Icon 表现 Design Doc",
+      "path": "design/战斗掉落Icon表现Design Doc.md",
+      "href": "../../../design/战斗掉落Icon表现Design Doc.md",
+      "location": "§1 目标与边界、§2 配置、§3 运行规则 R-01~R-05、§6 验收",
+      "status": "DRAFT_IN_REVIEW"
+    },
+    {
+      "id": "SYS-IN-07-EV08",
+      "kind": "design-target",
+      "label": "战斗引导配置（Skill 参考）",
+      "path": "D:/Vgame_design/skills/vgame-tutorial-onboarding-map/references/battle-guide-config.md",
+      "location": "BattleGuide.xlsx Schema、16 种类型、触发方式、执行流程",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-07-EV09",
+      "kind": "source-excel",
+      "label": "UIlevel.xlsx（视觉掉落字段）",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "location": "本机SVN工作副本；MidVisualDropItems/MidVisualDropChance/LevelEndVisualDropItems 字段核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_IN_REVIEW"
+    },
+    {
+      "id": "SYS-IN-07-EV10",
+      "kind": "reverse-design",
+      "label": "战斗域审计",
+      "path": "archive/legacy-output-20260824/research/combat-domain-audit.md",
+      "location": "§11 战斗内 UI 与反馈、§11.2 掉落 Icon、§11.3 待回答问题",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-07-EV11",
+      "kind": "source-code",
+      "label": "BattleSystem.lua（结算路由对战斗 UI 的作用）",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Battle/BattleSystem.lua",
+      "location": "CRespNotifyFightOver 关闭 UIBattleView 并按 LevelType 打开胜负结算界面（L461-533）",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-IN-07-Q01",
+      "priority": "P1",
+      "question": "战斗掉落 Icon 表现 InReview 的最终产品验收何时关闭？",
+      "impact": "当前实现存在但设计验收未关闭，影响视觉掉落边界是否可视为正式。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV07",
+        "SYS-IN-07-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-07-Q02",
+      "priority": "P1",
+      "question": "五角色技能位、Buff、Boss 条、Cut-in 与掉落表现互相遮挡的正式验收标准是什么？",
+      "impact": "影响高信息密度下玩家可读性与战斗反馈质量。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV10",
+        "SYS-IN-07-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-07-Q03",
+      "priority": "P2",
+      "question": "自动战斗下玩家为何仍需看懂技能与大招窗口，弱引导如何补充？",
+      "impact": "影响自动/半自动战斗的反馈设计。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV10"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-07-Q04",
+      "priority": "P2",
+      "question": "低性能与高密度场景是否有无障碍与降级方案？",
+      "impact": "影响低端机与极限战斗场景的可用性。",
+      "evidenceRefs": [
+        "SYS-IN-07-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在 ZoneShowGuide 触发到引导完成的局内引导顺序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "引导触发、暂停、视觉掉落概率与关底合并均为触发/分支条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "视觉掉落不等于真实结算，真实入账归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "未知引导类型、掉落表现失败、失败断线清理与遮挡缺口存在"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "HUD、反馈与引导是本系统核心职责"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "BattleGuide/Introduction/UIlevel 视觉掉落字段是真实配置源"
+    }
+  }
+}

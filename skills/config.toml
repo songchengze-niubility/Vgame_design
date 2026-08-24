@@ -15,6 +15,7 @@ feature_workflow = "planning-feature-workflow"
 
 [skills]
 project_context = "vgame-core-understanding"
+knowledge_router = "vgame-knowledge-router"
 economy = "senior-game-economy"
 numerical_analysis = "game-numerical-analysis"
 config_schema = "vgame-config-schema"
@@ -32,6 +33,7 @@ battle_tuning = "vgame-battle-tuning-helper"
 tutorial_onboarding = "vgame-tutorial-onboarding-map"
 version_release = "vgame-version-release-map"
 player_progression_simulator = "vgame-player-progression-simulator"
+outer_loop_progression_pacing = "outer-loop-progression-pacing"
 
 [planning]
 requirement_clarification = "planning-requirement-clarification"

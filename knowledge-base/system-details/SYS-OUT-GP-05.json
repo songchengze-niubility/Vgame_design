@@ -1,0 +1,872 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-05",
+  "name": "映射装备副本",
+  "revision": "2026-08-18.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-05-R03",
+        "SYS-OUT-GP-05-R04",
+        "SYS-OUT-GP-05-C01",
+        "SYS-OUT-GP-05-C02",
+        "SYS-OUT-GP-05-C03"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GP-05-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-05-R06",
+        "SYS-OUT-GP-05-R07"
+      ]
+    },
+    {
+      "id": "CONTRACT-SWEEP",
+      "ruleRefs": [
+        "SYS-OUT-GP-05-R08"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GP-05-R02"
+      ]
+    },
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-GP-05-R04"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "映射装备副本是终局装备高频短循环刷取玩法：30 层关卡以映射之匙（ItemId=25）为门票，通关产出装备宝箱（不直接掉装备）与制作材料，为映射装备长线随机养成（SYS-OUT-GR-07）提供日常主来源。",
+    "inScope": [
+      "映射装备副本（LevelType_SpecialEquipment=31）30 层结构、品质分层与开放",
+      "映射之匙（ItemId=25）门票消耗、扫荡与多倍结算",
+      "宝箱掉落（不直接掉装备）与制作材料独立掉落的时机与边界",
+      "每层首通返还钥匙与首通/常规奖励分层",
+      "旧宝石本/芯片本（LevelType_SpecialEquipmentGem/Chip）废弃状态与现行副本的区分"
+    ],
+    "outOfScope": [
+      "映射装备的 8 槽位、品质、主副属性、孔位、洗练与超限规则；归 SYS-OUT-GR-07",
+      "宝箱开出装备的具体品质/部位/词缀规则；归 SYS-OUT-GR-07 与 Drop 源",
+      "具体奖励数值的唯一维护；具体数量回到数值框架 v2 与 Drop 源表（SYS-OUT-SU-05）",
+      "映射之匙的身份与持有上限；归 SYS-OUT-SU-04（NumLimit=50）",
+      "扫荡资格/成本/批量/幂等 canonical；归 SYS-OUT-GP-11",
+      "制作材料与高级材料的养成用途；归 SYS-OUT-GR-07"
+    ],
+    "inputs": [
+      "映射之匙（ItemId=25, NumLimit=50, SpecialLevelTicketItemID=25）持有量",
+      "UIlevel/SpecialLevel/EquipmentLevel 配置（30 层×5 品质变体=150 行，Vitality=25,1）",
+      "Drop_dungeon 真实奖励包（首通 20000010-39、常规 20005101-130）",
+      "SystemOpen SO 314 开放条件与 globals_conf 开关"
+    ],
+    "outputs": [
+      "装备宝箱（绿/蓝/紫/金/红，开 1 件装备）与制作材料",
+      "首通钥匙返还（每层×1）与首通/常规奖励入账",
+      "副本通关进度（供扫荡资格消费）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "终局装备高频刷取副本（映射之匙门票）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "映射装备副本是映射装备养成的日常主来源，使用映射之匙门票而非体力；旧宝石本/芯片本已 CloseSys=True 废弃，不等于现行副本废弃。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "30 层、映射之匙门票、宝箱+材料掉落、首通返钥匙",
+      "status": "CONFIRMED_TARGET",
+      "note": "数值设计文档 §6 已确认 30 层结构、门票消耗、宝箱/材料掉落、首通返钥匙与扫荡规则；映射之匙任务投放已于 2026-08-17 同步配置。层解锁节奏与层→品质分档仍为 §14 待确认/无设计口径（见 R02/R03、Q07）。"
+    },
+    {
+      "axis": "当前工作副本源表",
+      "value": "150 行齐全、30 层有 Drop；多倍白名单冲突、无 level 底表",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；UIlevel 150 行 SpecialEquipment + 30 层 SpecialLevel；但 level.xlsx 无 Type=31 战斗底表，且 UIlevel MS=4 与 globals_conf EnableMultiSettlementLevel 不含 SpecialEquipment 冲突。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程主链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表、Drop 与客户端实现证据，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-05-F01",
+      "name": "映射装备副本挑战流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-05-F01-S01",
+          "name": "选择层与品质",
+          "description": "玩家在映射装备副本界面选择 30 层之一，每层有 5 品质变体（Green/Blue/Purple/Gold/Red）。"
+        },
+        {
+          "id": "SYS-OUT-GP-05-F01-S02",
+          "name": "校验开放与前置",
+          "description": "校验 SystemOpen SO 314 开放、层解锁条件（上一层通关或等级门槛）。"
+        },
+        {
+          "id": "SYS-OUT-GP-05-F01-S03",
+          "name": "校验门票",
+          "description": "校验映射之匙（ItemId=25）持有量 >= 1（Vitality=25,1）；不支持体力兑换。"
+        },
+        {
+          "id": "SYS-OUT-GP-05-F01-S04",
+          "name": "进入战斗或扫荡",
+          "description": "手动挑战消耗 1 把钥匙进入战斗；满足资格时可走扫荡（消耗钥匙，掉落一致），canonical 归 SYS-OUT-GP-11。"
+        },
+        {
+          "id": "SYS-OUT-GP-05-F01-S05",
+          "name": "判定胜负",
+          "description": "战斗胜利进入结算；失败不产出。"
+        },
+        {
+          "id": "SYS-OUT-GP-05-F01-S06",
+          "name": "执行结算",
+          "description": "产出装备宝箱（不直接掉装备）+ 制作材料独立掉落；首通额外结算首通包（含钥匙×1 返还）；多倍结算按倍数放大。"
+        },
+        {
+          "id": "SYS-OUT-GP-05-F01-S07",
+          "name": "更新进度",
+          "description": "写入通关状态，供扫荡资格与下一层解锁消费。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-05-R01",
+      "name": "副本供给与映射装备养成分正文",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "映射装备副本只管副本供给玩法（30 层、门票、宝箱/材料掉落时机与结算）；映射装备的槽位、品质、属性、孔位、洗练与超限规则归 SYS-OUT-GR-07，不在本正文展开。",
+      "sourceFact": "LevelType.xlsx 定义 LevelType_SpecialEquipment=31（SystemId=314，映射装备副本）；UIlevel 150 行 SpecialEquipment；数值设计文档 §2 系统循环明确「装备副本→宝箱+材料→宝箱开装备→穿戴/合成/分解」。",
+      "acceptance": "本正文不复制映射装备养成正文；副本供给与养成通过 supplies 关系衔接。",
+      "relatedIds": [
+        "SYS-OUT-GR-07",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV01",
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-R02",
+      "name": "系统开放与旧类型废弃",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：尚无权威目标设计冻结「系统开放与旧类型废弃」的正式策划口径；数值设计文档 §14 仅将「副本开放节奏（按角色等级/主线进度/战力/上一层通关）」列为待确认项；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。",
+      "sourceFact": "SystemOpen.xlsx SO 314（映射装备副本 UnlockId=4314 CloseSys=None）、SO 315（映射装备宝石 UnlockId=4315 CloseSys=True）、SO 316（映射装备芯片 UnlockId=4316 CloseSys=True）；UIlevel 仍有 6 行 Gem + 6 行 Chip 物理存在但入口已关闭。数值设计文档未定义 SystemOpen 行与层解锁节奏的正式口径（§14 待确认项）。",
+      "acceptance": "30 层解锁节奏与 SO 314/315/316 开放废弃口径经策划冻结后，本条 targetRule 更新为正式口径；冻结前 SO 行状态与层解锁仅作为工作副本事实引用，旧类型物理行不得被运行时当作可用入口。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV09",
+        "SYS-OUT-GP-05-EV10",
+        "SYS-OUT-GP-05-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-R03",
+      "name": "30 层结构与品质分层",
+      "status": "CONFIRMED_TARGET_PARTIAL_WITH_GAP",
+      "targetRule": "30 层数量与每层宝箱数量/宝箱档位概率已由数值设计文档 §6.2/§6.3 冻结（保留）；GAP：尚无权威目标设计冻结「层→品质分档（1-9 蓝/10-18 紫/19-25 金/26-30 红）与每层 5 品质变体」的正式策划口径；该部分仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。",
+      "sourceFact": "SpecialLevel.xlsx 30 行（250011-250301）：层 1-9 Blue、10-18 Purple、19-25 Orange、26-30 Red；UIlevel 150 行 SpecialEquipment（30 层×5 变体）；EquipmentLevel.xlsx 150 行映射 UiLevelId/Quality/LevelId。数值设计文档 §6.3 的品质口径是每层绿/蓝/紫/金/红宝箱概率分布，未定义层→单一品质分档，亦未描述 5 品质变体结构。",
+      "acceptance": "30 层数量与 §6.2/§6.3 表一致；层→品质分档与 5 品质变体在正式口径冻结前仅作为工作副本事实引用，不得写入目标设计或 UI 文案。",
+      "relatedIds": [
+        "NUM-03",
+        "NUM-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV07",
+        "SYS-OUT-GP-05-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-R04",
+      "name": "映射之匙门票与不支持体力",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "进入消耗映射之匙（ItemId=25）每层 1 把；不支持体力兑换；扫荡消耗与手动一致。",
+      "sourceFact": "UIlevel 150 行 Vitality 均为 '25,1'（ItemId=25，单次 1）；globals_conf.SpecialLevelTicketItemID=25；Items.xlsx 映射之匙(25) NumLimit=50；数值设计文档 §6.1 明确不支持体力兑换、扫荡消耗钥匙。",
+      "acceptance": "门票为映射之匙而非储能；单次 1 把；扫荡与手动复用同一门票消耗；持有上限 50。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "SYS-OUT-GR-01",
+        "SYS-OUT-GP-11"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV10",
+        "SYS-OUT-GP-05-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-R05",
+      "name": "宝箱掉落与制作材料独立掉落",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "装备副本不直接掉装备，而是掉对应等级池的宝箱（每个宝箱开 1 件装备）；制作材料由副本通关后独立掉落，不进入宝箱池。",
+      "sourceFact": "数值设计文档 §6.2/§6.3 配置 30 层宝箱数量与档位概率；Drop_dungeon 中 DropId 20005101 DropId2=「映射装备副本第1层常规掉落」；§6 明确制作材料独立掉落；DropId 20000010 DropId2=「层1首通」。",
+      "acceptance": "副本产出宝箱+材料而非直接装备；宝箱数量与档位随层递增；材料独立于宝箱池。",
+      "relatedIds": [
+        "SYS-OUT-GR-07",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-R06",
+      "name": "首通返还钥匙与首通/常规分层",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "每层首通固定返还映射之匙×1，额外投放宝箱/制作材料（不投放金币/绿宝箱/高级材料）；首通不可重复；常规只走常规掉落。",
+      "sourceFact": "数值设计文档 §6 每层首通返还钥匙×1；UIlevel 30 个主行 FirstRewardDrop=20000010-20000039（首通）、FallRewardDrop=20005101-20005130（常规），均在 Drop_dungeon 中存在；其余 120 变体行 FRD/RRD 为 None。",
+      "acceptance": "30 层各有首通/常规 DropId；首通返钥匙；首通不可重复；120 非主行的 Drop 为空的用途待确认。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-R07",
+      "name": "多倍结算口径冲突",
+      "status": "P1_CONFLICT",
+      "targetRule": "GAP：UIlevel MultiSettlementTimes=4 声明支持 4 倍结算，但 globals_conf.EnableMultiSettlementLevel 不含 LevelType_SpecialEquipment（仅含 Strategy_*），多倍结算是否对映射装备副本生效待裁决。",
+      "sourceFact": "UIlevel 150 行 SpecialEquipment MS 均为 4；globals_conf EnableMultiSettlementLevel=Strategy_First~Four（不含 SpecialEquipment）；运行时以 globals_conf 白名单还是 UIlevel 字段为权威待代码确认。",
+      "acceptance": "多倍结算口径统一为唯一权威；若不支持需清除 UIlevel MS=4，若支持需补入 globals_conf 白名单。",
+      "relatedIds": [
+        "SYS-OUT-GP-11",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-R08",
+      "name": "扫荡接口（规则权威移交）",
+      "status": "WORKING_COPY_FIELD_RULE_GAP",
+      "targetRule": "映射装备副本支持扫荡已通关层，扫荡消耗钥匙、掉落与手动一致；扫荡的资格、成本、批量/多倍、奖励边界与幂等 canonical 已移交 SYS-OUT-GP-11。",
+      "sourceFact": "globals_conf.EnableMoppingUpLevel 含 LevelType_SpecialEquipment（不含 Gem/Chip）；数值设计文档 §6.1 明确扫荡消耗与手动一致、掉落一致；level.xlsx 无 Type=31 底表，MopUp 字段无法核对。",
+      "acceptance": "副本侧不再重复维护扫荡规则；资格/成本/幂等口径以 SYS-OUT-GP-11 为准。",
+      "relatedIds": [
+        "SYS-OUT-GP-11",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV10",
+        "SYS-OUT-GP-05-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-R09",
+      "name": "失败、异常退出与重复结算",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：尚无权威目标设计冻结「失败、异常退出与重复结算」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。",
+      "sourceFact": "数值设计文档未明确失败是否扣钥匙、断线恢复、多倍结算异常回滚与重复结算防护；服务端结算逻辑不可见。",
+      "acceptance": "正常胜利、失败、主动退出、断线重连、加载失败、重复结算六类路径都有明确门票/奖励变化和可执行验收。",
+      "relatedIds": [
+        "SYS-IN-01",
+        "SYS-IN-08",
+        "SYS-OUT-SU-09"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-R10",
+      "name": "level.xlsx 无战斗底表",
+      "status": "P1_GAP",
+      "targetRule": "GAP：映射装备副本（Type=31/32/33）在 level.xlsx 中无战斗底表行，战斗配置可能由 SpecialLevel/EquipmentLevel 独立承载，运行时加载链待确认。",
+      "sourceFact": "level.xlsx 1303 行中无 Type=31/32/33 的行；其他副本（主线/资源本/旅券）均在 level.xlsx 有底表；映射装备副本的战斗数据加载链与 level.xlsx 缺失的关系未确认。",
+      "acceptance": "映射装备副本的战斗加载链可追溯；level.xlsx 缺失是设计如此还是配置缺口需裁决。",
+      "relatedIds": [
+        "SYS-IN-05",
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV08",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV07"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-05-C01",
+      "name": "系统入口开放",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "映射装备副本经 SystemOpen SO 314（UnlockId=4314）开放；旧 Gem SO 315/Chip SO 316 已 CloseSys=True 关闭。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV09",
+        "SYS-OUT-GP-05-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-C02",
+      "name": "层解锁",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "30 层逐级解锁，依赖上一层通关或玩家等级/主线进度；具体 Unlock 配置待逐条解析。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV07",
+        "SYS-OUT-GP-05-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-C03",
+      "name": "门票门槛",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "映射之匙（ItemId=25）持有量 >= 1（Vitality=25,1）；不支持体力兑换；持有上限 50；RefreshType=Unlimited 无日限，次数由钥匙供给自然控制。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV10",
+        "SYS-OUT-GP-05-EV11"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-05-RW01",
+      "name": "首通返还钥匙与首通宝箱",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "30 层首通 DropId=20000010-20000039（Drop_dungeon），含钥匙×1 返还+宝箱/材料；首通不可重复。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-RW02",
+      "name": "常规宝箱与材料掉落",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "30 层常规 DropId=20005101-20005130（Drop_dungeon），产出装备宝箱+制作材料；宝箱数量与档位随层递增（层 1 固定 3 箱→层 30 固定 6 箱）。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV11"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-05-EX01",
+      "name": "多倍结算白名单冲突",
+      "status": "P1_CONFLICT",
+      "rule": "UIlevel MS=4 声明支持 4 倍结算，但 globals_conf.EnableMultiSettlementLevel 不含 SpecialEquipment；运行时权威待裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-EX02",
+      "name": "level.xlsx 无战斗底表",
+      "status": "P1_GAP",
+      "rule": "level.xlsx 无 Type=31/32/33 行，映射装备副本战斗加载链与 level.xlsx 缺失关系未确认。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV08",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-EX03",
+      "name": "旧 Gem/Chip 类型物理残留",
+      "status": "P2_GAP",
+      "rule": "UIlevel 仍有 6 行 Gem + 6 行 Chip 物理存在（Vitality=3,20 用储能），入口已 CloseSys=True 关闭；物理行是否需清理待裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-EX04",
+      "name": "120 非主行 Drop 为空",
+      "status": "P2_GAP",
+      "rule": "150 行 SpecialEquipment 中仅 30 主行有 FirstRewardDrop/FallRewardDrop，其余 120 品质变体行为 None；5 品质变体的 Drop 配置策略待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-EX05",
+      "name": "失败与断线规则缺口",
+      "status": "P1_GAP",
+      "rule": "失败是否扣钥匙、多倍结算异常回滚、断线恢复与重复结算防护尚无正式系统规则。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-05-UI01",
+      "name": "映射装备副本主界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示 30 层关卡、品质分层、推荐战力、宝箱/材料预览与解锁状态；复用资源副本 UI 框架（UIReflectEquipmentLevelView）。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05-UI02",
+      "name": "副本结算页",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示宝箱开箱结果、制作材料掉落、首通钥匙返还与多层进度；多倍结算展示倍数与总奖励。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV12"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-05-CFG01",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "SpecialEquipment 150 行（30 层×5 品质变体）Vitality=25,1/MS=4/30 主行 FirstRewardDrop=200000xx+FallRewardDrop=200051xx；Gem 6 行+Chip 6 行（旧类型 Vitality=3,20）",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-05-CFG02",
+      "name": "SpecialLevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\SpecialLevel.xlsx",
+      "role": "30 层品质映射（250011-250301：1-9 Blue/10-18 Purple/19-25 Orange/26-30 Red）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-CFG03",
+      "name": "EquipmentLevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\EquipmentLevel.xlsx",
+      "role": "150 行 UiLevelId/EquipmentQuality/LevelId 映射（30 层×5 品质）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-CFG04",
+      "name": "LevelType",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelType.xlsx",
+      "role": "LevelType_SpecialEquipment=31（SystemId=314）/Gem=32（315）/Chip=33（316）枚举",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-CFG05",
+      "name": "Drop_dungeon",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_dungeon.xlsx",
+      "role": "映射装备副本首通 20000010-39/常规 20005101-130 真实奖励包（宝箱+材料）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-CFG06",
+      "name": "SystemOpen",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx",
+      "role": "SO 314 映射装备副本（UnlockId=4314 开放）/SO 315 Gem（CloseSys=True）/SO 316 Chip（CloseSys=True）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-CFG07",
+      "name": "globals_conf",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\globals_conf\\globals_conf.xlsx",
+      "role": "SpecialLevelTicketItemID=25；EnableMoppingUpLevel 含 SpecialEquipment；EnableMultiSettlementLevel 不含 SpecialEquipment",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-05-REL01",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-07",
+      "targetName": "映射装备",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。映射装备副本产出装备宝箱与制作材料，供给映射装备养成。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV11",
+        "SYS-OUT-GP-05-EV13"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-05-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。映射装备副本消耗映射之匙（ItemId=25, NumLimit=50），扣除走物品账本。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV04",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV10"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-05-REL03",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "选定层与品质后把场景、关卡规则和战斗目标交给战斗实例。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV12"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-05-REL04",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。首通/常规经 Drop_dungeon 入账宝箱+材料；预览/真实分离权威归 SU-05。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV11"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-05-REL05",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GP-11",
+      "targetName": "扫荡",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。已满足资格的映射装备副本层可进入快速结算路径（消耗钥匙）。",
+      "status": "WORKING_COPY_OBSERVED_DELEGATED",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV10",
+        "SYS-OUT-GP-05-EV12"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-05-REL06",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "SystemOpen SO 314 经 Unlock 条件开放映射装备副本入口。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV09"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-05-REL07",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "宝箱/材料产出与钥匙供给进入经济账，具体数量只在数值/Drop 权威源维护。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV05"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-GP-05-REL08",
+      "type": "supersedes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-07",
+      "targetName": "映射装备",
+      "description": "现行映射装备副本（LevelType 31 宝箱+制作材料供给）取代旧宝石本/芯片本（LevelType 32/33，SO 315/316 CloseSys=True）作为映射装备养成的副本供给线；旧宝石/芯片养成面（SpecialEquipmentGem/SpecialEquipmentChip 表）归 GR-07。推导边界：替代关系由 SO 315/316 关闭、UIlevel 旧类型行残留与 GR-07 宝石/芯片归属三源合成，无单独设计决议明示「替代」。",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "provenance": "CROSS_SOURCE_SYNTHESIS",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV09",
+        "SYS-OUT-GP-05-EV13"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-05-EV01",
+      "kind": "reverse-design",
+      "label": "映射装备系统 Design Doc",
+      "path": "design/映射装备系统Design Doc.md",
+      "location": "R-01～R-07 映射装备养成规则（养成归 GR-07，本系统只引用产出边界）",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV02",
+      "kind": "design-target",
+      "label": "映射装备系统数值设计文档",
+      "path": "design/映射装备系统数值设计文档-2026-07-03.md",
+      "location": "§2 系统循环总览（设计分工）、§6 装备副本（6.1 进入规则/6.2 宝箱数量/6.3 宝箱档位概率/6.4 等级池）、§7 首通奖励（每层返钥匙×1）、§13 配置影响、§14 待确认项（副本开放节奏）",
+      "status": "CONFIRMED_TARGET"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV03",
+      "kind": "knowledge-ref",
+      "label": "12-战斗外系统",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "location": "§2.1 映射装备副本行",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV04",
+      "kind": "knowledge-ref",
+      "label": "SYS-OUT-SU-04 物品与货币正文",
+      "path": "archive/legacy-output-20260824/knowledge-base/system-details/SYS-OUT-SU-04.json",
+      "location": "R05 门票与持有上限（映射之匙 25 NumLimit=50）",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV05",
+      "kind": "numeric-deposit",
+      "label": "经济总账收口",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/经济总账收口-2026-07-07.md",
+      "location": "映射装备副本产出与钥匙供给经济账（权威关系索引）",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV06",
+      "kind": "source-excel",
+      "label": "UIlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "location": "本机SVN工作副本；SpecialEquipment 150 行 Vitality=25,1 MS=4 30 主行 FRD=200000xx RRD=200051xx；Gem 6 行+Chip 6 行 Vitality=3,20；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV07",
+      "kind": "source-excel",
+      "label": "SpecialLevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/SpecialLevel.xlsx",
+      "location": "本机SVN工作副本；30 行 250011-250301 品质 Blue/Purple/Orange/Red；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV08",
+      "kind": "source-excel",
+      "label": "EquipmentLevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/EquipmentLevel.xlsx",
+      "location": "本机SVN工作副本；150 行 UiLevelId/EquipmentQuality/LevelId 映射；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV09",
+      "kind": "source-excel",
+      "label": "SystemOpen.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "location": "本机SVN工作副本；SO 314 映射装备副本 UnlockId=4314 CloseSys=None；SO 315 Gem CloseSys=True；SO 316 Chip CloseSys=True；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV10",
+      "kind": "source-excel",
+      "label": "globals_conf.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/globals_conf/globals_conf.xlsx",
+      "location": "本机SVN工作副本；SpecialLevelTicketItemID=25；EnableMoppingUpLevel 含 SpecialEquipment；EnableMultiSettlementLevel 不含 SpecialEquipment；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV11",
+      "kind": "source-excel",
+      "label": "Drop_dungeon.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Drop/Drop_dungeon.xlsx",
+      "location": "本机SVN工作副本；映射装备首通 20000010-39/常规 20005101-130 存在（DropId2=层N首通/第N层常规掉落）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV12",
+      "kind": "source-code",
+      "label": "UIReflectEquipmentLevelView.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/Level/Resource/UIReflectEquipmentLevelView.lua",
+      "location": "映射装备副本难度选择、挑战/扫荡入口与结算跳转",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-05-EV13",
+      "kind": "knowledge-ref",
+      "label": "SYS-OUT-GR-07 映射装备正文",
+      "path": "archive/legacy-output-20260824/knowledge-base/system-details/SYS-OUT-GR-07.json",
+      "location": "inScope 宝石镶嵌（SpecialEquipmentGem）；CFG13 SpecialEquipmentChip（碎片/铭文）；REL01 supplies/incoming 消费副本产出",
+      "status": "KNOWLEDGE_CURRENT"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-05-Q01",
+      "priority": "P1",
+      "question": "映射装备副本多倍结算：UIlevel MS=4 vs globals_conf EnableMultiSettlementLevel 不含 SpecialEquipment，运行时是否支持多倍？",
+      "impact": "决定映射装备副本是否支持多倍结算与钥匙消耗倍数。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-05-Q02",
+      "priority": "P1",
+      "question": "level.xlsx 无 Type=31/32/33 战斗底表，映射装备副本战斗加载链如何工作？是设计如此还是配置缺口？",
+      "impact": "影响副本战斗数据加载与难度验证的可追溯性。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV08",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV07"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-05-Q03",
+      "priority": "P1",
+      "question": "失败、断线与多倍结算异常时映射之匙如何扣除与回滚？",
+      "impact": "影响门票安全、多倍结算体验与补偿处理。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-05-Q04",
+      "priority": "P2",
+      "question": "150 行中 120 非主品质变体行的 FirstRewardDrop/FallRewardDrop 为 None，5 品质变体的 Drop 配置策略是什么？",
+      "impact": "影响品质变体选择是否有差异化的奖励意义。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV07"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-05-Q05",
+      "priority": "P2",
+      "question": "旧 Gem/Chip 类型（6+6 行）物理残留在 UIlevel 中，是否需要清理或标记为废弃？",
+      "impact": "影响配置整洁度与类型判读。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV09"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-05-Q06",
+      "priority": "P2",
+      "question": "映射之匙常驻任务投放（每日1+每周5=约1.71把/日）是否为唯一稳定来源？一次性与活动来源何时配置？",
+      "impact": "影响副本每日可挑战次数与装备养成节奏。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV10"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-05-Q07",
+      "priority": "P1",
+      "question": "30 层副本开放节奏（按角色等级/主线进度/战力/上一层通关）与层→品质分档、每层 5 品质变体的正式策划口径为何？",
+      "impact": "数值设计文档 §14 已列为待确认；影响开放节奏数值设计与 SpecialLevel/EquipmentLevel 配置的目标口径（R02/R03）。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-05-EV02",
+        "SYS-OUT-GP-05-EV06",
+        "SYS-OUT-GP-05-EV07",
+        "SYS-OUT-GP-05-EV08"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在从选层/品质到宝箱结算的有序挑战流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在系统入口开放、层解锁、门票门槛条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "本系统拥有首通返钥匙、宝箱/材料掉落与多倍结算的发放规则"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在多倍白名单冲突、无 level 底表、旧类型残留、非主行 Drop 为空与失败断线缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在映射装备副本主界面与结算页"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 UIlevel/SpecialLevel/EquipmentLevel/LevelType/Drop_dungeon/SystemOpen/globals_conf 配置源"
+    }
+  }
+}

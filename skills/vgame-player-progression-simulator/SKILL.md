@@ -29,7 +29,7 @@ Covered in v1:
 
 - day-by-day resource accumulation simulation (gold, diamonds, EXP items, gacha tickets, materials)
 - stamina budget: daily stamina income vs. spending allocation across content
-- growth milestone estimation: days to Lv30/40/50/60 for character, weapon
+- growth milestone estimation: days to Lv30/40/50/60 for character; C-001 虽已确认迁移目标，但在 IMPLEMENTATION_PENDING 期间专武/收容物仍不进入默认里程碑
 - gacha simulation: expected pulls to SSR, diamond/ticket budget over time
 - bottleneck detection: which resource runs out first, where players stall
 - scenario comparison: F2P vs. spender progression curves

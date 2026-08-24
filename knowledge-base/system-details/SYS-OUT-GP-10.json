@@ -1,0 +1,766 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-10",
+  "name": "BOSS 挑战",
+  "revision": "2026-08-18.4",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "工作副本存在 BossDungeonSystem 实装与配置表；SystemOpen(204).CloseSys=false 表明入口在当前工作副本为开放状态，但 LIVE 发布台账未集中记录，仍为工作副本观察。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / DRAFT_TARGET",
+      "meaning": "目标设计或反推 Draft 口径；本系统缺少独立 Design Doc，目标设计口径不完整。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua/C#），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补设计文档；本系统核心缺口为缺少独立 BOSS挑战 Design Doc。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；当前仅有工作副本 CloseSys=false，不单独盖为 LIVE。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-10-R05",
+        "SYS-OUT-GP-10-C01"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GP-10-R03",
+        "SYS-OUT-GP-10-R04"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-10-R06",
+        "SYS-OUT-GP-10-RW01",
+        "SYS-OUT-GP-10-RW02"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GP-10-R05",
+        "SYS-OUT-GP-10-EX01"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "BOSS 挑战是面向 Boss 专项验证的战斗外玩法壳层：Basic 阶段以 Boss 列表+难度层组织一次性挑战，全部通关后切换至 Advanced 阶段（周更 Boss 池+层排行榜）。本系统缺少独立 Design Doc，实装与配置存在但设计口径不完整，属 PARTIAL。",
+    "inScope": [
+      "Basic 阶段：Boss 列表、难度层(Layer)、一次性通关进度与通关判定",
+      "Advanced 阶段：周更 Boss 池(BossPool)、层进度(NotStarted/Half/Completed)、层排行榜",
+      "Basic→Advanced 自动切换条件",
+      "入口开放/关闭条件与解锁冲突（主线4-15 vs 角色等级30）",
+      "缺少独立 Design Doc 的 GAP 表达；不从怪物系统(SYS-IN-04)编造玩法壳层设计"
+    ],
+    "outOfScope": [
+      "怪物与 Boss 的属性结构、AI、阶段、狂暴、召唤归 SYS-IN-04",
+      "局内战斗目标、胜负判定与战斗变体规则归 SYS-IN-06",
+      "奖励真实入账数量与 Drop 包内容归 SYS-OUT-SU-05 与 Drop 权威源",
+      "资源身份归 SYS-OUT-SU-04；玩家等级归 SYS-OUT-GR-01；主线关卡进度归 SYS-OUT-GP-01",
+      "BOSS无限挑战(LevelType_InfiniteChallenges=22) 是独立 Draft 实体，归 GP-06 边界，不在本系统"
+    ],
+    "inputs": [
+      "SystemOpen(204)/Unlock(4104) 开放状态与主线4-15条件",
+      "Boss_Dungeon.xlsx：Basic Boss 列表、LevelId、DifficultyLevel、Layer、Reward、BestReward",
+      "BossAdvanceDungeon.xlsx：Advanced 层级与 BossID/LevelId 映射",
+      "BossPool.xlsx：周更 BossId 列表",
+      "AdvanceReward.xlsx / BuffPool.xlsx：Advanced 奖励与 Buff 池"
+    ],
+    "outputs": [
+      "Basic 通关进度（PassedLayer/TotalLayer）与是否全部通关",
+      "Advanced 周更层进度（AdvancedCurLayer/AdvancedCompletedLayer）与排行榜快照",
+      "向任务、排行、奖励入账消费方上报的玩法事件"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "结构存在·实装与配置存在·缺少独立设计文档",
+      "status": "CURRENT_DESIGN_IDENTITY_PARTIAL",
+      "note": "knowledge-model 标 status=结构存在；BossDungeonSystem.lua + BossDungeon 配置 + UI + AdvancedBossMode.cs 均存在；但无独立 BOSS挑战 Design Doc，设计口径不完整。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "GAP：无独立 BOSS挑战 Design Doc；怪物与Boss系统Design Doc 仅覆盖怪物机制(SYS-IN-04)",
+      "status": "DESIGN_DOC_GAP_UNKNOWN",
+      "note": "怪物与Boss系统Design Doc.md 覆盖怪物三层属性、BattleUnitType、Boss多阶段、AI、召唤，归 SYS-IN-04；未覆盖 BOSS挑战玩法壳层（列表/难度层/一次性挑战/专项奖励/Advanced 周更）。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "BossDungeonSystem 实装(Basic+Advanced)；SystemOpen(204).CloseSys=false；Unlock(4104)=主线4-15",
+      "status": "WORKING_COPY_OBSERVED_OPEN",
+      "note": "BossDungeonSystem.lua 516行实装 Basic(BossDict/Levels/PassedLayer) + Advanced(AdvancedWeekId/AdvancedLayerDict/RankList)；systemopen.lua [204] CloseSys=false, UnlockId=4104；unlock.lua [4104] UnLockType=2(关卡解锁)/UnLockParams={100415}(主线4-15)。"
+    },
+    {
+      "axis": "解锁条件冲突",
+      "value": "工作副本=主线4-15 vs current-gameplay=角色等级30",
+      "status": "P1_CONFLICT_UNLOCK_CONDITION",
+      "note": "unlock.lua [4104] 为关卡解锁(主线4-15)；current-gameplay.md 记角色等级30。以工作副本 unlock.lua 为权威，current-gameplay 为待核/过时口径。"
+    },
+    {
+      "axis": "运行状态",
+      "value": null,
+      "status": "UNKNOWN_LIVE",
+      "note": "Boss挑战系统无集中版本/发布台账，工作副本配置存在不证明LIVE"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-10-F01",
+      "name": "BOSS 挑战 Basic→Advanced 推进流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-10-F01-S01",
+          "name": "校验入口",
+          "description": "SystemOpen(204).CloseSys=false 且 Unlock(4104)=主线4-15 通过后入口开放；UIBossDungeonMainView 展示 Basic Boss 列表。"
+        },
+        {
+          "id": "SYS-OUT-GP-10-F01-S02",
+          "name": "Basic 逐 Boss 逐层挑战",
+          "description": "按 Boss_Dungeon 配置的 BossName/Layer/DifficultyLevel 顺序挑战，通关记入 alreadyPassLevelDic，PassedLayer 递增。"
+        },
+        {
+          "id": "SYS-OUT-GP-10-F01-S03",
+          "name": "Basic 全通判定与自动切换",
+          "description": "IsBasicChallengeCompleted 判定 PassedLayer>=TotalLayer；全通后 CReqGetAdvancedBossInfo 并自动切换 CurChallengeType=Advanced。"
+        },
+        {
+          "id": "SYS-OUT-GP-10-F01-S04",
+          "name": "Advanced 周更 Boss 池生效",
+          "description": "ApplyAdvancedBossInfo 按 weekId 从 BossPool 取本周 BossId 列表，从 BossAdvanceDungeon 构建层字典。"
+        },
+        {
+          "id": "SYS-OUT-GP-10-F01-S05",
+          "name": "Advanced 逐层挑战",
+          "description": "每层含2个Boss(第一/第二)，按 NotStarted→Half→Completed 推进；AdvancedCurLayer/AdvancedCompletedLayer 更新。"
+        },
+        {
+          "id": "SYS-OUT-GP-10-F01-S06",
+          "name": "Advanced 排行与重置",
+          "description": "AdvancedBossRankList/AdvancedBossSelfRank 展示层排行榜；支持 RESET_ADVANCED_BOSS_LAYER 重置。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-10-R01",
+      "name": "系统身份与 PARTIAL 状态",
+      "status": "PARTIAL_IMPLEMENTATION_NO_DESIGN_DOC",
+      "targetRule": "BOSS 挑战是 Boss 专项验证玩法壳层；实装(BossDungeonSystem)与配置存在，但缺少独立 Design Doc，属 PARTIAL。不从怪物系统(SYS-IN-04)编造玩法壳层设计。",
+      "sourceFact": "knowledge-model status=结构存在；BossDungeonSystem.lua(516行) + BossDungeon 配置(5表) + UI(Basic/Advanced) + AdvancedBossMode.cs 存在；怪物与Boss系统Design Doc.md 仅覆盖怪物机制(三层属性/BattleUnitType/Boss多阶段/AI/召唤)，无 BOSS挑战玩法壳层章节。",
+      "acceptance": "正文必须标 PARTIAL 并记录缺少独立 Design Doc 的 GAP；不得从 SYS-IN-04 编造列表/难度层/一次性挑战/专项奖励等玩法壳层规则。",
+      "relatedIds": [
+        "SYS-IN-04",
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV01",
+        "SYS-OUT-GP-10-EV03",
+        "SYS-OUT-GP-10-EV04",
+        "SYS-OUT-GP-10-EV05",
+        "SYS-OUT-GP-10-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-R02",
+      "name": "Basic 阶段：Boss 列表与难度层",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：Basic 阶段以 BossName 分组，每 Boss 含多个 LevelId 按 Layer/DifficultyLevel 排序；通关记入 alreadyPassLevelDic，PassedLayer 递增；全部通关后切换 Advanced。（工作副本代码观察，无独立Design Doc，设计意图UNKNOWN）",
+      "sourceFact": "BossDungeonSystem.lua BuildBossDungeonBaseData 从 Tables.BossDungeon.Data() 构建 BossDict（BossName/BossBg/BestReward/Levels/TotalLayer/PassedLayer）；LevelDict 含 DifficultyLevel/Layer/Reward；SortBossDungeonLevelIds 按 Layer 排序；RefreshBossDungeonPassProgress 按 alreadyPassLevelDic 刷新。",
+      "acceptance": "Basic 结构以 BossDungeonSystem.lua + Boss_Dungeon.xlsx 为工作副本权威；设计意图因无 Design Doc 为 UNKNOWN。",
+      "relatedIds": [
+        "SYS-IN-04",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV03",
+        "SYS-OUT-GP-10-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-R03",
+      "name": "Basic 通关与自动切换",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：IsBasicChallengeCompleted 判定 PassedLayer>=TotalLayer 且 TotalLayer>0；全通后 OnLevelDataChanged 触发 CReqGetAdvancedBossInfo，CurChallengeType 切换为 Advanced。（工作副本代码观察，无独立Design Doc，设计意图UNKNOWN）",
+      "sourceFact": "BossDungeonSystem.lua IsBasicChallengeCompleted 判定 PassedLayer>=TotalLayer 且 TotalLayer>0；OnLevelDataChanged 检查 curstate，若 Basic→Advanced 则 pendingswitch=true 并 CReqGetAdvancedBossInfo，CurChallengeType 切换为 Advanced。",
+      "acceptance": "自动切换逻辑以代码为权威；切换时机与 UI 表现因无 Design Doc 为 UNKNOWN。",
+      "relatedIds": [
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-R04",
+      "name": "Advanced 阶段：周更 Boss 池与层进度",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：Advanced 以 AdvancedWeekId 标识当前周；BossPool.Row(weekId).Bossid 给出本周 BossId 列表；每层含2个Boss，状态 NotStarted→Half→Completed；AdvancedCurLayer/AdvancedCompletedLayer 跟踪进度。（工作副本代码观察，无独立Design Doc，设计意图UNKNOWN）",
+      "sourceFact": "BossDungeonSystem.lua ApplyAdvancedBossInfo 从 Tables.BossPool.Row(weekId).Bossid 取 BossIds；RebuildAdvancedBossDungeonLayerDict 从 Tables.BossAdvanceDungeon.Data() 按 BossID/Layer 构建；RefreshAdvancedBossDungeonLayerState 按 firstBoss/secondBoss 的 PassTime 判定 Half/Completed。AdvancedWeekId 标识当前周；层状态 NotStarted→Half→Completed；AdvancedCurLayer/AdvancedCompletedLayer 跟踪进度。",
+      "acceptance": "Advanced 结构以代码 + BossAdvanceDungeon.xlsx/BossPool.xlsx 为工作副本权威；周更周期与重置规则因无 Design Doc 为 UNKNOWN。",
+      "relatedIds": [
+        "SYS-IN-04",
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV03",
+        "SYS-OUT-GP-10-EV05",
+        "SYS-OUT-GP-10-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-R05",
+      "name": "入口开放/关闭条件",
+      "status": "P1_CONFLICT_UNLOCK_CONDITION",
+      "targetRule": "GAP/CONFLICT：工作副本 SystemOpen(204).CloseSys=false 且 Unlock(4104)=主线4-15(关卡解锁)；current-gameplay 记角色等级30，二者冲突。以工作副本 unlock.lua 为权威。",
+      "sourceFact": "systemopen.lua [204] CloseSys=false, UnlockId=4104, UIViewName=UIBossDungeonMainView；unlock.lua [4104] UnLockType=2(关卡解锁)/UnLockParams={100415}(主线4-15)；current-gameplay.md 记角色等级30。",
+      "acceptance": "入口当前以 CloseSys=false + 主线4-15 为工作副本权威；角色等级30 为待核/过时口径，需裁决。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-GR-01",
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV08",
+        "SYS-OUT-GP-10-EV09",
+        "SYS-OUT-GP-10-EV10",
+        "SYS-OUT-GP-10-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-R06",
+      "name": "奖励边界",
+      "status": "WORKING_COPY_OBSERVED_NO_DESIGN_DOC",
+      "targetRule": "本系统决定「何时/为何发」：Basic 通关奖励(Reward/BestReward per level)与 Advanced 奖励(AdvanceReward)；具体发什么/发多少回 SYS-OUT-SU-05 与 Drop 权威源。",
+      "sourceFact": "Boss_Dungeon.xlsx 含 Reward/BestReward 字段；BossDungeon/AdvanceReward.xlsx 与 BuffPool.xlsx 存在；发放幂等与结算窗口不可见。因无 Design Doc，奖励设计意图为 UNKNOWN。",
+      "acceptance": "奖励结构以配置表为工作副本权威；设计意图因无 Design Doc 为 UNKNOWN，不编造。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV04",
+        "SYS-OUT-GP-10-EV07",
+        "SYS-OUT-GP-10-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-R07",
+      "name": "LevelType 与战斗模式",
+      "status": "WORKING_COPY_OBSERVED_PARTIAL_UNKNOWN",
+      "targetRule": "GAP：Basic 使用 LevelType_BossDungeonChallenges=23；Advanced 使用 LevelType_BossDungeonChallenges_Hard=51 与 AdvancedBossMode。Basic 战斗模式未定位(UNKNOWN)。（工作副本代码观察，无独立Design Doc，设计意图UNKNOWN）",
+      "sourceFact": "LevelTypeEnum.cs: LevelType_BossDungeonChallenges=23(BossDungeon挑战，有层数排行榜), LevelType_BossDungeonChallenges_Hard=51(BOSS高难挑战)；AdvancedBossMode.cs 位于 VGame.Lockstep/Runtime/Logic/Mode/；未找到 Basic 专属 Mode 文件。",
+      "acceptance": "LevelType 以 LevelTypeEnum.cs 为权威；Advanced 以 AdvancedBossMode.cs 为权威；Basic 战斗模式为 UNKNOWN，不编造。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV12",
+        "SYS-OUT-GP-10-EV05",
+        "SYS-OUT-GP-10-EV03"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-10-C01",
+      "name": "入口开放/关闭（CloseSys + Unlock）",
+      "status": "P1_CONFLICT_UNLOCK_CONDITION",
+      "rule": "SystemOpen(204).CloseSys=false（开放）；Unlock(4104)=UnLockType2/关卡解锁/主线4-15(100415)；current-gameplay 记角色等级30，与工作副本冲突。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV08",
+        "SYS-OUT-GP-10-EV09",
+        "SYS-OUT-GP-10-EV10",
+        "SYS-OUT-GP-10-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-C02",
+      "name": "Basic→Advanced 切换条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "IsBasicChallengeCompleted：TotalLayer>0 且 PassedLayer>=TotalLayer；满足后自动切换至 Advanced。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-C03",
+      "name": "Advanced 周更条件",
+      "status": "WORKING_COPY_OBSERVED_PARTIAL_UNKNOWN",
+      "rule": "Advanced 以 weekId 标识当前周，BossPool 按 weekId 给出 BossId 列表；周更触发时机与重置规则因无 Design Doc 为 UNKNOWN。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV03",
+        "SYS-OUT-GP-10-EV06"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-10-RW01",
+      "name": "Basic 通关奖励",
+      "status": "WORKING_COPY_OBSERVED_NO_DESIGN_DOC",
+      "rule": "Boss_Dungeon.xlsx 每 LevelId 含 Reward 与 BestReward 字段；通关后按 DropId 真实入账。具体数量回 Drop 权威源；设计意图因无 Design Doc 为 UNKNOWN。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV04",
+        "SYS-OUT-GP-10-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-RW02",
+      "name": "Advanced 奖励与排行榜",
+      "status": "WORKING_COPY_OBSERVED_NO_DESIGN_DOC",
+      "rule": "AdvanceReward.xlsx 与 BuffPool.xlsx 提供 Advanced 奖励与 Buff 池；AdvancedBossRankList/AdvancedBossSelfRank 提供层排行榜。具体数量回 Drop 权威源；设计意图因无 Design Doc 为 UNKNOWN。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV07",
+        "SYS-OUT-GP-10-EV11",
+        "SYS-OUT-GP-10-EV03"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-10-EX01",
+      "name": "缺少独立 BOSS挑战 Design Doc（GAP）",
+      "status": "P1_GAP",
+      "rule": "BOSS挑战玩法壳层缺少独立 Design Doc；怪物与Boss系统Design Doc 仅覆盖怪物机制(SYS-IN-04)，不覆盖列表/难度层/一次性挑战/专项奖励/Advanced 周更等玩法壳层。不得从 SYS-IN-04 编造。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV01",
+        "SYS-OUT-GP-10-EV03",
+        "SYS-OUT-GP-10-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-EX02",
+      "name": "解锁条件冲突（主线4-15 vs 角色等级30）",
+      "status": "P1_CONFLICT",
+      "rule": "工作副本 unlock.lua [4104] 为关卡解锁/主线4-15；current-gameplay.md 记角色等级30。以工作副本为权威，current-gameplay 为待核/过时口径，需裁决。注：F01-S01 与 CFG06 原误写 UnlockId=4102，与 EV08/EV09 证据的 4104 不一致（4104 在 R05/C01/REL01/EV08/EV09 中一致出现，为多数且证据可追溯），已统一修正为 4104，原 4102 视为笔误。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV09",
+        "SYS-OUT-GP-10-EV10",
+        "SYS-OUT-GP-10-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-EX03",
+      "name": "Basic 战斗模式未定位（UNKNOWN）",
+      "status": "P2_UNKNOWN",
+      "rule": "Advanced 有 AdvancedBossMode.cs；Basic 未找到专属 Mode 文件，战斗模式为 UNKNOWN，不编造。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV05",
+        "SYS-OUT-GP-10-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-EX04",
+      "name": "BossChallenge UI 与 BossDungeon UI 关系不明（UNKNOWN）",
+      "status": "P2_UNKNOWN",
+      "rule": "工作副本同时存在 BossChallenge(UIBossChallengeMainView/RankView/Settlement) 与 BossDungeon(Basic/Advanced) 两套 UI；SystemOpen(204) 入口指向 UIBossDungeonMainView。BossChallenge UI 是否为旧版/废弃/关联系统不明。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV08",
+        "SYS-OUT-GP-10-EV14"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-10-UI01",
+      "name": "Basic 主界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIBossDungeonMainView(Basic) 展示 Boss 列表、难度层与通关进度；SystemOpen(204) 入口指向此 UI。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV08",
+        "SYS-OUT-GP-10-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-UI02",
+      "name": "Advanced 界面与排行榜",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIBossDungeonAdvancedView 展示周更 Boss 池、层进度与排行榜；含 Skill/SkillTips/AdvancedUnlocked 子界面。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV16",
+        "SYS-OUT-GP-10-EV03"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-10-CFG01",
+      "name": "Boss_Dungeon",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\Boss_Dungeon.xlsx",
+      "role": "Basic Boss 列表/LevelId/DifficultyLevel/Layer/Reward/BestReward",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-CFG02",
+      "name": "BossAdvanceDungeon",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\BossAdvanceDungeon.xlsx",
+      "role": "Advanced 层级与 BossID/LevelId 映射",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-CFG03",
+      "name": "BossPool",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\BossPool.xlsx",
+      "role": "周更 BossId 列表(按 weekId)",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-CFG04",
+      "name": "AdvanceReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\AdvanceReward.xlsx",
+      "role": "Advanced 奖励档位",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-CFG05",
+      "name": "BuffPool",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\BuffPool.xlsx",
+      "role": "Buff 池配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-CFG06",
+      "name": "SystemOpen/Unlock",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx",
+      "role": "入口开放：SystemOpen(204) CloseSys=false → Unlock(4104)=主线4-15",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-10-REL01",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "SystemOpen(204) CloseSys=false；Unlock(4104)=主线4-15 为开放条件(工作副本权威)。",
+      "status": "P1_CONFLICT_UNLOCK",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV08",
+        "SYS-OUT-GP-10-EV09",
+        "SYS-OUT-GP-10-EV10"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-10-REL02",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "Advanced 以 AdvancedBossMode 进入战斗；Basic 战斗模式 UNKNOWN。",
+      "status": "WORKING_COPY_OBSERVED_PARTIAL_UNKNOWN",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV12"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-10-REL03",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：Boss_Dungeon.xlsx(EV04)定义Basic奖励配置，AdvanceReward.xlsx(EV07)定义Advanced奖励，BossDungeonSystem.lua(EV03)实现奖励发放。推导：BOSS挑战Basic/Advanced奖励通过DropId真实入账(SU-05)，构成 reports/outgoing 关系。推导边界：奖励配置已由工作副本确认，但真实入账权威在SU-05侧维护，本正文不复制入账规则。UNKNOWN：BOSS挑战奖励的服务端入账幂等与一次性奖励的重复领取防护仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-10-REL04",
+      "type": "validates",
+      "direction": "outgoing",
+      "targetId": "PF-04",
+      "targetName": "多玩法验证",
+      "description": "BOSS挑战验证 Boss 专项输出与阵容极限。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV14"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-10-REL05",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "来源：怪物与Boss系统Design Doc(EV01)定义Boss机制，BossAdvanceDungeon.xlsx(EV06)定义Advanced难度，AdvancedBossMode.cs(EV05)实现Advanced模式。推导：BOSS挑战Basic难度层与Advanced层排行榜需用DPS/生存模型(NUM-03)验收，构成 balances/incoming 关系。推导边界：难度配置已由工作副本确认，但难度曲线与DPS/生存模型的对应关系属战斗数值域维护。UNKNOWN：BOSS挑战各难度层对应的目标DPS/生存数值与排行榜分段标准仍待战斗数值域确认。",
+      "status": "MODEL_NOT_CLOSED",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-10-REL06",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-IN-04",
+      "targetName": "敌人、AI 与 Boss",
+      "description": "BOSS挑战消费 SYS-IN-04 的 Boss 机制(属性/阶段/AI)；但玩法壳层(列表/难度层/奖励)独立于 SYS-IN-04，不从其编造。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV07"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-10-REL07",
+      "type": "conflicts-with",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线关卡",
+      "description": "来源：SystemOpen.xlsx(EV08)与Unlock.xlsx(EV09)工作副本显示解锁条件为主线4-15(关卡解锁)，current-gameplay快照(EV02)记录为角色等级30，unlock.lua/systemopen.lua镜像(EV10)为配置源。推导：BOSS挑战解锁条件在工作副本(主线4-15关卡解锁)与current-gameplay(角色等级30)之间存在冲突，构成 conflicts-with/outgoing 关系。推导边界：工作副本配置与current-gameplay记录的差异已确认，但哪一方为权威策划口径未裁决，需项目负责人确认。UNKNOWN：BOSS挑战解锁条件的权威策划口径(主线4-15还是角色等级30)仍待裁决。",
+      "status": "P1_CONFLICT_UNLOCK_CONDITION",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-10-EV01",
+      "kind": "reverse-design",
+      "label": "怪物与Boss系统 Design Doc",
+      "path": "design/怪物与Boss系统Design Doc.md",
+      "location": "覆盖怪物三层属性/BattleUnitType/Boss多阶段/AI/召唤；无 BOSS挑战玩法壳层章节；状态 Draft/LOW",
+      "status": "DRAFT_REVERSE_ENGINEERED_SYS_IN_04"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV02",
+      "kind": "decision-record",
+      "label": "current-gameplay 快照",
+      "path": "D:/Vgame_design/skills/vgame-core-understanding/references/current-gameplay.md",
+      "location": "BOSS挑战 unlock=角色等级30（与工作副本主线4-15冲突）",
+      "status": "CROSS_SOURCE_SNAPSHOT_STALE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV03",
+      "kind": "source-code",
+      "label": "BossDungeonSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/BossDungeonSystem.lua",
+      "location": "516行；ChallengeType Basic=1/Advanced=2；BossDict/BuildBossDungeonBaseData/IsBasicChallengeCompleted/ApplyAdvancedBossInfo/RebuildAdvancedBossDungeonLayerDict/RefreshAdvancedBossDungeonLayerState",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV04",
+      "kind": "source-excel",
+      "label": "Boss_Dungeon.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/BossDungeon/Boss_Dungeon.xlsx",
+      "location": "Basic Boss 列表；字段 BossName/LevelId/BossBgPic/BestReward/DifficultyLevel/Layer/Reward；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV05",
+      "kind": "source-code",
+      "label": "AdvancedBossMode.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/AdvancedBossMode.cs",
+      "location": "Advanced 战斗模式；Basic 专属 Mode 未找到",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV06",
+      "kind": "source-excel",
+      "label": "BossAdvanceDungeon.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/BossDungeon/BossAdvanceDungeon.xlsx",
+      "location": "Advanced 层级；字段 BossID/Layer/LevelId；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV07",
+      "kind": "source-excel",
+      "label": "AdvanceReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/BossDungeon/AdvanceReward.xlsx",
+      "location": "Advanced 奖励档位；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV08",
+      "kind": "source-excel",
+      "label": "SystemOpen.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "location": "[204] BossDungeon, CloseSys=false, UnlockId=4104, UIViewName=UIBossDungeonMainView；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV09",
+      "kind": "source-excel",
+      "label": "Unlock.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/unlock/Unlock.xlsx",
+      "location": "[4104] UnLockType=2(关卡解锁), UnLockParams={100415}(主线4-15)；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV10",
+      "kind": "source-code",
+      "label": "unlock.lua/systemopen.lua 镜像",
+      "path": "D:/Vgame/HorizonFlyProject/LuaConfig/unlock.lua",
+      "location": "[4104] UnLockType=2/UnLockParams={100415}；systemopen.lua [204] CloseSys=false, UnlockId=4104",
+      "status": "WORKING_COPY_MIRROR"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV11",
+      "kind": "source-excel",
+      "label": "BuffPool.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/BossDungeon/BuffPool.xlsx",
+      "location": "Buff 池配置；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV12",
+      "kind": "source-code",
+      "label": "LevelTypeEnum.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Common/Runtime/Config/Generated/LevelTypeEnum.cs",
+      "location": "LevelType_BossDungeonChallenges=23(BossDungeon挑战，有层数排行榜)；LevelType_BossDungeonChallenges_Hard=51(BOSS高难挑战)",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV13",
+      "kind": "knowledge-model",
+      "label": "knowledge-model.json",
+      "path": "archive/legacy-output-20260824/knowledge-base/knowledge-model.json",
+      "location": "SYS-OUT-GP-10 name=BOSS 挑战, status=结构存在, summary=Boss 列表/难度层/一次性挑战和专项奖励",
+      "status": "KNOWLEDGE_MODEL"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV14",
+      "kind": "source-code",
+      "label": "UIBossChallengeMainView.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/BossChallenge/UIBossChallengeMainView.lua",
+      "location": "BossChallenge UI 套件(MainView/RankView/Settlement)；与 BossDungeon UI 关系不明",
+      "status": "WORKING_COPY_SOURCE_UNKNOWN_RELATION"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV15",
+      "kind": "source-code",
+      "label": "UIBossDungeonMainView.lua (Basic)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/BossDungeon/Basic/UIBossDungeonMainView.lua",
+      "location": "Basic 主界面；SystemOpen(204) 入口指向",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-10-EV16",
+      "kind": "source-code",
+      "label": "UIBossDungeonAdvancedView.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/BossDungeon/Advanced/UIBossDungeonAdvancedView.lua",
+      "location": "Advanced 界面(周更Boss池/层进度/排行榜)",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-10-Q01",
+      "priority": "P1",
+      "question": "是否需要补写独立 BOSS挑战 Design Doc？当前仅有怪物与Boss系统Design Doc(SYS-IN-04)，无玩法壳层设计。",
+      "impact": "决定本系统能否从 PARTIAL 升级为完整设计口径。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV01",
+        "SYS-OUT-GP-10-EV03",
+        "SYS-OUT-GP-10-EV13"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-10-Q02",
+      "priority": "P1",
+      "question": "解锁条件主线4-15(工作副本) vs 角色等级30(current-gameplay) 何者为正式口径？",
+      "impact": "决定入口开放条件与新手引导衔接。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV09",
+        "SYS-OUT-GP-10-EV10",
+        "SYS-OUT-GP-10-EV02"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-10-Q03",
+      "priority": "P2",
+      "question": "Basic 阶段使用哪个战斗模式？AdvancedBossMode.cs 存在但 Basic 专属 Mode 未找到。",
+      "impact": "影响 Basic 战斗流程的完整描述。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV05",
+        "SYS-OUT-GP-10-EV12"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "当前工作副本仅对高阶 Boss 显式映射 AdvancedBossMode；Basic BossDungeon 未命中专用分支，落入 Base/NormalMode 默认链。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GP-10-EV05",
+        "SYS-OUT-GP-10-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10-Q04",
+      "priority": "P2",
+      "question": "BossChallenge UI(UIBossChallengeMainView) 与 BossDungeon UI(UIBossDungeonMainView) 是何关系？是否为旧版/废弃/关联系统？",
+      "impact": "影响系统边界与 UI 归属判定。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV14",
+        "SYS-OUT-GP-10-EV08"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-10-Q05",
+      "priority": "P2",
+      "question": "Advanced 周更周期与重置规则为何？BossPool 按 weekId 更新但触发时机与重置边界不可见。",
+      "impact": "影响 Advanced 阶段进度与奖励发放正确性。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-10-EV03",
+        "SYS-OUT-GP-10-EV06"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在 Basic→Advanced 推进流程（入口→Basic逐层→全通切换→Advanced周更→排行重置）"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在入口开放、Basic全通切换与Advanced周更条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "存在 Basic 通关奖励与 Advanced 奖励/排行榜边界（结构存在但设计意图 UNKNOWN）"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在缺少Design Doc(GAP)、解锁冲突、Basic模式UNKNOWN、BossChallenge UI关系UNKNOWN"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在 Basic 主界面与 Advanced 界面/排行榜"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 BossDungeon 5表配置与 SystemOpen/Unlock 开放配置"
+    }
+  }
+}

@@ -1,0 +1,781 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-IN-08",
+  "name": "胜负、结果与结算触发",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置与实现线索，不证明 Production/LIVE。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份设计、源码、配置或 Skill 归纳出的结构，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-IN-08-R01",
+        "SYS-IN-08-R04"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-IN-08-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-TASK-REPORT",
+      "ruleRefs": [
+        "SYS-IN-08-R06"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-IN-08-R01"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "胜负、结果与结算触发负责把战斗结局固化成确定性结果：判定胜负、汇总评价与统计、记录战利品、产生任务事件，并触发局后结算。",
+    "inScope": [
+      "胜负判定与确定性战斗结果生成（CReqFightOver）",
+      "战斗统计（伤害、承伤、治疗、击杀、受击、技能使用、金币、用时）",
+      "单关评价条件（LevelCondition 1/2/3）作为结算输入",
+      "战利品记录（战斗收集数据）与真实入账的边界",
+      "结算触发链（Visual.VMsg_GameOver 交表现层、CReqFightOver 上报、服务器 CNotifyFightOver 下发 -> BattleSystem 局后结算）",
+      "任务事件与进度上报的触发"
+    ],
+    "outOfScope": [
+      "发多少、发什么与真实入账；归 SYS-OUT-SU-05",
+      "章节累计星级与星级奖励聚合；归 SYS-OUT-GP-01",
+      "各玩法入口、次数、门票、赛季与排行；归 SYS-OUT-GP-01..10",
+      "结算页与胜负页的玩家可见 UI 视觉；归 SYS-IN-07 与玩法外壳",
+      "伤害/命中公式与属性计算本身；归 CB-R03/CB-R04"
+    ],
+    "inputs": [
+      "玩法局内规则的胜负与统计（来自 SYS-IN-06）",
+      "LevelCondition 评价条件与 LevelType 结算路由",
+      "战斗收集数据（BattleResultComponent/CollectData）"
+    ],
+    "outputs": [
+      "确定性战斗结果（胜负、评价、统计、战利品记录）",
+      "结算触发事件与局后结算界面入口",
+      "任务事件、进度与真实入账的上报（交 SYS-OUT-SU-05/SYS-OUT-SU-07）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式战斗内系统",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "胜负、结果与结算触发是战斗内向战斗外返回结果的收口，目录登记为正式，没有争议。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "胜负/统计/结算触发链已实现；金币带出口径冲突、评价规则待确认",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "DoGameOver->GenerateBattleResult->BattleSystem 结算链有实现证据；金币带出字段已落表但规则仍为 Draft，评价条件未获正式确认。"
+    },
+    {
+      "axis": "当前工作副本源表",
+      "value": "GameModeBase/BattleResultComponent/BattleSystem 已核；金币带出字段已落表",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于2026-08-18：LevelType 含 GoldCarryOutEnable，UIlevel 含 CarryOutRatio/CarryOutMaxGold；但服务器消费链未核到，客户端亦仅配置生成层携带字段（见 EV10）。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程实现链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源码与配置证据，但缺集中版本—开关—发布时间台账，不能把工作副本观察盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-J=获批Design为权威",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-IN-08-F01",
+      "name": "胜负到结算触发流程",
+      "steps": [
+        {
+          "id": "SYS-IN-08-F01-S01",
+          "name": "判定胜负",
+          "description": "玩法局内规则（SYS-IN-06）满足胜利/失败/超时条件后经实际结算触发点（DoGameOver / World.SetGameOver / PVPMode.OnLose 内联 / GameOverData 关卡触发）判定胜负。"
+        },
+        {
+          "id": "SYS-IN-08-F01-S02",
+          "name": "生成战斗结果",
+          "description": "GenerateBattleResult 组装 BattleResult、CollectData；ResultHash/Version/BattleRecord 仅在 GameModeBase.GenerateBattleResult（GameModeBase.cs L73-79）且 MessageProcessor 为 NormalMessageProcessor 时赋值（ResultHash L77 由 GetGameOverMD5Hash(battleresult) 对 BattleResult 计算 MD5；BattleRecord L76 取自 NormalMessageProcessor.BattleRecord L10，是回放记录而非 ResultHash 计算对象；Version L78 取 BattleVersion.Revision），PVPVEMode 重写 GenerateBattleResult（PVPVEMode.cs L452-481）仅算 hash 打日志 L476-477、不赋这三字段，故 PVPVE 下缺失。"
+        },
+        {
+          "id": "SYS-IN-08-F01-S03",
+          "name": "下发 GameOver",
+          "description": "OnWin/OnLose 经 Visual.VMsg_GameOver 将确定性结果交表现层，并以 CReqFightOver 上报服务器（ResultHash/Version/BattleRecord 是否携带取决于 F01-S02 的赋值条件）。"
+        },
+        {
+          "id": "SYS-IN-08-F01-S04",
+          "name": "局后结算触发",
+          "description": "服务器下发 CNotifyFightOver，BattleSystem:CRespNotifyFightOver 暂停战斗、关闭 UIBattleView 并按 LevelType 路由结算界面（公会Boss 走专用协议与界面）。"
+        },
+        {
+          "id": "SYS-IN-08-F01-S05",
+          "name": "上报下游",
+          "description": "结算结果交真实入账（SYS-OUT-SU-05）、任务事件（SYS-OUT-SU-07）与玩法进度（SYS-OUT-GP-*）。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-IN-08-R01",
+      "name": "胜负判定与确定性结果生成",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「胜负判定与确定性结果生成」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "胜负经多个实际结算触发点进入结果生成（BaseGameMode.DoGameOver L36-46 做 IsGameOver 幂等守卫 L38-39 并分发 OnWin/OnLose；World.SetGameOver 总调度 LogicWorld.cs L341-347→LGameModeMgr.DoGameOver L60-64→currentGameMode.DoGameOver；PVPMode.OnLose 内联 PVPMode.cs L72-84 手动置 IsGameOver=true 绕过 DoGameOver 守卫；GameOverData 关卡触发器 GameOverData.cs L37/L91 调 World.SetGameOver(isWin)）。幂等性仅限经 BaseGameMode.DoGameOver 的路径（IsGameOver 守卫 GameModeBase.cs L38-39）；PVPMode.OnLose 内联路径自行置 IsGameOver、不经守卫，其他非 DoGameOver 路径的重复结算幂等性=UNKNOWN（见 SYS-IN-08-Q05）。ResultHash 对 BattleResult 计算哈希（GetGameOverMD5Hash(battleresult)），BattleRecord 是另行写入的回放记录（取自 NormalMessageProcessor.BattleRecord）；ResultHash/Version/BattleRecord 仅在 GameModeBase.GenerateBattleResult L60-83 且 World.Endpoint.MessageProcessor is NormalMessageProcessor（L73-79：req.BattleRecord L76 取自 NormalMessageProcessor.BattleRecord、req.ResultHash L77 对 BattleResult 计算 MD5、req.Version L78）时赋值；PVPVEMode.override GenerateBattleResult L452-481 仅算 hash 打日志（L476-477）不赋 req.ResultHash/Version/BattleRecord，三字段丢失；Replay/NetworkMessageProcessor 非 NormalMessageProcessor 时同样不赋值。（工作副本代码/配置观察）",
+      "acceptance": "重复提交不产生第二次结果（仅限经 DoGameOver 路径）；ResultHash/Version/BattleRecord 的赋值条件（仅 GameModeBase.GenerateBattleResult + NormalMessageProcessor，PVPVEMode 重写丢失）可分别追溯到 GameModeBase.cs / PVPVEMode.cs / NormalMessageProcessor.cs；失败/超时经各自触发点进入生成。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-01"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-08-EV01",
+        "SYS-IN-08-EV11",
+        "SYS-IN-08-EV12",
+        "SYS-IN-08-EV14",
+        "SYS-IN-08-EV09"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q02",
+        "SYS-IN-08-Q05"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-R02",
+      "name": "战斗统计与战利品记录",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「战斗统计与战利品记录」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "战斗收集数据记录伤害、承伤、治疗、击杀、受击、技能使用、金币、用时与自动战斗占比，作为战利品记录与结算输入。（工作副本代码/配置观察）；BattleResultComponent 维护 HeroResultAttrList、BossMap、CoinNum 与 CollectData（TotalDamage/MonsterKillCount/HitCount/SkillUseCount/CoinNum/PassTime/AutoFight/CoinNumRatio/KillMonsterNumRatio/BossLeftHpRatio）。",
+      "acceptance": "统计字段能从战斗事件（Damage/Heal/EntityDieReason）追到记录；统计不等于真实入账。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-08-EV02"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q04"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-R03",
+      "name": "结算触发链",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「结算触发链」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "战斗结果经 CReqFightOver 上报、服务器 CNotifyFightOver 下发进入局后 BattleSystem，暂停战斗并按 LevelType 路由到对应结算界面。（工作副本代码/配置观察）；BattleSystem.lua 的 CRespNotifyFightOver：SetGameOver/PauseGame/CloseUIBattleView，按 LevelType 选择 WinSettlementUI/LoseSettlementUI（保底 UICommonSettlementView/UIResourceLevelSettlementFail）；BossDungeonChallenges_Hard 走 BossDungeonSystem、PVP/PVP_BOSS 走 TowerSystem 专用结算。",
+      "acceptance": "胜利/失败各有明确结算入口；专用玩法（公会Boss/Boss挑战/爬塔/PVPVE）不重复打开通用结算页。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-07"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-08-EV03",
+        "SYS-IN-08-EV05"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q02"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-R04",
+      "name": "评价条件作为结算输入",
+      "status": "WORKING_COPY_OBSERVED_NEEDS_DESIGN_CONFIRMATION",
+      "targetRule": "GAP：尚无权威目标设计冻结「评价条件作为结算输入」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "单关评价以 LevelCondition 条件作为结算输入；具体星级聚合与章节奖励由 SYS-OUT-GP-01 维护。（工作副本代码/配置观察）；LevelCondition 1/2/3 当前分别为战斗胜利、战败角色不超过1个、通关时队伍血量全部高于30%（由 SYS-OUT-GP-01 已核）；level.LevelTask 对主线为空、UIlevel.LevelTask 为 1;2;3。",
+      "acceptance": "评价规则需策划正式确认后再称 canonical；星级聚合不在此正文复制。",
+      "relatedIds": [
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-08-EV04",
+        "SYS-IN-08-EV06"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q03"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-R05",
+      "name": "战利品记录与真实入账分权",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "本系统只记录战利品与触发结算，发多少、发什么与真实入账归 SYS-OUT-SU-05；视觉掉落、战利品记录与真实入账不得混为一谈。",
+      "sourceFact": "战斗掉落 Icon 是纯视觉表现（SYS-IN-07），BattleResultComponent 记录的是战利品/统计，真实入账在局后结算链完成。",
+      "acceptance": "任一战利品能区分「记录/统计」与「真实入账」两层；真实 Drop 权威归 SYS-OUT-SU-05。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-IN-07"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-08-EV08",
+        "SYS-IN-08-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-R06",
+      "name": "任务事件与进度上报",
+      "status": "CROSS_SOURCE_SYNTHESIS",
+      "targetRule": "GAP：尚无权威目标设计冻结「任务事件与进度上报」的正式策划口径；本条为跨源归纳（CROSS_SOURCE_SYNTHESIS），未核到任务系统/物品账本直接消费战斗结果的客户端调用，哪部分服务端权威、哪部分客户端事件=UNKNOWN，观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "结算触发产出通关、击杀、用时、金币等事件，供任务（SYS-OUT-SU-07）与玩法进度（SYS-OUT-GP-*）消费。推导边界：战斗收集数据含 MonsterKillCount、PassTime、CoinNum 等事件源（LBattleResultComponent.GetCollectData，EV02）；客户端 BattleSystem.CRespNotifyFightOver（EV03）/CRespNotifyArenaFightOverResult 处理服务器 CNotifyFightOver 后仅做 SetGameOver/PauseGame/路由结算 UI，未核到直接调用 TaskSystem 或物品账本/掉落入账的客户端调用——回源搜索 BattleSystem.lua 及 Systems 目录未见 TaskSystem/AddItem/DropReward 等直接消费调用。故任务上报与真实入账推测在服务端 CNotifyFightOver 下发前完成（客户端不可见），属 CROSS_SOURCE_SYNTHESIS：哪部分由服务端权威、哪部分客户端事件发布=UNKNOWN（见 SYS-IN-08-Q06）。（工作副本代码/配置观察 + 跨源归纳）",
+      "acceptance": "任务事件能回到结算触发的确定性结果（事件源已核）；任务系统/物品账本直接消费战斗结果的调用链未核到前保持 CROSS_SOURCE_SYNTHESIS/UNKNOWN，不得当作已确认入账链路；任务自身目标与奖励归 SYS-OUT-SU-07。",
+      "relatedIds": [
+        "SYS-OUT-SU-07",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-08-EV02",
+        "SYS-IN-08-EV03"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q04",
+        "SYS-IN-08-Q06"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-08-R07",
+      "name": "金币带出口径冲突",
+      "status": "APPROVED_TARGET_IMPLEMENTATION_PENDING",
+      "targetRule": "局内金币带出以获批 Design 为产品权威；配置字段与服务器消费链必须回写并对齐该 Design。",
+      "sourceFact": "局内金币带出 Design Doc（Draft）定义 CarryOutRatio/CarryOutMaxGold/MaxInnerGold 与扫荡补发；工作副本 LevelType 含 GoldCarryOutEnable、UIlevel 含 CarryOutRatio/CarryOutMaxGold；但服务器结算消费链未核到，客户端 C#/Lua 侧亦仅在配置生成层（UILevelDataModel.cs/ExcelDataDefine.lua）携带字段、未核到结算消费方，规则仍为 Draft。",
+      "acceptance": "获批 Design、配置字段、服务端消费链和扫荡补发使用同一口径；未完成对齐前不得标 WORKING_COPY 已实现或 LIVE。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-08-EV05",
+        "SYS-IN-08-EV06",
+        "SYS-IN-08-EV07",
+        "SYS-IN-08-EV10"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q01"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-IN-08-C01",
+      "name": "胜负判定条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "胜负不存在单一入口：BaseGameMode.DoGameOver 做 IsGameOver 幂等守卫（GameModeBase.cs L38-39，仅限经 DoGameOver 路径）并分发 OnWin/OnLose；World.SetGameOver 是总调度（LogicWorld.cs L341-347→DoGameOver，PVPVE、GameOverData 关卡触发、技能失败动作、玩家死亡等直接调用，经 DoGameOver 故受守卫覆盖）；PVPMode.OnLose 内联结算（PVPMode.cs L72-84）手动置 IsGameOver=true 绕过 DoGameOver 守卫，其重复结算幂等性=UNKNOWN；GameOverData 触发器（GameOverData.cs L37/L91）独立驱动经 SetGameOver→DoGameOver。isWin 经 OnWin/OnLose 分发。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV01",
+        "SYS-IN-08-EV11",
+        "SYS-IN-08-EV13"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q05"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-C02",
+      "name": "评价条件输入",
+      "status": "WORKING_COPY_OBSERVED_NEEDS_DESIGN_CONFIRMATION",
+      "rule": "单关评价条件由 SYS-OUT-GP-01 维护（当前 LevelCondition 1/2/3 为战斗胜利、战败角色不超过1个、通关时队伍血量全部高于30%）；本系统只将其作为结算输入，运行时消费方待确认（见 SYS-OUT-GP-01-Q05）。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV04",
+        "SYS-IN-08-EV06"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q03"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-C03",
+      "name": "结算 UI 路由",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "按 LevelType 读取 WinSettlementUI/LoseSettlementUI 路由（保底 UICommonSettlementView/UIResourceLevelSettlementFail）；BossDungeonChallenges_Hard 与 PVP/PVP_BOSS 走专用结算承接。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV03",
+        "SYS-IN-08-EV05"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q02"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-C04",
+      "name": "金币带出开关与倍率",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_DRAFT",
+      "rule": "LevelType.GoldCarryOutEnable 与 UIlevel.CarryOutRatio/CarryOutMaxGold 字段已落表；客户端仅在配置生成层携带字段，服务器消费与正式口径未冻结。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV05",
+        "SYS-IN-08-EV06",
+        "SYS-IN-08-EV07",
+        "SYS-IN-08-EV10"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q01"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-IN-08-EX01",
+      "name": "重复结算幂等",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "DoGameOver 的 IsGameOver 守卫（GameModeBase.cs L38-39）阻止经 DoGameOver 路径的重复进入结果生成；但 PVPMode.OnLose 内联路径（PVPMode.cs L72-84）手动置 IsGameOver=true、不经守卫，其重复结算幂等性=UNKNOWN；断线重连与重复请求的补发口径仍待冻结。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV01",
+        "SYS-IN-08-EV11",
+        "SYS-IN-08-EV15",
+        "SYS-IN-08-EV09"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q02",
+        "SYS-IN-08-Q05"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-EX02",
+      "name": "金币带出口径冲突",
+      "status": "P0_CONFLICT",
+      "rule": "Draft 规则、工作副本字段（仅配置生成层携带，客户端消费方未核到）与未核到的服务器消费链三方不一致，必须留 UNKNOWN/CONFLICT 并裁决，不选边。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV05",
+        "SYS-IN-08-EV06",
+        "SYS-IN-08-EV07",
+        "SYS-IN-08-EV10"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q01"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-EX03",
+      "name": "公会Boss专用结算协议",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "公会Boss 使用专用结算协议与界面，通用战斗结算只保留最近结果，避免重复暂停与重复打开结算页。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV03"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-EX04",
+      "name": "失败/断线/退出结算缺口",
+      "status": "P1_GAP",
+      "rule": "失败是否扣成本、断线重连如何恢复、主动退出与重复结算的补偿口径未冻结。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV09"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q02"
+      ]
+    }
+  ],
+  "ui": [],
+  "configs": [
+    {
+      "id": "SYS-IN-08-CFG01",
+      "name": "LevelCondition",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelCondition.xlsx",
+      "role": "单关评价条件 1/2/3，作为结算输入",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-IN-08-CFG02",
+      "name": "LevelType",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelType.xlsx",
+      "role": "结算 UI 路由 WinSettlementUI/LoseSettlementUI 与金币带出开关 GoldCarryOutEnable",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-08-CFG03",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "评价任务 LevelTask 与金币带出参数 CarryOutRatio/CarryOutMaxGold",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-IN-08-REL01",
+      "type": "reports",
+      "direction": "incoming",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。接收玩法局内规则上报的胜负与玩法专属统计。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-08-EV01",
+        "SYS-IN-08-EV09"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-08-REL02",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "把可结算战利品记录交真实入账与发奖。推导边界：客户端 BattleSystem.CRespNotifyFightOver/CRespNotifyArenaFightOverResult 处理服务器 CNotifyFightOver 后仅 SetGameOver/PauseGame/路由结算 UI，未核到直接调用物品账本/掉落入账的客户端调用；真实入账推测在服务端 CNotifyFightOver 下发前完成（客户端不可见）。属 CROSS_SOURCE_SYNTHESIS：哪部分服务端权威、哪部分客户端事件=UNKNOWN（见 SYS-IN-08-Q06）。",
+      "status": "CROSS_SOURCE_SYNTHESIS",
+      "evidenceRefs": [
+        "SYS-IN-08-EV02",
+        "SYS-IN-08-EV03",
+        "SYS-IN-08-EV09"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q06"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-08-REL03",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-07",
+      "targetName": "任务与章节任务",
+      "description": "把通关、击杀、用时等事件交任务进度上报。推导边界：战斗收集数据含 MonsterKillCount/PassTime/CoinNum 事件源（EV02），但回源搜索 BattleSystem.lua 及 Systems 目录未见 TaskSystem 直接消费战斗结果的客户端调用；任务上报推测在服务端完成（客户端不可见）。属 CROSS_SOURCE_SYNTHESIS：任务系统直接消费调用=UNKNOWN（见 SYS-IN-08-Q06）。",
+      "status": "CROSS_SOURCE_SYNTHESIS",
+      "evidenceRefs": [
+        "SYS-IN-08-EV02",
+        "SYS-IN-08-EV03"
+      ],
+      "questionRefs": [
+        "SYS-IN-08-Q06"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-IN-08-REL04",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "推导：结算触发产出通关/用时/金币等事件，可能供主线进度与章节星级消费。推导边界：客户端 BattleSystem.lua 未核到直接调用主线进度更新的代码，真实上报可能在服务端 CNotifyFightOver 下发前完成（客户端不可见）；是否确实上报主线=UNKNOWN（CROSS_SOURCE_SYNTHESIS，见 SYS-IN-08-Q06）。不得无证据肯定「已上报主线」。",
+      "status": "CROSS_SOURCE_SYNTHESIS",
+      "provenance": "WORKING_COPY_OBSERVED",
+      "questionRefs": [
+        "SYS-IN-08-Q06"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-08-EV01",
+        "SYS-IN-08-EV05"
+      ]
+    },
+    {
+      "id": "SYS-IN-08-REL05",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-07",
+      "targetName": "战斗 UI、反馈与引导",
+      "description": "下发胜负与统计，驱动胜负页、结算页与掉落表现。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-08-EV01",
+        "SYS-IN-08-EV03",
+        "SYS-IN-08-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-IN-08-EV01",
+      "kind": "source-code",
+      "label": "GameModeBase.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/GameModeBase.cs",
+      "location": "BaseGameMode.DoGameOver(bool isWin) L36-46（IsGameOver 幂等守卫 L38-39、置 true L41、分发 OnWin/OnLose L42-45）；OnWin L48-52 / OnLose L54-58 调 GenerateBattleResult+VMsg_GameOver；GenerateBattleResult L60-83——仅当 World.Endpoint.MessageProcessor is NormalMessageProcessor（L73）时赋 req.BattleRecord（L76，取自 MessageProcessor.BattleRecord）、req.ResultHash（L77，GetGameOverMD5Hash(battleresult) 对 BattleResult 计算 MD5）、req.Version（L78）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-08-EV02",
+      "kind": "source-code",
+      "label": "LBattleResultComponent.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Components/LBattleResultComponent.cs",
+      "location": "GetBattleResult/GetCollectData/AddCoin/CalculateKillMonsterCount（L147-234）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-08-EV03",
+      "kind": "source-code",
+      "label": "BattleSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Battle/BattleSystem.lua",
+      "location": "CRespNotifyFightOver（处理服务器 CNotifyFightOver）、openSettlement 路由、公会Boss/PVP 专用结算（L461-533）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-08-EV04",
+      "kind": "source-excel",
+      "label": "LevelCondition.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/LevelCondition.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/LevelCondition.xlsx",
+      "location": "本机SVN工作副本；条件 1/2/3；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-IN-08-EV05",
+      "kind": "source-excel",
+      "label": "LevelType.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/LevelType.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/LevelType.xlsx",
+      "location": "本机SVN工作副本；WinSettlementUI/LoseSettlementUI/GoldCarryOutEnable 字段核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-08-EV06",
+      "kind": "source-excel",
+      "label": "UIlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "location": "本机SVN工作副本；LevelTask 与 CarryOutRatio/CarryOutMaxGold 字段核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-08-EV07",
+      "kind": "reverse-design",
+      "label": "局内金币带出 Design Doc",
+      "path": "design/局内金币带出Design Doc.md",
+      "href": "../../../design/局内金币带出Design Doc.md",
+      "location": "R-01~R-05、配置链、已确认规则、经济影响",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-08-EV08",
+      "kind": "reverse-design",
+      "label": "战斗掉落 Icon 表现 Design Doc",
+      "path": "design/战斗掉落Icon表现Design Doc.md",
+      "href": "../../../design/战斗掉落Icon表现Design Doc.md",
+      "location": "§1 目标与边界（不读 Drop、不预摇真实奖励）",
+      "status": "DRAFT_IN_REVIEW"
+    },
+    {
+      "id": "SYS-IN-08-EV09",
+      "kind": "reverse-design",
+      "label": "战斗域审计",
+      "path": "archive/legacy-output-20260824/research/combat-domain-audit.md",
+      "location": "§4.2 运行分层、§4.4 胜负波次、§15 缺口",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-08-EV10",
+      "kind": "source-code",
+      "label": "UILevelDataModel.cs（配置生成层）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Common/Runtime/Config/Generated/UILevelDataModel.cs",
+      "location": "CarryOutRatio/CarryOutMaxGold 仅见于生成模型字段与读取（L55-56、L205-209），无业务消费引用；Lua 侧生成层 ExcelDataDefine.lua（GoldCarryOutEnable L11712/11729、CarryOutRatio/CarryOutMaxGold L15678-15679/15723-15724）同构",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-08-EV11",
+      "kind": "source-code",
+      "label": "LogicWorld.cs（World.SetGameOver 总调度）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/LogicWorld.cs",
+      "location": "World.SetGameOver(bool isWin) L341-347：调 LGameModeMgr.DoGameOver(isWin) L343（经 DoGameOver 故受 IsGameOver 守卫覆盖），#if UNITY_EDITOR 调 BattleMonitor.MarkBattleEnded L345",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-08-EV12",
+      "kind": "source-code",
+      "label": "PVPVEMode.cs（override GenerateBattleResult 丢失三字段 + 投降/水晶判负）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/PVPVEMode.cs",
+      "location": "override GenerateBattleResult L452-481：仅 GetGameOverMD5Hash(battleresult) 算 hash 并 Logger.Debug 打日志（L476-477），不赋 req.ResultHash/Version/BattleRecord（三字段丢失，对比 GameModeBase L76-78）；HandleLogicMsg case PVPVEMsgType.Surrender→BattlleEnd(false) L365-367；OnEntityDeath 水晶死亡→BattlleEnd(false) L304-306；OnBattleEndTimer L440-450→World.SetGameOver(isWin) L449",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-08-EV13",
+      "kind": "source-code",
+      "label": "GameOverData.cs（关卡触发器结算入口）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/TriggerData/GameOverData.cs",
+      "location": "GameOverData.OnEnter L82-98（!useDelayAction → entity.World.SetGameOver(isWin) L91）；PlayExit L33-80 延迟分支 → entity.World.SetGameOver(isWin) L37；isWin 字段 L17（默认 true）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-08-EV14",
+      "kind": "source-code",
+      "label": "NormalMessageProcessor.cs（BattleRecord 来源）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/MessageProcessor/NormalMessageProcessor.cs",
+      "location": "NormalMessageProcessor.BattleRecord 属性 L10（返回 totalMessageBuffer.GetReadMemory），即 GameModeBase.GenerateBattleResult L76 赋给 req.BattleRecord 的数据源（回放记录）；非 NormalMessageProcessor（Replay/Network）时无此赋值。注意：ResultHash（L77）对 BattleResult 计算 MD5，BattleRecord（L76）是回放记录，两者计算对象不同",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-08-EV15",
+      "kind": "source-code",
+      "label": "PVPMode.cs（OnLose 内联结算）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/PVPMode.cs",
+      "location": "PVPMode.OnLose override L72-84：若敌方全灭则手动 IsGameOver=true（L77）+GenerateBattleResult(true)+VMsg_GameOver（L78-79）return，绕过 DoGameOver(true) 守卫；否则 base.OnLose L83（用继承的 GenerateBattleResult，三字段正常赋值）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-08-EV16",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-J 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-J].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-IN-08-Q01",
+      "priority": "P0",
+      "question": "金币带出的正式口径由谁裁决：Draft 规则、工作副本字段还是服务器消费链？",
+      "impact": "字段已落表但规则为 Draft、客户端仅配置生成层携带字段、服务器消费未核到，直接决定金币结算与经济口径。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV05",
+        "SYS-IN-08-EV06",
+        "SYS-IN-08-EV07",
+        "SYS-IN-08-EV10"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-J",
+      "answer": "用户正式选择「获批Design为权威」：字段和服务端实现必须回写到获批设计。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-IN-08-EV16"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-IN-08-Q02",
+      "priority": "P1",
+      "question": "失败、断线、主动退出与重复结算的正式幂等与补偿口径是什么？",
+      "impact": "影响资源安全、补发与玩家体验。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV01",
+        "SYS-IN-08-EV09"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-08-Q03",
+      "priority": "P1",
+      "question": "LevelCondition 1/2/3 是否就是正式单关评价规则，运行时消费方是谁？",
+      "impact": "决定单关星级与章节星级进度的权威来源。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV04",
+        "SYS-IN-08-EV06"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-08-Q04",
+      "priority": "P2",
+      "question": "任务事件与埋点上报的字段口径（击杀/用时/金币/自动占比）是否统一？",
+      "impact": "影响任务进度与数据分析的一致性。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV02",
+        "SYS-IN-08-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-08-Q05",
+      "priority": "P2",
+      "question": "BaseGameMode.DoGameOver 的 IsGameOver 守卫是否覆盖所有结算入口？PVPMode.OnLose 内联路径（手动置 IsGameOver=true 绕过守卫）与其他非 DoGameOver 路径的重复结算幂等性如何保证？",
+      "impact": "影响重复结算/断线重连/补发一致性；幂等仅限经 DoGameOver 路径，其他模式结算幂等性=UNKNOWN，不得推广为所有结算入口均幂等。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV01",
+        "SYS-IN-08-EV11",
+        "SYS-IN-08-EV15"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-08-Q06",
+      "priority": "P1",
+      "question": "任务系统（SYS-OUT-SU-07）与物品账本/掉落入账（SYS-OUT-SU-05）直接消费战斗结果的调用链在哪里？客户端 BattleSystem 未核到直接调用，是否纯服务端在 CNotifyFightOver 下发前完成？",
+      "impact": "决定任务上报与真实入账的权威链路；当前客户端无可核消费调用，关系降为 CROSS_SOURCE_SYNTHESIS/UNKNOWN。",
+      "evidenceRefs": [
+        "SYS-IN-08-EV02",
+        "SYS-IN-08-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在胜负判定、结果生成、GameOver 下发与局后结算的有序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "胜负、评价、结算路由与金币带出开关均为判定/路由条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "本系统只记录战利品与触发结算，发多少/发什么与真实入账归 SYS-OUT-SU-05；金币带出口径冲突仅在 rules/exceptions 记录（R07/EX02），不构成本系统奖励权威"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "重复结算、金币带出口径冲突、公会Boss专用结算与失败断线缺口存在"
+    },
+    "ui": {
+      "state": "N/A",
+      "reason": "结算页与胜负页玩家可见 UI 归 SYS-IN-07 与玩法外壳，本系统只触发结算并下发结果"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "LevelCondition/LevelType/UIlevel 的评价与结算路由字段是真实配置源"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-J",
+      "closeableQuestionId": "SYS-IN-08-Q01",
+      "selectedOptionId": 1,
+      "selectedOptionName": "获批Design为权威",
+      "approvedTarget": "选择「获批Design为权威」：字段和服务端实现必须回写到获批设计。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:12.609Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "获批 Design 成为目标权威；配置字段和服务端消费链需回写/对齐后才算实施。",
+      "evidenceRef": "SYS-IN-08-EV16",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

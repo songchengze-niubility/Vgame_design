@@ -1,0 +1,600 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-06",
+  "name": "商店",
+  "revision": "2026-08-18.4",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本只读核对",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在 Shop/ShopGoods 配置，不证明 Production/LIVE；购买扣款与入账原子性在服务端，客户端不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由 Design 与配置组织出的流程或边界，需项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补服务端证据或补发布台账。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-SU-06-R02",
+        "SYS-OUT-SU-06-C01",
+        "SYS-OUT-SU-06-C02"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-06-R01",
+        "SYS-OUT-SU-06-RW01"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-06-EX03"
+      ]
+    },
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-SU-06-R01",
+        "SYS-OUT-SU-06-R04"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "商店是 Vgame 多货币消费的通用货架框架：以页签组织商品，提供购买校验、自动/手动刷新、限购控制、售罄隐藏、PayProduct 直购与多货币价签展示，作为资源流出与付费转化的统一终端出口。",
+    "inScope": [
+      "通用商店页签（Shop）、商品（ShopGoods）、价格（PropType）、货币展示（PriceShow）框架",
+      "自动周期刷新（每日5:00/每周一5:00/每月1日5:00）与手动刷新",
+      "限购控制（LimitType 终身/每日/每周/每月 + LimitNum）与售罄隐藏（HiddenWhenSoldOut）",
+      "PayProduct RMB 直购商品购买流程与掉单补发边界",
+      "购买校验、扣款、入账、限购计数与并发防超购的框架规则",
+      "通用商店与招募商店/公会商店/月卡商店只共享契约不共享商品口径的边界"
+    ],
+    "outOfScope": [
+      "招募商店的碎片回收入口与余音兑换商品口径；该内容归 SYS-OUT-SU-03",
+      "公会商店的商品口径与公会贡献消耗；该内容归 SYS-OUT-SU-11",
+      "月卡/礼包/付费商品的权益发放与周期领取；该内容归 SYS-OUT-SU-15",
+      "购买商品的真实物品入账与 Drop 包内容；该内容归 SYS-OUT-SU-05",
+      "货币/道具的身份、堆叠与账本；该内容归 SYS-OUT-SU-04",
+      "商品价格与货币价值的经济总账；该内容归 NUM-04",
+      "商店解锁条件与系统开放；该内容归 SYS-OUT-SU-13",
+      "活动限时商店；该内容归活动系统 SYS-OUT-SU-14"
+    ],
+    "inputs": [
+      "商店页签配置（Shop 刷新周期、PriceShow 货币列表）",
+      "商品配置（ShopGoods 商品、价格 PropType、LimitType/LimitNum、HiddenWhenSoldOut、PayProduct）",
+      "玩家货币余额与已购计数",
+      "购买请求（GoodsId + Count）与手动刷新请求（TabId）",
+      "PayProduct 支付回调"
+    ],
+    "outputs": [
+      "购买结果（扣款 + 商品入账 + 限购计数更新）",
+      "刷新后的货架（重置限购、随机货架重随机）",
+      "售罄隐藏后的商品列表",
+      "多货币余额展示数据",
+      "PayProduct 直购结果与掉单补发事件"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "通用商店货架框架（多商店共享契约）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "商店作为多货币消费的通用终端出口框架；招募商店、公会商店、月卡商店只共享购买/限购/刷新契约，不共享商品口径。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "购买/刷新/限购/售罄/直购框架有反推 Design",
+      "status": "DRAFT_TARGET",
+      "note": "商店系统 Design R-01~R-07 为反推 Draft，框架规则完整但部分工作假设待确认（商品是否可堆叠购买等）。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Shop.xlsx 与 ShopGoods.xlsx 存在；具体页签与商品覆盖未逐项审计",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；Shop/ShopGoods 配置存在，但各页签商品、价格与限购的完整覆盖与配置质量未逐项审计。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "购买链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置与客户端实现线索，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-06-F01",
+      "name": "商品购买流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-06-F01-S01",
+          "name": "打开商店页签",
+          "description": "客户端拉取 ShopGetList(TabId) 获取商品列表与剩余可购次数，展示多货币余额（PriceShow）。"
+        },
+        {
+          "id": "SYS-OUT-SU-06-F01-S02",
+          "name": "校验购买条件",
+          "description": "校验商店已解锁、商品未售罄、未达限购上限、持有足够货币或 PayProduct。"
+        },
+        {
+          "id": "SYS-OUT-SU-06-F01-S03",
+          "name": "扣款与入账",
+          "description": "服务端校验资源→扣除货币→发放商品→更新购买计数；PayProduct 商品拉起支付SDK，支付成功回调后发放，失败不扣不发。"
+        },
+        {
+          "id": "SYS-OUT-SU-06-F01-S04",
+          "name": "更新状态",
+          "description": "商品剩余可购次数-1；若售罄且 HiddenWhenSoldOut=true 则置灰/隐藏；货币余额与限购计数刷新。"
+        },
+        {
+          "id": "SYS-OUT-SU-06-F01-S05",
+          "name": "展示结果",
+          "description": "货币更新动画→商品计数刷新→售罄置灰；PayProduct 展示支付中/成功/失败。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-F02",
+      "name": "商店刷新流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-06-F02-S01",
+          "name": "触发刷新",
+          "description": "自动周期刷新到达时间点（每日5:00/每周一5:00/每月1日5:00）或玩家点击手动刷新。"
+        },
+        {
+          "id": "SYS-OUT-SU-06-F02-S02",
+          "name": "匹配刷新周期",
+          "description": "遍历商店Tab匹配当前刷新周期；手动刷新需扣除刷新费用并校验每日手动刷新次数上限。"
+        },
+        {
+          "id": "SYS-OUT-SU-06-F02-S03",
+          "name": "重置与重随机",
+          "description": "重置所有限购商品可购次数；若为随机商品则重新随机货架（种子由服务端生成）。"
+        },
+        {
+          "id": "SYS-OUT-SU-06-F02-S04",
+          "name": "回传与展示",
+          "description": "回传新货架与刷新费用；客户端展示'已刷新'提示与货架变更动画。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-06-R01",
+      "name": "商品购买与扣款入账",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：购买时服务端校验资源→扣除货币（PropType '币种ID,金额'）→发放商品→更新购买计数；商品入账经真实 Drop/物品账本，具体入账归 SYS-OUT-SU-05/SU-04。（反推Draft口径，EV01为DRAFT_REVERSE_ENGINEERED，待策划正式确认）",
+      "sourceFact": "商店 Design R-01 描述购买流程；ShopGoods.xlsx 存在价格 PropType 与商品配置；接口 ShopBuy 入参 GoodsId+Count 出参 RewardItems+UpdatedCurrency。",
+      "acceptance": "购买扣款与入账在服务端原子执行；货币不足弹提示；并发购买需加锁防超购。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV02",
+        "SYS-OUT-SU-06-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-R02",
+      "name": "商店解锁与入口",
+      "status": "DRAFT_TARGET",
+      "targetRule": "GAP：商店及各页签解锁条件集成 Unlock.xlsx；系统入口开放与具体页签开放分开判定，开放权威归 SYS-OUT-SU-13。（反推Draft口径，EV01为DRAFT_REVERSE_ENGINEERED，待策划正式确认）",
+      "sourceFact": "商店 Design R-01 前置限制含'商店已解锁'；数据变更表列出 Unlock.xlsx；开放状态分层归 SU-13。",
+      "acceptance": "每个商店页签可从 Unlock 追到解锁条件；配置存在不等于当期开放。",
+      "relatedIds": [
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-R03",
+      "name": "自动周期刷新",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：到达刷新时间点（每日5:00/每周一5:00/每月1日5:00）遍历所有商店Tab匹配周期→重置购买计数→随机货架重新随机；服务器重启时需对照上次刷新时间判断是否执行。（反推Draft口径，EV01为DRAFT_REVERSE_ENGINEERED，待策划正式确认）",
+      "sourceFact": "商店 Design R-02 描述自动刷新；Shop.xlsx 存在刷新周期配置。",
+      "acceptance": "每个页签刷新周期唯一；重启后不重复刷新也不漏刷新。",
+      "relatedIds": [
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-R04",
+      "name": "限购控制",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：ShopGoods 行配置 LimitType（1终身/2每日/3每周/4每月）与 LimitNum；购买时读取对应周期已购次数对比 LimitNum，通过则允许并计数+1；LimitType 非法值按终身处理。（反推Draft口径，EV01为DRAFT_REVERSE_ENGINEERED，待策划正式确认）",
+      "sourceFact": "商店 Design R-04 描述限购；ShopGoods.xlsx 存在 LimitType/LimitNum 字段；限购计数器存储于玩家存档，刷新时批量重置。",
+      "acceptance": "每个限购商品周期计数正确；售罄（计数达上限）后拒绝购买或置灰隐藏。",
+      "relatedIds": [
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-R05",
+      "name": "售罄隐藏",
+      "status": "DRAFT_TARGET",
+      "targetRule": "GAP：商品可购次数降至0且 HiddenWhenSoldOut=true 时客户端过滤隐藏、服务端拒绝购买；刷新周期到时重新可见。（反推Draft口径，EV01为DRAFT_REVERSE_ENGINEERED，待策划正式确认）",
+      "sourceFact": "商店 Design R-06 描述售罄隐藏；ShopGoods.xlsx 存在 HiddenWhenSoldOut 字段。",
+      "acceptance": "售罄商品对玩家不可见且不可购；刷新后恢复可见。",
+      "relatedIds": [],
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-R06",
+      "name": "PayProduct 直购",
+      "status": "DRAFT_TARGET",
+      "targetRule": "GAP：PayProduct 商品客户端拉起支付SDK→支付成功回调服务端→发放商品→失败不扣不发；掉单需对账补发；PayProduct 权益与月卡/礼包归 SYS-OUT-SU-15。（反推Draft口径，EV01为DRAFT_REVERSE_ENGINEERED，待策划正式确认）",
+      "sourceFact": "商店 Design R-05 描述 PayProduct 直购；ShopGoods.xlsx 存在 PayProduct 字段；掉单补发为已知风险。",
+      "acceptance": "支付失败不扣不发；掉单经对账补发；直购权益发放归 SU-15。",
+      "relatedIds": [
+        "SYS-OUT-SU-15",
+        "SYS-OUT-SU-09"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-R07",
+      "name": "多商店共享契约不共享商品口径",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "targetRule": "通用商店、招募商店（SU-03）、公会商店（SU-11）、月卡商店（SU-15）只共享购买/限购/刷新契约，不共享具体商品口径；各商店商品由对应系统拥有。",
+      "sourceFact": "商店 Design 描述通用框架；任务来源说明与 SU-03/SU-11 商品口径分离；ShopGoods.xlsx 同时承载多商店商品但按 ShopId 区分。",
+      "acceptance": "本系统只维护通用框架；招募/公会/月卡商店商品口径由各自系统维护，不在本系统复制为第二权威。",
+      "relatedIds": [
+        "SYS-OUT-SU-03",
+        "SYS-OUT-SU-11",
+        "SYS-OUT-SU-15"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV03"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-06-C01",
+      "name": "商店解锁",
+      "status": "DRAFT_TARGET",
+      "rule": "商店及各页签解锁条件由 Unlock.xlsx 定义，开放权威归 SYS-OUT-SU-13；未解锁页签不展示或置灰。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-C02",
+      "name": "购买前置",
+      "status": "DRAFT_TARGET",
+      "rule": "购买需商品未售罄、未达限购上限、持有足够货币或 PayProduct；不足则弹提示或引导。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-C03",
+      "name": "手动刷新限制",
+      "status": "DRAFT_TARGET",
+      "rule": "手动刷新需该Tab支持手动刷新、持有刷新消耗资源且未达每日手动刷新次数上限；达上限隐藏按钮。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-06-RW01",
+      "name": "购买商品入账",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "购买商品经真实 Drop/物品账本入账；具体入账权威归 SYS-OUT-SU-05，本系统只决定何时发何商品与扣何货币。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV03"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-06-EX01",
+      "name": "并发超购",
+      "status": "P1_GAP",
+      "rule": "并发购买可能绕限购；需服务端加锁/事务保护，客户端不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-EX02",
+      "name": "PayProduct 掉单",
+      "status": "P1_GAP",
+      "rule": "支付回调延迟需异步补发；掉单需对账补发；补发幂等归服务端与 SYS-OUT-SU-09/SU-15。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-EX03",
+      "name": "刷新时间配置错误",
+      "status": "P1_GAP",
+      "rule": "刷新时间配置错误可能导致不刷新/频繁刷新；服务器重启时需对照上次刷新时间判断；需配置检查脚本与上线前验证。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-EX04",
+      "name": "价格配置错误",
+      "status": "P1_GAP",
+      "rule": "价格 PropType 货币ID写错可能导致错误扣款；需 Excel 提交时跑校验脚本。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV03"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-06-UI01",
+      "name": "商店页签与货架",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示页签、商品卡片、价格（多货币）、剩余可购次数（剩余X/X）、售罄置灰/隐藏与货架补位。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-UI02",
+      "name": "多货币价签栏",
+      "status": "DRAFT_TARGET",
+      "rule": "界面上方按 PriceShow 货币ID列表水平排列展示余额；货币类型过多时滑动展示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06-UI03",
+      "name": "刷新与购买反馈",
+      "status": "TARGET_REQUIRED",
+      "rule": "刷新动画与'已刷新'角标；购买货币更新动画与商品计数刷新；PayProduct 支付中loading与成功/失败提示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-06-CFG01",
+      "name": "Shop",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\Shop.xlsx",
+      "role": "商店页签、刷新周期、PriceShow 货币展示列表",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-06-CFG02",
+      "name": "ShopGoods",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\ShopGoods.xlsx",
+      "role": "商品Item、价格PropType、LimitType/LimitNum、HiddenWhenSoldOut、PayProduct；多商店按ShopId区分",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-06-REL01",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：Shop.xlsx(EV02)定义商店页签，ShopGoods.xlsx(EV03)定义商品与价格，商店系统Design Doc(EV01)定义购买规则。推导：商店购买扣除货币、发放商品，账本归物品与货币系统(SU-04)，构成 consumes/outgoing 关系。推导边界：商店配置已由工作副本确认，但货币扣除与商品发放的服务端权威不可见，账本身份在SU-04侧维护。UNKNOWN：购买的服务端扣除幂等与商品发放的原子性仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-06-REL02",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：ShopGoods.xlsx(EV03)定义商品发放，商店系统Design Doc(EV01)定义购买入账，DropSystem.lua在SU-05侧实现掉落入账。推导：商店购买商品经真实Drop/物品账本入账(SU-05)，入账权威归掉落与奖励系统，构成 reports/outgoing 关系。推导边界：商品发放配置已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：商店购买入账的服务端幂等与商品发放的入账规则仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-06-REL03",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "来源：商店系统Design Doc(EV01)定义商店开放需求，知识目录定义SYS-OUT-SU-13新手引导与系统开放职责。推导：商店及页签解锁条件由新手引导与系统开放(SU-13)管理，构成 unlocks/incoming 关系。推导边界：商店开放需求已由Design Doc确认，但解锁条件的配置在SU-13侧维护。UNKNOWN：各商店页签的具体解锁条件与引导承接规则仍待SU-13确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-06-REL04",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。商品价格与货币价值由经济数值域约束与监控。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01",
+        "SYS-OUT-SU-06-EV02",
+        "SYS-OUT-SU-06-EV03"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-SU-06-REL05",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-03",
+      "targetName": "碎片回收/招募商店",
+      "description": "来源：Shop.xlsx(EV02)定义招募商店(Shop.Id=1107)，商店系统Design Doc(EV01)定义通用商店契约，SYS-OUT-SU-03碎片回收正文定义招募商店商品口径。推导：招募商店(SU-03)复用通用商店购买/限购/刷新契约，商品口径归SU-03，构成 consumes/incoming 关系。推导边界：商店配置已由工作副本确认，但招募商店商品口径在SU-03侧维护。UNKNOWN：招募商店的限购与刷新规则是否与通用商店完全一致仍待SU-03确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-06-REL06",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-15",
+      "targetName": "月卡/礼包/付费商品",
+      "description": "来源：ShopGoods.xlsx(EV03)定义PayProduct商品，商店系统Design Doc(EV01)定义直购框架，SYS-OUT-SU-15月卡/礼包正文定义权益发放。推导：月卡/礼包/付费商品(SU-15)复用商店PayProduct直购框架，权益发放归SU-15，构成 consumes/incoming 关系。推导边界：PayProduct配置已由工作副本确认，但权益发放规则在SU-15侧维护。UNKNOWN：PayProduct直购与权益发放的服务端回调规则仍待SU-15确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-06-REL07",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-11",
+      "targetName": "公会",
+      "description": "来源：Shop.xlsx(EV02)定义公会商店，商店系统Design Doc(EV01)定义通用商店契约，SYS-OUT-SU-11公会正文定义公会商店商品口径。推导：公会商店(SU-11)复用通用商店契约，商品与公会贡献口径归SU-11，构成 consumes/incoming 关系。推导边界：商店配置已由工作副本确认，但公会商店商品口径在SU-11侧维护。UNKNOWN：公会商店的限购与公会贡献消耗规则是否与通用商店一致仍待SU-11确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-06-EV01",
+      "kind": "reverse-design",
+      "label": "商店系统 Design Doc",
+      "path": "design/商店系统Design Doc.md",
+      "location": "R-01~R-07、技术方案、风险评估、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-SU-06-EV02",
+      "kind": "source-excel",
+      "label": "Shop.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Shop/Shop.xlsx",
+      "location": "本机SVN工作副本；商店页签、刷新周期、PriceShow；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-06-EV03",
+      "kind": "source-excel",
+      "label": "ShopGoods.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Shop/ShopGoods.xlsx",
+      "location": "本机SVN工作副本；商品Item、价格PropType、LimitType/LimitNum、HiddenWhenSoldOut、PayProduct；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-06-Q01",
+      "priority": "P1",
+      "question": "所有商品是否均不可堆叠购买（一次一个）？",
+      "impact": "影响购买接口 Count 语义与限购计数。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-06-Q02",
+      "priority": "P1",
+      "question": "服务端并发购买加锁/事务与掉单对账补发的具体实现是否确认？",
+      "impact": "影响超购防护与玩家资产安全。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-06-Q03",
+      "priority": "P1",
+      "question": "各商店页签的刷新周期、限购与商品完整覆盖是否通过配置质量审计？",
+      "impact": "影响资源流出节奏与经济平衡。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV02",
+        "SYS-OUT-SU-06-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-06-Q04",
+      "priority": "P2",
+      "question": "商店系统 Design 何时从反推 Draft 升级为正式策划口径？",
+      "impact": "决定框架规则是否可冻结。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-06-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在商品购买与商店刷新两条有序流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在商店解锁、购买前置与手动刷新限制条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "购买商品经真实入账，本系统决定何时发何商品与扣何货币"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在并发超购、PayProduct掉单、刷新时间与价格配置错误异常"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在页签货架、多货币价签与刷新购买反馈界面责任"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 Shop/ShopGoods 配置源"
+    }
+  }
+}

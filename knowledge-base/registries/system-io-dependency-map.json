@@ -1,0 +1,2537 @@
+{
+  "schema": "vgame-system-io-dependency/v1",
+  "systems": [
+    {
+      "systemId": "SYS-IN-01",
+      "name": "战斗实例与状态",
+      "inputs": [
+        "玩法 Intent（类型、关卡 ID、战斗模式）与编队快照",
+        "关卡 ID、关卡类型与怪物属性修正 ID（MonsterAttributeCorrectId）",
+        "玩家 ID、BattleVersion 与战前剧情/首通标记"
+      ],
+      "outputs": [
+        "战斗世界实例（CombatWorld）与运行状态",
+        "确定性战斗结果（含 MD5 ResultHash 的 CReqFightOver）",
+        "暂停/结束/结算界面打开事件",
+        "异常退出与可续局状态（ResumableBattleDataHeader）"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-08",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-IN-02",
+      "name": "单位、阵营与队伍",
+      "inputs": [
+        "编队/上阵快照（HeroId 列表、SquadId、Camp）",
+        "实体创建数据（TeamCreateData、Monster/Boss/Summon 数据）",
+        "目标过滤请求（Self/Friend/Enemy、ModifierTargetType）"
+      ],
+      "outputs": [
+        "战斗实体实例及其阵营/类型身份",
+        "有序队伍与队长/幻影结构",
+        "目标选择结果",
+        "角色存活/死亡统计（驱动胜负判定）"
+      ],
+      "dependencies": [
+        {
+          "type": "builds",
+          "targetId": "SYS-OUT-GR-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-IN-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-IN-03",
+      "name": "技能、Buff 与效果",
+      "inputs": [
+        "Skill.xlsx 元数据（SkillId/SkillType/SP/SkillData 路径）",
+        "Skill_{asm}/{name}.bytes 与 Buff_{id}.bytes 二进制",
+        "施法者实体、目标实体、怒气（SP）与战斗事件（OnHit/OnDeath/HP 阈值等）"
+      ],
+      "outputs": [
+        "技能实例执行与打断状态",
+        "Buff 添加/叠加/移除与属性/状态变化",
+        "伤害、治疗、护盾、子弹与召唤效果",
+        "供 AI、玩法与结算消费的技能/Buff 状态"
+      ],
+      "dependencies": [
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "SYS-OUT-GR-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-IN-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-IN-04",
+      "name": "敌人、AI 与 Boss",
+      "inputs": [
+        "Monster/Boss 配置与行为树资产",
+        "关卡刷怪数据与出生位置、触发距离",
+        "玩家位置、血量与冲刺撞击事件"
+      ],
+      "outputs": [
+        "敌人移动/攻击/技能/阶段/狂暴/召唤行为",
+        "敌人死亡与击杀统计（驱动胜负与掉落触发）",
+        "视觉道具掉落（LZoneEntity）触发"
+      ],
+      "dependencies": [
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-IN-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-08",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-IN-05",
+      "name": "关卡空间与遭遇",
+      "inputs": [
+        "level/UIlevel 关卡底表（LevelId、类型、场景路径、系数、出生位置）",
+        "SceneData/LogicData 序列化资源（地形、Loop、实体、镜头边界）",
+        "Monster/Boss 定义与行为树（由 SYS-IN-04 提供）",
+        "玩法模式上下文（由 SYS-IN-06/SYS-IN-01 提供）"
+      ],
+      "outputs": [
+        "地形块、Loop 地形与实体（怪物/道具/触发器）的实例化与流送回收",
+        "Loop 击杀计数、Loop 结束事件与最终胜利触发（ShowBattleWin）",
+        "镜头边界、Boss 战时间限制与场景统计（SceneStatistics）"
+      ],
+      "dependencies": [
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-IN-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-IN-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "MODEL_NOT_CLOSED",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-IN-06",
+      "name": "玩法局内规则",
+      "inputs": [
+        "玩法身份、关卡 ID 与模式上下文（来自外循环 enters）",
+        "编队、角色最终属性与技能快照",
+        "难度档、环境词缀、匹配或赛季上下文",
+        "关卡空间与波次结构（来自 SYS-IN-05）"
+      ],
+      "outputs": [
+        "胜负判定（isWin）与玩法专属统计",
+        "战斗结果（CReqFightOver）交结算触发 SYS-IN-08",
+        "各玩法目标达成/失败事件（切层、基地归零、超时）"
+      ],
+      "dependencies": [
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-IN-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-08",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "DESIGN_PROPOSAL"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-08",
+          "status": "RULE_GAP",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-09",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-10",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "MODEL_NOT_CLOSED",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-IN-07",
+      "name": "战斗 UI、反馈与引导",
+      "inputs": [
+        "单位血量、技能、Buff、计时与 Boss 阶段状态（来自 SYS-IN-02/SYS-IN-03/SYS-IN-04）",
+        "BattleGuide.xlsx 与 Introduction.xlsx 引导配置",
+        "UIlevel 的视觉掉落字段（MidVisualDropItems/Chance/LevelEndVisualDropItems）",
+        "镜头边界、Loop 事件与 ZoneShowGuide 触发点（来自 SYS-IN-05）",
+        "SYS-IN-08 的结算触发（VMsg_GameOver 表现层下发与 CNotifyFightOver 结算路由，驱动界面切换与清理）"
+      ],
+      "outputs": [
+        "实时 HUD、技能位、Buff、计时、Boss 血条与 Cut-in 展示",
+        "命中/受击/预警反馈",
+        "战斗掉落 Icon 飞行表现（纯视觉）",
+        "局内引导的暂停、提示与操作教学",
+        "胜负页/失败页展示（承接 SYS-IN-08 结算触发的胜负结果）"
+      ],
+      "dependencies": [
+        {
+          "type": "consumes",
+          "targetId": "SYS-IN-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-IN-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-IN-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-08",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-IN-08",
+      "name": "胜负、结果与结算触发",
+      "inputs": [
+        "玩法局内规则的胜负与统计（来自 SYS-IN-06）",
+        "LevelCondition 评价条件与 LevelType 结算路由",
+        "战斗收集数据（BattleResultComponent/CollectData）"
+      ],
+      "outputs": [
+        "确定性战斗结果（胜负、评价、统计、战利品记录）",
+        "结算触发事件与局后结算界面入口",
+        "任务事件、进度与真实入账的上报（交 SYS-OUT-SU-05/SYS-OUT-SU-07）"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "CROSS_SOURCE_SYNTHESIS",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-07",
+          "status": "CROSS_SOURCE_SYNTHESIS",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "CROSS_SOURCE_SYNTHESIS",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-01",
+      "name": "主线",
+      "inputs": [
+        "玩家当前章节、已通关节点、编队与账号成长状态",
+        "关卡前置、章节解锁、挑战成本、场景与战斗数据",
+        "普通主线、支线、星级和章节任务的奖励/目标配置"
+      ],
+      "outputs": [
+        "关卡通关、评价星级、章节进度和支线领取状态",
+        "首通、重复、星级与支线奖励",
+        "玩家经验、早期养成资源及下一关/下一章目标",
+        "供 Unlock/SystemOpen、引导、章节任务和高难主线消费的进度事件"
+      ],
+      "dependencies": [
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-08",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "CONFLICT_NEEDS_RUNTIME_AUTHORITY",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-07",
+          "status": "TARGET_NOT_SYNCED",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-GP-02",
+          "status": "KNOWLEDGE_CURRENT_STRUCTURE",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-11",
+          "status": "RULE_GAP",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "MODEL_NOT_CLOSED",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT_WITH_STALE_DEPOSIT_RISK",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-02",
+      "name": "高难主线",
+      "inputs": [
+        "普通主线进度（解锁高难章节的前置条件）",
+        "高难 level/UIlevel/MainLevel/ChapterStarReward/DifficultLevelNum 配置",
+        "高难 Drop_mainlevel 真实奖励包（首通 131xxxxx、常规 132xxxxx、星级 110xxxxx）",
+        "玩家当前储能、编队与高难每日已挑战次数（服务端下发）"
+      ],
+      "outputs": [
+        "高难关卡通关、评价星级与章节累计星级",
+        "首通元晶+宝石、常规宝石掉落与章节星级奖励（映射装备主副材、宝石自选箱、抽卡券）",
+        "高难进度事件（供章节星级、扫荡资格与后续章节解锁消费）"
+      ],
+      "dependencies": [
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-08",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "CONFLICT_NEEDS_RUNTIME_AUTHORITY",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-11",
+          "status": "RULE_GAP",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "conflicts-with",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "P0_CONFLICT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-03",
+      "name": "金币/角色经验资源副本",
+      "inputs": [
+        "玩家体力（储能 ItemId=3）、等级与主线进度",
+        "UIlevel/level/CoinLevel 配置（9 档难度、Vitality、Drop 引用）",
+        "Drop_dungeon 真实奖励包（首通 210010xx、常规 210000xx）",
+        "SystemOpen 301/302 开放条件与 globals_conf 开关"
+      ],
+      "outputs": [
+        "金币（猎鹰金币 ItemId=1）与角色经验道具（记录盘 100/101/102）",
+        "玩家经验（程序默认结算）与首通/常规奖励入账",
+        "资源副本通关进度（供扫荡资格消费）"
+      ],
+      "dependencies": [
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "CONFLICT_NEEDS_RUNTIME_AUTHORITY",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-11",
+          "status": "RULE_GAP",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-04",
+      "name": "旅券副本",
+      "inputs": [
+        "玩家等级、旅券精力（ItemId=33）与主线进度",
+        "UIlevel/level 配置（4 主题×10 档=40 关，Vitality=33,15，MultiSettlementTimes=4）",
+        "Drop_dungeon 真实奖励包（首通 200010xx、常规 200011xx）",
+        "SystemOpen 320/321/322/326 开放条件与 BossBattleTime 限时配置"
+      ],
+      "outputs": [
+        "旅券装备与辅材（经 Drop_dungeon 入账）",
+        "首通宝箱与常规掉落",
+        "Boss 战通关进度（供扫荡资格与多倍结算消费）"
+      ],
+      "dependencies": [
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "CONFLICT_NEEDS_RUNTIME_AUTHORITY",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-11",
+          "status": "RULE_GAP",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "SYS-IN-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-05",
+      "name": "映射装备副本",
+      "inputs": [
+        "映射之匙（ItemId=25, NumLimit=50, SpecialLevelTicketItemID=25）持有量",
+        "UIlevel/SpecialLevel/EquipmentLevel 配置（30 层×5 品质变体=150 行，Vitality=25,1）",
+        "Drop_dungeon 真实奖励包（首通 20000010-39、常规 20005101-130）",
+        "SystemOpen SO 314 开放条件与 globals_conf 开关"
+      ],
+      "outputs": [
+        "装备宝箱（绿/蓝/紫/金/红，开 1 件装备）与制作材料",
+        "首通钥匙返还（每层×1）与首通/常规奖励入账",
+        "副本通关进度（供扫荡资格消费）"
+      ],
+      "dependencies": [
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-11",
+          "status": "WORKING_COPY_OBSERVED_DELEGATED",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "supersedes",
+          "targetId": "SYS-OUT-GR-07",
+          "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-06",
+      "name": "无限挑战",
+      "inputs": [
+        "SystemOpen(211)/Unlock(4111) 开放条件与主线关卡进度",
+        "NR_Difficult/NR_Layer/NR_LevelPool 难度与层级配置",
+        "NR_Modifier/NR_ModifierSchedule 词条配置与本周词缀排程",
+        "NR_HighestScoreReward/NR_RankReward 里程碑与排名奖励档位",
+        "服务端下发的 neuralInfo（当前难度、最高积分、词条状态、已领奖励）"
+      ],
+      "outputs": [
+        "玩家当前难度、层级推进与历史最高积分",
+        "里程碑积分奖励领取状态与每周排名快照",
+        "向任务、排行、奖励入账消费方上报的玩法事件"
+      ],
+      "dependencies": [
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "validates",
+          "targetId": "PF-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "MODEL_NOT_CLOSED",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "conflicts-with",
+          "targetId": "SYS-OUT-GP-10",
+          "status": "P2_NAMING_OVERLAP",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-07",
+      "name": "竞技场（PVPVE）",
+      "inputs": [
+        "SystemOpen(36)/Unlock(4112) 开放条件与主线关卡进度",
+        "ArenaTicket 门票（globals_conf）与 ArenaCurrentOpponentsRefreshNum 刷新上限",
+        "ArenaRank/ArenaRankReward/ArenaWinReward/ArenaWinStreak/ArenaWinStreakBonus 段位与奖励配置",
+        "ArenaMonsterMultiplier/ArenaMonsterAttribute 怪物属性倍率",
+        "Battery/BatteryAttribute/BatteryLv 炮台配置（养成归 GR-08）",
+        "服务端下发的 ArenaInfo（分数、排名、对手、炮台、赛季）"
+      ],
+      "outputs": [
+        "竞技场分数、段位/星级、胜场与累胜进度",
+        "赛季结束时间、上赛季战报与排名快照",
+        "向任务、排行、奖励入账消费方上报的玩法事件"
+      ],
+      "dependencies": [
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "builds",
+          "targetId": "SYS-OUT-GR-08",
+          "status": "KNOWLEDGE_CURRENT_DELEGATED",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "WORKING_COPY_OBSERVED_WITH_UNKNOWN",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "validates",
+          "targetId": "PF-04",
+          "status": "WORKING_COPY_OBSERVED",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "MODEL_NOT_CLOSED",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "conflicts-with",
+          "targetId": "SYS-IN-04",
+          "status": "P1_PARTIAL_LANDED",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-08",
+      "name": "爬塔",
+      "inputs": [
+        "SystemOpen(201)/Unlock(4101) 开放条件与主线关卡进度",
+        "TowerEnemyFormation 楼层编队（Floor/PackId/TpwerTextId）与 UILevel.LevelType",
+        "TowerFirstReward/TowerReward/TowerRankReward/TowerIdleRewards 奖励配置",
+        "TowerBuff/TowerDebuff/TowerLevelDebuff/TowerLevelSeasonStage/BuffCalendar 楼层修饰与赛季阶段",
+        "服务端下发的 ClimbTowerData（当前层、已通关层、挂机起始时间、挂机进度）"
+      ],
+      "outputs": [
+        "已通关最高层、当前层与全通状态",
+        "首通、周期复刷、排名与挂机奖励领取状态",
+        "向任务、排行、奖励入账与房车/挂机消费方上报的玩法事件"
+      ],
+      "dependencies": [
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-09",
+          "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "PF-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "MODEL_NOT_CLOSED",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-09",
+      "name": "大秘境",
+      "inputs": [
+        "SystemOpen(202)/Unlock(4102) 开放/关闭状态与玩家等级37条件",
+        "Affix/AffixSchedule 环境词缀与赛季排程",
+        "Dungeon/Layers 层级与副本配置",
+        "WeekMaxLayerReward/WeekScoreReward/SeasonScoreReward/SeasonRankReward 周与赛季奖励",
+        "WeekBalanceDownLayer 周平衡下调层级"
+      ],
+      "outputs": [
+        "当前赛季、层级进度与最高通关层",
+        "周/赛季奖励领取状态与排名快照（当入口开放时）",
+        "向任务、排行、奖励入账与 LiveOps 消费方上报的玩法事件（当入口开放时）"
+      ],
+      "dependencies": [
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "WORKING_COPY_CLOSED_RUN_UNKNOWN",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "WORKING_COPY_OBSERVED_UNKNOWN_LIVE",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "WORKING_COPY_OBSERVED_UNKNOWN_LIVE",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "PF-04",
+          "status": "WORKING_COPY_OBSERVED_UNKNOWN_LIVE",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "MODEL_NOT_CLOSED",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-14",
+          "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+          "provenance": "WORKING_COPY_OBSERVED"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-10",
+      "name": "BOSS 挑战",
+      "inputs": [
+        "SystemOpen(204)/Unlock(4104) 开放状态与主线4-15条件",
+        "Boss_Dungeon.xlsx：Basic Boss 列表、LevelId、DifficultyLevel、Layer、Reward、BestReward",
+        "BossAdvanceDungeon.xlsx：Advanced 层级与 BossID/LevelId 映射",
+        "BossPool.xlsx：周更 BossId 列表",
+        "AdvanceReward.xlsx / BuffPool.xlsx：Advanced 奖励与 Buff 池"
+      ],
+      "outputs": [
+        "Basic 通关进度（PassedLayer/TotalLayer）与是否全部通关",
+        "Advanced 周更层进度（AdvancedCurLayer/AdvancedCompletedLayer）与排行榜快照",
+        "向任务、排行、奖励入账消费方上报的玩法事件"
+      ],
+      "dependencies": [
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "P1_CONFLICT_UNLOCK",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "WORKING_COPY_OBSERVED_PARTIAL_UNKNOWN",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "PF-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-03",
+          "status": "MODEL_NOT_CLOSED",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-IN-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "conflicts-with",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "P1_CONFLICT_UNLOCK_CONDITION",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-11",
+      "name": "扫荡",
+      "inputs": [
+        "玩家已通关关卡状态（LevelSystem.alreadyPassLevelDic）",
+        "关卡配置（level.MopUp、UIlevel.Vitality/LevelPPDrop、EnableMoppingUpLevel）",
+        "玩家储能持有量（PropSystem.StaminaNum）",
+        "高难主线每日挑战次数（RefreshNum、difficultTotalChallengeLimit）",
+        "定向扫荡的目标道具与目标数量（可选）"
+      ],
+      "outputs": [
+        "扫荡结算奖励列表（每轮 reward_list，复用重复掉落）",
+        "储能扣除（服务端）与体力视图刷新",
+        "高难主线挑战次数刷新",
+        "供 SYS-OUT-SU-05 入账的可重复奖励事件"
+      ],
+      "dependencies": [
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-OUT-GP-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GP-12",
+      "name": "跑商",
+      "inputs": [
+        "行商精力（ItemId=38, Power_Trade）持有量",
+        "商券（ItemId=301）持有量",
+        "TradeLocation/TradeGoodsMarket/TradeEvent/TradeLvUp/TradeBattleEvent 配置",
+        "globals_conf 跑商全局参数",
+        "V25 沉淀 MD 设计目标"
+      ],
+      "outputs": [
+        "货物买卖正利润 → 商券入账与行商等级经验",
+        "旅途事件奖励（商券/金币/记录盘/元晶/旅券）",
+        "护货战斗利润加成商券",
+        "升级一次性奖励（商券/钻石/角色常驻抽卡券）",
+        "商券商店兑换产出（房车天赋材料 1075-1079/旅券/收容凭证/攻略笔记）"
+      ],
+      "dependencies": [
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-09",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "enters",
+          "targetId": "SYS-IN-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "RULE_GAP",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "builds",
+          "targetId": "SYS-OUT-GR-09",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "prices",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-01",
+      "name": "玩家等级",
+      "inputs": [
+        "玩家经验增量（主线通关、任务、每日活跃等产出行旅帧片 4）",
+        "PlayerLv 经验门槛、储能返还与升级道具配置",
+        "Power 体力配置（上限、恢复间隔、初始值）",
+        "Unlock 中 UnLock_UUT_player_Grade 的条件参数"
+      ],
+      "outputs": [
+        "玩家等级提升与经验溢出结转",
+        "升级返还储能与升级道具入账",
+        "体力槽状态（当前值/上限/恢复时间）",
+        "玩家等级满足 Unlock 条件后触发的系统开放事件"
+      ],
+      "dependencies": [
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-05",
+          "status": "KNOWLEDGE_CURRENT_WITH_CONFLICT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GP-11",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-02",
+      "name": "角色升级与突破",
+      "inputs": [
+        "角色经验道具增量（记录盘100/101/102，由资源副本/主线/任务等产出）",
+        "金币增量（猎鹰金币1）",
+        "HeroLv 每级升级消耗、HeroAscendLv 突破门控、HeroAscendMaterial 突破材料消耗",
+        "HeroAttribute 每角色每级三维配置、Hero 品质/职业"
+      ],
+      "outputs": [
+        "角色等级提升与经验溢出结转",
+        "突破阶段（AscendId）推进与等级上限放开",
+        "裸体属性中等级分项与突破分项更新（触发裸体重算）",
+        "升级/突破事件驱动红点刷新与开放条件重评估"
+      ],
+      "dependencies": [
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GP-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "CB-R03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-03",
+      "name": "角色升星",
+      "inputs": [
+        "角色碎片增量（同名重复转化+万能碎片，由抽卡/商店/活动产出）",
+        "金币增量（猎鹰金币1）",
+        "HeroStarAttrUp 升星消耗与效果（CostItem/TalentSkill/30+属性系数）",
+        "HeroExtraReward 重复英雄补偿（抽卡侧维护，升星只消费碎片结果）"
+      ],
+      "outputs": [
+        "角色星数提升（0→6）与升星裸体属性分项更新",
+        "天赋技能激活（星1/2/4/6 对应 TalentSkill）",
+        "升星事件驱动红点刷新与裸体重算"
+      ],
+      "dependencies": [
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "builds",
+          "targetId": "SYS-IN-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "CB-R03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-04",
+      "name": "角色星盘/能效",
+      "inputs": [
+        "校准点与材料增量（由日常/副本/活动产出，渠道待确认）",
+        "HeroEnergyEfficiencyMap 节点树定义（节点ID/类型/PreId/开放等级）",
+        "HeroEnergyEfficiencyAttr 每节点每级属性配置（32个AttrKey，累计替换）",
+        "CalibrationPoints/CalibrationPointsAttr 校准点制作消耗与等级属性",
+        "Hero.HeroClass（决定使用哪套星盘图）与 EnergyEfficiencyAttrList（32项属性索引）"
+      ],
+      "outputs": [
+        "节点激活/升级状态（未解锁→已激活，按等级推进）",
+        "星盘裸体属性分项更新（基础三维+二级属性偏向）",
+        "技能/被动/普攻/必杀升级与进化效果（引用技能系统）",
+        "星盘节点可升级红点与裸体重算触发"
+      ],
+      "dependencies": [
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "SYS-IN-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "CB-R03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-02",
+          "status": "KNOWLEDGE_CURRENT_WITH_CONFLICT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-05",
+      "name": "收容物",
+      "inputs": [
+        "收容物经验道具增量(泛黄档案108/录像带109/未知笔记110，ItemSubType_WeaponExp)",
+        "收容物碎片增量(重复整件转化+合成，由抽卡/商店产出，WeaponShards=int('3'+收容物Id))",
+        "金币增量(猎鹰金币1)",
+        "ExclWeapon.xlsx 收容物本体定义(Id51001+/品质/职业/L/M/N/SkillList/ShardsList)",
+        "ExclWeaponLv/ExclWeaponStar 升级与升星消耗配置"
+      ],
+      "outputs": [
+        "收容物等级提升与一级属性增长",
+        "收容物升星(0-6)与二级属性解锁",
+        "编成槽位(主/副/未上阵)属性生效与战斗属性转化",
+        "收容物养成属性与消耗的06最终配置镜像(待同步真实SVN)"
+      ],
+      "dependencies": [
+        {
+          "type": "migrates-to",
+          "targetId": "SYS-OUT-GR-10",
+          "status": "P0_CONFLICT_MIGRATION_PENDING",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "conflicts-with",
+          "targetId": "SYS-OUT-GR-10",
+          "status": "P0_CONFLICT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "CB-R03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-06",
+      "name": "旅券",
+      "inputs": [
+        "旅券实例（SetId/Part/Quality/Lv/MainAttr/SubAttrs，由旅券副本等玩法产出）",
+        "升级材料（旅券经验券/fodder）与金币（StrategyLv.UpgradeCostExp）",
+        "合成材料（同品质旅券×3 + 合成石/锁定符，StrategyCraft.CostItem/RandomCostItem/FixMainAttrCostItem）",
+        "PrimAttr/PrimAttrWeight/SecAttr/SecAttrWeight/StrategyQuality 属性与权重配置",
+        "StrategySuits 套装定义与 SetAttr2/SetSkill/SetAtt4"
+      ],
+      "outputs": [
+        "旅券装备状态与角色6槽位绑定",
+        "2件套/4件套激活状态与套装属性/技能生效",
+        "旅券等级提升与主属性成长（写入角色属性）",
+        "合成产出的新旅券（红品质）与分解回收产出（经验/材料碎片）",
+        "供战斗属性聚合与 Buff 系统消费的旅券属性与套装效果"
+      ],
+      "dependencies": [
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GP-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "CB-R03",
+          "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "SYS-IN-03",
+          "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-07",
+      "name": "映射装备",
+      "inputs": [
+        "装备实例（Part/Quality/EquipLv/MainAttr/SubAttrs/Sockets/Transcend，由副本宝箱/合成/制作产出）",
+        "宝石/铭文（SpecialEquipmentGem，由宝石合成/掉落产出）",
+        "洗练石/锁定符/装备高级材料（红装分解产出）与金币",
+        "制作材料（武器/防具/首饰胚料×8档）与金币",
+        "SpecialEquipment/Quality/Main/Effect/EffectDrop/Generate/Gem/SubAttrCoef/LvLimit 配置"
+      ],
+      "outputs": [
+        "8槽位装备绑定与主副属性生效",
+        "宝石镶嵌加成与孔位状态",
+        "洗练后副属性（保留旧或替换新）",
+        "合成/制作产出的新装备与分解回收产出（金币/高级材料）",
+        "供战斗属性聚合与 Buff 系统消费的装备属性与词缀效果"
+      ],
+      "dependencies": [
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GP-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GP-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "builds",
+          "targetId": "CB-R03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "SYS-IN-03",
+          "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-08",
+      "name": "炮台/基地",
+      "inputs": [
+        "炮台实例（batteryId/quality/lv，由竞技场装配入口提供）",
+        "炮台升级/重铸资源（战斗内金币/资源，BatteryLv.UpgradeCost）",
+        "Battery/BatteryAttribute/BatteryLv 配置",
+        "ArenaMonsterMultiplier 怪物属性倍率与六类怪物伤害目标值",
+        "双方上阵角色平均属性（用于怪物生命增伤系数 K）"
+      ],
+      "outputs": [
+        "炮台等级/属性提升与技能解锁",
+        "基地（水晶）生命上限（10000+炮台生命加成）与局内 HP 状态",
+        "炮台自动攻击与受击/修复状态",
+        "未清理怪物对基地的碰撞/远程伤害结算（逐次叠加炮台攻击加成）"
+      ],
+      "dependencies": [
+        {
+          "type": "builds",
+          "targetId": "SYS-OUT-GP-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-06",
+          "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-IN-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-09",
+      "name": "房车",
+      "inputs": [
+        "房车零件（ItemId 1074，爬塔挂机产出）+ 金币 → 房车整备升级",
+        "便签指南（ItemId 1075-1079，跑商产出）+ 金币 → 出行指南节点激活/升级",
+        "房车建材（低/中/高三级，ItemId待规划）→ 房车设备升级",
+        "加工零件（工作台产出）→ 工作台合成基础经验材料",
+        "溢出经验（驾驶台满级后产出）→ 溢出经验兑换",
+        "RvAttribute/RvLvUp/RvStrengthenResult/RvGuide/RvStage/RvGuideNode/RvGuideNodeLv/RvDevice/DeviceLvUp/DeviceCraft/ExpExchange 配置",
+        "玩家等级（驾驶台产出经验与等级上限判定）"
+      ],
+      "outputs": [
+        "账号全局固定基础属性（生命/攻击/防御，RvAttribute Value+Grow×growLv）",
+        "职业百分比属性与二级属性（出行指南节点激活）",
+        "持续生产资源（玩家经验/加工零件/邮票精力/金币/体力）",
+        "跑商载货量提升（储藏架30→36）",
+        "基础经验材料（工作台合成：低阶/中阶记录盘、泛黄档案、录像带、沿途随笔）",
+        "溢出经验兑换资源（金币/房车零件/加工零件/体力）"
+      ],
+      "dependencies": [
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GP-08",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GP-12",
+          "status": "CROSS_SOURCE_SYNTHESIS",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "NUM-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "CB-R03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-GR-10",
+      "name": "专武",
+      "inputs": [
+        "ExclWeapon 本体定义（Id51001+/RelatedHero/SkillList/AttrNameList/Hp/Grow）",
+        "ExclWeaponLv 升级消耗、ExclWeaponAscendLv/ExclWeaponAscendMaterial 突破门控、ExclWeaponStar 升星消耗",
+        "专武抽卡池（DrawCard 专武卡池，OnePrice=150）、专武经验副本（LevelType_Weapon）",
+        "迁移冲突裁决输入（C-001：核心Skill旧口径 vs 沉淀/抽卡文档新口径）"
+      ],
+      "outputs": [
+        "专武升级/突破/升星状态变化与属性/技能更新（旧口径）",
+        "专武→收容物迁移冲突的双方证据与裁决依赖（P0_CONFLICT）",
+        "迁移未完成的具体字段证据（收容凭证107旧命名、ExclWeapon表复用、经验道具108-110旧子类型）"
+      ],
+      "dependencies": [
+        {
+          "type": "migrates-to",
+          "targetId": "SYS-OUT-GR-05",
+          "status": "P0_CONFLICT_MIGRATION_PENDING",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "conflicts-with",
+          "targetId": "SYS-OUT-GR-05",
+          "status": "P0_CONFLICT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "builds",
+          "targetId": "CB-R03",
+          "status": "APPROVED_COMPATIBILITY_MIGRATION_PENDING",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-01",
+          "status": "P0_CONFLICT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "WORKING_COPY_WITH_CONFLICTS",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "SYS-IN-03",
+          "status": "P0_CONFLICT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-01",
+      "name": "角色/新手卡池",
+      "inputs": [
+        "抽卡请求（DrawType 单抽/十连、PoolId）",
+        "卡池配置（DrawCard 卡池类型与保底、DrawCardPool 池内角色清单与 UP、DrawCardWeight 权重）",
+        "玩家持有票券（106/111）与元晶余额、主线进度与玩家等级",
+        "限时池活动期开关与自选候选选择",
+        "HeroExtraReward 重复角色品质→代币映射"
+      ],
+      "outputs": [
+        "抽卡结果（角色整件、重复转化代币与碎片）经 Drop_draw 入账",
+        "保底计数器变化（服务端权威，客户端展示剩余）",
+        "供角色升星消费的同名碎片/代币（经 SYS-OUT-GR-03）",
+        "供满星碎片回收的重复等价包（经 SYS-OUT-SU-03）",
+        "抽卡动画、品质展示、保底剩余与已拥有标签反馈"
+      ],
+      "dependencies": [
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-03",
+          "status": "KNOWLEDGE_CURRENT_WITH_PENDING_VALUE",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "conflicts-with",
+          "targetId": "SYS-OUT-GR-10",
+          "status": "P0_CONFLICT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-02",
+      "name": "收容物抽卡",
+      "inputs": [
+        "抽卡请求（DrawType 单抽/十连、PoolId=5）",
+        "常驻池配置（DrawCard.Id=5、DrawCardPool 池内清单、CommonRuleDesc.Id=4 规则文案、Drop_draw 掉落包）",
+        "ExclWeapon 投放名单（首列##排除）",
+        "玩家持有收容凭证(107)与元晶余额、玩家等级（收容物34级开放）",
+        "ShopGoods.2003002 直购价格"
+      ],
+      "outputs": [
+        "收容物整件或同名碎片（S/A×5片, B×2片）经 Drop_draw 入账",
+        "重复整件转同名碎片（S/A/B=100/50/20）",
+        "S 整件保底计数器变化（S碎片不重置，S整件重置）",
+        "供收容物养成消费的整件与碎片（经 SYS-OUT-GR-05）",
+        "抽卡动画、整件/碎片结果与保底剩余反馈"
+      ],
+      "dependencies": [
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "conflicts-with",
+          "targetId": "SYS-OUT-GR-10",
+          "status": "P0_CONFLICT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-03",
+      "name": "碎片回收/招募商店",
+      "inputs": [
+        "玩家持有的角色/收容物同名碎片与当前星级",
+        "服务端当前配置最高星级（动态读取）",
+        "回收单包碎片量（收容物已确认S/A/B=100/50/20；角色待服务端回源）",
+        "招募商店商品配置（ShopGoods 1107 系列：余音兑换旅券/收容凭证）",
+        "回收请求（fragment_item_id, bundle_count, client_request_id, config_version）"
+      ],
+      "outputs": [
+        "回收消耗的同名碎片（整包，余数保留）",
+        "回收产出的印象余音(21)/残留余响(22)经入账",
+        "经招募商店兑换的旅券/收容凭证（回抽链）",
+        "回收结果、新余额与库存版本反馈",
+        "可回收红点与回收页角色/收容物分栏展示"
+      ],
+      "dependencies": [
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-01",
+          "status": "KNOWLEDGE_CURRENT_WITH_PENDING_VALUE",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-02",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GR-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT_WITH_PENDING_MEASUREMENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-04",
+      "name": "物品与货币",
+      "inputs": [
+        "Items/ItemTypeFunc/ItemAccess/ItemSweep 身份与来源配置",
+        "PropSystem 全量背包同步（CRespNotifyBagInfo）",
+        "各玩法的道具/货币增减事件（服务端下发，客户端同步）"
+      ],
+      "outputs": [
+        "资源身份与类型枚举的单一权威口径",
+        "道具/货币当前持有量（AllItems 字典）",
+        "资源来源去向索引（供获取途径与定向扫荡）"
+      ],
+      "dependencies": [
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GP-11",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-05",
+      "name": "掉落与奖励",
+      "inputs": [
+        "战斗/玩法结果事件（胜负、评价、星级、排行、赛季分数）",
+        "逻辑 Drop 配置（DropId → 行 → DropItem_id/数量/权重）",
+        "UIlevel/level 的首通/重复/三星/高额奖励引用",
+        "活动与双倍掉落开关"
+      ],
+      "outputs": [
+        "真实奖励包（固定/随机/组合）的物品入账",
+        "供 UI 展示的奖励预览数据（DropSystem:GetDropDataList）",
+        "排行/赛季/活动结算的奖励发放事件",
+        "补发与幂等结算的可追溯入账"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-08",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "CONFLICT_NEEDS_RUNTIME_AUTHORITY",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-GP-11",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-06",
+      "name": "商店",
+      "inputs": [
+        "商店页签配置（Shop 刷新周期、PriceShow 货币列表）",
+        "商品配置（ShopGoods 商品、价格 PropType、LimitType/LimitNum、HiddenWhenSoldOut、PayProduct）",
+        "玩家货币余额与已购计数",
+        "购买请求（GoodsId + Count）与手动刷新请求（TabId）",
+        "PayProduct 支付回调"
+      ],
+      "outputs": [
+        "购买结果（扣款 + 商品入账 + 限购计数更新）",
+        "刷新后的货架（重置限购、随机货架重随机）",
+        "售罄隐藏后的商品列表",
+        "多货币余额展示数据",
+        "PayProduct 直购结果与掉单补发事件"
+      ],
+      "dependencies": [
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-03",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-15",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-11",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-07",
+      "name": "任务与章节任务",
+      "inputs": [
+        "玩法事件上报（战斗结算、资源变更、养成进度等）",
+        "任务配置（Task 定义/目标/DropId/NextTaskList、DailyTask 权重池、WeeklyTask、TaskTarget）",
+        "章节任务配置（Jottings/JottingsTask/ChapterTasks 阶段、目标与奖励）",
+        "活跃点阈值配置（DailyActiveReward / WeeklyReward）",
+        "系统引导任务配置（SystemGuideTask）",
+        "玩家当前章节、玩家等级与养成进度"
+      ],
+      "outputs": [
+        "任务进度更新与完成状态",
+        "任务奖励领取事件（经 Drop 入账）",
+        "活跃点累加与阈值奖励领取",
+        "任务链后续任务解锁",
+        "章节任务进度与章节完成奖励",
+        "任务面板、活跃进度与红点反馈"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-IN-08",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "TARGET_NOT_SYNCED",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "CONFLICT_NEEDS_DROP_FIX",
+          "provenance": "CROSS_SOURCE_SYNTHESIS"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "validates",
+          "targetId": "SYS-OUT-GR-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-08",
+      "name": "签到",
+      "inputs": [
+        "玩家每日首次打开签到面板或自动弹窗",
+        "签到配置（DailySign 当月循环、SevenDaySign ActivityId+OpenDay、MonthlyAccumulate 阈值、TravelAccumulate 阈值）",
+        "玩家当月已签到天数、累计签到天数、角色创建时间",
+        "七日签到活动期开关（ActivityId 有效期）"
+      ],
+      "outputs": [
+        "签到奖励（rewardItems / ItemReward）经入账",
+        "签到状态更新（已签标记、当月连续天数、累计天数）",
+        "月度累计与长期累计档位领取状态",
+        "签到日历、七日面板、累计进度与旅行路线图反馈"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "prices",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-14",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-09",
+      "name": "邮件",
+      "inputs": [
+        "运营后台/活动系统/补偿系统发起的邮件下发请求",
+        "Mail.xlsx 模板（Title, Text, ExpirationTime）",
+        "PresendMail.xlsx 预发送条目（Unlock, MailId, Drop）与玩家进度事件",
+        "玩家打开邮箱、领取附件、一键领取、删除与已读操作"
+      ],
+      "outputs": [
+        "玩家邮箱中的邮件实例与状态变化（未读/已读/已领取/已过期/已删除）",
+        "附件 Drop 领取触发的事件，交由 SYS-OUT-SU-05 执行真实入账",
+        "过期清理结果（删除或补发未领附件）",
+        "邮箱红点与列表刷新反馈"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-14",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT_WITH_GAP",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-10",
+      "name": "通行证",
+      "inputs": [
+        "任务/活动模块推送的 BP EXP 事件",
+        "BattlePass.xlsx（OpenTime、付费产品、奖励预览）",
+        "BattlePassLevel.xlsx（每级 UpgradeCostExp）",
+        "BattlePassReward.xlsx（每级 CommonReward/PassAdditionReward/IsSignificanceLevel）",
+        "玩家购买、领取与升级操作"
+      ],
+      "outputs": [
+        "通行证等级与当前 EXP 状态",
+        "免费/付费线各等级领取状态",
+        "购买标记与付费线解锁",
+        "奖励领取触发的事件，交由 SYS-OUT-SU-05 执行真实入账",
+        "赛季结束后的未领奖励邮件补发事件"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-07",
+          "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-15",
+          "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-09",
+          "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "conflicts-with",
+          "targetId": "SYS-OUT-SU-14",
+          "status": "CONFLICT_NEEDS_RELEASE_REGISTRY",
+          "provenance": "SOURCE_EXPLICIT"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-11",
+      "name": "公会",
+      "inputs": [
+        "玩家等级（开放门槛20级）与元晶（创建消耗300）",
+        "公会任务（Task_TTT_GuildTask）完成事件与公会贡献捐献操作",
+        "公会派遣委托配置（GuildComission/GuildCommissionLv）与角色占用",
+        "GuildLv/GuildTech/GuildNodeLv/GuildSupplies/GuildMission 等公会配置族",
+        "公会商店商品（Shop/ShopGoods 公会 Tab）与个人代币",
+        "道具定价表（个人代币=1元晶价值锚）"
+      ],
+      "outputs": [
+        "公会实体、成员归属与公会等级/经验状态",
+        "公会经验/集体代币/个人代币三种成长资源的产出与消耗",
+        "公会派遣个人代币与品质额外奖励（经 Drop_other 入账）",
+        "公会商店购买与限购计数",
+        "公会补给的资格快照与批量邮件发奖事件",
+        "个人科技全局属性（PvE/PVPVE/竞技生效）与公会科技组织增益"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-09",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "CB-R03",
+          "status": "CONFIRMED_TARGET_PENDING_IMPLEMENTATION",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "SOURCE_EXPLICIT"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-04",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-12",
+      "name": "好友/聊天",
+      "inputs": [
+        "玩家好友申请、搜索、添加、删除与黑名单操作",
+        "IntimacyLevel.xlsx 亲密度等级配置",
+        "Chat 配置族（Chat/ChatBg/ChatBox/ChatBubble/Emoji/EmojiClass/Gif/StoryChat/TeamEmote/ChatPanelContent/Timeline_Gen）",
+        "玩家频道消息发送、私聊、表情与举报操作"
+      ],
+      "outputs": [
+        "好友关系状态与亲密度等级",
+        "黑名单屏蔽状态",
+        "频道消息记录与私聊记录",
+        "举报请求与公会邀请链接"
+      ],
+      "dependencies": [
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-11",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-SU-14",
+          "status": "UNKNOWN_NEEDS_RELEASE_REGISTRY",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-13",
+      "name": "新手引导与系统开放",
+      "inputs": [
+        "玩家进度事件（主线通关、等级提升、任务状态、获得道具/角色）",
+        "Unlock 条件（UnLockType/UnLockParams）与 SystemOpen 配置",
+        "BattleGuide/NewbieGuide 序列与步骤配置",
+        "登录同步的已完成引导记录（PlayerClientInfo）"
+      ],
+      "outputs": [
+        "系统入口开放状态与解锁事件（OnSystemUnlock/OnLevelUnlock）",
+        "引导序列的启动、步骤执行、完成与跳过状态",
+        "引导完成记录的服务端同步",
+        "系统开放提示与提示奖励"
+      ],
+      "dependencies": [
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-GP-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "unlocks",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-IN-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-14",
+      "name": "活动、赛季与 LiveOps",
+      "inputs": [
+        "Activity.xlsx（活动定义、开放/结束时间、系统关联）",
+        "ActiveReward.xlsx（活跃奖励配置）",
+        "DoubleDropActivity.xlsx（双倍掉落活动配置）",
+        "FourteenDayActivity.xlsx（十四日活动配置）",
+        "玩法赛季结算事件（如大秘境）与任务/排行结果"
+      ],
+      "outputs": [
+        "活动开放/关闭状态与时间窗口",
+        "双倍掉落开关与每日次数",
+        "十四日活动日程与活跃点奖励领取状态",
+        "活动/赛季结算奖励发放事件（交由 SYS-OUT-SU-05 入账）",
+        "活动补偿/回滚的邮件补发事件"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-07",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-09",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-GP-09",
+          "status": "KNOWLEDGE_CURRENT_NEEDS_REGISTRY",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-13",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "WORKING_COPY_OBSERVED"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT_WITH_GAP",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    },
+    {
+      "systemId": "SYS-OUT-SU-15",
+      "name": "月卡、礼包与付费商品",
+      "inputs": [
+        "MonthCard.xlsx（月卡产品定义、价格、PayProductId、首购/每日奖励、PowerLimitUP）",
+        "PayProducts.xlsx（付费商品/直购产品定义与价格）",
+        "月卡 Design Doc（Draft/HIGH）",
+        "商店 Design Doc（PayProduct 直购部分，Draft/HIGH）"
+      ],
+      "outputs": [
+        "月卡购买凭证与有效期",
+        "月卡每日奖励发放事件（交由 SYS-OUT-SU-05 入账）",
+        "月卡体力上限提升配置（消费方为 GR-01）",
+        "礼包/付费商品的产品定义（售卖交由 SYS-OUT-SU-06）"
+      ],
+      "dependencies": [
+        {
+          "type": "reports",
+          "targetId": "SYS-OUT-SU-05",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "supplies",
+          "targetId": "SYS-OUT-GR-01",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "builds",
+          "targetId": "SYS-OUT-SU-06",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "consumes",
+          "targetId": "SYS-OUT-SU-14",
+          "status": "KNOWLEDGE_CURRENT",
+          "provenance": "UNKNOWN"
+        },
+        {
+          "type": "balances",
+          "targetId": "NUM-04",
+          "status": "KNOWLEDGE_CURRENT_WITH_GAP",
+          "provenance": "UNKNOWN"
+        }
+      ]
+    }
+  ],
+  "loops": [
+    {
+      "id": "LOOP-CORE",
+      "name": "核心战斗循环",
+      "path": [
+        "进入玩法",
+        "战斗推进",
+        "胜负结算",
+        "奖励入账",
+        "再次挑战"
+      ]
+    },
+    {
+      "id": "LOOP-GROWTH",
+      "name": "成长验证循环",
+      "path": [
+        "玩法产出",
+        "资源入账",
+        "养成消耗",
+        "战力转化",
+        "验证玩法"
+      ]
+    },
+    {
+      "id": "LOOP-ECONOMY",
+      "name": "经济循环",
+      "path": [
+        "来源",
+        "库存",
+        "消耗",
+        "成长/兑换",
+        "新需求"
+      ]
+    },
+    {
+      "id": "LOOP-RETENTION",
+      "name": "留存运营循环",
+      "path": [
+        "日周赛季目标",
+        "参与",
+        "奖励",
+        "进度推进",
+        "下一周期"
+      ]
+    }
+  ]
+}

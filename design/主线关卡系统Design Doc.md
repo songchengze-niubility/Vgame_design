@@ -1,5 +1,7 @@
 # 主线关卡系统 — Design Doc
 
+> **2026-08-24 人工裁决**：DC-N 选择第七章 ChapterId 统一为 10007；DC-Q 选择高难主线补齐至35节点；DC-E 确认主线/高难扫荡要求三星。三项均为 APPROVED_TARGET / IMPLEMENTATION_PENDING，未修改真实配置。
+
 ## 元信息
 
 | 项 | 内容 |
@@ -32,13 +34,16 @@
 ### R-01: 关卡推进
 
 - **触发条件**：玩家在 MainLevel 地图节点上选择下一关
-- **前置限制**：前一关已通关；满足 ChapterLevel.Unlock 条件
+- **前置限制**：
+  - 章节内：前一关已通关。
+  - 章节入口：序章、第一章、第二章不配置章节开启条件；第三至第七章仅检查主角等级（玩家账号等级），不再叠加前章末关条件。
+  - 章节等级门槛按用户提供的最新《章节等级表》执行：第三章 Lv24、第四章 Lv28、第五章 Lv31、第六章 Lv33、第七章 Lv35。
 - **操作流程**：选择关卡 → 检查体力 → 加载场景 → 战斗 → 通关/失败
 - **状态变化**：通关后关卡状态变为"已通关"；首次通关触发首通奖励；三星达成触发星级奖励
 - **资源变化**：扣除体力 10（道具ID=3）；通关后获得奖励
 - **UI 反馈**：MainLevel 地图显示关卡连通状态（已解锁/未解锁/已通关）；关卡面板显示推荐等级、奖励预览
-- **异常边界**：体力不足时弹窗提示购买/等待恢复；关卡加载失败时回退到地图界面
-- **落地点**：`level.xlsx` + `UIlevel.xlsx` + `MainLevel.xlsx`，运行时 `LLevelMgr.cs`
+- **异常边界**：体力不足时弹窗提示购买/等待恢复；关卡加载失败时回退到地图界面；第三至第七章主角等级不足时保持章节锁定并显示所需等级。
+- **落地点**：`${VGAME_CONFIG_DATAS}\level\ChapterLevel.xlsx` 中 ChapterId 10000～10002 的 `Unlock` 为空，10003～10007 分别引用 UnlockId 201～205；`${VGAME_CONFIG_DATAS}\unlock\Unlock.xlsx` 中 201～205 为 `UnLock_UUT_player_Grade`，参数依次为 24/28/31/33/35。运行时由 `LevelSystem:GetChapterIsUnlock` 调用 `ConditionSystem:GetIsUnLock`，客户端导表已生成 `chapterlevel.lua/.bytes` 与 `unlock.lua/.bytes`。
 
 ### R-02: 首通奖励
 
@@ -112,7 +117,8 @@
 | `level.xlsx` | 已有 | 关卡基础定义（LevelId/LevelDataPath/Vitality/系数/奖励引用） |
 | `UIlevel.xlsx` | 已有 | UI 层（LevelType/ChapterId/奖励 DropId/推荐等级/怪物展示） |
 | `MainLevel.xlsx` | 已有 | 章节地图节点布局和 IsBoss 标记 |
-| `ChapterLevel.xlsx` | 已有 | 章节信息和解锁条件 |
+| `ChapterLevel.xlsx` | 已配置 | 10000～10002 `Unlock` 为空；10003～10007 分别引用 201～205 |
+| `Unlock.xlsx` | 已配置 | 201～205 为 `UnLock_UUT_player_Grade`，参数 24/28/31/33/35；旧关卡型 Unlock 保留给关卡/高难链 |
 | `ChapterStarReward.xlsx` | 已有 | 星级累计奖励 |
 | `ChapterTasks.xlsx` | 已有 | 章节进度任务 |
 | `LevelCondition.xlsx` | 已有 | 三星条件定义 |

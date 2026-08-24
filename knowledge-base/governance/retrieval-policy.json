@@ -1,0 +1,121 @@
+{
+  "schema": "vgame-knowledge-retrieval-policy/v1",
+  "version": "1.0",
+  "updatedAt": "2026-08-17",
+  "promptlessRouting": true,
+  "contractRegistryRef": "shared-contracts/contract-registry.json",
+  "principles": [
+    "知识库在存储层保持完整，在单次调用中只加载最小相关知识包。",
+    "先读轻量路由清单，再按问题升级到系统正文、共享契约和原始证据。",
+    "同一事实只保留一个正文权威入口，关系只存稳定ID与差异，不复制目标系统全文。",
+    "工作副本、目标设计、跨源归纳和Production/LIVE必须分开标识。"
+  ],
+  "layers": [
+    {
+      "id": "L0",
+      "name": "项目总览",
+      "purpose": "回答项目定位、核心循环和系统/战斗/数值总体框架。",
+      "defaultRefs": ["00-项目总览.md"]
+    },
+    {
+      "id": "L1",
+      "name": "目录与关系索引",
+      "purpose": "定位系统、模块、摘要、别名、关系和正文入口。",
+      "defaultRefs": ["router-manifest.json", "knowledge-model.json"]
+    },
+    {
+      "id": "L2",
+      "name": "系统正文与共享契约",
+      "purpose": "回答规则、流程、条件、奖励、异常、UI、关系和跨系统影响。",
+      "defaultRefs": ["system-details/<SYSTEM_ID>.json", "shared-contracts/contract-registry.json"]
+    },
+    {
+      "id": "L3",
+      "name": "原始证据",
+      "purpose": "核验具体数值、字段、配置、代码、Design原文和运行状态。",
+      "defaultRefs": ["系统正文中的 evidence.path"]
+    }
+  ],
+  "depthProfiles": {
+    "quick": {
+      "description": "项目介绍、有哪些系统、系统属于哪类。",
+      "layers": ["L0", "L1"],
+      "maxSystemDetails": 0,
+      "maxContracts": 0,
+      "maxEvidenceFiles": 0
+    },
+    "design": {
+      "description": "系统如何运行、系统关系、规则审查和改动影响。",
+      "layers": ["L1", "L2"],
+      "maxSystemDetails": 3,
+      "maxContracts": 5,
+      "maxEvidenceFiles": 0
+    },
+    "audit": {
+      "description": "精确字段、数值、配置、源码、证据和LIVE核验。",
+      "layers": ["L1", "L2", "L3"],
+      "maxSystemDetails": 3,
+      "maxContracts": 5,
+      "maxEvidenceFiles": 5
+    }
+  },
+  "intentSignals": {
+    "quick": ["是什么", "有哪些", "概览", "框架", "分类", "属于什么", "简单介绍"],
+    "design": ["规则", "流程", "怎么运作", "关系", "影响", "策划案", "设计", "异常", "奖励类型", "条件", "UI", "资格", "门槛", "胜负", "触发", "结算"],
+    "audit": ["具体数值", "多少", "字段", "Excel", "配置", "代码", "源码", "证据", "真实", "当前", "上线", "LIVE", "Drop", "Unlock", "SystemOpen", "核验"]
+  },
+  "provenance": [
+    {"id": "SOURCE_EXPLICIT", "name": "原文明确", "meaning": "Design、数值沉淀或其他权威文本直接说明。"},
+    {"id": "WORKING_COPY_OBSERVED", "name": "配置观察", "meaning": "本机SVN工作副本只读观察，不证明Production/LIVE。"},
+    {"id": "CROSS_SOURCE_SYNTHESIS", "name": "跨源归纳", "meaning": "由多份证据组织出的关系、流程或边界，需要项目负责人确认。"},
+    {"id": "DESIGN_PROPOSAL", "name": "候选设计", "meaning": "为补齐缺口提出的方案，不是项目既有事实。"},
+    {"id": "UNKNOWN", "name": "待确认", "meaning": "证据不足或相互冲突，不能代答。"}
+  ],
+  "aliasOverrides": {
+    "SYS-IN-01": ["战斗实例", "战斗状态", "战斗生命周期", "战斗暂停", "续局"],
+    "SYS-IN-02": ["阵营关系", "上阵快照", "五人队", "目标选择", "队形", "全员死亡", "战斗失败", "死亡触发失败"],
+    "SYS-IN-03": ["技能系统", "Buff系统", "技能循环", "Buff叠加", "子弹", "召唤机制"],
+    "SYS-IN-04": ["敌人AI", "怪物AI", "行为树", "Boss机制", "狂暴", "仇恨"],
+    "SYS-IN-05": ["关卡空间", "波次", "刷怪", "移动平台", "Loop", "镜头边界"],
+    "SYS-IN-06": ["局内胜负", "局内规则", "玩法胜负", "胜负判定", "GameMode"],
+    "SYS-IN-07": ["战斗HUD", "掉落表现", "战斗引导", "BattleGuide", "技能位"],
+    "SYS-IN-08": ["战斗结算", "结算触发", "战斗结果", "战利品记录"],
+    "SYS-OUT-GP-01": ["主线关卡", "普通主线", "章节主线"],
+    "SYS-OUT-GP-02": ["困难主线", "高难关卡"],
+    "SYS-OUT-GP-03": ["金币本", "经验本", "资源本"],
+    "SYS-OUT-GP-04": ["旅券本"],
+    "SYS-OUT-GP-05": ["映射本", "映射装备本"],
+    "SYS-OUT-GP-06": ["无限之旅", "neural_roam", "无限"],
+    "SYS-OUT-GP-07": ["竞技场", "PVPVE", "PVPVE竞技场"],
+    "SYS-OUT-GP-08": ["塔", "爬塔玩法"],
+    "SYS-OUT-GP-09": ["秘境", "大秘境玩法"],
+    "SYS-OUT-GP-10": ["Boss挑战", "首领挑战"],
+    "SYS-OUT-GP-11": ["主线扫荡", "快速结算", "扫荡"],
+    "SYS-OUT-GP-12": ["跑商", "商队", "贸易"],
+    "SYS-OUT-GR-01": ["玩家等级", "玩家经验", "体力", "储能", "升级经验"],
+    "SYS-OUT-GR-02": ["角色升级", "角色突破", "角色经验", "记录盘", "HeroLv"],
+    "SYS-OUT-GR-03": ["角色升星", "HeroStar", "天赋技能解锁", "万能碎片"],
+    "SYS-OUT-GR-04": ["星盘", "能效", "角色星盘"],
+    "SYS-OUT-GR-05": ["收容物系统", "收容物养成"],
+    "SYS-OUT-GR-06": ["旅券养成", "旅券装备", "Strategy"],
+    "SYS-OUT-GR-07": ["映射装备养成", "宝石", "SpecialEquipment", "映射装备"],
+    "SYS-OUT-GR-08": ["炮台", "基地", "Battery", "竞技场基地"],
+    "SYS-OUT-GR-09": ["房车系统", "房车养成", "Car", "Rv"],
+    "SYS-OUT-GR-10": ["专属武器", "ExclusiveWeapon"],
+    "SYS-OUT-SU-01": ["角色抽卡", "新手卡池", "抽卡", "DrawCard", "保底"],
+    "SYS-OUT-SU-02": ["收容物抽卡", "收容物卡池", "收容物招募"],
+    "SYS-OUT-SU-03": ["碎片回收", "招募商店", "ShardRecycle", "余音"],
+    "SYS-OUT-SU-04": ["物品", "货币", "资源身份", "道具堆叠"],
+    "SYS-OUT-SU-05": ["Drop", "奖励结算", "掉落系统", "首通奖励"],
+    "SYS-OUT-SU-06": ["商店", "Shop", "商品", "限购"],
+    "SYS-OUT-SU-07": ["章节任务", "每日任务", "每周任务", "Task", "活跃度"],
+    "SYS-OUT-SU-08": ["签到", "七日签到", "累计签到", "DailySign"],
+    "SYS-OUT-SU-09": ["邮件", "Mail", "附件", "补偿邮件"],
+    "SYS-OUT-SU-10": ["通行证", "BattlePass", "赛季奖励线"],
+    "SYS-OUT-SU-11": ["公会", "Guild", "公会科技", "公会商店"],
+    "SYS-OUT-SU-12": ["好友", "聊天", "Chat", "好友系统", "亲密度"],
+    "SYS-OUT-SU-13": ["SystemOpen", "Unlock", "新手引导", "系统开放"],
+    "SYS-OUT-SU-14": ["活动", "LiveOps", "赛季", "Activity", "双倍掉落"],
+    "SYS-OUT-SU-15": ["月卡", "礼包", "付费商品", "MonthCard", "PayProducts"]
+  }
+}

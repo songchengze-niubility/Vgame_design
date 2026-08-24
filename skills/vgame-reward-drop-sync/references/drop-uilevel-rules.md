@@ -23,7 +23,8 @@
 | `DropItemNumMin` / `DropItemNumMax` | 单项道具数量范围。固定数量时二者相等。 |
 | `DropWeight` | 权重。固定奖励常见 `10000`。 |
 | `ShowItemID` | 掉落预览道具 ID 数组。 |
-| `IsValid` | 无效/占位字段；Drop 行有效性不要按该字段过滤或判断。 |
+
+当前 8 个逻辑 Drop 源没有具名 `IsValid` 字段；`Drop_dungeon`/`Drop_mainlevel` 的第 16 列为空表头。不要读取或写入该列，也不要用它过滤 Drop 行；有效数据行按第 1 列 `##` 占位约定识别。
 
 ## UIlevel 字段
 

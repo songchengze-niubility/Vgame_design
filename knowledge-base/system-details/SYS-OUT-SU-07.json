@@ -1,0 +1,770 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-07",
+  "name": "任务与章节任务",
+  "revision": "2026-08-18.3",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 数值沉淀只读核对",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在任务配置，不证明 Production/LIVE；任务进度与领取幂等在服务端，客户端不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "已确认策划口径（章节任务重设计），不代表已落表或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由 Design、沉淀与配置组织出的流程或边界，需项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、同步配置或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-TASK-REPORT",
+      "ruleRefs": [
+        "SYS-OUT-SU-07-R02",
+        "SYS-OUT-SU-07-R03",
+        "SYS-OUT-SU-07-C01"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-07-R03",
+        "SYS-OUT-SU-07-R04",
+        "SYS-OUT-SU-07-RW01"
+      ]
+    },
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-SU-07-R07",
+        "SYS-OUT-SU-07-C02"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-07-EX04"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "任务与章节任务是 Vgame 日常留存与长线目标的核心管道：以每日、每周、章节、系统引导四类任务驱动玩家行为，通过活跃点阈值串联日常与周常奖励，并以章节任务承担主线推进提示、关键养成引导与当章新系统承接。",
+    "inScope": [
+      "每日任务（权重池随机分配）、每周任务、章节任务、系统引导任务四类任务框架",
+      "任务进度累积、完成、领取与任务链（NextTaskList）规则",
+      "活跃点阈值奖励（DailyActiveReward / WeeklyReward）与每日/每周清零",
+      "章节任务重设计目标（七章 6/6/7/8/9/10/10、同类型每章一个、养成为主、玩法挑战转七日）",
+      "章节任务单项奖励与章节完成奖励口径",
+      "任务事件上报接口与进度器任务类型依赖"
+    ],
+    "outOfScope": [
+      "任务奖励的真实物品入账与 Drop 包内容；该内容归 SYS-OUT-SU-05",
+      "活跃点/任务奖励的资源身份与账本；该内容归 SYS-OUT-SU-04",
+      "玩家等级、体力与主线进度的状态维护；该内容归 SYS-OUT-GR-01 / SYS-OUT-GP-01",
+      "战斗结果上报的本体规则；该内容归 SYS-IN-08",
+      "任务奖励价值与投放量的经济总账；该内容归 NUM-04",
+      "任务系统入口开放与引导；该内容归 SYS-OUT-SU-13",
+      "成就系统与赛季任务；该内容归独立模块与赛季活动"
+    ],
+    "inputs": [
+      "玩法事件上报（战斗结算、资源变更、养成进度等）",
+      "任务配置（Task 定义/目标/DropId/NextTaskList、DailyTask 权重池、WeeklyTask、TaskTarget）",
+      "章节任务配置（Jottings/JottingsTask/ChapterTasks 阶段、目标与奖励）",
+      "活跃点阈值配置（DailyActiveReward / WeeklyReward）",
+      "系统引导任务配置（SystemGuideTask）",
+      "玩家当前章节、玩家等级与养成进度"
+    ],
+    "outputs": [
+      "任务进度更新与完成状态",
+      "任务奖励领取事件（经 Drop 入账）",
+      "活跃点累加与阈值奖励领取",
+      "任务链后续任务解锁",
+      "章节任务进度与章节完成奖励",
+      "任务面板、活跃进度与红点反馈"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "日常留存与章节目标管道",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "任务与章节任务作为日常行为驱动与长线章节目标的核心管道无争议。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "章节任务重设计已确认；每日/每周框架为反推 Draft",
+      "status": "CONFIRMED_TARGET_WITH_DRAFT_FRAMEWORK",
+      "note": "章节任务重设计讨论稿 2026-08-05 确认七章口径；任务系统 Design R-01~R-07 为反推 Draft，每日/每周框架完整但部分假设待确认。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Jottings/JottingsTask/Task 仍为旧口径；ChapterTasks.DropId=50000006 断引用",
+      "status": "P0_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；章节任务目标已重设计但 Task/Excel/SVN 仍与旧口径不同步（1-5/1-10/2-5/2-10/2-15 及旧养成目标），ChapterTasks 四行 DropId=50000006 在逻辑 Drop 中不存在。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "任务链路存在；玩家可用版本与重设计落地待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置与客户端实现线索，但章节任务重设计未落表、无集中发布台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-07-F01",
+      "name": "每日任务流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-07-F01-S01",
+          "name": "每日刷新分配",
+          "description": "每日5:00从 DailyTask 权重池随机抽取N个任务分配给玩家，进度初始化为0；权重总和为0或配置缺失时用默认最小任务集。"
+        },
+        {
+          "id": "SYS-OUT-SU-07-F01-S02",
+          "name": "进度累积",
+          "description": "玩法事件触发匹配活跃任务列表，对应任务进度+1；达到 TaskTarget 标记完成；溢出进度不结转。"
+        },
+        {
+          "id": "SYS-OUT-SU-07-F01-S03",
+          "name": "领取奖励",
+          "description": "玩家领取已完成任务，查询 Task.DropId 发放奖励并标记已领取，活跃点增加；检查 NextTaskList 解锁后续任务。"
+        },
+        {
+          "id": "SYS-OUT-SU-07-F01-S04",
+          "name": "活跃点阈值",
+          "description": "活跃点累加时遍历 DailyActiveReward 阈值，达到且未领取则可领取对应 Drop 奖励。"
+        },
+        {
+          "id": "SYS-OUT-SU-07-F01-S05",
+          "name": "清零重置",
+          "description": "每日5:00/周一5:00活跃点清零，任务列表与限购刷新。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-F02",
+      "name": "章节任务流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-07-F02-S01",
+          "name": "进入章节",
+          "description": "玩家推进主线达到对应章节，章节任务随主线推进自动触发。"
+        },
+        {
+          "id": "SYS-OUT-SU-07-F02-S02",
+          "name": "进度跟随",
+          "description": "章节任务进度跟随通关节点与养成进度（玩家等级、角色等级、房车、能效、收容物、映射装备、宝石等）。"
+        },
+        {
+          "id": "SYS-OUT-SU-07-F02-S03",
+          "name": "领取单项与章节奖励",
+          "description": "完成章节任务单项领取对应奖励（主线进度任务固定元晶×30）；完成全章领取章节完成奖励（旅券×3+限时旅券×2+额外养成资源）。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-07-R01",
+      "name": "任务类型框架",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "任务系统支持每日、每周、章节、系统引导四类任务；每日任务由权重池随机分配，活跃点阈值串联日常与周常奖励，任务链通过 NextTaskList 推进。",
+      "sourceFact": "任务系统 Design R-01~R-05 描述四类任务与活跃点机制；Task/DailyTask/WeeklyTask/DailyActiveReward/WeeklyReward/SystemGuideTask.xlsx 在工作副本存在。",
+      "acceptance": "四类任务各有独立配置与刷新规则；活跃点每日/每周清零。",
+      "relatedIds": [
+        "SYS-IN-08",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV02",
+        "SYS-OUT-SU-07-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-R02",
+      "name": "任务进度上报",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "任务进度由事件驱动：战斗结算、资源变更、养成进度等事件推送给任务模块匹配活跃任务；进度达 TaskTarget 标记完成；溢出进度不结转；断线恢复后重新计算。",
+      "sourceFact": "任务系统 Design R-02 与技术方案描述事件驱动；TaskTarget.xlsx 定义目标值；事件上报契约归 SYS-IN-08/GP-01。",
+      "acceptance": "每个任务目标类型有对应事件上报源；进度计算在服务端权威。",
+      "relatedIds": [
+        "SYS-IN-08",
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-R03",
+      "name": "任务奖励领取与任务链",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "领取已完成任务时查询 Task.DropId 发放奖励并标记已领取，活跃点增加；NextTaskList 非空时解锁后续任务；Drop 配置缺失则跳过奖励但标记已领取；重复领取拒绝。",
+      "sourceFact": "任务系统 Design R-03/R-05 描述领取与任务链；Task.xlsx 存在 DropId 与 NextTaskList 字段；奖励入账归 SYS-OUT-SU-05。",
+      "acceptance": "领取幂等；任务链无循环引用；Drop 缺失有降级处理。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-R04",
+      "name": "活跃点阈值奖励",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "每日/每周活跃点达到 DailyActiveReward/WeeklyReward 阈值且该档未领取则可领取；活跃点每日5:00/周一5:00清零；服务端权威累加，客户端仅展示。",
+      "sourceFact": "任务系统 Design R-04 与工作假设确认清零时间；DailyActiveReward.xlsx/WeeklyReward.xlsx 在工作副本存在。",
+      "acceptance": "阈值配置无跳跃或重复；活跃点累加与清零在服务端权威。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV05",
+        "SYS-OUT-SU-07-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-R05",
+      "name": "章节任务重设计目标",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "序章无章节任务；第一至第七章任务数为6/6/7/8/9/10/10；每章同类型只保留一个目标；主线进度按5/10/15节点合并为有顺序的单任务；不使用累计刷次数目标；章节任务以养成为主，玩法挑战转入七日任务。",
+      "sourceFact": "章节任务重设计讨论稿 §2/§4 已确认七章任务清单；GP-01 R10 记录同步状态；沉淀已同步。",
+      "acceptance": "七章任务数、目标类型与主线节点合并与重设计稿一致；无累计刷次数目标。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV03",
+        "SYS-OUT-SU-07-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-R06",
+      "name": "章节任务奖励口径",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "各章主线进度任务单项奖励固定元晶(2)×30；映射装备任务按章投放副材1152~1155递增；章节完成奖励固定旅券(106)×3+限时旅券(111)×2，额外按当章开放养成投放（收容凭证/未知笔记/宝石箱/能效材料等）；章节总奖励不投放元晶。",
+      "sourceFact": "章节任务重设计讨论稿 §5 已冻结单项与章节奖励口径；第五章起投放收容凭证107与未知笔记110。",
+      "acceptance": "单项与章节奖励与重设计稿一致；不回填废弃资源（梦境碎片、合淬喷剂、低阶零件等）。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-R07",
+      "name": "章节任务功能开启约束",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "章节任务纳入受功能开启约束：映射装备3-10（第三章起）、收容物玩家34级（第五章起）、宝石5-15（第五章起）、职业指南4-10（第四章起）；跑商/肉鸽/无限之旅放入七日任务不进入章节养成主线。",
+      "sourceFact": "章节任务重设计讨论稿 §3 功能开启约束表确认；开放权威归 SYS-OUT-SU-13。",
+      "acceptance": "章节任务目标只引用当章已开放系统；未开放系统不提前出现。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-GR-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-R08",
+      "name": "程序任务类型依赖",
+      "status": "CONFIRMED_TARGET_CONFIG_PENDING",
+      "targetRule": "章节任务与七日任务落地前，程序任务枚举/进度器需支持：跑商次数、行商等级、肉鸽次数/历史最高/积分、房车等级、职业指南累计激活、X件收容物达Y级、镶嵌X颗宝石、X颗宝石达Y级、邮票合成次数、X个舱室达Y级、收集X件Y级映射装备；收容物星级任务不进入本期。",
+      "sourceFact": "章节任务重设计讨论稿 §6 列出程序任务类型依赖；落地前需程序支持。",
+      "acceptance": "所有章节任务目标类型有对应进度器实现；收容物星级任务不纳入。",
+      "relatedIds": [
+        "SYS-OUT-GR-05",
+        "SYS-OUT-GR-09"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV03"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-07-C01",
+      "name": "每日任务刷新",
+      "status": "DRAFT_TARGET",
+      "rule": "每日5:00刷新每日任务与活跃点；每周一5:00刷新每周任务与周活跃点；跨天在线时强制推送刷新事件。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-C02",
+      "name": "章节任务触发",
+      "status": "CONFIRMED_TARGET",
+      "rule": "章节任务随玩家推进主线达到对应章节自动触发；序章无章节任务；章节跳转（账号回溯）需重置任务状态。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-C03",
+      "name": "系统引导任务触发",
+      "status": "DRAFT_TARGET",
+      "rule": "系统引导任务在玩家首次进入对应功能场景触发；同一引导不重复触发；引导含超时机制允许跳过。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV08"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-07-RW01",
+      "name": "任务与活跃奖励入账",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "任务奖励经 Task.DropId 与活跃阈值 Drop 入账；具体Drop包内容归 SYS-OUT-SU-05，本系统只决定何时发何任务奖励；ChapterTasks.DropId=50000006 当前为断引用。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV02",
+        "SYS-OUT-SU-07-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-RW02",
+      "name": "章节任务奖励",
+      "status": "CONFIRMED_TARGET_CONFIG_PENDING",
+      "rule": "章节单项与章节完成奖励按重设计 §5 口径发放；奖励经真实 Drop 入账；落表前不视为已生效配置。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV03"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-07-EX01",
+      "name": "章节任务配置与重设计不同步",
+      "status": "P0_CONFLICT",
+      "rule": "章节任务目标已重设计但当前 Jottings/JottingsTask/Task 仍保留1-5/1-10、2-5/2-10/2-15 及第五至第七章复用旧养成目标等旧口径；Task/Excel/SVN 需同步至重设计稿。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV03",
+        "SYS-OUT-SU-07-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-EX02",
+      "name": "ChapterTasks 奖励断引用",
+      "status": "P0_CONFLICT",
+      "rule": "ChapterTasks 四行共同引用 DropId=50000006，但该 ID 在当前逻辑 Drop 源中不存在（承接 SYS-OUT-GP-01）；需替换为有效奖励包。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV09",
+        "SYS-OUT-SU-07-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-EX03",
+      "name": "程序任务类型未支持",
+      "status": "P1_GAP",
+      "rule": "章节任务重设计依赖的程序任务枚举/进度器（跑商、肉鸽、房车、职业指南、收容物等级、宝石、邮票、舱室、映射装备）尚未全部确认落地；落地前章节任务无法完整生效。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-EX04",
+      "name": "跨天刷新与补发缺口",
+      "status": "P1_GAP",
+      "rule": "跨天在线玩家任务未刷新、断线恢复进度重算与重复领取幂等需服务端确认；Design 提出每日5:00强制推送但服务端实现不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-EX05",
+      "name": "NextTaskList 循环引用",
+      "status": "P2_GAP",
+      "rule": "NextTaskList 配置循环引用需配置校验脚本检测；当前未确认校验是否落地。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-07-UI01",
+      "name": "任务面板",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示每日/每周/章节/引导任务列表、进度条、完成可领标识与红点；领取按钮高亮；任务标记✓。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-UI02",
+      "name": "活跃点进度",
+      "status": "TARGET_REQUIRED",
+      "rule": "活跃进度条标注阈值节点，达到时节点亮起可领；点击领取对应 Drop 奖励。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-UI03",
+      "name": "章节任务面板",
+      "status": "TARGET_REQUIRED",
+      "rule": "章节界面右侧任务面板展示当章任务进度与章节完成奖励；落表后需同步重设计目标展示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07-UI04",
+      "name": "系统引导提示",
+      "status": "DRAFT_TARGET",
+      "rule": "半屏引导弹窗展示轻量引导提示，完成任务后消失；引导任务不与日常任务混合展示（待确认）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV08"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-07-CFG01",
+      "name": "Task",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Task.xlsx",
+      "role": "任务定义、目标、奖励DropId、NextTaskList任务链",
+      "status": "WORKING_COPY_SOURCE_NOT_SYNCED_TO_TARGET"
+    },
+    {
+      "id": "SYS-OUT-SU-07-CFG02",
+      "name": "DailyTask",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\DailyTask.xlsx",
+      "role": "每日任务池与权重",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-CFG03",
+      "name": "WeeklyTask",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\WeeklyTask.xlsx",
+      "role": "每周任务集合",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-CFG04",
+      "name": "TaskTarget",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\TaskTarget.xlsx",
+      "role": "任务目标类型与目标值定义",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-CFG05",
+      "name": "DailyActiveReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\DailyActiveReward.xlsx",
+      "role": "每日活跃点阈值→奖励",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-CFG06",
+      "name": "WeeklyReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\WeeklyReward.xlsx",
+      "role": "每周活跃点阈值→奖励",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-CFG07",
+      "name": "SystemGuideTask",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\SystemGuideTask.xlsx",
+      "role": "系统引导任务轻量配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-CFG08",
+      "name": "Jottings/JottingsTask",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Jottings.xlsx",
+      "role": "章节任务阶段与旧任务目标（仍为旧口径，待同步重设计）",
+      "status": "WORKING_COPY_SOURCE_NOT_SYNCED_TO_TARGET"
+    },
+    {
+      "id": "SYS-OUT-SU-07-CFG09",
+      "name": "ChapterTasks",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChapterTasks.xlsx",
+      "role": "旧章节任务链与奖励入口；DropId=50000006 断引用",
+      "status": "BROKEN_REFERENCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-07-REL01",
+      "type": "reports",
+      "direction": "incoming",
+      "targetId": "SYS-IN-08",
+      "targetName": "胜负、结果与结算触发",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。战斗胜负、评价与结算事件上报驱动任务进度。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV02",
+        "SYS-OUT-SU-07-EV03"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-SU-07-REL02",
+      "type": "reports",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。主线节点与章节完成事件驱动章节任务进度。",
+      "status": "TARGET_NOT_SYNCED",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV02",
+        "SYS-OUT-SU-07-EV03"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-SU-07-REL03",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家等级",
+      "description": "玩家等级作为章节任务目标，由玩家等级系统维护状态。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV05",
+        "SYS-OUT-SU-07-EV07"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-07-REL04",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。任务奖励与活跃阈值奖励经真实 Drop 入账，入账权威归掉落与奖励系统。",
+      "status": "CONFLICT_NEEDS_DROP_FIX",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV02",
+        "SYS-OUT-SU-07-EV03"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-SU-07-REL05",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：DailyActiveReward.xlsx(EV05)/WeeklyReward.xlsx(EV07)定义任务奖励，任务系统Design Doc(EV01)定义奖励结构，知识目录定义NUM-04经济数值域职责。推导：任务奖励价值与投放量由经济数值域(NUM-04)约束与平衡，构成 prices/incoming 关系。推导边界：奖励配置已由工作副本确认，但奖励价值与投放量的具体数值属经济数值域维护。UNKNOWN：各任务类型奖励的权威定价与在整体经济账中的占比仍待经济域核算确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-07-REL06",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "来源：SystemGuideTask.xlsx(EV08)定义系统引导任务，任务系统Design Doc(EV01)定义任务开放需求，知识目录定义SYS-OUT-SU-13新手引导与系统开放职责。推导：任务系统入口与系统引导任务开放由新手引导与系统开放(SU-13)管理，构成 unlocks/incoming 关系。推导边界：引导任务配置已由工作副本确认，但解锁条件的配置在SU-13侧维护。UNKNOWN：各任务类型的具体开放条件与引导承接规则仍待SU-13确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-07-REL07",
+      "type": "validates",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-05",
+      "targetName": "收容物",
+      "description": "来源：ChapterTasks.xlsx(EV09)定义章节任务，章节任务重设计讨论稿(EV03)定义第五章起收容物等级目标，SYS-OUT-GR-05收容物正文定义收容物养成。推导：章节任务从第五章起以收容物等级为目标验证收容物养成(GR-05)，构成 validates/outgoing 关系。推导边界：章节任务配置已由工作副本确认，但收容物养成验证的标准属推断，收容物养成本体在GR-05侧维护。UNKNOWN：各章节任务对应的目标收容物等级与验证标准的具体数值仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-07-EV01",
+      "kind": "reverse-design",
+      "label": "任务系统 Design Doc",
+      "path": "design/任务系统Design Doc.md",
+      "location": "R-01~R-07、技术方案、风险评估、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-SU-07-EV02",
+      "kind": "source-excel",
+      "label": "Task.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/task/Task.xlsx",
+      "location": "本机SVN工作副本；任务定义/目标/DropId/NextTaskList；仍含旧章节任务口径；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NOT_SYNCED"
+    },
+    {
+      "id": "SYS-OUT-SU-07-EV03",
+      "kind": "design-target",
+      "label": "章节任务重设计讨论稿",
+      "path": "design/章节任务重设计讨论稿-2026-07-22.md",
+      "location": "§2已确认规则、§3功能开启约束、§4七章章节任务、§5章节奖励、§6程序任务类型依赖、§8变更记录",
+      "status": "DESIGN_CONFIRMED_PENDING_CONFIG"
+    },
+    {
+      "id": "SYS-OUT-SU-07-EV04",
+      "kind": "source-excel",
+      "label": "TaskTarget.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/task/TaskTarget.xlsx",
+      "location": "本机SVN工作副本；任务目标类型与目标值；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-EV05",
+      "kind": "source-excel",
+      "label": "DailyActiveReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/task/DailyActiveReward.xlsx",
+      "location": "本机SVN工作副本；每日活跃点阈值→奖励；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-EV06",
+      "kind": "source-excel",
+      "label": "DailyTask.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/task/DailyTask.xlsx",
+      "location": "本机SVN工作副本；每日任务池与权重；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-EV07",
+      "kind": "source-excel",
+      "label": "WeeklyReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/task/WeeklyReward.xlsx",
+      "location": "本机SVN工作副本；每周活跃点阈值→奖励；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-EV08",
+      "kind": "source-excel",
+      "label": "SystemGuideTask.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/task/SystemGuideTask.xlsx",
+      "location": "本机SVN工作副本；系统引导任务轻量配置；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-07-EV09",
+      "kind": "source-excel",
+      "label": "ChapterTasks.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/ChapterTasks.xlsx",
+      "location": "本机SVN工作副本；旧章节任务链与奖励入口；DropId=50000006断引用；核对 2026-08-18",
+      "status": "BROKEN_REFERENCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-07-Q01",
+      "priority": "P0",
+      "question": "Jottings/JottingsTask/Task 何时同步至章节任务重设计口径？",
+      "impact": "当前任务目标仍引用旧节点和旧养成节奏，与确认设计冲突。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV03",
+        "SYS-OUT-SU-07-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-07-Q02",
+      "priority": "P0",
+      "question": "ChapterTasks.DropId=50000006 应替换为何种有效奖励包？",
+      "impact": "章节任务奖励存在真实断引用，影响玩家领取。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV09"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-07-Q03",
+      "priority": "P1",
+      "question": "章节任务依赖的程序任务枚举/进度器（跑商、肉鸽、房车、职业指南、收容物等级、宝石、邮票、舱室、映射装备）何时全部落地？",
+      "impact": "决定章节任务重设计能否完整生效。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-07-Q04",
+      "priority": "P1",
+      "question": "服务端跨天刷新、断线恢复进度重算与重复领取幂等如何保证？",
+      "impact": "影响任务进度正确性与奖励发放安全。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-07-Q05",
+      "priority": "P2",
+      "question": "系统引导任务是否与日常任务混合展示？NextTaskList 循环引用校验是否落地？",
+      "impact": "影响任务面板展示逻辑与配置质量。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-07-EV01",
+        "SYS-OUT-SU-07-EV08"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在每日任务流程与章节任务流程两条有序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在每日刷新、章节触发与系统引导触发条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "任务奖励与活跃阈值奖励经真实Drop入账，本系统决定何时发何任务奖励"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在章节配置不同步、Drop断引用、程序类型未支持、跨天刷新与循环引用异常"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在任务面板、活跃进度、章节任务面板与系统引导提示界面责任"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在Task/DailyTask/WeeklyTask/TaskTarget/DailyActiveReward/WeeklyReward/SystemGuideTask/Jottings/ChapterTasks配置源"
+    }
+  }
+}

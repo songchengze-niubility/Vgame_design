@@ -1,0 +1,845 @@
+{
+  "meta": {
+    "schema": "vgame-planning-knowledge/v1.0",
+    "detailSchema": "vgame-system-detail/v1",
+    "version": "1.0.0",
+    "updatedAt": "2026-08-24",
+    "title": "Vgame 项目级策划知识框架 V1.0",
+    "thesis": "knowledge-base 是权威正文；skills 是 Skill 正文唯一来源；output 仅含可重建生成物。"
+  },
+  "modules": [
+    {
+      "id": "project",
+      "code": "00",
+      "name": "项目总览",
+      "source": "00-项目总览.md",
+      "question": "Vgame 是什么，玩家长期在做什么？"
+    },
+    {
+      "id": "system",
+      "code": "10",
+      "name": "系统",
+      "source": "10-系统框架.md",
+      "question": "项目有哪些系统，它们如何连接？"
+    },
+    {
+      "id": "combat",
+      "code": "20",
+      "name": "战斗",
+      "source": "20-战斗框架.md",
+      "question": "战斗如何运行，角色如何设计？"
+    },
+    {
+      "id": "numeric",
+      "code": "30",
+      "name": "数值",
+      "source": "30-数值框架.md",
+      "question": "数值是多少、如何生成和验证？"
+    },
+    {
+      "id": "relations",
+      "code": "40",
+      "name": "关系",
+      "source": "40-系统关系.md",
+      "question": "一个改动会影响哪些上下游？"
+    }
+  ],
+  "projectPillars": [
+    {
+      "id": "PF-01",
+      "name": "跑酷战斗",
+      "summary": "五人小队持续推进，在地形、波次和 Boss 压力中决定必杀时机。"
+    },
+    {
+      "id": "PF-02",
+      "name": "小队构筑",
+      "summary": "角色定位、技能循环与队伍协同共同解决不同战斗环境。"
+    },
+    {
+      "id": "PF-03",
+      "name": "长线成长",
+      "summary": "资源持续转化为属性、机制、装备和阵容宽度。"
+    },
+    {
+      "id": "PF-04",
+      "name": "多玩法验证",
+      "summary": "单队强度、耐久、竞速、Boss 处理和环境适配由不同玩法验证。"
+    },
+    {
+      "id": "PF-05",
+      "name": "周期目标",
+      "summary": "日常、周常、赛季、活动和社交不断提供下一阶段目标。"
+    }
+  ],
+  "systemGroups": [
+    {
+      "id": "system-in",
+      "name": "战斗内系统",
+      "summary": "从战斗实例加载到胜负成立并触发结算。",
+      "source": "11-战斗内系统.md"
+    },
+    {
+      "id": "system-out-gameplay",
+      "name": "战斗外 · 玩法",
+      "summary": "组织玩家挑战什么，以及入口、层级、周期和结算壳层。",
+      "source": "12-战斗外系统.md"
+    },
+    {
+      "id": "system-out-growth",
+      "name": "战斗外 · 养成",
+      "summary": "把资源转化为属性、机制、构筑和阵容宽度。",
+      "source": "12-战斗外系统.md"
+    },
+    {
+      "id": "system-out-support",
+      "name": "战斗外 · 周边系统",
+      "summary": "支撑获取、资源流通、留存、社交、商业化、解锁和运营。",
+      "source": "12-战斗外系统.md"
+    }
+  ],
+  "systems": [
+    {
+      "id": "SYS-IN-01",
+      "group": "system-in",
+      "name": "战斗实例与状态",
+      "summary": "战斗加载、开始、暂停、阶段切换、结束与异常退出。",
+      "status": "框架",
+      "relations": [
+        "玩法入口",
+        "关卡",
+        "结算"
+      ]
+    },
+    {
+      "id": "SYS-IN-02",
+      "group": "system-in",
+      "name": "单位、阵营与队伍",
+      "summary": "角色、怪物、召唤物、基地等实体，以及阵营、五人队和目标选择。",
+      "status": "框架",
+      "relations": [
+        "编队",
+        "角色设计",
+        "敌人"
+      ]
+    },
+    {
+      "id": "SYS-IN-03",
+      "group": "system-in",
+      "name": "技能、Buff 与效果",
+      "summary": "普攻、自动技能、手动必杀、被动、Buff、子弹、召唤和战斗效果。",
+      "status": "框架",
+      "relations": [
+        "角色",
+        "敌人",
+        "养成"
+      ]
+    },
+    {
+      "id": "SYS-IN-04",
+      "group": "system-in",
+      "name": "敌人、AI 与 Boss",
+      "summary": "普通怪、精英、Boss、行为树、仇恨、阶段、狂暴和召唤。",
+      "status": "框架",
+      "relations": [
+        "关卡遭遇",
+        "玩法难度",
+        "掉落节点"
+      ]
+    },
+    {
+      "id": "SYS-IN-05",
+      "group": "system-in",
+      "name": "关卡空间与遭遇",
+      "summary": "跑酷地形、Loop、波次、刷怪、机关、移动平台、镜头和遭遇节奏。",
+      "status": "框架",
+      "relations": [
+        "玩法实例",
+        "敌人",
+        "战斗引导"
+      ]
+    },
+    {
+      "id": "SYS-IN-06",
+      "group": "system-in",
+      "name": "玩法局内规则",
+      "summary": "主线、副本、PVPVE、爬塔、大秘境和 BOSS 挑战的实时目标与胜负。",
+      "status": "框架",
+      "relations": [
+        "玩法外壳",
+        "数值难度线"
+      ]
+    },
+    {
+      "id": "SYS-IN-07",
+      "group": "system-in",
+      "name": "战斗 UI、反馈与引导",
+      "summary": "HUD、技能位、Buff、计时、预警、掉落表现和 BattleGuide。",
+      "status": "框架",
+      "relations": [
+        "新手引导",
+        "可读性",
+        "埋点"
+      ]
+    },
+    {
+      "id": "SYS-IN-08",
+      "group": "system-in",
+      "name": "胜负、结果与结算触发",
+      "summary": "胜负、评价、统计、战利品记录、任务事件和结算触发。",
+      "status": "框架",
+      "relations": [
+        "进度",
+        "奖励",
+        "任务",
+        "排行"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01",
+      "group": "system-out-gameplay",
+      "name": "主线",
+      "summary": "章节、节点、评价、首通、扫荡、剧情和系统开放的项目主轴。",
+      "status": "现行框架",
+      "detailLevel": "full",
+      "detailRef": "SYS-OUT-GP-01",
+      "relations": [
+        "系统开放",
+        "玩家等级",
+        "早期成长"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02",
+      "group": "system-out-gameplay",
+      "name": "高难主线",
+      "summary": "主线的高难验证、一次性奖励和章节奖励层。",
+      "status": "落地待核",
+      "relations": [
+        "主线",
+        "高难奖励",
+        "成长卡点"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-03",
+      "group": "system-out-gameplay",
+      "name": "金币/角色经验资源副本",
+      "summary": "按开放、体力、次数和难度档提供稳定基础资源。",
+      "status": "现行框架",
+      "relations": [
+        "角色养成",
+        "资源经济"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-04",
+      "group": "system-out-gameplay",
+      "name": "旅券副本",
+      "summary": "四类主题 Boss 式关卡，为旅券成长提供稳定供给。",
+      "status": "现行框架",
+      "relations": [
+        "旅券",
+        "Boss 战斗"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-05",
+      "group": "system-out-gameplay",
+      "name": "映射装备副本",
+      "summary": "高频短循环、多层刷取和装备/材料掉落。",
+      "status": "现行框架",
+      "relations": [
+        "映射装备",
+        "长期毕业"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06",
+      "group": "system-out-gameplay",
+      "name": "无限挑战",
+      "summary": "普通—精英—Boss 循环，难度持续递增并记录最佳深度。",
+      "status": "现行框架",
+      "relations": [
+        "长线耐久",
+        "账号深度"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-07",
+      "group": "system-out-gameplay",
+      "name": "竞技场（PVPVE）",
+      "summary": "匹配、门票、段位和赛季；局内同图竞速并向对手施压。",
+      "status": "现行框架",
+      "relations": [
+        "炮台",
+        "基地承伤",
+        "排行",
+        "商店"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08",
+      "group": "system-out-gameplay",
+      "name": "爬塔",
+      "summary": "楼层推进、一次性奖励以及当前版本与挂机/房车的连接。",
+      "status": "口径待统一",
+      "relations": [
+        "单队强度",
+        "房车",
+        "挂机"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09",
+      "group": "system-out-gameplay",
+      "name": "大秘境",
+      "summary": "大秘境产品目标已确认为长期维护性关闭，保留兼容但不承诺重开；工作副本入口关闭，发布/LIVE 状态仍需台账证据。",
+      "status": "长期维护性关闭目标·实施待核（UNKNOWN_LIVE）",
+      "relations": [
+        "阵容广度",
+        "环境适配",
+        "赛季"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-10",
+      "group": "system-out-gameplay",
+      "name": "BOSS 挑战",
+      "summary": "Boss 列表、难度层、一次性挑战和专项奖励。",
+      "status": "结构存在",
+      "relations": [
+        "Boss 机制",
+        "阶段门槛",
+        "认知负载"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-11",
+      "group": "system-out-gameplay",
+      "name": "扫荡",
+      "summary": "玩法级扫荡：主线/高难目标要求三星；其他玩法只按已确认规则处理，未确认者保持 UNKNOWN。",
+      "status": "目标已裁决·实施待核",
+      "relations": [
+        "通关评价",
+        "体力次数",
+        "真实奖励"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-12",
+      "group": "system-out-gameplay",
+      "name": "跑商",
+      "summary": "商品、地点、事件和货币循环的经营玩法候选。",
+      "status": "待确认",
+      "relations": [
+        "房车",
+        "商店",
+        "经济"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-01",
+      "group": "system-out-growth",
+      "name": "玩家等级",
+      "summary": "账号经验、体力、系统开放和整体进度锚点。",
+      "status": "现行框架",
+      "relations": [
+        "主线",
+        "任务",
+        "系统开放"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-02",
+      "group": "system-out-growth",
+      "name": "角色升级与突破",
+      "summary": "等级、经验、突破门槛和稳定基础属性成长。",
+      "status": "现行框架",
+      "relations": [
+        "角色经验",
+        "金币",
+        "主线验证"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-03",
+      "group": "system-out-growth",
+      "name": "角色升星",
+      "summary": "重复角色或碎片转为属性与高价值节点。",
+      "status": "现行框架",
+      "relations": [
+        "抽卡",
+        "碎片",
+        "角色强度"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-04",
+      "group": "system-out-growth",
+      "name": "角色星盘/能效",
+      "summary": "分支节点、二级属性偏向以及技能或天赋节点。",
+      "status": "现行框架",
+      "relations": [
+        "角色差异",
+        "构筑",
+        "专项材料"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-05",
+      "group": "system-out-growth",
+      "name": "收容物",
+      "summary": "等级、品质、升星与属性组成的收容物成长；已确认为专武迁移目标，并保留一个大版本兼容迁移期；实施与 LIVE 待证据。",
+      "status": "迁移目标已裁决 / IMPLEMENTATION_PENDING",
+      "relations": [
+        "收容物抽卡",
+        "角色",
+        "阵容宽度"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-06",
+      "group": "system-out-growth",
+      "name": "旅券",
+      "summary": "提供中后期稳定装备属性、套装或构筑成长。",
+      "status": "现行框架",
+      "relations": [
+        "旅券副本",
+        "Boss 验证"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07",
+      "group": "system-out-growth",
+      "name": "映射装备",
+      "summary": "品质、部位、主副属性、词条、宝石、制作和合成构成长线随机深度。",
+      "status": "现行框架",
+      "relations": [
+        "映射副本",
+        "终局构筑"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-08",
+      "group": "system-out-growth",
+      "name": "炮台/基地",
+      "summary": "竞技场基地生命、怪物压力与专项成长；产品归属已确认并入 PVPVE 子系统。",
+      "status": "PVPVE子系统目标·实施待核",
+      "relations": [
+        "PVPVE",
+        "基地承伤"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-09",
+      "group": "system-out-growth",
+      "name": "房车",
+      "summary": "账号级养成底盘；随机强化采用+30/+60/+100，权重50/30/20。",
+      "status": "规则已裁决 / UNKNOWN_LIVE",
+      "relations": [
+        "账号成长",
+        "爬塔",
+        "跑商"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-10",
+      "group": "system-out-growth",
+      "name": "专武",
+      "summary": "专武向收容物迁移，保留一个大版本兼容迁移期；实施和LIVE状态待证据。",
+      "status": "兼容迁移已裁决 / IMPLEMENTATION_PENDING",
+      "relations": [
+        "收容物迁移",
+        "旧卡池",
+        "旧经验本"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-01",
+      "group": "system-out-support",
+      "name": "角色/新手卡池",
+      "summary": "角色获取、概率、保底和新手定向。",
+      "status": "现行框架",
+      "relations": [
+        "角色养成",
+        "阵容",
+        "商业化"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02",
+      "group": "system-out-support",
+      "name": "收容物抽卡",
+      "summary": "收容物获取、重复整件转碎片及养成入口。",
+      "status": "规则待闭环",
+      "relations": [
+        "收容物",
+        "招募商店"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-03",
+      "group": "system-out-support",
+      "name": "碎片回收/招募商店",
+      "summary": "重复资源转化、碎片回收和兑换。",
+      "status": "部分落地",
+      "relations": [
+        "抽卡",
+        "角色",
+        "收容物"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04",
+      "group": "system-out-support",
+      "name": "物品与货币",
+      "summary": "金币、元晶、储能、门票、材料和专属货币的身份与用途。",
+      "status": "现行框架",
+      "relations": [
+        "所有玩法",
+        "养成",
+        "商店"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-05",
+      "group": "system-out-support",
+      "name": "掉落与奖励",
+      "summary": "首通、重复、概率、排行、赛季和活动奖励的真实入账。",
+      "status": "现行框架",
+      "relations": [
+        "战斗结果",
+        "UI 预览",
+        "经济总账"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-06",
+      "group": "system-out-support",
+      "name": "商店",
+      "summary": "页签、商品、货币、刷新、限购和快捷购买。",
+      "status": "现行框架",
+      "relations": [
+        "资源消费",
+        "养成补给",
+        "付费商品"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-07",
+      "group": "system-out-support",
+      "name": "任务与章节任务",
+      "summary": "每日、每周、章节目标、活跃度和周期奖励。",
+      "status": "现行框架",
+      "relations": [
+        "玩法",
+        "登录",
+        "资源投放"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08",
+      "group": "system-out-support",
+      "name": "签到",
+      "summary": "常规循环、新手七日和累计签到。",
+      "status": "现行框架",
+      "relations": [
+        "登录留存",
+        "资源投放"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-09",
+      "group": "system-out-support",
+      "name": "邮件",
+      "summary": "系统通知、运营奖励、补偿和过期处理。",
+      "status": "现行框架",
+      "relations": [
+        "LiveOps",
+        "异常恢复",
+        "奖励"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10",
+      "group": "system-out-support",
+      "name": "通行证",
+      "summary": "赛季经验、免费/付费奖励线和等级目标；冲突登记 C-006 记录未开放/封存且不计当期供给，但无集中发布台账，正式运行状态未知（UNKNOWN_LIVE_NOT_OPEN），未裁决前不写「已封存决议」或「已开放」。",
+      "status": "设计封存候选·运行UNKNOWN（C-006）",
+      "relations": [
+        "任务",
+        "赛季",
+        "商业化"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11",
+      "group": "system-out-support",
+      "name": "公会",
+      "summary": "成员、任务贡献、派遣、商店、科技和补给。",
+      "status": "临时/待大改",
+      "relations": [
+        "社交",
+        "任务",
+        "养成"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12",
+      "group": "system-out-support",
+      "name": "好友/聊天",
+      "summary": "关系、沟通、邀请和社交触点。",
+      "status": "文档缺口",
+      "relations": [
+        "社交",
+        "回流",
+        "组队线索"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-13",
+      "group": "system-out-support",
+      "name": "新手引导与系统开放",
+      "summary": "NewbieGuide、BattleGuide、Unlock、SystemOpen 和完成记录。",
+      "status": "现行框架",
+      "relations": [
+        "主线",
+        "玩家等级",
+        "所有入口"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14",
+      "group": "system-out-support",
+      "name": "活动、赛季与 LiveOps",
+      "summary": "当期内容、周期、结算、重置、运营奖励和内容日历；已批准建立集中版本/开关/灰度/回滚强制台账。",
+      "status": "台账目标已批准·尚未建成",
+      "relations": [
+        "玩法",
+        "任务",
+        "排行",
+        "邮件"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15",
+      "group": "system-out-support",
+      "name": "月卡、礼包与付费商品",
+      "summary": "长期权益、资源包和快捷购买。",
+      "status": "发布待核",
+      "relations": [
+        "商店",
+        "经济",
+        "留存"
+      ]
+    }
+  ],
+  "combat": {
+    "rules": [
+      {
+        "id": "CB-R01",
+        "name": "实例与胜负",
+        "summary": "加载、开始、暂停、阶段、目标、时限、胜负、评价和异常结束。"
+      },
+      {
+        "id": "CB-R02",
+        "name": "单位与队伍",
+        "summary": "角色、怪物、召唤物、基地、阵营、目标和上阵快照。"
+      },
+      {
+        "id": "CB-R03",
+        "name": "属性与计算",
+        "summary": "生命、攻击、防御、二级属性、伤害、治疗、护盾、能量和冷却。"
+      },
+      {
+        "id": "CB-R04",
+        "name": "行动与技能",
+        "summary": "移动、索敌、普攻、自动技能、手动必杀、Skill、Action 与 Buff。"
+      },
+      {
+        "id": "CB-R05",
+        "name": "敌人与 AI",
+        "summary": "普通怪、精英、Boss、行为树、仇恨、阶段和机制。"
+      },
+      {
+        "id": "CB-R06",
+        "name": "关卡与遭遇",
+        "summary": "地形、Loop、波次、刷怪、机关、移动平台、镜头和跑打节奏。"
+      },
+      {
+        "id": "CB-R07",
+        "name": "玩法局内变体",
+        "summary": "不同玩法在战斗实例中的目标、压力和胜负差异。"
+      },
+      {
+        "id": "CB-R08",
+        "name": "反馈与结果",
+        "summary": "HUD、预警、命中/受击、掉落表现、统计和结算触发。"
+      }
+    ],
+    "character": [
+      {
+        "id": "CH-R01",
+        "name": "角色定位",
+        "summary": "主职责、副职责、战斗倾向、目标环境和队伍位置。"
+      },
+      {
+        "id": "CH-R02",
+        "name": "战斗循环",
+        "summary": "普攻节奏、自动技能触发、能量获取和必杀窗口。"
+      },
+      {
+        "id": "CH-R03",
+        "name": "技能组",
+        "summary": "普攻、常规技能、必杀、被动、天赋和共享机制。"
+      },
+      {
+        "id": "CH-R04",
+        "name": "队伍协同",
+        "summary": "需要的前置、提供的增益、职业/标签配合与冲突。"
+      },
+      {
+        "id": "CH-R05",
+        "name": "环境适配",
+        "summary": "单体/群体、持续/爆发、移动目标、Boss、长线和竞速表现。"
+      },
+      {
+        "id": "CH-R06",
+        "name": "成长接口",
+        "summary": "升级、突破、升星、星盘、收容物、旅券和映射装备的机制连接。"
+      },
+      {
+        "id": "CH-R07",
+        "name": "强度验证",
+        "summary": "标准场景、目标 DPS/生存/覆盖率、对照角色和实机指标。"
+      }
+    ]
+  },
+  "numeric": [
+    {
+      "id": "NUM-00",
+      "name": "总纲与权威链",
+      "summary": "明确全局事实、单系统参数、派生文档、验算和配置镜像的所有权。",
+      "path": "框架v2/README.md"
+    },
+    {
+      "id": "NUM-01",
+      "name": "共享底座",
+      "summary": "术语、属性定义、定价、标准人、参数基线和稳定参数 ID。",
+      "path": "框架v2/03_沉淀MD/参数基线"
+    },
+    {
+      "id": "NUM-02",
+      "name": "养成数值",
+      "summary": "成长预算、各养成模块曲线、成本、玩家战力曲线和同期玩家快照。",
+      "path": "框架v2/03_沉淀MD/养成"
+    },
+    {
+      "id": "NUM-03",
+      "name": "战斗数值",
+      "summary": "战斗属性与公式、玩家/怪物模型、技能系数、DPS、EHP、TTK 和难度。",
+      "path": "框架v2/03_沉淀MD/战斗"
+    },
+    {
+      "id": "NUM-04",
+      "name": "经济数值",
+      "summary": "资源价值、玩法产出、养成消耗、抽卡/商店和日周赛季总账。",
+      "path": "框架v2/03_沉淀MD/经济"
+    },
+    {
+      "id": "NUM-05",
+      "name": "节奏数值",
+      "summary": "等级、天数、开放、上阵人数、新手流程、玩法出现和全玩法难度线。",
+      "path": "框架v2/03_沉淀MD/节奏"
+    },
+    {
+      "id": "NUM-06",
+      "name": "验算与配置交付",
+      "summary": "生成、公式重算、动态门禁、配置评审镜像、批准和正式 Datas/Luban。",
+      "path": "框架v2/05_验算核算"
+    }
+  ],
+  "relationTypes": [
+    [
+      "unlocks",
+      "解锁",
+      "来源达到条件后开放目标"
+    ],
+    [
+      "enters",
+      "进入",
+      "系统入口进入对应战斗实例"
+    ],
+    [
+      "supplies",
+      "供给",
+      "来源产出目标需要的资源"
+    ],
+    [
+      "consumes",
+      "消耗",
+      "来源消费目标管理的资源"
+    ],
+    [
+      "builds",
+      "构筑",
+      "成长或获取形成战斗属性、机制或阵容"
+    ],
+    [
+      "validates",
+      "验证",
+      "玩法检验某类成长成果"
+    ],
+    [
+      "reports",
+      "反馈",
+      "战斗结果返回任务、排行、奖励和进度"
+    ],
+    [
+      "prices",
+      "定价",
+      "数值域定义价值、成本或概率"
+    ],
+    [
+      "balances",
+      "平衡",
+      "数值模型约束规则或内容强度"
+    ],
+    [
+      "supersedes",
+      "替代",
+      "新规则替代旧规则（已裁决生效）"
+    ],
+    [
+      "migrates-to",
+      "候选迁移",
+      "新方案主张承载旧系统职责，迁移是否成立待裁决，裁决前不得视为已替代"
+    ],
+    [
+      "conflicts-with",
+      "冲突",
+      "两份现行候选不能同时成立"
+    ]
+  ],
+  "frameworkNodeIds": [
+    "PFN-01",
+    "PFN-02",
+    "PFN-03",
+    "PFN-04",
+    "PFN-05",
+    "PFN-06",
+    "PFN-07",
+    "PFN-08",
+    "PFN-09",
+    "PFN-10",
+    "PFN-11",
+    "PFN-12",
+    "PFN-13",
+    "PFN-14",
+    "PFN-15",
+    "PFN-16",
+    "PFN-17",
+    "PFN-18",
+    "PFN-19"
+  ]
+}

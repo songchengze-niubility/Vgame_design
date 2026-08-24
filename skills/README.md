@@ -9,6 +9,7 @@ skills/
 
   [项目入口]
   vgame-core-understanding/      — 项目身份、路由、证据纪律
+  vgame-knowledge-router/        — 问题到最小知识包与专项 Skill 的机器路由
 
   [策划案交付流程 — 每次发起需求必须加载]
   planning-feature-workflow/     — 九步策划交付编排（需求契约→澄清→核心设计→专项→评审→UI→Excel→验收）
@@ -49,6 +50,6 @@ skills/
 
 1. 每次发起需求或策划案任务：先加载 `planning-feature-workflow`，按九步流程执行。
 2. `vgame-core-understanding` 先读，确认问题类型和项目路由。
-3. 按路由表进入对应专项 Skill。
+3. 先由 `vgame-knowledge-router` 选择最小知识包，再按路由表进入对应专项 Skill。
 4. 涉及配置表时先过 `vgame-config-schema`。
 5. 涉及奖励落地时过 `vgame-reward-drop-sync`。

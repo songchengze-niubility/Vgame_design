@@ -1,0 +1,632 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-IN-05",
+  "name": "关卡空间与遭遇",
+  "revision": "2026-08-18.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置、源码与序列化资源，不证明 Production/LIVE。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份设计、源码、配置或 Skill 归纳出的结构，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-IN-05-R02"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "关卡空间与遭遇负责把跑酷战斗的物理空间与遭遇节奏组织起来：定义地形、Loop、波次、刷怪、机关、移动平台与镜头边界，并把它们流送成可推进、可结算的战斗实例。",
+    "inScope": [
+      "入口配置层与局内空间层的双层关卡数据模型",
+      "地形块、Loop 战斗结构、波次与击杀结束条件",
+      "按镜头/跟随位置沿 X 轴的实体与地形流送、刷怪",
+      "镜头边界、移动平台与可破坏地形等空间机关",
+      "关卡编辑器到 LogicData/VisualData/StringTable 序列化的生产链",
+      "遭遇节奏基线的本系统侧责任（距离/时长/Loop 模板）"
+    ],
+    "outOfScope": [
+      "具体刷怪数值、怪物等级与难度系数；该内容归 NUM-03",
+      "怪物、精英、Boss 的实体定义、AI 与行为树；该内容归 SYS-IN-04",
+      "各玩法的局内目标与胜负变体；该内容归 SYS-IN-06",
+      "玩家可见 HUD、预警与掉落表现；该内容归 SYS-IN-07",
+      "奖励、掉落与真实入账；该内容归 SYS-OUT-SU-05",
+      "关卡入口、解锁、次数与体力；该内容归对应玩法外壳 SYS-OUT-GP-* 与 SYS-OUT-SU-13"
+    ],
+    "inputs": [
+      "level/UIlevel 关卡底表（LevelId、类型、场景路径、系数、出生位置）",
+      "SceneData/LogicData 序列化资源（地形、Loop、实体、镜头边界）",
+      "Monster/Boss 定义与行为树（由 SYS-IN-04 提供）",
+      "玩法模式上下文（由 SYS-IN-06/SYS-IN-01 提供）"
+    ],
+    "outputs": [
+      "地形块、Loop 地形与实体（怪物/道具/触发器）的实例化与流送回收",
+      "Loop 击杀计数、Loop 结束事件与最终胜利触发（ShowBattleWin）",
+      "镜头边界、Boss 战时间限制与场景统计（SceneStatistics）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式战斗内能力",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "关卡空间与遭遇是跑酷战斗的地形/Loop/流送基础设施，目录登记为正式系统，没有争议。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "全部规则均无冻结正式策划口径：关卡编辑器 Design Doc 为 Draft（反推整理）；遭遇节奏基线亦未冻结",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "note": "关卡编辑器与主线关卡系统 Design Doc 均为 Draft（反推整理）、Skill 参考为跨源归纳，均不构成权威目标设计；Loop 机制、X 轴流送、镜头边界与编辑器序列化仅有工作副本实现证据；各玩法 Loop 模板、距离、时长与刷怪节奏尚无正式统一基线。"
+    },
+    {
+      "axis": "当前工作副本源表",
+      "value": "双层模型、Loop 结束条件、流送与编辑器已核；序列化资源存在",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于2026-08-18：LLevelMgr、关卡编辑器、level/UIlevel/CameraParameter/BossBattleTime 与 SceneData Runtime 均存在。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程实现链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源码、配置与序列化资源，但缺集中版本—开关—发布时间台账，不能把工作副本观察盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-IN-05-F01",
+      "name": "关卡空间加载与推进流程",
+      "steps": [
+        {
+          "id": "SYS-IN-05-F01-S01",
+          "name": "初始化与反序列化",
+          "description": "从 level/UIlevel 读取底表，经 LevelUtility.LoadSceneLogicData 反序列化 LogicData，得到地形、Loop、实体与镜头边界。"
+        },
+        {
+          "id": "SYS-IN-05-F01-S02",
+          "name": "流送地形与实体",
+          "description": "LLevelMgr 按跟随者/镜头位置计算视口范围，进入视口加载、离开卸载地形与实体。"
+        },
+        {
+          "id": "SYS-IN-05-F01-S03",
+          "name": "进入 Loop",
+          "description": "镜头到达 Loop 起点进入循环模式，循环地形段重复播放，实体按 loopStarIndex/loopCount 分批生成。"
+        },
+        {
+          "id": "SYS-IN-05-F01-S04",
+          "name": "击杀计数",
+          "description": "监听 EntityDeath，按 EntityType 分类记录击杀；ignoreLoop 实体不计入。"
+        },
+        {
+          "id": "SYS-IN-05-F01-S05",
+          "name": "满足条件结束 Loop",
+          "description": "ShouldStopLoop 校验击杀数是否达到 LoopTypeEnum 对应目标，达到则 CleanUpLoop 并回收地形。"
+        },
+        {
+          "id": "SYS-IN-05-F01-S06",
+          "name": "最后 Loop 触发胜利",
+          "description": "若为最后一个 Loop，调用 ShowBattleWin；否则 PreNextLoop 进入下一段。"
+        },
+        {
+          "id": "SYS-IN-05-F01-S07",
+          "name": "交回玩法与结算",
+          "description": "胜利/失败事件交由 GameMode（SYS-IN-06）与结算触发（SYS-IN-08）消费。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-IN-05-R01",
+      "name": "双层关卡数据模型",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「双层关卡数据模型」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "关卡由入口配置层（level/UIlevel）与局内空间层（SceneData/LogicData）共同描述；配置层管 ID、类型、难度、体力与场景路径，空间层管地形、Loop、实体与镜头边界（工作副本代码/配置与 Skill 参考观察归纳，原目标口径表述）；level.xlsx 提供 LevelDataPath 等入口字段，LLevelMgr 经 LevelUtility.LoadSceneLogicData 反序列化 LogicData；SceneData Runtime 目录存在 2112 个序列化文件。Skill 层双层架构说明与本观察一致。",
+      "acceptance": "任一关卡能从 LevelId 追到 level/UIlevel 底表、场景路径、LogicData 反序列化与运行时加载；未确认项不得伪装成正式节奏规则。",
+      "relatedIds": [
+        "SYS-IN-01",
+        "SYS-IN-06",
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-05-EV02",
+        "SYS-IN-05-EV05",
+        "SYS-IN-05-EV06",
+        "SYS-IN-05-EV09"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-R02",
+      "name": "Loop 战斗结构与结束条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「Loop 战斗结构与结束条件」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Loop 是跑酷战斗的核心结构：镜头停止前进、地形循环、按击杀条件结束；结束条件类型为 BossKill/EliteKill/OrdinaryKill/None（工作副本代码/配置与 Skill 参考观察归纳，原目标口径表述）；LLevelMgr.TryStopLoop/ShouldStopLoop/GetEntityTypeForLoopType 与 TerrainLoopLogicData.LoopTypeEnum 实现四类结束条件，ParamTemp 存击杀数，最后 Loop 结束调用 World.ShowBattleWin()。",
+      "acceptance": "每个 Loop 能从 LoopTypeEnum + ParamTemp 解析到对应 EntityType 击杀计数；最后 Loop 触发胜利；None 类型立即通过不循环。",
+      "relatedIds": [
+        "SYS-IN-04",
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-05-EV02",
+        "SYS-IN-05-EV10"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-R03",
+      "name": "实体流送与刷怪",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「实体流送与刷怪」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "实体按 X 坐标与跟随者位置流送加载；Loop 内实体按 loopStarIndex/loopCount 分批生成，ignoreLoop 实体不参与 Loop 击杀计数（工作副本代码/配置与 Skill 参考观察归纳，原目标口径表述）；LLevelMgr.ShouldCreateEntity 依据 isLoop/loopStarIndex/loopCount 控制生成轮次，OnEntityDestroy 过滤 ignoreLoop 后再计数。",
+      "acceptance": "非 Loop 实体只在首轮生成；Loop 实体在指定轮次范围生成；道具/环境实体标记 ignoreLoop 后不计击杀。",
+      "relatedIds": [
+        "SYS-IN-04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-05-EV02",
+        "SYS-IN-05-EV10",
+        "SYS-IN-05-EV11"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-R04",
+      "name": "镜头边界与移动平台/机关",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「镜头边界与移动平台/机关」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "不同地形段可配不同镜头边界（CameraParameter），移动平台与可破坏地形构成空间机关；镜头边界切换需过渡时长（工作副本代码/配置与 Skill 参考观察归纳，原目标口径表述）；CameraParameter.xlsx（28×6）承载 RoleCameraY/TerrainY/Duration 等镜头边界参数；移动平台经 SummonTerrainAction 召唤为 LTerrainMoveEntity，可破坏地形有命中次数后碎裂。",
+      "acceptance": "镜头边界从 BoundaryCfgId 解析到 CameraParameter；移动平台与可破坏地形的运行权威可定位到实现。",
+      "relatedIds": [
+        "SYS-IN-07",
+        "SYS-IN-03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-05-EV07",
+        "SYS-IN-05-EV10",
+        "SYS-IN-05-EV01"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-R05",
+      "name": "关卡编辑器生产链",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「关卡编辑器生产链」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "策划经关卡编辑器摆放地形、标记 Loop、放置实体与配置镜头边界，TerrainDataCollector 序列化为 LogicData/VisualData/StringTable 三个 .bytes（工作副本代码/配置与 Skill 参考观察归纳，原目标口径表述）；TerrainInfoEditor 与 TerrainDataCollector 存在；编辑器 Design Doc（Draft）描述 R-01~R-07 与三文件输出；SceneData Runtime 目录已观察到序列化产物。",
+      "acceptance": "编辑器能力不等同于已冻结的玩法节奏基线；序列化产物存在只证明生产链，不证明每个关卡内容已验收。",
+      "relatedIds": [
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-05-EV01",
+        "SYS-IN-05-EV03",
+        "SYS-IN-05-EV04",
+        "SYS-IN-05-EV12"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-R06",
+      "name": "遭遇节奏基线缺口",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：缺少按玩法归档的 Loop 模板、接敌距离、单段时长、刷怪批次与 Boss 战时长基线。",
+      "sourceFact": "Skill 参考给出 30-60 秒战斗 + 10-20 秒跑酷等时间区间，但其明确标注为初始假设；未在源表或源码中核到统一的正式节奏参数。",
+      "acceptance": "每段至少能回答移动时间、交战时间、同时存活敌人数、目标切换频率与镜头可读性，并有对应玩法与实机日志回证。",
+      "relatedIds": [
+        "NUM-03",
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-05-EV11",
+        "SYS-IN-05-EV13"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-IN-05-C01",
+      "name": "Loop 结束条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "ShouldStopLoop 依据 LoopTypeEnum 映射 EntityType，比较该类型已击杀数与 ParamTemp 目标数；None 类型直接通过。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-C02",
+      "name": "实体流送触发",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "实体按 X 坐标与跟随者/镜头位置计算视口范围决定加载与回收；非 Loop 实体仅在首轮生成。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV02",
+        "SYS-IN-05-EV09"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-C03",
+      "name": "Loop 内分批生成",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "Loop 实体按 loopStarIndex/loopCount 决定生成轮次范围，用于分批刷怪而非一次全出。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV02",
+        "SYS-IN-05-EV10"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-C04",
+      "name": "镜头边界条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "地形段通过 BoundaryCfgId 引用镜头边界配置，RoleCameraY/TerrainY/Duration 控制角色与地形在镜头中的位置与过渡。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV07",
+        "SYS-IN-05-EV10"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-C05",
+      "name": "Boss 战时间限制",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "BossBattleTime.xlsx 承载 Boss 战时间限制与狂暴相关参数；超时判定由对应玩法模式（SYS-IN-06）消费。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV08"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-IN-05-EX01",
+      "name": "Loop 无激活战斗目标",
+      "status": "WORKING_COPY_OBSERVED_RISK",
+      "rule": "循环区域全部 LoopTypeEnum=None 或 ParamTemp 为空时，不触发击杀结束条件；需由内容与配置保证非 None 覆盖。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV01",
+        "SYS-IN-05-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-EX02",
+      "name": "序列化版本不兼容",
+      "status": "WORKING_COPY_OBSERVED_RISK",
+      "rule": ".bytes 版本与代码不兼容时应报错并用空白关卡 fallback；本观察仅来自 Draft 文档，未核到运行时降级实现。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV01"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-EX03",
+      "name": "地形缝隙与坑位",
+      "status": "WORKING_COPY_OBSERVED_RISK",
+      "rule": "地形间留空会掉落或造成可破坏地板掉落；是否作为有意坑位需在场景编辑阶段显式区分，不能靠运行时兜底。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV10",
+        "SYS-IN-05-EV12"
+      ]
+    },
+    {
+      "id": "SYS-IN-05-EX04",
+      "name": "编辑器引用缺失",
+      "status": "WORKING_COPY_OBSERVED_RISK",
+      "rule": "放置实体时 MonsterId/ItemId 无效应警告并标红；该行为来自 Draft 文档，运行时拦截未核到。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV01"
+      ]
+    }
+  ],
+  "ui": [],
+  "configs": [
+    {
+      "id": "SYS-IN-05-CFG01",
+      "name": "level",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx",
+      "role": "关卡底表：LevelId、类型、场景路径 LevelDataPath、系数、体力、编队、扫荡、出生位置与 BossId",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-CFG02",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "章节/展示、推荐等级、怪物 UI、评价任务与奖励预览",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-CFG03",
+      "name": "CameraParameter",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\CameraParameter.xlsx",
+      "role": "镜头边界参数：角色/地形在镜头中的位置与过渡时长",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-CFG04",
+      "name": "BossBattleTime",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\BossBattleTime.xlsx",
+      "role": "Boss 战时间限制与狂暴相关参数",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-IN-05-REL01",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-01",
+      "targetName": "战斗实例与状态",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。关卡空间与遭遇数据进入战斗实例生命周期，在实例内加载、流送与推进。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-05-EV02",
+        "SYS-IN-05-EV09"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-05-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-04",
+      "targetName": "敌人、AI 与 Boss",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。关卡通过刷怪点与实体数据消费怪物、精英、Boss 定义及行为树。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-05-EV05",
+        "SYS-IN-05-EV09"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-05-REL03",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-07",
+      "targetName": "战斗 UI、反馈与引导",
+      "description": "关卡提供镜头边界参数（CameraParameter，经地形段 BoundaryCfgId 引用）与弹出引导触发点（ZoneShowGuide → VMsg_RegisterGuide 通知 UIBattleView）供战斗镜头、UI 与引导消费。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-05-EV07",
+        "SYS-IN-05-EV10",
+        "SYS-IN-05-EV14"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-05-REL04",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。关卡提供地形、Loop 与波次结构，玩法局内规则据此判定目标与胜负。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-05-EV02",
+        "SYS-IN-05-EV10"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-05-REL05",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "刷怪密度、怪物等级与难度系数需战斗数值模型（TTK/难度线）约束。（推导依据边界：数值约束关系来自知识目录 NUM-03 战斗数值域划分，本系统侧证据仅覆盖 level.xlsx 系数字段（SYS-IN-05-EV05）与节奏缺口描述（SYS-IN-05-EV13 §8）；尚无冻结的关卡难度数值基线文档，本条为知识框架层跨源归纳，非单源文档结论。）",
+      "status": "MODEL_NOT_CLOSED",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-IN-05-EV01",
+      "kind": "reverse-design",
+      "label": "关卡编辑器 Design Doc",
+      "path": "design/关卡编辑器Design Doc.md",
+      "href": "../../../design/关卡编辑器Design Doc.md",
+      "location": "R-01～R-07（入口、地形/Loop、实体、移动平台、镜头、序列化、运行时加载）",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-05-EV02",
+      "kind": "source-code",
+      "label": "LLevelMgr.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Managers/LLevelMgr.cs",
+      "location": "TryStopLoop/ShouldStopLoop/GetEntityTypeForLoopType/OnEntityDestroy（L369-499）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-EV03",
+      "kind": "source-code",
+      "label": "TerrainInfoEditor.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.GameLogic/Editor/TerrainEditor/TerrainInfoEditor.cs",
+      "location": "关卡编辑器主窗口入口",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-EV04",
+      "kind": "source-code",
+      "label": "TerrainDataCollector.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.GameLogic/Editor/TerrainEditor/CombatSceneCollect/TerrainDataCollector.cs",
+      "location": "CollectNonLoopTerrainsLogic/CollectLoopTerrainLogic 等采集与序列化",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-EV05",
+      "kind": "source-excel",
+      "label": "level.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/level.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/level.xlsx",
+      "location": "本机SVN工作副本；LevelDataPath、系数、出生位置等只读核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-EV06",
+      "kind": "source-excel",
+      "label": "UIlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "location": "本机SVN工作副本；章节/展示/推荐等级只读核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-EV07",
+      "kind": "source-excel",
+      "label": "CameraParameter.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/CameraParameter.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/CameraParameter.xlsx",
+      "location": "本机SVN工作副本；RoleCameraY/TerrainY/Duration 字段核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-EV08",
+      "kind": "source-excel",
+      "label": "BossBattleTime.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/BossBattleTime.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/BossBattleTime.xlsx",
+      "location": "本机SVN工作副本；Boss 战时间限制/狂暴参数核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-05-EV09",
+      "kind": "design-target",
+      "label": "关卡架构双层模型（Skill 参考）",
+      "path": "D:/Vgame_design/skills/vgame-level-design-map/references/level-architecture-overview.md",
+      "location": "双层架构、Excel 层与场景层控制、Runtime 流程、Level ID 规范",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-05-EV10",
+      "kind": "design-target",
+      "label": "地形与 Loop 设计（Skill 参考）",
+      "path": "D:/Vgame_design/skills/vgame-level-design-map/references/terrain-and-loop-design.md",
+      "location": "Loop 机制、LoopTypeEnum、移动平台、可破坏地形、镜头边界",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-05-EV11",
+      "kind": "design-target",
+      "label": "遭遇节奏指南（Skill 参考）",
+      "path": "D:/Vgame_design/skills/vgame-level-design-map/references/encounter-pacing-guide.md",
+      "location": "节奏设计原则、各玩法节奏模型、刷怪密度参考",
+      "status": "CROSS_SOURCE_SYNTHESIS_NOT_FORMAL_BASELINE"
+    },
+    {
+      "id": "SYS-IN-05-EV12",
+      "kind": "design-target",
+      "label": "关卡编辑器管线（Skill 参考）",
+      "path": "D:/Vgame_design/skills/vgame-level-design-map/references/level-editor-pipeline.md",
+      "location": "编辑流程、数据序列化、SceneLogicData 结构、新建关卡流程",
+      "status": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-IN-05-EV13",
+      "kind": "reverse-design",
+      "label": "战斗域审计",
+      "path": "archive/legacy-output-20260824/research/combat-domain-audit.md",
+      "location": "§8 关卡空间与节奏、§3 总览、§15 缺口",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-05-EV14",
+      "kind": "source-code",
+      "label": "ZoneShowGuide.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/TriggerData/ZoneShowGuide.cs",
+      "location": "弹出引导触发器：OnEnter → Visual.VMsg_RegisterGuide(guideId) 由表现层引导管理器通知 UIBattleView；以 MessagePack Union(19) 注册于 ZoneDataBase 触发器联合类型",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-IN-05-Q01",
+      "priority": "P1",
+      "question": "各正式玩法的 Loop 模板、接敌距离、单段时长与刷怪批次是否有正式统一基线？",
+      "impact": "决定关卡能否按统一节奏验收，当前只有 Skill 初始假设与场景数据。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV11",
+        "SYS-IN-05-EV13"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-05-Q02",
+      "priority": "P1",
+      "question": "level/UIlevel 到 SceneData/LogicData 的引用完整性如何自动核验？",
+      "impact": "断引用会导致关卡加载 fallback 或空白场景，需建立 LevelDataPath 一致性检查。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV05",
+        "SYS-IN-05-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-05-Q03",
+      "priority": "P2",
+      "question": "移动平台是否全部经 SummonTerrainAction 技能召唤，而非编辑器直接摆放？",
+      "impact": "影响移动平台与技能系统的边界，以及可复用的空间机关方式。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV10",
+        "SYS-IN-05-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-05-Q04",
+      "priority": "P2",
+      "question": "CameraParameter 与场景 BoundaryCfgId 的覆盖关系是否逐关完整？",
+      "impact": "缺失边界会导致镜头跳变或可视范围异常。",
+      "evidenceRefs": [
+        "SYS-IN-05-EV07",
+        "SYS-IN-05-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在关卡加载、流送、Loop 与胜利的有序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "Loop 结束、流送、分批生成、镜头与 Boss 时限均为触发/分支条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "本系统不拥有奖励结算，奖励与真实入账归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "Loop 无目标、序列化不兼容、地形缝隙与引用缺失等风险路径存在"
+    },
+    "ui": {
+      "state": "N/A",
+      "reason": "玩家可见 HUD/预警/掉落表现归 SYS-IN-07；关卡编辑器是生产工具而非玩家 UI"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "level/UIlevel/CameraParameter/BossBattleTime 与 SceneData 序列化是真实配置源"
+    }
+  }
+}

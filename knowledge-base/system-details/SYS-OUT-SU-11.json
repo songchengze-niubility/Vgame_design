@@ -1,0 +1,994 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-11",
+  "name": "公会",
+  "revision": "2026-08-18.3",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 客户端 Lua 工作副本 + 06_最终配置镜像",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在公会配置族、GuildBoss 配置族与客户端实现；新数值多落在 06_最终配置镜像，SVN Datas 源表待实施。状态冲突登记 C-007 记录当前为临时维护版本且待大改，新数值与旧实现须分开。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED / DRAFT_TARGET",
+      "meaning": "目标设计或已确认策划口径；多项 2026-07/08 规则已 verified，但总状态仍为 Draft。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（Excel 或客户端 Lua），不代表 Production/LIVE，也不代表新数值已生效。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由设计文档、沉淀 MD 与最终配置镜像组织出的边界，需要区分文档已确认与源表已生效。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据；Temporary 表示当前实现为临时版本待大改。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态为临时版本，未确认 LIVE。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-SU-11-R01"
+      ]
+    },
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-SU-11-R02",
+        "SYS-OUT-SU-11-R03",
+        "SYS-OUT-SU-11-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-TASK-REPORT",
+      "ruleRefs": [
+        "SYS-OUT-SU-11-R03"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-11-R04",
+        "SYS-OUT-SU-11-R06"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-11-R06",
+        "SYS-OUT-SU-11-R07",
+        "SYS-OUT-SU-11-R08"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "公会系统构建游戏核心社交循环：通过公会任务、贡献、派遣、商店、补给与个人/公会科技聚合玩家协作，以公会经验/集体代币/个人代币三种成长资源驱动社交粘性与长线留存，并以个人科技全局属性反哺战斗。",
+    "inScope": [
+      "公会创建与解散、加入与退出（含等级20开放、300元晶创建、4小时退出冷却）",
+      "公会贡献与有效贡献 1:1 产出公会经验/集体代币/个人代币的结算口径",
+      "公会任务每日产出上限（个人代币900/集体代币900）与公会派遣生命周期及额外奖励",
+      "个人代币每日获得硬上限 1200 与产出来源分层",
+      "公会商店首批商品定价、限购与公会科技白名单折扣",
+      "公会补给（固定集体代币消耗、资格快照、周限与邮件发奖）",
+      "个人科技树（14节点/53级/79000个人代币，全局属性生效）与公会科技树（33节点/43级/280万集体代币）",
+      "公会等级与基础人数上限（Level 0~15，30~45人，科技+5后35~50人）"
+    ],
+    "outOfScope": [
+      "公会战：本轮明确范围外，历史流程草案不进入待确认清单，不纳入正文规则",
+      "公会拍卖：当前版本明确不做，不设计拍品/竞价/分红/奖励及相关科技效果",
+      "退出公会细则与成员管理（踢出/转让/职位任命）：本轮范围外，不进入待确认清单",
+      "公会任务具体任务项与公会贡献档位/资源消耗/每日次数：延后确认",
+      "奖励 Drop 包具体内容与数量；该内容归 SYS-OUT-SU-05 与 Drop 源表",
+      "通用商店商品口径；公会商店只共享商店契约，商品口径由本系统维护，通用机制归 SYS-OUT-SU-06",
+      "公会任务事件驱动架构本体；任务权威归 SYS-OUT-SU-07",
+      "公会系统开放条件（等级20）；开放权威归 SYS-OUT-SU-13",
+      "个人科技属性到战斗的转化公式；战斗数值归 NUM-03/CB-R03"
+    ],
+    "inputs": [
+      "玩家等级（开放门槛20级）与元晶（创建消耗300）",
+      "公会任务（Task_TTT_GuildTask）完成事件与公会贡献捐献操作",
+      "公会派遣委托配置（GuildComission/GuildCommissionLv）与角色占用",
+      "GuildLv/GuildTech/GuildNodeLv/GuildSupplies/GuildMission 等公会配置族",
+      "公会商店商品（Shop/ShopGoods 公会 Tab）与个人代币",
+      "道具定价表（个人代币=1元晶价值锚）"
+    ],
+    "outputs": [
+      "公会实体、成员归属与公会等级/经验状态",
+      "公会经验/集体代币/个人代币三种成长资源的产出与消耗",
+      "公会派遣个人代币与品质额外奖励（经 Drop_other 入账）",
+      "公会商店购买与限购计数",
+      "公会补给的资格快照与批量邮件发奖事件",
+      "个人科技全局属性（PvE/PVPVE/竞技生效）与公会科技组织增益"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式外循环社交系统",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "公会作为核心社交循环在项目总 Skill 和发布状态登记中均为正式外循环。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "总状态Draft，但科技/派遣/商店/补给等多项规则已 verified；公会战/成员管理/退出细则本轮范围外",
+      "status": "DRAFT_TARGET_PARTIAL_CONFIRMED",
+      "note": "Design Doc 总状态 Draft，但 R-03~R-05/R-08~R-10 经多轮 verified 变更已冻结节点数值与结算关系；R-06 公会战与 R-07 成员管理明确退出本轮待确认清单。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "15 Guild + 5 GuildBoss 配置族 + GuildSystem.lua 存在；新数值多在06_最终配置镜像，SVN源表待实施",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；Guild 配置族与 GuildSystem.lua 实现存在，但 GuildLv MemberSize/Exp、GuildTech 节点、派遣奖励等新数值落在 06_最终配置镜像，真实源表尚未实施修改。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "C-007 临时维护版本待大改，新数值与旧实现须分开",
+      "status": "UNKNOWN_LIVE_TEMPORARY",
+      "note": "05-status-conflict-register C-007 记录公会当前实现/经济为临时版本且计划大改；新数值与旧实现分开，不能把文档已确认数值当作已生效。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-11-F01",
+      "name": "公会贡献与三种资源结算流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-11-F01-S01",
+          "name": "发起贡献",
+          "description": "公会成员在捐献界面选择档位并确认（档位/资源消耗/次数延后确认）。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F01-S02",
+          "name": "扣除资源",
+          "description": "扣除捐献资源，个人贡献值增加。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F01-S03",
+          "name": "原子结算三种资源",
+          "description": "按本次有效贡献 1:1 同时增加公会经验+1、集体代币+1、个人代币+1，服务端原子结算。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F01-S04",
+          "name": "更新状态",
+          "description": "公会当日捐献次数+1；公会等级经验累积；个人代币受每日1200硬上限约束。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-F02",
+      "name": "公会派遣流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-11-F02-S01",
+          "name": "选择委托",
+          "description": "玩家选择品质委托（普通/精良/稀有/史诗），派出角色（1/2/2/3人），时长120/180/300/480分钟。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F02-S02",
+          "name": "预占额度",
+          "description": "派出时预占对应日期额度，每名玩家每日最多结算3次、最多并行3个、同角色同时最多1个。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F02-S03",
+          "name": "领取结算",
+          "description": "领取时正式扣除当日次数；归属日期按派出时间记录；直接发放个人代币（不产生贡献值/公会经验/集体代币）。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F02-S04",
+          "name": "额外奖励",
+          "description": "在个人代币外从对应品质 RandomReward 候选中等概率三选一发放额外资源（经 Drop_other 入账）。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-F03",
+      "name": "公会补给流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-11-F03-S01",
+          "name": "发起补给",
+          "description": "会长/副会长确认发放唯一档位公会补给；前置为集体代币足够、未超每周2次、距上次≥24小时。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F03-S02",
+          "name": "生成资格快照",
+          "description": "生成符合资格成员快照（激活时入会满24小时且仍为正式成员）。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F03-S03",
+          "name": "原子扣除与发信",
+          "description": "原子扣除固定集体代币（基础25000，科技最低20000），向快照成员逐人发送奖励邮件。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F03-S04",
+          "name": "更新状态",
+          "description": "补给周次数与上次激活时间更新；扣费与发信须幂等防重。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-F04",
+      "name": "个人科技升级流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-11-F04-S01",
+          "name": "选择节点",
+          "description": "成员选择已解锁且未满级的个人科技节点并点击升级。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F04-S02",
+          "name": "原子校验",
+          "description": "校验前置节点满足与个人代币余额。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F04-S03",
+          "name": "即时升级",
+          "description": "一次性扣除个人代币，节点立即升级并应用个人效果（无研究时间/队列/取消）。"
+        },
+        {
+          "id": "SYS-OUT-SU-11-F04-S04",
+          "name": "属性生效",
+          "description": "个人科技属性全局生效（PvE/PVPVE/竞技），永久绑定玩家，退出或更换公会不清除。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-11-R01",
+      "name": "公会创建与加入退出边界",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "公会解锁门槛为玩家等级20级；创建公会消耗300元晶；退出公会后4小时内不可加入新公会。创建/解散为会长权限，解散需公会无其他成员。",
+      "sourceFact": "Design Doc R-01/R-02 与变更记录 CHG-001/002/003 verified；Unlock.xlsx 解锁条件20级（SystemOpen.UnlockId=4011->Unlock.UnLockParams=20），globals_conf GuildCreateCost=2300（300元晶）、GuildQuitCD=14400（4小时）。",
+      "acceptance": "创建扣300元晶且名称合法；退出后4小时冷却由服务端控制；解散仅会长且成员数=1。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-R02",
+      "name": "公会贡献与三种资源1:1结算",
+      "status": "CONFIRMED_TARGET_PARTIAL_GAP",
+      "targetRule": "公会任务与公会贡献每1点有效贡献同时产出公会经验+1、集体代币+1、个人代币+1；任意统计周期内公会经验产出恒等于集体代币产出。公会贡献的档位、资源消耗与每日次数延后确认。",
+      "sourceFact": "Design Doc R-03 与 R-04-1 verified（CHG-017）；技术方案明确三者共用同一有效贡献值原子结算。公会贡献具体档位/消耗/次数为延后确认项。",
+      "acceptance": "贡献结算原子增加三者各1；服务端禁止奖励领取时重复发放；公会经验产出=集体代币产出。",
+      "relatedIds": [
+        "SYS-OUT-SU-07",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-R03",
+      "name": "公会任务每日产出与个人代币上限",
+      "status": "CONFIRMED_TARGET_PARTIAL_GAP",
+      "targetRule": "单名玩家完成当日公会任务产出个人代币900、集体代币900，并按1:1同步产出公会经验900；个人代币所有每日来源合计实际获得硬上限1200（任务900+派遣期望300，不含贡献收入）。只有大R能拿满，普通玩家实际收入低于该值；公会科技提高获取效率但不突破上限。",
+      "sourceFact": "Design Doc R-04 与 R-04-2 verified（CHG-021/022）；公会任务类型为 Task_TTT_GuildTask，具体任务项延后设计。1200为大R完成全部每日个人代币目标时的上限，非普通活跃玩家稳定日收入。",
+      "acceptance": "公会任务每日奖励池上限900/900；个人代币日获得≤1200；科技不突破硬上限。",
+      "relatedIds": [
+        "SYS-OUT-SU-07",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-R04",
+      "name": "公会派遣生命周期与额外奖励",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "公会派遣每日最多结算3次、最多并行3个、同角色同时最多1个；品质普通/精良/稀有/史诗时长120/180/300/480分钟、人数1/2/2/3、概率50%/30%/15%/5%、单次个人代币50/100/200/300（日均期望300）；额外奖励从品质RandomReward等概率三选一；派遣不产生贡献值/公会经验/集体代币。公会科技满树个人代币产出+10%与免费刷新+2。",
+      "sourceFact": "Design Doc R-04-2/3/4 verified（CHG-032）；派遣奖励已落入 06_最终配置/公会/Drop_other.xlsx，个人代币50/100/200/300，稀有金币50000，70000007~70000018重复行以##停用。GuildComission/GuildCommissionLv 承载30条委托与品质标记。",
+      "acceptance": "派遣只发个人代币并校验公会经验/集体代币增量恒为0；按派出日归属、领取时结算、凌晨4点刷新；额外奖励三选一不放大（科技只放大个人代币）。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV03",
+        "SYS-OUT-SU-11-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-R05",
+      "name": "公会商店定价与限购",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "公会商店使用个人代币，定价以道具定价表元晶价值1:1换算（个人代币=1元晶），偏离基准逐商品记录原因；首批5个有效商品均周限购。公会科技白名单商品价格-20%与周限购+3；非白名单不受科技影响。公会商店只共享商店契约，商品口径由本系统维护。",
+      "sourceFact": "Design Doc R-05/R-05-1 verified（CHG-027~030/033/034）；5商品为猎鹰金币10000/10、高阶记录盘1/10、房车零件20/10、元能核心1/500(满科技400/周限购1→4)、常驻旅券1/800(周限购3)；前三者周限购50且不受科技影响。基础/满科技周购空成本4400/5500。",
+      "acceptance": "商店定价可追溯到道具定价表；白名单折扣/扩容仅对配置商品生效；通用商店机制（刷新/购买校验/扣款）归 SYS-OUT-SU-06。",
+      "relatedIds": [
+        "SYS-OUT-SU-06",
+        "SYS-OUT-SU-04",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-R06",
+      "name": "公会补给",
+      "status": "CONFIRMED_TARGET_PARTIAL_GAP",
+      "targetRule": "公会补给为唯一档位，固定消耗集体代币（基础25000，科技最低20000），不随人数变化；每周最多2次、两次间隔≥24小时；资格为激活时入会满24小时且仍为正式成员；向资格快照逐人发相同奖励邮件。补给奖励等级0~3逐级增加金币/角色经验/元晶，等级2~3另发常驻旅券×1，不发专武经验。",
+      "sourceFact": "Design Doc R-08/R-10-4 verified（CHG-004/007/019）；GuildSupplies.xlsx 承载骨架，需支持固定消耗/奖励Drop/全局周限/新成员保护/邮件时效/科技效果。服务端生成资格快照并以同一幂等事务完成扣费与批量发信。",
+      "acceptance": "余额不足整次失败不允许部分发放；扣费与发信幂等防重；激活后加入者不追发、退出者保留该次邮件。",
+      "relatedIds": [
+        "SYS-OUT-SU-09",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-R07",
+      "name": "个人科技树",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "个人科技为14节点/53级横向纯属性树，总成本79000个人代币；无研究时间/队列/取消，扣除后即时升级；属性全局生效（PvE/PVPVE/竞技），永久绑定玩家，退出/更换公会不清除；不投放挂机/派遣/格挡率/攻速或个人代币增产效果，不形成自我复利。前三节点投放固定攻击/生命/防御，其余为百分比与二级属性（约等价100%攻击属性预算）。",
+      "sourceFact": "Design Doc R-09/R-09-1/2 verified（CHG-005/009/031/036/037）；06_最终配置/公会/GuildTech.xlsx 与 GuildNodeLv.xlsx 承载节点/等级成本/前置；等级属性须配置为 CritLevel/CritDmgBonusLevel/EnergyPreAddBonusLevel/CoolDownReduceLevel。固定属性为非裸体固定值，按面板公式在百分比后相加。",
+      "acceptance": "个人科技属性全局生效且计入玩家成长基线；重复请求幂等；余额不足/前置不满足/已满级不扣款；全树总成本79000。",
+      "relatedIds": [
+        "CB-R03",
+        "NUM-03",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-R08",
+      "name": "公会科技树",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "公会科技为33节点/43级横向主线—短双分支—合流树，总成本280万集体代币；无等级门槛/研发时间/队列/取消，即时升级；费用只随树深和节点等级增长（同列同等级同价，二级节点2级=本列一级+2000），不按效果价值加权；科技绑定公会，成员加入获得、退出失去。满树收益：任务贡献+10%、派遣个人代币+10%、任务要求-20%、免费刷新+2、补给25000→20000且奖励至3级、白名单商品价-20%与周限购+3、成员+5、副会长+2。所有产出增益受现有每日/每周硬上限约束。",
+      "sourceFact": "Design Doc R-10/R-10-1/2/3/4 verified（CHG-006/008/010~013）；GuildTech.xlsx 承载 Collective 路由/等级成本/节点坐标/前置；不使用 ResearchHours，需补齐 EffectId/BuffId。G133 毕业节点要求 G101~G132 全部满级。",
+      "acceptance": "会长/副会长并发操作原子校验；同类效果先加法叠加再应用硬上限；组织扩编失效时不踢现有超额成员只禁继续招募；全树总成本280万。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-R09",
+      "name": "公会等级与人数上限",
+      "status": "CONFIRMED_TARGET_PENDING_IMPLEMENTATION",
+      "targetRule": "公会等级沿用 GuildLv.xlsx 内部 Level 0~15；MemberSize 改为每级+1（30~45），升级总经验提高至约100万并主要抬高中后期；公会科技额外+5后各级上限35~50人。若界面等级从1显示则内部0~15对应1~16。",
+      "sourceFact": "Design Doc R-07-1 verified（CHG-014/015/016）；目标配置值为待实施，真实 GuildLv.xlsx 源表尚未修改。升满累计100.2万公会经验。",
+      "acceptance": "基础人数随等级平滑30→45；科技+5叠加于当前等级基础值；源表实施后逐级核对。",
+      "relatedIds": [
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV04"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-11-C01",
+      "name": "公会系统开放",
+      "status": "CONFIRMED_TARGET_DELEGATED",
+      "rule": "公会系统开放门槛为玩家等级20级；开放条件权威归 SYS-OUT-SU-13（Unlock 体系）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-C02",
+      "name": "创建与退出冷却",
+      "status": "CONFIRMED_TARGET",
+      "rule": "创建公会前置为等级≥20、未加入公会、消耗300元晶、名称合法；退出公会后4小时内不可加入新公会。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-C03",
+      "name": "公会贡献前置",
+      "status": "CONFIRMED_TARGET_PARTIAL_GAP",
+      "rule": "公会贡献前置为当天捐献次数未达上限且持有足够捐献资源；档位/资源消耗/每日次数延后确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-C04",
+      "name": "公会派遣前置",
+      "status": "CONFIRMED_TARGET",
+      "rule": "派遣前置为玩家已加入公会、当日结算次数<3、并行委托<3、同角色未被占用；每日凌晨4点刷新未开始委托与免费刷新次数。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-C05",
+      "name": "公会补给前置",
+      "status": "CONFIRMED_TARGET",
+      "rule": "补给前置为集体代币足够、未超每周2次、距上次激活≥24小时；操作权限为会长/副会长。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-C06",
+      "name": "科技升级前置",
+      "status": "CONFIRMED_TARGET",
+      "rule": "个人科技前置为前置节点满足且个人代币足够；公会科技前置为前置节点≥1级且集体代币足够，不受公会等级限制；两者均要求节点未满级。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV08"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-11-RW01",
+      "name": "公会任务与贡献产出",
+      "status": "CONFIRMED_TARGET_PARTIAL_GAP",
+      "rule": "公会任务每日产出个人代币900/集体代币900/公会经验900；公会贡献按有效贡献1:1产出三者各1；个人代币受每日1200硬上限约束。具体任务项与贡献档位延后确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-RW02",
+      "name": "公会派遣奖励",
+      "status": "CONFIRMED_TARGET_AUTHORITY_DELEGATED",
+      "rule": "派遣直接发放个人代币（50/100/200/300）与品质额外奖励（三选一）；个人代币由本系统发放，额外奖励经 Drop_other 真实入账归 SYS-OUT-SU-05。派遣不产生贡献值/公会经验/集体代币。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-RW03",
+      "name": "公会补给奖励",
+      "status": "CONFIRMED_TARGET_AUTHORITY_DELEGATED",
+      "rule": "补给向资格成员逐人发相同奖励邮件（等级0~3逐级增加金币/角色经验/元晶，等级2~3另发常驻旅券×1）；奖励 Drop 入账归 SYS-OUT-SU-05，邮件投递归 SYS-OUT-SU-09。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV07"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-11-EX01",
+      "name": "公会临时版本待大改",
+      "status": "P1_CONFLICT",
+      "rule": "状态冲突登记 C-007 记录公会当前实现/经济为临时版本且计划大改；新数值多落在06_最终配置镜像，SVN源表待实施，不能把文档已确认数值当作已生效。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-EX02",
+      "name": "公会战与拍卖排除",
+      "status": "RESOLVED_BY_SCOPE_EXCLUSION",
+      "rule": "公会战本轮明确范围外，历史流程草案不进入待确认清单；公会拍卖当前版本明确不做。GuildBoss 配置族与 GuildBossIntent 代码存在但规则未纳入本轮已确认设计，按历史草案/待核处理。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-EX03",
+      "name": "公会贡献详细设计缺口",
+      "status": "P2_GAP",
+      "rule": "公会贡献的档位、资源消耗、每日次数与每日产出延后确认；当前只冻结1:1结算口径与每日1200个人代币硬上限。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-EX04",
+      "name": "公会任务具体任务项缺口",
+      "status": "P2_GAP",
+      "rule": "公会任务每日总产出已冻结为900/900，但具体任务列表、目标、单项进度与拆分方式延后设计。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-EX05",
+      "name": "GuildBoss 配置族规则未确认",
+      "status": "P1_GAP",
+      "rule": "GuildBoss 配置族（GuildBossHard/Modifier/RankReward/Task/Times）与 GuildBossIntent 代码存在，但本轮已确认设计（R-01~R-10）未覆盖其规则；不得用 GuildBoss 实现补成完整公会战案。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV06",
+        "SYS-OUT-SU-11-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-EX06",
+      "name": "补给与科技幂等",
+      "status": "P1_GAP",
+      "rule": "公会补给扣费与批量发信、个人/公会科技升级的服务端幂等与并发原子校验在客户端不可见，需服务端确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-EX07",
+      "name": "个人科技全局生效影响竞技基线",
+      "status": "P1_GAP",
+      "rule": "个人科技已确认 PvE/PVPVE/竞技全局生效，满树属性需计入玩家成长基线；后续平衡须统一把满树属性纳入，不再按玩法排除。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-11-UI01",
+      "name": "公会大厅与成员列表",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示公会信息、成员列表、职位、公告与公会聊天频道入口；客户端 Guild UI 族与 Chat 公会频道承载。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-UI02",
+      "name": "公会任务与派遣面板",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "公会任务面板展示总进度、个人贡献占比与完成奖励；派遣面板展示委托品质、时长、人数、角色占用与额外奖励预览。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-UI03",
+      "name": "公会商店",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "货架展示个人代币符号、商品价格、剩余限购与科技折扣标识；购买后刷新计数。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-UI04",
+      "name": "科技树面板",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "个人科技与公会科技分别展示横向节点布局、已升等级、前置连线、消耗与效果；即时升级无研究等待。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-11-UI05",
+      "name": "公会补给面板",
+      "status": "CONFIRMED_TARGET",
+      "rule": "展示固定消耗、当前奖励等级、周预算占比与二次确认；管理层操作保留日志。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-11-CFG01",
+      "name": "GuildLv.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildLv.xlsx",
+      "role": "公会等级 Level 0~15、MemberSize(目标30~45)、Exp(目标总计100.2万)；待实施修改",
+      "status": "WORKING_COPY_SOURCE_PENDING_IMPLEMENTATION"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG02",
+      "name": "GuildTech.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildTech.xlsx",
+      "role": "个人/公会科技 Personal/Collective 路由、节点坐标、等级成本、前置节点；不使用 ResearchHours，需补齐 EffectId/BuffId",
+      "status": "WORKING_COPY_SOURCE_PENDING_IMPLEMENTATION"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG03",
+      "name": "GuildNodeLv.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildNodeLv.xlsx",
+      "role": "科技节点等级与各级消耗/效果",
+      "status": "WORKING_COPY_SOURCE_PENDING_IMPLEMENTATION"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG04",
+      "name": "GuildComission.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildComission.xlsx",
+      "role": "30条公会派遣委托与 CommissionDiff 品质标记",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG05",
+      "name": "GuildCommissionLv.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildCommissionLv.xlsx",
+      "role": "派遣品质等级与 TaskId 候选池",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG06",
+      "name": "GuildMission.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildMission.xlsx",
+      "role": "公会任务配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG07",
+      "name": "GuildSupplies.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildSupplies.xlsx",
+      "role": "公会补给骨架（固定消耗、奖励Drop、周限、资格规则）；需扩展",
+      "status": "WORKING_COPY_SOURCE_PENDING_EXTENSION"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG08",
+      "name": "GuildAuthority.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildAuthority.xlsx",
+      "role": "公会权限定义",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG09",
+      "name": "GuildBuilding.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildBuilding.xlsx",
+      "role": "公会建筑配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG10",
+      "name": "GuildBargaining.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildBargaining.xlsx",
+      "role": "公会议价配置；Design Doc 未覆盖其规则，按待核处理",
+      "status": "WORKING_COPY_SOURCE_NOT_COVERED_BY_DESIGN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG11",
+      "name": "GuildBargainingQuota.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildBargainingQuota.xlsx",
+      "role": "公会议价配额；Design Doc 未覆盖",
+      "status": "WORKING_COPY_SOURCE_NOT_COVERED_BY_DESIGN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG12",
+      "name": "GuildAssistingQuota.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildAssistingQuota.xlsx",
+      "role": "公会协助配额；Design Doc 未覆盖",
+      "status": "WORKING_COPY_SOURCE_NOT_COVERED_BY_DESIGN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG13",
+      "name": "GuildFlag.xlsx / GuildIcon.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildFlag.xlsx",
+      "role": "公会旗帜与图标资源",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG14",
+      "name": "CommissionConditionDesc.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\CommissionConditionDesc.xlsx",
+      "role": "派遣条件描述",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-11-CFG15",
+      "name": "GuildBoss 配置族",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\GuildBoss\\GuildBossHard.xlsx",
+      "role": "公会Boss（Hard/Modifier/RankReward/Task/Times）；本轮已确认设计未覆盖，按历史草案/待核",
+      "status": "WORKING_COPY_SOURCE_NOT_COVERED_BY_DESIGN"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-11-REL01",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：GuildComission.xlsx(EV03)定义派遣奖励，GuildSupplies.xlsx(EV07)定义补给奖励，GuildSystem.lua(EV10)实现奖励发放，公会系统数值沉淀(EV02)定义经济口径。推导：公会派遣额外奖励与补给奖励经Drop_other真实Drop入账(SU-05)，本系统决定何时/为何发，真实入账归SYS-OUT-SU-05，构成 reports/outgoing 关系。推导边界：奖励配置已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：公会奖励的服务端入账幂等与派遣/补给的发放规则仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-06",
+      "targetName": "商店",
+      "description": "来源：公会系统Design Doc(EV01)定义公会商店，公会系统数值沉淀(EV02)定义个人代币定价，SYS-OUT-SU-06商店正文定义通用商店契约。推导：公会商店只共享商店契约(SU-06)(购买/限购/刷新机制)，商品口径与个人代币定价由本系统维护，构成 consumes/outgoing 关系。推导边界：公会商店配置已由工作副本确认，但通用商店契约在SU-06侧维护。UNKNOWN：公会商店的限购与个人代币消耗规则是否与通用商店一致仍待SU-06确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-REL03",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-07",
+      "targetName": "任务与章节任务",
+      "description": "来源：公会系统Design Doc(EV01)定义公会任务类型Task_TTT_GuildTask，GuildSystem.lua(EV10)实现任务驱动，SYS-OUT-SU-07任务正文定义任务事件架构。推导：公会任务类型Task_TTT_GuildTask由任务系统(SU-07)驱动，任务事件架构归SYS-OUT-SU-07，构成 consumes/incoming 关系。推导边界：公会任务配置已由工作副本确认，但任务事件架构在SU-07侧维护。UNKNOWN：公会任务的进度上报与完成判定规则是否与通用任务一致仍待SU-07确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-REL04",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "来源：公会系统Design Doc(EV01)定义公会开放门槛(等级20)，状态冲突登记C-007(EV09)记录公会状态，SYS-OUT-SU-13新手引导正文定义Unlock/SystemOpen体系。推导：公会系统开放门槛(等级20)由Unlock/SystemOpen控制(SU-13)，开放权威归SYS-OUT-SU-13，构成 unlocks/incoming 关系。推导边界：公会开放门槛已由Design Doc确认，但Unlock/SystemOpen体系在SU-13侧维护。UNKNOWN：公会开放的具体Unlock条件与C-007状态冲突的裁决仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-REL05",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-09",
+      "targetName": "邮件",
+      "description": "来源：GuildSupplies.xlsx(EV07)定义补给奖励，GuildSystem.lua(EV10)实现补给发放，SYS-OUT-SU-09邮件正文定义邮件投递。推导：公会补给向资格成员逐人发奖励邮件(SU-09)，投递归SYS-OUT-SU-09，构成 reports/outgoing 关系。推导边界：补给配置已由工作副本确认，但邮件投递规则在SU-09侧维护。UNKNOWN：公会补给的服务端发放时机与逐人投递的幂等规则仍待SU-09确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-REL06",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "CB-R03",
+      "targetName": "属性与计算",
+      "description": "来源：GuildTech.xlsx(EV05)定义个人科技属性投放，公会系统Design Doc(EV01)描述科技全局生效，公会系统数值沉淀(EV02)定义科技经济口径。推导：个人科技投放固定/百分比/二级属性并全局生效，经战斗属性计算(CB-R03)转化为战斗表现，构成 builds/outgoing 关系。推导边界：科技属性配置已由工作副本确认，但属性如何并入战斗公式乘区属推断。UNKNOWN：公会科技属性与其他养成属性的乘区归属与叠加优先级仍待战斗数值域确认。",
+      "status": "CONFIRMED_TARGET_PENDING_IMPLEMENTATION",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-REL07",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "公会三种成长资源产出/消耗、个人代币1200硬上限与商店定价受经济数值域约束。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV02"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-SU-11-REL08",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：公会系统Design Doc(EV01)定义公会产出，公会系统数值沉淀(EV02)定义产出经济口径，GuildSystem.lua(EV10)实现产出发放。推导：公会产出个人代币/集体代币/元晶/旅券等写入物品账本(SU-04)，账本身份归SYS-OUT-SU-04，构成 supplies/outgoing 关系。推导边界：产出配置已由工作副本确认，但物品账本身份在SU-04侧维护，服务端写入权威不可见。UNKNOWN：公会产出的服务端写入幂等与代币/旅券的堆叠规则仍待SU-04确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-11-EV01",
+      "kind": "reverse-design",
+      "label": "公会系统 Design Doc",
+      "path": "design/公会系统Design Doc.md",
+      "href": "../../../design/公会系统Design Doc.md",
+      "location": "元信息(Draft/最近更新2026-08-17)、背景与目标、R-01~R-10(含R-04-1~4/R-05-1/R-07-1/R-09-1~2/R-10-1~4)、技术方案、工作假设、变更记录CHG-001~037",
+      "status": "DRAFT_REVERSE_ENGINEERED_WITH_VERIFIED_CHANGES"
+    },
+    {
+      "id": "SYS-OUT-SU-11-EV02",
+      "kind": "numeric-deposit",
+      "label": "公会系统数值沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
+      "href": "file:///D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
+      "location": "公会派遣、个人科技、公会科技、商店与补给数值沉淀",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    },
+    {
+      "id": "SYS-OUT-SU-11-EV03",
+      "kind": "source-excel",
+      "label": "GuildComission.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Guild/GuildComission.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Guild/GuildComission.xlsx",
+      "location": "本机SVN工作副本；30条委托与CommissionDiff品质标记；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-11-EV04",
+      "kind": "source-excel",
+      "label": "GuildLv.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Guild/GuildLv.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Guild/GuildLv.xlsx",
+      "location": "本机SVN工作副本；Level 0~15、MemberSize、Exp；目标值待实施修改；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_PENDING_IMPLEMENTATION"
+    },
+    {
+      "id": "SYS-OUT-SU-11-EV05",
+      "kind": "source-excel",
+      "label": "GuildTech.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Guild/GuildTech.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Guild/GuildTech.xlsx",
+      "location": "本机SVN工作副本；Personal/Collective路由、节点坐标/等级成本/前置；需补齐EffectId/BuffId；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_PENDING_IMPLEMENTATION"
+    },
+    {
+      "id": "SYS-OUT-SU-11-EV06",
+      "kind": "source-excel",
+      "label": "GuildBoss 配置族",
+      "path": "D:/Vgame/Config/GameConfig/Datas/GuildBoss/GuildBossHard.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/GuildBoss/GuildBossHard.xlsx",
+      "location": "本机SVN工作副本；GuildBossHard/Modifier/RankReward/Task/Times 共5文件；本轮已确认设计未覆盖；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NOT_COVERED_BY_DESIGN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-EV07",
+      "kind": "source-excel",
+      "label": "GuildSupplies.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Guild/GuildSupplies.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Guild/GuildSupplies.xlsx",
+      "location": "本机SVN工作副本；补给骨架；需扩展固定消耗/奖励Drop/周限/资格；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_PENDING_EXTENSION"
+    },
+    {
+      "id": "SYS-OUT-SU-11-EV08",
+      "kind": "delivery-mirror",
+      "label": "06_最终配置/公会 镜像",
+      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/公会",
+      "href": "file:///D:/数值文档/数值文档/框架v2/06_最终配置/公会/",
+      "location": "GuildTech.xlsx/GuildNodeLv.xlsx/ShopGoods.xlsx/Drop_other.xlsx 等公会新数值最终配置镜像；70000007~70000018重复行##停用",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    },
+    {
+      "id": "SYS-OUT-SU-11-EV09",
+      "kind": "decision-record",
+      "label": "状态冲突登记 C-007 公会",
+      "path": "archive/legacy-output-20260824/05-status-conflict-register.md",
+      "href": "../../05-status-conflict-register.md",
+      "location": "§3 P1 状态差异 C-007：系统正式；当前实现/经济为临时版本且计划大改；Temporary，新数值与旧实现分开",
+      "status": "CONFIRMED_TARGET_PARTIAL_TEMPORARY"
+    },
+    {
+      "id": "SYS-OUT-SU-11-EV10",
+      "kind": "source-code",
+      "label": "GuildSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Guild/GuildSystem.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/GuildSystem.lua",
+      "location": "CRespCreateGuild(259)/CRespQuitGuild(346)/CRespGetGuildMemberDelegateReward(457)/ReqGuildSupplyInfo(532)/ReqBuyGuildSupply(536)/ReqStartGuildResearch(582)/CRespGuildBargain(774)/CRespGuildWishDonate(824)；2356行；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-11-Q01",
+      "priority": "P1",
+      "question": "公会当前临时版本（C-007）何时进入大改？新数值（GuildLv/GuildTech/派遣奖励）何时落地 SVN 源表并接入程序？",
+      "impact": "决定文档已确认数值何时生效；当前新旧实现须分开。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV09"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-Q02",
+      "priority": "P1",
+      "question": "GuildBoss 配置族（5文件）与 GuildBossIntent 代码对应何种公会玩法？规则是否纳入本轮范围？",
+      "impact": "GuildBoss 实现存在但本轮已确认设计未覆盖，不得用实现补成完整公会战案。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV06",
+        "SYS-OUT-SU-11-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-Q03",
+      "priority": "P2",
+      "question": "公会贡献的档位、资源消耗、每日次数与每日产出如何设计？",
+      "impact": "当前只冻结1:1结算口径与1200硬上限，贡献收入未进入个人代币基线。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-Q04",
+      "priority": "P2",
+      "question": "公会任务具体任务列表、目标、单项进度与拆分方式如何设计？",
+      "impact": "每日总产出已冻结900/900，但具体任务项延后。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-Q05",
+      "priority": "P1",
+      "question": "公会补给扣费与批量发信、科技升级的服务端幂等与并发原子校验如何保证？",
+      "impact": "决定补给不重复扣费/发奖与科技不重复扣款。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-Q06",
+      "priority": "P1",
+      "question": "个人科技满树属性全局生效后，PvE/PVPVE/竞技基线如何统一纳入平衡？",
+      "impact": "满树属性需计入玩家成长基线，不再按玩法排除。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-11-Q07",
+      "priority": "P2",
+      "question": "GuildBargaining/GuildAssistingQuota 等议价/协助配置对应何种玩法？是否纳入本轮范围？",
+      "impact": "这些配置存在但 Design Doc 未覆盖其规则。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-11-EV01",
+        "SYS-OUT-SU-11-EV10"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在贡献结算、派遣、补给、科技升级等有序流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在系统开放、创建/退出冷却、贡献/派遣/补给/科技前置等条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "公会拥有任务/贡献/派遣/补给的产生时机与三种资源结算权威；具体 Drop 内容归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在临时版本冲突、公会战/拍卖排除、贡献/任务缺口、GuildBoss未覆盖与幂等缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在公会大厅、任务派遣、商店、科技树与补给等玩家可见界面"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 15 个 Guild 配置文件 + GuildBoss 配置族作为策划配置源"
+    }
+  }
+}

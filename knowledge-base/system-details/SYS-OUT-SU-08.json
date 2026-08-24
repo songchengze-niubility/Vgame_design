@@ -1,0 +1,610 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-08",
+  "name": "签到",
+  "revision": "2026-08-18.3",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 06 最终配置镜像只读核对",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在签到配置与镜像，不证明 Production/LIVE；签到状态与领取幂等在服务端，客户端不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本或 06 镜像只读观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由 Design 与配置组织出的流程或边界，需项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补服务端证据或补发布台账。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-SU-08-R01",
+        "SYS-OUT-SU-08-C01",
+        "SYS-OUT-SU-08-C02"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-08-R05",
+        "SYS-OUT-SU-08-RW01"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-08-EX03"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "签到是 Vgame 上线初期留存与资源投放的核心管道：以每日签到、七日签到、月度累计、长期旅行累计四套独立机制，通过首周密集投放钻石、物品与票券为新玩家建立正向体验，并以多周期累计奖励驱动长期留存。",
+    "inScope": [
+      "每日签到月循环（DailySign rewardItems PropType 数组）",
+      "七日签到（SevenDaySign ActivityId + OpenDay + ItemReward，与角色创建时间绑定）",
+      "月度累计签到（MonthlyAccumulate AccumulateDay 阈值）",
+      "长期旅行累计签到（TravelAccumulate 跨月大天数阈值）",
+      "签到重置时间（每日5:00）、签到状态存储与重复签到拒绝",
+      "首周总计投放校验（≥150钻石 + ≥70角色票 + ≥20专武票）"
+    ],
+    "outOfScope": [
+      "签到奖励的真实物品入账与 rewardItems 内容；该内容归 SYS-OUT-SU-05 与签到配置源",
+      "钻石/票券/物品的资源身份与账本；该内容归 SYS-OUT-SU-04",
+      "签到投放量的经济总账；该内容归 NUM-04",
+      "签到入口的系统开放与引导；该内容归 SYS-OUT-SU-13",
+      "七日签到活动期的活动系统管理；该内容归 SYS-OUT-SU-14",
+      "补签功能（首版不做）、VIP双倍签到、限时活动签到合并"
+    ],
+    "inputs": [
+      "玩家每日首次打开签到面板或自动弹窗",
+      "签到配置（DailySign 当月循环、SevenDaySign ActivityId+OpenDay、MonthlyAccumulate 阈值、TravelAccumulate 阈值）",
+      "玩家当月已签到天数、累计签到天数、角色创建时间",
+      "七日签到活动期开关（ActivityId 有效期）"
+    ],
+    "outputs": [
+      "签到奖励（rewardItems / ItemReward）经入账",
+      "签到状态更新（已签标记、当月连续天数、累计天数）",
+      "月度累计与长期累计档位领取状态",
+      "签到日历、七日面板、累计进度与旅行路线图反馈"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "初期留存与资源投放管道（四套独立机制）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "签到作为上线初期留存与资源投放核心管道无争议；四套机制周期与领取规则不同，不可合并为同一模板。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "四套签到机制有反推 Design；首周投放目标已定义",
+      "status": "DRAFT_TARGET",
+      "note": "签到系统 Design R-01~R-05 为反推 Draft；首周≥150钻石+≥70角色票+≥20专武票目标已定义，但部分工作假设待确认（七日签到是否永久开放等）。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "DailySign/SevenDaySign/MonthlyAccumulate/TravelAccumulate/SigninText 存在；06 镜像已生成",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；5 张签到配置存在；06 最终配置/签到镜像已生成（DailySign/MonthlyAccumulate/SevenDaySign/TravelAccumulate）。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "签到链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置与客户端实现线索，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-08-F01",
+      "name": "每日签到流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-08-F01-S01",
+          "name": "打开签到面板",
+          "description": "玩家每日首次打开签到面板或自动弹窗；服务端校验当日尚未签到。"
+        },
+        {
+          "id": "SYS-OUT-SU-08-F01-S02",
+          "name": "匹配当日奖励",
+          "description": "读取 DailySign 当月循环签到表，匹配玩家当月已签到天数，发放对应 rewardItems（PropType 数组）。"
+        },
+        {
+          "id": "SYS-OUT-SU-08-F01-S03",
+          "name": "更新签到状态",
+          "description": "签到标记为已签；当月连续签到天数+1；重复签到拒绝。"
+        },
+        {
+          "id": "SYS-OUT-SU-08-F01-S04",
+          "name": "触发累计检查",
+          "description": "每日签到后遍历 MonthlyAccumulate 与 TravelAccumulate 阈值，命中且未领取则可领取。"
+        },
+        {
+          "id": "SYS-OUT-SU-08-F01-S05",
+          "name": "展示与入账",
+          "description": "签到日历当天格高亮、奖励飞入、已签日期标注✓；奖励经入账归 SYS-OUT-SU-05。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-F02",
+      "name": "七日签到流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-08-F02-S01",
+          "name": "计算OpenDay",
+          "description": "玩家首次创建角色后第N天登录，N=(now-create_time).days+1=OpenDay。"
+        },
+        {
+          "id": "SYS-OUT-SU-08-F02-S02",
+          "name": "校验活动期",
+          "description": "校验 ActivityId 对应的七日签到活动在有效期内；过期则对应奖励不可领但已领保留。"
+        },
+        {
+          "id": "SYS-OUT-SU-08-F02-S03",
+          "name": "发放或领取",
+          "description": "读取 SevenDaySign ActivityId+OpenDay 对应 ItemReward，自动发放或弹窗领取；该日签到标记完成。"
+        },
+        {
+          "id": "SYS-OUT-SU-08-F02-S04",
+          "name": "展示",
+          "description": "七日签到面板展示7格，已到达天数亮起可领，领取后打勾。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-08-R01",
+      "name": "每日签到月循环",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "每日签到按 DailySign 当月循环 rewardItems 发放；匹配玩家当月已签到天数；当月天数超过签到表条目时循环复用；重复签到拒绝；重置时间为每日5:00。",
+      "sourceFact": "签到 Design R-01 描述每日签到；DailySign.xlsx 在工作副本存在；服务端每日5:00刷新签到状态。",
+      "acceptance": "每日签到只领一次；当月循环规则明确；重复签到被拒绝。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-R02",
+      "name": "七日签到与角色创建时间绑定",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "七日签到以 (now-create_time).days+1 计算 OpenDay，与 ActivityId 绑定；读取 SevenDaySign ActivityId+OpenDay 对应 ItemReward；ActivityId 过期则对应奖励不可领但已领保留；OpenDay 跳跃（跨天未登录）按配置逐格补发或仅当日可领。",
+      "sourceFact": "签到 Design R-02 与技术方案描述七日签到；SevenDaySign.xlsx 在工作副本存在；七日签到与角色创建时间绑定。",
+      "acceptance": "OpenDay 计算以服务端时间为准；活动过期不补；跳跃规则按配置。",
+      "relatedIds": [
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-R03",
+      "name": "月度累计签到",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "当月累计签到天数达到 MonthlyAccumulate.AccumulateDay 阈值且未领取则可领取 rewardItems；跨月时重置累计天数与新月份阈值。",
+      "sourceFact": "签到 Design R-03 描述月度累计；MonthlyAccumulate.xlsx 在工作副本存在。",
+      "acceptance": "月度累计独立计数器；跨月重置；阈值档位幂等领取。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-R04",
+      "name": "长期旅行累计签到",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "总签到天数（跨月累计）达到 TravelAccumulate 配置天数阈值则可领取 rewardItems；长期累计档位标记已领取；最后一行后不再触发。",
+      "sourceFact": "签到 Design R-04 描述长期旅行累计；TravelAccumulate.xlsx 在工作副本存在；已领取阈值标记避免全表遍历。",
+      "acceptance": "长期累计跨月独立计数；大天数性能通过已领取标记控制。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-R05",
+      "name": "首周投放校验",
+      "status": "DRAFT_TARGET",
+      "targetRule": "首周总投放汇总 DailySign(前7)+SevenDaySign(全7)+MonthlyAccumulate(首月累7) 的 rewardItems，计算钻石总量+限时角色票+限时专武票，核对≥70角色票/≥20专武票/≥150钻石；配置不达标时调整对应奖励行。",
+      "sourceFact": "签到 Design R-05 描述首周总计投放校验；目标与前7天投放~70+限时角色票、~20+限时专武票一致。",
+      "acceptance": "首周投放达标；不达标时由校验脚本输出差距报告并调整。",
+      "relatedIds": [
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-R06",
+      "name": "四套机制不可合并",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "targetRule": "每日签到、七日签到、月度累计、长期旅行累计为四套独立机制，周期、计数器与领取规则各不相同，不可只按同一模板合并；补签首版不做、不设计VIP双倍、不与限时活动签到合并。",
+      "sourceFact": "签到 Design §非目标明确不处理补签、VIP双倍与限时活动签到合并；四套机制各有独立配置表与计数器。",
+      "acceptance": "四套机制独立维护周期与领取规则；不以单一模板覆盖全部。",
+      "relatedIds": [
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-08-C01",
+      "name": "每日签到资格",
+      "status": "DRAFT_TARGET",
+      "rule": "玩家每日首次打开签到面板且当日尚未签到；重置时间为每日5:00（服务端UTC+0统一计时）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-C02",
+      "name": "七日签到活动期",
+      "status": "DRAFT_TARGET",
+      "rule": "七日签到需 ActivityId 对应活动在有效期内；活动过期后对应奖励不可领但已领保留；七日签到是否永久开放待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-C03",
+      "name": "累计档位领取",
+      "status": "DRAFT_TARGET",
+      "rule": "月度累计与长期累计档位需达到对应阈值且该档未领取才可领取；跨月/跨期重置按各自规则。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV03",
+        "SYS-OUT-SU-08-EV05"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-08-RW01",
+      "name": "签到奖励入账",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "签到奖励（rewardItems/ItemReward）经真实入账发放；具体物品内容归 SYS-OUT-SU-05 与签到配置源，本系统只决定何时发何档奖励；首周投放需达≥150钻石+≥70角色票+≥20专武票。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV02",
+        "SYS-OUT-SU-08-EV04"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-08-EX01",
+      "name": "跨月签到天数计算偏移",
+      "status": "P1_GAP",
+      "rule": "跨月签到天数计算可能偏移；需以服务端UTC+0统一计时；当前未确认服务端实现。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-EX02",
+      "name": "七日签到期后未领不补",
+      "status": "P1_GAP",
+      "rule": "七日签到活动过期后玩家未领无法补领；需明确产品规则：活动过期不补；OpenDay跳跃补发规则按配置。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-EX03",
+      "name": "重复签到与领取幂等",
+      "status": "P1_GAP",
+      "rule": "重复签到需拒绝；累计档位重复领取需拒绝；服务端幂等在客户端不可见，需服务端确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-EX04",
+      "name": "rewardItems 配置错误",
+      "status": "P2_GAP",
+      "rule": "rewardItems 物品ID不存在需配置校验脚本拦截；长期签到天数极大时性能通过已领取标记控制。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-08-UI01",
+      "name": "签到日历",
+      "status": "TARGET_REQUIRED",
+      "rule": "每日签到日历展示当月已签日期、当天高亮、奖励预览与已签✓标注；当月天数超过表条目时循环复用展示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-UI02",
+      "name": "七日签到面板",
+      "status": "TARGET_REQUIRED",
+      "rule": "七日签到面板展示7格，已到达天数亮起可领，领取后打勾；展示活动期倒计时。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-UI03",
+      "name": "月度累计进度",
+      "status": "TARGET_REQUIRED",
+      "rule": "月度累计进度条标注阈值节点，达到时节点亮起可领，领取后节点点亮；跨月重置展示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-08-UI04",
+      "name": "旅行路线图",
+      "status": "TARGET_REQUIRED",
+      "rule": "长期旅行累计以旅行路线图推进，到达节点可领；展示总签到天数与下一节点。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV05"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-08-CFG01",
+      "name": "DailySign",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\DailySign.xlsx",
+      "role": "每月签到循环 rewardItems（PropType数组）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-08-CFG02",
+      "name": "SevenDaySign",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\SevenDaySign.xlsx",
+      "role": "7日签到 ActivityId+OpenDay+ItemReward",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-08-CFG03",
+      "name": "MonthlyAccumulate",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\MonthlyAccumulate.xlsx",
+      "role": "月度累计 AccumulateDay+rewardItems",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-08-CFG04",
+      "name": "TravelAccumulate",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\TravelAccumulate.xlsx",
+      "role": "长期累计天数+rewardItems",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-08-CFG05",
+      "name": "SigninText",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\SigninText.xlsx",
+      "role": "签到文案配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-08-CFG06",
+      "name": "06 最终配置/签到镜像",
+      "path": "D:\\数值文档\\数值文档\\框架v2\\06_最终配置\\签到",
+      "role": "DailySign/MonthlyAccumulate/SevenDaySign/TravelAccumulate 配置镜像",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-08-REL01",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：DailySign.xlsx(EV02)/MonthlyAccumulate.xlsx(EV03)/SevenDaySign.xlsx(EV04)/TravelAccumulate.xlsx(EV05)定义签到奖励，签到系统Design Doc(EV01)定义签到规则。推导：签到奖励经真实入账发放(SU-05)，入账权威归掉落与奖励系统，构成 reports/outgoing 关系。推导边界：签到奖励配置已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：签到奖励的服务端入账幂等与补签/漏签的入账规则仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-08-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "来源：DailySign.xlsx(EV02)等定义签到发放物品，签到系统Design Doc(EV01)定义发放规则，Items.xlsx在SU-04侧定义物品身份。推导：签到发放钻石/票券/物品，账本归物品与货币系统(SU-04)，构成 consumes/outgoing 关系。推导边界：发放配置已由工作副本确认，但物品账本身份在SU-04侧维护，服务端发放权威不可见。UNKNOWN：签到发放的服务端幂等与物品发放的原子性仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-08-REL03",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：签到系统Design Doc(EV01)定义签到投放结构，06最终配置/签到镜像(EV06)为配置镜像，知识目录定义NUM-04经济数值域职责。推导：签到投放量与首周总产出由经济数值域(NUM-04)约束与校验，构成 prices/incoming 关系。推导边界：投放配置已由工作副本与镜像确认，但投放量的具体数值与经济账占比属经济数值域维护。UNKNOWN：签到首周总产出的权威数值与在整体经济账中的占比仍待经济域核算确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-08-REL04",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "来源：签到系统Design Doc(EV01)定义签到开放需求，知识目录定义SYS-OUT-SU-13新手引导与系统开放职责。推导：签到入口的系统开放与引导由新手引导与系统开放(SU-13)管理，构成 unlocks/incoming 关系。推导边界：签到开放需求已由Design Doc确认，但解锁条件的配置在SU-13侧维护。UNKNOWN：签到各类型的具体开放条件与引导承接规则仍待SU-13确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-08-REL05",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-14",
+      "targetName": "活动、赛季与 LiveOps",
+      "description": "来源：SevenDaySign.xlsx(EV04)定义七日签到ActivityId，签到系统Design Doc(EV01)定义活动期管理，SYS-OUT-SU-14活动正文定义活动调度。推导：七日签到ActivityId活动期由活动系统(SU-14)管理，活动过期不补，构成 supplies/incoming 关系。推导边界：七日签到配置已由工作副本确认，但活动期调度规则在SU-14侧维护。UNKNOWN：七日签到活动期的具体时间窗口与过期不补的服务端规则仍待SU-14确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-08-EV01",
+      "kind": "reverse-design",
+      "label": "签到系统 Design Doc",
+      "path": "design/签到系统Design Doc.md",
+      "location": "R-01~R-05、技术方案、风险评估、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-SU-08-EV02",
+      "kind": "source-excel",
+      "label": "DailySign.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SignInReward/DailySign.xlsx",
+      "location": "本机SVN工作副本；每月签到循环rewardItems；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-08-EV03",
+      "kind": "source-excel",
+      "label": "MonthlyAccumulate.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SignInReward/MonthlyAccumulate.xlsx",
+      "location": "本机SVN工作副本；月度累计AccumulateDay+rewardItems；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-08-EV04",
+      "kind": "source-excel",
+      "label": "SevenDaySign.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SignInReward/SevenDaySign.xlsx",
+      "location": "本机SVN工作副本；7日签到ActivityId+OpenDay+ItemReward；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-08-EV05",
+      "kind": "source-excel",
+      "label": "TravelAccumulate.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SignInReward/TravelAccumulate.xlsx",
+      "location": "本机SVN工作副本；长期累计天数+rewardItems；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-08-EV06",
+      "kind": "delivery-mirror",
+      "label": "06 最终配置/签到镜像",
+      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/签到",
+      "location": "DailySign/MonthlyAccumulate/SevenDaySign/TravelAccumulate 配置镜像",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-08-Q01",
+      "priority": "P1",
+      "question": "七日签到是否为基础活动永久开放？ActivityId 过期与 OpenDay 跳跃的补发规则如何？",
+      "impact": "影响新玩家首周体验与过期奖励补领口径。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01",
+        "SYS-OUT-SU-08-EV04"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-08-Q02",
+      "priority": "P1",
+      "question": "跨月签到天数计算是否以服务端UTC+0统一计时？重复签到与累计档位领取幂等如何保证？",
+      "impact": "影响签到天数正确性与奖励发放安全。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-08-Q03",
+      "priority": "P1",
+      "question": "首周总投放是否达标≥150钻石+≥70角色票+≥20专武票？rewardItems 物品ID校验是否落地？",
+      "impact": "影响初期留存与资源投放目标。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-08-Q04",
+      "priority": "P2",
+      "question": "签到系统 Design 何时从反推 Draft 升级为正式策划口径？补签功能是否在后续版本纳入？",
+      "impact": "决定签到规则是否可冻结与补签扩展。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-08-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在每日签到流程与七日签到流程两条有序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在每日签到资格、七日签到活动期与累计档位领取条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "签到奖励经真实入账，本系统决定何时发何档奖励"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在跨月计算偏移、七日到期不补、重复领取幂等与配置错误异常"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在签到日历、七日面板、月度累计进度与旅行路线图界面责任"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在DailySign/SevenDaySign/MonthlyAccumulate/TravelAccumulate/SigninText配置源与06镜像"
+    }
+  }
+}

@@ -16,6 +16,7 @@
 | row 2 `##type` | 字段类型。 |
 | row 3 `##group` | 导出分组，例如客户端 `c`、服务端 `s`。 |
 | row 4 `##` | 策划注释。 |
+| row 5+ col 1 `##` | 数据行无效/占位标记；配置校验和引用检查应跳过该行。 |
 | row 5+ | 数据。 |
 
 ## 已确认逻辑表
@@ -82,7 +83,8 @@
 - `DropItemNumMin` / `DropItemNumMax`: 道具数量范围
 - `DropWeight`: 权重
 - `ShowItemID`: 掉落预览道具 ID 数组
-- `IsValid`: Drop 中为无效/占位字段；不要用于判断 Drop 行是否有效
+
+当前 8 个逻辑 Drop 源都没有具名 `IsValid` 字段。`Drop_dungeon.xlsx` 与 `Drop_mainlevel.xlsx` 的物理第 16 列无表头，其余 6 个源仅 15 列；不得按列序把第 16 列解释或写成 `IsValid`。Drop 有效数据行按第 1 列 `##` 占位约定识别。
 
 ## UIlevel 字段快照
 

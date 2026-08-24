@@ -1,0 +1,773 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-08",
+  "name": "爬塔",
+  "revision": "2026-08-18.4",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE。楼层结算/挂机奖励/重置/排行的服务端权威不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / DRAFT_TARGET",
+      "meaning": "目标设计或反推 Draft 口径；爬塔 Design Doc 为反推 Draft。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-08-R05",
+        "SYS-OUT-GP-08-C01"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GP-08-R04",
+        "SYS-OUT-GP-08-R06"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-08-R07",
+        "SYS-OUT-GP-08-RW01",
+        "SYS-OUT-GP-08-RW02",
+        "SYS-OUT-GP-08-RW03"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GP-08-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-GP-08-R06",
+        "SYS-OUT-GP-08-EX04"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "爬塔是 100 层渐进式纵向验证玩法：按楼层顺序推进、首通一次性奖励、周期性重置复刷与挂机奖励并行，验证单队纵向强度与装备深度，并通过挂机奖励与房车/挂机系统连接。",
+    "inScope": [
+      "爬塔入口开放、100 层推进、楼层解锁顺序与全通判定",
+      "首通一次性、周期性重置复刷、排名与挂机奖励的发放边界",
+      "楼层类型/Buff/Debuff/赛季阶段的玩法壳层引用",
+      "爬塔 Boss 层双队（dual lineup）挑战与战斗衔接",
+      "爬塔与房车/挂机（SYS-OUT-GR-09）的挂机奖励连接边界"
+    ],
+    "outOfScope": [
+      "局内战斗目标、胜负判定与战斗变体规则归 SYS-IN-06 / CB-R07",
+      "怪物与 Boss 机制归 SYS-IN-04",
+      "奖励真实入账数量与 Drop 包内容归 SYS-OUT-SU-05 与 Drop 权威源",
+      "房车/挂机养成本体归 SYS-OUT-GR-09；本系统只引用挂机奖励接口",
+      "资源身份归 SYS-OUT-SU-04；玩家等级/体力归 SYS-OUT-GR-01"
+    ],
+    "inputs": [
+      "SystemOpen(201)/Unlock(4101) 开放条件与主线关卡进度",
+      "TowerEnemyFormation 楼层编队（Floor/PackId/TpwerTextId）与 UILevel.LevelType",
+      "TowerFirstReward/TowerReward/TowerRankReward/TowerIdleRewards 奖励配置",
+      "TowerBuff/TowerDebuff/TowerLevelDebuff/TowerLevelSeasonStage/BuffCalendar 楼层修饰与赛季阶段",
+      "服务端下发的 ClimbTowerData（当前层、已通关层、挂机起始时间、挂机进度）"
+    ],
+    "outputs": [
+      "已通关最高层、当前层与全通状态",
+      "首通、周期复刷、排名与挂机奖励领取状态",
+      "向任务、排行、奖励入账与房车/挂机消费方上报的玩法事件"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "现行框架·爬塔（口径待统一）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "knowledge-model 将爬塔列为「口径待统一」；SystemOpenID.Tower=201，UIViewName=UIHeroTowerView。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "反推 Draft：100层/三类楼层系数/首通+周期+排名；TowerMode 未在源码定位",
+      "status": "DRAFT_TARGET_WITH_UNKNOWN_MODE",
+      "note": "爬塔Design Doc 为反推 Draft，声称新增 TowerMode 运行模式；源码中未定位 TowerMode，爬塔实际经 PVPIntent + LevelType_PVP_BOSS 进入战斗。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "TowerSystem 实装存在(100层/挂机/重置/赛季)；解锁主线3-10 vs current-gameplay 角色等级25",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于2026-08-18；unlock.lua 4101=UnLockType2/100310=主线3-10；current-gameplay.md 记角色等级25，二者冲突。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表与客户端系统，但楼层结算/挂机/重置/排行服务端权威不可见，无集中发布台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-08-F01",
+      "name": "爬塔推进流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-08-F01-S01",
+          "name": "校验入口开放",
+          "description": "SystemOpen(201) 经 CloseSys→ParentId→Unlock(4101)；4101=UnLockType2/主线3-10(100310)通关。"
+        },
+        {
+          "id": "SYS-OUT-GP-08-F01-S02",
+          "name": "启动挂机与获取进度",
+          "description": "OnSystemUnlock(Tower) 触发 CReqStartClimbTowerIdle；CRespNotifyLevelClimbTowerData 刷新已通关层与当前层。"
+        },
+        {
+          "id": "SYS-OUT-GP-08-F01-S03",
+          "name": "挑战下一层",
+          "description": "ChallengeNext 按 CurTowerLevelId 进入；Boss 层(LevelType_PVP_BOSS)走双队阵容(dual lineup)。"
+        },
+        {
+          "id": "SYS-OUT-GP-08-F01-S04",
+          "name": "判定胜负与推进",
+          "description": "HandleTowerFightOver 判定 isAttackerWin；Boss 双关第一关胜则进入第二关(StartSecondTowerLevelAfterHalf)。"
+        },
+        {
+          "id": "SYS-OUT-GP-08-F01-S05",
+          "name": "刷新进度与奖励",
+          "description": "RefreshTowerProgress 更新已通关/当前层/全通(IsTowerAllClear)；发放首通/周期奖励。"
+        },
+        {
+          "id": "SYS-OUT-GP-08-F01-S06",
+          "name": "领取挂机/排名奖励",
+          "description": "CReqReceiveClimbTowerIdleReward 领挂机；CReqClimbTowerLevelRank 查排名；CReqResetClimbTowerLayer 重置周期层。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-08-R01",
+      "name": "系统身份与 100 层结构",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：爬塔为 100 层渐进式纵向验证；三类楼层系数(小0.05/中0.2/大0.4)与怪物等级20→200 为 Draft 反推值，非正式规则，待正式 Design 确认（见 sourceFact）。",
+      "sourceFact": "TowerSystem.TotalLayer=100、LayerCountPerGroup=10；TowerEnemyFormation 按 Floor/PackId/TpwerTextId 组织楼层。Draft R-01/R-02 的三类系数与等级公式在所读代码中未直接对应。",
+      "acceptance": "100 层总数与楼层编队以 TowerEnemyFormation 为工作副本权威；三类系数/等级公式不得作为现行配置规则，除非正式 Design 确认。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-04",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-R02",
+      "name": "战斗模式（TowerMode 未定位）",
+      "status": "UNKNOWN_LIVE",
+      "targetRule": "GAP/UNKNOWN：Draft 技术方案声称新增 TowerMode 运行模式；源码中未定位 TowerMode，爬塔实际经 PVPIntent + LevelType_PVP_BOSS 进入战斗。运行模式口径待裁决。",
+      "sourceFact": "全工程搜索 TowerMode 无命中；TowerSystem.StartTowerLevel 用 BattleSystem:InitBattleContext('PVPIntent', levelId)；Boss 层 UILevel.LevelType==LevelType_PVP_BOSS 触发双队逻辑。",
+      "acceptance": "不得声称 TowerMode 已存在；战斗入口以 PVPIntent/LevelType_PVP_BOSS 为工作副本观察，正式模式命名待裁决。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-R03",
+      "name": "楼层解锁顺序与全通",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：楼层按顺序解锁（1→100），通关 N 层解锁 N+1 层，不可跳层；达 100 层全通（为工作副本观察，非正式规则，见 sourceFact）。",
+      "sourceFact": "RefreshTowerProgress 按 PackId/Floor/Id 计算下一层；IsTowerAllClear 在 passCfg.Floor>=TotalLayer(100) 时置真；Draft R-05 描述同顺序解锁。",
+      "acceptance": "「跳层挑战由服务端校验拒绝」无服务端证据，未验证；全通后不再生成下一层。",
+      "relatedIds": [
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-R04",
+      "name": "Boss 层双队挑战",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：Draft 未描述 Boss 层双队；现行实装 Boss 层(LevelType_PVP_BOSS)含双关卡(dual tower)，需 teamA/teamB 双阵容，第一关胜后进入第二关。",
+      "sourceFact": "GetDoubleTowerLevelIds 按 PackId/Floor 找同层 PVP_BOSS 关卡；HandleTowerFightOver 第一关胜则 StartSecondTowerLevelAfterHalf 进第二关；IsAdvancedBossDungeonFrontTeamLocked 类逻辑锁定前排。Draft 无此描述。",
+      "acceptance": "Boss 双队以 TowerEnemyFormation + UILevel.LevelType 为工作副本权威；双队阵容规则待正式 Design 确认。",
+      "relatedIds": [
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-R05",
+      "name": "入口开放条件",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "targetRule": "GAP：current-gameplay.md 记爬塔 unlock=角色等级25；现行 SystemOpen(201)→Unlock(4101) 为主线3-10通关。开放口径待确认。",
+      "sourceFact": "systemopen.lua [201] UnlockId=4101；unlock.lua [4101] UnLockType=2,UnLockParams={100310}=主线3-10。current-gameplay.md 记角色等级25（未刷新到工作副本链）。Draft R-05 未明确开放等级。",
+      "acceptance": "入口开放以 SystemOpen(201)/Unlock(4101)/主线3-10 为工作副本权威；角色等级25 旧口径不再作为现行事实。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-GP-01",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV08",
+        "SYS-OUT-GP-08-EV09",
+        "SYS-OUT-GP-08-EV10",
+        "SYS-OUT-GP-08-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-R06",
+      "name": "周期性重置与挂机奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：Draft R-04 描述后期楼层周期性刷新复刷；现行实装支持按层重置(CReqResetClimbTowerLayer)与挂机奖励(TowerIdleRewards)，挂机与房车/挂机系统连接。重置/挂机口径待正式 Design 确认。",
+      "sourceFact": "CReqResetClimbTowerLayer(layer) 重置层；OnSystemUnlock(Tower)→StartClimbTowerIdle 启动挂机；OnIdleRewardTick 按 TowerIdleRewards(LayerLimitMin/Max, IdleRewards/Num/Time) 累计，上限 TowerIdleRewardsTimeMax。Draft R-04 仅描述周期刷新，未提挂机。",
+      "acceptance": "重置与挂机以 TowerReward/TowerIdleRewards/globals_conf 为工作副本权威；挂机奖励本体与房车/挂机系统关系归 SYS-OUT-GR-09。",
+      "relatedIds": [
+        "SYS-OUT-GR-09",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV11",
+        "SYS-OUT-GP-08-EV12",
+        "SYS-OUT-GP-08-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-R07",
+      "name": "奖励分层与发放边界",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：本系统决定「何时/为何发」：首通一次性、周期复刷、排名与挂机奖励；该分层为工作副本配置观察，无正式设计口径；具体发什么/发多少回 SYS-OUT-SU-05 与 Drop 权威源。",
+      "sourceFact": "TowerFirstReward 首通、TowerReward 周期、TowerRankReward 排名、TowerIdleRewards 挂机；CReqReceiveClimbTowerIdleReward 领挂机(UIUtil.ShowReward)。",
+      "acceptance": "首通幂等（每层仅一次）；周期重置后可复刷；具体数量不在本正文维护。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV11",
+        "SYS-OUT-GP-08-EV14",
+        "SYS-OUT-GP-08-EV15"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-08-C01",
+      "name": "入口开放（SystemOpen/Unlock）",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "rule": "SystemOpen(201) 经 CloseSys→ParentId→Unlock(4101)；4101=UnLockType2/主线3-10(100310)通关；与 current-gameplay 角色等级25 冲突。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV08",
+        "SYS-OUT-GP-08-EV09",
+        "SYS-OUT-GP-08-EV10",
+        "SYS-OUT-GP-08-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-C02",
+      "name": "楼层解锁顺序",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "楼层按 Floor 顺序解锁，通关 N 解锁 N+1；Boss 层需双队阵容。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-C03",
+      "name": "挂机奖励上限",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "挂机累计时间上限 MaxIdleSeconds=TowerIdleRewardsTimeMax*60*60；按当前层落在 TowerIdleRewards LayerLimitMin/Max 区间计发。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV13"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-08-RW01",
+      "name": "首通一次性奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "TowerFirstReward 定义每层首通奖励；首通幂等，每层仅一次。具体数量回 Drop 权威源。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV14"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-RW02",
+      "name": "周期复刷奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "TowerReward 定义周期重置后复刷奖励；CReqResetClimbTowerLayer 重置指定层后可再次挑战领取。Draft R-04 描述周期刷新。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-RW03",
+      "name": "排名与挂机奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "TowerRankReward 按最高层+通关速度排名发奖；TowerIdleRewards 按当前层挂机累计发奖，受 TowerIdleRewardsTimeMax 上限约束。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV11",
+        "SYS-OUT-GP-08-EV13"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-08-EX01",
+      "name": "TowerMode 未在源码定位",
+      "status": "P1_CONFLICT",
+      "rule": "Draft 声称新增 TowerMode，源码未定位；爬塔经 PVPIntent + LevelType_PVP_BOSS 进入战斗。不得假装 TowerMode 已存在。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-EX02",
+      "name": "入口口径冲突（主线3-10 vs 角色等级25）",
+      "status": "P1_CONFLICT",
+      "rule": "现行 SystemOpen(201)/Unlock(4101)=主线3-10，current-gameplay.md 记角色等级25；二者需统一并回写 current-gameplay。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV02",
+        "SYS-OUT-GP-08-EV09",
+        "SYS-OUT-GP-08-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-EX03",
+      "name": "Draft 与实装结构差异",
+      "status": "P2_CONFLICT",
+      "rule": "Draft 三类楼层系数/等级公式/60天全通未在所读代码直接对应；实装含挂机/赛季阶段/Boss 双队等 Draft 未描述内容。结构口径需正式 Design 裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-EX04",
+      "name": "失败/断线/重置幂等缺口",
+      "status": "P1_GAP",
+      "rule": "失败是否扣成本、断线恢复、周期重置与挂机奖励发放幂等无正式客户端可见口径。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV05"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-08-UI01",
+      "name": "爬塔主界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIHeroTowerView 展示楼层列表/地图、当前层、已通关标记与挑战入口；楼层按类型区分显示。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV16"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-08-UI02",
+      "name": "挂机与结算",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UITowerIdleDetailView/TowerIdleRewardItem 展示挂机奖励累计与领取；UITowerRewardView/UIClimbTowerDoneView 展示首通/周期结算；UITowerHalf 展示 Boss 双关过渡。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV16"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-08-CFG01",
+      "name": "TowerEnemyFormation",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerEnemyFormation.xlsx",
+      "role": "楼层编队（Floor/PackId/TpwerTextId/Id）与 Boss 双关组织",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-CFG02",
+      "name": "TowerFirstReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerFirstReward.xlsx",
+      "role": "每层首通一次性奖励",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-CFG03",
+      "name": "TowerReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerReward.xlsx",
+      "role": "周期重置后复刷奖励",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-CFG04",
+      "name": "TowerRankReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerRankReward.xlsx",
+      "role": "排名奖励档位",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-CFG05",
+      "name": "TowerIdleRewards",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerIdleRewards.xlsx",
+      "role": "按楼层区间的挂机奖励（LayerLimitMin/Max, IdleRewards/Num/Time）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-CFG06",
+      "name": "TowerLevelSeasonStage",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerLevelSeasonStage.xlsx",
+      "role": "赛季阶段配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-CFG07",
+      "name": "TowerBuff/TowerDebuff/TowerLevelDebuff",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerBuff.xlsx",
+      "role": "楼层 Buff/Debuff 修饰",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-CFG08",
+      "name": "TowerFall/TowerBossAvatar/TowerText/BuffCalendar",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerFall.xlsx",
+      "role": "失败、Boss 头像、文本与 Buff 日历辅助配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-CFG09",
+      "name": "SystemOpen/Unlock",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx",
+      "role": "入口开放：SystemOpen(201)→Unlock(4101)=主线3-10",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-08-REL01",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "SystemOpen(201)/Unlock(4101) 以主线3-10通关为条件开放爬塔入口。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV08",
+        "SYS-OUT-GP-08-EV09",
+        "SYS-OUT-GP-08-EV10"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-08-REL02",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "选定楼层后经 PVPIntent/LevelType_PVP_BOSS 进入战斗实例。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV07"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-08-REL03",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-09",
+      "targetName": "房车",
+      "description": "爬塔挂机奖励(TowerIdleRewards)与房车/挂机系统连接，挂机本体归 GR-09。",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV11",
+        "SYS-OUT-GP-08-EV12",
+        "SYS-OUT-GP-08-EV14"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-08-REL04",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：TowerFirstReward.xlsx(EV14)定义首通奖励，TowerReward.xlsx(EV12)定义常规奖励，TowerRankReward.xlsx(EV15)定义排名奖励，TowerIdleRewards.xlsx(EV11)定义挂机奖励，爬塔Design Doc(EV01)定义奖励结构。推导：爬塔首通/周期/排名/挂机奖励通过DropId真实入账(SU-05)，构成 reports/outgoing 关系。推导边界：奖励配置已由工作副本确认，但真实入账权威在SU-05侧维护，本正文不复制入账规则。UNKNOWN：爬塔奖励的服务端入账幂等与挂机奖励的发放节奏仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-08-REL05",
+      "type": "validates",
+      "direction": "outgoing",
+      "targetId": "PF-04",
+      "targetName": "多玩法验证",
+      "description": "爬塔验证单队纵向强度与装备深度。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV15"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-08-REL06",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "来源：爬塔Design Doc(EV01)定义楼层难度递增，TowerEnemyFormation.xlsx(EV06)定义敌人配置，current-gameplay快照(EV02)描述爬塔难度。推导：爬塔楼层难度曲线需用DPS/生存模型(NUM-03)验收，构成 balances/incoming 关系。推导边界：难度配置已由工作副本确认，但难度曲线与DPS/生存模型的对应关系属战斗数值域维护，本正文不复制模型。UNKNOWN：爬塔各楼层对应的目标DPS/生存数值与难度递增系数仍待战斗数值域确认。",
+      "status": "MODEL_NOT_CLOSED",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-08-EV01",
+      "kind": "reverse-design",
+      "label": "爬塔 Design Doc",
+      "path": "design/爬塔Design Doc.md",
+      "location": "R-01～R-07、工作假设；状态 Draft/MEDIUM 风险；技术方案声称 TowerMode",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV02",
+      "kind": "decision-record",
+      "label": "current-gameplay 快照",
+      "path": "D:/Vgame_design/skills/vgame-core-understanding/references/current-gameplay.md",
+      "location": "爬塔 unlock=角色等级25, season 14天（未刷新到工作副本链）",
+      "status": "CROSS_SOURCE_SNAPSHOT_STALE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV05",
+      "kind": "source-code",
+      "label": "TowerSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/TowerSystem.lua",
+      "location": "TotalLayer=100、进度/双队/挂机/重置/排名全流程",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV06",
+      "kind": "source-excel",
+      "label": "TowerEnemyFormation.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/TowerTrial/TowerEnemyFormation.xlsx",
+      "location": "Floor/PackId/TpwerTextId/Id；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV07",
+      "kind": "source-code",
+      "label": "LevelTypeEnum.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Common/Runtime/Config/Generated/LevelTypeEnum.cs",
+      "location": "LevelType_PVP_BOSS 等；无 TowerMode 枚举",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV08",
+      "kind": "source-excel",
+      "label": "SystemOpen.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "location": "[201] Tower, UnlockId=4101, CloseSys=false；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV09",
+      "kind": "source-excel",
+      "label": "Unlock.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/unlock/Unlock.xlsx",
+      "location": "[4101] UnLockType=2, UnLockParams={100310}=主线3-10；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV10",
+      "kind": "source-code",
+      "label": "unlock.lua/systemopen.lua 镜像",
+      "path": "D:/Vgame/HorizonFlyProject/LuaConfig/unlock.lua",
+      "location": "[4101] UnLockType=2/UnLockParams={100310}；systemopen.lua [201] UnlockId=4101",
+      "status": "WORKING_COPY_MIRROR"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV11",
+      "kind": "source-excel",
+      "label": "TowerIdleRewards.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/TowerTrial/TowerIdleRewards.xlsx",
+      "location": "LayerLimitMin/Max, IdleRewards/IdleRewardsNum/IdleRewardsTime；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV12",
+      "kind": "source-excel",
+      "label": "TowerReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/TowerTrial/TowerReward.xlsx",
+      "location": "周期复刷奖励；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV13",
+      "kind": "source-excel",
+      "label": "globals_conf.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/globals_conf/globals_conf.xlsx",
+      "location": "TowerIdleRewardsTimeMax；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV14",
+      "kind": "source-excel",
+      "label": "TowerFirstReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/TowerTrial/TowerFirstReward.xlsx",
+      "location": "每层首通奖励；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV15",
+      "kind": "source-excel",
+      "label": "TowerRankReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/TowerTrial/TowerRankReward.xlsx",
+      "location": "排名奖励档位；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-08-EV16",
+      "kind": "source-code",
+      "label": "ClimbTower UI 集合",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/Level/ClimbTower/UIHeroTowerView.lua",
+      "location": "主界面/挂机/结算/Boss 双关 UI 集合",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-08-Q01",
+      "priority": "P1",
+      "question": "Draft 声称的 TowerMode 是否应新增，还是正式确认以 PVPIntent/LevelType_PVP_BOSS 为爬塔战斗入口？",
+      "impact": "决定战斗模式命名与局内规则归属。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV07"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-08-Q02",
+      "priority": "P1",
+      "question": "爬塔入口以主线3-10还是角色等级25为正式口径？current-gameplay 是否回写？",
+      "impact": "影响入口开放节奏与新手流程。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV02",
+        "SYS-OUT-GP-08-EV09",
+        "SYS-OUT-GP-08-EV10"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-08-Q03",
+      "priority": "P1",
+      "question": "Draft 三类楼层系数(0.05/0.2/0.4)与怪物等级20→200是否为现行口径？",
+      "impact": "决定难度曲线与数值验收基准。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV06"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-08-Q04",
+      "priority": "P2",
+      "question": "爬塔挂机奖励与房车/挂机系统(SYS-OUT-GR-09)的职责边界如何划分？",
+      "impact": "避免挂机奖励双权威或断链。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV05",
+        "SYS-OUT-GP-08-EV11",
+        "SYS-OUT-GP-08-EV13"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-08-Q05",
+      "priority": "P1",
+      "question": "失败扣费、断线恢复、周期重置与挂机发放幂等的服务端口径为何？",
+      "impact": "影响资源安全与重复奖励防护。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-08-EV01",
+        "SYS-OUT-GP-08-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在入口→挂机启动→挑战→结算→领奖的有序玩家流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在入口开放、楼层解锁顺序与挂机上限条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "本系统拥有首通/周期/排名/挂机奖励发放边界"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在 TowerMode 未定位、入口口径冲突、结构差异与幂等缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在主界面、挂机与结算 UI"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 TowerTrial 玩法配置与 SystemOpen/Unlock 开放配置"
+    }
+  }
+}

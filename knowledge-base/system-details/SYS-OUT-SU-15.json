@@ -1,0 +1,605 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-15",
+  "name": "月卡、礼包与付费商品",
+  "revision": "2026-08-18.3",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 客户端 Lua 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在月卡配置与客户端实现线索，不证明 Production/LIVE。月卡发布状态未确认；礼包缺独立 Design；PayProduct 直购归商店权威 SYS-OUT-SU-06。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径；月卡有 Draft Design，礼包为 GAP。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（Excel 或客户端 Lua），不代表 Production/LIVE，也不代表正式策划规则。"
+    },
+    {
+      "prefix": "GAP",
+      "meaning": "已确认该职责适用，但策划规则、Design 资产或台账缺失；不得从实现反推补造规则。"
+    },
+    {
+      "prefix": "UNKNOWN",
+      "meaning": "现有证据不足以判断是否适用或当前状态；LIVE 必须有版本与实机证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-SU-15-R01",
+        "SYS-OUT-SU-15-R06"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-15-R01",
+        "SYS-OUT-SU-15-R02",
+        "SYS-OUT-SU-15-R03"
+      ]
+    },
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-SU-15-R04"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "月卡、礼包与付费商品系统承载付费内容的产品定义、购买凭证、每日发放与有效期管理，是商业化与经济供给之间的付费投放层。月卡按自然日扣天并每日发放；礼包与付费商品按 PayProduct 直购定义价格与凭证，经商店系统对外售卖。",
+    "inScope": [
+      "月卡产品定义、购买凭证、有效期与每日发放",
+      "月卡首购奖励与每日奖励的发布（经 Drop 入账）",
+      "月卡体力上限提升（PowerLimitUP）的配置消费（体力权威归 GR-01）",
+      "礼包与付费商品的产品定义与价格（PayProduct），售卖交由 SYS-OUT-SU-06",
+      "续购上限、有效期叠加与补发策略的规则声明"
+    ],
+    "outOfScope": [
+      "商店货架陈列、货币兑换与限时商店；售卖权威归 SYS-OUT-SU-06",
+      "奖励 Drop 包具体内容与数量；归 SYS-OUT-SU-05",
+      "玩家等级、体力上限与体力恢复；归 SYS-OUT-GR-01",
+      "付费下单与发货回调的具体支付通道实现；归支付平台与 SYS-OUT-SU-06",
+      "活动限时时装/礼包的窗口调度；归 SYS-OUT-SU-14"
+    ],
+    "inputs": [
+      "MonthCard.xlsx（月卡产品定义、价格、PayProductId、首购/每日奖励、PowerLimitUP）",
+      "PayProducts.xlsx（付费商品/直购产品定义与价格）",
+      "月卡 Design Doc（Draft/HIGH）",
+      "商店 Design Doc（PayProduct 直购部分，Draft/HIGH）"
+    ],
+    "outputs": [
+      "月卡购买凭证与有效期",
+      "月卡每日奖励发放事件（交由 SYS-OUT-SU-05 入账）",
+      "月卡体力上限提升配置（消费方为 GR-01）",
+      "礼包/付费商品的产品定义（售卖交由 SYS-OUT-SU-06）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式外循环付费投放层（月卡/礼包/付费商品）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "月卡与商店付费在项目总 Skill 中列为正式外循环商业化内容；outer-domain-audit §4.5 确认月卡有 Draft Design 与配置。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "PARTIAL — 月卡有 Draft Design，礼包缺独立 Design",
+      "status": "DRAFT_TARGET_PARTIAL",
+      "note": "月卡 Design Doc Draft/HIGH 有 R-01~R-06 规则；商店 Design Doc Draft/HIGH 有 PayProduct 直购规则。礼包（gift packs）缺独立 Design Doc，为 GAP。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "MonthCard.xlsx + PayProducts.xlsx + MonthCardSystem 实现存在",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；MonthCard.xlsx 与 PayProducts.xlsx 存在；客户端 MonthCardData.lua + MonthCardSystem.lua 实现存在；RechargeShop UI 族存在。实现存在不证明正式规则或当期发布。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "月卡发布状态未确认，缺集中台账",
+      "status": "UNKNOWN_LIVE_NO_REGISTRY",
+      "note": "05-status-conflict-register C-003/G-003 记录缺集中版本/开关/回滚登记；月卡有配置与客户端实现但无集中发布台账，不能确认 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-15-F01",
+      "name": "月卡购买与每日发放流程（Design + 实现观察）",
+      "status": "DRAFT_AND_WORKING_COPY_OBSERVED",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-15-F01-S01",
+          "name": "购买月卡",
+          "description": "玩家通过商店购买月卡，生成购买凭证与有效期（MonthCardSystem 购买实现线索；售卖归 SYS-OUT-SU-06）。"
+        },
+        {
+          "id": "SYS-OUT-SU-15-F01-S02",
+          "name": "发放首购奖励",
+          "description": "首购立即发放首购奖励（firstReward 经 Drop 入账归 SYS-OUT-SU-05）。"
+        },
+        {
+          "id": "SYS-OUT-SU-15-F01-S03",
+          "name": "每日发放",
+          "description": "每个自然日 5:00 扣天并发放每日奖励（dailyReward 经 Drop 入账归 SYS-OUT-SU-05）。"
+        },
+        {
+          "id": "SYS-OUT-SU-15-F01-S04",
+          "name": "到期结束",
+          "description": "有效期天数耗尽，月卡结束；体力上限提升失效。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-F02",
+      "name": "礼包/付费商品购买流程（职责声明）",
+      "status": "WORKING_COPY_OBSERVED_AUTHORITY_DELEGATED",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-15-F02-S01",
+          "name": "选择商品",
+          "description": "玩家在商店选择礼包/付费商品（售卖归 SYS-OUT-SU-06）。"
+        },
+        {
+          "id": "SYS-OUT-SU-15-F02-S02",
+          "name": "支付下单",
+          "description": "按 PayProduct 价格支付下单（支付通道归支付平台与 SYS-OUT-SU-06）。"
+        },
+        {
+          "id": "SYS-OUT-SU-15-F02-S03",
+          "name": "发货回调",
+          "description": "支付回调发货（奖励归 SYS-OUT-SU-05，售卖归 SYS-OUT-SU-06）。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-15-R01",
+      "name": "月卡产品定义",
+      "status": "DRAFT_AND_WORKING_COPY_OBSERVED",
+      "targetRule": "月卡产品由 MonthCard.xlsx 定义，含 Price/PayProductId/firstReward/dailyReward/PowerLimitUP；月卡有 Draft Design（R-01）。",
+      "sourceFact": "月卡 Design Doc Draft/HIGH R-01 定义月卡产品结构；MonthCard.xlsx 存在且 Test-Path 通过；MonthCardData.lua 承载月卡数据。",
+      "acceptance": "月卡产品定义以 MonthCard.xlsx 与 Design R-01 为准。",
+      "relatedIds": [
+        "SYS-OUT-SU-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV01",
+        "SYS-OUT-SU-15-EV03",
+        "SYS-OUT-SU-15-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-R02",
+      "name": "月卡自然日扣天与每日发放",
+      "status": "DRAFT_AND_WORKING_COPY_OBSERVED",
+      "targetRule": "月卡按自然日 5:00 扣天，每日发放 dailyReward；Design R-02。",
+      "sourceFact": "月卡 Design Doc Draft/HIGH R-02 定义自然日 5:00 扣天；MonthCardSystem.lua 提供每日发放实现线索。",
+      "acceptance": "月卡扣天与每日发放按 Design R-02 与 MonthCardSystem 实现确认。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV03",
+        "SYS-OUT-SU-15-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-R03",
+      "name": "月卡首购奖励",
+      "status": "DRAFT_AND_WORKING_COPY_AUTHORITY_DELEGATED",
+      "targetRule": "月卡首购立即发放 firstReward；Design R-03。真实入账归 SYS-OUT-SU-05。",
+      "sourceFact": "月卡 Design Doc Draft/HIGH R-03 定义首购奖励；MonthCard.xlsx 承载 firstReward 配置；真实 Drop 入账归 SYS-OUT-SU-05。",
+      "acceptance": "首购奖励时机归本系统，真实入账归 SYS-OUT-SU-05。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV01",
+        "SYS-OUT-SU-15-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-R04",
+      "name": "月卡体力上限提升",
+      "status": "DRAFT_AND_WORKING_COPY_AUTHORITY_DELEGATED",
+      "targetRule": "月卡激活期间体力上限提升 PowerLimitUP；Design R-04。体力上限与恢复权威归 SYS-OUT-GR-01。",
+      "sourceFact": "月卡 Design Doc Draft/HIGH R-04 定义 PowerLimitUP；MonthCard.xlsx 承载 PowerLimitUP 配置；体力上限与恢复归 SYS-OUT-GR-01。",
+      "acceptance": "PowerLimitUP 配置归本系统，体力上限与恢复规则归 SYS-OUT-GR-01。",
+      "relatedIds": [
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV01",
+        "SYS-OUT-SU-15-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-R05",
+      "name": "续购上限与有效期叠加",
+      "status": "DRAFT_TARGET_NEEDS_CONFIRMATION",
+      "targetRule": "续购上限 90 天待确认；Design R-05 标记待确认。续购如何叠加有效期（累加 vs 封顶）待确认。",
+      "sourceFact": "月卡 Design Doc Draft/HIGH R-05 记录续购上限 90 天待确认；有效期叠加规则未确认。",
+      "acceptance": "续购上限与叠加规则需 Design 确认后方可称 canonical。",
+      "relatedIds": [],
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-R06",
+      "name": "礼包与付费商品产品定义",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：礼包缺独立 Design Doc，产品定义规则未确认。PayProduct 直购产品由 PayProducts.xlsx 定义，售卖归 SYS-OUT-SU-06。",
+      "sourceFact": "PayProducts.xlsx 存在；商店 Design Doc Draft/HIGH 有 PayProduct 直购规则（R-x）；仓库无独立礼包 Design Doc。outer-domain-audit §4.5 确认商店有 Draft Design。",
+      "acceptance": "礼包产品定义需独立 Design 确认；PayProduct 售卖归 SYS-OUT-SU-06。",
+      "relatedIds": [
+        "SYS-OUT-SU-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV02",
+        "SYS-OUT-SU-15-EV04"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-15-C01",
+      "name": "月卡有效期",
+      "status": "DRAFT_AND_WORKING_COPY_OBSERVED",
+      "rule": "月卡有效期按自然日 5:00 扣天；天数耗尽则月卡结束。Design R-02。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV03",
+        "SYS-OUT-SU-15-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-C02",
+      "name": "月卡激活状态",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "月卡激活期间享受每日奖励与体力上限提升；到期失效。MonthCardSystem 提供激活状态实现线索。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-C03",
+      "name": "付费商品可购条件",
+      "status": "WORKING_COPY_OBSERVED_AUTHORITY_DELEGATED",
+      "rule": "礼包/付费商品可购条件（限购、等级、时间）由 PayProduct 与商店定义；售卖权威归 SYS-OUT-SU-06。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV02",
+        "SYS-OUT-SU-15-EV04"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-15-RW01",
+      "name": "月卡首购奖励",
+      "status": "DRAFT_AND_WORKING_COPY_AUTHORITY_DELEGATED",
+      "rule": "月卡首购立即发放 firstReward；真实入账归 SYS-OUT-SU-05。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV01",
+        "SYS-OUT-SU-15-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-RW02",
+      "name": "月卡每日奖励",
+      "status": "DRAFT_AND_WORKING_COPY_AUTHORITY_DELEGATED",
+      "rule": "月卡每日发放 dailyReward；真实入账归 SYS-OUT-SU-05。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV01",
+        "SYS-OUT-SU-15-EV03",
+        "SYS-OUT-SU-15-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-RW03",
+      "name": "礼包/付费商品奖励",
+      "status": "WORKING_COPY_OBSERVED_AUTHORITY_DELEGATED",
+      "rule": "礼包/付费商品奖励经支付回调发货；真实入账归 SYS-OUT-SU-05，产品定义归本系统，售卖归 SYS-OUT-SU-06。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV02",
+        "SYS-OUT-SU-15-EV04"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-15-EX01",
+      "name": "月卡续购上限 90 天待确认",
+      "status": "P2_GAP",
+      "rule": "月卡 Design Doc Draft/HIGH R-05 记录续购上限 90 天待确认；续购有效期叠加规则（累加 vs 封顶）待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-EX02",
+      "name": "礼包缺独立 Design Doc",
+      "status": "P1_GAP",
+      "rule": "仓库无独立礼包 Design Doc（outer-domain-audit §5）；礼包产品定义、限购、叠加与时效规则未在独立 Design 中确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-EX03",
+      "name": "月卡发布状态未确认",
+      "status": "P1_GAP",
+      "rule": "月卡有配置与客户端实现但无集中发布台账（C-003/G-003），不能确认 LIVE。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-EX04",
+      "name": "月卡补发策略未确认",
+      "status": "P2_GAP",
+      "rule": "月卡每日奖励在玩家未登录当日的补发策略（补发 vs 丢弃）未在 Design 中确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV03"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-15-UI01",
+      "name": "月卡面板",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示月卡购买入口、剩余天数、每日奖励与体力上限提升；客户端 MonthCard UI 承载。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-UI02",
+      "name": "充值商店",
+      "status": "WORKING_COPY_OBSERVED_AUTHORITY_DELEGATED",
+      "rule": "展示礼包/付费商品列表与价格；售卖 UI 归 SYS-OUT-SU-06（RechargeShop UI 族）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-15-UI03",
+      "name": "月卡每日领取反馈",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "每日发放时提供领取反馈与红点提示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV05"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-15-CFG01",
+      "name": "MonthCard.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\MonthCard\\MonthCard.xlsx",
+      "role": "月卡产品定义：Price/PayProductId/firstReward/dailyReward/PowerLimitUP",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-15-CFG02",
+      "name": "PayProducts.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Pay\\PayProducts.xlsx",
+      "role": "付费商品/直购产品定义与价格；售卖归 SYS-OUT-SU-06",
+      "status": "WORKING_COPY_SOURCE_AUTHORITY_SHARED"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-15-REL01",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：MonthCard.xlsx(EV01)定义月卡奖励，PayProducts.xlsx(EV02)定义礼包奖励，MonthCardSystem.lua(EV05)实现奖励发放，月卡系统Design Doc(EV03)定义奖励规则。推导：月卡首购/每日奖励与礼包奖励经Drop真实入账(SU-05)，本系统决定何时/为何发，真实入账归SYS-OUT-SU-05，构成 reports/outgoing 关系。推导边界：奖励配置已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：月卡/礼包奖励的服务端入账幂等与每日奖励的发放节奏仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-15-REL02",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家基础数值",
+      "description": "来源：MonthCard.xlsx(EV01)定义月卡PowerLimitUP配置，月卡系统Design Doc(EV03)描述体力上限提升，SYS-OUT-GR-01玩家等级正文定义体力上限与恢复规则。推导：月卡PowerLimitUP提供体力上限提升配置，体力上限与恢复规则归SYS-OUT-GR-01，构成 supplies/outgoing 关系。推导边界：月卡PowerLimitUP配置已由工作副本确认，但体力上限与恢复规则在GR-01侧维护。UNKNOWN：PowerLimitUP的体力上限提升量与服务端生效规则仍待GR-01确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-15-REL03",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-06",
+      "targetName": "商店",
+      "description": "来源：PayProducts.xlsx(EV02)定义付费商品，商店系统Design Doc(EV04)定义PayProduct直购框架，SYS-OUT-SU-06商店正文定义货架与售卖规则。推导：月卡与礼包/付费商品通过商店(SU-06)售卖，货架、货币与直购售卖权威归SYS-OUT-SU-06，构成 builds/outgoing 关系。推导边界：付费商品配置已由工作副本确认，但货架与售卖规则在SU-06侧维护。UNKNOWN：月卡/礼包在商店中的上架规则与直购售卖的服务端回调仍待SU-06确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-15-REL04",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-14",
+      "targetName": "活动、赛季与 LiveOps",
+      "description": "来源：PayProducts.xlsx(EV02)定义限时礼包产品，outer-domain-audit商业化/月卡(EV07)定义特惠窗口调度，SYS-OUT-SU-14活动正文定义时间窗口调度。推导：限时礼包/特惠窗口调度归SYS-OUT-SU-14，本系统只提供产品定义，构成 consumes/outgoing 关系。推导边界：限时礼包产品配置已由工作副本确认，但特惠窗口调度规则在SU-14侧维护。UNKNOWN：限时礼包的调度时间窗口与服务端上架/下架规则仍待SU-14确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-15-REL05",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：MonthCard.xlsx(EV01)/PayProducts.xlsx(EV02)定义月卡与礼包供给，月卡系统Design Doc(EV03)定义供给结构，outer-domain-audit商业化/月卡(EV07)定义经济口径。推导：月卡/礼包供给进入经济账(NUM-04)，具体数量归数值/Drop权威源，构成 balances/incoming 关系。推导边界：供给配置已由工作副本确认，但供给量在经济账中的占比属经济数值域维护。UNKNOWN：月卡/礼包供给在整体经济账中的占比与付费用户的经济影响仍待经济域核算确认。",
+      "status": "KNOWLEDGE_CURRENT_WITH_GAP",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-15-EV01",
+      "kind": "source-excel",
+      "label": "MonthCard.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/MonthCard/MonthCard.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/MonthCard/MonthCard.xlsx",
+      "location": "本机SVN工作副本；月卡产品定义；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-15-EV02",
+      "kind": "source-excel",
+      "label": "PayProducts.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Pay/PayProducts.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Pay/PayProducts.xlsx",
+      "location": "本机SVN工作副本；付费商品定义；核对 2026-08-18；售卖归 SYS-OUT-SU-06",
+      "status": "WORKING_COPY_SOURCE_AUTHORITY_SHARED"
+    },
+    {
+      "id": "SYS-OUT-SU-15-EV03",
+      "kind": "reverse-design",
+      "label": "月卡系统 Design Doc",
+      "path": "design/月卡系统Design Doc.md",
+      "href": "file:///D:/Vgame_design/design/月卡系统Design Doc.md",
+      "location": "Draft/HIGH；R-01~R-06；自然日5:00扣天；续购上限90天待确认",
+      "status": "DRAFT_TARGET"
+    },
+    {
+      "id": "SYS-OUT-SU-15-EV04",
+      "kind": "reverse-design",
+      "label": "商店系统 Design Doc（PayProduct 直购）",
+      "path": "design/商店系统Design Doc.md",
+      "href": "file:///D:/Vgame_design/design/商店系统Design Doc.md",
+      "location": "Draft/HIGH；R-01~R-07；PayProduct 直购；多货币；限时商店归活动系统",
+      "status": "DRAFT_TARGET"
+    },
+    {
+      "id": "SYS-OUT-SU-15-EV05",
+      "kind": "source-code",
+      "label": "MonthCardSystem.lua + MonthCardData.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/MonthCard/MonthCardSystem.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/MonthCardSystem.lua",
+      "location": "MonthCardData 承载月卡数据；MonthCardSystem 承载购买/每日发放/激活状态实现；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-15-EV06",
+      "kind": "decision-record",
+      "label": "状态冲突登记 C-003/G-003",
+      "path": "archive/legacy-output-20260824/05-status-conflict-register.md",
+      "href": "../../05-status-conflict-register.md",
+      "location": "§2 P0 C-003 功能是否LIVE、§5 G-003 版本/活动/AB/灰度/Hotfix台账缺失",
+      "status": "CONFIRMED_GAP"
+    },
+    {
+      "id": "SYS-OUT-SU-15-EV07",
+      "kind": "knowledge-ref",
+      "label": "outer-domain-audit 商业化/月卡",
+      "path": "archive/legacy-output-20260824/research/outer-domain-audit.md",
+      "href": "../../research/outer-domain-audit.md",
+      "location": "§4.5 月卡/商店/付费确认；§5 缺 Design 清单",
+      "status": "CONFIRMED_GAP"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-15-Q01",
+      "priority": "P1",
+      "question": "月卡是否已 LIVE？当前是否有集中发布台账记录月卡上线版本与时间？",
+      "impact": "无台账则无法确认月卡 LIVE 状态（C-003/G-003）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV06"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-15-Q02",
+      "priority": "P1",
+      "question": "是否立项独立礼包 Design Doc？礼包产品定义、限购、叠加与时效规则如何定义？",
+      "impact": "礼包缺独立 Design 导致产品定义规则未确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV04",
+        "SYS-OUT-SU-15-EV07"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-15-Q03",
+      "priority": "P2",
+      "question": "月卡续购上限是否为 90 天？续购如何叠加有效期（累加 vs 封顶）？",
+      "impact": "决定月卡可持续购买周期与有效期管理。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV03"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-15-Q04",
+      "priority": "P2",
+      "question": "月卡每日奖励在玩家未登录当日是否补发？补发策略是什么？",
+      "impact": "决定月卡供给完整性与玩家体验。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-15-Q05",
+      "priority": "P2",
+      "question": "PayProduct 与 MonthCard 的 PayProductId 映射与支付通道如何对接？",
+      "impact": "决定付费下单与发货回调的准确性。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-15-EV01",
+        "SYS-OUT-SU-15-EV02",
+        "SYS-OUT-SU-15-EV04"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在月卡购买每日发放与礼包购买流程（月卡为 Draft+实现观察，礼包为职责声明）"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在月卡有效期、激活状态与付费商品可购条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "月卡首购/每日奖励与礼包奖励有结算时机权威；具体 Drop 内容归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在续购上限待确认、礼包缺Design、月卡发布未确认与补发策略未确认等缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在月卡面板、充值商店与每日领取反馈等玩家可见界面"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 MonthCard.xlsx 与 PayProducts.xlsx 两个配置源"
+    }
+  }
+}

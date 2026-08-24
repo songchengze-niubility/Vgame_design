@@ -1,0 +1,6 @@
+interface:
+  display_name: "Vgame 项目知识路由"
+  short_description: "自动选择最小相关系统、共享契约与证据知识包"
+  default_prompt: "使用 $vgame-knowledge-router 自动判断问题深度并加载最小相关 Vgame 知识包。"
+policy:
+  allow_implicit_invocation: true

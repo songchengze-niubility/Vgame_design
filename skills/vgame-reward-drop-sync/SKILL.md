@@ -53,7 +53,7 @@ Drop_dungeon.xlsx 中 Col 2(ID)、Col 3(DropId)、Col 6(DropId2) 含有公式：
 **必须遵守：**
 1. **绝不写入 Col 2/3/6** — 这些列由公式自动维护
 2. **绝不插入或删除行** — ROW() 会自动调整，但其他相对引用可能错位
-3. **只写入 Col 7 起的纯数据列** — DropType(7), DropMinNum(8), DropMaxNum(9), DropItem_id(11), DropItemNumMin(12), DropItemNumMax(13), DropWeight(14), ShowItemID(15), IsValid(16)
+3. **只写入已具名且确认安全的纯数据列** — DropType(7), DropMinNum(8), DropMaxNum(9), DropItem_id(11), DropItemNumMin(12), DropItemNumMax(13), DropWeight(14), ShowItemID(15)。Col 10 是注释列；当前 Drop 源没有具名 `IsValid`，`Drop_dungeon`/`Drop_mainlevel` 的 Col 16 无表头，绝不写入或解释为 `IsValid`
 4. **写入前用 `data_only=False` 打开** — 保留所有公式原样
 5. **需要新增 Drop 行时** → 不自动执行，输出手动操作指令：
    - 告知用户在哪一行后插入几行

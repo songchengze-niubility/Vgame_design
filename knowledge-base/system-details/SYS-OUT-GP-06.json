@@ -1,0 +1,787 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-06",
+  "name": "无限挑战",
+  "revision": "2026-08-18.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE。运行时服务端结算/周结算/记录持久化不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / DRAFT_TARGET",
+      "meaning": "目标设计或反推 Draft 口径，不代表已配置或已上线；本系统 Design Doc 为反推 Draft。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua/C#），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-06-R05",
+        "SYS-OUT-GP-06-C01",
+        "SYS-OUT-GP-06-C02"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GP-06-R04",
+        "SYS-OUT-GP-06-R06"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-06-R07",
+        "SYS-OUT-GP-06-RW01",
+        "SYS-OUT-GP-06-RW02"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GP-06-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-GP-06-R06",
+        "SYS-OUT-GP-06-EX02"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "无限挑战是 Vgame 的长线耐久验证玩法：玩家在难度分层中逐层推进、积累最高积分，通过词条/词缀制造赛季差异，以历史最高积分里程碑与每周排名奖励形成长期追求，验证账号综合深度与环境适配能力。",
+    "inScope": [
+      "无限挑战的入口开放、难度选择、层级推进与积分/记录",
+      "词条/词缀系统的开放门槛、选取与战斗规则注入边界",
+      "历史最高积分里程碑奖励与每周排名奖励的发放边界",
+      "每周任务、周结算与排行展示的玩法壳层职责",
+      "无限挑战与 BOSS无限挑战（LevelType_InfiniteChallenges=22）的边界区分"
+    ],
+    "outOfScope": [
+      "局内战斗目标、胜负判定与战斗变体规则归 SYS-IN-06 / CB-R07",
+      "怪物与 Boss 机制（属性三层叠加、阶段、AI）归 SYS-IN-04",
+      "奖励真实入账数量与 Drop 包内容归 SYS-OUT-SU-05 与数值/Drop 权威源",
+      "资源身份（积分代币、门票）归 SYS-OUT-SU-04",
+      "玩家等级/体力归 SYS-OUT-GR-01",
+      "BOSS无限挑战（Draft）的独立规则不得并入本系统"
+    ],
+    "inputs": [
+      "SystemOpen(211)/Unlock(4111) 开放条件与主线关卡进度",
+      "NR_Difficult/NR_Layer/NR_LevelPool 难度与层级配置",
+      "NR_Modifier/NR_ModifierSchedule 词条配置与本周词缀排程",
+      "NR_HighestScoreReward/NR_RankReward 里程碑与排名奖励档位",
+      "服务端下发的 neuralInfo（当前难度、最高积分、词条状态、已领奖励）"
+    ],
+    "outputs": [
+      "玩家当前难度、层级推进与历史最高积分",
+      "里程碑积分奖励领取状态与每周排名快照",
+      "向任务、排行、奖励入账消费方上报的玩法事件"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "现行框架·无限挑战（实装为 NeuralRoaming/神经漫游）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "knowledge-model 与 12-战斗外系统将无限挑战列为现行框架；工作副本中其实现为 NeuralRoaming（神经漫游），Enums.SystemOpenID.NeuralRoaming=211 注释为「无限挑战（神经漫游）」。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "仅有反推 Draft；与实装存在结构差异",
+      "status": "DRAFT_TARGET_WITH_IMPLEMENTATION_DRIFT",
+      "note": "无限挑战Design Doc 为反推 Draft：描述 Normal→Elite→Boss 循环、波次深度、等级公式 27+1000*(n-1)/((n-1)+38) cap500、按最佳深度周结。实装为难度分层+层级+词条+最高积分，结构与口径均不同。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "NeuralRoaming 实装存在（SystemOpen211/Unlock4111/LevelType_Neural_Roam）；Draft 解锁写2-10 vs 现行3-15",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于2026-08-18；unlock.lua 中 4111=UnLockType2/UnLockParams{100315}=主线3-15，与 Draft Design Doc R-05 的 2-10 口径漂移。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表、客户端系统与战斗模式代码，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-06-F01",
+      "name": "无限挑战进入与推进流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-06-F01-S01",
+          "name": "校验入口开放",
+          "description": "SystemOpen(211) 经 CloseSys→ParentId→Unlock(4111) 判定；4111 为 UnLockType2/主线3-15 通关。"
+        },
+        {
+          "id": "SYS-OUT-GP-06-F01-S02",
+          "name": "选择本周难度",
+          "description": "玩家在 NR_Difficult 提供的难度中选择本周难度（CReqSelectNeuralRoamingDifficulty），难度受 UnlockList 条件限制。"
+        },
+        {
+          "id": "SYS-OUT-GP-06-F01-S03",
+          "name": "进入战斗或继续上局",
+          "description": "CReqNeuralRoamingChallenge(startFromBeginning) 从头开始，或 CReqNeuralRoamingContinueChallenge 续上一局；经 NeuralRoamIntent 进入战斗。"
+        },
+        {
+          "id": "SYS-OUT-GP-06-F01-S04",
+          "name": "逐层推进与积分累积",
+          "description": "按 NR_LevelPool/NRLayer 层级推进，结算积分；层级到达上限判定本局结束（CheckIsMaxLayer）。"
+        },
+        {
+          "id": "SYS-OUT-GP-06-F01-S05",
+          "name": "结算与记录",
+          "description": "CReqNeuralRoamingSettlement 结算，更新 HighestScoreEver；刷新纪录触发反馈。"
+        },
+        {
+          "id": "SYS-OUT-GP-06-F01-S06",
+          "name": "领取里程碑/排名奖励",
+          "description": "CReqReceiveNeuralRoamingHighestScoreReward 领取积分里程碑奖励；周结算时按 NR_RankReward 匹配排名档位。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-06-R01",
+      "name": "系统身份与实装映射",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "无限挑战是长线耐久验证玩法，验证账号综合深度与环境适配；现行实装为 NeuralRoaming（神经漫游）。",
+      "sourceFact": "Enums.SystemOpenID.NeuralRoaming=211 注释「无限挑战（神经漫游）」；NeuralSystem.lua、NeuralMode.cs、LevelType_Neural_Roam 与 NR_* 表构成实装；globals_conf 含 InfinityChallengePercentageRankThreshold/InfinityChallengeWeeklyTaskID 等以 InfinityChallenge 命名的键。",
+      "acceptance": "正文以 NeuralRoaming 实装为现行框架；不得把 BOSS无限挑战（LevelType_InfiniteChallenges=22）并入。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-04",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV03",
+        "SYS-OUT-GP-06-EV04",
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV09",
+        "SYS-OUT-GP-06-EV17"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-R02",
+      "name": "难度分层与层级推进",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：Draft Design Doc 描述 Normal→Elite→Boss 三波循环与等级公式；现行实装为难度分层+层级推进，无三波循环。难度与层级结构的目标口径待正式 Design 确认。",
+      "sourceFact": "NR_Difficult 提供多难度，每难度带 UnlockList 条件；NR_LevelPool 按难度计数层级（GetMaxLayer）；NRLayer 按 Difficult/Layer 组织；NeuralSystem.CheckIsMaxLayer 判定本局到达该难度最大层。Draft Design Doc R-01/R-02 的三波循环与等级公式在实装中未直接对应。",
+      "acceptance": "难度数量、每难度层级数、层级解锁顺序以 NR_* 表为工作副本权威；三波循环与等级公式不得作为现行规则写入配置或 UI。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV06",
+        "SYS-OUT-GP-06-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-R03",
+      "name": "词条/词缀系统",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：Draft Design Doc 未描述词条/词缀；现行实装以词条注入战斗规则，制造周差异。词条规则的目标口径待正式 Design 确认。",
+      "sourceFact": "NR_Modifier 定义词条，NR_ModifierSchedule 按 AvyId 排程本周词条组（GetCurModifierScheduleCfg）；词条功能需 HighestScoreEver >= globals_conf.NeuralRoamEnableModifierLimitScore 解锁（IsModifierUnlocked）；玩家在权重上限内自选词条（GetCurModifierInfo/UpdateNeuralRoamModifiers）。",
+      "acceptance": "词条开放门槛、本周排程与权重上限以 NR_Modifier*/globals_conf 为工作副本权威；词条战斗效果归 SYS-IN-06。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV08",
+        "SYS-OUT-GP-06-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-R04",
+      "name": "最高积分记录（非最佳深度）",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "targetRule": "GAP：Draft Design Doc R-03 以「最佳深度（最大波次数）」为核心指标；现行实装以「历史最高积分 HighestScoreEver」为核心指标。指标口径的目标裁决待正式 Design 确认。",
+      "sourceFact": "NeuralSystem 以 neuralInfo.HighestScoreEver 为核心记录；NR_HighestScoreReward 按 Score 档位发奖；Draft Design Doc R-03 描述 best_depth（波次数）并命名 player_infinite_best_depth。二者指标语义不同。",
+      "acceptance": "现行记录以 HighestScoreEver 为准；不得在 UI/任务中把积分误标为波次深度，除非正式 Design 统一口径。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-IN-08"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-R05",
+      "name": "入口开放条件",
+      "status": "WORKING_COPY_OBSERVED_DRAFT_CONFLICT",
+      "targetRule": "GAP：Draft Design Doc R-05 写解锁条件为主线2-10通关；现行工作副本 SystemOpen(211)→Unlock(4111) 为主线3-15通关。开放口径的目标裁决待确认。",
+      "sourceFact": "systemopen.lua [211] UnlockId=4111；unlock.lua [4111] UnLockType=2,UnLockParams={100315}=主线3-15。current-gameplay.md（refreshed 2026-08-17）亦记主线3-15。Draft Design Doc R-05 写2-10。",
+      "acceptance": "入口开放以 SystemOpen(211)/Unlock(4111)/主线3-15 为工作副本权威；2-10 旧口径不再作为现行事实。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV02",
+        "SYS-OUT-GP-06-EV10",
+        "SYS-OUT-GP-06-EV11",
+        "SYS-OUT-GP-06-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-R06",
+      "name": "失败、退出与续战",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：Draft Design Doc R-06/R-07 提波次间不恢复、入场无消耗、主动退出以当前深度记录；现行实装支持续上一局，但失败扣费、断线恢复与幂等无正式口径。",
+      "sourceFact": "NeuralSystem 提供 CReqNeuralRoamingContinueChallenge 续战、CRespUpdateNeuralRoamChallengeInfoError 暂停并退出战斗；入场消耗/体力是否扣除在客户端不可见。Draft 的「无入场消耗」「波次间不恢复」待确认。",
+      "acceptance": "续战、断线退出与重复结算需有服务端幂等口径；未确认前不得声称免费无限入场。",
+      "relatedIds": [
+        "SYS-IN-01",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-R07",
+      "name": "奖励分层与发放边界",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：尚无权威目标设计冻结「奖励分层与发放边界」的正式策划口径；Draft Design Doc R-04 描述的是按本周最佳深度周结+邮件发放，与现行「积分里程碑手动领取+周排名」口径不同；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。",
+      "sourceFact": "NR_HighestScoreReward 按 Difficult/Score 档位配 DropId，CReqReceiveNeuralRoamingHighestScoreReward 手动领取，ReceivedRewardList 记录已领；NR_RankReward 按排名/百分比（InfinityChallengePercentageRankThreshold）配 DropId，周结算发放。Draft Design Doc R-04 为按最佳深度周结+邮件，未见任何已确认设计描述现行里程碑/排名结构。",
+      "acceptance": "里程碑领取幂等（已领不再发）；排名奖励只读快照；具体发什么/发多少回 SYS-OUT-SU-05 与数值/Drop 权威源；正式口径裁决（Q01）后更新本条 targetRule。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV09",
+        "SYS-OUT-GP-06-EV15",
+        "SYS-OUT-GP-06-EV16"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-06-C01",
+      "name": "入口开放（SystemOpen/Unlock）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "SystemOpen(211) 经 CloseSys→ParentId→Unlock(4111)；4111=UnLockType2/主线3-15(100315)通关。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV10",
+        "SYS-OUT-GP-06-EV11",
+        "SYS-OUT-GP-06-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-C02",
+      "name": "难度解锁条件",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "每个 NR_Difficult 带 UnlockList（lockIds），由 ConditionSystem.GetIsUnLock 逐条判定；未满足则该难度锁定。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-C03",
+      "name": "词条解锁门槛",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "词条功能需 HighestScoreEver >= globals_conf.NeuralRoamEnableModifierLimitScore 才解锁（IsModifierUnlocked）。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV09"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-06-RW01",
+      "name": "历史最高积分里程碑奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "NR_HighestScoreReward 按难度/Score 档位配 DropId；玩家达到积分且未领取时可手动领取（CReqReceiveNeuralRoamingHighestScoreReward），ReceivedRewardList 幂等。具体数量回 Drop 权威源。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV09",
+        "SYS-OUT-GP-06-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-RW02",
+      "name": "每周排名奖励",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "NR_RankReward 按排名档位配 DropId；当 TotalPlayersNum >= InfinityChallengePercentageRankThreshold 时改用百分比排名（RankPer）。周结算发放，只读快照。Draft Design Doc R-04 描述按最佳深度周结+邮件，与现行积分排名口径不同。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV09",
+        "SYS-OUT-GP-06-EV16"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-06-EX01",
+      "name": "Draft 解锁口径漂移（2-10 vs 3-15）",
+      "status": "P1_CONFLICT",
+      "rule": "Draft Design Doc R-05 写解锁主线2-10，现行 SystemOpen(211)/Unlock(4111) 为主线3-15；二者必须统一，正文以工作副本3-15为现行事实。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV10",
+        "SYS-OUT-GP-06-EV11",
+        "SYS-OUT-GP-06-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-EX02",
+      "name": "Draft 与实装结构/指标漂移",
+      "status": "P1_CONFLICT",
+      "rule": "Draft 描述三波循环+最佳深度+等级公式；实装为难度分层+层级+词条+最高积分。Draft 为反推稿，不得作为现行配置/UI 规则；结构口径需正式 Design 裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV06",
+        "SYS-OUT-GP-06-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-EX03",
+      "name": "BOSS无限挑战边界",
+      "status": "P2_CONFLICT",
+      "rule": "LevelType_InfiniteChallenges=22 在代码中标注「BOSS无限挑战」，属独立 Draft（current-gameplay.md 列为 Draft），不得并入本系统；命名易与无限挑战混淆。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV03",
+        "SYS-OUT-GP-06-EV04",
+        "SYS-OUT-GP-06-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-EX04",
+      "name": "失败/断线/幂等缺口",
+      "status": "P1_GAP",
+      "rule": "入场是否扣成本、断线恢复、重复结算防护与补发无正式口径；客户端只观察到续战与错误退出。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV05"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-06-UI01",
+      "name": "无限挑战主界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UINeuralRoamingMainView 展示当前难度、最高积分、本周词条与入口；词条解锁前隐藏选取区。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV14"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-06-UI02",
+      "name": "难度选择与结算",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UINeuralRoamingSelectDifficultView 选难度；UINeuralRoamingEndView/UINeuralRoamingSettlementView 展示本局结算与周结算；UINRScoreRewardView 展示里程碑奖励领取。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV14"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-06-CFG01",
+      "name": "NR_Difficult",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_Difficult.xlsx",
+      "role": "难度定义、难度解锁条件 UnlockList",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-CFG02",
+      "name": "NR_Layer",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_Layer.xlsx",
+      "role": "按难度组织的层级定义（Difficult/Layer）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-CFG03",
+      "name": "NR_LevelPool",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_LevelPool.xlsx",
+      "role": "按难度的关卡池，决定每难度最大层级",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-CFG04",
+      "name": "NR_Modifier",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_Modifier.xlsx",
+      "role": "词条定义与效果",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-CFG05",
+      "name": "NR_ModifierSchedule",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_ModifierSchedule.xlsx",
+      "role": "按活动排程本周词条组与权重上限",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-CFG06",
+      "name": "NR_HighestScoreReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_HighestScoreReward.xlsx",
+      "role": "历史最高积分里程碑奖励档位（Difficult/Score/DropId）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-CFG07",
+      "name": "NR_RankReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_RankReward.xlsx",
+      "role": "每周排名奖励档位（Rank/RankPer/DropId）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-CFG08",
+      "name": "NR_StartProgress",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_StartProgress.xlsx",
+      "role": "起始进度配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-CFG09",
+      "name": "SystemOpen/Unlock",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx",
+      "role": "入口开放：SystemOpen(211)→Unlock(4111)=主线3-15",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-06-REL01",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "SystemOpen(211)/Unlock(4111) 以主线3-15通关为条件开放无限挑战入口。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV10",
+        "SYS-OUT-GP-06-EV11",
+        "SYS-OUT-GP-06-EV12"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-06-REL02",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "选定难度与词条后把层级、词缀与战斗目标交给战斗实例。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-06-REL03",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "里程碑与排名奖励通过 DropId 真实入账。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV15",
+        "SYS-OUT-GP-06-EV16"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-06-REL04",
+      "type": "validates",
+      "direction": "outgoing",
+      "targetId": "PF-04",
+      "targetName": "多玩法验证",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。无限挑战验证长线耐久与账号综合深度（知识框架 §2.2 对该系统的定位）。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV17"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-06-REL05",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "层级难度与词条需用 DPS/TTK/生存模型验收。推导边界：数值框架尚未建立无限挑战专属沉淀（03_沉淀MD 无对应文件），本关系由 NUM-03 战斗数值域职责与本系统难度/词条强度需求合成，尚无已验收模型。",
+      "status": "MODEL_NOT_CLOSED",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-06-REL06",
+      "type": "conflicts-with",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GP-10",
+      "targetName": "BOSS 挑战",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。LevelType_InfiniteChallenges=22 标注「BOSS无限挑战」属独立 Draft，与无限挑战命名重叠但不得合并。",
+      "status": "P2_NAMING_OVERLAP",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV02",
+        "SYS-OUT-GP-06-EV04",
+        "SYS-OUT-GP-06-EV13"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-06-EV01",
+      "kind": "reverse-design",
+      "label": "无限挑战 Design Doc",
+      "path": "design/无限挑战Design Doc.md",
+      "location": "R-01～R-07、工作假设；状态 Draft/反推整理",
+      "status": "DRAFT_REVERSE_ENGINEERED_WITH_DRIFT"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV02",
+      "kind": "decision-record",
+      "label": "current-gameplay 快照",
+      "path": "D:/Vgame_design/skills/vgame-core-understanding/references/current-gameplay.md",
+      "location": "无限挑战 unlock=主线3-15（refreshed 2026-08-17）；BOSS无限挑战列为 Draft",
+      "status": "CROSS_SOURCE_SNAPSHOT"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV03",
+      "kind": "source-code",
+      "label": "Enums.lua SystemOpenID/LevelType",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Const/Enums.lua",
+      "location": "SystemOpenID.NeuralRoaming=211 注释「无限挑战（神经漫游）」；NeuralRoaming=211",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV04",
+      "kind": "source-code",
+      "label": "LevelTypeEnum.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Common/Runtime/Config/Generated/LevelTypeEnum.cs",
+      "location": "LevelType_InfiniteChallenges=22 标注「BOSS无限挑战」",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV05",
+      "kind": "source-code",
+      "label": "NeuralSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/NeuralSystem.lua",
+      "location": "难度/层级/词条/最高积分/里程碑/排名/续战/结算全流程",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV06",
+      "kind": "source-excel",
+      "label": "NR_Difficult.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/neural_roam/NR_Difficult.xlsx",
+      "location": "本机SVN工作副本；难度与 UnlockList；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV07",
+      "kind": "source-excel",
+      "label": "NR_LevelPool.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/neural_roam/NR_LevelPool.xlsx",
+      "location": "本机SVN工作副本；按难度的关卡池；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV08",
+      "kind": "source-excel",
+      "label": "NR_ModifierSchedule.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/neural_roam/NR_ModifierSchedule.xlsx",
+      "location": "本机SVN工作副本；本周词条排程与权重上限；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV09",
+      "kind": "source-excel",
+      "label": "globals_conf.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/globals_conf/globals_conf.xlsx",
+      "location": "NeuralRoamEnableModifierLimitScore、InfinityChallengePercentageRankThreshold、InfinityChallengeWeeklyTaskID；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV10",
+      "kind": "source-excel",
+      "label": "SystemOpen.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "location": "[211] NeuralRoaming, UnlockId=4111, CloseSys=false；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV11",
+      "kind": "source-excel",
+      "label": "Unlock.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/unlock/Unlock.xlsx",
+      "location": "[4111] UnLockType=2, UnLockParams={100315}=主线3-15；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV12",
+      "kind": "source-code",
+      "label": "unlock.lua/systemopen.lua 镜像",
+      "path": "D:/Vgame/HorizonFlyProject/LuaConfig/unlock.lua",
+      "location": "[4111] UnLockType=2/UnLockParams={100315}；systemopen.lua [211] UnlockId=4111",
+      "status": "WORKING_COPY_MIRROR"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV13",
+      "kind": "source-code",
+      "label": "ExcelDataDefine.lua LevelType",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Framework/ExcelData/Generated/ExcelDataDefine.lua",
+      "location": "LevelType_InfiniteChallenges 注释「BOSS无限挑战」、LevelType_Neural_Roam",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV14",
+      "kind": "source-code",
+      "label": "NeuralRoaming UI",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/NeuralRoaming/UINeuralRoamingMainView.lua",
+      "location": "主界面/难度选择/结算/里程碑奖励 UI 集合",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV15",
+      "kind": "source-excel",
+      "label": "NR_HighestScoreReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/neural_roam/NR_HighestScoreReward.xlsx",
+      "location": "本机SVN工作副本；按 Difficult/Score 档位配 DropId；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV16",
+      "kind": "source-excel",
+      "label": "NR_RankReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/neural_roam/NR_RankReward.xlsx",
+      "location": "本机SVN工作副本；按 Rank/RankPer 配 DropId；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-06-EV17",
+      "kind": "knowledge-ref",
+      "label": "12-战斗外系统",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "location": "§2.2 无限挑战行（现行框架定位与「长线耐久和账号综合深度」验证意图；行内结构描述仍为 Draft 波次口径）",
+      "status": "KNOWLEDGE_CURRENT_WITH_DRAFT_DRIFT"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-06-Q01",
+      "priority": "P1",
+      "question": "无限挑战正式 Design 应采用 Draft 的三波循环+最佳深度，还是现行的难度分层+最高积分？",
+      "impact": "决定层级结构、记录指标、UI 文案与任务/排行口径。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV05",
+        "SYS-OUT-GP-06-EV06"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-06-Q02",
+      "priority": "P1",
+      "question": "Draft 解锁2-10与现行3-15以哪个为正式口径？是否回写 Design Doc？",
+      "impact": "影响入口开放节奏与新手流程。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV11",
+        "SYS-OUT-GP-06-EV12"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-06-Q03",
+      "priority": "P1",
+      "question": "入场是否扣成本/体力，断线与重复结算如何幂等？",
+      "impact": "影响资源安全与玩家体验。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV01",
+        "SYS-OUT-GP-06-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-06-Q04",
+      "priority": "P2",
+      "question": "BOSS无限挑战（LevelType_InfiniteChallenges=22）与无限挑战的命名重叠如何消除？",
+      "impact": "避免系统命名与检索混淆。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-06-EV04",
+        "SYS-OUT-GP-06-EV13"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在入口→选难度→推进→结算→领奖的有序玩家流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在入口开放、难度解锁与词条解锁条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "本系统拥有里程碑与排名奖励的发放边界"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在解锁口径漂移、结构漂移、BOSS无限挑战边界与失败幂等缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在主界面、难度选择、结算与里程碑奖励 UI"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 NR_* 玩法配置与 SystemOpen/Unlock 开放配置"
+    }
+  }
+}

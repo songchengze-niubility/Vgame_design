@@ -1,0 +1,1124 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GR-07",
+  "name": "映射装备",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本（只读）+ 多版数值文档 + 客户端 Lua 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在 SpecialEquipment 配置族、Eqpt 配置族与客户端 MappingEquip 实现，不证明 Production/LIVE；洗练/超限/制作/合成的服务端权威不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径（07-03 数值文档为当前权威，06-19 Design Doc 与 07-02 草案部分被取代）。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（SpecialEquipment/Eqpt 配置或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多版文档+配置+代码归纳出的流程或边界，需主策确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据；多版数值文档权威性不同。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-GR-07-R05",
+        "SYS-OUT-GR-07-R06",
+        "SYS-OUT-GR-07-R07",
+        "SYS-OUT-GR-07-R08"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GR-07-R02"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "映射装备（MappingEquip/主角装备/Endgame装备）是终局随机深度养成线：通过8槽位固定主属性、5档品质、重度随机副属性、孔位镶嵌宝石、洗练定向优化、合成/制作/分解回收与超限突破，为终局玩家提供数月级的差异化属性与流派构筑追求。 最新设计源 CHG-015 将 30 层首通展示拆为物品 4373–4402，但不改写真实 Drop 入账链。",
+    "inScope": [
+      "8槽位（武器/头部/护甲/手套/腰带/鞋子/装置/饰品）装备装配与主属性固定分配",
+      "5档品质（绿/蓝/紫/金/红）、品质系数与掉落固定等级档（5级一档，5-60）",
+      "副属性重度随机、词条池/权重、红装4条副属性+专属技能效果与10类副属性",
+      "孔位系统与宝石镶嵌（SpecialEquipmentGem/PartFun/HoleMax/HoleMin）",
+      "洗练（红装副属性重随机+锁词条）、合成（9合1/8档）、制作（精准制作/8档）、分解（金币+红装高级材料）",
+      "超限（Transcend）生成阶段概率突破",
+      "映射装备主副属性与宝石加成到战斗属性的转化入口"
+    ],
+    "outOfScope": [
+      "映射装备副本（30层/钥匙/宝箱掉落/制作材料独立掉落）的玩法规则；该内容归 SYS-OUT-GP-05",
+      "映射装备副本首通/通关奖励与 Drop 数量；该内容归 SYS-OUT-SU-05",
+      "装备/宝箱/制作材料/钥匙/洗练石/高级材料作为物品的身份与堆叠；该内容归 SYS-OUT-SU-04",
+      "词缀/技能效果在局内的具体 Buff/技能实现；该内容归 SYS-IN-03",
+      "战斗属性最终聚合与公式；该内容归 CB-R03/NUM-03",
+      "具体数值曲线（品质系数、等级倍率、合成/制作/分解/洗练消耗、宝箱概率）；该内容归 NUM-02/NUM-04 与 07-03 数值文档"
+    ],
+    "inputs": [
+      "装备实例（Part/Quality/EquipLv/MainAttr/SubAttrs/Sockets/Transcend，由副本宝箱/合成/制作产出）",
+      "宝石/铭文（SpecialEquipmentGem，由宝石合成/掉落产出）",
+      "洗练石/锁定符/装备高级材料（红装分解产出）与金币",
+      "制作材料（武器/防具/首饰胚料×8档）与金币",
+      "SpecialEquipment/Quality/Main/Effect/EffectDrop/Generate/Gem/SubAttrCoef/LvLimit 配置"
+    ],
+    "outputs": [
+      "8槽位装备绑定与主副属性生效",
+      "宝石镶嵌加成与孔位状态",
+      "洗练后副属性（保留旧或替换新）",
+      "合成/制作产出的新装备与分解回收产出（金币/高级材料）",
+      "供战斗属性聚合与 Buff 系统消费的装备属性与词缀效果"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "终局随机深度养成线（8槽位Endgame装备）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "映射装备作为终局随机深度与差异化属性追求在知识库总览、多版数值文档与客户端 MappingEquipSystem 中身份一致；与旅券（GR-06）是平行装备线。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "07-03 数值文档为当前权威：5品质/掉落固定等级/5档宝箱/8档合成制作/红装洗练；06-19 Design Doc 与 07-02 草案部分被取代",
+      "status": "DRAFT_TARGET_MULTI_VERSION_CONFLICT",
+      "note": "存在三版设计文档权威性不同：07-03 数值文档（含至 2026-08-17 变更）为当前权威 Draft；07-02 草案已被 07-03 取代；06-19 Design Doc 的4品质/经验升级等结构口径被07-03覆盖，但8槽位/孔位/洗练/超限结构概念仍有效。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "SpecialEquipment族13表 + Eqpt族6表 ConfigReady；客户端 MappingEquipSystem/UI 全套实装；2026-08-13 副属性变更已同步SVN",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；SpecialEquipmentLvUp（旧经验升级）仍物理存在与07-03'装备不再经验升级'冲突；Eqpt族（Star/Ascend/Lv）与映射装备关系未确认；客户端洗练/超限消费方未在 MappingEquipSystem 中观察到。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "客户端主链路实装；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在完整配置与客户端实现证据，但缺集中版本—开关—发布时间台账，且服务端权威与超限/洗练运行链路不可见，不能盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-I=并行有效",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在装配/合成/制作/分解/洗练/镶嵌多条有序操作序列"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在槽位解锁等级、品质-等级限制、合成/制作档位角色等级门槛、洗练开放品质与背包空位条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "映射装备养成只消耗资源转化为属性/装备，不发放奖励；装备产出与副本奖励归 SYS-OUT-GP-05/SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在多版数值冲突、旧经验升级表残留、Eqpt族关系未确认、洗练/超限运行链路不可见等边界"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在完整 MappingEquip UI 套件（背包/合成/制作/分解/镶嵌/方案/替换/套装提示/宝石/宝箱）"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 SpecialEquipment族13表 + Eqpt族6表 共19个策划配置源"
+    }
+  },
+  "flows": [
+    {
+      "id": "SYS-OUT-GR-07-F01",
+      "name": "装备装配流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-07-F01-S01",
+          "name": "选择槽位与装备",
+          "description": "玩家在映射装备界面选择8槽位之一，从背包映射装备列表选择目标装备。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F01-S02",
+          "name": "校验装配资格",
+          "description": "校验玩家等级≥槽位解锁阈值、装备品质-等级匹配、装备未锁定/未标记材料（见 SYS-OUT-GR-07-C01）。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F01-S03",
+          "name": "装配绑定",
+          "description": "旧装备退回背包，新装备绑定至槽位；装备操作免费；主属性固定生效。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F01-S04",
+          "name": "属性刷新",
+          "description": "主副属性+宝石加成+词缀进入角色属性聚合，触发战力重算。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-F02",
+      "name": "合成流程（9合1）",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-07-F02-S01",
+          "name": "选择合成档与材料",
+          "description": "玩家选择合成档（8档之一），放入9件同品质、未穿戴/未锁定装备；预览产物等级池与部位随机。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F02-S02",
+          "name": "校验合成资格",
+          "description": "校验角色等级≥合成档要求、材料品质一致、投入等级≥下限、背包空位（见 SYS-OUT-GR-07-C02）。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F02-S03",
+          "name": "扣除与生成",
+          "description": "扣除9件装备+金币（基础金币×品质系数），生成1件同品质、合成档等级池随机、8部位随机装备；副属性重新随机不继承；成功率100%。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-F03",
+      "name": "制作流程（精准制作）",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-07-F03-S01",
+          "name": "选择制作档/等级/部位",
+          "description": "玩家选择制作档（8档），在档内可制作等级中选择指定等级、指定部位大类（武器/防具/首饰）。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F03-S02",
+          "name": "校验制作资格",
+          "description": "校验角色等级≥制作档要求、对应部位大类材料×1与金币充足（见 SYS-OUT-GR-07-C03）。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F03-S03",
+          "name": "扣除与生成",
+          "description": "扣除材料×1+金币，生成指定等级+指定部位+随机品质装备（品质权重绿10/蓝15/紫50/金20/红5）；成功率100%；等级不随机。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-F04",
+      "name": "分解流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-07-F04-S01",
+          "name": "选择装备",
+          "description": "玩家选择未穿戴/未锁定的装备执行分解，预览金币与高级材料产出。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F04-S02",
+          "name": "扣除与产出",
+          "description": "扣除装备，产出金币（分解等级基础金币×品质系数）；仅红装额外产出装备高级材料×1；不产出制作材料/装备经验。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-F05",
+      "name": "红装洗练流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GR-07-F05-S01",
+          "name": "选择红装与洗练/锁定词条",
+          "description": "玩家对红装选择洗练，勾选待重随机副属性（最多锁定2条保留）；预览消耗（装备高级材料+金币）。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F05-S02",
+          "name": "校验洗练资格",
+          "description": "校验装备品质=红、装备高级材料与金币充足、至少1条未锁定副属性（见 SYS-OUT-GR-07-C04）。"
+        },
+        {
+          "id": "SYS-OUT-GR-07-F05-S03",
+          "name": "生成与选择",
+          "description": "服务端重随机未锁定副属性（词条类型与数值均重新随机），展示洗练前/后对比；玩家选择保留旧结果或替换为新结果；保留则消耗不返还。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GR-07-R01",
+      "name": "8槽位装配与主属性固定",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "8槽位（武器/头部/护甲/手套/腰带/鞋子/装置/饰品）各自固定1条主属性（武器攻击/头部生命/护甲防御/手套攻击%/腰带生命%/鞋子防御%/装置暴击等级/饰品爆伤等级）；装配免费，旧装备退回背包。",
+      "sourceFact": "Enums.lua MappingEquipParts 定义8部位 Head/Weapon/Armour/Glove/Belt/Shoe/Device/Decoration；07-03 数值文档 §4.1 给出部位主属性分配；SpecialEquipmentMain.xlsx 提供主属性 Value/Grow；SpecialEquipmentPartFun.xlsx 按 Part 定义孔位与对应颜色。客户端 MappingEquipSystem 与 UI/MappingEquip 实装。",
+      "acceptance": "8槽位主属性只读 SpecialEquipmentMain + 部位分配；装配/替换触发属性刷新；跨品质-等级限制由 LvLimit 控制。",
+      "relatedIds": [
+        "CB-R03",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV02",
+        "SYS-OUT-GR-07-EV08",
+        "SYS-OUT-GR-07-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-R02",
+      "name": "品质/等级梯度与品质系数（07-03 权威）",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "5档品质（绿<蓝<紫<金<红），装备不再经验升级，直接掉落固定等级档（5级一档，5-60）；主属性品质系数绿0.20/蓝0.30/紫0.45/金0.70/红1.00，副属性品质系数绿0.50/蓝0.60/紫0.70/金0.85/红1.00。",
+      "sourceFact": "07-03 数值文档 §3.1-3.3/§4 给出5品质、固定等级档与品质系数；SpecialEquipmentQuality.xlsx 含 QualityCoefficient/GradeCoefficient/HoleMax/HoleMin/EffectNumMax/EffectNumMin；SpecialEquipmentLvUp.xlsx（旧经验升级 CostExp）仍存在，与'不再经验升级'冲突。06-19 Design Doc 的4品质/蓝lv30口径已被07-03覆盖。",
+      "acceptance": "品质系数与等级档只读 SpecialEquipmentQuality + 07-03 §3.3；SpecialEquipmentLvUp 不应再被新系统引用；具体系数以 07-03/NUM-02 为权威。",
+      "relatedIds": [
+        "NUM-02",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV03",
+        "SYS-OUT-GR-07-EV06",
+        "SYS-OUT-GR-07-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-R03",
+      "name": "副属性重度随机与红装4+专属",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "副属性按品质生成条数（绿1/蓝1-2/紫2-3/金3/红4），不允许重复；红装固定4条副属性+1条专属技能效果；副属性池10类（已删除物理/魔法伤害加成）；数值按等级倍率×品质系数×目标值随机 roll。",
+      "sourceFact": "07-03 数值文档 §4.4/§17（CHG-ME-ATTR-001~004）给出条数、10类副属性、副属性等级倍率 0.40+0.60×((x-5)/55) 与品质系数，并明确 2026-08-13 已同步 SVN；SpecialEquipmentEffect.xlsx 含 ValueMax/ValueMin/RandomMin 随机区间与 SkillList；SpecialEquipmentEffectDrop.xlsx 提供词条池 EffectList；SpecialEquipmentSubAttrCoef.xlsx 提供 EquipLv/SubAttrCoef。06-19 Design Doc 的190词缀/4+1模板为旧口径，红装专属池已由5条收敛为4条。",
+      "acceptance": "副属性生成只读 Effect/EffectDrop/SubAttrCoef/Quality；红装4条+专属必出；物理/魔法伤害加成不在用词条池；具体目标值以 07-03/NUM-02 为权威。",
+      "relatedIds": [
+        "NUM-02",
+        "SYS-IN-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV04",
+        "SYS-OUT-GR-07-EV05",
+        "SYS-OUT-GR-07-EV09",
+        "SYS-OUT-GR-07-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-R04",
+      "name": "孔位系统与宝石镶嵌",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "装备孔位数按品质递增（HoleMin/HoleMax），可镶嵌宝石/铭文；镶嵌即时生效，替换时原镶嵌物销毁；铭文不可继续合成。",
+      "sourceFact": "SpecialEquipmentQuality.xlsx 含 HoleMax/HoleMin/ExtraHoleNum/InscriptionProbability；SpecialEquipmentPartFun.xlsx 含 Part/CorrespondingColor/HoleNum；SpecialEquipmentGem.xlsx 含 Color/Quality/Grade/Attribute/Value；客户端 MappingEquipSystem 实装 INLAY/REMOVE/CRAFT Gem 网络消息与 equipGemPartMap。06-19 Design Doc R-04 描述孔位与镶嵌。",
+      "acceptance": "孔位数与宝石加成只读 Quality/PartFun/Gem；镶嵌/替换/合成宝石经客户端消费链；替换销毁规则需服务端确认。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV07",
+        "SYS-OUT-GR-07-EV08",
+        "SYS-OUT-GR-07-EV12",
+        "SYS-OUT-GR-07-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-R05",
+      "name": "合成（9合1/8档）",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "9件同品质装备合成1件同品质装备，产物等级由合成档等级池随机（首档固定10，其余低/高池），部位8随机，副属性重新随机；合成档8档（10/20/30/40/45/50/55/60），按角色等级开放；成功率100%；金币=基础金币×品质系数。",
+      "sourceFact": "07-03 数值文档 §8/§16.3（2026-07-06 变更）给出9合1与8档；客户端 MappingEquipSystem 实装 PORTABLE_EQUIP_COMPOUND 与 UI/MappingEquip/UIMappingEquipCompoundView。正式配置承接待确认。",
+      "acceptance": "合成档/产物等级池/金币消耗以 07-03 §16.3 为权威；正式表承接待确认；不可投入已穿戴/锁定/标记保护装备。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV15",
+        "SYS-OUT-GR-07-EV16"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-R06",
+      "name": "制作（精准制作/8档）",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "精准制作指定等级+指定部位+随机品质，单次消耗对应部位大类材料×1+金币；制作档8档，按角色等级开放；制作品质权重绿10/蓝15/紫50/金20/红5；成功率100%；制作材料分武器/防具/首饰3大类×8档=24种。",
+      "sourceFact": "07-03 数值文档 §11/§16.4 给出精准制作8档与品质权重；客户端 UI/MappingEquip/UIMappingEquipMakeView 实装。制作材料 ItemId 待规划、正式配置承接待确认。",
+      "acceptance": "制作档/可制作等级/材料大类以 07-03 §16.4 为权威；24种材料 ItemId 与正式表承接待确认。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-R07",
+      "name": "分解回收",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "分解产出金币（分解等级基础金币×品质系数），不产出装备经验/制作材料；仅红装分解额外产出装备高级材料×1；高级材料独立于制作材料避免套利闭环。",
+      "sourceFact": "07-03 数值文档 §9 给出分解金币与红装高级材料；客户端 UI/MappingEquip/UIMappingEquipDecomposeView 实装。EqptResolve.xlsx 存在但属 Eqpt 族，与映射装备分解关系未确认。",
+      "acceptance": "分解金币与红装高级材料以 07-03 §9 为权威；高级材料仅用于红装洗练，不进制作循环。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV15",
+        "SYS-OUT-GR-07-EV19"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-R08",
+      "name": "红装洗练",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "仅红装可洗练副属性（不改变等级/品质/部位/主属性/专属效果），固定4条副属性，最大锁定2条；消耗装备高级材料+金币（按等级段与锁定数），词条类型与数值均重新随机；洗练后可保留旧结果或替换新结果。",
+      "sourceFact": "07-03 数值文档 §10 给出红装洗练规则与消耗；SpecialEquipmentEffect.xlsx 的 ValueMin/ValueMax/RandomMin 随机区间保留（CHG-ME-ATTR-004 恢复随机）。客户端洗练消费方未在 MappingEquipSystem 中观察到（UIAnomalyRefinePanel 属收容物 Anomaly 体系，非映射装备）。",
+      "acceptance": "洗练规则与消耗以 07-03 §10 为权威；映射装备洗练客户端消费方待确认。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV04",
+        "SYS-OUT-GR-07-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-R09",
+      "name": "超限（Transcend）",
+      "status": "DRAFT_TARGET_RUNTIME_UNKNOWN",
+      "targetRule": "超限仅发生于装备生成阶段（不可后天道具赋予），每件最多1次，概率极低（0.1%-1%按品质分档），命中后所有属性值×1.1-1.2突破上限，永久且不可继承/转移；伪随机保护。",
+      "sourceFact": "06-19 Design Doc R-06 描述超限机制；07-03 数值文档未单独列超限章节，超限是否保留/落地未明确；客户端未观察到 TranscendRoller/超限消费方；SpecialEquipmentGenerate.xlsx 含生成配置但超限字段未确认。",
+      "acceptance": "超限机制以 06-19 Design Doc 为 Draft 目标，07-03 与配置/代码落地待确认；不得据 Design Doc 自动视为已上线。",
+      "relatedIds": [
+        "NUM-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV02",
+        "SYS-OUT-GR-07-EV13",
+        "SYS-OUT-GR-07-EV15"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GR-07-C01",
+      "name": "装配资格",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "可装配需：玩家等级≥槽位解锁阈值、装备品质-等级与槽位允许品质匹配、装备未锁定/未标记材料；跨品质-等级限制由 SpecialEquipmentLvLimit（PlayerLv/EquipLv）控制。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV08",
+        "SYS-OUT-GR-07-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-C02",
+      "name": "合成资格",
+      "status": "CONFIRMED_TARGET",
+      "rule": "合成需：9件同品质装备、投入等级≥合成档下限、角色等级≥合成档要求、装备未穿戴/未锁定/未标记保护、背包空位≥1；成功率100%。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-C03",
+      "name": "制作资格",
+      "status": "CONFIRMED_TARGET",
+      "rule": "制作需：角色等级≥制作档要求、对应部位大类材料×1+金币充足；制作档8档按角色等级开放；品质随机不可指定。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-C04",
+      "name": "洗练资格",
+      "status": "CONFIRMED_TARGET",
+      "rule": "洗练需：装备品质=红、至少1条未锁定副属性、装备高级材料与金币充足（按等级段与锁定数）；最大锁定2条。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV04"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GR-07-EX01",
+      "name": "多版数值文档权威性冲突",
+      "status": "P0_CONFLICT",
+      "rule": "06-19 Design Doc（4品质/蓝lv30/经验升级/190词缀）、07-02 草案（5品质/4档宝箱/尚未落配置）、07-03 数值文档（5品质/5档宝箱/8档合成制作/10类副属性，含至2026-08-17变更）三版权威性不同；07-03为当前权威，07-02被取代，06-19结构概念部分有效但数值口径被覆盖。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV02",
+        "SYS-OUT-GR-07-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-EX02",
+      "name": "旧经验升级表残留",
+      "status": "P1_CONFLICT",
+      "rule": "SpecialEquipmentLvUp.xlsx（Quality/TargetLv/CostExp）仍物理存在，与07-03'装备不再经验升级'冲突；需确认是否仍被引用或应废弃。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV10",
+        "SYS-OUT-GR-07-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-EX03",
+      "name": "Eqpt族与映射装备关系未确认",
+      "status": "P1_GAP",
+      "rule": "equipment/Eqpt族6表（Eqpt/EqptAscendLv/EqptAscendMaterial/EqptLv/EqptResolve/EqptStar）为 Star/Ascend/Lv 成长型装备，与映射装备'掉落固定等级'模型不同；Eqpt族是映射装备旧形态、平行普通装备还是独立系统待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV17",
+        "SYS-OUT-GR-07-EV18",
+        "SYS-OUT-GR-07-EV19",
+        "SYS-OUT-GR-07-EV20"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-EX04",
+      "name": "超限与洗练运行链路不可见",
+      "status": "P1_GAP",
+      "rule": "超限（Transcend）仅在06-19 Design Doc描述、07-03未明确；映射装备洗练客户端消费方未在 MappingEquipSystem 观察到（UIAnomalyRefinePanel属收容物）；服务端权威与运行链路不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV02",
+        "SYS-OUT-GR-07-EV15",
+        "SYS-OUT-GR-07-EV16"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-EX05",
+      "name": "超级爆改Deprecated口径",
+      "status": "P2_GAP",
+      "rule": "项目存在'超级爆改'类Deprecated文档/口径，Deprecated不等于系统废弃；需确认哪些Deprecated口径被07-03正式继承、哪些被废弃，避免误读。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-EX06",
+      "name": "配置落地与数值文档不同步",
+      "status": "P2_GAP",
+      "rule": "07-03数值文档多项（合成/制作正式表承接、24种材料ItemId、DropId拆分、UI预览）标记待确认；2026-08-13副属性变更与2026-08-17映射之匙已同步SVN，其余仍以源表状态为准。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV03"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GR-07-UI01",
+      "name": "映射装备主界面与背包",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示8槽位、已装备主副属性/孔位/词缀、战力对比；背包按品质/部位筛选；UIMappingEquipBagView/UIMappingEquipMainView 实装。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV15",
+        "SYS-OUT-GR-07-EV16"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-UI02",
+      "name": "合成/制作/分解界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIMappingEquipCompoundView（9合1/8档）、UIMappingEquipMakeView（精准制作）、UIMappingEquipDecomposeView（分解预览金币/高级材料）实装；消耗不足时灰化提示。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV15",
+        "SYS-OUT-GR-07-EV16"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-UI03",
+      "name": "镶嵌/宝石界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIMappingEquipMosaicView（孔位镶嵌）、UIMEGemCompoundView/UIMEGemAutoCompoundView（宝石合成）、UIMEGemDetailView 实装；替换镶嵌物二次确认销毁。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV15",
+        "SYS-OUT-GR-07-EV16"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-UI04",
+      "name": "宝箱/方案/套装提示",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "UIUseMappingBoxView（宝箱开装）、UIMappingEquipPlanView（配装方案）、UIMappingEquipSuitTipsView（套装提示）、UIMappingEquipReplaceView（替换对比）实装。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV15",
+        "SYS-OUT-GR-07-EV16"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-UI05",
+      "name": "洗练界面",
+      "status": "TARGET_REQUIRED",
+      "rule": "红装洗练需展示洗练前/后对比、锁定词条、消耗预览与保留/替换双按钮；映射装备洗练客户端入口待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV15"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GR-07-CFG01",
+      "name": "SpecialEquipment",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipment.xlsx",
+      "role": "装备底表：Id/Name/Grade/Part/Quality/Attribute1List/Attribute2List/Effect/RareEffect/SpecialEffect/FixEffect/IsDrop（193行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG02",
+      "name": "SpecialEquipmentQuality",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentQuality.xlsx",
+      "role": "品质规则：Quality/GradeLimit/HoleMax/HoleMin/ExtraHoleNum/EffectNumMax/EffectNumMin/GradeCoefficient/QualityCoefficient（2026-08-13已同步）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG03",
+      "name": "SpecialEquipmentMain",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentMain.xlsx",
+      "role": "主属性：Attribute/Value/Grow/Param（383行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG04",
+      "name": "SpecialEquipmentEffect",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffect.xlsx",
+      "role": "词条/效果定义：Attribute/ValueMax/ValueMin/RandomMin/SkillList/Score（随机区间CHG-ME-ATTR-004恢复）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG05",
+      "name": "SpecialEquipmentEffectDrop",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffectDrop.xlsx",
+      "role": "副属性词条池：EffectList（2026-08-13已同步，物理/魔法伤害加成移除）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG06",
+      "name": "SpecialEquipmentGenerate",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentGenerate.xlsx",
+      "role": "装备生成：GradeList/QualityList/PartList/SpecialEquipmentId/GenerateMax/GenerateMin（1414行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG07",
+      "name": "SpecialEquipmentGem",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentGem.xlsx",
+      "role": "宝石：Color/Quality/Grade/Attribute/Value/QualityName",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG08",
+      "name": "SpecialEquipmentLvLimit",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentLvLimit.xlsx",
+      "role": "玩家等级-装备等级限制：PlayerLv/EquipLv",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG09",
+      "name": "SpecialEquipmentLvUp",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentLvUp.xlsx",
+      "role": "旧经验升级：Quality/TargetLv/CostExp（07-03称不再经验升级，应废弃，待确认引用）",
+      "status": "WORKING_COPY_SOURCE_DEPRECATED_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG10",
+      "name": "SpecialEquipmentSubAttrCoef",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentSubAttrCoef.xlsx",
+      "role": "副属性等级系数：EquipLv/SubAttrCoef（2026-08-13已同步）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG11",
+      "name": "SpecialEquipmentColor",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentColor.xlsx",
+      "role": "颜色映射：Color/ColorValue",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG12",
+      "name": "SpecialEquipmentPartFun",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentPartFun.xlsx",
+      "role": "部位功能：Part/CorrespondingColor/HoleNum",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG13",
+      "name": "SpecialEquipmentChip",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentChip.xlsx",
+      "role": "碎片/铭文：Name/Quality/Attribute/Value/Effect",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG14",
+      "name": "Eqpt",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\Eqpt.xlsx",
+      "role": "Eqpt族装备底表：Id/Name/Star/AscendId/PartId/Quality/Class/Lv/Hp/HpGrow/Attack/AttackGrow/Armor（与映射装备关系未确认）",
+      "status": "WORKING_COPY_SOURCE_RELATIONSHIP_UNCONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG15",
+      "name": "EqptAscendLv",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptAscendLv.xlsx",
+      "role": "Eqpt突破阶段门控（Star/Ascend成长型，关系未确认）",
+      "status": "WORKING_COPY_SOURCE_RELATIONSHIP_UNCONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG16",
+      "name": "EqptAscendMaterial",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptAscendMaterial.xlsx",
+      "role": "Eqpt突破材料消耗（关系未确认）",
+      "status": "WORKING_COPY_SOURCE_RELATIONSHIP_UNCONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG17",
+      "name": "EqptLv",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptLv.xlsx",
+      "role": "Eqpt升级经验：Lv/Quality/UpgradeCostExp（关系未确认）",
+      "status": "WORKING_COPY_SOURCE_RELATIONSHIP_UNCONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG18",
+      "name": "EqptResolve",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptResolve.xlsx",
+      "role": "Eqpt分解：Quality/Star/ResolveGetItem（关系未确认）",
+      "status": "WORKING_COPY_SOURCE_RELATIONSHIP_UNCONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-CFG19",
+      "name": "EqptStar",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptStar.xlsx",
+      "role": "Eqpt升星配置（关系未确认）",
+      "status": "WORKING_COPY_SOURCE_RELATIONSHIP_UNCONFIRMED"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GR-07-REL01",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-05",
+      "targetName": "映射装备副本",
+      "description": "映射装备副本产出装备宝箱、制作材料与钥匙，作为映射装备养成输入；副本玩法与Drop归 GP-05，本系统只消费产出。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-REL02",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-02",
+      "targetName": "高难主线",
+      "description": "高难主线向映射装备养成供给材料/资源（已有引用登记）；具体供给内容以 GP-02 为权威。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-REL03",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "合成/制作/分解/洗练/镶嵌消耗宝石、制作材料、洗练石、高级材料、金币、钥匙等，扣除走物品账本；资源身份由 SYS-OUT-SU-04 维护。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-REL04",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "CB-R03",
+      "targetName": "属性与计算",
+      "description": "来源：SpecialEquipmentMain.xlsx(EV11)定义主属性，SpecialEquipmentSubAttrCoef.xlsx(EV09)定义副属性系数，SpecialEquipmentGem.xlsx(EV07)定义宝石加成，映射装备数值设计文档(EV01)为权威。推导：装备主副属性、宝石加成与词缀经聚合后进入角色战斗属性计算(CB-R03)，构成 builds/outgoing 关系。推导边界：属性配置与聚合逻辑已由工作副本确认，但属性如何并入战斗公式乘区、与角色裸体/升星/星盘属性的叠加规则属推断。UNKNOWN：装备属性与角色养成属性的乘区归属与叠加优先级仍待战斗数值域确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-07-REL05",
+      "type": "builds",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-03",
+      "targetName": "技能与Buff",
+      "description": "来源：SpecialEquipmentColor.xlsx(EV14)定义红装专属词缀，SpecialEquipmentEffect.xlsx(EV04)/SpecialEquipmentEffectDrop.xlsx(EV05)定义装备效果，映射装备Design Doc(EV02)描述红装技能。推导：红装专属技能效果/词缀进入技能/Buff系统生效，具体效果与配置链归 SYS-IN-03，构成 builds/outgoing 关系。推导边界：红装效果配置已由工作副本确认，但效果触发与Buff生效链路的服务端权威不可见，技能效果本体在 SYS-IN-03 侧维护。UNKNOWN：红装专属技能与角色固有技能/星盘技能的优先级与冲突处理仍待确认。",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GR-07-REL06",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-02",
+      "targetName": "养成数值",
+      "description": "品质系数、等级倍率、主副属性目标值与副属性条数由养成数值域约束（07-03文档为当前权威）。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV03"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-GR-07-REL07",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：映射装备数值设计文档(EV01)定义合成/制作/分解/洗练消耗与宝箱概率，SpecialEquipmentGenerate.xlsx(EV13)定义生成概率，EqptResolve.xlsx(EV19)定义分解回收。推导：合成/制作/分解/洗练金币消耗、宝箱概率与材料掉落由经济数值域(NUM-04)定价与平衡，构成 prices/incoming 关系。推导边界：消耗与概率配置已由工作副本与数值文档确认，但具体定价权重与经济账占比属经济数值域维护，本正文不复制数值。UNKNOWN：装备养成全周期经济成本与材料掉落率的平衡仍待经济域核算。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GR-07-EV01",
+      "kind": "numeric-deposit",
+      "label": "映射装备系统数值设计文档(2026-07-03，当前权威)",
+      "path": "design/映射装备系统数值设计文档-2026-07-03.md",
+      "location": "§1-§17（含2026-07-06合成制作8档、2026-08-13 CHG-ME-ATTR-001~004、2026-08-17映射之匙变更与 CHG-015：30层首通展示物4373-4402，UIlevel.FirstReward逐层引用，真实Drop不变）",
+      "status": "CONFIRMED_TARGET_DRAFT"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV02",
+      "kind": "reverse-design",
+      "label": "映射装备系统 Design Doc(2026-06-19)",
+      "path": "design/映射装备系统Design Doc.md",
+      "location": "R-01~R-07、工作假设；8槽位/孔位/洗练/超限结构概念，4品质等数值口径被07-03覆盖",
+      "status": "DRAFT_REVERSE_ENGINEERED_PARTIALLY_SUPERSEDED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV03",
+      "kind": "numeric-deposit",
+      "label": "映射装备系统数值调整草案(2026-07-02，已被07-03取代)",
+      "path": "design/映射装备系统数值调整草案-2026-07-02.md",
+      "location": "§1-§2；5品质/4档宝箱/尚未落真实配置，被07-03取代",
+      "status": "SUPERSEDED_DRAFT"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV04",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentEffect.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentEffect.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipment；Attribute/ValueMax/ValueMin/RandomMin/SkillList/Score（249行，CHG-ME-ATTR-004恢复随机）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV05",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentEffectDrop.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentEffectDrop.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipment；EffectList 副属性词条池（196行，物理/魔法伤害加成已移除）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV06",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentQuality.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentQuality.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipment；Quality/HoleMax/HoleMin/EffectNumMax/EffectNumMin/GradeCoefficient/QualityCoefficient（2026-08-13已同步）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV07",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentGem.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentGem.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipment；Color/Quality/Grade/Attribute/Value/QualityName（62行）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV08",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentPartFun.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentPartFun.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipmentPartFun；Part/CorrespondingColor/HoleNum；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV09",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentSubAttrCoef.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentSubAttrCoef.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipmentSubAttrCoef；EquipLv/SubAttrCoef（2026-08-13已同步）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV10",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentLvUp.xlsx(旧经验升级)",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentLvUp.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipment；Quality/TargetLv/CostExp；与07-03'不再经验升级'冲突；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_DEPRECATED_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV11",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentMain.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentMain.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipment；Attribute/Value/Grow/Param（383行）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV12",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentLvLimit.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentLvLimit.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipmentLvLimit；PlayerLv/EquipLv（239行）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV13",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentGenerate.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentGenerate.xlsx",
+      "location": "本机SVN工作副本；sheet SpecialEquipment；GradeList/QualityList/PartList/SpecialEquipmentId/GenerateMax/GenerateMin（1414行）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV14",
+      "kind": "source-excel",
+      "label": "SpecialEquipmentColor.xlsx/SpecialEquipmentChip.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/SpecialEquipment/SpecialEquipmentColor.xlsx",
+      "location": "本机SVN工作副本；Color/ColorValue 与 Chip Name/Quality/Attribute/Value/Effect；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV15",
+      "kind": "source-code",
+      "label": "MappingEquipSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/MappingEquip/MappingEquipSystem.lua",
+      "location": "gem INLAY/REMOVE/CRAFT 网络消息(93-100)、PORTABLE_EQUIP_COMPOUND(103)、GeneratedMappingEquipDataByServer(167)、GeneratedMappingGemDataByServer(191)；消费 SpecialEquipmentGem/SpecialEquipmentPart 表",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV16",
+      "kind": "source-code",
+      "label": "UI/MappingEquip 套件",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/MappingEquip/UIMappingEquipMainView.lua",
+      "location": "UIMappingEquipBagView/CompoundView/MakeView/DecomposeView/MosaicView/PlanView/ReplaceView/SuitTipsView/UseMappingBoxView/GemCompound/GemDetail 完整 UI 套件",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV17",
+      "kind": "source-code",
+      "label": "Enums.lua(映射装备部位/状态)",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Const/Enums.lua",
+      "location": "line 61-80 MappingEquipParts(8部位 Head/Weapon/Armour/Glove/Belt/Shoe/Device/Decoration)、MappingEquipStateType(Normal/Lock/Identified/UnIdentified)；line 123-127 LevelTypeGroup Equipment=206/SpecialEquipment=207(专武)/Weapon=208(映射装备)",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV18",
+      "kind": "source-excel",
+      "label": "Eqpt.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/equipment/Eqpt.xlsx",
+      "location": "本机SVN工作副本；sheet Eqpt；Id/Name/Star/AscendId/PartId/Quality/Class/Lv/Hp/HpGrow/Attack/AttackGrow/Armor（66行，Star/Ascend成长型）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_RELATIONSHIP_UNCONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV19",
+      "kind": "source-excel",
+      "label": "EqptLv.xlsx/EqptResolve.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/equipment/EqptLv.xlsx",
+      "location": "本机SVN工作副本；EqptLv(Lv/Quality/UpgradeCostExp)、EqptResolve(Quality/Star/ResolveGetItem) 属 Eqpt 族；与映射装备关系未确认；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_RELATIONSHIP_UNCONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV20",
+      "kind": "source-excel",
+      "label": "EqptAscendLv.xlsx/EqptAscendMaterial.xlsx/EqptStar.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/equipment/EqptAscendLv.xlsx",
+      "location": "本机SVN工作副本；EqptAscendLv/EqptAscendMaterial/EqptStar 属 Eqpt 族 Star/Ascend 成长；与映射装备关系未确认；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_RELATIONSHIP_UNCONFIRMED"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV21",
+      "kind": "knowledge-ref",
+      "label": "战斗外系统总览(映射装备)",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "location": "line 51：SYS-OUT-GR-07 映射装备 品质/部位/主副属性/词条/宝石/制作/合成，终局随机深度，映射副本供给",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV22",
+      "kind": "knowledge-ref",
+      "label": "current-gameplay(映射装备)",
+      "path": "D:/Vgame_design/skills/vgame-core-understanding/references/current-gameplay.md",
+      "location": "映射装备相关链路",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GR-07-EV23",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-I 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-I].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GR-07-Q01",
+      "priority": "P0",
+      "question": "07-03 数值文档为当前权威，06-19 Design Doc 与 07-02 草案中哪些口径被正式继承、哪些被废弃？",
+      "impact": "多版文档权威性不同，误用旧口径会导致品质档数、等级模型、宝箱档位与词缀池规则错误。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV02",
+        "SYS-OUT-GR-07-EV03"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-I",
+      "answer": "用户正式选择「并行有效」：三份文档分别拥有明确且不重叠的规则范围。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-07-EV23"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GR-07-Q02",
+      "priority": "P0",
+      "question": "equipment/Eqpt族6表（Star/Ascend/Lv成长型）与映射装备是什么关系？是旧形态、平行普通装备还是独立系统？",
+      "impact": "决定 Eqpt 族是否归 GR-07、是否需独立系统正文或标 DEPRECATED。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV17",
+        "SYS-OUT-GR-07-EV18",
+        "SYS-OUT-GR-07-EV19",
+        "SYS-OUT-GR-07-EV20"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "equipment/Eqpt 族由 EquipSystem 及 UI/Hero/HeroEquip 持续消费，是普通角色装备成长链；映射装备由 MappingEquipSystem 及 UI/MappingEquip 独立消费。两者是并行的不同运行系统，不得因字段命名相似合并。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-07-EV17",
+        "SYS-OUT-GR-07-EV18",
+        "SYS-OUT-GR-07-EV19",
+        "SYS-OUT-GR-07-EV20"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-Q03",
+      "priority": "P1",
+      "question": "SpecialEquipmentLvUp.xlsx（旧经验升级）是否仍被引用？应废弃还是保留兼容？",
+      "impact": "与07-03'装备不再经验升级'冲突，影响升级模型与配置清理。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV10",
+        "SYS-OUT-GR-07-EV13"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-07-Q04",
+      "priority": "P1",
+      "question": "超限（Transcend）机制在07-03与正式配置/代码中是否保留并落地？",
+      "impact": "超限仅06-19 Design Doc描述，决定终局情绪峰值机制是否存在。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV02",
+        "SYS-OUT-GR-07-EV13",
+        "SYS-OUT-GR-07-EV15"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-07-Q05",
+      "priority": "P1",
+      "question": "映射装备红装洗练的客户端与服务端消费方在哪？UIAnomalyRefinePanel 是否承载映射装备洗练？",
+      "impact": "决定洗练运行链路是否闭环与 UI 入口归属。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV15",
+        "SYS-OUT-GR-07-EV16"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-07-Q06",
+      "priority": "P1",
+      "question": "合成/制作/24种制作材料是否有正式配置表承接？ItemId 与 DropId 拆分是否已规划？",
+      "impact": "07-03标记多项待确认，影响合成制作落地与经济闭环。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01",
+        "SYS-OUT-GR-07-EV13"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GR-07-Q07",
+      "priority": "P2",
+      "question": "LevelTypeGroup.SpecialEquipment=207 标注专武、Weapon=208 标注映射装备，与配置族命名 SpecialEquipment=映射装备是否构成命名冲突？",
+      "impact": "影响副本 LevelType 与配置族的对应关系判断。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV17"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "确认存在命名冲突：LevelTypeGroup.SpecialEquipment=207 指向专武，Weapon=208 指向映射装备；而配置目录 SpecialEquipment 却被映射装备链消费。路由和文档必须优先使用 SystemOpen/LevelType 数字 ID 与消费方，不能仅凭名称归类。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-07-EV17"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GR-07-Q08",
+      "priority": "P2",
+      "question": "'超级爆改'Deprecated 文档/口径具体指哪些？哪些被07-03继承、哪些废弃？",
+      "impact": "Deprecated不等于系统废弃，需明确边界避免误读为废弃。",
+      "evidenceRefs": [
+        "SYS-OUT-GR-07-EV01"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "humanDecisions": [
+    {
+      "cardId": "DC-I",
+      "closeableQuestionId": "SYS-OUT-GR-07-Q01",
+      "selectedOptionId": 3,
+      "selectedOptionName": "并行有效",
+      "approvedTarget": "选择「并行有效」：三份文档分别拥有明确且不重叠的规则范围。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:17:57.162Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "三份映射装备文档按并行有效处理，但各自不重叠的适用范围尚待继承矩阵明确；不得补造范围。",
+      "evidenceRef": "SYS-OUT-GR-07-EV23",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

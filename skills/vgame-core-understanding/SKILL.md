@@ -1,6 +1,6 @@
 ---
 name: vgame-core-understanding
-description: Use as the Vgame project-level master skill and default project adapter for all Vgame planning, economy, progression, combat, configuration, reward, item/source-sink, feature, and gameplay-analysis tasks. Apply this first for any Vgame request to establish project facts, route to the right specialist skill, protect source-table and evidence rules, and decide whether the task is high-level design, read-only analysis, config implementation, validation, or delivery review.
+description: Use as the Vgame project-level master skill and default project adapter for all Vgame planning, economy, progression, combat, configuration, reward, item/source-sink, feature, and gameplay-analysis tasks, including requests to read numerical-design "沉淀 MD". Apply this first for any Vgame request to establish project facts, route to the right specialist skill, protect source-table and evidence rules, and decide whether the task is high-level design, read-only analysis, config implementation, validation, or delivery review.
 ---
 
 # Vgame Core Understanding
@@ -32,17 +32,27 @@ When called by the generic `game-planning-control` skill:
 ## Default Control Flow
 
 1. Identify the task type: project explanation, design discussion, read-only analysis, config implementation, validation, or delivery review.
-2. Anchor the answer in Vgame's confirmed project identity and formal gameplay structure.
-3. Decide whether source files must be read. Do not inspect Excel or JSON when the user only asks for high-level project framing.
-4. If file evidence is needed, follow `references/evidence-map.md` and prefer source Excel over generated JSON.
-5. If config tables are involved, route through `vgame-config-schema` before trusting table or field meaning.
-6. If rewards, DropId, UIlevel, source/sink, LevelId, Unlock, SystemOpen, tutorial/onboarding, level design, character kit design, growth-to-combat conversion, outer-loop structure, config QA, battle formulas, or economy value are involved, call the matching specialist skill.
-7. Before claiming completion, check `references/delivery-gates.md`.
+2. For project-framework, system, rule, relationship, status, impact, or evidence questions, invoke `vgame-knowledge-router` first. Run its router script and obey the returned minimal `readPlan`; never scan all system details.
+3. Anchor the answer in Vgame's confirmed project identity and formal gameplay structure.
+4. Decide whether source files must be read. Do not inspect Excel or JSON when the user only asks for high-level project framing.
+5. If file evidence is needed, follow `references/evidence-map.md` and prefer source Excel over generated JSON.
+6. If config tables are involved, route through `vgame-config-schema` before trusting table or field meaning.
+7. If rewards, DropId, UIlevel, source/sink, LevelId, Unlock, SystemOpen, tutorial/onboarding, level design, character kit design, growth-to-combat conversion, outer-loop structure, config QA, battle formulas, or economy value are involved, call the matching specialist skill after knowledge routing.
+8. Before claiming completion, check `references/delivery-gates.md`.
+
+## Numerical Deposit MD Rule
+
+- Interpret `沉淀 MD`、`沉淀md`、`数值沉淀` as Markdown under `${VGAME_SOURCE_DOCS_ROOT}\框架v2\03_沉淀MD`.
+- When the user asks to read a deposit MD, search and read the relevant files in that directory first. Do not substitute `design/*.md`, skill `references/*.md`, generated reports, or source Excel for the requested deposit MD.
+- Search project aliases together. For example, treat `无限挑战`、`无限之旅`、`neural_roam` as aliases when locating the relevant deposit MD.
+- Use design docs, skill references, generated reports, or source Excel only as explicitly labeled supplementary evidence, or when no matching deposit MD exists.
+- If a matching deposit MD is absent, say so directly before using another source.
 
 ## Specialist Routing
 
 | Task signal | Route |
 |---|---|
+| project knowledge, system catalog, system rules, relationships, impact analysis, status/evidence lookup, minimal-context retrieval | `vgame-knowledge-router` |
 | source-table discovery, Luban schema, export flow, generated JSON tracing, config validation, new table onboarding | `vgame-config-schema` |
 | resource ledgers, ItemId, item/currency source and sink tracing, shop/task/activity/mail/battle-pass/sign-in/draw-card economy references | `vgame-economy-source-map` |
 | DropId, Drop/UIlevel, first-clear rewards, repeat rewards, reward previews, random weighted drops | `vgame-reward-drop-sync` |
@@ -86,7 +96,7 @@ When called by the generic `game-planning-control` skill:
 - `资源副本-角色经验`
   Daily character EXP supply.
 - `资源副本-专武经验`
-  Daily signature-weapon EXP supply.
+  Historical signature-weapon EXP supply. C-001 was formally decided on 2026-08-24 as "deprecate the exclusive-weapon line and migrate"; this is an APPROVED_TARGET with IMPLEMENTATION_PENDING, so the current working copy must not be described as already migrated or LIVE.
 - `旅券副本`
   Four boss-style stages with clearly different combat pacing and style. Main stable source for `旅券`.
 - `映射装备副本`
@@ -111,7 +121,7 @@ When called by the generic `game-planning-control` skill:
 - `每日任务`
 - `每周任务`
 - `抽卡 / 新手卡池`
-- `专武抽卡 / 专武系统`
+- `专武抽卡 / 专武系统`（C-001 最新裁决 B：专武向收容物迁移并保留一个大版本兼容迁移期；IMPLEMENTATION_PENDING，不是当前工作副本已完成迁移或 LIVE 的证明）
 - `主线扫荡`
 - `邮件`
 - `签到`
@@ -136,10 +146,9 @@ Treat the following as not part of the current formal gameplay structure:
 - `能效本`
 - `主角装备本 / 宝石本 / 铭文本（铭文已删除）`
 - `肉鸽`
-
-Treat the following as draft only:
-
 - `BOSS无限挑战`
+
+No current gameplay is kept in this list as draft-only by default.
 
 ## Progression Understanding
 
@@ -162,7 +171,7 @@ When reasoning about account growth, default to this path:
 - `映射装备副本`
   Endgame random-depth growth.
 - `抽卡 / 专武`
-  Box breadth and role-mechanic depth.
+  Box breadth and role-mechanic depth.（专武侧 C-001 迁移目标已确认，实施与数据迁移仍待完成）
 - `竞技场 / 爬塔 / 大秘境 / 无限挑战 / BOSS挑战`
   Verify different kinds of combat readiness.
 

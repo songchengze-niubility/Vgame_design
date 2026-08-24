@@ -1,0 +1,818 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-12",
+  "name": "好友/聊天",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 客户端 Lua 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在好友/聊天配置族与客户端实现线索，不证明 Production/LIVE。本系统无独立 Design Doc，缺独立Design资产的部分必须写 GAP，不得从实现反推补造规则。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径；本系统该类资产缺失，目标规则多为 GAP。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（Excel 或客户端 Lua），不代表 Production/LIVE，也不代表正式策划规则。"
+    },
+    {
+      "prefix": "GAP",
+      "meaning": "已确认该职责适用，但策划规则、Design 资产或文档缺失；不得从实现反推补造规则。"
+    },
+    {
+      "prefix": "UNKNOWN",
+      "meaning": "现有证据不足以判断是否适用或当前状态。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-SU-12-RW02"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-SU-12-R04"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "好友/聊天系统提供游戏内社交关系与沟通能力：好友关系、亲密度、黑名单、聊天频道、私聊、表情、举报与公会邀请链接，作为组队、回流与社交触点的承载层，默认不承担核心成长供给。",
+    "inScope": [
+      "好友关系（申请/添加/删除/确认）与黑名单管理",
+      "亲密度等级（IntimacyLevel）配置消费",
+      "聊天频道（世界/公会/私聊等）解锁、发送与频率控制",
+      "私聊记录、表情/GIF/队伍表情与公会邀请链接",
+      "举报与内容过滤的客户端消费方线索"
+    ],
+    "outOfScope": [
+      "组队/邀请的正式玩法范围、奖励、匹配与版本状态：当前只作为实现线索，正式玩法待确认",
+      "聊天频道经济奖励：社交系统默认无激励经济，不发明聊天奖励",
+      "公会系统本体（公会聊天频道入口、公会邀请）：公会规则归 SYS-OUT-SU-11",
+      "聊天频道解锁条件的 Unlock 参数定义：开放权威归 SYS-OUT-SU-13",
+      "内容过滤/审核的服务端规则与敏感词库：服务端不可见，归运营/合规",
+      "友情点(ReceivedFriendPoint/FriendsGiftPoint)的真实入账与货币账本：仅见字段/配置定义，无入账证据，归 UNKNOWN"
+    ],
+    "inputs": [
+      "玩家好友申请、搜索、添加、删除与黑名单操作",
+      "IntimacyLevel.xlsx 亲密度等级配置",
+      "Chat 配置族（Chat/ChatBg/ChatBox/ChatBubble/Emoji/EmojiClass/Gif/StoryChat/TeamEmote/ChatPanelContent/Timeline_Gen）",
+      "玩家频道消息发送、私聊、表情与举报操作"
+    ],
+    "outputs": [
+      "好友关系状态与亲密度等级",
+      "黑名单屏蔽状态",
+      "频道消息记录与私聊记录",
+      "举报请求与公会邀请链接"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式外循环社交系统",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "好友/聊天被核心 Skill 列为正式外循环社交系统；项目总 Skill 和发布状态登记均有正式口径。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "GAP — 无独立 Design Doc，规则/奖励/治理边界缺策划权威",
+      "status": "DESIGN_GAP",
+      "note": "仓库无独立好友/聊天 Design Doc（outer-domain-audit §4.6 与 §7 P1 确认）；规则、经济边界、治理与指标无法从 design/ 获得完整可追踪判断链。缺独立Design资产的部分必须写 GAP。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "IntimacyLevel.xlsx + 11 chat xlsx + FriendSystem/ChatSystem.lua 实现存在",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-20；好友配置仅 IntimacyLevel.xlsx 1文件，聊天配置族11文件，客户端 FriendSystem.lua(534行)/ChatSystem.lua(1459行) 实现存在；实现存在不证明正式规则已确认，也不证明友情点真实入账。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "实现线索存在；缺集中版本—开关—发布台账",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置与客户端实现证据，但没有集中版本、功能开关、灰度范围与发布时间台账，不能盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-O=受限社交资源",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-12-F01",
+      "name": "好友关系流程（实现观察）",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-12-F01-S01",
+          "name": "搜索/申请",
+          "description": "玩家搜索玩家或发起好友申请（FriendSystem SearchPlayer(132)/AddFriend(151-170) 实现线索；AddFriend 含自加/重复/满额前置校验）。"
+        },
+        {
+          "id": "SYS-OUT-SU-12-F01-S02",
+          "name": "确认/拒绝",
+          "description": "对方确认或拒绝申请（GetFriendConfirm(199)/CRespFriendConfirmList(206)/AgreeAddFriend(317)/CRespDealAddFriend(326) 实现线索）。"
+        },
+        {
+          "id": "SYS-OUT-SU-12-F01-S03",
+          "name": "建立关系",
+          "description": "建立好友关系并计算亲密度等级（CalIntimacyLevel(79) 消费 IntimacyLevel.Exp 实现线索）。"
+        },
+        {
+          "id": "SYS-OUT-SU-12-F01-S04",
+          "name": "删除/屏蔽",
+          "description": "删除好友或加入黑名单（DeleteFriend(217)/AddBlackList(247)/RemoveBlackList(268) 实现线索）。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-F02",
+      "name": "频道消息发送流程（实现观察）",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-12-F02-S01",
+          "name": "校验频道解锁",
+          "description": "校验频道是否解锁（ChatSystem GetChannelUnlockId(94)/IsChannelUnlocked(108)/GetChannelLockTip(117) 实现线索；私聊发送前在 SendPrivateMessage(335) 校验）。"
+        },
+        {
+          "id": "SYS-OUT-SU-12-F02-S02",
+          "name": "长度/频率校验",
+          "description": "校验消息长度与发送冷却（SendChannelMessage(309)/SendPrivateMessage(340) 长度校验；CheckSendCD(356) Server 频道冷却校验，被 SendGIF(367/368)、SendTeamEmote(385/386)、SendPVPPVERecord(408/409) 三个函数调用，普通文本 SendChannelMessage 不做客户端 CD 前置拦截——普通文本 CD 拦截是否由服务端执行=UNKNOWN）。"
+        },
+        {
+          "id": "SYS-OUT-SU-12-F02-S03",
+          "name": "发送消息",
+          "description": "发送频道/私聊消息或表情/GIF（SendChannelMessage(308)/SendPrivateMessage(334)/SendGIF(367)/SendTeamEmote(385) 实现线索）。"
+        },
+        {
+          "id": "SYS-OUT-SU-12-F02-S04",
+          "name": "展示记录",
+          "description": "频道/私聊记录展示（GetChannelChatRecords(1025)/GetPrivateChatRecord(1048) 实现线索）。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-12-R01",
+      "name": "好友关系职责边界",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：缺独立好友 Design Doc，好友申请/添加/删除/上限/亲密度作用的正式策划规则未确认。本系统只提供在线关系、申请/互动与社交触点，默认不承担核心成长供给。",
+      "sourceFact": "outer-domain-audit §4.6 记录好友为正式外循环，客户端 FriendSystem.lua 存在 SearchPlayer(132)/AddFriend(151)/DeleteFriend(217)/AddBlackList(247)/CalIntimacyLevel(79) 等实现；仓库无独立好友 Design Doc，规则、奖励、上限与版本状态待补。",
+      "acceptance": "好友关系规则需独立 Design Doc 确认后方可称 canonical；当前不得从实现反推补造规则。",
+      "relatedIds": [
+        "SYS-OUT-SU-11",
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV03",
+        "SYS-OUT-SU-12-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-R02",
+      "name": "聊天频道职责边界",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：缺独立聊天 Design Doc，频道治理、屏蔽举报、频率与留存指标的正式策划规则未确认。世界/公会/私聊承载交流、招募和战绩反馈，不应默认产生经济资源。",
+      "sourceFact": "outer-domain-audit §4.6 记录聊天为正式外循环，客户端 ChatSystem.lua 存在 GetChannelUnlockId(94)/SendChannelMessage(308)/CheckSendCD(356)/SendReport(557) 等实现；仓库无独立聊天 Design Doc，频道治理、屏蔽举报、频率与留存指标待补。",
+      "acceptance": "聊天频道规则需独立 Design Doc 确认后方可称 canonical；当前不得从实现反推补造规则。",
+      "relatedIds": [
+        "SYS-OUT-SU-11",
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV04",
+        "SYS-OUT-SU-12-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-R03",
+      "name": "亲密度等级配置消费",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：亲密度等级（IntimacyLevel）的等级阈值、作用与奖励边界未在独立 Design 中确认。",
+      "sourceFact": "friends/IntimacyLevel.xlsx 存在；IntimacyLevelModel 含 Exp/IntimacyDailyLimited/BuffID/CanAssisted/HomeFeastRevenueIncr 字段（ExcelDataDefine 模型定义始于11229）；FriendSystem.lua CalIntimacyLevel(79) 消费 IntimacyLevel.Data_List 的 Exp 计算亲密度等级。亲密度等级的具体作用与是否关联奖励未在 Design 中确认。",
+      "acceptance": "亲密度等级规则需 Design 确认；当前只记录配置与实现观察。",
+      "relatedIds": [],
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV01",
+        "SYS-OUT-SU-12-EV05",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-R04",
+      "name": "频道解锁条件消费",
+      "status": "WORKING_COPY_OBSERVED_DELEGATED",
+      "targetRule": "聊天频道解锁条件由 Unlock 体系定义；本系统只消费解锁结果，不定义解锁参数。",
+      "sourceFact": "ChatSystem.lua GetChannelUnlockId(94) 从 globals_conf.ChatChannelUnlockMap 查频道对应 unlockId，IsChannelUnlocked(108) 调 ConditionSystem:GetIsUnLock 判定，GetChannelLockTip(117) 读 Tables.Unlock.Row 格式提示；Unlock 条件参数权威归 SYS-OUT-SU-13。",
+      "acceptance": "频道解锁由 SYS-OUT-SU-13 的 Unlock 体系裁决；本系统不重复维护解锁参数。",
+      "relatedIds": [
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-R05",
+      "name": "举报与内容过滤消费方",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：举报类型、处理流程与内容过滤/敏感词的服务端规则未在独立 Design 中确认。",
+      "sourceFact": "ChatSystem.lua SendReport(557) 提交举报（reportTypes/reportedPlayerId/msgIds/supplementContent/chatChannelType），CRespReport(974)/CRespNotifyReportResult(980) 处理回包；内容过滤在服务端，客户端不可见。仓库无独立 Design 覆盖举报治理规则。",
+      "acceptance": "举报与过滤规则需 Design 与服务端确认；当前只记录客户端消费方线索。",
+      "relatedIds": [],
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-R06",
+      "name": "组队/邀请实现线索",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：组队/邀请的正式玩法范围、奖励、匹配与版本状态待确认；当前只作为实现线索，不在核心正式外循环清单中单列。",
+      "sourceFact": "outer-domain-audit §4.6 记录图谱能定位 UI 邀请与队伍聊天组件，但组队/邀请不在核心正式外循环清单中单列；ChatSystem.lua 存在 SendTeamEmote(385)/SendGuildInviteLink(472)/ParseGuildInviteLink(490) 与 CommonInvite 系统目录。公会邀请链接与公会系统关联。",
+      "acceptance": "组队/邀请需正式立项确认范围后方可纳入正文规则；当前不得用实现补成完整玩法案。",
+      "relatedIds": [
+        "SYS-OUT-SU-11"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV03",
+        "SYS-OUT-SU-12-EV06"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-12-C01",
+      "name": "频道解锁条件",
+      "status": "WORKING_COPY_DELEGATED",
+      "rule": "聊天频道解锁由 Unlock 体系控制（ChatSystem GetChannelUnlockId(94) 从 globals_conf.ChatChannelUnlockMap 查 unlockId，IsChannelUnlocked(108) 消费 ConditionSystem:GetIsUnLock）；解锁参数权威归 SYS-OUT-SU-13。具体各频道解锁条件未在独立 Design 中确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-C02",
+      "name": "发送频率控制",
+      "status": "WORKING_COPY_OBSERVED_PARTIAL_ENFORCEMENT",
+      "rule": "当前工作副本 globals_conf.ChatChannelSpeechCD=5 秒、ChatMessageLengthLimit=100 字节。Server频道发送成功后启动 5 秒冷却；表情/队伍表情/PVPVE战报发送前调用 CheckSendCD，普通文本发送路径未见客户端 CD 前置拦截，服务端是否补充执行仍属 RUNTIME_OWNER。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-C03",
+      "name": "好友上限与黑名单",
+      "status": "WORKING_COPY_OBSERVED_PARTIAL_ENFORCEMENT",
+      "rule": "当前工作副本 globals_conf：FriendsNumLimit=50、FriendsRequestNumLimit=50、FriendsBlackListNumLimit=50、FriendsGiftPoint=10。AddFriend 客户端已按 FriendsNumLimit 拦截；黑名单/申请上限的完整客户端与服务端执行、申请有效期仍待运行方确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-12-RW01",
+      "name": "亲密度数值变化与等级计算（实现观察，范围限定）",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "rule": "仅证实以下两点（范围限定死）：(1) 赠礼触发亲密度数值变化——AddIntimacy(402) 发送 FRIEND_CMD_FRIEND_SEND_GIFT，CRespFriendSendGift(410) 回包 IntimacyMap(playerId→intimacy，proto.cmsg.CRespFriendSendGift 仅含 IntimacyMap，pb_types_new 1205)，客户端把 intimacy 累加进 FriendIntimacyDic(411-416)；(2) 亲密度等级计算消费配置——CalIntimacyLevel(79) 遍历 IntimacyLevel.Data_List 的 Exp 累减得等级，IntimacyLevelModel 含 IntimacyDailyLimited 每日上限字段(11229)。收礼请求流程 ReceiveGift(377)/CRespReceiveFriendGift(385) 仅处理 PlayerID 列表。正式作用、奖励边界与每日上限执行方式待 Design 确认。不据此推断任何货币入账。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05",
+        "SYS-OUT-SU-12-EV01",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-RW02",
+      "name": "友情点(ReceivedFriendPoint/FriendsGiftPoint)真实入账",
+      "status": "APPROVED_TARGET_IMPLEMENTATION_PENDING",
+      "rule": "友情点的产品身份已确认为受限社交资源：可消费但仅限社交域并单独记账。真实钱包/账本调用链仍为 UNKNOWN，需运行证据。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV07",
+        "SYS-OUT-SU-12-EV05",
+        "SYS-OUT-SU-12-EV08"
+      ],
+      "questionRefs": [
+        "SYS-OUT-SU-12-Q07"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-12-EX01",
+      "name": "缺独立 Design Doc",
+      "status": "P1_GAP",
+      "rule": "好友/聊天被列为正式外循环但缺独立 Design Doc（outer-domain-audit §7 P1 G-006）；规则、经济边界、治理与指标无法从 design/ 获得完整可追踪判断链，不得从实现反推补造规则。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV03",
+        "SYS-OUT-SU-12-EV04"
+      ],
+      "questionRefs": [
+        "SYS-OUT-SU-12-Q01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX02",
+      "name": "组队/邀请玩法范围待确认",
+      "status": "P2_GAP",
+      "rule": "组队/邀请只存在实现线索（CommonInvite/SendTeamEmote(385)/SendGuildInviteLink(472)），正式玩法范围、奖励、匹配与版本状态待确认；不得用实现补成完整玩法案。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV03",
+        "SYS-OUT-SU-12-EV06"
+      ],
+      "questionRefs": [
+        "SYS-OUT-SU-12-Q03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX03",
+      "name": "举报与内容过滤服务端规则不可见",
+      "status": "P2_GAP",
+      "rule": "举报处理流程与内容过滤/敏感词库在服务端，客户端只提交举报请求(SendReport 557)；治理规则需 Design 与服务端确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06"
+      ],
+      "questionRefs": [
+        "SYS-OUT-SU-12-Q05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX04",
+      "name": "自加好友（把自己加为好友）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "AddFriend 在发送申请前校验 playerIdList 是否包含自己(SelfPlayerInfo.PlayerId)，命中则提示 AddFriend1 并 return，不发送申请(FriendSystem 152-155)。影响：客户端阻止自加好友请求发出。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX05",
+      "name": "重复好友（重复添加同一好友）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "AddFriend 校验目标 playerId 已在 FriendIntimacyDic 中（已是好友），命中则提示 AddFriend2 并 return(FriendSystem 157-160)。影响：客户端阻止对已是好友的对象重复发起申请。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX06",
+      "name": "好友满额（好友数量上限已达）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "AddFriend 校验 table.count(FriendIntimacyDic) >= globals_conf.FriendsNumLimit，命中则提示 Text_HYSLYM_101 并 return(FriendSystem 162-165)；上限值由 globals_conf.FriendsNumLimit 定义(ExcelDataDefine 9563)。影响：达到上限后申请被客户端拦截。注：被注释的 CRespApplyAddFriendError(185-196) 另映射 BE_FriendMyFriendUpLimit(188)/BE_FriendTargetFriendUpLimit(190)，但该处理已注释禁用。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX07",
+      "name": "黑名单错误（在黑名单中的对象/被拉黑时操作）",
+      "status": "P1_GAP",
+      "rule": "在黑名单中的对象或被对方拉黑时进行好友操作应有错误限制；客户端仅在被注释禁用的 CRespApplyAddFriendError(185-196) 中引用服务端 BizErr（BE_ErrFriendInTargetBlacklist(192)/BE_FriendMyFriendUpLimit(188)/BE_FriendTargetFriendUpLimit(190)），该处理已注释，活跃限制由服务端裁决、客户端不可见。黑名单操作本身由 AddBlackList(247)/RemoveBlackList(268) 客户端发起、服务端确认。边界：黑名单相关好友操作的错误码与限制规则以服务端为准。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05"
+      ],
+      "questionRefs": [
+        "SYS-OUT-SU-12-Q09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX08",
+      "name": "频道未解锁（聊天频道未解锁时发言）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "发送私聊前校验私聊频道解锁：SendPrivateMessage(335-339) 调 IsChannelUnlocked(ChatCT_Private)，未解锁则提示 GetChannelLockTip(117) 或 UIChatLvLimit 并 return false。边界：频道消息发送路径 SendChannelMessage(308-327) 未见客户端解锁校验；频道级解锁拦截的服务端执行=UNKNOWN（客户端不可见），仅私聊有前置校验。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX09",
+      "name": "消息超长（聊天消息超长被拒绝）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "发送频道/私聊消息前校验 UIUtil.GetCharCountWithChinese(msg) > globals_conf.ChatMessageLengthLimit，命中则提示 UIChatLengthLimit 并 return false（拒绝发送，非截断）：SendChannelMessage(309-312) 与 SendPrivateMessage(340-343)；上限值由 globals_conf.ChatMessageLengthLimit 定义。影响：超长消息被客户端拒绝发出。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX10",
+      "name": "发送 CD（聊天发送冷却）",
+      "status": "WORKING_COPY_OBSERVED_UNKNOWN_ENFORCEMENT",
+      "rule": "Server(世界)频道发送冷却：StartServerChannelCD(1296-1311) 用 globals_conf.ChatChannelSpeechCD 启动倒计时；CheckSendCD(356-365) 校验 GetServerChannelCDRemainTime(1342)>0 则提示 UIChatCDLimit 拦截，该函数被 SendGIF(367/368)、SendTeamEmote(385/386)、SendPVPPVERecord(408/409) 调用——普通文本 SendChannelMessage 不做客户端 CD 前置拦截，文本 CD 拦截是否由服务端执行=UNKNOWN。边界：CD 仅对 Server 频道生效，其它频道频控未见表/客户端实现。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-EX11",
+      "name": "禁言（被禁言时发言限制）",
+      "status": "P1_GAP",
+      "rule": "被禁言时发言应受限；客户端通过 CRespNotifyPlayerReportData(985-988) 接收并记录 isMute/muteEndTime（字段定义 208/211），禁言推送跑马灯 MPT_Silenced(1433)。但客户端发送路径 SendChannelMessage(308)/SendPrivateMessage(334) 未对 isMute 做前置拦截；禁言拦截是否由服务端执行=UNKNOWN（服务端逻辑不可见）。边界：禁言状态客户端可见，发言限制的执行位置 UNKNOWN。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06"
+      ],
+      "questionRefs": [
+        "SYS-OUT-SU-12-Q08"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-12-UI01",
+      "name": "好友主界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示好友列表、申请列表、黑名单与添加搜索入口；客户端 Friend UI 族（UIFriendMainView/UIFriendFriendView/FriendMainCell/FriendAddCell/FriendApplyCell/FriendBlackListCell，目录 Lua/UI/Friend）承载。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-UI02",
+      "name": "聊天界面",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示频道列表、频道消息、私聊、表情/GIF/队伍表情与公会邀请链接；客户端 Chat UI 族（UIChatMainView 等）承载，OpenChatUI(1128) 打开。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-UI03",
+      "name": "举报入口",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "提供举报类型选择、补充内容填写与消息选择；由 ChatSystem SendReport(557) 提交。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-12-CFG01",
+      "name": "IntimacyLevel.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\friends\\IntimacyLevel.xlsx",
+      "role": "亲密度等级阈值配置（IntimacyLevelModel: Exp/IntimacyDailyLimited/BuffID/CanAssisted/HomeFeastRevenueIncr）；具体作用与奖励边界待 Design 确认",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-OUT-SU-12-CFG02",
+      "name": "Chat.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\Chat.xlsx",
+      "role": "聊天频道配置",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-12-CFG03",
+      "name": "Emoji/EmojiClass/Gif/TeamEmote",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\Emoji.xlsx",
+      "role": "表情分类、GIF与队伍表情资源",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-12-CFG04",
+      "name": "ChatBg/ChatBox/ChatBubble",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\ChatBg.xlsx",
+      "role": "聊天背景/气泡/框装饰资源",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-12-CFG05",
+      "name": "StoryChat/ChatPanelContent/Timeline_Gen",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\StoryChat.xlsx",
+      "role": "故事聊天、聊天面板内容与跑马灯时间线",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-12-REL01",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "来源/推导：ChatSystem.lua GetChannelUnlockId(94) 从 globals_conf.ChatChannelUnlockMap 查 unlockId，IsChannelUnlocked(108) 调 ConditionSystem:GetIsUnLock 消费 Unlock 体系裁决结果，GetChannelLockTip(117) 读 Tables.Unlock.Row 格式提示。语义：本系统消费 SYS-OUT-SU-13 的频道解锁结果（consumes/outgoing，本系统主动消费 target 输出）。边界：本系统只消费解锁结果，不定义解锁参数；解锁参数权威归 SYS-OUT-SU-13。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-12-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-11",
+      "targetName": "公会",
+      "description": "来源/推导：ChatSystem.lua SendGuildInviteLink(472) 调用 GuildSystem:GetSelfGuildInfo 取公会信息生成邀请链接，ParseGuildInviteLink(490) 解析 isGuildInvite|guildId|guildName|...。语义：本系统消费 SYS-OUT-SU-11 公会信息承载公会频道与公会邀请链接（consumes/outgoing）。边界：本系统仅提供私聊通道与链接编解码，公会规则与邀请归属归 SYS-OUT-SU-11。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-12-REL03",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-14",
+      "targetName": "活动、赛季与 LiveOps",
+      "description": "来源/推导：outer-domain-audit §4.6 将社交列为回流/运营触点。语义：好友/聊天提供社交回流与组队召回触点，供活动/回流运营(SU-14)承载（supplies/outgoing，本系统向 target 供给社交触点）。这只是「需要运营协调」而非本质冲突，不构成 conflicts-with。边界：当前缺集中台账，社交运营内容落地状态未确认，关系状态标 UNKNOWN（见 Q10）。",
+      "status": "UNKNOWN_NEEDS_RELEASE_REGISTRY",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-12-EV01",
+      "kind": "source-excel",
+      "label": "IntimacyLevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/friends/IntimacyLevel.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/friends/IntimacyLevel.xlsx",
+      "location": "本机SVN工作副本；亲密度等级配置；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-OUT-SU-12-EV02",
+      "kind": "source-excel",
+      "label": "Chat 配置族",
+      "path": "D:/Vgame/Config/GameConfig/Datas/chat/Chat.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/chat/Chat.xlsx",
+      "location": "本机SVN工作副本；chat目录共11文件(Chat/ChatBg/ChatBox/ChatBubble/ChatPanelContent/Emoji/EmojiClass/Gif/StoryChat/TeamEmote/Timeline_Gen)；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-12-EV03",
+      "kind": "knowledge-ref",
+      "label": "outer-domain-audit §4.6 社交",
+      "path": "archive/legacy-output-20260824/research/outer-domain-audit.md",
+      "href": "../../research/outer-domain-audit.md",
+      "location": "§4.6 社交(好友/聊天/组队邀请)与§7 P1 缺口G-006、§5 缺失Design文档",
+      "status": "CONFIRMED_GAP"
+    },
+    {
+      "id": "SYS-OUT-SU-12-EV04",
+      "kind": "knowledge-ref",
+      "label": "12-战斗外系统 §4.4 社交",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "href": "../12-战斗外系统.md",
+      "location": "§4.4 社交、引导与运营：好友/聊天列为正式外循环，正式文档缺口",
+      "status": "CONFIRMED_GAP"
+    },
+    {
+      "id": "SYS-OUT-SU-12-EV05",
+      "kind": "source-code",
+      "label": "FriendSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/FriendSystem.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/FriendSystem.lua",
+      "location": "CalIntimacyLevel(79)/SearchPlayer(132)/AddFriend(151-170，含自加152-155/重复157-160/满额162-165校验)/GetFriendConfirm(199)/CRespFriendConfirmList(206)/DeleteFriend(217)/AddBlackList(247)/RemoveBlackList(268)/AgreeAddFriend(317)/CRespDealAddFriend(326)/ReceiveGift(377)/CRespReceiveFriendGift(385-398)/AddIntimacy(402)/CRespFriendSendGift(410-428)/CRespNotifyNeedReceivedGift(448)；注释块 CRespApplyAddFriendError(185-196，含 BE_ErrFriendInTargetBlacklist(192)/BE_FriendMyFriendUpLimit(188)/BE_FriendTargetFriendUpLimit(190))；共534行；核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-12-EV06",
+      "kind": "source-code",
+      "label": "ChatSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/ChatSystem.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/ChatSystem.lua",
+      "location": "GetChannelUnlockId(94)/IsChannelUnlocked(108)/GetChannelLockTip(117)/SendChannelMessage(308-327)/SendPrivateMessage(334-354)/CheckSendCD(356-365)/SendGIF(367-368)/SendTeamEmote(385-386)/SendPVPPVERecord(408-409)/SendGuildInviteLink(472)/ParseGuildInviteLink(490)/GetChannelRecords(544)/SendReport(557)/CRespReport(974)/CRespNotifyReportResult(980)/CRespNotifyPlayerReportData(985-988)/GetChannelChatRecords(1025)/GetPrivateChatRecord(1048)/GetEmojiClassMap(1154)/StartServerChannelCD(1296-1311)/GetServerChannelCDRemainTime(1342)；isMute/muteEndTime 字段(208/211)；MPT_Silenced(1433)；共1459行；核对 2026-08-20；CheckSendCD(356) 被 SendGIF(367/368)/SendTeamEmote(385/386)/SendPVPPVERecord(408/409) 调用",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-12-EV07",
+      "kind": "source-code",
+      "label": "pb_types_new.lua 友情点与聊天限制相关 proto 字段",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Framework/Network/pb/pb_types_new.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/Framework/Network/pb/pb_types_new.lua",
+      "location": "pb_types_new.lua: CRespReceiveFriendGift(2111-2112) 仅含 PlayerID[]、不含 ReceivedFriendPoint；ReceivedFriendPoint 为 proto.cmsg.Player 字段(3677)；CRespFriendSendGift(1205) 返回 IntimacyMap。globals_conf.ChatMessageLengthLimit/ChatChannelSpeechCD/ChatChannelUnlockMap 经 ChatSystem 引用（globals 字段值定义在 ExcelDataDefine.lua，见 SYS-OUT-SU-12-EV08）。核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-12-EV08",
+      "kind": "source-code",
+      "label": "ExcelDataDefine.lua 好友/聊天全局字段与枚举定义",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Framework/ExcelData/Generated/ExcelDataDefine.lua",
+      "location": "ExcelDataDefine.lua：FriendsNumLimit(9571/9859)、FriendsRequestNumLimit(9575/9863)、FriendsBlackListNumLimit(9576/9864)、FriendsGiftPoint(9577/9865)、ChatChannelSpeechCD(9667/9955)、ChatMessageLengthLimit(9672/9960)、FriendExpType.FET_FriendPoint(315-316)、IntimacyLevelModel定义始于11229；对应 globals_conf.xlsx 当前值 50/50/50/10/5/100；只读核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-12-EV09",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-O 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-O].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-12-Q01",
+      "priority": "P1",
+      "question": "好友/聊天是否立项独立 Design Doc？规则、经济边界、治理与指标如何定义？",
+      "impact": "正式社交系统缺策划权威文档（G-006），无法形成可追踪判断链；不得从实现反推补造规则。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV03",
+        "SYS-OUT-SU-12-EV04"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q02",
+      "priority": "P2",
+      "question": "亲密度等级（IntimacyLevel）的阈值、作用与是否关联奖励如何定义？",
+      "impact": "决定亲密度系统的玩法意义与是否引入社交激励。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV01",
+        "SYS-OUT-SU-12-EV05",
+        "SYS-OUT-SU-12-EV07"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q03",
+      "priority": "P2",
+      "question": "组队/邀请的正式玩法范围、奖励、匹配与版本状态是什么？",
+      "impact": "组队/邀请只存在实现线索，正式玩法待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV03",
+        "SYS-OUT-SU-12-EV06"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q04",
+      "priority": "P2",
+      "question": "当前工作副本的 ChatChannelSpeechCD 与 ChatMessageLengthLimit 具体值是多少？",
+      "impact": "AI 只读回源可直接关闭当前配置值；频道解锁与服务端频控另归运行责任。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06",
+        "SYS-OUT-SU-12-EV07"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "当前工作副本 globals_conf 中 ChatChannelSpeechCD=5 秒，ChatMessageLengthLimit=100 字节。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-12-EV06",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q05",
+      "priority": "P2",
+      "question": "举报类型、处理流程与内容过滤/敏感词的服务端规则是什么？",
+      "impact": "决定社交治理与合规边界。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q06",
+      "priority": "P2",
+      "question": "当前工作副本的好友、黑名单、申请列表上限与单次赠点配置值是多少？",
+      "impact": "AI 只读回源可直接关闭当前配置值；申请有效期与服务端执行另归运行责任。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05",
+        "SYS-OUT-SU-12-EV07"
+      ],
+      "resolutionOwner": "AI_EVIDENCE",
+      "lifecycle": "CLOSED",
+      "answer": "当前工作副本中好友上限=50、黑名单上限=50、申请列表上限=50、单次赠点=10。",
+      "resolvedBy": "Codex AI evidence review (working-copy only)",
+      "resolvedAt": "2026-08-20T08:00:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-12-EV05",
+        "SYS-OUT-SU-12-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q07",
+      "priority": "P1",
+      "question": "友情点的产品资源身份采用可支配货币、不可支配统计值，还是受限社交资源？",
+      "impact": "决定好友系统是否构成社交激励经济。当前只见字段/配置定义(ReceivedFriendPoint 为 Player 统计字段、FriendsGiftPoint 为 globals 配置、FET_FriendPoint 枚举)，CRespReceiveFriendGift 不返回 ReceivedFriendPoint、客户端不读取入账字段，无货币账本证据，不能确认真实入账。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV07",
+        "SYS-OUT-SU-12-EV05",
+        "SYS-OUT-SU-12-EV08"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-O",
+      "answer": "用户正式选择「受限社交资源」：可消费，但只在社交域使用并单独记账。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-12-EV09"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q08",
+      "priority": "P2",
+      "question": "禁言(mute)时发言限制的服务端执行规则是什么？客户端 isMute/muteEndTime 状态如何驱动 UI 拦截？",
+      "impact": "决定聊天治理的禁言边界。客户端只记录禁言状态且发送路径未见前置拦截；拦截执行位置 UNKNOWN（服务端不可见）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV06"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q09",
+      "priority": "P2",
+      "question": "黑名单相关好友操作（被对方拉黑/拉黑对象）的错误码与限制规则是什么？服务端 BizErr(BE_ErrFriendInTargetBlacklist 等)的正式文案与处理是什么？",
+      "impact": "决定黑名单与好友关系的交互边界。客户端错误处理已注释禁用，规则以服务端为准、不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q10",
+      "priority": "P2",
+      "question": "SYS-OUT-SU-12 社交触点与 SYS-OUT-SU-14 LiveOps/回流运营的真实协作关系是什么？社交回流运营内容是否有集中台账？",
+      "impact": "决定社交与活动/回流运营的协调边界。当前仅为「需要运营协调」而非本质冲突，关系类型与内容状态未确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV03"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-12-Q11",
+      "priority": "P1",
+      "question": "服务端在领取好友赠礼时是否将友情点计入玩家可支配钱包，完整账本调用链与幂等证据在哪里？",
+      "impact": "必须用服务端运行链证明实际入账，不能由产品政策卡代替。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-12-EV05"
+      ],
+      "lifecycle": "OPEN",
+      "resolutionOwner": "RUNTIME_OWNER"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在好友关系与频道消息发送的有序流程（实现观察，目标规则为 GAP）"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在频道解锁、发送频率与好友上限等条件（多为 GAP/实现观察）"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "仅证实赠礼触发亲密度数值变化与等级计算(配置消费)，范围限定；友情点真实入账为 UNKNOWN，无货币账本证据；聊天本身无激励经济，不发明聊天奖励，不承担核心成长供给"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在缺 Design Doc、组队玩法待确认、举报过滤不可见，以及自加好友/重复好友/好友满额/黑名单错误/频道未解锁/消息超长/发送CD/禁言等异常"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在好友主界面、聊天界面与举报入口等玩家可见界面"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 IntimacyLevel.xlsx 与 11 个 chat 配置文件作为策划配置源"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-O",
+      "closeableQuestionId": "SYS-OUT-SU-12-Q07",
+      "selectedOptionId": 3,
+      "selectedOptionName": "受限社交资源",
+      "approvedTarget": "选择「受限社交资源」：可消费，但只在社交域使用并单独记账。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:19:04.231Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "友情点产品身份确定为受限社交资源；钱包、社交域账本与真实入账链仍待实现/核验。",
+      "evidenceRef": "SYS-OUT-SU-12-EV09",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

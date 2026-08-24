@@ -1,0 +1,969 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-02",
+  "name": "高难主线",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CURRENT_DESIGN / KNOWLEDGE_CURRENT",
+      "meaning": "当前知识身份或关系口径，不是运行状态。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-02-R03",
+        "SYS-OUT-GP-02-R04",
+        "SYS-OUT-GP-02-C01",
+        "SYS-OUT-GP-02-C02",
+        "SYS-OUT-GP-02-C03",
+        "SYS-OUT-GP-02-C04"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GP-02-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-02-R06",
+        "SYS-OUT-GP-02-R07"
+      ]
+    },
+    {
+      "id": "CONTRACT-SWEEP",
+      "ruleRefs": [
+        "SYS-OUT-GP-02-R08"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GP-02-R02"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-GP-02-R09"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "高难主线是普通主线的兄弟验证层：在同一章节结构上提供更高难度的 5 关/章挑战，通过宝石定向刷取、章节星级奖励和一次性首通为长线养成（宝石、映射装备主副材、抽卡券）提供稳定供给与中期卡点。",
+    "inScope": [
+      "高难主线 35 关（第一章至第七章各 5 关）的章节结构、节点拓扑、前置与开放",
+      "高难单关每日次数（RefreshNum=3）、总次数上限与挑战成本（储能）",
+      "高难首通、常规宝石掉落与高难章节星级奖励（21 节点）的分层与边界",
+      "宝石颜色分类、普通/稀有宝石关卡与常规掉落梯度（何时/为何发）",
+      "高难与普通主线的解锁依赖、进度上报与扫荡接口引用"
+    ],
+    "outOfScope": [
+      "普通主线 99 关的完整结构、奖励与系统开放；该内容归 SYS-OUT-GP-01",
+      "宝石合成的完整规则与数值；合成 3:1 规则归养成/数值侧，本系统只引用产出边界",
+      "映射装备主材/副材的养成与打造规则；该内容归 SYS-OUT-GR-07，本系统只管星级奖励发放时机",
+      "旅券养成规则；该内容归 SYS-OUT-GR-06",
+      "具体奖励数值的唯一维护；具体数量回到数值框架 v2 与 Drop 源表（SYS-OUT-SU-05）",
+      "扫荡资格/成本/批量/幂等 canonical；该内容归 SYS-OUT-GP-11"
+    ],
+    "inputs": [
+      "普通主线进度（解锁高难章节的前置条件）",
+      "高难 level/UIlevel/MainLevel/ChapterStarReward/DifficultLevelNum 配置",
+      "高难 Drop_mainlevel 真实奖励包（首通 131xxxxx、常规 132xxxxx、星级 110xxxxx）",
+      "玩家当前储能、编队与高难每日已挑战次数（服务端下发）"
+    ],
+    "outputs": [
+      "高难关卡通关、评价星级与章节累计星级",
+      "首通元晶+宝石、常规宝石掉落与章节星级奖励（映射装备主副材、宝石自选箱、抽卡券）",
+      "高难进度事件（供章节星级、扫荡资格与后续章节解锁消费）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "普通主线的兄弟高难验证层",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "高难主线与普通主线共享 level/UIlevel/MainLevel/ChapterStarReward 表但拥有独立 LevelType_Main_Difficult 与独立奖励层，不复制普通主线正文。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "35 关（7 章×5）+ 21 星级节点 + 宝石/映射装备/抽卡券奖励层",
+      "status": "CONFIRMED_TARGET",
+      "note": "高难结构、首通宝石、常规掉落梯度与 21 个星级奖励节点均已确认（高难主线关卡奖励重设计-2026-07-30）；总次数上限 30 待落表确认。"
+    },
+    {
+      "axis": "当前工作副本源表",
+      "value": "level/UIlevel 35 行齐全；MainLevel 仅 15 节点（2-4 章）；奖励双源与体力字段冲突",
+      "status": "WORKING_COPY_PARTIAL_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；UIlevel/level 各 35 高难行（110101-110705，7 章），但 MainLevel 仅 15 个高难节点（ChapterId 10002/10003/10004 各 5），地图节点缺失 4 个章节。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程主链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表、Drop 与客户端实现证据，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-Q=补齐35节点",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-02-F01",
+      "name": "高难主线推进流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-02-F01-S01",
+          "name": "切换高难模式",
+          "description": "玩家在已开放高难的章节地图中切换到高难模式，查看高难节点列表。"
+        },
+        {
+          "id": "SYS-OUT-GP-02-F01-S02",
+          "name": "校验章节与节点前置",
+          "description": "校验章节高难是否解锁（IsChapterMainDifficultUnlocked）、单关 Unlock 与普通主线章节通关前置。"
+        },
+        {
+          "id": "SYS-OUT-GP-02-F01-S03",
+          "name": "校验次数与成本",
+          "description": "校验单关每日剩余次数（RefreshNum=3 - 已用）与总次数上限（服务端 difficultTotalChallengeLimit），以及储能是否足够。"
+        },
+        {
+          "id": "SYS-OUT-GP-02-F01-S04",
+          "name": "进入战斗或扫荡",
+          "description": "手动挑战进入战斗实例；满足资格时可走扫荡快速结算，扫荡 canonical 归 SYS-OUT-GP-11。"
+        },
+        {
+          "id": "SYS-OUT-GP-02-F01-S05",
+          "name": "判定胜负与评价",
+          "description": "战斗胜利是第一评价条件；UIlevel.LevelTask=1;2;3 提供三项星级条件。"
+        },
+        {
+          "id": "SYS-OUT-GP-02-F01-S06",
+          "name": "执行结算",
+          "description": "区分首通（元晶+宝石）与常规（宝石独立判定），更新单关每日次数与总次数；星级累计达 5/10/15 时触发章节星级奖励。"
+        },
+        {
+          "id": "SYS-OUT-GP-02-F01-S07",
+          "name": "更新进度",
+          "description": "写入通关、星级与高难章节进度，向章节星级、扫荡资格与后续章节解锁发布进度变化。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-02-R01",
+      "name": "高难结构与责任边界",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "高难主线是普通主线的兄弟验证层，共享章节结构但拥有独立 LevelType_Main_Difficult、独立 35 关拓扑、独立宝石/星级奖励层；不复制普通主线正文。",
+      "sourceFact": "LevelType.xlsx 定义 LevelType_Main_Difficult=37（无 SystemId）；UIlevel 35 行 LevelType=LevelType_Main_Difficult；代码 LevelSystem.GetMainDifficultLevelListByChapterId 按 UIlevel.LevelType 筛选高难节点。",
+      "acceptance": "高难与普通主线在表、枚举和代码筛选上各自独立；高难正文不重复普通主线的 99 关结构、系统开放或章节任务正文。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV07",
+        "SYS-OUT-GP-02-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-R02",
+      "name": "章节开放与前置依赖",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED_PARTIAL",
+      "targetRule": "高难主线系统在普通主线 5-15 通关后开启；系统开启后从高难第一章开始推进；后续高难章节同时要求上一高难章节通关与对应普通主线章节通关。",
+      "sourceFact": "工作副本 unlock.lua[9001]（L715）明确 UnLockType=2、UnLockParams={100515}，直接证明高难首关 110101 的入口前置为普通主线 5-15；后续高难章节的双前置仍需逐条解析 9001..9605。",
+      "acceptance": "每个高难章节的开放可追溯到普通主线章节通关与上一高难章节通关双前置；首开入口与逐章推进口径一致。",
+      "relatedIds": [
+        "SYS-OUT-GP-01",
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV10",
+        "SYS-OUT-GP-02-EV11",
+        "SYS-OUT-GP-02-EV14"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-R03",
+      "name": "单关每日次数与总次数上限",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "每关每日可挑战 3 次；全部高难关卡每日合计挑战上限暂按 30 次设计，实际运行口径需落表前再次确认。",
+      "sourceFact": "UIlevel 35 行 RefreshNum 均为 3（单关日限）；代码 HasDifficultLevelChallengeRemain 判定 (refreshNum - usedTimes) > 0 且 (difficultTotalChallengeLimit - difficultTotalChallengeTimes) > 0，总次数由服务端 CNotifyDifficultLevelChallengeTimes 下发；DifficultLevelNum.xlsx 仅 1 行 AddNum=999（与设计 30 不一致，可能为服务端增量配置或已废弃）。",
+      "acceptance": "单关日限与总次数上限各自有唯一运行权威；总次数 30 的目标口径在落表前需与服务端配置对齐。",
+      "relatedIds": [
+        "SYS-OUT-GR-01",
+        "SYS-OUT-GP-11"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV04",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV10",
+        "SYS-OUT-GP-02-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-R04",
+      "name": "挑战成本（储能）",
+      "status": "WORKING_COPY_CONFLICT_RUNTIME_AUTHORITY",
+      "targetRule": "单次挑战消耗 20 储能；单次通关获得玩家经验 200，由程序默认结算，不进入 Drop 或 UIlevel 奖励预览配置。",
+      "sourceFact": "UIlevel 高难 35 行 Vitality 均为「3,20」（候选语义为物品3、数量20）；level.xlsx 高难 35 行 Vitality 均为 0。运行时究竟读取哪张表仍待消费方裁决，与普通主线的同类双源冲突分开记录。",
+      "acceptance": "高难挑战成本只能有一个运行权威；手动挑战与扫荡必须复用同一扣除口径；玩家经验 200 程序默认结算不进 Drop 预览。",
+      "relatedIds": [
+        "SYS-OUT-GR-01",
+        "SYS-IN-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-R05",
+      "name": "单关评价与章节累计星级",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "关卡胜利后根据三项评价累计 0-3 星；高难每章设置 5 星、10 星、15 星三个星级奖励节点，共 21 个一次性节点。",
+      "sourceFact": "UIlevel 高难 35 行 LevelTask 均为 1;2;3（复用 LevelCondition 1/2/3）；ChapterStarReward IsDifficult=true 共 21 行（ChapterId 10001-10007 各 3 行，Star=5/10/15），DropId=11001001-11001021 均在 Drop_mainlevel 中存在。",
+      "acceptance": "高难星级节点为 21 个（7 章×3）；星级奖励 DropId 全部可解析；评价条件复用普通主线 LevelCondition。",
+      "relatedIds": [
+        "SYS-IN-08",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV04",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV08",
+        "SYS-OUT-GP-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-R06",
+      "name": "首通与常规奖励分层",
+      "status": "WORKING_COPY_OBSERVED_DUAL_SOURCE_CONFLICT",
+      "targetRule": "首次通关同时结算基础首通奖励（元晶+宝石）和常规通关奖励（宝石独立判定）；已通关后的手动挑战或扫荡只走常规奖励。预览字段不拥有真实入账权威。",
+      "sourceFact": "UIlevel 高难 35 行 FirstRewardDrop 按章分段为 13100101..13100705、FallRewardDrop 按章分段为 13200101..13200705（并非 35 个连续 ID），均在 Drop_mainlevel 中存在；level.xlsx 同 35 行 FirstReward=1、FallReward=1，均会落到 Drop_draw 的 R 卡随机包，与 UIlevel 严重冲突，运行时消费方必须裁决。",
+      "acceptance": "每种奖励类型只有一个真实 Drop 权威；首次通关不能重复领首通；level.xlsx 的 FallReward=1 不得被运行时误用为高难常规奖励。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-R07",
+      "name": "宝石投放与常规掉落梯度",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "每关只掉一种颜色宝石；首通与常规宝石颜色一致；普通宝石关每次 4 次独立判定，稀有宝石关每次 2 次；常规掉落只产 1/2 级宝石；2 级按 3 个 1 级折算；概率随章节递增。4 个稀有宝石关为 3-5(青)/4-5(白)/6-5(青)/7-5(白)。",
+      "sourceFact": "Drop_mainlevel 中 DropId 13100101 含元晶×50+2级红色宝石×1（匹配设计 1-1）；13200101 引用红色宝石影 DropId2 链（fixed__random，对应 4 次独立判定）；星级奖励 11001001 含元晶×100+映射装备副材自选箱×8+3级普通宝石自选箱×1（匹配设计第一章5星）。",
+      "acceptance": "逐关宝石颜色、首通/常规判定次数与概率梯度与设计一致；常规不产 3 级及以上；稀有宝石仅 4 关。",
+      "relatedIds": [
+        "SYS-OUT-GR-07",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-R08",
+      "name": "扫荡接口（规则权威移交）",
+      "status": "WORKING_COPY_FIELD_RULE_GAP",
+      "targetRule": "高难扫荡用于快速结算已满足资格的内容；扫荡的资格、成本、批量/多倍、奖励边界与幂等 canonical 已移交 SYS-OUT-GP-11，本正文只保留高难侧接口并引用其规则。",
+      "sourceFact": "level.xlsx 高难 35 行 MopUp 均为 1；UISweepLevelResultView 对 LevelType_Main_Difficult 走 GetDifficultLevelChallengeTimes 校验剩余次数；高难不在 EnableMultiSettlementLevel 多倍白名单内（多倍仅旅券副本）。",
+      "acceptance": "高难侧不再重复维护扫荡规则；资格/成本/幂等口径以 SYS-OUT-GP-11 为准；高难不支持多倍结算。",
+      "relatedIds": [
+        "SYS-OUT-GP-11",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV11",
+        "SYS-OUT-GP-02-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-R09",
+      "name": "失败、异常退出与重复结算",
+      "status": "DESIGN_GAP",
+      "targetRule": "失败、断线、异常退出、加载失败、重复请求和补发必须有一致的成本、状态回滚和结算幂等规则；高难每日次数的扣除与回滚口径需与服务端一致。",
+      "sourceFact": "反推 Design 只提出体力不足提示和加载失败回退；高难每日次数在服务端 CNotifyDifficultLevelChallengeTimes 同步，失败/断线是否扣次数与储能、重复结算防护没有冻结策划口径。",
+      "acceptance": "正常胜利、失败、主动退出、断线重连、加载失败、重复结算六类路径都有明确次数/储能变化和可执行验收。",
+      "relatedIds": [
+        "SYS-IN-01",
+        "SYS-IN-08",
+        "SYS-OUT-SU-09"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV02",
+        "SYS-OUT-GP-02-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-R10",
+      "name": "地图节点结构冲突",
+      "status": "P0_CONFLICT",
+      "targetRule": "高难主线应在第一章至第七章各有 5 个地图节点，共 35 个；MainLevel 的高难节点必须与 level/UIlevel 的 35 行一致。",
+      "sourceFact": "MainLevel.xlsx 高难行仅 15 个（ChapterId 10002/10003/10004 各 5），缺失第一/五/六/七4 个章节的高难地图节点；而 level/UIlevel 各有 35 行（110101-110705，7 章×5）且 ChapterStarReward 有 21 个高难星级节点（7 章）。三方数据不一致。",
+      "acceptance": "MainLevel 高难节点补齐至 35 个（7 章×5），与 level/UIlevel/ChapterStarReward 章节覆盖一致；缺失章节的地图显示与节点连链路修复。",
+      "relatedIds": [
+        "SYS-OUT-GP-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV07",
+        "SYS-OUT-GP-02-EV08"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-02-C01",
+      "name": "高难系统入口开放",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_PARTIAL",
+      "rule": "高难主线系统在普通主线 5-15 通关后开启；入口开放与具体高难章节开放分开判定。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV10",
+        "SYS-OUT-GP-02-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-C02",
+      "name": "高难章节解锁",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "高难章节解锁要求：章节已解锁（GetChapterIsUnlock）+ 存在高难关卡（GetChapterHasMainDifficult）+ 至少一关不为 Locked；后续章节同时要求上一高难章通关与对应普通主线章通关。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV10",
+        "SYS-OUT-GP-02-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-C03",
+      "name": "单关前置与解锁",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "高难单关 Unlock 字段存 Unlock.Id（9001..9605，按 7 章×5 关分段），需解析 UnLockType 与 UnLockParams；工作副本 9001 已直接解析为普通主线 5-15（100515），其余逐关链仍需核对。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-C04",
+      "name": "挑战次数与储能门槛",
+      "status": "WORKING_COPY_CONFLICT_RUNTIME_AUTHORITY",
+      "rule": "单关每日剩余次数 = RefreshNum(3) - 已用次数，且总剩余次数 > 0；挑战成本候选冲突为 level.Vitality=0 与 UIlevel.Vitality=3,20，运行权威待消费方裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV10",
+        "SYS-OUT-GP-02-EV12"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-02-RW01",
+      "name": "高难首通（元晶+宝石）",
+      "status": "WORKING_COPY_CONFIGURED_DUAL_SOURCE_CONFLICT",
+      "rule": "每关首次胜利只领一次；基础首通元晶普通关 50/章底关 100，附 2-4 级宝石；候选真实包由 UIlevel.FirstRewardDrop 按章分段指向 13100101..13100705。level.xlsx FirstReward=1 指向 Drop_draw 的 R 卡随机包，保留为 P0 双源冲突，不得解释为正确高难奖励。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-RW02",
+      "name": "高难常规宝石掉落",
+      "status": "WORKING_COPY_CONFIGURED_DUAL_SOURCE_CONFLICT",
+      "rule": "已通关节点再次挑战或扫荡只结算常规宝石掉落；候选真实包由 UIlevel.FallRewardDrop 按章分段指向 13200101..13200705。level.xlsx FallReward=1 指向 Drop_draw 的 R 卡随机包，保留为 P0 双源冲突。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-RW03",
+      "name": "高难章节星级奖励（21 节点）",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "21 个一次性星级节点（7 章×5/10/15 星），经 ChapterStarReward(IsDifficult=true) 引用 Drop_mainlevel 11001001-11001021；第一奖励位元晶 100/150/200，第二奖励位映射装备副材/主材，第三奖励位宝石自选箱/抽卡券×3。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV08",
+        "SYS-OUT-GP-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-RW04",
+      "name": "玩家经验程序默认结算",
+      "status": "CONFIRMED_TARGET",
+      "rule": "单次通关获得玩家经验 200，由程序默认结算，不进入 Drop 或 UIlevel 奖励预览配置。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-02-EX01",
+      "name": "MainLevel 高难节点缺失",
+      "status": "P0_CONFLICT",
+      "rule": "MainLevel 高难行仅 15 个（2/3/4 章），缺失 1/5/6/7 章共 20 个高难地图节点；与 level/UIlevel 35 行及 ChapterStarReward 21 节点的 7 章覆盖不一致，地图显示与节点连链路断裂。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV07",
+        "SYS-OUT-GP-02-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-EX02",
+      "name": "奖励双源冲突",
+      "status": "P0_CONFLICT",
+      "rule": "level.xlsx 高难 35 行 FirstReward=1、FallReward=1，均指向 Drop_draw 的 5 个 R 卡随机包；与 UIlevel 的 131xxxxx/132xxxxx 高难奖励包严重冲突，运行时消费方必须裁决权威源。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-EX03",
+      "name": "体力字段冲突",
+      "status": "P1_CONFLICT",
+      "rule": "高难 level.Vitality=0，而 UIlevel.Vitality=3,20；目标候选为消耗 20 储能，但真实扣除逻辑待消费方确认。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-EX04",
+      "name": "总次数上限不一致",
+      "status": "P1_CONFLICT",
+      "rule": "设计目标总次数上限 30，DifficultLevelNum.xlsx AddNum=999；服务端实际下发 difficultTotalChallengeLimit，落表前需对齐。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV12",
+        "SYS-OUT-GP-02-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-EX05",
+      "name": "失败与断线规则缺口",
+      "status": "P1_GAP",
+      "rule": "失败是否扣储能/次数、断线恢复、异常退出、重复结算和补发尚无正式系统规则。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV02",
+        "SYS-OUT-GP-02-EV10"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-02-UI01",
+      "name": "章节地图高难模式",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "在已开放高难的章节地图中提供普通/高难模式切换（IsDifficult 状态）；高难模式展示高难节点列表、解锁与已通关状态。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV11",
+        "SYS-OUT-GP-02-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-UI02",
+      "name": "高难关卡详情",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示关卡名称、评价条件、挑战成本、推荐等级、首通/常规奖励预览、剩余次数与挑战/扫荡入口；次数不足时禁用挑战。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV11",
+        "SYS-OUT-GP-02-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-UI03",
+      "name": "高难结算页",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "区分首通（元晶+宝石）与常规（宝石掉落）奖励，反馈星级与剩余次数；UIMainLevelSettlement 对 LevelType_Main_Difficult 走独立结算任务列表。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV11",
+        "SYS-OUT-GP-02-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-02-UI04",
+      "name": "高难章节星级进度",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "显示高难累计星级、5/10/15 星奖励节点、已领取状态与真实奖励预览。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV08",
+        "SYS-OUT-GP-02-EV11"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-02-CFG01",
+      "name": "level",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx",
+      "role": "高难 35 行（110xxx, Type=37）战斗底表、Unlock、Vitality=0、MopUp=1 与冲突的 FirstReward=1/FallReward=1 字段",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-02-CFG02",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "高难 35 行（110101-110705）LevelType=Main_Difficult、ChapterId、RefreshNum=3、Vitality=3,20、LevelTask、FirstRewardDrop/FallRewardDrop 真实 Drop 引用",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-02-CFG03",
+      "name": "MainLevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\MainLevel.xlsx",
+      "role": "高难地图节点链；当前仅 15 节点（2/3/4 章），缺失 4 个章节",
+      "status": "WORKING_COPY_SOURCE_INCOMPLETE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-CFG04",
+      "name": "ChapterStarReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChapterStarReward.xlsx",
+      "role": "高难 21 个星级奖励节点（IsDifficult=true，7 章×5/10/15 星，DropId=11001001-11001021）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-CFG05",
+      "name": "DifficultLevelNum",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\DifficultLevelNum.xlsx",
+      "role": "高难总次数上限配置；当前仅 1 行 AddNum=999，与设计目标 30 不一致",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-OUT-GP-02-CFG06",
+      "name": "LevelType",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelType.xlsx",
+      "role": "LevelType_Main_Difficult=37 枚举定义；无 SystemId",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-CFG07",
+      "name": "Drop_mainlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_mainlevel.xlsx",
+      "role": "高难首通 131xxxxx、常规 132xxxxx、星级 110xxxxx 真实奖励包",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-02-REL01",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "来源：SYS-OUT-GP-01主线正文(EV04)定义主线节点推进，level.xlsx(EV05)/MainLevel.xlsx(EV07)定义关卡配置，LevelSystem.lua高难区(EV10)实现高难开放逻辑。推导：普通主线(GP-01)达到目标节点(5-15)后开启高难主线，高难章节同时要求对应普通章节通关，构成 unlocks/incoming 关系。推导边界：高难开放条件已由工作副本配置与代码确认，但开放口径是否存在版本差异(Design vs工作副本)需在GP-01侧确认。UNKNOWN：高难开放条件的权威策划口径是否与工作副本一致仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-02-REL02",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。选定高难节点后把场景、关卡规则、编队和战斗目标交给战斗实例。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV02",
+        "SYS-OUT-GP-02-EV05"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-02-REL03",
+      "type": "reports",
+      "direction": "incoming",
+      "targetId": "SYS-IN-08",
+      "targetName": "胜负、结果与结算触发",
+      "description": "来源：LevelSystem.lua高难区(EV10)处理高难结果与进度更新，UISweepLevelResultView.lua(EV13)展示结算。推导：高难主线接收战斗实例(SYS-IN-08)的胜负、评价和战利品触发，更新高难进度与次数，构成 reports/incoming 关系。推导边界：结果接收与进度更新逻辑已由工作副本代码确认，但战利品触发到结算的完整链路在SYS-IN-08侧维护。UNKNOWN：高难进度与次数的服务端同步权威仍未知。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-02-REL04",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：ChapterStarReward.xlsx(EV08)定义星级奖励，Drop_mainlevel.xlsx(EV09)定义掉落入账，高难主线关卡奖励重设计(EV01)定义奖励结构。推导：高难首通、常规与星级奖励通过真实Drop入账(SU-05)，预览与真实分离权威归SU-05，构成 reports/outgoing 关系。推导边界：奖励配置与掉落入账已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：高难奖励的服务端入账幂等与预览/真实分离的完整规则仍待SU-05确认。",
+      "status": "CONFLICT_NEEDS_RUNTIME_AUTHORITY",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-02-REL05",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-07",
+      "targetName": "映射装备",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。高难星级奖励投放映射装备主材/副材，供给映射装备打造。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV08",
+        "SYS-OUT-GP-02-EV09"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-02-REL06",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家等级",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。高难挑战消耗储能并产出玩家经验 200，走体力与账号经验口径。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV08",
+        "SYS-OUT-GP-02-EV09"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-02-REL07",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GP-11",
+      "targetName": "扫荡",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。已满足资格的高难关卡可进入快速结算路径；高难不支持多倍。",
+      "status": "RULE_GAP",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV02",
+        "SYS-OUT-GP-02-EV05"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-02-REL08",
+      "type": "conflicts-with",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GP-01",
+      "targetName": "主线",
+      "description": "来源：高难与普通主线共享level.xlsx(EV05)/UIlevel.xlsx(EV06)/MainLevel.xlsx(EV07)/ChapterStarReward.xlsx(EV08)，SYS-OUT-GP-01主线正文(EV04)定义主线表归属。推导：高难与普通主线共享level/UIlevel/MainLevel/ChapterStarReward表，存在奖励双源与地图节点覆盖冲突，构成 conflicts-with/outgoing 关系。推导边界：表共享已由工作副本配置确认，但冲突的实际影响范围(奖励双源是否导致多发)需在GP-01与SU-05侧联合确认。UNKNOWN：奖励双源是否导致实际多发与地图节点覆盖的运行影响仍待确认。",
+      "status": "P0_CONFLICT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-02-REL09",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：ChapterStarReward.xlsx(EV08)定义星级奖励，Drop_mainlevel.xlsx(EV09)定义掉落入账，高难主线关卡奖励重设计(EV01)定义奖励供给。推导：高难宝石/星级奖励供给进入经济账(NUM-04)，具体数量只在数值/Drop权威源维护，构成 balances/incoming 关系。推导边界：奖励配置已由工作副本确认，但供给量在经济账中的占比属经济数值域维护。UNKNOWN：高难奖励供给在整体经济账中的占比与对养成节奏的影响仍待经济域核算。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-02-EV01",
+      "kind": "design-target",
+      "label": "高难主线关卡奖励重设计",
+      "path": "design/高难主线关卡奖励重设计-2026-07-30.md",
+      "location": "§1 结构、§2 宝石投放、§3 常规掉落梯度、§4 逐关奖励、§7 星级奖励、§9 验收口径",
+      "status": "CONFIRMED_TARGET"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV02",
+      "kind": "reverse-design",
+      "label": "主线关卡系统 Design Doc",
+      "path": "design/主线关卡系统Design Doc.md",
+      "location": "非目标「不涉及高难主线」、R-01 体力不足提示与加载失败回退",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV03",
+      "kind": "knowledge-ref",
+      "label": "12-战斗外系统",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "location": "§2.1 高难主线行、§6 待裁决系统",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV04",
+      "kind": "knowledge-ref",
+      "label": "SYS-OUT-GP-01 主线正文",
+      "path": "archive/legacy-output-20260824/knowledge-base/system-details/SYS-OUT-GP-01.json",
+      "location": "R02 普通结构、R05 评价、R06 奖励双源、REL07 解锁高难",
+      "status": "KNOWLEDGE_CURRENT"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV05",
+      "kind": "source-excel",
+      "label": "level.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/level.xlsx",
+      "location": "本机SVN工作副本；sheet level；Type=37 共 35 行，LevelId=110101-110705，Unlock=9001..9605，Vitality=0、FirstReward=1、FallReward=1、MopUp=1 均为 35/35；核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV06",
+      "kind": "source-excel",
+      "label": "UIlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "location": "本机SVN工作副本；sheet level；高难 35 行 LevelType=Main_Difficult、ChapterId=10001-10007、RefreshNum=3、Vitality=3,20、LevelTask=1;2;3；FirstRewardDrop 按章 13100101..13100705、FallRewardDrop 按章 13200101..13200705；核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV07",
+      "kind": "source-excel",
+      "label": "MainLevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/MainLevel.xlsx",
+      "location": "本机SVN工作副本；sheet MainLevel；高难仅 15 行 ChapterId=10002/10003/10004 各 5；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_INCOMPLETE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV08",
+      "kind": "source-excel",
+      "label": "ChapterStarReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/ChapterStarReward.xlsx",
+      "location": "本机SVN工作副本；IsDifficult=true 共 21 行（10001-10007 各 3，Star=5/10/15，DropId=11001001-11001021）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV09",
+      "kind": "source-excel",
+      "label": "Drop_mainlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Drop/Drop_mainlevel.xlsx",
+      "location": "本机SVN工作副本；高难首包 13100101(元晶50+2级红宝石1)、常规包 13200101(红色宝石影链)、11001001(元晶100+副材自选箱8+3级宝石自选箱1) 等存在；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV10",
+      "kind": "source-code",
+      "label": "LevelSystem.lua 高难区",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Level/LevelSystem.lua",
+      "location": "328-414 行高难区（GetMainDifficultLevelListByChapterId/IsChapterMainDifficultUnlocked）、843-893 行次数区（CRespNotifyDifficultLevelChallengeTimes/HasDifficultLevelChallengeRemain）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV11",
+      "kind": "source-code",
+      "label": "UIMainLevelViewNew.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/MainLevel/UIMainLevelViewNew.lua",
+      "location": "98/283/543/611/875 行高难模式切换与次数校验",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV12",
+      "kind": "source-excel",
+      "label": "DifficultLevelNum.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/DifficultLevelNum.xlsx",
+      "location": "本机SVN工作副本；仅 1 行 Id=1 Unlock=9101 AddNum=999；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV13",
+      "kind": "source-code",
+      "label": "UISweepLevelResultView.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/SweepLevel/UISweepLevelResultView.lua",
+      "location": "88/183/258/294 行高难扫荡次数校验",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV14",
+      "kind": "generated-config",
+      "label": "unlock.lua 首个高难前置",
+      "path": "D:/Vgame/HorizonFlyProject/LuaConfig/unlock.lua",
+      "location": "本机SVN工作副本；L715 [9001] UnLockType=2, UnLockParams={100515}；核对 2026-08-20",
+      "status": "WORKING_COPY_GENERATED_EVIDENCE"
+    },
+    {
+      "id": "SYS-OUT-GP-02-EV15",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-Q 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-Q].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-02-Q01",
+      "priority": "P0",
+      "question": "MainLevel 高难节点仅 15 个（2/3/4 章），缺失 1/5/6/7 章共 20 个节点，何时补齐至 35 个？",
+      "impact": "影响高难地图显示、节点连链路与 4 个章节的高难推进。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV07",
+        "SYS-OUT-GP-02-EV08"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-Q",
+      "answer": "用户正式选择「补齐35节点」：补齐 MainLevel 地图节点和所有跳转/解锁。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GP-02-EV15"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GP-02-Q02",
+      "priority": "P0",
+      "question": "高难真实奖励运行时以 level 还是 UIlevel 字段为权威？level.FallReward=1 会落到抽卡R卡包。",
+      "impact": "35 个高难关常规奖励指向错误包，直接影响宝石产出与经济。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06",
+        "SYS-OUT-GP-02-EV09"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-02-Q03",
+      "priority": "P1",
+      "question": "高难真实挑战成本读取 level.Vitality=0 还是 UIlevel.Vitality=3,20？候选目标为 20 储能。",
+      "impact": "决定手动挑战、扫荡与高难每日资源节奏。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV06"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-02-Q04",
+      "priority": "P1",
+      "question": "高难总次数上限目标 30 与 DifficultLevelNum.AddNum=999 如何对齐？服务端 difficultTotalChallengeLimit 实际值是多少？",
+      "impact": "影响高难每日总产出与宝石养成节奏。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV01",
+        "SYS-OUT-GP-02-EV10",
+        "SYS-OUT-GP-02-EV12"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-02-Q05",
+      "priority": "P1",
+      "question": "失败、主动退出和断线重连是否扣储能与每日次数，如何防重复结算？",
+      "impact": "影响资源安全、玩家体验与补偿处理。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV02",
+        "SYS-OUT-GP-02-EV10"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-02-Q06",
+      "priority": "P1",
+      "question": "高难扫荡需要首通、三星还是其他门槛？（canonical 归 SYS-OUT-GP-11）",
+      "impact": "决定高难复刷效率与奖励结算边界。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-02-EV05",
+        "SYS-OUT-GP-02-EV13"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在玩家从切换高难模式到结算的有序推进流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在系统入口开放、章节解锁、单关前置、次数与储能门槛条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "本系统拥有首通、常规宝石掉落与章节星级奖励的分层与发放时机规则"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在地图节点缺失、奖励双源冲突、体力冲突、总次数不一致与失败断线缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在章节地图高难模式、关卡详情、结算页与星级进度界面"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 level/UIlevel/MainLevel/ChapterStarReward/DifficultLevelNum/LevelType/Drop_mainlevel 配置源"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-Q",
+      "closeableQuestionId": "SYS-OUT-GP-02-Q01",
+      "selectedOptionId": 1,
+      "selectedOptionName": "补齐35节点",
+      "approvedTarget": "选择「补齐35节点」：补齐 MainLevel 地图节点和所有跳转/解锁。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:19:18.614Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "高难主线目标补齐至 35 节点；20 个缺失节点、跳转与解锁尚未写入工作副本。",
+      "evidenceRef": "SYS-OUT-GP-02-EV15",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

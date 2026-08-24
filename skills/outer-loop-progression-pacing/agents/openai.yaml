@@ -1,0 +1,7 @@
+interface:
+  display_name: "外循环进度节奏"
+  short_description: "设计外循环等级、解锁、收益与升级节奏"
+  default_prompt: "Use $outer-loop-progression-pacing to design an outer-loop level reward table with clear unlock pacing and recalculated progression timing."
+
+policy:
+  allow_implicit_invocation: true

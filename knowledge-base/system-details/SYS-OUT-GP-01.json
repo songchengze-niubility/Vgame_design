@@ -1,0 +1,1203 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-01",
+  "name": "主线",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "用户最新章节等级表 + 本机 SVN 工作副本 + 数值框架 v2 节奏单源",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CURRENT_DESIGN / KNOWLEDGE_CURRENT",
+      "meaning": "当前知识身份或关系口径，不是运行状态。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-01-R03",
+        "SYS-OUT-GP-01-R04",
+        "SYS-OUT-GP-01-C01",
+        "SYS-OUT-GP-01-C02",
+        "SYS-OUT-GP-01-C03",
+        "SYS-OUT-GP-01-C05"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GP-01-R05",
+        "SYS-OUT-GP-01-R12"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-01-R06",
+        "SYS-OUT-GP-01-R07"
+      ]
+    },
+    {
+      "id": "CONTRACT-SWEEP",
+      "ruleRefs": [
+        "SYS-OUT-GP-01-R08",
+        "SYS-OUT-GP-01-C04"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GP-01-R09"
+      ]
+    },
+    {
+      "id": "CONTRACT-TASK-REPORT",
+      "ruleRefs": [
+        "SYS-OUT-GP-01-R10"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-GP-01-R12"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "主线是 Vgame 默认推进轴：用章节与关卡组织剧情、战斗教学、阵位扩充、系统开放、早中期成长供给和阶段目标，并把战斗结果转成账号进度。",
+    "inScope": [
+      "普通主线的章节、地图节点、前置链、挑战、评价、首通与重复结算",
+      "普通主线支线节点及其一次性奖励边界",
+      "普通章节累计星级奖励",
+      "主线进度对 Unlock、SystemOpen、新手引导和章节任务的输出",
+      "主线扫荡接口、难度接口和配置契约"
+    ],
+    "outOfScope": [
+      "高难主线的完整宝石、次数和高难星级规则；该内容归 SYS-OUT-GP-02",
+      "具体地形、波次、怪物和 Boss 编排；该内容归战斗与关卡设计模块",
+      "逐关奖励数值的唯一维护；具体数量回到数值框架 v2 与 Drop 源表",
+      "章节任务自身的养成目标与奖励；该内容归 SYS-OUT-SU-07"
+    ],
+    "inputs": [
+      "玩家当前章节、已通关节点、编队与账号成长状态",
+      "关卡前置、章节解锁、挑战成本、场景与战斗数据",
+      "普通主线、支线、星级和章节任务的奖励/目标配置"
+    ],
+    "outputs": [
+      "关卡通关、评价星级、章节进度和支线领取状态",
+      "首通、重复、星级与支线奖励",
+      "玩家经验、早期养成资源及下一关/下一章目标",
+      "供 Unlock/SystemOpen、引导、章节任务和高难主线消费的进度事件"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式项目主轴",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "主线作为剧情、教学、成长和系统开放的默认推进轴没有争议。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "普通99关 + 支线44节点 + 普通星级37节点",
+      "status": "CONFIRMED_TARGET",
+      "note": "普通结构与奖励目标已有确认文档；章节0～2不设章节开启条件，章节3～7仅按主角等级24/28/31/33/35开启，不叠加前章末关通关条件。高难35关另归高难主线。"
+    },
+    {
+      "axis": "当前工作副本源表",
+      "value": "有效普通99 + 支线44；章节开启条件已按最新口径配置并导出，章节归属、奖励、体力与任务仍有其他冲突",
+      "status": "WORKING_COPY_CHAPTER_UNLOCK_CONFIGURED",
+      "note": "本机 SVN 工作副本核对于2026-08-18：ChapterLevel 10000～10002 的 Unlock 为空（导出为0），10003～10007 分别引用 Unlock 201～205；Unlock 201～205 为 UnLock_UUT_player_Grade，参数24/28/31/33/35。客户端 chapterlevel.lua、unlock.lua 及对应 bytes 已成功导出。生成_主角等级单源.xlsx 的旧值20/25/30/34/37已被本次用户口径覆盖但尚未回写该数值文档；六个旧普通关为 ## 无效行。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程主链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表和实现证据，但没有集中版本—开关—发布时间台账，不能把所有目标规则直接盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-N=统一为10007",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-01-F01",
+      "name": "普通主线推进流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-01-F01-S01",
+          "name": "选择章节与节点",
+          "description": "玩家在当前已开放章节地图中查看可挑战、已通关、未解锁和支线节点。"
+        },
+        {
+          "id": "SYS-OUT-GP-01-F01-S02",
+          "name": "校验前置与成本",
+          "description": "解析节点 Unlock.Id、章节开启等级、编队要求与挑战成本；章节0～2不做章节级硬卡，章节3～7只校验主角等级24/28/31/33/35。章节入口开放和章节内具体节点推进分开判断。"
+        },
+        {
+          "id": "SYS-OUT-GP-01-F01-S03",
+          "name": "确认编队",
+          "description": "进入关卡前选择或确认当前可用阵位与角色队伍。"
+        },
+        {
+          "id": "SYS-OUT-GP-01-F01-S04",
+          "name": "进入战斗或扫荡",
+          "description": "手动挑战进入战斗实例；满足资格时可走扫荡快速结算，扫荡运行门槛仍待代码裁决。"
+        },
+        {
+          "id": "SYS-OUT-GP-01-F01-S05",
+          "name": "判定胜负与评价",
+          "description": "战斗胜利是第一评价条件；当前 UIlevel 还配置战败角色数和队伍血量条件。"
+        },
+        {
+          "id": "SYS-OUT-GP-01-F01-S06",
+          "name": "执行结算",
+          "description": "区分首次通关、常规重复、章节星级与支线一次性奖励，避免把预览字段当成真实 Drop。"
+        },
+        {
+          "id": "SYS-OUT-GP-01-F01-S07",
+          "name": "更新进度",
+          "description": "写入通关、星级、支线和章节状态，并向任务、引导、Unlock/SystemOpen 发布进度变化。"
+        },
+        {
+          "id": "SYS-OUT-GP-01-F01-S08",
+          "name": "给出下一目标",
+          "description": "解锁下一节点或章节，展示新系统、新引导、章节任务或高难主线入口。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-01-R01",
+      "name": "主进度轴与责任边界",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "主线同时承载剧情推进、战斗教学、阵位扩充、系统开放、早中期养成供给和阶段验证；具体战斗机制、数值数量与章节任务正文由对应专业模块维护。",
+      "sourceFact": "项目总 Skill、主线 Design、有效 MainLevel/ChapterLevel/Unlock/SystemOpen 链均支持主线作为默认推进轴；运行时 LIVE 版本缺集中台账。",
+      "acceptance": "从任一主线节点可追到章节、关卡底表、战斗入口、结算引用和进度消费者；页面不得把高难、章节任务或数值表复制成第二权威源。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-08",
+        "SYS-OUT-GR-01",
+        "SYS-OUT-SU-13"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV01",
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R02",
+      "name": "普通章节与内容拓扑",
+      "status": "TARGET_CONFIRMED_WORKING_COPY_OBSERVED",
+      "targetRule": "普通主线由序章4关、第一章8关、第二章12关、第三至第七章各15关组成，共99个核心推进关；另有44个一次性支线节点，不计入99关。",
+      "sourceFact": "MainLevel 有效行正好是99个普通节点；level/UIlevel 中六个旧关卡 0-5、1-9、1-10、2-13、2-14、2-15 仍物理存在但首列为 ##，不参与有效配置。44个 120xxx 支线节点已出现在 level/UIlevel。",
+      "acceptance": "有效普通节点计数为99；六个 ## 历史行不得进入地图、进度和奖励统计；44支线单列统计。",
+      "relatedIds": [
+        "SYS-OUT-GP-02",
+        "SYS-IN-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV01",
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R03",
+      "name": "节点前置与章节推进",
+      "status": "TARGET_CONFIRMED_WORKING_COPY_CONFIGURED",
+      "targetRule": "玩家按章节内节点顺序推进，下一关依赖上一关通关；章节入口规则独立：章节0～2不设开启条件，章节3～7仅在主角等级达到24/28/31/33/35时开启，不再叠加前一章末关通关条件。",
+      "sourceFact": "用户2026-08-18最新澄清明确0～2章不需要开启条件、不会硬卡，剩余章节按截图24/28/31/33/35配置。工作副本 ChapterLevel 10000～10002 的 Unlock 已置空，10003～10007 已引用201～205；Unlock 201～205均为 UnLock_UUT_player_Grade，参数24/28/31/33/35。ConditionSystem 对空/0 Unlock 返回已解锁，对 player_Grade 按玩家等级判定；客户端 Lua 与 bytes 已成功导出。章节内 MainLevel 的顺序前置保持不变。",
+      "acceptance": "章节0～2在 ChapterLevel 层无条件开放；章节3～7分别在主角等级24/28/31/33/35达到时开放，未达到时保持锁定，达到后由等级变更事件刷新；章节入口不再要求前章末关通关；所有章节内有效 NextLevel/Unlock 目标仍可解析。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-GP-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV07",
+        "SYS-OUT-GP-01-EV08",
+        "SYS-OUT-GP-01-EV11",
+        "SYS-OUT-GP-01-EV18",
+        "SYS-OUT-GP-01-EV19",
+        "SYS-OUT-GP-01-EV20"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R04",
+      "name": "挑战进入与战斗接口",
+      "status": "TARGET_WORKING_COPY_CONFLICT",
+      "targetRule": "选择节点后依次校验前置、挑战成本和编队，再加载对应战斗数据；胜利后进入主线结算，失败则返回或重试。普通主线目标成本为10储能。",
+      "sourceFact": "level.LevelDataPath、Formation、MopUp 等字段提供战斗入口；但有效主线 level.Vitality 为0，UIlevel.Vitality 为3,10，运行时究竟读取哪张表仍需代码确认。",
+      "acceptance": "挑战成本只能有一个运行权威；手动挑战与扫荡必须复用同一资格、扣除和结算幂等规则；失败扣除与重试需形成正式策划口径。",
+      "relatedIds": [
+        "SYS-IN-01",
+        "SYS-IN-05",
+        "SYS-OUT-GP-11"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV02",
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R05",
+      "name": "单关评价与章节累计星级",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "关卡胜利后根据三项评价累计0至3星；章节累计星级达到节点时领取一次性章节星级奖励。普通主线共有37个星级奖励节点。",
+      "sourceFact": "level.LevelTask 对有效主线为空；UIlevel.LevelTask 为1;2;3。LevelCondition 1/2/3 当前分别为战斗胜利、战败角色不超过1个、通关时队伍血量全部高于30%。ChapterStarReward 有效普通37条，DropId 均可解析。",
+      "acceptance": "评价规则需由策划正式确认后再称 canonical；章节累计星级不得误用 UIlevel.ThreeStarRewardDrop（当前为空），真实章节奖励入口来自 ChapterStarReward。",
+      "relatedIds": [
+        "SYS-IN-08",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV09",
+        "SYS-OUT-GP-01-EV10",
+        "SYS-OUT-GP-01-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R06",
+      "name": "首通、重复与章节奖励分层",
+      "status": "WORKING_COPY_CONFLICT_RUNTIME_AUTHORITY",
+      "targetRule": "首次胜利结算首通与常规奖励；已通关后的手动挑战或扫荡只走可重复奖励；章节累计星级奖励独立一次性领取。预览字段不拥有真实入账权威。",
+      "sourceFact": "UIlevel 的 FirstRewardDrop/FallRewardDrop 为完整主线 Drop 引用，LevelFPDrop/LevelPPDrop 用于主线展示；但 level.FirstReward/FallReward 与 UIlevel 在84/114节点不一致，69个 level 值为1并会落到抽卡R卡包。当前运行时消费方必须裁决。",
+      "acceptance": "每种奖励类型只有一个真实 Drop 权威；展示与真实引用逐项一致；首次通关不能重复领首通；重复结算具备幂等保护。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV03",
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R07",
+      "name": "主线支线",
+      "status": "TARGET_PRESENT_IN_WORKING_COPY",
+      "targetRule": "44个支线均为一次性内容：战斗13、小游戏12、宝箱19。战斗支线只投放元晶、金币和记录盘；小游戏只投放元晶；宝箱投放元晶、金币、抽卡券及当章已开放成长资源，不配置重复掉落。",
+      "sourceFact": "120101至120707共44个有效支线节点已存在于 level/UIlevel；UIlevel FirstRewardDrop 使用10002001至10002044独立包，FallRewardDrop为空。运行版本仍需发布台账确认。",
+      "acceptance": "支线不计入99个核心推进关；每个支线拥有独立首通包；重复掉落为空；支线类型、章节归属和奖励预览一致。",
+      "relatedIds": [
+        "SYS-IN-05",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV03",
+        "SYS-OUT-GP-01-EV04",
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R08",
+      "name": "扫荡接口（规则权威移交）",
+      "status": "WORKING_COPY_FIELD_RULE_GAP",
+      "targetRule": "扫荡用于快速结算已经满足资格的主线内容；扫荡的资格、成本、批量/多倍、奖励边界与幂等 canonical 已移交 SYS-OUT-GP-11，本正文只保留主线侧接口并引用其规则。",
+      "sourceFact": "114个有效 MainLevel节点在 level.MopUp 均为1；表内没有表达必须首通、三星或达到其他门槛的字段，多倍结算和运行资格需继续查代码。",
+      "acceptance": "主线侧不再重复维护扫荡规则；资格/成本/幂等口径以 SYS-OUT-GP-11 为准。",
+      "relatedIds": [
+        "SYS-OUT-GP-11",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R09",
+      "name": "系统开放与引导输出",
+      "status": "WORKING_COPY_OBSERVED_PROJECT_ENTRY_SYNCED",
+      "targetRule": "主线通关事件驱动阵位扩充、功能入口开放、战斗内教学与战斗外引导；系统入口开放和具体关卡节点开放必须分开管理。",
+      "sourceFact": "49个 SystemOpen 关卡型条件全部指向普通主线节点。本机工作副本示例为资源本2-4、竞技场2-7、映射装备2-10、无限之旅3-15；项目入口 Skill 中原有的1-6、2-15等旧值已于2026-08-17同步并降级为历史。",
+      "acceptance": "每个系统开放点能从 SystemOpen.UnlockId 追到 Unlock 和有效普通主线节点；旧开放口径不再在项目入口中显示为当前事实。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV11",
+        "SYS-OUT-GP-01-EV12",
+        "SYS-OUT-GP-01-EV15"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R10",
+      "name": "章节任务接口",
+      "status": "CONFIRMED_TARGET_WORKING_COPY_NOT_SYNCED",
+      "targetRule": "序章无章节任务；第一至第七章任务数为6/6/7/8/9/10/10。每章同类目标只保留一个，主线节点合并为有顺序的单个进度任务，玩法挑战转入七日任务。",
+      "sourceFact": "目标设计已确认，但当前 Jottings/JottingsTask/Task 仍保留1-5/1-10、2-5/2-10/2-15及第五至第七章复用旧养成目标等旧口径；ChapterTasks 四行的 DropId 50000006 在当前逻辑 Drop 源中不存在。",
+      "acceptance": "章节阶段、任务目标、奖励包、任务枚举和UI同步目标设计；所有奖励引用存在；旧关卡节点不再被任务引用。",
+      "relatedIds": [
+        "SYS-OUT-SU-07",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV14",
+        "SYS-OUT-GP-01-EV16"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R11",
+      "name": "难度与战斗数值接口",
+      "status": "MODEL_NOT_CLOSED",
+      "targetRule": "每个PvE节点先给怪物等级，再乘生命、攻击、防御等玩法系数；同期玩家模型用于DPS、TTK和生存验收，不反向替代关卡规则。",
+      "sourceFact": "level 提供 Grade 与多项系数，但当前玩家曲线仍含废弃专武且未完整接入收容物，普通主线终态难度闭环未完成。",
+      "acceptance": "每个阶段有玩家快照、怪物等级、目标TTK/生存区间和实机复核；空白系数按统一规则解释。",
+      "relatedIds": [
+        "CB-R03",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV17",
+        "SYS-OUT-GP-01-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-R12",
+      "name": "失败、异常退出与重复结算",
+      "status": "DESIGN_GAP",
+      "targetRule": "失败、断线、异常退出、加载失败、重复请求和补发必须有一致的成本、状态回滚和结算幂等规则。",
+      "sourceFact": "反推 Design 只提出体力不足提示和加载失败回退；失败是否扣储能、重试方式、断线恢复、重复结算防护和补发没有冻结策划口径。",
+      "acceptance": "正常胜利、失败、主动退出、断线重连、加载失败、重复结算六类路径都有明确状态变化和可执行验收。",
+      "relatedIds": [
+        "SYS-IN-01",
+        "SYS-IN-08",
+        "SYS-OUT-SU-09"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV02"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-01-C01",
+      "name": "主线入口",
+      "status": "CURRENT_DESIGN_ENTRY",
+      "rule": "主线是默认主轴，不依赖 LevelType.SystemId -> SystemOpen 开启；具体节点和章节分别受 Unlock 与 ChapterLevel 控制。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV07",
+        "SYS-OUT-GP-01-EV08",
+        "SYS-OUT-GP-01-EV12"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-C02",
+      "name": "节点前置",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "level/UIlevel 的 Unlock 单元格存 Unlock.Id，不是直接 LevelId；必须继续解析 UnLockType 与 UnLockParams。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-C03",
+      "name": "章节前置",
+      "status": "TARGET_CONFIRMED_WORKING_COPY_CONFIGURED",
+      "rule": "章节内由 NextLevel/Unlock 串联；章节入口单独判定：0～2章不设 ChapterLevel.Unlock，3～7章仅使用 UnLock_UUT_player_Grade，门槛依次为24/28/31/33/35，不叠加前章末关条件。高难章节条件归高难主线。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV07",
+        "SYS-OUT-GP-01-EV08",
+        "SYS-OUT-GP-01-EV11",
+        "SYS-OUT-GP-01-EV18",
+        "SYS-OUT-GP-01-EV19",
+        "SYS-OUT-GP-01-EV20"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-C04",
+      "name": "扫荡资格（权威移交）",
+      "status": "RULE_UNKNOWN",
+      "rule": "MopUp=1 只证明关卡声明可扫荡；是否要求首通、三星或其他条件见 SYS-OUT-GP-11 的 canonical 规则与 SYS-OUT-GP-11-Q01。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-C05",
+      "name": "挑战成本",
+      "status": "WORKING_COPY_CONFLICT_RUNTIME_AUTHORITY",
+      "rule": "目标为普通10储能；level.Vitality=0、UIlevel.Vitality=3,10，运行时权威读取方待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV01",
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-01-RW01",
+      "name": "普通主线首通",
+      "status": "WORKING_COPY_CONFIGURED_DUAL_SOURCE_CONFLICT",
+      "rule": "每个普通核心关首次胜利只领取一次；具体元晶、金币、记录盘与养成材料由数值沉淀和真实 Drop 包维护。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV01",
+        "SYS-OUT-GP-01-EV03",
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-RW02",
+      "name": "常规重复奖励",
+      "status": "WORKING_COPY_CONFIGURED_DISPLAY_BREAK",
+      "rule": "已通关节点再次挑战或扫荡只结算常规奖励；UIlevel 100004 的 LevelPPDrop=12000005 为展示断引用，真实 FallRewardDrop=12000004 存在。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV03",
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-RW03",
+      "name": "普通章节星级奖励",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "有效普通章节星级节点共37个，经 ChapterStarReward 引用真实 Drop；序章3/6/12，第一章6/12/18/24，第二章7/14/21/28/36，第三至第七章9/18/27/36/45。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV01",
+        "SYS-OUT-GP-01-EV09",
+        "SYS-OUT-GP-01-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-RW04",
+      "name": "支线一次性奖励",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "44个支线分别使用10002001至10002044首通包，FallRewardDrop为空；不得计入可重复主线收入。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV03",
+        "SYS-OUT-GP-01-EV04",
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV13"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-01-EX01",
+      "name": "第七章章节归属错位",
+      "status": "P0_CONFLICT",
+      "rule": "MainLevel 中100701至100715属于ChapterId=10007，UIlevel对应15行写成10006，必须修正或明确消费方。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-EX02",
+      "name": "双奖励字段冲突",
+      "status": "P0_CONFLICT",
+      "rule": "level 与 UIlevel 的首通/重复引用在84/114节点不一致；69个level引用落到DropId=1的抽卡R卡包，必须由代码消费方裁决权威源。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-EX03",
+      "name": "体力字段冲突",
+      "status": "P1_CONFLICT",
+      "rule": "普通主线level.Vitality=0而UIlevel.Vitality=3,10；真实扣除逻辑待代码确认。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-EX04",
+      "name": "章节任务断引用",
+      "status": "P0_CONFLICT",
+      "rule": "ChapterTasks四行共同引用DropId=50000006，但该ID在当前八个逻辑Drop源中不存在。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV14",
+        "SYS-OUT-GP-01-EV13"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-EX05",
+      "name": "历史失效关卡",
+      "status": "RESOLVED_BY_ACTIVE_ROW_RULE",
+      "rule": "0-5、1-9、1-10、2-13、2-14、2-15仍物理存在于三张表，但首列为##；统计与运行判断必须排除。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-EX06",
+      "name": "失败与断线规则缺口",
+      "status": "P1_GAP",
+      "rule": "失败是否扣储能、断线恢复、异常退出、重复结算和补发尚无正式系统规则。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV02"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-01-UI01",
+      "name": "章节地图",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示章节、核心节点、支线、前后连线、Boss/章底、解锁与已通关状态；章节3～7锁定时显示所需主角等级，章节0～2不显示章节开启条件；禁用##历史节点。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV07",
+        "SYS-OUT-GP-01-EV08",
+        "SYS-OUT-GP-01-EV18",
+        "SYS-OUT-GP-01-EV19"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-UI02",
+      "name": "关卡详情",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示关卡名称、评价条件、挑战成本、推荐信息、首通/常规预览、编队和挑战/扫荡入口。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-UI03",
+      "name": "结算页",
+      "status": "TARGET_REQUIRED",
+      "rule": "明确区分首通、常规、星级与支线一次性奖励，并反馈新记录、开放系统和下一目标。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV01",
+        "SYS-OUT-GP-01-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-UI04",
+      "name": "章节星级进度",
+      "status": "WORKING_COPY_CONFIGURED",
+      "rule": "显示当前累计星级、下一奖励节点、已领取状态及真实奖励预览。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-01-UI05",
+      "name": "系统开放与引导反馈",
+      "status": "TARGET_REQUIRED",
+      "rule": "通关触发系统开放时，按队列展示开放反馈，并由NewbieGuide或BattleGuide承接必要教学。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV11",
+        "SYS-OUT-GP-01-EV12",
+        "SYS-OUT-GP-01-EV15"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-01-CFG01",
+      "name": "level",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx",
+      "role": "战斗关卡底表、前置、编队、扫荡、场景、系数及一套奖励/体力字段",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG02",
+      "name": "UIlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "role": "章节/支线展示、评价、体力、奖励预览与当前完整Drop引用",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG03",
+      "name": "MainLevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\MainLevel.xlsx",
+      "role": "有效普通99节点地图链、章节、位置、下一关与Boss标记",
+      "status": "WORKING_COPY_SOURCE_CONFIGURED"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG04",
+      "name": "ChapterLevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChapterLevel.xlsx",
+      "role": "序章至第七章、章节资源与跨章解锁",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG05",
+      "name": "LevelCondition",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelCondition.xlsx",
+      "role": "当前单关评价条件1/2/3",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG06",
+      "name": "ChapterStarReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChapterStarReward.xlsx",
+      "role": "普通37与高难21个章节累计星级奖励入口",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG07",
+      "name": "ChapterTasks",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChapterTasks.xlsx",
+      "role": "旧章节任务链与奖励入口",
+      "status": "BROKEN_REFERENCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG08",
+      "name": "Unlock",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\unlock\\Unlock.xlsx",
+      "role": "节点、章节和系统开放条件的参数化定义；201～205承载主线第3～7章等级门槛",
+      "status": "WORKING_COPY_SOURCE_CONFIGURED"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG09",
+      "name": "SystemOpen",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx",
+      "role": "其他系统消费主线节点的开放入口；当前实表无IsValid字段",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG10",
+      "name": "Drop_mainlevel",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_mainlevel.xlsx",
+      "role": "主线首通、常规、支线与章节星级真实奖励包",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-CFG11",
+      "name": "Jottings/JottingsTask/Task",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\task",
+      "role": "章节任务阶段、任务目标与奖励引用",
+      "status": "WORKING_COPY_SOURCE_NOT_SYNCED_TO_TARGET"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-01-REL01",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。选定节点后把场景、关卡规则、编队和战斗目标交给战斗实例。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV01",
+        "SYS-OUT-GP-01-EV02",
+        "SYS-OUT-GP-01-EV05"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-REL02",
+      "type": "reports",
+      "direction": "incoming",
+      "targetId": "SYS-IN-08",
+      "targetName": "胜负、结果与结算触发",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。接收胜负、评价和战利品触发，更新主线进度。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV14",
+        "SYS-OUT-GP-01-EV16"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-REL03",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-01",
+      "targetName": "玩家等级",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。普通通关玩家经验和进度推动账号等级与开放节奏。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV01",
+        "SYS-OUT-GP-01-EV04",
+        "SYS-OUT-GP-01-EV09"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-REL04",
+      "type": "unlocks",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "通关普通节点满足Unlock并触发SystemOpen和引导。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV12",
+        "SYS-OUT-GP-01-EV11"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-01-REL05",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。首通、重复、支线和星级奖励通过真实Drop入账。",
+      "status": "CONFLICT_NEEDS_RUNTIME_AUTHORITY",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV14",
+        "SYS-OUT-GP-01-EV16"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-REL06",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-07",
+      "targetName": "任务与章节任务",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。主线节点和章节完成事件驱动章节任务。",
+      "status": "TARGET_NOT_SYNCED",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV14",
+        "SYS-OUT-GP-01-EV16"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-REL07",
+      "type": "unlocks",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GP-02",
+      "targetName": "高难主线",
+      "description": "普通主线达到目标节点后开启高难主线；高难完整规则在独立系统维护。",
+      "status": "KNOWLEDGE_CURRENT_STRUCTURE",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV12",
+        "SYS-OUT-GP-01-EV11"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-01-REL08",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GP-11",
+      "targetName": "扫荡",
+      "description": "来源含设计目标、工作副本或知识引用；本关系为跨源推导，边界是不代表 LIVE。已满足资格的主线关卡可进入快速结算路径。",
+      "status": "RULE_GAP",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV01",
+        "SYS-OUT-GP-01-EV02",
+        "SYS-OUT-GP-01-EV05"
+      ],
+      "provenance": "CROSS_SOURCE_SYNTHESIS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-REL09",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "关卡等级和玩法系数需要用DPS、TTK与生存模型验收。",
+      "status": "MODEL_NOT_CLOSED",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV17"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-GP-01-REL10",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：主线经济沉淀(EV03)定义主线一次性和重复供给经济口径，Drop_mainlevel.xlsx(EV13)为掉落配置源，全玩法难度线数值沉淀(EV17)定义供给节奏。推导：主线一次性和重复供给进入经济账(NUM-04)，具体数量只在数值/Drop权威源维护，构成 prices/incoming 关系。推导边界：供给经济口径已由沉淀确认，但具体掉落数量在Drop权威源维护，本正文不复制数值。UNKNOWN：主线各关卡掉落的经济价值与整体经济账的占比仍待经济域核算。",
+      "status": "KNOWLEDGE_CURRENT_WITH_STALE_DEPOSIT_RISK",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-01-EV01",
+      "kind": "design-target",
+      "label": "主线关卡奖励重设计",
+      "path": "design/主线关卡奖励重设计-2026-07-30.md",
+      "href": "../../../design/主线关卡奖励重设计-2026-07-30.md",
+      "location": "§1、§2、§4、§7、§8、§10",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV02",
+      "kind": "reverse-design",
+      "label": "主线关卡系统 Design Doc",
+      "path": "design/主线关卡系统Design Doc.md",
+      "href": "../../../design/主线关卡系统Design Doc.md",
+      "location": "R-01～R-06、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV03",
+      "kind": "numeric-deposit",
+      "label": "主线经济沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "href": "file:///D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "location": "经济职责、已确认口径、新版主线支线奖励",
+      "status": "MIXED_CURRENT_AND_HISTORY"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV04",
+      "kind": "delivery-mirror",
+      "label": "主线高难奖励配置校验",
+      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/主线高难/主线高难奖励配置校验.json",
+      "href": "file:///D:/数值文档/数值文档/框架v2/06_最终配置/主线高难/主线高难奖励配置校验.json",
+      "location": "status=PASS、普通99、支线44、星级37+21",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV05",
+      "kind": "source-excel",
+      "label": "level.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/level.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/level.xlsx",
+      "location": "本机SVN工作副本；sheet level；有效行与字段只读核对 2026-08-17；revision未集中记录",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV06",
+      "kind": "source-excel",
+      "label": "UIlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/UIlevel.xlsx",
+      "location": "本机SVN工作副本；sheet level；章节、评价、成本、展示与Drop只读核对 2026-08-17",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV07",
+      "kind": "source-excel",
+      "label": "MainLevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/MainLevel.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/MainLevel.xlsx",
+      "location": "本机SVN工作副本；sheet MainLevel；有效普通99、高难15、六个##历史行；核对 2026-08-17",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV08",
+      "kind": "source-excel",
+      "label": "ChapterLevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/ChapterLevel.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/ChapterLevel.xlsx",
+      "location": "本机SVN工作副本；sheet ChapterLevel；序章至第七章及章节解锁；核对 2026-08-17",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV09",
+      "kind": "source-excel",
+      "label": "ChapterStarReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/ChapterStarReward.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/ChapterStarReward.xlsx",
+      "location": "本机SVN工作副本；有效普通37、高难21；核对 2026-08-17",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV10",
+      "kind": "source-excel",
+      "label": "LevelCondition.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/level/LevelCondition.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/level/LevelCondition.xlsx",
+      "location": "本机SVN工作副本；条件1/2/3；核对 2026-08-17",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV11",
+      "kind": "source-excel",
+      "label": "Unlock.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/unlock/Unlock.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/unlock/Unlock.xlsx",
+      "location": "本机SVN工作副本；Unlock.Id、UnLockType、UnLockParams；核对 2026-08-17",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV12",
+      "kind": "source-excel",
+      "label": "SystemOpen.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "location": "本机SVN工作副本；101个有效系统、UnlockId、CloseSys；无IsValid字段；核对 2026-08-17",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV13",
+      "kind": "source-excel",
+      "label": "Drop_mainlevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Drop/Drop_mainlevel.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Drop/Drop_mainlevel.xlsx",
+      "location": "本机SVN工作副本；主线逻辑Drop；与其他7个Drop源共同查重/断引用；核对 2026-08-17",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV14",
+      "kind": "design-target",
+      "label": "章节任务重设计讨论稿",
+      "path": "design/章节任务重设计讨论稿-2026-07-22.md",
+      "href": "../../../design/章节任务重设计讨论稿-2026-07-22.md",
+      "location": "§2～§7",
+      "status": "DESIGN_CONFIRMED_PENDING_CONFIG"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV15",
+      "kind": "reverse-design",
+      "label": "新手引导系统 Design Doc",
+      "path": "design/新手引导系统Design Doc.md",
+      "href": "../../../design/新手引导系统Design Doc.md",
+      "location": "R-01～R-05",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV16",
+      "kind": "source-excel",
+      "label": "Jottings/JottingsTask/Task",
+      "path": "D:/Vgame/Config/GameConfig/Datas/task",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/task/",
+      "location": "本机SVN工作副本；七阶段与旧任务目标只读核对 2026-08-17",
+      "status": "WORKING_COPY_SOURCE_NOT_SYNCED"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV17",
+      "kind": "numeric-deposit",
+      "label": "全玩法难度线数值沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
+      "href": "file:///D:/数值文档/数值文档/框架v2/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
+      "location": "DL-R01～DL-R09、覆盖状态、养成版本关系",
+      "status": "KNOWLEDGE_CURRENT_MODEL_WITH_GAPS"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV18",
+      "kind": "numeric-source-excel",
+      "label": "主角等级唯一权威单源",
+      "path": "D:/数值文档/数值文档/框架v2/节奏/生成_主角等级单源.xlsx",
+      "href": "file:///D:/数值文档/数值文档/框架v2/节奏/生成_主角等级单源.xlsx",
+      "location": "sheet 主角等级_单源；旧章节起始等级：0章1、1章6、2章14、3章20、4章25、5章30、6章34、7章37；第3～7章已被用户最新截图覆盖，核对 2026-08-18",
+      "status": "NUMERICAL_SOURCE_PARTIALLY_SUPERSEDED"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV19",
+      "kind": "user-supplied-image",
+      "label": "章节等级表（用户截图）",
+      "path": "archive/legacy-output-20260824/evidence/chapter-level-table-user-20260818.png",
+      "href": "../../evidence/chapter-level-table-user-20260818.png",
+      "location": "章节/开启等级：3/24、4/28、5/31、6/33、7/35；SHA256 9473C7BF92D5DFA71A6CBE9917724B060DFF4620219AF8F73BEDEA8A964493E6",
+      "status": "USER_CONFIRMED_LATEST_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV20",
+      "kind": "working-copy-config-and-export",
+      "label": "主线章节开启条件配置与客户端导出",
+      "path": "archive/legacy-output-20260824/09-config-quality-audit-chapter-unlock.md",
+      "href": "../../09-config-quality-audit-chapter-unlock.md",
+      "location": "ChapterLevel 10000～10002 Unlock为空；10003～10007=201～205；Unlock 201～205=UnLock_UUT_player_Grade(24/28/31/33/35)；export_client.bat成功，chapterlevel.lua/unlock.lua及对应bytes已核对；备份 chapter-unlock-20260818-171110",
+      "status": "WORKING_COPY_CONFIGURED_EXPORT_VERIFIED"
+    },
+    {
+      "id": "SYS-OUT-GP-01-EV21",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-N 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-N].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-01-Q01",
+      "priority": "P0",
+      "question": "第七章100701至100715的ChapterId应统一为10007吗？",
+      "impact": "影响章节地图、节点显示、星级、任务与奖励归属。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV07"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-N",
+      "answer": "用户正式选择「统一为10007」：修正源表与全部引用。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GP-01-EV21"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GP-01-Q02",
+      "priority": "P0",
+      "question": "主线真实奖励运行时以level还是UIlevel字段为权威？",
+      "impact": "84/114节点冲突，错误选择可能把主线奖励指向抽卡R卡包。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV13"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-01-Q03",
+      "priority": "P0",
+      "question": "ChapterTasks的DropId=50000006应替换为何种有效奖励包？",
+      "impact": "当前章节任务奖励存在真实断引用。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV13",
+        "SYS-OUT-GP-01-EV14"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-01-Q04",
+      "priority": "P1",
+      "question": "普通主线真实挑战成本读取level.Vitality还是UIlevel.Vitality？",
+      "impact": "决定手动挑战、扫荡、多倍结算和经济节奏。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-01-Q05",
+      "priority": "P1",
+      "question": "当前三项评价条件是否就是正式策划规则？",
+      "impact": "决定单关星级、章节星级进度与扫荡资格。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV06",
+        "SYS-OUT-GP-01-EV10"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-01-Q06",
+      "priority": "P1",
+      "question": "扫荡需要首通、三星还是其他门槛，是否支持多倍结算？（canonical 归 SYS-OUT-GP-11，见 SYS-OUT-GP-11-Q01/Q04）",
+      "impact": "决定主线复刷效率和奖励结算边界。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV05",
+        "SYS-OUT-GP-01-EV06"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-01-Q07",
+      "priority": "P1",
+      "question": "失败、主动退出和断线重连是否扣成本，如何防重复结算？",
+      "impact": "影响资源安全、玩家体验与补偿处理。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-01-Q08",
+      "priority": "P1",
+      "question": "已确认的七章章节任务何时同步至Jottings/JottingsTask/Task？",
+      "impact": "当前任务目标仍引用旧节点和旧养成节奏。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV14",
+        "SYS-OUT-GP-01-EV16"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-01-Q09",
+      "priority": "P1",
+      "question": "章节开启的复合条件（前章末关通关 AND 主角等级达标）在运行时如何落表与实现？当前 ChapterLevel.Unlock 为单值且只配置了关卡条件。",
+      "impact": "决定跨章解锁双门槛的落表/代码实现方式，影响章节解锁与玩家体验。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-01-EV20"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "GP-01 拥有 8 步普通主线推进流程（F01-S01 至 S08），覆盖节点选择、前置校验、编队、挑战/扫荡、胜负评价、结算、进度更新与下一目标。"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "GP-01 拥有主线入口、节点前置、章节入口等级条件、扫荡资格与挑战成本等解锁/进入条件（C01 至 C05）；章节0～2无章节条件，3～7为单一玩家等级条件。"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "GP-01 拥有首通、常规重复、普通章节星级与支线一次性奖励四类结算（RW01 至 RW04）。"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "GP-01 拥有章节归属错位、双奖励字段冲突、体力字段冲突、章节任务断引用、历史失效关卡及失败/断线规则缺口等异常与例外（EX01 至 EX06）。"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "GP-01 拥有章节地图、关卡详情、结算页、章节星级进度、系统开放与引导反馈等 UI（UI01 至 UI05）。"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "GP-01 消费 level.xlsx、UIlevel.xlsx、MainLevel、ChapterLevel、LevelCondition、ChapterStarReward、ChapterTasks、Unlock、SystemOpen、Drop_mainlevel 及 Jottings/JottingsTask/Task 等配置（CFG01 至 CFG11）。"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-N",
+      "closeableQuestionId": "SYS-OUT-GP-01-Q01",
+      "selectedOptionId": 1,
+      "selectedOptionName": "统一为10007",
+      "approvedTarget": "选择「统一为10007」：修正源表与全部引用。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:51.786Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "ChapterId=10007 是获批目标；源表及全部引用尚未修改。",
+      "evidenceRef": "SYS-OUT-GP-01-EV21",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

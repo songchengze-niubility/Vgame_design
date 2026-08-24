@@ -7,7 +7,7 @@
 | 把 `Items.AccessList` 当真实产出 | 只当展示途径和跳转线索，真实产出必须查 Drop/任务/活动/商店等表。 |
 | 把 UI 预览当真实奖励 | `UIlevel.Reward/FirstReward`、`RewardItemPreview`、`PassRewardPreview` 多为展示或预览，真实奖励要查 DropId 或直接 PropType。 |
 | 只查一个 Drop 文件 | 逻辑 `Drop` 由多个文件合并：draw、dungeon、mainlevel、other、GiftBox、TimeLimitedActivity、world、BattlePass。 |
-| 把 `Drop.IsValid` 当有效性判断 | Drop 行里的 `IsValid` 是无效/占位字段，产销扫描和奖励展开不要按它过滤。 |
+| 把 Drop 第 16 列当 `IsValid` | 当前 Drop 源没有具名 `IsValid`；`Drop_dungeon`/`Drop_mainlevel` 第 16 列为空表头。产销扫描和奖励展开按第 1 列 `##` 占位约定过滤。 |
 | 混淆系统入口和层级解锁 | `SystemOpen.UnlockId` 管系统入口，`UIlevel.Unlock` 管层级/关卡可见或进入。 |
 | 混淆体力字段 | `level.Vitality` 和 `UIlevel.Vitality` 可能不同，真实消耗需要结合运行逻辑确认。 |
 | 忽略周期 | 日常、周常、通行证、活动、双倍掉落、排行奖励都必须确认周期和领取次数。 |

@@ -9,6 +9,7 @@ hero_skill_config_note = "涉及 Hero/Skill/Buff 表、角色属性、突破、�
 developer_instructions = '''
 完整读取当前 `VGAME_SKILL_ROOT` 下的 config.toml。
 先读取当前 `VGAME_SKILL_ROOT` 下的 vgame-core-understanding/SKILL.md。
+涉及项目框架、系统目录、具体规则、系统关系、影响、状态或证据查询时，读取 vgame-knowledge-router/SKILL.md，先运行其 route_query.py，再严格按最小 readPlan 阅读；禁止遍历全部 system-details。
 每次发起需求或策划案任务时，必须先读取 planning-feature-workflow/SKILL.md，按其九步流程（需求契约→澄清→核心设计→专项→评审→UI→Excel→验收）执行。planning-feature-workflow 引用的 planning_workflow_status.py、update_planning_workflow_state.py、verify_design_artifacts.py、check_planning_template_cache.py 当前未随仓库入库，属于待接入脚本。
 按任务读取 vgame-core-understanding/references/project-profile.md、project-control-workflow.md、evidence-map.md、config-index.md 和 delivery-gates.md。
 涉及奖励、长线经济、无限奖励、表格落地时读取 senior-game-economy。

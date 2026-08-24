@@ -1,0 +1,675 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-IN-03",
+  "name": "技能、Buff 与效果",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置、二进制与代码线索，不证明 Production/LIVE；缺集中版本—开关—发布时间台账。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / SOURCE",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE，也不等于正式策划口径。"
+    },
+    {
+      "prefix": "CURRENT_DESIGN / KNOWLEDGE_CURRENT",
+      "meaning": "当前知识身份或关系口径，不是运行状态。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-IN-03-R03"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-IN-03-R03"
+      ]
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在技能编辑→序列化→加载→执行与 Buff 添加→叠加→移除的顺序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在释放、触发、控制免疫与叠加分支条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "技能/Buff 不拥有价值发放责任，掉落与奖励归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在资源缺失回退、控制免疫短路与口径漂移等异常边界"
+    },
+    "ui": {
+      "state": "N/A",
+      "reason": "技能位、Buff 图标、冷却遮罩与伤害数字渲染归 SYS-IN-07"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "消费 Skill/Buff/TargetSkill/LevelSkill 源表"
+    }
+  },
+  "overview": {
+    "purpose": "技能与 Buff 是战斗的动作与状态载体：技能经编辑→序列化→运行时状态机执行动作片段，Buff 提供持续性效果与叠加/移除生命周期，共同构成伤害、治疗、护盾、子弹与召唤的效果链。",
+    "inScope": [
+      "技能配置契约（Skill.xlsx 字段与 SkillId 前缀约定）",
+      "技能运行时状态机（SkillInstance/SkillLine/打断策略/冷却/事件触发）",
+      "Skill Action 类型体系（当前源码 Union 0~73 共 74 类）",
+      "Buff 元数据与行为分离（Buff.xlsx 元数据 + Buff_{id}.bytes 行为）",
+      "Buff 数据模型（BuffDataRaw 的 Duration/Stack/Remove 枚举）与效果类型（15 类）",
+      "伤害/治疗/护盾/子弹/召唤效果链的机制层（不含公式）"
+    ],
+    "outOfScope": [
+      "伤害公式与系数数值；该内容归 CB-R03 与 NUM-03",
+      "角色技能组、定位与循环设计；该内容归 CH-R01/CH-R02/CH-R03",
+      "敌人技能编排与 Boss 阶段技能组；该内容归 SYS-IN-04",
+      "技能位、Buff 图标、冷却遮罩与伤害数字的 UI 渲染；该内容归 SYS-IN-07",
+      "技能/Buff 编辑器生产工具的实现维护；本系统只描述配置与运行时消费契约"
+    ],
+    "inputs": [
+      "Skill.xlsx 元数据（SkillId/SkillType/SP/SkillData 路径）",
+      "Skill_{asm}/{name}.bytes 与 Buff_{id}.bytes 二进制",
+      "施法者实体、目标实体、怒气（SP）与战斗事件（OnHit/OnDeath/HP 阈值等）"
+    ],
+    "outputs": [
+      "技能实例执行与打断状态",
+      "Buff 添加/叠加/移除与属性/状态变化",
+      "伤害、治疗、护盾、子弹与召唤效果",
+      "供 AI、玩法与结算消费的技能/Buff 状态"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式技能与 Buff 运行时底座",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "SkillInstance/SkillLine/LBuffComponent 构成普攻、自动技能、必杀、被动与 Buff 的执行底座。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "机制已实现；Design Doc 为 Draft 且类型/枚举口径已漂移，缺正式白名单与自动同步",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "note": "技能与 Buff 机制可运行，但 Design Doc 与 Skill 参考的 Skill 数量、Action 类型数、Buff Effect 类型数、Buff 枚举均已落后于当前源码（P0 治理项）。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Skill.xlsx(1407行)/Buff.xlsx(4×4)/Skill Action 74 类/Buff Effect 15 类",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对 2026-08-18；SkillActionBase Union 0~73=74 类，IBuffEffectData Union 0~14=15 类。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程主链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在配置、二进制与代码证据，但无集中版本—开关—发布时间台账，不能把所有实现直接盖为 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-H=源码生成文档和校验",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-IN-03-F01",
+      "name": "技能执行主流程",
+      "steps": [
+        {
+          "id": "SYS-IN-03-F01-S01",
+          "name": "配置与序列化",
+          "description": "Skill.xlsx 定义 SkillId/SkillType/SP/SkillData 路径，技能编辑器产出 SkillEditorAsset，经 SkillSerializer 序列化为 Runtime .bytes。"
+        },
+        {
+          "id": "SYS-IN-03-F01-S02",
+          "name": "加载与实例化",
+          "description": "SkillUtility.Deserialize(asm, name) 反序列化 SkillRuntimeData，SkillInstance 持有 mainLine 与 eventLines，按 SkillType 选定打断策略。"
+        },
+        {
+          "id": "SYS-IN-03-F01-S03",
+          "name": "执行状态机",
+          "description": "mainLine 按时间轴执行 SkillActionClip；SkillLine.Tick 推进，事件触发经 SkillEventTrigger + 条件检查启动新技能线。"
+        },
+        {
+          "id": "SYS-IN-03-F01-S04",
+          "name": "打断与暂停",
+          "description": "打断按 ResetInterrupt（普攻/必杀从头重播）或 StateInterrupt（暂停后恢复）；EffectInterrupt/SkillPause 阻止本帧推进。"
+        },
+        {
+          "id": "SYS-IN-03-F01-S05",
+          "name": "结束与冷却",
+          "description": "主线结束后触发 OnSkillEnd；SkillCooldown 启动冷却计时，归零后技能可用。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-IN-03-F02",
+      "name": "Buff 生命周期",
+      "steps": [
+        {
+          "id": "SYS-IN-03-F02-S01",
+          "name": "添加 Buff",
+          "description": "LBuffComponent.AddBuff(cfgId, creator) 反序列化 Buff_{cfgId}.bytes，先做控制免疫检查，同 ID 已存在则叠加，否则创建 LBuff。"
+        },
+        {
+          "id": "SYS-IN-03-F02-S02",
+          "name": "效果施加",
+          "description": "LBuff 初始化 effects 列表，对持有者应用属性修正/护盾/状态/DoT/HoT 等效果。"
+        },
+        {
+          "id": "SYS-IN-03-F02-S03",
+          "name": "计时与叠加",
+          "description": "LBuffComponent.Tick 逐帧推进，RemainTime<=0 或 CurrentStacks<=0 时进入移除队列。"
+        },
+        {
+          "id": "SYS-IN-03-F02-S04",
+          "name": "移除与回滚",
+          "description": "RemoveBuff 先派发移除事件，再回滚效果并归还对象池；死亡/复活按 removeType 标记批量移除。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-IN-03-R01",
+      "name": "技能双层数据与配置契约",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「技能双层数据与配置契约」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Skill.xlsx 承载技能索引与展示元数据，SkillData 字段指向编辑器资产路径；运行行为由二进制 .bytes 承载。（工作副本代码/配置观察）；SkillDataModel 字段为 SkillId/Name/Describe/DescParam/Icon/Lv/SkillType/SP（消耗怒气）/SkillData/Introduction/AutoSkillType；SkillId 前缀约定（1英雄/2普攻怪/3精英/4boss/2芯片/3映射装备/4词条/5旅券/5专武/6肉鸽）写在生成源码注释中。",
+      "acceptance": "每个 SkillId 能解析到 SkillType、SP 与 SkillData 路径，并进一步定位 Runtime .bytes。",
+      "relatedIds": [
+        "CH-R03",
+        "SYS-IN-04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-03-EV01",
+        "SYS-IN-03-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-R02",
+      "name": "技能运行时状态机与打断",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「技能运行时状态机与打断」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "技能由 SkillInstance 持主线与事件线，按时间轴执行 ActionClip；普攻/必杀用 ResetInterrupt，其余用 StateInterrupt；冷却、事件触发与暂停分别由独立组件管理。（工作副本代码/配置观察）；SkillInstance.Initialize 按 SkillType 设 InterruptStrategy（SkillsSTMelee/SkillsSTPower→ResetInterrupt，其余→StateInterrupt）；SkillInstance.Tick 受 CanTickSkillLogic（无打断且无暂停）约束；SkillEventTrigger 经条件检查 StartNewLine；SkillCooldown 管理冷却。",
+      "acceptance": "普攻/必杀与其他技能的中断行为可分；打断/暂停时时间轴不推进。",
+      "relatedIds": [
+        "CB-R04",
+        "CH-R02"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-03-EV03",
+        "SYS-IN-03-EV04"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-R03",
+      "name": "Skill Action 类型体系",
+      "status": "WORKING_COPY_OBSERVED_WITH_CONFLICTS",
+      "targetRule": "GAP：尚无权威目标设计冻结「Skill Action 类型体系」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Skill Action 以 MessagePack Union 注册为白名单，数量以当前源码为准。（工作副本代码/配置观察）；SkillActionBase.cs 当前 Union 索引 0~73 共 74 类（含 CastDamageAction/HealAction/AddBuffAction/FireBullet/SummonAction/CreateMonsterAction/ChangeBossStageAction/GameOverFailAction 等）；旧参考写 63 类、审计 2026-08-14 写 73 类均已落后。",
+      "acceptance": "引用 Action 类型时必须回到当前源码 Union 白名单，不得复制旧文档计数。",
+      "relatedIds": [
+        "CB-R04",
+        "SYS-IN-04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-03-EV05",
+        "SYS-IN-03-EV06"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-R04",
+      "name": "Buff 元数据与行为分离",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「Buff 元数据与行为分离」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Buff.xlsx 只承载 Id/BuffName/Description 元数据，行为（持续时间/类型/效果/叠加）由 Buff_{id}.bytes 定义。（工作副本代码/配置观察）；Buff.xlsx 为 4×4 客户端表，BuffDataRaw 运行时名/描述取自 Tables.Buff（Buff.xlsx）；BuffDataRaw.GetData 反序列化 Buff_{id}.bytes（路径 Assets/GameResources/GameData/BuffData/Runtime/Buff_{0}.bytes）。",
+      "acceptance": "Buff 显示名/描述与行为二进制分源；改行为必须走编辑器，改文案走 Buff.xlsx。",
+      "relatedIds": [
+        "CB-R04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-03-EV07",
+        "SYS-IN-03-EV08"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-R05",
+      "name": "Buff 数据模型与枚举",
+      "status": "WORKING_COPY_OBSERVED_WITH_CONFLICTS",
+      "targetRule": "GAP：尚无权威目标设计冻结「Buff 数据模型与枚举」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "BuffDataRaw 由 cfgId/duration/buffType/removeType/effects/visualData/infiniteStacks/maxStacks/stackBehavior 组成；枚举以当前源码为准。（工作副本代码/配置观察）；当前源码 BuffDuration={isPermanent, duration(FP秒)}；BuffStackBehavior={NonRefresh, RefreshDuration, StackDuration}；BuffRemoveType 为位标志 {None, OnDeath, OnRevive}；旧 Design Doc 的 FixedTime/Permanent/CountBased/Conditional、Refresh/Stack/Replace/Independent、TimeOut/OnSkillCast/OnHit/Manual 均未在源码中对应，已过时。",
+      "acceptance": "Buff 的持续时间/叠加/移除语义只引用当前源码枚举；Design Doc 旧枚举不得作为正式口径。",
+      "relatedIds": [
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-03-EV08",
+        "SYS-IN-03-EV09"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-R06",
+      "name": "Buff 运行时生命周期",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「Buff 运行时生命周期」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "LBuffComponent 管理实体上 Buff 的添加、叠加、计时、控制免疫与死亡/复活移除。（工作副本代码/配置观察）；AddBuff 先 CheckControlImmune（Control 位且 ControlImmune 状态则短路），同 ID 走 AddStacks 否则 Create；Tick 对 RemainTime<=0 或 CurrentStacks<=0 移除；OnEntityDeath/OnEntityRevive 按 removeType 位标记批量移除；ModifyBuffStacks 支持层数增减与自动创建/移除。",
+      "acceptance": "控制免疫、叠加、计时移除与死亡移除四条路径行为可执行且一致。",
+      "relatedIds": [
+        "CB-R03",
+        "CB-R04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-03-EV10"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-R07",
+      "name": "Buff Effect 类型体系",
+      "status": "WORKING_COPY_OBSERVED_WITH_CONFLICTS",
+      "targetRule": "GAP：尚无权威目标设计冻结「Buff Effect 类型体系」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "Buff Effect 以 MessagePack Union 注册为白名单，数量以当前源码为准。（工作副本代码/配置观察）；IBuffEffectData.cs 当前 Union 0~14 共 15 类：AttributeModifyEffectData/SkillCastEffect/ShieldEffectData/RemoveBuffEffectData/CastDamageEffect/HealEffect/AttrFixEffect/BuffStateEffect/InterruptBuffEffect/StunBuffEffect/PauseAnimEffect/MaxHpModifyEffectData/SlowBuffEffect/PauseBuffEffect/DamageTransferEffectData；旧 Design Doc 写 14 类且缺 DamageTransferEffectData。",
+      "acceptance": "引用 Buff Effect 类型时必须回到当前源码 Union 白名单。",
+      "relatedIds": [
+        "CB-R03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-03-EV09",
+        "SYS-IN-03-EV06"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-R08",
+      "name": "效果链机制边界",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「效果链机制边界」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "技能 Action 与 Buff Effect 负责伤害/治疗/护盾/子弹/召唤的机制触发与目标路由，具体伤害公式与系数由 CB-R03/NUM-03 权威维护。（工作副本代码/配置观察）；CastDamageAction/HealAction/ShieldAction/FireBullet/SummonAction 等 Action 与 DamageUtility/DamageStrategy 构成效果链；本正文只登记机制链存在，不复制护甲/暴击/格挡公式与常数。",
+      "acceptance": "效果链能从 Action/Effect 追到 DamageUtility，但数值公式只引用 CB-R03/NUM-03。",
+      "relatedIds": [
+        "CB-R03",
+        "NUM-03",
+        "SYS-IN-04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-03-EV05",
+        "SYS-IN-03-EV11",
+        "SYS-IN-03-EV12"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-IN-03-C01",
+      "name": "技能释放前置",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "技能释放需满足 SP/怒气、冷却与触发条件；SP 不足或冷却中不触发，触发式技能由 SkillEventTrigger 条件检查决定。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV01",
+        "SYS-IN-03-EV03"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-C02",
+      "name": "控制免疫",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "Buff 含 BuffType.Control 位且目标有 ControlImmune 状态时，AddBuff 直接短路不施加。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV10"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-C03",
+      "name": "Buff 叠加分支",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "同 cfgId 已存在时走 AddStacks 叠加，否则创建新 LBuff；层数或剩余时间归零触发移除。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV10"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-C04",
+      "name": "死亡/复活移除",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "removeType 含 OnDeath 的 Buff 在持有者死亡时移除，含 OnRevive 的在复活时移除。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV08",
+        "SYS-IN-03-EV10"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-IN-03-EX01",
+      "name": "技能资源缺失回退",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "SkillUtility 反序列化时对 StateId2Index 加空字典保底；不存在的 state id 记录错误并返回 InvalidId。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV03"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-EX02",
+      "name": "控制免疫短路",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "控制类 Buff 命中 ControlImmune 目标时直接返回，不进入叠加与效果施加。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV10"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-EX03",
+      "name": "Buff 资源缺失",
+      "status": "P1_GAP",
+      "rule": "cfgId 无对应 Buff_{id}.bytes 时反序列化行为未在本轮核到明确回退规则，需确认是否跳过并记错。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV08"
+      ]
+    },
+    {
+      "id": "SYS-IN-03-EX04",
+      "name": "口径漂移",
+      "status": "P0_CONFLICT",
+      "rule": "Skill 数量（旧1356/审计1407行）、Skill Action 类型（旧63/审计73/当前源码74）、Buff Effect 类型（旧14/当前源码15）与 Buff 枚举（Design Doc 与源码不一致）存在多处漂移，必须按当前源码为准并建立自动同步。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV05",
+        "SYS-IN-03-EV06",
+        "SYS-IN-03-EV09"
+      ]
+    }
+  ],
+  "ui": [],
+  "configs": [
+    {
+      "id": "SYS-IN-03-CFG01",
+      "name": "Skill",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\Skill.xlsx",
+      "role": "技能索引与展示元数据：SkillId/Name/SkillType/SP/SkillData 路径，连接运行时 .bytes",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-CFG02",
+      "name": "Buff",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\Buff.xlsx",
+      "role": "Buff 元数据（Id/BuffName/Description），行为由 Buff_{id}.bytes 承载",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-CFG03",
+      "name": "TargetSkill",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\TargetSkill.xlsx",
+      "role": "SkillId → ModifierTargetType，决定技能修饰/目标选择模式",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-CFG04",
+      "name": "LevelSkill",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\LevelSkill.xlsx",
+      "role": "关卡/装备技能参数（回复速率、存储量、消耗）",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-IN-03-REL01",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "伤害、治疗、护盾与子弹的具体公式和系数由战斗数值模型约束，本系统只执行机制。（推导边界：本正文证据仅证明效果链把伤害结算交给 DamageUtility/DamageStrategy（SYS-IN-03-EV11/EV12，机制链存在、公式不复制）；「该公式域登记为 NUM-03 战斗数值」为知识目录 numeric/NUM-03 分域结论，本正文证据未直接命名 NUM-03。）",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-IN-03-REL02",
+      "type": "builds",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GR-04",
+      "targetName": "角色星盘/能效",
+      "description": "星盘/能效与升星解锁的被动、主动技能进入技能系统执行。（推导边界：本正文证据未记录星盘/能效技能来源——SkillId 前缀注释仅列英雄/普攻怪/精英/Boss/芯片/映射装备/词条/旅券/专武/肉鸽（SYS-IN-03-EV02）；该边与 SYS-OUT-GR-04-REL02（builds outgoing→SYS-IN-03）镜像一致，供给证据在对方正文侧，本正文侧未直接核到。）",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-IN-03-REL03",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-04",
+      "targetName": "敌人、AI 与 Boss",
+      "description": "敌人/Boss 复用技能、Buff、子弹与召唤机制链，经 SkillGroup 与阶段技能组消费。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-03-EV02",
+        "SYS-IN-03-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-IN-03-EV01",
+      "kind": "source-excel",
+      "label": "Skill.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Skill/Skill.xlsx",
+      "location": "sheet Skill；SkillId/Name/SkillType/SP/SkillData（本机工作副本核对 2026-08-18，1407 行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-EV02",
+      "kind": "source-code",
+      "label": "SkillDataModel.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Common/Runtime/Config/Generated/SkillDataModel.cs",
+      "location": "SkillId 前缀注释与全部字段",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-EV03",
+      "kind": "source-code",
+      "label": "SkillInstance.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/SkillSystem/SkillInstance.cs",
+      "location": "Initialize/LoadConfig/Tick/DoEffectInterrupt/Interrupt/StartNewLine",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-EV04",
+      "kind": "source-code",
+      "label": "SkillLine.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/SkillSystem/SkillLine.cs",
+      "location": "SkillLine 状态机与时间轴推进",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-EV05",
+      "kind": "source-code",
+      "label": "SkillActionBase.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/SkillSystem/Actions/SkillActionBase.cs",
+      "location": "MessagePack Union 0~73 共 74 类 Action 类型",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-03-EV06",
+      "kind": "reverse-design",
+      "label": "战斗内知识域审查",
+      "path": "archive/legacy-output-20260824/research/combat-domain-audit.md",
+      "location": "§7.1/§7.2/§7.3（Skill 双层数据、Buff 元数据与文档漂移）",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-03-EV07",
+      "kind": "source-excel",
+      "label": "Buff.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Skill/Buff.xlsx",
+      "location": "sheet Buff；Id/BuffName/Description（本机工作副本核对 2026-08-18，4×4）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-EV08",
+      "kind": "source-code",
+      "label": "BuffDataRaw.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Buff/BuffDataRaw.cs",
+      "location": "BuffDuration/BuffRemoveType/BuffStackBehavior 枚举与 BuffDataRaw 字段、PathFormat",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-03-EV09",
+      "kind": "source-code",
+      "label": "IBuffEffectData.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Buff/Effects/IBuffEffectData.cs",
+      "location": "MessagePack Union 0~14 共 15 类 Buff Effect",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-03-EV10",
+      "kind": "source-code",
+      "label": "LBuffComponent.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Components/LBuffComponent.cs",
+      "location": "AddBuff/CheckControlImmune/Tick/OnEntityDeath/OnEntityRevive/ModifyBuffStacks",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-EV11",
+      "kind": "source-code",
+      "label": "DamageUtility.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Calculation/DamageUtility.cs",
+      "location": "伤害计算入口（机制链存在；公式不复制）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-EV12",
+      "kind": "source-code",
+      "label": "DamageStrategy.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Calculation/DamageStrategy.cs",
+      "location": "伤害策略分支（机制链存在；公式不复制）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-03-EV13",
+      "kind": "reverse-design",
+      "label": "技能系统 Design Doc",
+      "path": "design/技能系统Design Doc.md",
+      "location": "R-01~R-07（Draft，反向梳理）",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-03-EV14",
+      "kind": "reverse-design",
+      "label": "Buff 系统 Design Doc",
+      "path": "design/Buff系统Design Doc.md",
+      "location": "R-01~R-07（Draft，反向梳理，枚举已过时）",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-IN-03-EV15",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-H 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-H].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-IN-03-Q01",
+      "priority": "P0",
+      "question": "Skill Action 类型（74）、Buff Effect 类型（15）与 Skill 表行数如何建立自动同步，防止 Design Doc/Skill 参考再次漂移？",
+      "impact": "口径漂移会直接导致策划案复制错误数量与枚举，属最高优先级治理项。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV05",
+        "SYS-IN-03-EV06",
+        "SYS-IN-03-EV09"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-H",
+      "answer": "用户正式选择「源码生成文档和校验」：从枚举/注册器生成清单并在 CI 对表。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-IN-03-EV15"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-IN-03-Q02",
+      "priority": "P1",
+      "question": "Buff 的 Duration/Stack/Remove 枚举是否以当前源码（isPermanent+duration、NonRefresh/RefreshDuration/StackDuration、OnDeath/OnRevive）为正式口径，Design Doc 的旧枚举是否废弃？",
+      "impact": "决定 Buff 配置与策划理解的持续时间/叠加/移除语义。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV08",
+        "SYS-IN-03-EV14"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-03-Q03",
+      "priority": "P1",
+      "question": "Skill.xlsx 的有效技能行到 Runtime .bytes 的完整覆盖关系是否核验过？",
+      "impact": "断引用会导致技能释放失败或回退。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV01",
+        "SYS-IN-03-EV06"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-03-Q04",
+      "priority": "P2",
+      "question": "BuffType 位标志全量清单（除 Control 外）是否冻结，是否有正式文档？",
+      "impact": "影响控制免疫、驱散与 Buff 分类判定。",
+      "evidenceRefs": [
+        "SYS-IN-03-EV08",
+        "SYS-IN-03-EV10"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "humanDecisions": [
+    {
+      "cardId": "DC-H",
+      "closeableQuestionId": "SYS-IN-03-Q01",
+      "selectedOptionId": 1,
+      "selectedOptionName": "源码生成文档和校验",
+      "approvedTarget": "选择「源码生成文档和校验」：从枚举/注册器生成清单并在 CI 对表。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:17:26.758Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "需建设从源码枚举/注册器生成文档并在 CI 对表的自动链路。",
+      "evidenceRef": "SYS-IN-03-EV15",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

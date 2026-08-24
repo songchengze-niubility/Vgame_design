@@ -1,0 +1,678 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-10",
+  "name": "通行证",
+  "revision": "2026-08-18.3",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 客户端 Lua 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在通行证配置、Drop_BattlePass 源与客户端实现线索，不证明 Production/LIVE；状态冲突登记 C-006 记录当前版本不开/封存，不计当期供给。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED / DRAFT_TARGET",
+      "meaning": "目标设计或已确认策划口径；Draft 表示反推草稿，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（Excel 或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据；NOT_OPEN 表示当前版本未开放/封存。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态为未开放/封存。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-10-R03",
+        "SYS-OUT-SU-10-R04",
+        "SYS-OUT-SU-10-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-SU-10-R01"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-10-R03",
+        "SYS-OUT-SU-10-R04",
+        "SYS-OUT-SU-10-R06"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "通行证是游戏长线付费与活跃的双核心驱动之一：玩家通过完成任务/活动获取通行证经验升级，沿免费线与付费线双轨解锁各等级奖励，付费线经购买后解锁并补发已达成等级的付费奖励，赛季结束后关闭经验获取并经邮件补发未领奖励。",
+    "inScope": [
+      "通行证经验获取、等级提升与多级连升规则",
+      "免费线（CommonReward）与付费线（PassAdditionReward）双轨奖励领取时机",
+      "购买通行证解锁付费线与已达成等级批量补发",
+      "关键等级（IsSignificanceLevel）高亮与奖励预览",
+      "通行证赛季结束、领取窗口期与未领奖励邮件补发"
+    ],
+    "outOfScope": [
+      "通行证奖励 Drop 包的具体内容与数量；该内容归 SYS-OUT-SU-05 与 Drop_BattlePass 源表",
+      "产出 BP EXP 的任务/活动规则本体；任务权威归 SYS-OUT-SU-07",
+      "PayProduct 支付链路与掉单补单；付费商品权威归 SYS-OUT-SU-15/SYS-OUT-SU-06",
+      "通行证系统开放条件与 SystemOpen 配置；开放权威归 SYS-OUT-SU-13",
+      "通行证等级直升/购买等级、多期并行与经验加速道具（明确非目标）"
+    ],
+    "inputs": [
+      "任务/活动模块推送的 BP EXP 事件",
+      "BattlePass.xlsx（OpenTime、付费产品、奖励预览）",
+      "BattlePassLevel.xlsx（每级 UpgradeCostExp）",
+      "BattlePassReward.xlsx（每级 CommonReward/PassAdditionReward/IsSignificanceLevel）",
+      "玩家购买、领取与升级操作"
+    ],
+    "outputs": [
+      "通行证等级与当前 EXP 状态",
+      "免费/付费线各等级领取状态",
+      "购买标记与付费线解锁",
+      "奖励领取触发的事件，交由 SYS-OUT-SU-05 执行真实入账",
+      "赛季结束后的未领奖励邮件补发事件"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式外循环概念存在（赛季型留存+付费）",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "通行证作为赛季型留存与免费/付费双线商业化在项目总 Skill 和发布状态登记中均为正式外循环概念。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "反推 Draft，双轨结构清晰但首期时长/窗口期待确认",
+      "status": "DRAFT_TARGET_PARTIAL",
+      "note": "Design Doc 状态为 Draft/反推整理；免费/付费双轨、经验升级、关键等级高亮结构清晰，但首期时长（假设30天）、付费线领取窗口期（假设7天）为待确认工作假设。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "BattlePass/Level/Reward.xlsx + Drop_BattlePass + BattlePassSystem.lua 存在",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；三张 BattlePass 配置、Drop_BattlePass 源与客户端 BattlePassSystem.lua 实现线索均存在，但配置存在不证明当期开放。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "状态冲突登记 C-006 记录未开放/封存，不计当期供给",
+      "status": "UNKNOWN_LIVE_NOT_OPEN",
+      "note": "05-status-conflict-register C-006 记录通行证当前版本不开/封存；不从项目框架删除但不计入当期供给。需确认目标恢复版本或正式归档。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-10-F01",
+      "name": "通行证经验与升级流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-10-F01-S01",
+          "name": "接收 EXP 事件",
+          "description": "任务/活动模块推送 BP EXP 事件（非玩家主动调用）。"
+        },
+        {
+          "id": "SYS-OUT-SU-10-F01-S02",
+          "name": "累加与升级判定",
+          "description": "累加当前等级内 EXP，对比 BattlePassLevel.xlsx 当前等级 UpgradeCostExp；达标则升级，支持多级连升。"
+        },
+        {
+          "id": "SYS-OUT-SU-10-F01-S03",
+          "name": "更新状态",
+          "description": "BP 等级+1（或多级）；当前等级 EXP 重置或溢出结转；触发可领取奖励红点。"
+        },
+        {
+          "id": "SYS-OUT-SU-10-F01-S04",
+          "name": "展示反馈",
+          "description": "BP 进度条推进→升级动画→可领取奖励红点提示。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-F02",
+      "name": "购买通行证与付费线补发流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-10-F02-S01",
+          "name": "发起购买",
+          "description": "玩家点击购买通行证，拉起支付（PayProduct）。"
+        },
+        {
+          "id": "SYS-OUT-SU-10-F02-S02",
+          "name": "支付回调",
+          "description": "支付成功回调服务端标记通行证已购买；失败则不标记不发奖。"
+        },
+        {
+          "id": "SYS-OUT-SU-10-F02-S03",
+          "name": "批量补发已达成付费奖励",
+          "description": "遍历玩家已达成等级，自动发放全部未领取的 PassAdditionReward。"
+        },
+        {
+          "id": "SYS-OUT-SU-10-F02-S04",
+          "name": "切换双轨展示",
+          "description": "付费线解锁动画→批量奖励飞入→界面切换为双轨展示。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-F03",
+      "name": "赛季结束与补发流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-10-F03-S01",
+          "name": "关闭经验获取",
+          "description": "当前时间超过 BattlePass.xlsx OpenTime 结束时间，关闭 EXP 获取入口。"
+        },
+        {
+          "id": "SYS-OUT-SU-10-F03-S02",
+          "name": "保留领取窗口期",
+          "description": "保留奖励领取窗口期（Design Doc 假设 +3~7 天）。"
+        },
+        {
+          "id": "SYS-OUT-SU-10-F03-S03",
+          "name": "关闭与邮件补发",
+          "description": "窗口期结束后关闭通行证；未领取奖励经邮件补发。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-10-R01",
+      "name": "通行证双轨与职责边界",
+      "status": "CURRENT_DESIGN_IDENTITY_NOT_OPEN",
+      "targetRule": "通行证采用免费线 + 付费线双轨制：免费线所有玩家可领，付费线需购买后解锁；BP EXP 由任务/活动产出，升级解锁各等级奖励。当前版本未开放/封存，不计当期供给。",
+      "sourceFact": "Design Doc 背景与目标描述双轨制；BattlePassReward.xlsx 提供 CommonReward（免费）与 PassAdditionReward（付费）双字段；状态冲突登记 C-006 记录当前未开放/封存。",
+      "acceptance": "免费/付费线奖励领取互不混发；当期供给核算排除通行证直至确认恢复版本或正式归档。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-07",
+        "SYS-OUT-SU-15"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02",
+        "SYS-OUT-SU-10-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-R02",
+      "name": "经验获取与等级提升",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "玩家完成任务/活动产出 BP EXP，累加后对比 BattlePassLevel.xlsx UpgradeCostExp 升级，支持多级连升；BP 经验与玩家等级经验分轨存储。",
+      "sourceFact": "Design Doc R-01 描述 EXP 事件→累加→对比 UpgradeCostExp→升级；BattlePassLevel.xlsx 提供每级升级所需 EXP；BattlePassSystem.lua GetPassData/GetCurrentPassCfgId 提供等级与 EXP 读取线索。BP EXP 产出由任务系统推送，非玩家主动调用。",
+      "acceptance": "EXP 一次性大量涌入支持多级连升；BP 经验不与玩家等级经验混用。",
+      "relatedIds": [
+        "SYS-OUT-SU-07",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV03",
+        "SYS-OUT-SU-10-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-R03",
+      "name": "免费线与付费线奖励领取",
+      "status": "DRAFT_TARGET_AUTHORITY_DELEGATED",
+      "targetRule": "免费线奖励格需 BP 等级达标且未领取、CommonReward 有配置；付费线奖励格需已购买、等级达标且未领取。奖励经真实 Drop 入账，本系统决定何时/为何发，具体发什么归 SYS-OUT-SU-05。",
+      "sourceFact": "Design Doc R-02/R-03 描述免费/付费领取前置与 DropId 发放；BattlePassReward.xlsx 提供 CommonReward/PassAdditionReward 的 DropId（如 40000001/40001001）；BattlePassSystem.lua ReqReceivedAllPassLevelReward/CRespReceivedPassLevelReward 提供领取消费方。",
+      "acceptance": "免费/付费线每格只领一次；未购买时点击付费线格提示购买；真实入账归 SYS-OUT-SU-05。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02",
+        "SYS-OUT-SU-10-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-R04",
+      "name": "购买通行证解锁付费线与批量补发",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "targetRule": "购买通行证即时解锁付费线，并遍历玩家已达成等级自动发放全部未领取的 PassAdditionReward；支付回调失败不标记购买也不发奖，断线补发需幂等。",
+      "sourceFact": "Design Doc R-04 描述拉起支付→标记购买→批量补发；BattlePass.xlsx BasicEditionPayProduct 提供付费产品 Id；BattlePassSystem.lua ReqBuyPassLevel/CRespBuyPassLevel 提供购买消费方。PayProduct 支付链路权威归 SYS-OUT-SU-15/SYS-OUT-SU-06。",
+      "acceptance": "购买后付费线已达成等级奖励全部到账且不重复；支付掉单有对账补发。",
+      "relatedIds": [
+        "SYS-OUT-SU-15",
+        "SYS-OUT-SU-06",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02",
+        "SYS-OUT-SU-10-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-R05",
+      "name": "关键等级高亮与奖励预览",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "sourceFact": "Design Doc R-05/R-06 描述关键等级高亮与预览面板；BattlePassReward.xlsx 提供 IsSignificanceLevel 字段，BattlePass.xlsx 提供双版奖励总览字段。",
+      "acceptance": "关键等级数量受策划控制（通常5-8个）；预览字段为空时隐藏预览区。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02"
+      ],
+      "targetRule": "BattlePassReward.xlsx 中 IsSignificanceLevel=true 的等级使用高亮美术资源；预览区展示 BasicEditionReward/AdvancedEditionReward 的全部奖励摘要。",
+      "relatedIds": []
+    },
+    {
+      "id": "SYS-OUT-SU-10-R06",
+      "name": "通行证赛季结束与未领奖励补发",
+      "status": "DRAFT_TARGET_PARTIAL_GAP",
+      "targetRule": "当前时间超过 OpenTime 结束时间后关闭经验获取，保留奖励领取窗口期（假设 +3~7 天），窗口期结束后关闭通行证，未领奖励经邮件补发。",
+      "sourceFact": "Design Doc R-07 描述关闭 EXP→窗口期→邮件补发；BattlePass.xlsx 提供 OpenTime。窗口期天数、补发邮件上限与分批策略为待确认工作假设。邮件补发投递归 SYS-OUT-SU-09。",
+      "acceptance": "赛季结束有明确关闭、窗口期与补发流程；补发不重复入账。",
+      "relatedIds": [
+        "SYS-OUT-SU-09",
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-10-C01",
+      "name": "通行证开放时间",
+      "status": "DRAFT_TARGET_NOT_OPEN",
+      "rule": "通行证活动需在 BattlePass.xlsx OpenTime 开放时间内；当前版本未开放/封存（C-006），EXP 获取与奖励领取不应在当期生效。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02",
+        "SYS-OUT-SU-10-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-C02",
+      "name": "免费线领取前置",
+      "status": "DRAFT_TARGET",
+      "rule": "免费线奖励格领取前置为 BP 等级达标、该格未领取且 CommonReward 有配置。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-C03",
+      "name": "付费线领取前置",
+      "status": "DRAFT_TARGET",
+      "rule": "付费线奖励格领取前置为已购买通行证、BP 等级达标、该格未领取；未购买时提示购买解锁。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-C04",
+      "name": "系统开放条件",
+      "status": "WORKING_COPY_DELEGATED",
+      "rule": "通行证系统入口开放条件由 SystemOpen/Unlock 体系定义；开放权威归 SYS-OUT-SU-13。当前 NOT_OPEN 状态下入口应关闭。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV06"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-10-RW01",
+      "name": "免费线奖励",
+      "status": "DRAFT_TARGET_AUTHORITY_DELEGATED_NOT_OPEN",
+      "rule": "免费线各等级 CommonReward 经真实 Drop（Drop_BattlePass 源）入账；本系统决定何时/为何发，具体内容归 SYS-OUT-SU-05。当前 NOT_OPEN 不计当期供给。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02",
+        "SYS-OUT-SU-10-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-RW02",
+      "name": "付费线奖励",
+      "status": "DRAFT_TARGET_AUTHORITY_DELEGATED_NOT_OPEN",
+      "rule": "付费线各等级 PassAdditionReward 经真实 Drop（Drop_BattlePass 源）入账；购买后已达成等级批量补发。具体内容归 SYS-OUT-SU-05。当前 NOT_OPEN 不计当期供给。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02",
+        "SYS-OUT-SU-10-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-RW03",
+      "name": "赛季结束未领奖励补发",
+      "status": "DRAFT_TARGET_PARTIAL_GAP_NOT_OPEN",
+      "rule": "赛季结束窗口期后未领奖励经邮件补发；补发投递归 SYS-OUT-SU-09，真实入账归 SYS-OUT-SU-05。补发幂等与分批策略待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-10-EX01",
+      "name": "通行证未开放/封存状态冲突",
+      "status": "P1_CONFLICT",
+      "rule": "状态冲突登记 C-006 记录通行证当前版本不开/封存，但配置、Drop_BattlePass 源与客户端实现均存在；当期供给核算与奖励预期必须排除通行证，直至确认目标恢复版本或正式归档。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-EX02",
+      "name": "首期时长与领取窗口期待确认",
+      "status": "P2_GAP",
+      "rule": "首期时长（Design Doc 假设30天）与付费线领取窗口期（假设7天）为待确认工作假设；影响赛季节奏与玩家领取预期。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-EX03",
+      "name": "支付掉单与批量补发幂等",
+      "status": "P1_GAP",
+      "rule": "购买通行证支付回调失败/掉单需对账补发；批量补发已达成付费奖励与断线补发的幂等在服务端不可见，需确认原子结算。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-EX04",
+      "name": "EXP 跨期结算溢出",
+      "status": "P2_GAP",
+      "rule": "EXP 一次性大量涌入（跨期任务批量结算）的多级连升与赛季边界时间校验需服务端确认；溢出结转口径待确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-10-UI01",
+      "name": "通行证主界面",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "展示 BP 等级、当前 EXP 进度条、免费/付费双轨奖励格、购买入口与赛季剩余时间；关键等级高亮；客户端 BattlePass UI 族承载。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-UI02",
+      "name": "奖励预览与购买",
+      "status": "DRAFT_TARGET_WORKING_COPY_OBSERVED",
+      "rule": "未购买前展示付费线总览奖励摘要（BasicEditionReward/AdvancedEditionReward）；购买按钮拉起支付；购买后界面切换为双轨展示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-10-UI03",
+      "name": "赛季结束反馈",
+      "status": "DRAFT_TARGET",
+      "rule": "通行证入口变灰/标注已结束；邮件通知补发未领奖励。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-10-CFG01",
+      "name": "BattlePass.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Battlepass\\BattlePass.xlsx",
+      "role": "开放时间(OpenTime)、付费产品(BasicEditionPayProduct)、双版奖励总览(BasicEditionReward/AdvancedEditionReward)",
+      "status": "WORKING_COPY_SOURCE_NOT_OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-CFG02",
+      "name": "BattlePassLevel.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Battlepass\\BattlePassLevel.xlsx",
+      "role": "每级升级所需 EXP(UpgradeCostExp)",
+      "status": "WORKING_COPY_SOURCE_NOT_OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-CFG03",
+      "name": "BattlePassReward.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Battlepass\\BattlePassReward.xlsx",
+      "role": "每级 CommonReward(免费)+PassAdditionReward(付费)+IsSignificanceLevel",
+      "status": "WORKING_COPY_SOURCE_NOT_OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-CFG04",
+      "name": "Drop_BattlePass.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_BattlePass.xlsx",
+      "role": "通行证逻辑 Drop 源（8源之一），承载免费/付费奖励真实包",
+      "status": "WORKING_COPY_SOURCE_NOT_OPEN"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-10-REL01",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：BattlePassReward.xlsx(EV04)定义通行证奖励，BattlePassSystem.lua(EV05)实现奖励发放，通行证系统Design Doc(EV01)定义奖励规则。推导：通行证免费/付费奖励经Drop_BattlePass真实Drop入账(SU-05)，本系统决定何时/为何发，真实入账归SYS-OUT-SU-05，构成 reports/outgoing 关系。推导边界：奖励配置已由工作副本确认，但当前版本未开放/封存(EV01/EV06)，真实入账权威在SU-05侧维护。UNKNOWN：通行证奖励的服务端入账幂等与未开放状态下的入账规则仍待确认。",
+      "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-REL02",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-07",
+      "targetName": "任务与章节任务",
+      "description": "任务/活动模块推送 BP EXP 事件驱动通行证升级。",
+      "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV04"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-10-REL03",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-15",
+      "targetName": "月卡/礼包/付费商品",
+      "description": "通行证购买经 PayProduct 支付；付费商品与支付链路权威归 SYS-OUT-SU-15/SYS-OUT-SU-06。",
+      "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV04"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-10-REL04",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "来源：BattlePass.xlsx(EV02)定义通行证配置，BattlePassSystem.lua(EV05)实现入口开放判定，状态冲突登记C-006(EV06)记录NOT_OPEN状态。推导：通行证系统入口开放由SystemOpen/Unlock控制(SU-13)，当前NOT_OPEN状态下入口应关闭，构成 unlocks/incoming 关系。推导边界：通行证配置与入口判定已由工作副本确认，但SystemOpen/Unlock体系在SU-13侧维护，NOT_OPEN状态为冲突登记。UNKNOWN：通行证开放的权威策划口径与NOT_OPEN状态的裁决仍待确认。",
+      "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-REL05",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-09",
+      "targetName": "邮件",
+      "description": "来源：通行证系统Design Doc(EV01)定义赛季结束补发规则，BattlePassSystem.lua(EV05)实现补发逻辑，SYS-OUT-SU-09邮件正文定义邮件投递。推导：通行证赛季结束未领奖励经邮件补发(SU-09)，投递归SYS-OUT-SU-09，构成 reports/outgoing 关系。推导边界：补发规则已由Design Doc确认，但当前版本未开放，邮件投递规则在SU-09侧维护。UNKNOWN：赛季补发的服务端发放时机与未开放状态下的补发规则仍待确认。",
+      "status": "KNOWLEDGE_CURRENT_NOT_OPEN",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-REL06",
+      "type": "conflicts-with",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-14",
+      "targetName": "活动、赛季与 LiveOps",
+      "description": "通行证赛季周期与 LiveOps 活动日历需协调；当前缺集中版本—开关台账，NOT_OPEN 状态需与活动系统同步。",
+      "status": "CONFLICT_NEEDS_RELEASE_REGISTRY",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV06"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-10-EV01",
+      "kind": "reverse-design",
+      "label": "通行证系统 Design Doc",
+      "path": "design/通行证系统Design Doc.md",
+      "href": "../../../design/通行证系统Design Doc.md",
+      "location": "元信息(Draft/HIGH)、背景与目标、R-01～R-07、技术方案、工作假设",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-SU-10-EV02",
+      "kind": "source-excel",
+      "label": "BattlePass.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Battlepass/BattlePass.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Battlepass/BattlePass.xlsx",
+      "location": "本机SVN工作副本；OpenTime/BasicEditionPayProduct/双版奖励总览；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NOT_OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-EV03",
+      "kind": "source-excel",
+      "label": "BattlePassLevel.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Battlepass/BattlePassLevel.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Battlepass/BattlePassLevel.xlsx",
+      "location": "本机SVN工作副本；每级 UpgradeCostExp；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NOT_OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-EV04",
+      "kind": "source-excel",
+      "label": "BattlePassReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Battlepass/BattlePassReward.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Battlepass/BattlePassReward.xlsx",
+      "location": "本机SVN工作副本；CommonReward/PassAdditionReward/IsSignificanceLevel；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NOT_OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-EV05",
+      "kind": "source-code",
+      "label": "BattlePassSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/BattlePass/BattlePassSystem.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/BattlePassSystem.lua",
+      "location": "GetPassData(34)/GetCurrentPassCfgId(57)/ReqBuyPassLevel(79)/ReqReceivedAllPassLevelReward(89)/CRespNotifyPassData(108)/CRespReceivedPassLevelReward(159)；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NOT_OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-EV06",
+      "kind": "decision-record",
+      "label": "状态冲突登记 C-006 通行证",
+      "path": "archive/legacy-output-20260824/05-status-conflict-register.md",
+      "href": "../../05-status-conflict-register.md",
+      "location": "§3 P1 状态差异 C-006：正式外循环概念存在；当前经济沉淀记录版本不开/封存；不从项目框架删除但不计入当期供给",
+      "status": "CONFIRMED_TARGET_PARTIAL_NOT_OPEN"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-10-Q01",
+      "priority": "P1",
+      "question": "通行证当前 NOT_OPEN/封存状态是否仍有效？目标恢复版本是什么，或是否正式归档？",
+      "impact": "决定通行证是否计入当期供给与商业化预期；状态冲突 C-006 待裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV06"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-Q02",
+      "priority": "P2",
+      "question": "通行证首期时长与付费线领取窗口期分别是多少天？",
+      "impact": "决定赛季节奏与玩家领取预期；当前为待确认工作假设（30天/7天）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-Q03",
+      "priority": "P1",
+      "question": "购买通行证支付掉单的对账补发与批量补发已达成付费奖励的服务端幂等如何保证？",
+      "impact": "决定付费线奖励不重复入账与支付安全。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01",
+        "SYS-OUT-SU-10-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-Q04",
+      "priority": "P2",
+      "question": "EXP 跨期批量结算的多级连升与赛季边界溢出结转口径是什么？",
+      "impact": "影响升级准确性与赛季切换时的 EXP 处理。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-10-Q05",
+      "priority": "P2",
+      "question": "赛季结束未领奖励邮件补发的分批策略与补发邮件上限如何定义？",
+      "impact": "影响补发到达率与邮件系统压力。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-10-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在经验升级、购买解锁批量补发、赛季结束补发等有序流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在开放时间、免费/付费领取前置、系统开放等条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "通行证拥有免费/付费/补发的领取时机权威；具体 Drop 内容归 SYS-OUT-SU-05，当前 NOT_OPEN 不计当期供给"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在 NOT_OPEN 状态冲突、首期时长缺口、支付掉单幂等缺口与 EXP 跨期缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在通行证主界面、奖励预览购买与赛季结束反馈等玩家可见界面"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 BattlePass/BattlePassLevel/BattlePassReward/Drop_BattlePass 四个配置源"
+    }
+  }
+}

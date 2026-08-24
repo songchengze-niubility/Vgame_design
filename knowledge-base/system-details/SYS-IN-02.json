@@ -1,0 +1,563 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-IN-02",
+  "name": "单位、阵营与队伍",
+  "revision": "2026-08-18.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在实体与配置定义，不证明 Production/LIVE；缺集中版本—开关—发布时间台账。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / SOURCE",
+      "meaning": "本机 SVN 工作副本观察，不代表 Production/LIVE，也不等于正式策划口径。"
+    },
+    {
+      "prefix": "CURRENT_DESIGN / KNOWLEDGE_CURRENT",
+      "meaning": "当前知识身份或关系口径，不是运行状态。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才使用；本页尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-IN-02-R03",
+        "SYS-IN-02-R04"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-IN-02-R06"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-STATE",
+      "ruleRefs": [
+        "SYS-IN-02-R06"
+      ]
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在队伍实例化、队形生成、目标选择与死亡重排的顺序过程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在阵营归属、目标过滤与全员死亡判定的前置条件"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "单位/阵营/队伍不拥有价值发放责任，掉落与奖励归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在上阵人数口径与阵营继承歧义等异常边界"
+    },
+    "ui": {
+      "state": "N/A",
+      "reason": "角色/怪物血条与队伍反馈渲染归 SYS-IN-07"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "角色/怪物/召唤物实体定义来自 Hero/Monster/SummonMonster 源表"
+    }
+  },
+  "overview": {
+    "purpose": "单位、阵营与队伍是战斗实体的身份底座：定义角色、怪物、召唤物、基地等实体类型，阵营关系，五人小队结构与目标选择规则，供技能、AI、玩法与结算共同消费。",
+    "inScope": [
+      "战斗实体类型体系（PlayerTeam/PlayerRole/Monster/Boss/Summon/BossUnity/Illusion/Vehicle/Battery/Crystal/Squad 等）",
+      "阵营枚举（Player/Monster/Neutral）与各实体的阵营归属规则",
+      "队伍结构（PlayerTeam → Squad → PlayerRole）、有序队形、队长与幻影、动态入队",
+      "上阵快照（TeamCreateData/SquadCreateData/PlayerCreateData 冻结编队）",
+      "目标选择（阵营过滤 Self/Friend/Enemy、ModifierTargetType、追踪目标选择）"
+    ],
+    "outOfScope": [
+      "编队与上阵养成本身；该内容归 SYS-OUT-GR-*（经 builds 关系消费）",
+      "具体属性公式与系数数值；该内容归 CB-R03 与 NUM-03",
+      "角色定位、技能组设计；该内容归 CH-R01/CH-R03",
+      "敌人行为树与仇恨/阶段机制；该内容归 SYS-IN-04",
+      "关卡空间、波次与刷怪位置；该内容归 SYS-IN-05"
+    ],
+    "inputs": [
+      "编队/上阵快照（HeroId 列表、SquadId、Camp）",
+      "实体创建数据（TeamCreateData、Monster/Boss/Summon 数据）",
+      "目标过滤请求（Self/Friend/Enemy、ModifierTargetType）"
+    ],
+    "outputs": [
+      "战斗实体实例及其阵营/类型身份",
+      "有序队伍与队长/幻影结构",
+      "目标选择结果",
+      "角色存活/死亡统计（驱动胜负判定）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式战斗实体与队伍底座",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "EntityType/EntityCamp/LPlayerTeam/LMonster/LSummon 等构成所有战斗实体互相作用的身份与阵营基础。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "无权威目标设计冻结；R01-R06 目标口径均为 GAP，仅有工作副本代码/配置观察",
+      "status": "WORKING_COPY_OBSERVED_WITH_UNKNOWN",
+      "note": "实体/阵营/队伍/目标选择机制有清晰实现，但全部规则均无 Design Doc/数值文档/正式决议冻结；「五人小队」仅为知识框架柱 PF-01 的反向归纳口径，代码 MaxFrontendPlayerRoles=6 与之不一致（见 openQuestions）；召唤物/幻影阵营继承边界未冻结。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "EntityCamp/EntityType/LPlayerTeam/LMonster/LSummon/EntityFilter 均在",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对 2026-08-18；阵营四值与实体类型二十三值、有序队形、目标过滤均可溯源到代码。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "工程主链存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在代码与配置证据，但无集中版本—开关—发布时间台账，不能把所有实现直接盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-IN-02-F01",
+      "name": "队伍实例化与运行",
+      "steps": [
+        {
+          "id": "SYS-IN-02-F01-S01",
+          "name": "接收上阵快照",
+          "description": "TeamCreateData 携带 Camp、Squads 与 SpecialEquipmentSkills，作为冻结编队快照进入战斗世界。"
+        },
+        {
+          "id": "SYS-IN-02-F01-S02",
+          "name": "创建小队与角色",
+          "description": "CreateSquads 按 SquadData 创建 LSquad，再按 PlayerCreateData 创建 LPlayerRole，Camp 逐层传播到小队与角色。"
+        },
+        {
+          "id": "SYS-IN-02-F01-S03",
+          "name": "生成有序队形",
+          "description": "按 RoleInterval 沿 X 轴排列角色，FirstSquad/LeaderRole 作为队长与相机/索敌快速访问入口。"
+        },
+        {
+          "id": "SYS-IN-02-F01-S04",
+          "name": "目标选择",
+          "description": "按阵营过滤（Self/Friend/Enemy）或 ModifierTargetType/TrackTargetPicker 选择行动目标。"
+        },
+        {
+          "id": "SYS-IN-02-F01-S05",
+          "name": "死亡与重排",
+          "description": "角色死亡时移除存活列表并重排队形；全部角色死亡触发失败；胜利时为存活角色补通关无敌 Buff。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-IN-02-R01",
+      "name": "战斗实体类型体系",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「战斗实体类型体系」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "EntityType.cs 定义 23 个成员（PlayerTeam/PlayerRole/Item/Terrain/Bullet/BulletBox/NormalMonster/EliteMonster/Boss/Zone/Effect/MoveTerrain/Buff/Summon/BossUnity/Illusion/HiddenUnit/Squad/Battery/Crystal/LeaderPoint/Vehicle/Env）；EBattleUnitType 另定义 MonsterBoss/MonsterElite/MonsterCommon/MonsterAsh/PlayerSelf/PlayerTeam/Crystal 用于血条与筛选。（工作副本代码观察）",
+      "acceptance": "每个实体可从创建数据解析到 EntityType 与 BattleUnitType；类型枚举全库一致不冲突。",
+      "relatedIds": [
+        "CB-R02",
+        "SYS-IN-04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-02-EV01",
+        "SYS-IN-02-EV02"
+      ]
+    },
+    {
+      "id": "SYS-IN-02-R02",
+      "name": "阵营枚举与归属",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「阵营枚举与归属」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "EntityCamp.cs 定义 None/Player/Monster/Neutral；LMonster.Camp 默认 Monster 且带 NeutralMonster 标签时转为 Neutral；LBossEntity/LBossUnity 固定 Monster；LSummon.Camp 取 Summoner?.Camp（summoner 为 null 时回退 Monster）；LPlayerRole.Camp 取自 PlayerCreateData.Camp（快照逐层传播，见 R04），LBatteryEntity/LCrystalEntity 硬编码为 Player。（工作副本代码观察）",
+      "acceptance": "每个实体实例有唯一阵营；召唤物阵营继承可解析；敌对判定基于阵营而非类型。",
+      "relatedIds": [
+        "CB-R02",
+        "SYS-IN-04"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-02-EV03",
+        "SYS-IN-02-EV04",
+        "SYS-IN-02-EV05",
+        "SYS-IN-02-EV15",
+        "SYS-IN-02-EV16",
+        "SYS-IN-02-EV17"
+      ]
+    },
+    {
+      "id": "SYS-IN-02-R03",
+      "name": "五人小队与有序队形",
+      "status": "WORKING_COPY_OBSERVED_WITH_UNKNOWN",
+      "targetRule": "GAP：尚无权威目标设计冻结「五人小队与有序队形」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "LPlayerTeam 持有 Squads（byte→LSquad）、PlayerRoles、AlivePlayerRoles、FirstSquad/FirstRole（LeaderRole）；CreateSquads/SpawnRolesForSquad 按 RoleInterval 生成队形，OnPlayerDead/AddRoleToHead/AddRoleToTail 触发重排；知识框架柱 PF-01（跑酷战斗）以「五人小队持续推进」归纳项目口径（反向归纳，非 Design Doc 冻结），代码常量 MaxFrontendPlayerRoles=6 与之不一致，正式上阵人数待确认。（工作副本代码观察）",
+      "acceptance": "五人上阵快照可实例化为有序队伍；队长/队形/重排行为一致；上阵人数口径有正式结论。",
+      "relatedIds": [
+        "PF-02",
+        "CH-R04",
+        "SYS-OUT-GR-02"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-02-EV06",
+        "SYS-IN-02-EV07"
+      ]
+    },
+    {
+      "id": "SYS-IN-02-R04",
+      "name": "上阵快照冻结",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「上阵快照冻结」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "TeamCreateData 携带 Camp/Squads/SpecialEquipmentSkills；CreateSquad 将 squadData.Camp 覆盖为 CreateData.Camp，SpawnRolesForSquad 同样把 playerData.Camp 设为队伍 Camp（局内动态变化不回写局外养成）；LPlayerTeam.Initialize 只注册特殊装备技能，不承载养成写回。（工作副本代码观察）",
+      "acceptance": "局内队伍结构与局外养成解耦；快照字段可完整解析且不反向写养成。",
+      "relatedIds": [
+        "SYS-OUT-GR-02",
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-02-EV06",
+        "SYS-IN-02-EV08"
+      ]
+    },
+    {
+      "id": "SYS-IN-02-R05",
+      "name": "目标选择与阵营过滤",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「目标选择与阵营过滤」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "EntityFilterUtility 按 Self/Friend/Enemy 过滤（Friend 要求同阵营且非 Summon）；EntityFilter 支持 CampFilter；ModifierTargetTypeResolver 将 TargetSkill 的 ModifierTargetType 解析为 Player/Monster 阵营过滤；TrackTargetPicker 按相反阵营与队长（Captain）选弹道目标。（工作副本代码观察）",
+      "acceptance": "每种目标选择请求可解析到具体阵营过滤；敌对/友方/自身判定一致。",
+      "relatedIds": [
+        "CB-R04",
+        "SYS-IN-03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-02-EV09",
+        "SYS-IN-02-EV10",
+        "SYS-IN-02-EV11",
+        "SYS-IN-02-EV12"
+      ]
+    },
+    {
+      "id": "SYS-IN-02-R06",
+      "name": "死亡与胜负判定",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "GAP：尚无权威目标设计冻结「死亡与胜负判定」的正式策划口径；本条仅有工作副本代码/配置观察（见 sourceFact），观察不得当作正式规则引用。策划口径冻结后由主策/评审确认回填。",
+      "sourceFact": "LPlayerTeam.OnPlayerDead 移除 AlivePlayerRoles 并重排，IsAllRoleDead 触发 World.SetGameOver(false)；SetBattleWinInvincible 为存活角色 AddBuff/RemoveBuff WinInvincibleBuff=1005。（工作副本代码观察）",
+      "acceptance": "全员死亡与胜利补无敌两条路径都有明确状态变化。",
+      "relatedIds": [
+        "SYS-IN-01",
+        "SYS-IN-08",
+        "SYS-IN-03"
+      ],
+      "evidenceRefs": [
+        "SYS-IN-02-EV06"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-IN-02-C01",
+      "name": "阵营归属",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "怪物带 NeutralMonster 标签时归 Neutral，否则 Monster；召唤物继承召唤者阵营，召唤者为空时默认 Monster。",
+      "evidenceRefs": [
+        "SYS-IN-02-EV03",
+        "SYS-IN-02-EV05"
+      ]
+    },
+    {
+      "id": "SYS-IN-02-C02",
+      "name": "目标阵营过滤",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "Self/Friend 要求同阵营（Friend 排除 Summon），Enemy 要求异阵营；绝对阵营过滤直接匹配 Player/Monster。",
+      "evidenceRefs": [
+        "SYS-IN-02-EV09",
+        "SYS-IN-02-EV10"
+      ]
+    },
+    {
+      "id": "SYS-IN-02-C03",
+      "name": "全员死亡",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "AlivePlayerRoles 清空即触发 World.SetGameOver(false) 判定失败。",
+      "evidenceRefs": [
+        "SYS-IN-02-EV06"
+      ]
+    }
+  ],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-IN-02-EX01",
+      "name": "上阵人数口径歧义",
+      "status": "P1_GAP",
+      "rule": "项目口径为五人小队，代码 MaxFrontendPlayerRoles=6；正式上阵人数与第六个角色的用途未冻结。",
+      "evidenceRefs": [
+        "SYS-IN-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-IN-02-EX02",
+      "name": "召唤物/幻影阵营继承歧义",
+      "status": "P1_GAP",
+      "rule": "LSummon.Camp 取 Summoner?.Camp，召唤者为空回退 Monster；LIllusion.Camp 继承 Summoner?.Camp 且为空回退 Player；该回退语义与召唤来源的关系无正式规则。",
+      "evidenceRefs": [
+        "SYS-IN-02-EV05",
+        "SYS-IN-02-EV14"
+      ]
+    }
+  ],
+  "ui": [],
+  "configs": [
+    {
+      "id": "SYS-IN-02-CFG01",
+      "name": "Hero",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\Hero.xlsx",
+      "role": "角色定义：HeroId、HeroClass、HeroCamp、标签、技能槽与碰撞/站位字段，构成上阵快照的角色来源",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-CFG02",
+      "name": "Monster",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\Monster.xlsx",
+      "role": "怪物定义：MonsterId、BattleUnitType（普通/精英/Boss）、SkillGroup、MonsterAi、碰撞与基础战斗字段",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-CFG03",
+      "name": "SummonMonster",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\SummonMonster.xlsx",
+      "role": "召唤物定义：召唤物 MonsterId、属性与行为，供 SummonAction 消费",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-IN-02-REL01",
+      "type": "builds",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GR-02",
+      "targetName": "角色升级与突破",
+      "description": "角色升级/突破形成的最终战斗属性进入上阵快照，构成队伍可消费的实体。（推导边界：本正文证据仅覆盖 TeamCreateData 冻结快照结构（SYS-IN-02-EV08）；「属性由 SYS-OUT-GR-02 升级/突破产出」来自知识目录与该系统正文——其 builds 边登记为指向 CB-R03 属性底盘，本正文未直接核到升级/突破→快照的产出链路，需在 SYS-OUT-GR-02 侧回源确认。）",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-IN-02-REL02",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "单位属性、阵营修正与目标选择涉及的具体公式由战斗数值模型约束，本系统不复制公式。（推导边界：本正文证据全部为实体/阵营/目标选择机制代码，未记录任何公式；「公式与系数归 NUM-03 战斗数值域」为知识目录 numeric/NUM-03 分域结论，本正文证据未直接命名 NUM-03。）",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-IN-02-REL03",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-04",
+      "targetName": "敌人、AI 与 Boss",
+      "description": "敌人/Boss/召唤物复用同一套实体类型、阵营与目标选择模型。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-IN-02-EV04",
+        "SYS-IN-02-EV05"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-IN-02-EV01",
+      "kind": "source-code",
+      "label": "EntityType.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Enums/EntityType.cs",
+      "location": "enum EntityType（23 个成员与中文注释）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV02",
+      "kind": "source-code",
+      "label": "EBattleUnitType.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Common/Runtime/Config/Generated/EBattleUnitType.cs",
+      "location": "enum EBattleUnitType（MonsterBoss/Elite/Common/Ash/PlayerSelf/PlayerTeam/Crystal）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV03",
+      "kind": "source-code",
+      "label": "EntityCamp.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Enums/EntityCamp.cs",
+      "location": "enum EntityCamp（None/Player/Monster/Neutral）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV04",
+      "kind": "source-code",
+      "label": "LMonster.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LMonster.cs",
+      "location": "Camp 默认值、ResolveMonsterCamp/GetEntityType（BattleUnitType→EntityType）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV05",
+      "kind": "source-code",
+      "label": "LSummon.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LSummon.cs",
+      "location": "Camp => Summoner?.Camp ?? EntityCamp.Monster",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV06",
+      "kind": "source-code",
+      "label": "LPlayerTeam.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LPlayerTeam.cs",
+      "location": "MaxFrontendPlayerRoles/CreateSquads/SpawnRolesForSquad/OnPlayerDead/SetBattleWinInvincible",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-IN-02-EV07",
+      "kind": "source-code",
+      "label": "LSquad.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LSquad.cs",
+      "location": "小队 LeaderRole/Illusions/LeaderPoint 结构",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV08",
+      "kind": "source-code",
+      "label": "TeamCreateData.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/MessageTypes/TeamCreateData.cs",
+      "location": "Camp/Squads/SpecialEquipmentSkills 字段",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV09",
+      "kind": "source-code",
+      "label": "EntityFilterUtility.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Filter/EntityFilterUtility.cs",
+      "location": "Self/Friend/Enemy 过滤分支",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV10",
+      "kind": "source-code",
+      "label": "EntityFilter.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/Filter/EntityFilter.cs",
+      "location": "CampFilter 与阵营匹配分支",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV11",
+      "kind": "source-code",
+      "label": "ModifierTargetTypeResolver.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/TargetSkill/ModifierTargetTypeResolver.cs",
+      "location": "TargetSkill.ModifierTargetType → Player/Monster 阵营过滤",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV12",
+      "kind": "source-code",
+      "label": "TrackTargetPicker.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Bullet/TrackTargetPicker.cs",
+      "location": "相反阵营与队长（Captain）目标选择",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV13",
+      "kind": "source-excel",
+      "label": "Hero.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Hero/Hero.xlsx",
+      "location": "HeroCamp/HeroClass/技能槽/碰撞字段（本机工作副本核对 2026-08-18）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV14",
+      "kind": "source-code",
+      "label": "LIllusion.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LIllusion.cs",
+      "location": "Camp => Summoner?.Camp ?? EntityCamp.Player（幻影阵营继承与空召唤者回退 Player）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV15",
+      "kind": "source-code",
+      "label": "LPlayerRole.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LPlayerRole.cs",
+      "location": "构造中 Camp = createData.Camp（角色阵营来自快照传播，非硬编码）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV16",
+      "kind": "source-code",
+      "label": "LBatteryEntity.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LBatteryEntity.cs",
+      "location": "Camp => EntityCamp.Player（炮台固定玩家阵营）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-IN-02-EV17",
+      "kind": "source-code",
+      "label": "LCrystalEntity.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Entities/LCrystalEntity.cs",
+      "location": "Camp => EntityCamp.Player（水晶固定玩家阵营）",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-IN-02-Q01",
+      "priority": "P1",
+      "question": "正式上阵人数口径是五人还是六人？MaxFrontendPlayerRoles=6 的第六个位置用途是什么？",
+      "impact": "影响编队界面、队伍实例化与平衡验收基准。",
+      "evidenceRefs": [
+        "SYS-IN-02-EV06"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-02-Q02",
+      "priority": "P1",
+      "question": "召唤物/幻影在召唤者为空时回退 Monster/Player 的语义是否有正式规则？",
+      "impact": "影响召唤物阵营与敌对判定，避免误伤或漏算。",
+      "evidenceRefs": [
+        "SYS-IN-02-EV04",
+        "SYS-IN-02-EV05"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-IN-02-Q03",
+      "priority": "P2",
+      "question": "EntityCampFilterType 的 Self/Friend/Enemy 与 EntityCamp.Neutral 的组合语义是否冻结？",
+      "impact": "影响中立实体在技能与索敌中的目标归属。",
+      "evidenceRefs": [
+        "SYS-IN-02-EV09",
+        "SYS-IN-02-EV10"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    }
+  ]
+}

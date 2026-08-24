@@ -1,0 +1,483 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-04",
+  "name": "物品与货币",
+  "revision": "2026-08-18.3",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE；道具增减与日志的消费链只观察到客户端同步侧，服务端权威不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径，不代表已配置或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "overview": {
+    "purpose": "物品与货币是 Vgame 的资源身份权威：定义金币、元晶、储能、门票、材料与专属货币的身份字段、类型枚举、堆叠/增减与来源去向职责，供所有玩法、养成与商店在入账和扣除时引用同一套资源口径。",
+    "inScope": [
+      "资源身份字段（Items 的 ItemType/ItemSubType/ItemQuality/NumLimit/ParaList）",
+      "货币、行动资源（储能）、经验、门票与材料的类别归属",
+      "道具堆叠与账本同步（PropSystem.AllItems 的 ItemCfgID→ItemNum）",
+      "来源去向索引（AccessList、ItemAccess、ItemSweep）的职责",
+      "从 UI 名称推断类型的风险与命名冲突"
+    ],
+    "outOfScope": [
+      "逐资源的产销台账与价值/定价；该内容归 NUM-04 经济数值",
+      "体力上限、恢复与购买；该内容归 SYS-OUT-GR-01 玩家等级/体力",
+      "奖励发放、扣除、补发与入账；该内容归 SYS-OUT-SU-05 与各玩法",
+      "背包/商店界面的视觉与交互；该内容归玩家侧 UI 层与各系统",
+      "具体货币数量、概率与掉落包内容；该内容归数值框架 v2 与 Drop 源表"
+    ],
+    "inputs": [
+      "Items/ItemTypeFunc/ItemAccess/ItemSweep 身份与来源配置",
+      "PropSystem 全量背包同步（CRespNotifyBagInfo）",
+      "各玩法的道具/货币增减事件（服务端下发，客户端同步）"
+    ],
+    "outputs": [
+      "资源身份与类型枚举的单一权威口径",
+      "道具/货币当前持有量（AllItems 字典）",
+      "资源来源去向索引（供获取途径与定向扫荡）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "资源身份权威",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "金币、元晶、储能、门票、材料与专属货币的身份归属唯一权威，避免各系统从 UI 名称自建类型。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "身份字段与类型枚举存在；统一产销台账缺",
+      "status": "CONFIRMED_TARGET_WITH_GAP",
+      "note": "Items/ItemTypeFunc 提供稳定身份枚举，但缺 ItemId 级统一产销台账，该账本职责归 NUM-04。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "Items 1820 行、22 个货币、储能归 Power 类型、收容凭证旧命名残留",
+      "status": "WORKING_COPY_OBSERVED_WITH_CONFLICT",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；ItemSubType 枚举与 UI 名称存在不一致（收容凭证仍用旧专武子类型）。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "物品/货币账本链路存在；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在源表与客户端实现证据，但没有集中版本—开关—发布时间台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-04-R01",
+      "name": "资源身份以 ItemType/ItemSubType 为权威",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "targetRule": "资源身份由 Items.ItemType 与 Items.ItemSubType 枚举决定，UI 名称不是类型权威；策划不得从道具名反推真实类型。",
+      "sourceFact": "Items.xlsx 用 ItemType（Prop/Other/HeroShards/Strategy/Equipment）与 ItemSubType（Currency/Power/Exp/HeroExp/PowerDrug/DrawWeaponCard 等）表达身份；ItemTypeFunc.xlsx 维护 ItemType→背包页签与子类型排序。",
+      "acceptance": "任何资源的存储、堆叠与展示都以 ItemType/ItemSubType 为准；改名不改变类型。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01",
+        "SYS-OUT-SU-04-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-R02",
+      "name": "货币类身份",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "货币类道具以 ItemSubType_Currency 标识；金币（猎鹰金币 1）与元晶（2）是核心硬通货，其余为玩法/养成专属货币。",
+      "sourceFact": "Items.xlsx 中 ItemSubType_Currency 共 22 个：猎鹰金币(1)、元晶(2)、收容代币(18)、印象余音(21)、残留余响(22)、高阶/低阶零件(23/24)、梦境碎片(27)、元晶矿石(37)、房车零件/行程便签/安途清单/探路标记/见闻手札/调律灯片(1074-1079)、调校垫片/稳固铆钉/导能晶片/精修胶带(1152-1155)、房车建材(3028/3029/3030)。",
+      "acceptance": "货币类资源统一由 ItemSubType_Currency 识别；专属货币不得误标为通用货币。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-R03",
+      "name": "储能是行动资源而非货币",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "储能（ItemId=3）是行动资源，身份为 ItemSubType_Power，不是货币；其上限/恢复由 SYS-OUT-GR-01 的 Power 表维护，身份归本系统。",
+      "sourceFact": "Items.xlsx 中储能(3) ItemType=ItemType_Other、ItemSubType=ItemSubType_Power；globals_conf.DefaultStaminaItemId=3；Power.xlsx 将储能(3) 挂 Power_Normal。",
+      "acceptance": "储能不进入货币类台账；消耗/恢复/购买走体力口径，不按货币堆叠。",
+      "relatedIds": [
+        "SYS-OUT-GR-01",
+        "SYS-OUT-GP-11"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01",
+        "SYS-OUT-SU-04-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-R04",
+      "name": "经验类身份",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "经验按消费对象区分：行旅帧片(4)=玩家经验（ItemSubType_Exp）、记录盘(100/101/102)=角色经验道具（ItemSubType_HeroExp）、异变材料(5)=装备经验、沿途随笔(6)=锦囊经验；不得混为一类。",
+      "sourceFact": "Items.xlsx 中行旅帧片(4) ItemSubType=ItemSubType_Exp、记录盘(100/101/102) ItemSubType=ItemSubType_HeroExp（ParaList=500/2000/10000）、异变材料(5) ItemSubType_Equip_Exp、沿途随笔(6) ItemSubType_Strategy_Exp。",
+      "acceptance": "玩家经验与角色经验在产销账中拆列，不因都是「经验」合并。",
+      "relatedIds": [
+        "SYS-OUT-GR-01",
+        "SYS-OUT-GR-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-R05",
+      "name": "门票与持有上限",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "门票类道具以 Items.NumLimit 表达持有上限；映射之匙(25) 上限 50，映射装备副本门票由 globals_conf.SpecialLevelTicketItemID=25 引用。",
+      "sourceFact": "Items.xlsx 中映射之匙(25) ItemType=ItemType_Prop、NumLimit=50；globals_conf.SpecialLevelTicketItemID=25；收容凭证(107) 为抽卡券类（ItemSubType=Item_Sub_DrawWeaponCard）。",
+      "acceptance": "门票持有上限由 Items.NumLimit 单一权威维护；上限校验由各消费系统引用。",
+      "relatedIds": [
+        "SYS-OUT-GP-05",
+        "SYS-OUT-SU-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01",
+        "SYS-OUT-SU-04-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-R06",
+      "name": "道具堆叠与账本同步",
+      "status": "WORKING_COPY_OBSERVED",
+      "targetRule": "道具/货币以 ItemCfgID 为键堆叠计数；客户端以 PropSystem.AllItems 维护当前持有量，增减以服务端全量/增量同步为准。",
+      "sourceFact": "PropSystem.AllItems 为 ItemCfgID→ItemInfo 字典；CRespNotifyBagInfo 全量同步 PropList，ItemNum<=0 时移除；GetItemNum 对公会资金走 GuildFunds 特例。",
+      "acceptance": "同一 ItemCfgID 只保留一份计数；持有量为 0 时移除条目；增减口径以服务端回包为准。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-11"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-R07",
+      "name": "货币/道具增减与日志职责",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：缺「道具增减必须带来源去向与可审计日志」的统一口径；本系统只定义身份与账本，具体增减由各玩法与服务端执行。",
+      "sourceFact": "客户端只通过回包同步增减，无本地日志；Items.AccessList 与 ItemAccess/ItemSweep 只提供来源展示/跳转，不是真实产销台账。",
+      "acceptance": "建立 ItemId 级来源/去向/日志职责，避免 UI 名称或 AccessList 被误当真实产出证明。",
+      "relatedIds": [
+        "NUM-04",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV03",
+        "SYS-OUT-SU-04-EV05",
+        "SYS-OUT-SU-04-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-R08",
+      "name": "命名冲突风险",
+      "status": "P1_CONFLICT",
+      "targetRule": "收容凭证(107) 的身份应随专武→收容物迁移统一为收容物抽卡券，不得保留旧专武子类型命名。",
+      "sourceFact": "Items.xlsx 中收容凭证(107) 名称已为「收容凭证」，但 ItemSubType 仍为 Item_Sub_DrawWeaponCard（旧专武卡池子类型）；ItemTypeFunc 无独立收容物抽卡子类型。",
+      "acceptance": "收容凭证的 ItemSubType 与名称一致，不残留旧专武命名；迁移边界由专武/收容物 canonical 裁决。",
+      "relatedIds": [
+        "SYS-OUT-GR-10",
+        "SYS-OUT-GR-05",
+        "SYS-OUT-SU-02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01",
+        "SYS-OUT-SU-04-EV02"
+      ]
+    }
+  ],
+  "conditions": [],
+  "rewards": [],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-04-EX01",
+      "name": "收容凭证旧命名残留",
+      "status": "P1_CONFLICT",
+      "rule": "收容凭证(107) ItemSubType 仍为 Item_Sub_DrawWeaponCard，与「收容物」新口径冲突。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01",
+        "SYS-OUT-SU-04-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-EX02",
+      "name": "缺统一产销台账",
+      "status": "P1_GAP",
+      "rule": "Items.AccessList/ItemAccess 只表达来源展示与跳转，不构成真实产销台账；ItemId 级 source/sink/cadence/limit 台账缺口归 NUM-04。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV03",
+        "SYS-OUT-SU-04-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-EX03",
+      "name": "UI 名称推断类型风险",
+      "status": "P2_GAP",
+      "rule": "储能、元晶矿石、收容代币等名称易被误判为货币；必须回 ItemType/ItemSubType 核类型，不从 UI 名称推断。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-04-EX04",
+      "name": "持有上限大量为空",
+      "status": "P2_GAP",
+      "rule": "货币类道具 NumLimit 多为空（不设上限），门票/映射之匙(25) 设 50；是否需为高敏货币补上限需裁决。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01"
+      ]
+    }
+  ],
+  "ui": [],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-04-CFG01",
+      "name": "Items",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\Items.xlsx",
+      "role": "道具/货币身份主索引（Id/Name/ItemType/ItemSubType/ItemQuality/NumLimit/ParaList/AccessList）",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-SU-04-CFG02",
+      "name": "ItemTypeFunc",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\ItemTypeFunc.xlsx",
+      "role": "ItemType→背包页签、子类型排序、使用/批量/跳转标记",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-04-CFG03",
+      "name": "ItemAccess",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\ItemAccess.xlsx",
+      "role": "获得途径名称/图标/跳转面板与扫荡支持标记",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-04-CFG04",
+      "name": "ItemSweep",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\ItemSweep.xlsx",
+      "role": "关卡可扫材料映射（LevelId→ItemId），供获取途径与定向扫荡",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-04-REL01",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：Items.xlsx(EV01)定义物品身份，ItemTypeFunc.xlsx(EV02)定义物品类型功能，经济总账收口(EV07)定义产销账口径，知识目录定义NUM-04经济数值域职责。推导：资源价值、定价与货币/道具的产销账由经济数值域(NUM-04)定义，构成 prices/incoming 关系。推导边界：物品身份与类型配置已由工作副本确认，但资源价值与产销账的具体数值属经济数值域维护，本正文不复制数值。UNKNOWN：各资源的权威定价与产销台账的完整数值仍待经济域核算确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-04-REL02",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：ItemAccess.xlsx(EV03)定义物品获取途径，globals_conf.xlsx(EV06)定义全局参数与上限，经济总账收口(EV07)定义供给消耗边界。推导：经济数值模型(NUM-04)约束资源的供给、消耗与上限边界，构成 balances/incoming 关系。推导边界：物品获取途径与全局参数已由工作副本确认，但供给消耗与上限的平衡模型属经济数值域维护。UNKNOWN：各资源的供给消耗平衡与上限设定的具体数值仍待经济域核算确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-04-REL03",
+      "type": "supplies",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：Items.xlsx(EV01)定义物品身份与堆叠，PropSystem.lua(EV05)执行物品增减，SYS-OUT-SU-05掉落与奖励正文定义真实入账。推导：掉落与奖励(SU-05)的首通/重复/排行等真实入账写进物品账本，构成 supplies/incoming 关系。推导边界：物品账本身份与增减逻辑已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：入账的服务端幂等与掉落到账本的完整写入规则仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-04-REL04",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-11",
+      "targetName": "扫荡",
+      "description": "来源：ItemSweep.xlsx(EV04)定义扫荡消耗，globals_conf.xlsx(EV06)定义储能(ItemId=3)配置，PropSystem.lua(EV05)执行扣除，SYS-OUT-GP-11扫荡正文定义扫荡消耗。推导：扫荡(GP-11)消耗储能(ItemId=3)，扣除走物品/资源账本，构成 consumes/incoming 关系。推导边界：储能配置与扣除逻辑已由工作副本确认，但扫荡消耗的具体数值在GP-11侧维护。UNKNOWN：储能的服务端扣除幂等与扫荡批量消耗的原子性仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-04-REL05",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-06",
+      "targetName": "商店",
+      "description": "来源：Items.xlsx(EV01)定义货币身份，PropSystem.lua(EV05)执行扣除，SYS-OUT-SU-06商店正文定义商店购买消费。推导：商店(SU-06)消费金币/元晶/专属货币购买商品，扣除走物品账本，构成 consumes/incoming 关系。推导边界：货币身份与扣除逻辑已由工作副本确认，但商店购买的具体消费规则在SU-06侧维护。UNKNOWN：商店购买的服务端扣除幂等与货币扣除的原子性仍待确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-SU-04-R01",
+        "SYS-OUT-SU-04-R06",
+        "SYS-OUT-SU-04-R07"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-04-EV01",
+      "kind": "source-excel",
+      "label": "Items.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/items/Items.xlsx",
+      "location": "本机SVN工作副本；sheet items；1820 行，ItemType/ItemSubType/NumLimit/ParaList；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_WITH_CONFLICTS"
+    },
+    {
+      "id": "SYS-OUT-SU-04-EV02",
+      "kind": "source-excel",
+      "label": "ItemTypeFunc.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/items/ItemTypeFunc.xlsx",
+      "location": "本机SVN工作副本；sheet ItemTypeFunc；ItemType/ItemSubType/ShowInBag 枚举；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-04-EV03",
+      "kind": "source-excel",
+      "label": "ItemAccess.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/items/ItemAccess.xlsx",
+      "location": "本机SVN工作副本；sheet ItemAccess；途径名称/GotoId/SaoDangSupport；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-04-EV04",
+      "kind": "source-excel",
+      "label": "ItemSweep.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/items/ItemSweep.xlsx",
+      "location": "本机SVN工作副本；sheet ItemAccess；LevelId→ItemId 扫荡材料映射 115 行；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-04-EV05",
+      "kind": "source-code",
+      "label": "PropSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/PropSystem.lua",
+      "location": "AllItems 字典、CRespNotifyBagInfo（63-94 行）、GetItemNum（127-145 行）、GetStaminaNum（150-157 行）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-04-EV06",
+      "kind": "source-excel",
+      "label": "globals_conf.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/globals_conf/globals_conf.xlsx",
+      "location": "本机SVN工作副本；DefaultStaminaItemId=3、StaminaPotionItemId=105、SpecialLevelTicketItemID=25、PlayerExpItem=4；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-04-EV07",
+      "kind": "numeric-deposit",
+      "label": "经济总账收口",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/经济总账收口-2026-07-07.md",
+      "location": "经济总账与产销口径（只作权威关系索引，未逐项数值审计）",
+      "status": "CONFIRMED_TARGET_PARTIAL"
+    },
+    {
+      "id": "SYS-OUT-SU-04-EV08",
+      "kind": "source-excel",
+      "label": "__tables__.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/__tables__.xlsx",
+      "location": "本机SVN工作副本；Item/ItemSweep/TbItemAccess/TbItemTypeFunc 逻辑表注册；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-04-Q01",
+      "priority": "P1",
+      "question": "收容凭证(107) 的 ItemSubType 何时从 Item_Sub_DrawWeaponCard 迁移为收容物抽卡口径？",
+      "impact": "命名残留影响抽卡/商店/任务资源链的一致性与类型判读。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01",
+        "SYS-OUT-SU-04-EV02"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-04-Q02",
+      "priority": "P1",
+      "question": "是否建立 ItemId 级统一产销台账（source/sink/cadence/limit/paid/unlock）？",
+      "impact": "当前只有 AccessList/ItemAccess 展示索引，无法量化资源供需与商业化压力。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV03",
+        "SYS-OUT-SU-04-EV07"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-04-Q03",
+      "priority": "P2",
+      "question": "高敏货币（元晶/收容凭证）是否需要补持有上限（NumLimit）？",
+      "impact": "货币类道具 NumLimit 多为空，影响账号安全与异常防护边界。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-04-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "N/A",
+      "reason": "资源身份与账本系统无有序用户流程，物品增减是各玩法异步事件的结果"
+    },
+    "conditions": {
+      "state": "N/A",
+      "reason": "本系统不拥有玩家侧开放/资格/门槛条件；持有上限等边界由各消费系统按 Items.NumLimit 各自校验"
+    },
+    "rewards": {
+      "state": "N/A",
+      "reason": "本系统不发放或扣除价值，只记录入账；发放/扣除职责归 SYS-OUT-SU-05 与各玩法"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在命名冲突、缺统一台账、类型推断风险与持有上限缺口"
+    },
+    "ui": {
+      "state": "N/A",
+      "reason": "本系统无独立界面；背包/商店展示归玩家侧 UI 层与各系统"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 Items/ItemTypeFunc/ItemAccess/ItemSweep 身份与来源配置源"
+    }
+  }
+}

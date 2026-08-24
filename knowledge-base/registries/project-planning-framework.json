@@ -1,0 +1,1005 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-24T03:54:08.001Z",
+  "project": "Vgame",
+  "frameworkPrinciples": [
+    "玩家系统先分战斗内与战斗外。",
+    "战斗外继续细分玩法、养成、经济、获取、留存、商业化、社交、引导与运营。",
+    "玩法是跨域对象：战斗外壳层与战斗内实例规则分别归类。",
+    "配置、数值、UI、数据、QA和知识治理属于项目支撑与治理层，不是第三类玩家系统。",
+    "Design、运行开放、配置存在和证据权威使用不同状态轴。"
+  ],
+  "statusModel": {
+    "designLifecycle": [
+      "DRAFT",
+      "IN_REVIEW",
+      "APPROVED",
+      "TEMPORARY",
+      "ARCHIVED",
+      "DEPRECATED",
+      "REFERENCE",
+      "UNKNOWN"
+    ],
+    "runtimeRelease": [
+      "PLAN",
+      "DEV",
+      "INTERNAL_TEST",
+      "GRAY",
+      "LIVE",
+      "MAINTENANCE",
+      "NOT_OPEN",
+      "CLOSED",
+      "DEPRECATED",
+      "REMOVED",
+      "UNKNOWN"
+    ],
+    "landingEvidence": [
+      "DESIGN_ONLY",
+      "CONFIG_MIRROR",
+      "DATAS",
+      "CLIENT",
+      "SERVER",
+      "PARTIAL",
+      "VERIFIED",
+      "MIXED",
+      "UNKNOWN"
+    ],
+    "resolution": [
+      "CLEAR",
+      "OPEN",
+      "CONFLICT"
+    ]
+  },
+  "graphSources": {
+    "currentRepositoryGraph": {
+      "path": ".understand-anything/knowledge-graph.json",
+      "analyzedAt": "2026-08-14T08:19:13.395Z",
+      "nodes": 3013,
+      "edges": 2327,
+      "usage": "本框架 52 份 Design 文档映射与当前仓库导航。"
+    },
+    "legacyCrossRepositoryGraph": {
+      "path": "knowledge-graph/.understand-anything/knowledge-graph.json",
+      "analyzedAt": "2026-06-23T21:27:43Z",
+      "nodes": 1896,
+      "edges": 1200,
+      "usage": "历史 client/config/design 快照；不得用于证明 2026-08-14 的最新配置或完整文档覆盖。"
+    }
+  },
+  "taxonomy": [
+    {
+      "id": "ROOT",
+      "parent": null,
+      "name": "Vgame 项目级策划知识",
+      "kind": "root",
+      "definition": "覆盖玩家体验、系统规则、内容生产、数值经济、版本状态与交付治理。"
+    },
+    {
+      "id": "PF",
+      "parent": "ROOT",
+      "name": "项目定位与核心闭环",
+      "kind": "foundation",
+      "definition": "5人小队养成驱动的跑酷战斗射击；成长通过正式玩法转化并验证。"
+    },
+    {
+      "id": "SYS",
+      "parent": "ROOT",
+      "name": "玩家系统",
+      "kind": "system-layer",
+      "definition": "所有面向玩家的系统在此层只允许先分为战斗内与战斗外两类。"
+    },
+    {
+      "id": "BI",
+      "parent": "SYS",
+      "name": "战斗内系统",
+      "kind": "player-domain",
+      "definition": "进入战斗实例后直到胜负/结算触发前的实时规则、内容、表现与操作。"
+    },
+    {
+      "id": "BI-01",
+      "parent": "BI",
+      "name": "战斗规则底座",
+      "kind": "subdomain",
+      "definition": "实体、属性、伤害、命中、暴击、格挡、护盾、治疗、能量、冷却和胜负基础规则。"
+    },
+    {
+      "id": "BI-02",
+      "parent": "BI",
+      "name": "角色与队伍战斗",
+      "kind": "subdomain",
+      "definition": "角色定位、五人编队、普攻、自动技能、手动必杀、天赋与战斗协同。"
+    },
+    {
+      "id": "BI-03",
+      "parent": "BI",
+      "name": "敌人与 AI",
+      "kind": "subdomain",
+      "definition": "普通怪、精英、Boss、阶段、行为树、仇恨、召唤和压制机制。"
+    },
+    {
+      "id": "BI-04",
+      "parent": "BI",
+      "name": "技能、Buff 与效果",
+      "kind": "subdomain",
+      "definition": "技能状态机、时间轴、Action、伤害效果、Buff、子弹、召唤和机制事件。"
+    },
+    {
+      "id": "BI-05",
+      "parent": "BI",
+      "name": "关卡空间与遭遇",
+      "kind": "subdomain",
+      "definition": "跑酷地形、Loop、波次、刷怪、机关、移动平台、镜头边界和战斗节奏。"
+    },
+    {
+      "id": "BI-06",
+      "parent": "BI",
+      "name": "玩法战斗变体",
+      "kind": "subdomain",
+      "definition": "各玩法进入战斗后的独特模式规则、胜负条件和压力结构。"
+    },
+    {
+      "id": "BI-07",
+      "parent": "BI",
+      "name": "战斗数值与难度验证",
+      "kind": "subdomain",
+      "definition": "定义各玩法的战斗目标、标准场景、难度档与验收阈值，并消费共享模型的仿真结果。"
+    },
+    {
+      "id": "BI-08",
+      "parent": "BI",
+      "name": "战斗引导、UI 与反馈",
+      "kind": "subdomain",
+      "definition": "战斗教学、HUD、掉落表现、命中特效、镜头、音效和异常反馈。"
+    },
+    {
+      "id": "BI-09",
+      "parent": "BI",
+      "name": "战斗结果与结算触发",
+      "kind": "subdomain",
+      "definition": "胜负、评价、战利品记录、局内产出带出和结算事件边界。"
+    },
+    {
+      "id": "BO",
+      "parent": "SYS",
+      "name": "战斗外系统",
+      "kind": "player-domain",
+      "definition": "战斗实例之外组织玩法、成长、资源、留存、社交、付费和版本内容的系统。"
+    },
+    {
+      "id": "BO-01",
+      "parent": "BO",
+      "name": "玩法与内容编排",
+      "kind": "subdomain",
+      "definition": "主线、供给玩法、验证玩法的入口、层级、赛季、次数、体力、扫荡、排名和结算壳层。"
+    },
+    {
+      "id": "BO-02",
+      "parent": "BO",
+      "name": "养成与战力构建",
+      "kind": "subdomain",
+      "definition": "账号、角色、收容物、旅券、映射装备、炮台和房车等成长线。"
+    },
+    {
+      "id": "BO-03",
+      "parent": "BO",
+      "name": "获取与阵容扩展",
+      "kind": "subdomain",
+      "definition": "抽卡、卡池、碎片、重复转化、招募商店和 box breadth。"
+    },
+    {
+      "id": "BO-04",
+      "parent": "BO",
+      "name": "资源、经济与奖励",
+      "kind": "subdomain",
+      "definition": "货币道具、来源消耗、掉落包、首通/重复/周期奖励、商店兑换和经济总账。"
+    },
+    {
+      "id": "BO-05",
+      "parent": "BO",
+      "name": "任务与留存",
+      "kind": "subdomain",
+      "definition": "章节、日常、周常、签到、战令、目标、活跃和周期回访。"
+    },
+    {
+      "id": "BO-06",
+      "parent": "BO",
+      "name": "商业化",
+      "kind": "subdomain",
+      "definition": "付费货币、月卡、付费战令、礼包、快捷购买、抽卡和价值敏感点。"
+    },
+    {
+      "id": "BO-07",
+      "parent": "BO",
+      "name": "社交与组织",
+      "kind": "subdomain",
+      "definition": "公会、好友、聊天、协作、竞争关系和组织成长。"
+    },
+    {
+      "id": "BO-08",
+      "parent": "BO",
+      "name": "引导、解锁与节奏",
+      "kind": "subdomain",
+      "definition": "主角等级、主线门槛、SystemOpen、Unlock、新手流程、功能教学和开放节奏。"
+    },
+    {
+      "id": "BO-09",
+      "parent": "BO",
+      "name": "版本内容、活动与 LiveOps",
+      "kind": "subdomain",
+      "definition": "负责玩家可见的版本内容、活动/赛季编排、周期重置、运营奖励与内容日历；技术发布治理不在本域。"
+    },
+    {
+      "id": "BO-10",
+      "parent": "BO",
+      "name": "战斗外 UI 与信息架构",
+      "kind": "subdomain",
+      "definition": "系统入口、页面流程、红点、预览、弹窗优先级和跨系统导航。"
+    },
+    {
+      "id": "XS",
+      "parent": "ROOT",
+      "name": "项目支撑与治理层（非玩家系统分类）",
+      "kind": "supporting-layer",
+      "definition": "不属于第三类玩家系统，而是同时覆盖战斗内与战斗外的项目能力。"
+    },
+    {
+      "id": "XS-01",
+      "parent": "XS",
+      "name": "数值框架与仿真",
+      "kind": "subdomain",
+      "definition": "维护战斗、养成、经济、节奏四链的共享模型、公式、玩家/怪物基线、生成与仿真能力。"
+    },
+    {
+      "id": "XS-02",
+      "parent": "XS",
+      "name": "配置与数据管线",
+      "kind": "subdomain",
+      "definition": "Excel 源表、Schema、Luban、生成物、引用完整性和跨仓落地。"
+    },
+    {
+      "id": "XS-03",
+      "parent": "XS",
+      "name": "内容生产工具",
+      "kind": "subdomain",
+      "definition": "关卡、技能、引导等编辑器及其序列化和运行时消费链。"
+    },
+    {
+      "id": "XS-04",
+      "parent": "XS",
+      "name": "UI/UX 与表现规范",
+      "kind": "subdomain",
+      "definition": "战斗内外页面、交互、可读性、反馈、安全区和资产交接。"
+    },
+    {
+      "id": "XS-05",
+      "parent": "XS",
+      "name": "数据、埋点与实验分析",
+      "kind": "subdomain",
+      "definition": "负责指标、埋点、漏斗、留存、经济监控、实验设计与效果判定，不负责版本部署。"
+    },
+    {
+      "id": "XS-06",
+      "parent": "XS",
+      "name": "QA、验收与发布治理",
+      "kind": "subdomain",
+      "definition": "负责规则验收、配置审计、自动门禁、测试矩阵、功能开关、实验分流部署、灰度、Hotfix、发布和回滚。"
+    },
+    {
+      "id": "XS-07",
+      "parent": "XS",
+      "name": "知识、证据与生命周期治理",
+      "kind": "subdomain",
+      "definition": "Design/Proposal/Task、知识图谱、权威源、状态冲突、归档和变更追踪。"
+    },
+    {
+      "id": "XS-08",
+      "parent": "XS",
+      "name": "叙事、文案与本地化",
+      "kind": "subdomain",
+      "definition": "世界观、剧情、角色叙事、系统文案、术语和多语言一致性。"
+    },
+    {
+      "id": "XS-09",
+      "parent": "XS",
+      "name": "合规、安全与玩家支持",
+      "kind": "subdomain",
+      "definition": "概率公示、未成年人/付费约束、作弊防护、申诉、补偿和客服口径。"
+    }
+  ],
+  "documents": [
+    {
+      "sourcePath": "design/Buff系统Design Doc.md",
+      "sourceSha256": "ba35e65121185f10fe9a74ef6d90d7ec3c1ccfb2653c10e474aff419890f4e7c"
+    },
+    {
+      "sourcePath": "design/PVPVE怪物伤害数值设计-2026-07-27.md",
+      "sourceSha256": "c20296d557264970ac69cdd3a4c12398feabec1422da903481ebc08be11a8170"
+    },
+    {
+      "sourcePath": "design/README.md",
+      "sourceSha256": "fe13d1a4fe667d6d3d83b070ea47cc95e85d07f37f8e5a8c862c967f34dc9da1"
+    },
+    {
+      "sourcePath": "design/REVERSE-ENGINEERING-TEMPLATE.md",
+      "sourceSha256": "14ccc2ff52e1d4279da8a1701c28618407eb9094eba5eb6d4a7dd6ec33bc2ff3"
+    },
+    {
+      "sourcePath": "design/TEMPLATE.md",
+      "sourceSha256": "8dbbed6ee49eba22dedb46044b44814caad35a7336a912dd9e34357daeb81109"
+    },
+    {
+      "sourcePath": "design/专武系统Design Doc.md",
+      "sourceSha256": "d0942e3e4716bd88e830461b9f8169eb23afa2ba848685fc92c92d9f75cad8a9"
+    },
+    {
+      "sourcePath": "design/专武经验副本Design Doc.md",
+      "sourceSha256": "78d193ea41f3565faa20ce8156c803b1be05ca6b8be077ab11cee798b3011375"
+    },
+    {
+      "sourcePath": "design/主线关卡奖励重设计-2026-07-30.md",
+      "sourceSha256": "9b1b9e90b95806437b79d25d20c04738d688e2ccc5452784ff54a51ba86b84ae"
+    },
+    {
+      "sourcePath": "design/主线关卡系统Design Doc.md",
+      "sourceSha256": "3035146316318226f55ca11d36cfd8e857a5f449325a1dcb7d954cf0b8de93b5"
+    },
+    {
+      "sourcePath": "design/主角等级Design Doc.md",
+      "sourceSha256": "6f7c43dd8e0d6fbb7cfc1c7881f24cfcd0738c639b0b9a8d990062678ef65ba5"
+    },
+    {
+      "sourcePath": "design/任务系统Design Doc.md",
+      "sourceSha256": "20f124af241a971583bbd71d26a36aea565d5a489c5a090d0a10a34a5e5f8ddc"
+    },
+    {
+      "sourcePath": "design/伤害计算公式Design Doc.md",
+      "sourceSha256": "886c85a986d877cf542c041de526ba7f3c5d4e83f5d7175c1bb38fb5a6ad5648"
+    },
+    {
+      "sourcePath": "design/公会系统Design Doc.md",
+      "sourceSha256": "c50dcfc966bde34cd407a31e99d22b8dc6670f9e12edcd8f52ed1011d639d26c"
+    },
+    {
+      "sourcePath": "design/关卡编辑器Design Doc.md",
+      "sourceSha256": "f7a9a3da9a0388c40d60f89a96aa07daa8da1f42e567d489a342747f662cabf4"
+    },
+    {
+      "sourcePath": "design/商店系统Design Doc.md",
+      "sourceSha256": "ef140ff698f6aadbbbe464f626f57edb0f7427faa5217479633613740af55dce"
+    },
+    {
+      "sourcePath": "design/大秘境Design Doc.md",
+      "sourceSha256": "a08fe7f48bb888941154c8db300213bb416c14efc0440d17136f8bbe88409c0b"
+    },
+    {
+      "sourcePath": "design/局内金币带出Design Doc.md",
+      "sourceSha256": "8488905dccc08374c2c5e6487c14904bd8591590a77d9cb080f8d91b532bfaf5"
+    },
+    {
+      "sourcePath": "design/怪物与Boss系统Design Doc.md",
+      "sourceSha256": "361cff1b52c4a76786aeafa90b1dc27d8730991d9e66b24bc543bda56bcc75b0"
+    },
+    {
+      "sourcePath": "design/战斗掉落Icon表现Design Doc.md",
+      "sourceSha256": "166a3ec3a1aa18dbb3bb0d7de752dfef4cfbfc97a2f9eb775b5d256602263637"
+    },
+    {
+      "sourcePath": "design/房车养成系统小分叉重设计-2026-07-14.md",
+      "sourceSha256": "781a57c0fc223fae65cb13ce1f3450e16a1865be6e4dbfb38ede3f4a26fdc29f"
+    },
+    {
+      "sourcePath": "design/房车养成系统当前版本设计-2026-07-09.md",
+      "sourceSha256": "d341fbde6466d97f62fbb2590b0d3686efa074eda957be4bfb4acd57ad449a15"
+    },
+    {
+      "sourcePath": "design/房车养成系统数值设计文档-2026-07-03.md",
+      "sourceSha256": "0a7371f691534a9a6682648c167301eea8c42872e1697c5007de6249bccfc8c5"
+    },
+    {
+      "sourcePath": "design/房车设备数值设计-2026-07-21.md",
+      "sourceSha256": "4397d7603d8d0187e265ed2646c028dcc987026884a73b1f1e3865337e29e5ce"
+    },
+    {
+      "sourcePath": "design/技能系统Design Doc.md",
+      "sourceSha256": "0d3cc1592c287dae59dab78a6a6ce68ffea23b63bac16d77c38d864714b69c96"
+    },
+    {
+      "sourcePath": "design/抽卡系统Design Doc.md",
+      "sourceSha256": "87ce79010c81dabc56f61578397bdf6d6aa23b45fec94ba2227f988aac52db47"
+    },
+    {
+      "sourcePath": "design/收容物养成数值Design Doc.md",
+      "sourceSha256": "1190af890bd8bc9e45c8b63cd11f4fb5c893431609f8a3c31f90e3f633c86b74"
+    },
+    {
+      "sourcePath": "design/新手引导系统Design Doc.md",
+      "sourceSha256": "b720f12ffe07b2f5f1ed864d6c41a109450f453567423a7a20dfe694cf1b5499"
+    },
+    {
+      "sourcePath": "design/旅券副本Design Doc.md",
+      "sourceSha256": "d2456c65b2078cc395262ed3f4960a519c866bee22401b090b7bae61b34c42ef"
+    },
+    {
+      "sourcePath": "design/旅券系统Design Doc.md",
+      "sourceSha256": "2b614a7f52df69773e20a2368926f1afee5644baa8706dbda3dad67268ba8e7e"
+    },
+    {
+      "sourcePath": "design/无限挑战Design Doc.md",
+      "sourceSha256": "3c767a0723ad90fddf33236b8bfb072542de772c93f06276d033668544ca5bfb"
+    },
+    {
+      "sourcePath": "design/映射装备系统Design Doc.md",
+      "sourceSha256": "18ea6fda33b89d437b458ea54a7c54803ba86171f206c72edb6af4b91bc79292"
+    },
+    {
+      "sourcePath": "design/映射装备系统数值设计文档-2026-07-03.md",
+      "sourceSha256": "d82c7764eb5630db88a0221e73abc7c6e39db677b5479cf587dd3acd97d9b25c"
+    },
+    {
+      "sourcePath": "design/映射装备系统数值调整草案-2026-07-02.md",
+      "sourceSha256": "c2a6b30865c006d0cfbc4375fb2cb64baf83ce38cc1e3ef4caaa449d50e0a8a9"
+    },
+    {
+      "sourcePath": "design/月卡系统Design Doc.md",
+      "sourceSha256": "50c70d9afc3e93ee2c5425f1d60b70e7b7cbebe37b19e511d42aab63c24e9dee"
+    },
+    {
+      "sourcePath": "design/爬塔Design Doc.md",
+      "sourceSha256": "0d36ff196f9e8a96db011b41d509496e81fc95eb99a9b57ab9565a2d603e29b7"
+    },
+    {
+      "sourcePath": "design/碎片回收Design Doc.md",
+      "sourceSha256": "e50b4cc2bdada40575c6fa3b99de534c17697bef1e98a0c82ee29f64fe56bc4e"
+    },
+    {
+      "sourcePath": "design/竞技场Design Doc.md",
+      "sourceSha256": "735897a99bbcbe9cb16ceac18cde512c0a8396173177a7db8d491dc5b06a0432"
+    },
+    {
+      "sourcePath": "design/章节任务重设计讨论稿-2026-07-22.md",
+      "sourceSha256": "db6611cd7d5e60d03ce262e66493a1d7baea3fe808a36a31746ed48571a88ac9"
+    },
+    {
+      "sourcePath": "design/签到系统Design Doc.md",
+      "sourceSha256": "b9b8353ad68f3af59fe34decae85775935ae973461d382b46e74895a40187010"
+    },
+    {
+      "sourcePath": "design/角色升星Design Doc.md",
+      "sourceSha256": "422c2c1b52b9d07cd896fd3171884f8397b7401e4575e6d341aa7eacce6bd9c9"
+    }
+  ],
+  "systemStatusRegister": [
+    {
+      "id": "exclusive-weapon-chain",
+      "name": "专武本体、抽卡与经验副本链",
+      "domainIds": [
+        "BO-02",
+        "BO-03",
+        "BO-04",
+        "BO-01",
+        "BI-02"
+      ],
+      "designLifecycle": "UNKNOWN",
+      "runtimeRelease": "UNKNOWN",
+      "landingEvidence": "MIXED",
+      "resolution": "CONFLICT",
+      "note": "较新证据明确废弃专武抽卡/数值贡献并迁移到收容物，但专武本体和专武经验副本是否保留尚无单一项目裁决。三者在裁决前均不得无条件标为正式。",
+      "evidence": [
+        "05-status-conflict-register.md#2-p0-冲突",
+        "research/outer-domain-audit.md",
+        "research/combat-domain-audit.md"
+      ]
+    },
+    {
+      "id": "containment",
+      "name": "收容物",
+      "domainIds": [
+        "BO-02",
+        "BO-03",
+        "BI-02"
+      ],
+      "designLifecycle": "APPROVED",
+      "runtimeRelease": "UNKNOWN",
+      "landingEvidence": "CONFIG_MIRROR",
+      "resolution": "OPEN",
+      "note": "设计/数值达到 ConfigReady；SVN Datas 与程序接入仍待确认。",
+      "evidence": [
+        "design/收容物养成数值Design Doc.md"
+      ]
+    },
+    {
+      "id": "great-rift",
+      "name": "大秘境",
+      "domainIds": [
+        "BO-01",
+        "BI-06",
+        "BI-07"
+      ],
+      "designLifecycle": "DRAFT",
+      "runtimeRelease": "NOT_OPEN",
+      "landingEvidence": "UNKNOWN",
+      "resolution": "OPEN",
+      "note": "正式验证玩法结构有项目口径，但 Design Doc 为 Draft，当前经济沉淀记录未开放。",
+      "evidence": [
+        "design/大秘境Design Doc.md",
+        "01-project-evidence.md"
+      ]
+    },
+    {
+      "id": "battle-pass",
+      "name": "通行证",
+      "domainIds": [
+        "BO-05",
+        "BO-06",
+        "BO-09"
+      ],
+      "designLifecycle": "DRAFT",
+      "runtimeRelease": "NOT_OPEN",
+      "landingEvidence": "MIXED",
+      "resolution": "OPEN",
+      "note": "正式外循环概念与配置族存在，但当前版本沉淀记录为不开/封存。",
+      "evidence": [
+        "design/通行证系统Design Doc.md",
+        "01-project-evidence.md"
+      ]
+    },
+    {
+      "id": "guild",
+      "name": "公会",
+      "domainIds": [
+        "BO-07",
+        "BO-05",
+        "BO-04"
+      ],
+      "designLifecycle": "DRAFT",
+      "runtimeRelease": "MAINTENANCE",
+      "landingEvidence": "MIXED",
+      "resolution": "OPEN",
+      "note": "系统与实现证据存在，但当前口径为临时版本且计划大改。",
+      "evidence": [
+        "design/公会系统Design Doc.md",
+        "research/outer-domain-audit.md"
+      ]
+    },
+    {
+      "id": "gem-inscription",
+      "name": "宝石与铭文",
+      "domainIds": [
+        "BO-02",
+        "BI-02"
+      ],
+      "designLifecycle": "ARCHIVED",
+      "runtimeRelease": "REMOVED",
+      "landingEvidence": "MIXED",
+      "resolution": "CLEAR",
+      "note": "文档归档，铭文当前废弃；残留不能恢复为正式需求。",
+      "evidence": [
+        "design/archive/宝石与铭文Design Doc.md"
+      ]
+    },
+    {
+      "id": "pvpve-monster-damage",
+      "name": "PVPVE 怪物伤害专项",
+      "domainIds": [
+        "BI-07",
+        "BI-06",
+        "BO-01"
+      ],
+      "designLifecycle": "APPROVED",
+      "runtimeRelease": "UNKNOWN",
+      "landingEvidence": "PARTIAL",
+      "resolution": "OPEN",
+      "note": "数值目标已确认，部分 Prefab、SceneData 与实机验证仍未闭环。",
+      "evidence": [
+        "design/PVPVE怪物伤害数值设计-2026-07-27.md"
+      ]
+    },
+    {
+      "id": "battle-drop-icon",
+      "name": "战斗掉落 Icon 表现",
+      "domainIds": [
+        "BI-08",
+        "BI-09",
+        "XS-04"
+      ],
+      "designLifecycle": "IN_REVIEW",
+      "runtimeRelease": "UNKNOWN",
+      "landingEvidence": "CLIENT",
+      "resolution": "OPEN",
+      "note": "客户端实现链存在，但设计与产品最终验收未关闭。",
+      "evidence": [
+        "design/战斗掉落Icon表现Design Doc.md",
+        "research/combat-domain-audit.md"
+      ]
+    }
+  ],
+  "domainCoverage": [
+    {
+      "domainId": "BI-01",
+      "documentReferences": 2,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-02",
+      "documentReferences": 11,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-03",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-04",
+      "documentReferences": 4,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-05",
+      "documentReferences": 2,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-06",
+      "documentReferences": 13,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-07",
+      "documentReferences": 9,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-08",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BI-09",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-01",
+      "documentReferences": 16,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-02",
+      "documentReferences": 19,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-03",
+      "documentReferences": 6,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-04",
+      "documentReferences": 35,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-05",
+      "documentReferences": 13,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-06",
+      "documentReferences": 6,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-07",
+      "documentReferences": 2,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-08",
+      "documentReferences": 11,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-09",
+      "documentReferences": 7,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "BO-10",
+      "documentReferences": 4,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-01",
+      "documentReferences": 15,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-02",
+      "documentReferences": 12,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-03",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-04",
+      "documentReferences": 1,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-05",
+      "documentReferences": 0,
+      "coverageState": "STRUCTURAL_PLACEHOLDER",
+      "note": "项目级结构必须保留，但当前 52 份 Design Markdown 中没有权威文档映射。"
+    },
+    {
+      "domainId": "XS-06",
+      "documentReferences": 3,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-07",
+      "documentReferences": 7,
+      "coverageState": "EVIDENCE_MAPPED",
+      "note": "至少有一份现有 Design Markdown 映射；仍不代表规则已批准或上线。"
+    },
+    {
+      "domainId": "XS-08",
+      "documentReferences": 0,
+      "coverageState": "STRUCTURAL_PLACEHOLDER",
+      "note": "项目级结构必须保留，但当前 52 份 Design Markdown 中没有权威文档映射。"
+    },
+    {
+      "domainId": "XS-09",
+      "documentReferences": 0,
+      "coverageState": "STRUCTURAL_PLACEHOLDER",
+      "note": "项目级结构必须保留，但当前 52 份 Design Markdown 中没有权威文档映射。"
+    }
+  ],
+  "responsibilityBoundaries": [
+    {
+      "topic": "版本内容与发布治理",
+      "businessOwner": "BO-09",
+      "supportOwners": [
+        "XS-05",
+        "XS-06"
+      ],
+      "boundary": "BO-09 负责玩家可见活动/赛季/运营内容；XS-05 负责指标与实验判定；XS-06 负责开关、分流部署、灰度、Hotfix、发布和回滚。"
+    },
+    {
+      "topic": "战斗难度与共享仿真",
+      "businessOwner": "BI-07",
+      "supportOwners": [
+        "XS-01"
+      ],
+      "boundary": "BI-07 定义具体玩法的目标、基准场景与验收阈值；XS-01 维护共享公式、玩家/怪物模型、生成器和仿真版本。"
+    }
+  ],
+  "sourceSummary": {
+    "markdownCount": 52,
+    "graphMatched": 52,
+    "primaryDomainCounts": {
+      "BO-03": 2,
+      "BO-01": 10,
+      "BO-02": 15,
+      "BO-04": 3,
+      "BO-07": 1,
+      "BI-03": 1,
+      "XS-03": 1,
+      "BI-04": 2,
+      "BI-09": 1,
+      "XS-02": 1,
+      "BO-05": 5,
+      "BI-01": 1,
+      "BO-08": 2,
+      "BO-06": 1,
+      "BI-08": 1,
+      "BI-07": 2,
+      "XS-07": 3
+    },
+    "declaredStatusCounts": {
+      "`Draft`": 27,
+      "`Confirmed`（设备规则与数值已确认；舱室单材料升级方案已同步06评审镜像）": 1,
+      "`Draft / CurrentDecision`": 1,
+      "`InReview`": 1,
+      "数值与产出方案已确认，已合入框架V2的06最终配置镜像；SVN未修改": 1,
+      "关卡结构、首通奖励、常规掉落与星级奖励均已确认": 1,
+      "`Draft`（反推草稿，待评审）": 6,
+      "Unstated": 1,
+      "`ConfigReady`（属性与养成数值已生成 06 最终配置镜像；SVN Datas/程序接入待完成）": 1,
+      "规则评审就绪；角色“单次重复转化碎片量”尚待服务端回源，未达到配置实施门禁": 1,
+      "已停止维护，非权威，仅保留为 2026-08-14 讨论与变更追溯记录。": 1,
+      "Draft": 1,
+      "Draft，已追加 2026-07-06 合成/制作 8 档变更、2026-07-09 红宝箱外显变更、2026-08-17 映射之匙任务投放调整、2026-08-20 CHG-014/CHG-015 首通展示职责拆分，待策划评审": 1,
+      "InReview": 1,
+      "`Design Confirmed / Config Applied`": 1,
+      "`Draft / 已确认基础首通、角色材料、章底舱室建材与章节星级奖励口径`": 1,
+      "Archived": 1,
+      "数值目标已确认，部分工程配置仍待同步": 1,
+      "Reference": 3
+    }
+  },
+  "schema": "vgame-project-planning-framework/v1.0",
+  "updatedAt": "2026-08-24",
+  "frameworkNodes": [
+    {
+      "id": "PFN-01",
+      "order": 1,
+      "name": "项目总览与核心循环",
+      "layer": "project",
+      "responsibility": "Vgame 身份、玩家长期目标与核心循环。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-02",
+      "order": 2,
+      "name": "系统框架",
+      "layer": "system",
+      "responsibility": "全系统目录、边界与共同契约。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-03",
+      "order": 3,
+      "name": "战斗内系统",
+      "layer": "system-in",
+      "responsibility": "战斗实例、单位、技能、关卡空间、胜负与反馈。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-04",
+      "order": 4,
+      "name": "战斗外系统",
+      "layer": "system-out",
+      "responsibility": "战斗外玩法、养成、资源、商业化和辅助域总入口。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-05",
+      "order": 5,
+      "name": "战斗外·玩法",
+      "layer": "system-out-gameplay",
+      "responsibility": "挑战入口、层级、周期与玩法结算壳。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-06",
+      "order": 6,
+      "name": "战斗外·养成",
+      "layer": "system-out-growth",
+      "responsibility": "资源向属性、机制、构筑与阵容宽度的转化。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-07",
+      "order": 7,
+      "name": "经济资源",
+      "layer": "economy",
+      "responsibility": "物品、货币、来源、消耗、掉落与奖励账本。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-08",
+      "order": 8,
+      "name": "商业化",
+      "layer": "monetization",
+      "responsibility": "抽卡、月卡、礼包、付费商品与经济敏感边界。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-09",
+      "order": 9,
+      "name": "周边、运营与辅助系统",
+      "layer": "support",
+      "responsibility": "任务、签到、邮件、通行证、社交、引导与 LiveOps。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-10",
+      "order": 10,
+      "name": "战斗规则",
+      "layer": "combat-rules",
+      "responsibility": "战斗状态、单位、技能 Buff、胜负与结算规则。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-11",
+      "order": 11,
+      "name": "角色设计",
+      "layer": "character-design",
+      "responsibility": "角色定位、技能循环、成长挂接与配置链。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-12",
+      "order": 12,
+      "name": "战斗内容",
+      "layer": "battle-content",
+      "responsibility": "敌人、Boss、AI、波次、地形与关卡遭遇。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-13",
+      "order": 13,
+      "name": "数值框架 V2",
+      "layer": "numeric-v2",
+      "responsibility": "共享底座、养成、战斗、经济、节奏和配置交付。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-14",
+      "order": 14,
+      "name": "系统输入与输出",
+      "layer": "relations-io",
+      "responsibility": "每个系统消费什么并向下游提供什么。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-15",
+      "order": 15,
+      "name": "系统依赖",
+      "layer": "relations-dependency",
+      "responsibility": "前置、共享契约、配置和运行依赖。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-16",
+      "order": 16,
+      "name": "系统循环",
+      "layer": "relations-loop",
+      "responsibility": "核心、成长、经济、留存与 LiveOps 循环。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-17",
+      "order": 17,
+      "name": "Skill 注册与调用层",
+      "layer": "skill-routing",
+      "responsibility": "33 个 Skill 的注册、依赖与最小按需调用。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-18",
+      "order": 18,
+      "name": "证据、状态与来源边界",
+      "layer": "evidence-status",
+      "responsibility": "来源性质、工作副本/LIVE 边界与证据账本。",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "PFN-19",
+      "order": 19,
+      "name": "人工裁决与治理",
+      "layer": "governance",
+      "responsibility": "裁决、冲突、归档、发布与门禁治理。",
+      "status": "ACTIVE"
+    }
+  ]
+}

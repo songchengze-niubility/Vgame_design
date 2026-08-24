@@ -1,0 +1,1738 @@
+{
+  "schema": "vgame-legacy-archive-manifest/v1",
+  "sourceRoot": "C:/Users/songchengze/.codex/worktrees/3f62/Vgame_design/output/项目级策划知识框架",
+  "capturedAt": "2026-08-24",
+  "rule": "旧 output 仅作证据；REGENERATABLE 不复制，ARCHIVE_EVIDENCE/LEGACY_SOURCE 通过本清单与已复制文档追溯。",
+  "fileCount": 247,
+  "files": [
+    {
+      "path": "00-clarification-log.md",
+      "size": 2307,
+      "sha256": "544002278ed63cdbe3ad69e25ea261da630432901312f1aa6e4471dee02d696a",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "00-design-contract.md",
+      "size": 6011,
+      "sha256": "762e4d277eaaee97da43733c655eb36de7bf55abbab5b0b6d1f7806a0a15208c",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "00-workflow-state.json",
+      "size": 17149,
+      "sha256": "8fb47ac9b0a22a9ebd245cb104c21ef0a95be542bb396425ccdaf6fab6e2171c",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "01-project-evidence.md",
+      "size": 9169,
+      "sha256": "5646b88db9aac264b20257e13c371a343017142a0958682f7d5ce23dc4578b67",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "01-project-reference.md",
+      "size": 272,
+      "sha256": "9bffa12181a9e8c4bed2fa3526517b1e746ef954867f5dd4f5fc79438fa5e840",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "02-core-design.md",
+      "size": 462,
+      "sha256": "a167ff71a7dad011d2bbc5bcd297de2be866edcf9eaf611f76a0c7bb70eb0413",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "02-project-planning-knowledge-framework.md",
+      "size": 25471,
+      "sha256": "7d86ae6793389eebc50a4321168b583d844bfceb8a259ca45bc5b4daccc9f369",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "03-design-document-domain-matrix.md",
+      "size": 12007,
+      "sha256": "2be73d6c12eef28437fb948c8597b8b624b781a99209285c0b6e9fbcb8a57111",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "03-specialist-results/README.md",
+      "size": 286,
+      "sha256": "3edd84f0fc68b120dbe84973f4448bd15cab6d88842b6dd9da071a2f2c32b386",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "04-cross-domain-loops.md",
+      "size": 6549,
+      "sha256": "3f66f179d4521f900845db4d80010dcc578734b557a0d43ca5f03af5f89e2141",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "04-review.md",
+      "size": 225,
+      "sha256": "bee5130ae6402c37395244dff99122786aa978858bd61d82766dd1251f94e2ff",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "05-status-conflict-register.md",
+      "size": 5066,
+      "sha256": "e7c075cacfecb78349789248d5196324301249e04b66021dc34207f90544de93",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "06-review.md",
+      "size": 1325,
+      "sha256": "37f17eab17ce28fe677869ee3034f7eab73d624e5e47597140b288744b803c9f",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "07-change-log.md",
+      "size": 62880,
+      "sha256": "2c9e1e469d339e996671357e582ecf78bf563f8ef24c215c4a775d60f38dbe25",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "07-validation-report.json",
+      "size": 3846,
+      "sha256": "424c7c5946b9105d40ca83554935419ea0f4fcd3758778bfcde8ab53d3f5f514",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "08-acceptance-cases.md",
+      "size": 6516,
+      "sha256": "97055e2f533f32d89bdb7552fdf58bd666cbf5a04d72f9b3445c43eac3a56b69",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "09-config-quality-audit-chapter-unlock.md",
+      "size": 3899,
+      "sha256": "fe988f69bbf0d2780737cf32320228dbe9afa074fac131832ec7b580b3a4b12d",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "evidence/chapter-level-table-user-20260818.png",
+      "size": 5073,
+      "sha256": "9473c7bf92d5dfa71a6cbe9917724b060dff4620219af8f73bedea8a964493e6",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "HANDOFF.md",
+      "size": 2327,
+      "sha256": "ef1ffffd1e2586210387a2e1b033cd9f7a15da298fe3f6ae7229dfe77381a422",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/00-项目总览.md",
+      "size": 3792,
+      "sha256": "2acc50225674cc0e4b06c018f318e0e27d929155acd7ada5a19ec21ccacecd8e",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/10-系统框架.md",
+      "size": 3162,
+      "sha256": "6a140714bfab98017263bfd60b9e10d42aad8fb9a4c135e14b547a0a93c5f982",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/11-战斗内系统.md",
+      "size": 2974,
+      "sha256": "76c244f45392e7544b6d2492221c8e7855f957d3eb2d1e1dfced4e733f268aeb",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/12-战斗外系统.md",
+      "size": 7932,
+      "sha256": "cda2efdf6324b32de4b74ddd8117bcdb8f78283e07a190b05cc53e92db2e09f7",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/20-战斗框架.md",
+      "size": 6508,
+      "sha256": "28fdb912c9712542fd35ec434a5a0b225584ab6d10a579331740d82693a0eb7b",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/30-数值框架.md",
+      "size": 6738,
+      "sha256": "a3eb0dd26c6001348a886a8c54f65b6814f019db64b8bdce26b15ee2d70efc36",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/40-系统关系.md",
+      "size": 4799,
+      "sha256": "69112bf7fa827a967eaba0b9ab3eb451565c636166ad35ff65174c9eb5893440",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/90-状态与证据.md",
+      "size": 4446,
+      "sha256": "728d7f361d10e50d55a1e0468b420f01106230c7f8b145fd2c42664d749561f7",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/authoring-source-map.json",
+      "size": 30467,
+      "sha256": "ae394c09925a286077fc8c7954a4c6c5859545cb56a6d06850e776b8c71e798a",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/build-web-model.mjs",
+      "size": 16107,
+      "sha256": "30577644ffcd011dbcb213747a7f2c7d5bb078aeb9e4107eebee1e00fbd29247",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/decision-card-registry.json",
+      "size": 35950,
+      "sha256": "d03d196beec12e5e463d0e8d6b82c1e84fb5cb1cda804b35599a5c241f016df8",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/index.html",
+      "size": 118662,
+      "sha256": "0801374bd099ed29bfe5194618b21d69939129525348e7b10c38f01dd6826d9d",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/knowledge-model.js",
+      "size": 98894,
+      "sha256": "5589aaaf4b7ee799f0dfeecc61c068d2aea581663cc425cfc59ece45619d48af",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/knowledge-model.json",
+      "size": 23571,
+      "sha256": "44956d4da0e061fc6e36fb58deb39c540670ca5057937e527cf8f7f1d73961bb",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/knowledge-search-index.js",
+      "size": 1625422,
+      "sha256": "defa649dea53ea213eb235bbc374d9ed506f9f7ceef8396180d5c59fc64845cc",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/M01-战斗专业正文.md",
+      "size": 43854,
+      "sha256": "a644dc7eeec72723d36bac1adc2636d9085ffc083835bca96b434f70a998190f",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/M02-数值框架v2专业正文.md",
+      "size": 33028,
+      "sha256": "de027678885bef28e78b9e7fff3c739b6deadb53565a2bd8106c0657c3d5f698",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/module-chunks/M01.js",
+      "size": 58264,
+      "sha256": "8b4d74f66088d3c4c572eb81b975ef4b56bd5628a0cfeb67421b1cc37782c104",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/module-chunks/M02.js",
+      "size": 47075,
+      "sha256": "a832a0ee3462ce7fb60d4ffdc00c88e1def4c306da66926445c499df66bd5415",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/module-details/M01.json",
+      "size": 14241,
+      "sha256": "7bd13128925ade3edd12ef88aa111dcf6ecf81dc4bdc859a46eaafc3fbbfe1e7",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/module-details/M02.json",
+      "size": 14254,
+      "sha256": "c8cd2e27557122e5478119856a3f84f9190bff239537bb988e68bd933b06cf16",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/preview.png",
+      "size": 241975,
+      "sha256": "f38f3cd09662e2bc500f2dec5a007cf69e473447d7098f8135b1172bd55186f3",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/README.md",
+      "size": 6138,
+      "sha256": "a1470b1371a3fd4f48956dbec4f5678f6e540f48d352b6027433e944b8a41938",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/render-markdown.mjs",
+      "size": 5673,
+      "sha256": "fec6ff5f3fb8fdba7915b39b2a0de356dc050b88450343cb99278bcfdea763a3",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/retrieval-policy.json",
+      "size": 6865,
+      "sha256": "0bb4d5cd374703e1c66449b59ae1d56c3745223e3d39fb8fe27b6fe5aaef3916",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/router-manifest.json",
+      "size": 243024,
+      "sha256": "b3b48cae51f811fa4e0bba8183c4c7df31b6e539ca47ebd2d35f1e0dc6386b6c",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/shared-contracts/contract-registry.json",
+      "size": 5067,
+      "sha256": "6e19d7ee69b5761f1bb08ce20ca2b44e2eb619a09ab130562068379a4440e020",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-IN-01.js",
+      "size": 27625,
+      "sha256": "fe7d1ecbc533663925060de57fc4c8a0d36b6738fda83a739e53616fceb17d56",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-IN-02.js",
+      "size": 25328,
+      "sha256": "193dcb6b4e8b0b50ff6d353e24eb77a9867561cc333ffbb5d2d4521e9a4633e2",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-IN-03.js",
+      "size": 32251,
+      "sha256": "db677429cdd611846dc0081ce1876fe2f13d10ff56b5872a1b993732f83525af",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-IN-04.js",
+      "size": 30613,
+      "sha256": "ada1550e9b1d14240ff738ba10afe28b32e9ab3d8879b5e2e9f1c1fb3f43bc52",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-IN-05.js",
+      "size": 29022,
+      "sha256": "c3bf20553497207c8ef95fdfa7fb3caedb05cd2f64d2bc7cb4fbdbd6001f26b4",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-IN-06.js",
+      "size": 44212,
+      "sha256": "b2e0540dedb35d46ad44ca1ee4cbf2fdd6256bec32942e268747db36f5e3fa04",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-IN-07.js",
+      "size": 25995,
+      "sha256": "ee5986250cd15e08f6289582308802191343b218a374e2d90a378a93ef085970",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-IN-08.js",
+      "size": 40169,
+      "sha256": "48392b3579ba5343d1a0533d3e82d87c9d612c9117c38fd9c3c56543bb95478c",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-01.js",
+      "size": 52823,
+      "sha256": "4da7fb38dff56ab44a7d494a94fa2b0a044eaa2154934e97565cd9f9add194d3",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-02.js",
+      "size": 45916,
+      "sha256": "e00c3c5076822b48a6d2afcf602bbe72fb5cec2a279e4644838a22bc0f4005af",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-03.js",
+      "size": 37245,
+      "sha256": "16fa963d74f84584d3056359deabc26446d9aa45ad8c74f87461e0026e5ed010",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-04.js",
+      "size": 36222,
+      "sha256": "218f10d6fb0c5eaf42a50072bf021c8fa977b5adf8c01dbb12d72e8793ed576e",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-05.js",
+      "size": 38515,
+      "sha256": "445633ee100ac41ef7683b7073c7d84a9f5a47a387cd07062c50f8c7ec3e8f98",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-06.js",
+      "size": 33595,
+      "sha256": "ce8b12c45085bdfc8c68e87c6308715079e920b6dc347cde57f96852ed78f033",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-07.js",
+      "size": 43013,
+      "sha256": "92894d70e4498408ce6ea3a7cdadff77d49c50c4f617c03eee8eab60c7570862",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-08.js",
+      "size": 31756,
+      "sha256": "f581eb79ae81ec8671b99c43c63e723c9d986815352ad3a4d0f9847345373622",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-09.js",
+      "size": 35288,
+      "sha256": "3cfa975a4f93922afdc71a0894938985cbcfe65b26d1a0c0a18df2e45ec0dfc3",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-10.js",
+      "size": 35439,
+      "sha256": "91585fd9bc0bc09a160310b93644db87ad123470fe11be05203c046387d1369e",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-11.js",
+      "size": 34380,
+      "sha256": "6f98527f10cfe95567e158750978b46116d6d28f93ff90a5c262192417f757df",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GP-12.js",
+      "size": 45717,
+      "sha256": "98a38bc87aa5e2b266a976f2cd8ece6c968678781074044924ba551539c2e1bf",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-01.js",
+      "size": 28149,
+      "sha256": "f748fa40aebea6972442bca36ea823a01fbb40adcdc4d03b469f7fbb5a28f6ff",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-02.js",
+      "size": 28843,
+      "sha256": "cec9944e4b47068aff8fe324d3a4d7861a5fa8b18807b89c2b10f4b97148f157",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-03.js",
+      "size": 23074,
+      "sha256": "350bdbe566e60b9eda6918b5ab3779fb84e58db4420e4e0302dc67f91f3cac07",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-04.js",
+      "size": 30260,
+      "sha256": "cb37650b7b6c71d0db8d492019f3fe7e12cfcf5e62132114ab7da3937b8f6fb2",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-05.js",
+      "size": 29618,
+      "sha256": "de3f7df839c6d0209f99d8a486ab26d51a2dcdd274a2786cf64b7cb915155835",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-06.js",
+      "size": 41788,
+      "sha256": "bbdb83aebcad030cb35be248cf6bd536327d2ddffc8a722b37f4bc3e4c659295",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-07.js",
+      "size": 56204,
+      "sha256": "3fb04ce97dd99b8eb3c3b481da851ae12badbad2a3110d6f51cd89c3624fc3c6",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-08.js",
+      "size": 33147,
+      "sha256": "5836fd90b1a86a721030616b7e4d0d0ccc481582d165c74ef5365fa7e3579862",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-09.js",
+      "size": 58175,
+      "sha256": "613a2a1e19d3e462cf30f542d4d45738764314a28e8c3ca0b0e32cd60dc0a6ff",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-GR-10.js",
+      "size": 36638,
+      "sha256": "e9cb81db40a5dd6d4a81aaebb00da21f245b0f7873ed612bad46ae245dae6dd2",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-01.js",
+      "size": 34829,
+      "sha256": "3bf499ff931f90452028571ec38ff0adf40d83eeb3f7aff16dc0c61e033bd960",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-02.js",
+      "size": 30775,
+      "sha256": "94d1408ad9ae892603b20bed49523a0cb693cbb2b34f71d7243d75f5d027c507",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-03.js",
+      "size": 32731,
+      "sha256": "2901075bf0e83e1208376322482ba7d746af78a53a0cae31912865bd7a3e32aa",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-04.js",
+      "size": 23134,
+      "sha256": "b98ded8424dc18b393bf414f3e78d343f4a11e484b0ddea4e59e716f2cf4ea8e",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-05.js",
+      "size": 36561,
+      "sha256": "3da8eeca6a9674a405d5b53bc181e9ff7b36f56161679fc49cb4f1080c299dff",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-06.js",
+      "size": 26582,
+      "sha256": "8566eeecfcea91f03c5af11b647c73af68359028d1528d843015d1de60616cb0",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-07.js",
+      "size": 33032,
+      "sha256": "d7bffeed479efa9815a15b9c6e7e76412577a906389a73a7a76115157fe4818c",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-08.js",
+      "size": 26600,
+      "sha256": "e2a37d9f66839b6245559c27f2713118720cbb36e124804862dc4617ae291967",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-09.js",
+      "size": 30161,
+      "sha256": "279bf87aef871b02168fba63747110477a4158fa77077b31d0420f312fd6137e",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-10.js",
+      "size": 30300,
+      "sha256": "194f3e13c7a5addb2f09e8aac1cca3a6e096b671dacdfa16083c41b7ec1c31cf",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-11.js",
+      "size": 48983,
+      "sha256": "15969d66037c888570f2945f74a16531ab44708f517cb00521c20ce992e51e54",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-12.js",
+      "size": 43035,
+      "sha256": "71a1cb9dd146687faa34fbe74348c902cae005b22490baed03b75e6c92958db5",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-13.js",
+      "size": 28240,
+      "sha256": "16b714e2553233e95307a9b791906e17a66423ac8dabf67513acf7760a3762a1",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-14.js",
+      "size": 34256,
+      "sha256": "e9e76730babb73717560e15ffac5e3d3135f0957e365ef5d65c80eac6834a017",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-chunks/SYS-OUT-SU-15.js",
+      "size": 26326,
+      "sha256": "0dccbf35e6b0a4e5c4c1351c67f4d1b0a0180dac1aa50096b00720afeea629b8",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/SYSTEM-DETAIL-SPEC.md",
+      "size": 31438,
+      "sha256": "50fccb504fdc7ef182f8b6cddf43d0a4585fd75484b1ec18c51b2c1d76160569",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-IN-01.json",
+      "size": 27481,
+      "sha256": "f9f32e65e7cc6b69fba3e046b822bea4156f407ed0bae2f8071b4bb215dc776a",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-IN-02.json",
+      "size": 25184,
+      "sha256": "5dd297126c031c98cc2b789b64140f7e53d5b8fc7e4690ad1e2ad4cb0d717fb8",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-IN-03.json",
+      "size": 32107,
+      "sha256": "d10b1ce24dd98e03b9ee00c1c316e78dc3c4fdc1e52f386292abec4febdd59be",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-IN-04.json",
+      "size": 30469,
+      "sha256": "1e2fb0659982e1c765ec05873e77d949f7bbb6913d13188265415b662a033561",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-IN-05.json",
+      "size": 28878,
+      "sha256": "8134d15540e8232279e8ec9aa2b27a3657b57f2db40bc02695c149826cddfadb",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-IN-06.json",
+      "size": 44068,
+      "sha256": "4e5bb38635dc3d90cd55983341dcb4d3708f800ff21b24d31e64a3d4905ad108",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-IN-07.json",
+      "size": 25851,
+      "sha256": "032d58f592a5693ec9ce18c8ab343396b6ef171405359139b1e0ee530ccc31e3",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-IN-08.json",
+      "size": 40025,
+      "sha256": "ba140541097d2e9b864649baf68b9af9b45ea4a5dbeeb1e43b93f7b9603d3712",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-01.json",
+      "size": 52675,
+      "sha256": "c30f5371a1918b9525a73a04d0545bb7bbc6f6a00f4b24bb7241dbe71067f6a9",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-02.json",
+      "size": 45768,
+      "sha256": "3fe20a913e05a3e40114db4ca2b8f1d8e10f0ccff3f77eac86388e03f3137aab",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-03.json",
+      "size": 37097,
+      "sha256": "7181b54cfac90b6f1b3a3d404ece1c7baf1fff5ce5bc8f0c9bca23de65e13757",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-04.json",
+      "size": 36074,
+      "sha256": "dba556af19c9ad67da81d58b4a06fe0d1b1fd2610b32aa2e57e32c52adb83ed8",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-05.json",
+      "size": 38367,
+      "sha256": "6e69fa4350936f0052950bb3e9a73c9f71241c18357967925a2a97d3fcc6cfb3",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-06.json",
+      "size": 33447,
+      "sha256": "26160267763069cf1b7ea07754c6b6b16380397411ba2afc4d65f89041a2ff60",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-07.json",
+      "size": 42865,
+      "sha256": "ccea458b8d7983ac5821e51401b675981b02e51c4af1b31c5a5280f1433da21a",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-08.json",
+      "size": 31608,
+      "sha256": "780b9838c007c204f145be578fb91c88e04512306b46717a3f2617df67cd7ab5",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-09.json",
+      "size": 35140,
+      "sha256": "78faf6f6d00a8442e02e9f0af6ec93d75d0b81593a8561d9b15cfca8ce022541",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-10.json",
+      "size": 35291,
+      "sha256": "5adfcb65e9df2283fc93587bedf30d7c654e9e7ff7866464830330409308aa5d",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-11.json",
+      "size": 34232,
+      "sha256": "a690d99f60a06740900b0f6b7f0af5ceca6cb9fbdf27ecb5b6f0761322c74e6a",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GP-12.json",
+      "size": 45569,
+      "sha256": "e35551e967af15a6a9506e6d2e50820d60bee56a68871b03162eef31850095d0",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-01.json",
+      "size": 28001,
+      "sha256": "ee8f6824f4b408c9203b3d693a3030486d9e7e755ded388d9194014f8a8a2a2e",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-02.json",
+      "size": 28695,
+      "sha256": "e6c85e7c33a460bccd29fc36c69f4dffcd79f6c8bc3d5fa72b78766323859e05",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-03.json",
+      "size": 22926,
+      "sha256": "dbc380a7882e698a6bd29a29cc7346a3597e55964a3d75dc0e5385b6fcbe4b26",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-04.json",
+      "size": 30112,
+      "sha256": "d030bcb15a1cea229d142884eee75f14e4ffbce55a6618893178585748ace08a",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-05.json",
+      "size": 29470,
+      "sha256": "aa622b79c35f879fd964fede676552439c319a14e59f17e38e1ae55ac99f6b7f",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-06.json",
+      "size": 41640,
+      "sha256": "a0d5a1b70ea642d792bae20e2a4930e84b5ecf87a6806b5e274e6f7cb0179dd0",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-07.json",
+      "size": 56056,
+      "sha256": "865663d19eef3c4a034a86cab35d7bc57582e3062838f3a6f5e78ddd027de7a0",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-08.json",
+      "size": 32999,
+      "sha256": "2795463024a2793c96d1876c1d84a066246fcf8f7732849510357627c4b30b37",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-09.json",
+      "size": 58027,
+      "sha256": "faee1863b54d8b9150ba1f59967d4fd11453210eaac279e5b95167e5e799bfef",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-GR-10.json",
+      "size": 36490,
+      "sha256": "e589bf3f8f3fe4449a9c2120f56c6006a156b7e54fd70dcb506800d86e4ebbbb",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-01.json",
+      "size": 34681,
+      "sha256": "14461ae095a1ddd5636f98eb11c09187aec11bec79021c36791ea1f2491975a0",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-02.json",
+      "size": 30627,
+      "sha256": "b35035749135906339349ac9f606f8fd9c4fbac3c0c5bf7d594749f545dd97be",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-03.json",
+      "size": 32583,
+      "sha256": "0c6cd121eb426db1988ce0bba7e5959f2c960f1b16ca5591879d3217e4a6860e",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-04.json",
+      "size": 22986,
+      "sha256": "870ce218d81a814a849f369ec157b197ef8f45cba32a4aa3add4f62357084015",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-05.json",
+      "size": 36413,
+      "sha256": "c0b9a61db58b7247f870d27b080fc6f586d80e4104d99830979c341c79b2a384",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-06.json",
+      "size": 26434,
+      "sha256": "7a53441463b22d42d18cb8c08e787c10a202511bdf0c3cc2785a40a343aa623b",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-07.json",
+      "size": 32884,
+      "sha256": "797c89895ccfa41451412e3b198d419da0c2857b27f7a459dc22870003ec1299",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-08.json",
+      "size": 26452,
+      "sha256": "6f362e214b9922db48a87c299a11414e712b1cadc931f18e66fe4dccb8733d91",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-09.json",
+      "size": 30013,
+      "sha256": "d014d9c643deb3bab145cca0e1f8c83bc908a450067c003ae7abef8d6352c84b",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-10.json",
+      "size": 30152,
+      "sha256": "d39cbc1a85af821bb844b032289619520ac8b7c1b50ae3f4074e4a4880286cd3",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-11.json",
+      "size": 48835,
+      "sha256": "923fc1696e32d27b7e58f7c5535227c1d47327989e91afefadd0bca51466bf80",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-12.json",
+      "size": 42887,
+      "sha256": "4976544b3403b33beedc0fe2fc88cca085ca561d0ef8befdf501f4dfe67866cd",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-13.json",
+      "size": 28092,
+      "sha256": "b4e865b83812a4b1b79618a443863224bf985a4ed43c58ee46c041019b32c8a2",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-14.json",
+      "size": 34108,
+      "sha256": "527d05047a8b15f718382373498217c9726f4294524fe0ba595b2edacba99b5e",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/system-details/SYS-OUT-SU-15.json",
+      "size": 26178,
+      "sha256": "7f4fb4d0003b6c033f0a70b8e38998474198d1ac3611cbe46cbd9dcbe38d2405",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-IN-01-战斗实例与状态.md",
+      "size": 20213,
+      "sha256": "1f8bda1baa6d6da2fa41402213c7d4db922d91f1009f1ffb500ce36d6300ac60",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-IN-02-单位、阵营与队伍.md",
+      "size": 19101,
+      "sha256": "0c6565de18af9a94505eefbb462a6f239c385b2fed40f10974c6c50d2adcdd08",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-IN-03-技能、Buff 与效果.md",
+      "size": 23698,
+      "sha256": "edb86f09a67b2cd68a6fe59c5e58ebb4dc1c359ca82770a3ccb1ffe4b687fe8a",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-IN-04-敌人、AI 与 Boss.md",
+      "size": 23087,
+      "sha256": "e6a7ea4661c3ec4723e123091d6ea0aa098dd5ed085477d5cc28018dabb43e91",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-IN-05-关卡空间与遭遇.md",
+      "size": 21337,
+      "sha256": "da65d1b4a8401fea09a81ebf52071e6fbf7bb86528b1e9711101e2feea63f138",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-IN-06-玩法局内规则.md",
+      "size": 32145,
+      "sha256": "f4f6a94f7afda847727fa38cca20e038405245d33da9b12d5ce28a35417007f8",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-IN-07-战斗 UI、反馈与引导.md",
+      "size": 18843,
+      "sha256": "996bceac6489f159949d3a1ade475559c380bc324d0f1339ff2f2cd61806fc1c",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-IN-08-胜负、结果与结算触发.md",
+      "size": 29076,
+      "sha256": "f30b8f353a14fad646168e9433e1ec753a84bd9555144a906942a8d6ef9b93e1",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-01-主线.md",
+      "size": 36005,
+      "sha256": "0fe0118e29cdcd8475e80a32bc4885c93136a70ce39cdf4655210ebe6cd009c0",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-02-高难主线.md",
+      "size": 34026,
+      "sha256": "ff75072a49c2bb0b4fb8d861dd2611ae8a36c7df482f2c4d0acfdc0621c684b4",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-03-金币-角色经验资源副本.md",
+      "size": 27317,
+      "sha256": "2edd7985ed432574542a14262613c01560d82ef19fa5b89eb968df6ad467eda0",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-04-旅券副本.md",
+      "size": 26559,
+      "sha256": "c8a745eb387de125c1e238a25570ffdfb239580f362c2c3b33f239a92337977c",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-05-映射装备副本.md",
+      "size": 28511,
+      "sha256": "17a9d6c85d9e8a732b1c81558ee8368869037cc32cda8d124741b568543ab003",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-06-无限挑战.md",
+      "size": 24918,
+      "sha256": "8600fcd18d626b679bee839a454527ed2fe30b100ce808260ebb991c7ddceb55",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-07-竞技场（PVPVE）.md",
+      "size": 29549,
+      "sha256": "329f2f6631b74d1d2e35e04c78c3ad298beea4695298e76638cf960683fc592d",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-08-爬塔.md",
+      "size": 23248,
+      "sha256": "a744ddf47a39ef24b82e5b112eae1ab3692abd1139a5d2dfdd34975bf749358a",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-09-大秘境.md",
+      "size": 25489,
+      "sha256": "c308389631bad6b421b5fbe2c1a0aae11c5f9e59843197c8814667fffda7e8b8",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-10-BOSS 挑战.md",
+      "size": 26564,
+      "sha256": "435449b58413a800301088bac2fecd5f54066621953155a8b563b29d28a8bd1f",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-11-扫荡.md",
+      "size": 24838,
+      "sha256": "bec9cf7f266dd42a2f58905aab1ec627671f628c664771253637baa5c2e1c926",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GP-12-跑商.md",
+      "size": 33887,
+      "sha256": "fdaea2e04f9b69a5ae96d367bc2d46f8db16ffbb4ccd647096fdd1aeb782a816",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-01-玩家等级.md",
+      "size": 21383,
+      "sha256": "d1b5346ba64ee5dbf86664eb84287c81eb486629b9a10907c66f11cbf748af31",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-02-角色升级与突破.md",
+      "size": 21983,
+      "sha256": "45de314bc5a5f26ad040497b63b90255afea52828a207ca9394b56664f8c1dcd",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-03-角色升星.md",
+      "size": 17445,
+      "sha256": "ab5cc9078b3499733c76118d0f3a4f349140c7524168a7023d326646886cfaa8",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-04-角色星盘-能效.md",
+      "size": 23498,
+      "sha256": "a82c831af928b882e46308838c1369b929d43e2d1f782ee94888f626cf6108ee",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-05-收容物.md",
+      "size": 21891,
+      "sha256": "fc8beccbb5d7af55118eeaad6fc7dd976bb410fd0f4eebb2eb7c534d58002f09",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-06-旅券.md",
+      "size": 31447,
+      "sha256": "6eab7972f27ab48003f605fef3a5391bdd7994fc3e47acaea558e7885cac60eb",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-07-映射装备.md",
+      "size": 40974,
+      "sha256": "683fc8950141fcf3ef1b30318c221a53761fe2859d9a70096a2fbada7b322513",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-08-炮台-基地.md",
+      "size": 24146,
+      "sha256": "d8b2616b0956aff2d065570714bffef791906ad959a05b9f0fa21704e87fd2c3",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-09-房车.md",
+      "size": 42885,
+      "sha256": "385e693f73e8e7f267584d41feee5ddb26ec9d81130bd12d270d6faf9972de4b",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-GR-10-专武.md",
+      "size": 27206,
+      "sha256": "f64d78808e9c84fbd6a8cd42db15ba4c809f157f0d197134b3240e52be896ce9",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-01-角色-新手卡池.md",
+      "size": 25505,
+      "sha256": "2c75aac6edfb40e90fb00f51327438b4d786a7dea7fcd86df5da29cd2f5d4277",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-02-收容物抽卡.md",
+      "size": 22738,
+      "sha256": "39608f49b7dc4c59a650ba3a340c9e01af146ecf91c33b9fb5109101ba72e144",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-03-碎片回收-招募商店.md",
+      "size": 23907,
+      "sha256": "a9faed5592cbd1902f7181d5dff1017be0745e2018df79923add14fdd57e3fc9",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-04-物品与货币.md",
+      "size": 17916,
+      "sha256": "561ea63948ac596b6b8f4a1e87f917e43a2f0f0eaa8009fe2da7a46032d9b6af",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-05-掉落与奖励.md",
+      "size": 25857,
+      "sha256": "82454b98344b8e44fa0f6cdebf8801e94aeb2e76f08370d05bf81794894116c9",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-06-商店.md",
+      "size": 20143,
+      "sha256": "25505867d04cf5955099c96ce6e5fa260aa301ea5076dbdc8faba57546d0e750",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-07-任务与章节任务.md",
+      "size": 24304,
+      "sha256": "73bc93616da3ed073264787ee3f9736dddaef24cf9ed477ce9ddac09b07db49e",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-08-签到.md",
+      "size": 19820,
+      "sha256": "23661b16429e666377c872d19e0ace233a77952871697b88f9fe8d5a6350e298",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-09-邮件.md",
+      "size": 22091,
+      "sha256": "d1bd4b1d08f5ecc8b59b0b5f4bfa35698d543fa4217192db97dc09a8ae2f6cde",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-10-通行证.md",
+      "size": 22015,
+      "sha256": "b25a7388278642608cba0089e549056312fb607d53d15cfccde7e3de6251ddd2",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-11-公会.md",
+      "size": 36503,
+      "sha256": "6dce861eb30a484122550e47d68d3ac93e8932a2675c2b6871762c0bcb48ec24",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-12-好友-聊天.md",
+      "size": 30413,
+      "sha256": "fd6ee31f0be4208683cb75e16d7c5c07d7590d2b3c427d5310adc6bc03603251",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-13-新手引导与系统开放.md",
+      "size": 21502,
+      "sha256": "105f132b6cdbed93fb3fafadbb53af4c0fce048e8607f4fdd16b1fae4d08da2d",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-14-活动、赛季与 LiveOps.md",
+      "size": 23664,
+      "sha256": "5d4c4e917726ed0edb3378f3d37d2f82c2e111800bbf163d3bfbc0e1285003cc",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/systems/SYS-OUT-SU-15-月卡、礼包与付费商品.md",
+      "size": 19045,
+      "sha256": "8d2fbd5892adb556c9560d74b29bb5edc168cb6e48e9b9d63e4e3b902cbc83ab",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/tests/validate-negative.test.mjs",
+      "size": 21896,
+      "sha256": "36952e2ce51357b43cebd656413109951fb71d27b1431f4faaef3fabd85c5c29",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/validate-knowledge-base.mjs",
+      "size": 63705,
+      "sha256": "90b87607b26c4964dc96fa05508d2f271166b4492d520964216900566a55661c",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/validation-report.json",
+      "size": 10553,
+      "sha256": "31806e89de1a5e6215664fc204368637aff142e14d7bbc280f094d1f4f5305ea",
+      "classification": "REGENERATABLE",
+      "disposition": "REBUILD_NOT_COPY"
+    },
+    {
+      "path": "knowledge-base/work-packages.json",
+      "size": 10389,
+      "sha256": "53792d05e8ea0f5173cbe4586913c7d585c6bb50d8795730e70890be24e79608",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "knowledge-base/打开知识库.bat",
+      "size": 38,
+      "sha256": "1329d1cf917b9ddd3a039da20bbfbcfa9e0302991cd33e25ec0d4517ee94f7eb",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "project-planning-framework.json",
+      "size": 83582,
+      "sha256": "cfa725771b6687b27ea38f7775f5343150d1dca0c3fac3334add2f6a2343f7e9",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "qa/knowledge-base-qa.mjs",
+      "size": 32380,
+      "sha256": "164a0cc582828d58812930dda006c82f05fd571b791e9a6a4562b4cff41c58ba",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "qa/package-lock.json",
+      "size": 685,
+      "sha256": "673f50ac8103e358e40c4c2043e7fb075e7251d93397485ebcb88827bb1a392b",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "qa/package.json",
+      "size": 296,
+      "sha256": "b384f2ac19491d26831e59d50f3cda45f873b7ef431ba324e51dfdb2af2dd196",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "README.md",
+      "size": 1960,
+      "sha256": "70ec468c090df8a16a73478d58b76a87466b60577c1060a4af98c17d8de5db78",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/batches/W1-A.md",
+      "size": 12881,
+      "sha256": "1cb0fcc36e58412cdcaff97538d673fb59fbd0fe0a1a3b3221e99aceb35038ff",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/batches/W1-B.md",
+      "size": 12335,
+      "sha256": "ad6710b3720d8f58102edbab3e855cf9dcf94a2c2d03aae7ddba0a7fe6b6569f",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/batches/W1-C.md",
+      "size": 17564,
+      "sha256": "423ebc55c98935901e41f70f2f90a73c5acc11fd5920bc9a6dc4768db5bfc67e",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/batches/W2-A.md",
+      "size": 16683,
+      "sha256": "f828f28e24bd98d911bab74b3ff13c2b562f2b3d5629b486ef383f74c182e4dc",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/batches/W2-B.md",
+      "size": 19878,
+      "sha256": "160444c6eaf13b2678889bd43e6424dcc12790bdbe89eab56262a1172ae8a211",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/batches/W2-C.md",
+      "size": 23609,
+      "sha256": "ab7f976559e48bed18ec0db9438ac052c51ef0828947aa37cc46c0f9b69b8a82",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/batches/W3-A.md",
+      "size": 10314,
+      "sha256": "7f5b1156f10874524a0610d445ff996b14719f60a3014bf845e8dcf83ca19708",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/batches/W3-B.md",
+      "size": 18441,
+      "sha256": "acd80a07af1a4f9f36dc49e17d02751045444fab588c5249dab396a595916742",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/batches/W3-C.md",
+      "size": 13715,
+      "sha256": "54ab7aa132dd5913ddd97c9da1ac95daf55569ae619ec70164e55576e2a2716d",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/combat-domain-audit.md",
+      "size": 40320,
+      "sha256": "8b7c4589bb6d6e44013f42289f9ab060246d3fca70c64ab4a7918772a935cbb2",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/independent-consistency-review.md",
+      "size": 1340,
+      "sha256": "0b226feb58f092834270390d43bfc3640470c5a53657291432beafd61c1c00c5",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "research/outer-domain-audit.md",
+      "size": 42484,
+      "sha256": "88728dcd2b0c512394746695bbee04be11d007d9e09e14de929493626e430b35",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "review/18项人工裁决同步报告-2026-08-24.md",
+      "size": 6051,
+      "sha256": "55040ddd6aebf50131970a07b04e766c23fd7edc862008d71c57411e30e81a15",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "review/decisions/vgame-decision-cards-2026-08-24.audit.json",
+      "size": 873,
+      "sha256": "485752144d2fecbe03d720187dde7218cb6b9885ddfbf99822334c73168fa72d",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "size": 8385,
+      "sha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "review/独立交叉终验结论-2026-08-20.md",
+      "size": 2177,
+      "sha256": "6a1c26c6771e7ef60932fc7a37cb18b19e42bdbdc60e51e008b05f445153ee8b",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "review/第二轮终验整改报告-2026-08-20.md",
+      "size": 4683,
+      "sha256": "c1e18ce5b3a119b4a921f975ddba8e69fbf4535470999d4b1f76a9cbedc75089",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "review/终验整改基线-2026-08-20.md",
+      "size": 2396,
+      "sha256": "d5470d74ac43af317aaca9561e08e47778060177dbf249139db009b46cf1cf96",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "review/终验整改完成报告-2026-08-20.md",
+      "size": 9779,
+      "sha256": "f852adec364b5ff250e9e4709ac9a33d100837f7b7c41c3b21199de0a4e32f0b",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/build-framework-data.js",
+      "size": 26516,
+      "sha256": "543c6d196fdfb5de3838691cd8b3c14d93b6798be9bcf33dbb17a7d74df44551",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/build_module_details_20260819.py",
+      "size": 20741,
+      "sha256": "77eaf3bd040037e5fa335e174ef4bb87cb30a5a76a840c14ac37b9fc92e1027a",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/configure_main_chapter_unlocks.py",
+      "size": 7278,
+      "sha256": "27f930a70d127b0480a954fa57a39763dbeb8becf08c8cdca10d632f0f73e21e",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/final-remediation-decisions-20260820.mjs",
+      "size": 18818,
+      "sha256": "9be00b124f65d40294b036b75c5dbb36bb4b12d858f4a0c7bd67d866e8a67d1f",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/final-remediation-evidence-20260820.mjs",
+      "size": 9423,
+      "sha256": "367085a6860e212db586493d7646071b0c30166aacb2ac3b8357b1c0cb582d2b",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/final-remediation-facts-20260820.mjs",
+      "size": 10721,
+      "sha256": "75d790b787ae0475cbd45e0bd878d772edfa6ec3b41cf3b9eb82bf55897dd652",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/fix_evidence_contracts_20260819.py",
+      "size": 13268,
+      "sha256": "7bd3d2154d3b185921dafb6ae22e9f2f2fd1a86d321080476ab3ba1636171c1f",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/import-human-decisions-20260824.mjs",
+      "size": 22083,
+      "sha256": "f962f9e74050b7658118179978c93287b52a32594b857551fe2513bf40e16f60",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/launch-understand-dashboard.py",
+      "size": 3192,
+      "sha256": "38f9dbe3597bce0fd33ec0209b6797f3e808909b0fa98db72cfa4b3002416a36",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/second-final-remediation-20260820.mjs",
+      "size": 15479,
+      "sha256": "0d529facf04d16b1a5474b919ec6be858faf08d916d2c9a5163a2cfc9b53f670",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/serve-understand-dashboard.mjs",
+      "size": 6479,
+      "sha256": "6d994135bc3b49fcdb96efa43b87aaea9c262652b9429aa3139ca7bc12e285d1",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/sync_handoff_20260819.py",
+      "size": 7304,
+      "sha256": "50fb23c43efda632ed8d8276c282413733c3016c7936357f37918528fd1c1307",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/sync_ruling_list_20260819.py",
+      "size": 5598,
+      "sha256": "01fce0a38624e78f6b6ff21b8d2d77ad829d1526793b40da4804b5e9d00c6db3",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/validate-framework-data.js",
+      "size": 8021,
+      "sha256": "eb163f0422b1a07cfe3918bd89ef16332ea2e443a48f191d3f47324922fc927f",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "scripts/verify_main_chapter_unlocks.py",
+      "size": 7151,
+      "sha256": "6383f2285b1b97c862b55cc93c89b7819c6a84b60fa19c013edc183cbf3773c3",
+      "classification": "LEGACY_SOURCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-A-专武收容物迁移.md",
+      "size": 749,
+      "sha256": "b49b2de4f53f252adf9fae97f4960bf144cab30f6482067a0ad9b11c741d12ba",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-B-奖励权威字段.md",
+      "size": 811,
+      "sha256": "0837bef5cda47ea962ec0dff64c272163e2d9597bfe972a8e37eab3e1d06cc7a",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-C-章节任务断引用.md",
+      "size": 742,
+      "sha256": "7ef5f4909dc8cb96240eb83155236f6684183a8aaf18d6e50e4d6defe5324b17",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-D-大秘境封存.md",
+      "size": 694,
+      "sha256": "1a842bdf549b9e6a01427b35072a4725dbda9aff893cbd98e2bc1071cf3b1544",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-E-扫荡资格.md",
+      "size": 795,
+      "sha256": "4202d662121cbaec7a5e0a079c08ab48f5f8bb31eb6d5ee98553cd6abce8d1a7",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-F-炮台基地立项.md",
+      "size": 709,
+      "sha256": "767d6b1ad3f425b32b20a125713b9f54ce3f14a7d7952ab6416738cdc6cef12f",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-G-异常战斗结算策略.md",
+      "size": 762,
+      "sha256": "16738b97eb4d9b42e4ac8eed9a690ee46e97e25b6e80353d6c86e3171bc97e91",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-H-技能Buff自动同步.md",
+      "size": 709,
+      "sha256": "e414d751e56b779395860905a2e95ef63ab6e4129cd6b883a9aed49c30046f49",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-I-映射装备口径继承.md",
+      "size": 757,
+      "sha256": "65b6f1cec114bcd9f0b3dcdec8e0f729ec191ea805cdba3f0b48314f04a9af1e",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-J-金币带出权威.md",
+      "size": 717,
+      "sha256": "9e8a05a13193a906a7a8af10cfdd744e57800abd1e3abac9849b65e2e665d48e",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-K-房车旧设计归档.md",
+      "size": 715,
+      "sha256": "7b6499a3c283660478ff56b430f1c82a4f841441f2a9cd9e92102ef9f1234ff3",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-L-重复角色碎片转化.md",
+      "size": 688,
+      "sha256": "b6e21dc2ab0603226df49c340d721ff4d7dfdf9b36201c07a7278b174410bb8d",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-M-LiveOps状态台账权威.md",
+      "size": 802,
+      "sha256": "3eec554b9f21d5ed43fd36bab12fc409ea92a33e9e2a304b0a8313bfd5bd829f",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-N-章节编号统一.md",
+      "size": 653,
+      "sha256": "c6d573db1261f6f09252859a06ec348c9e65f673eefe01f8c66880de8c21a54f",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-O-友情点货币身份.md",
+      "size": 779,
+      "sha256": "45100eb86fae5d340252ecca1c64e8c0c47a9a5e04c2d9205fb6732bf1910ceb",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-P-竞技场段位与奖励口径.md",
+      "size": 734,
+      "sha256": "2388f0f4ba33e21a6b344918c40559af63f248f72b43bc24973e3ce730a3254f",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-Q-高难主线缺失节点.md",
+      "size": 741,
+      "sha256": "660fa39d002f8f4f4ee07cfa01b8eaf8e94e8e13f229ed84836ab688f8780732",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/DC-R-竞技场奖励口径.md",
+      "size": 702,
+      "sha256": "1f809433ed499800a5fc9e3493a193f18ac9ff497ecce7347eb0e75484a321aa",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "决策卡/README.md",
+      "size": 2398,
+      "sha256": "b3fc0a3be7fa9dcc7faa7cb0ba427ff0f7f788c3ce33454c3502c96bb2867fb3",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "待裁决清单.md",
+      "size": 1682,
+      "sha256": "c579ef816da803802de5cdf3bade8627a3266a0a6658e5d0ca8f6f1116cf6ca7",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    },
+    {
+      "path": "最终返工完成报告.md",
+      "size": 1033,
+      "sha256": "79c2a2e5a5ab67ebe70521e9936a4974a51ca382f5d56a7bc9bc8ef2c392c9ae",
+      "classification": "ARCHIVE_EVIDENCE",
+      "disposition": "TRACE_IN_ARCHIVE"
+    }
+  ]
+}

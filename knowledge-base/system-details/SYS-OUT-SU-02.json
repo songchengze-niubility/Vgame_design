@@ -1,0 +1,703 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-02",
+  "name": "收容物抽卡",
+  "revision": "2026-08-19.2",
+  "updatedAt": "2026-08-20",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 数值沉淀与 06 最终配置镜像只读核对",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "06 最终配置镜像已生成并通过校验，但未写入 SVN Datas，不证明已上线；保底与随机权威在服务端，客户端工作副本不可见。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "已确认策划口径（常驻池 v0.4），不代表已写入 SVN 或已上线。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED / CONFIGURED",
+      "meaning": "本机 SVN 工作副本或 06 镜像只读观察，不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由 Design、沉淀与镜像组织出的流程或边界，需项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补服务端证据或补工程接入。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态尚未确认。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-SU-02-R05",
+        "SYS-OUT-SU-02-C01",
+        "SYS-OUT-SU-02-C02"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-02-R06",
+        "SYS-OUT-SU-02-RW01",
+        "SYS-OUT-SU-02-RW02"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-02-EX04"
+      ]
+    },
+    {
+      "id": "CONTRACT-ITEM-LEDGER",
+      "ruleRefs": [
+        "SYS-OUT-SU-02-R05",
+        "SYS-OUT-SU-02-R06"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "收容物抽卡是 Vgame 收容物获取的抽卡权威：定义收容物常驻池的整件/碎片双结果概率、十连整件保障、S整件硬保底、重复整件转碎片与元晶/收容凭证消耗，把抽卡请求经服务端随机与保底判定转化为收容物整件或同名碎片，驱动收容物养成。",
+    "inScope": [
+      "收容物常驻池（DrawCard.Id=5, RuleId=4）的卡池类型、消耗与单抽/十连入口",
+      "普通单抽整件5%/碎片95%双结果概率与品质汇总 S5%/A40%/B55%",
+      "十连整件保障（前9抽无整件则第10抽强制整件）与 S 整件 100 抽硬保底",
+      "重复整件转同名碎片（S/A/B=100/50/20）与碎片结果数量（S/A×5, B×2）",
+      "收容凭证(107)直购与元晶消耗、旧券112停用与107×3换算",
+      "投放名单由 ExclWeapon 首列##排除动态读取",
+      "一个大版本兼容迁移期内与旧专武抽卡的边界（归 C-001 实施方案）"
+    ],
+    "outOfScope": [
+      "角色抽卡的卡池、概率、保底与重复转化；该内容归 SYS-OUT-SU-01",
+      "满星碎片回收的资格、单包、产出与回抽测算；该内容归 SYS-OUT-SU-03",
+      "收容物等级、品质、升星、属性与位置系数的养成规则；该内容归 SYS-OUT-GR-05",
+      "抽卡结果的真实物品入账与 Drop 包内容；该内容归 SYS-OUT-SU-05（Drop_draw）",
+      "收容凭证/元晶/碎片/21/22 的资源身份与账本；该内容归 SYS-OUT-SU-04",
+      "抽卡价格与回抽折算的经济总账；该内容归 NUM-04",
+      "专武本体养成与迁移裁决；该内容归 SYS-OUT-GR-10 与 05-status-conflict-register.md C-001",
+      "限时 UP 池（本轮不纳入）"
+    ],
+    "inputs": [
+      "抽卡请求（DrawType 单抽/十连、PoolId=5）",
+      "常驻池配置（DrawCard.Id=5、DrawCardPool 池内清单、CommonRuleDesc.Id=4 规则文案、Drop_draw 掉落包）",
+      "ExclWeapon 投放名单（首列##排除）",
+      "玩家持有收容凭证(107)与元晶余额、玩家等级（收容物34级开放）",
+      "ShopGoods.2003002 直购价格"
+    ],
+    "outputs": [
+      "收容物整件或同名碎片（S/A×5片, B×2片）经 Drop_draw 入账",
+      "重复整件转同名碎片（S/A/B=100/50/20）",
+      "S 整件保底计数器变化（S碎片不重置，S整件重置）",
+      "供收容物养成消费的整件与碎片（经 SYS-OUT-GR-05）",
+      "抽卡动画、整件/碎片结果与保底剩余反馈"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "收容物抽卡权威（目标方案已确认；一个大版本兼容迁移期）",
+      "status": "CONFIRMED_TARGET_IDENTITY_MIGRATION_PENDING",
+      "note": "收容物抽卡作为收容物获取的目标抽卡权威（常驻池 v0.4 已确认）；C-001 已裁决保留一个大版本兼容迁移期，替代完成与 LIVE 仍待实施和发布证据；本系统不继承旧专武抽卡数值。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "常驻池 v0.4 已确认（2026-08-10）",
+      "status": "CONFIRMED_TARGET",
+      "note": "整件/碎片概率、十连保障、100抽S硬保底、重复转碎片、元晶价格与107直购均由抽卡沉淀 §4 确认并形成 06 最终配置镜像。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "06 镜像已生成未写入 SVN Datas；SVN Datas 仍可能为旧值",
+      "status": "WORKING_COPY_NOT_SYNCED_TO_TARGET",
+      "note": "06 最终配置/收容物抽卡八张镜像与校验报告已生成，但未写入 SVN Datas；程序接入待核；ExclWeapon 投放名单需实时读取最新源表。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "抽卡链路与程序接入待核；玩家可用版本待发布台账确认",
+      "status": "UNKNOWN_LIVE",
+      "note": "存在确认设计与配置镜像，但 SVN 未落地、程序接入未核、无集中发布台账，不能盖为 LIVE。"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-02-F01",
+      "name": "收容物抽卡流程",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-02-F01-S01",
+          "name": "进入常驻池",
+          "description": "玩家在收容物抽卡入口选择常驻池（DrawCard.Id=5）；本轮限时UP池不纳入。"
+        },
+        {
+          "id": "SYS-OUT-SU-02-F01-S02",
+          "name": "校验资格与资源",
+          "description": "校验玩家等级（收容物34级开放由 SYS-OUT-GR-05/SU-13 维护）、持有收容凭证(107)或元晶是否满足单抽50/十连500。"
+        },
+        {
+          "id": "SYS-OUT-SU-02-F01-S03",
+          "name": "扣除资源",
+          "description": "运行时先扣107，免费券不足再按50元晶/抽扣费；服务端先扣后抽，断线结果先入库再补发。"
+        },
+        {
+          "id": "SYS-OUT-SU-02-F01-S04",
+          "name": "随机与保底判定",
+          "description": "普通单抽先判定整件/碎片再判定品质，同品质内按池内数量均分；十连前9抽普通概率，若无整件第10抽强制整件；100抽必得S整件硬保底，S碎片不重置保底。"
+        },
+        {
+          "id": "SYS-OUT-SU-02-F01-S05",
+          "name": "重复转化与入账",
+          "description": "重复整件按S/A/B转同名碎片100/50/20；首次/重复/碎片结果均不产出21/22；结果经 Drop_draw 入账，入账权威归 SYS-OUT-SU-05。"
+        },
+        {
+          "id": "SYS-OUT-SU-02-F01-S06",
+          "name": "展示结果",
+          "description": "客户端播放动画，展示整件/碎片结果、品质与保底剩余；S整件保底计数器客户端仅展示。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-02-R01",
+      "name": "常驻池与投放名单",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "收容物抽卡本轮只设计常驻池（DrawCard.Id=5, RuleId=4）；投放名单以最新 ExclWeapon.xlsx 为唯一源，首列##为不投开关；当前有效6S+15A+11B=32个，同品质内按数量均分。",
+      "sourceFact": "抽卡沉淀 §4.1/§4.4 确认投放名单与##排除规则；06 镜像 DrawCard/DrawCardPool/ExclWeapon 已同步；ExclWeapon.xlsx 在 SVN 工作副本存在。",
+      "acceptance": "投放名单实时读取最新 ExclWeapon；首列##行不投放；池内均分基数随有效名单变化。",
+      "relatedIds": [
+        "SYS-OUT-GR-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV02",
+        "SYS-OUT-SU-02-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-R02",
+      "name": "普通单抽双结果概率",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "普通单抽先判定整件5%/碎片95%，再判定品质；六分支为 S整件0.25%/A整件2%/B整件2.75%/S碎片4.75%/A碎片38%/B碎片52.25%；品质汇总 S5%/A40%/B55%；S/A碎片结果×5片，B碎片结果×2片。",
+      "sourceFact": "抽卡沉淀 §4.2 给出 v0.4 六分支概率与碎片结果数量，2026-08-10 CHG-003 确认；06 镜像校验报告 PASS。",
+      "acceptance": "六分支概率合计100%；碎片结果数量按品质区分；概率口径与 06 镜像一致。",
+      "relatedIds": [
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-R03",
+      "name": "十连整件保障",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "十连前9抽按普通单抽概率；若前9抽未出现整件，第10抽强制替换为整件，保底整件品质按S5%/A40%/B55%；若前9抽已出现整件，第10抽继续普通概率；单抽不触发十连整件保障，但计入S整件保底；两类保底同抽只产1个S整件。",
+      "sourceFact": "抽卡沉淀 §4.2 十连规则1-6条确认；程序验收重点为十连整件判断必须排除 ItemType_WeaponShards。",
+      "acceptance": "十连整件保障与S整件硬保底同抽时不重复产出；单抽只累计S整件保底。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-R04",
+      "name": "S整件硬保底",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "常驻池每100抽必得S整件，不做软保底；获得S碎片不重置保底，获得S整件后重置；S整件保底与十连整件保障同抽时只产出1个S整件。",
+      "sourceFact": "抽卡沉淀 §4.2 规则5-6与 §4.4 确认；当前有效池任意S整件平均约77.79抽/3,889元晶，最坏100抽/5,000元晶。",
+      "acceptance": "S整件保底抽数与重置规则唯一；S碎片不触发也不重置保底。",
+      "relatedIds": [
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-R05",
+      "name": "消耗与107直购",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "单抽50元晶、十连500元晶；收容凭证(107)直购开放，ShopGoods.2003002按50元晶/张销售，与单抽价格一致；运行时先扣107、不足再扣元晶；旧应急收容凭证(112)停用，有效投放中112统一改为107×3，原有107数量不变。",
+      "sourceFact": "抽卡沉淀 §4.1/§4.4/§4.7 确认107直购与112停用换算；06 镜像 ShopGoods.2003002 与 Items.107 ShopId=2003 已同步；ShopGoods.xlsx 在 SVN 工作副本存在。",
+      "acceptance": "单抽/十连消耗唯一；107与元晶折算一致；112停用且不迁移历史值。",
+      "relatedIds": [
+        "SYS-OUT-SU-04",
+        "SYS-OUT-SU-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV04",
+        "SYS-OUT-SU-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-R06",
+      "name": "重复整件转碎片与代币边界",
+      "status": "CONFIRMED_TARGET",
+      "targetRule": "重复整件按S/A/B分别转化为同名碎片×100/50/20；收容物首次/重复/碎片结果在抽取当次均不直接产出印象余音(21)或残留余响(22)；合成本体S/A/B均需同名碎片×100。",
+      "sourceFact": "抽卡沉淀 §4.1/§4.6 与 2026-08-10 CHG-002、2026-08-05 CHG-001 确认；06 镜像 ExclWeapon/WeaponDuplicateReward 已同步。",
+      "acceptance": "重复转化碎片量按品质区分；抽取当次不产出21/22；21/22产能只来自角色招募与满星回收（SU-03）。",
+      "relatedIds": [
+        "SYS-OUT-GR-05",
+        "SYS-OUT-SU-03",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-R07",
+      "name": "不继承旧专武抽卡规则（候选口径）",
+      "status": "P0_CONFLICT",
+      "targetRule": "旧专武/旧收容物配置中的 R85%/A13%/S2%、60抽S、120抽UP、旧抽卡券与旧重复返还均不视为新版收容物抽卡方案；本系统只采用常驻池 v0.4 口径。",
+      "sourceFact": "抽卡沉淀 §4.5 明确新版收容物抽卡不继承旧专武口径；C-001 最新裁决为一个大版本兼容迁移期；抽卡 Design 顶部历史草案只作迁移证据。",
+      "acceptance": "本系统不维护专武抽卡规则；专武本体与迁移裁决归 SYS-OUT-GR-10 与 C-001；新旧口径不得同时消费。",
+      "relatedIds": [
+        "SYS-OUT-GR-10",
+        "SYS-OUT-SU-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV03",
+        "SYS-OUT-SU-02-EV07"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-02-C01",
+      "name": "收容物开放条件",
+      "status": "CONFIRMED_TARGET",
+      "rule": "收容物养成于玩家34级开放（章节任务重设计 §3）；抽卡入口开放与引导归 SYS-OUT-SU-13，玩家等级归 SYS-OUT-GR-01，本系统只消费开放结果。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-C02",
+      "name": "资源持有",
+      "status": "CONFIRMED_TARGET",
+      "rule": "单抽需≥1张107或≥50元晶；十连需≥10张107或≥500元晶；运行时先扣107不足扣元晶；107与元晶账本归 SYS-OUT-SU-04。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-C03",
+      "name": "投放名单动态读取",
+      "status": "CONFIRMED_TARGET",
+      "rule": "池内清单由 ExclWeapon 首列##排除决定，不硬编码；当前有效6S+15A+11B=32，均分基数S=6/A=15/B=11。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV05"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-02-RW01",
+      "name": "抽卡结果入账",
+      "status": "CONFIRMED_TARGET_MIRROR_NOT_LANDED",
+      "rule": "收容物整件与同名碎片经 Drop_draw 真实包入账；具体Drop包内容归 SYS-OUT-SU-05 与 06 镜像 Drop_draw，本系统只决定何时发整件/碎片与品质。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-RW02",
+      "name": "重复转化碎片",
+      "status": "CONFIRMED_TARGET",
+      "rule": "重复整件转同名碎片S/A/B=100/50/20，经 Drop_draw 入账供收容物养成消费；抽取当次不产出21/22。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV06"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-02-EX01",
+      "name": "06 镜像未写入 SVN Datas",
+      "status": "P1_GAP",
+      "rule": "常驻池 v0.4 已确认并生成 06 镜像，但未写入 SVN Datas；SVN 工作副本可能仍为旧收容物/旧专武值，正式落地前不得称配置就绪。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-EX02",
+      "name": "程序接入待核",
+      "status": "P1_GAP",
+      "rule": "十连整件判断排除 ItemType_WeaponShards、S碎片不触发/重置S整件保底、两类保底同抽只产1个S整件等程序验收重点尚未闭环；收容物养成程序接入待核（承接 SYS-OUT-GR-05）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-EX03",
+      "name": "专武迁移冲突",
+      "status": "P0_CONFLICT",
+      "rule": "专武→收容物迁移采用一个大版本兼容期；旧专武抽卡与新收容物抽卡的并行读写和投放边界必须由实施方案明确，不得超出获批兼容期。",
+      "questionRefs": [
+        "SYS-OUT-SU-02-Q02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV03",
+        "SYS-OUT-SU-02-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-EX04",
+      "name": "断线补发与幂等缺口",
+      "status": "P1_GAP",
+      "rule": "抽卡 Design 提出'结果先入库再扣资源、断线补发'，但服务端扣除/入账原子性与重复请求幂等在客户端不可见，需服务端确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV03"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-EX05",
+      "name": "限时UP池未纳入",
+      "status": "P2_GAP",
+      "rule": "本轮只设计常驻池，限时UP池不纳入；未来限时UP池的保底继承/重置与UP规则需单独设计。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-02-UI01",
+      "name": "常驻池入口与资源展示",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示常驻池入口、107与元晶余额、单抽/十连按钮与价格；展示当期有效投放数量提示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-UI02",
+      "name": "抽卡动画与整件/碎片结果",
+      "status": "TARGET_REQUIRED",
+      "rule": "播放单抽/十连动画，明确区分整件与碎片结果、品质与数量；十连可跳过或汇总展示。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-UI03",
+      "name": "S整件保底剩余",
+      "status": "TARGET_REQUIRED",
+      "rule": "展示S整件保底剩余次数（100抽硬保底）；S碎片不重置保底需在展示口径上对齐。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-02-UI04",
+      "name": "常驻池规则文案",
+      "status": "CONFIRMED_TARGET_MIRROR_NOT_LANDED",
+      "rule": "CommonRuleDesc.Id=4 已同步新版常驻池规则文案（整件/碎片概率、十连保障、100抽S硬保底、重复转碎片、##排除）；落地时需同步至 SVN。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV06"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-02-CFG01",
+      "name": "DrawCard（收容物常驻池）",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCard.xlsx",
+      "role": "DrawCard.Id=5 常驻池、RuleId=4、QuickPurchase=2003002；SVN 工作副本可能为旧值，06 镜像已更新",
+      "status": "WORKING_COPY_NOT_SYNCED_TO_TARGET"
+    },
+    {
+      "id": "SYS-OUT-SU-02-CFG02",
+      "name": "DrawCardPool（收容物池清单）",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCardPool.xlsx",
+      "role": "收容物池内清单与品质概率说明；06 镜像已更新",
+      "status": "WORKING_COPY_NOT_SYNCED_TO_TARGET"
+    },
+    {
+      "id": "SYS-OUT-SU-02-CFG03",
+      "name": "Drop_draw（收容物掉落包）",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_draw.xlsx",
+      "role": "收容物整件/碎片掉落包（入账权威归 SYS-OUT-SU-05）；06 镜像已更新",
+      "status": "WORKING_COPY_NOT_SYNCED_TO_TARGET"
+    },
+    {
+      "id": "SYS-OUT-SU-02-CFG04",
+      "name": "ExclWeapon（投放名单）",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeapon.xlsx",
+      "role": "收容物投放名单唯一源，首列##为不投开关；当前有效6S+15A+11B",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-02-CFG05",
+      "name": "ShopGoods（107直购）",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\ShopGoods.xlsx",
+      "role": "ShopGoods.2003002 收容凭证107直购50元晶/张；06 镜像已更新",
+      "status": "WORKING_COPY_NOT_SYNCED_TO_TARGET"
+    },
+    {
+      "id": "SYS-OUT-SU-02-CFG06",
+      "name": "06 最终配置/收容物抽卡镜像",
+      "path": "D:\\数值文档\\数值文档\\框架v2\\06_最终配置\\收容物抽卡",
+      "role": "DrawCard/DrawCardPool/Drop_draw/ExclWeapon/Items/ShopGoods/WeaponDuplicateReward/CommonRuleDesc 八张镜像与校验报告",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-02-REL01",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-04",
+      "targetName": "物品与货币",
+      "description": "抽卡扣除收容凭证107/元晶，发放同名碎片；账本归物品与货币系统。推导边界：由收容物抽卡 06 镜像配置归纳（未写 SVN Datas）；线上扣发执行链未核，UNKNOWN。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-02-REL02",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-05",
+      "targetName": "收容物",
+      "description": "抽卡产出的收容物整件与同名碎片供收容物养成消费；养成规则归 GR-05。推导边界：由抽卡产出→养成消费的配置链路归纳；服务端交接执行链未核，UNKNOWN。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-02-REL03",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "抽卡结果经 Drop_draw 真实包入账，入账权威归掉落与奖励系统。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV08"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-SU-02-REL04",
+      "type": "conflicts-with",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-GR-10",
+      "targetName": "专武",
+      "description": "收容物抽卡为候选/目标方案，拟替代专武抽卡（C-001 兼容迁移期已裁决）；不继承旧专武概率/保底/券/重复转化；迁移裁决归 GR-10。",
+      "status": "P0_CONFLICT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV07"
+      ],
+      "provenance": "SOURCE_EXPLICIT"
+    },
+    {
+      "id": "SYS-OUT-SU-02-REL05",
+      "type": "prices",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "收容物抽卡价格、期望成本与回抽折算由经济数值域约束。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV04"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-02-REL06",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "收容物抽卡入口的系统开放与引导由新手引导与系统开放管理（收容物34级开放）。推导边界：由 SystemOpen/Unlock 配置观察归纳；开放状态运行有效性 UNKNOWN_LIVE（镜像未写 SVN）。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-SU-02-REL07",
+      "type": "supplies",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-03",
+      "targetName": "碎片回收/招募商店",
+      "description": "满星后收容物重复等价包供碎片回收消费；回收单包与回抽测算归 SU-03。推导边界：由满星等价包配置观察归纳；回收执行与回抽测算归 SU-03，服务端链路未核 UNKNOWN。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-02-EV01",
+      "kind": "numeric-deposit",
+      "label": "角色与收容物抽卡数值沉淀",
+      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "location": "§4 新版收容物抽卡（4.1前提/4.2常驻池v0.4/4.3期望/4.4落地/4.5不继承/4.6招募联动/4.7券投放/4.8满星回收）",
+      "status": "CONFIRMED_TARGET_IN_REVIEW"
+    },
+    {
+      "id": "SYS-OUT-SU-02-EV02",
+      "kind": "design-target",
+      "label": "收容物养成数值 Design Doc",
+      "path": "design/收容物养成数值Design Doc.md",
+      "location": "当前已确认摘要（合成100片/升星碎片/107直购/112停用）、配置与实现边界",
+      "status": "CONFIG_READY_NOT_LANDED"
+    },
+    {
+      "id": "SYS-OUT-SU-02-EV03",
+      "kind": "reverse-design",
+      "label": "抽卡系统 Design Doc",
+      "path": "design/抽卡系统Design Doc.md",
+      "location": "历史草案提示（专武抽卡废弃）、R-05/R-07 废弃边界",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-SU-02-EV04",
+      "kind": "source-excel",
+      "label": "ShopGoods.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Shop/ShopGoods.xlsx",
+      "location": "本机SVN工作副本；107直购 ShopGoods.2003002；SVN可能为旧值，06镜像已更新；核对 2026-08-18",
+      "status": "WORKING_COPY_NOT_SYNCED_TO_TARGET"
+    },
+    {
+      "id": "SYS-OUT-SU-02-EV05",
+      "kind": "source-excel",
+      "label": "ExclWeapon.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/ExclusiveWeapon/ExclWeapon.xlsx",
+      "location": "本机SVN工作副本；投放名单唯一源，首列##排除；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-02-EV06",
+      "kind": "delivery-mirror",
+      "label": "06 最终配置/收容物抽卡镜像",
+      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/收容物抽卡",
+      "location": "DrawCard/DrawCardPool/Drop_draw/ExclWeapon/Items/ShopGoods/WeaponDuplicateReward/CommonRuleDesc 八张镜像 + 收容物常驻抽卡配置校验.json",
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+    },
+    {
+      "id": "SYS-OUT-SU-02-EV07",
+      "kind": "decision-record",
+      "label": "系统状态冲突与事实漂移登记",
+      "path": "archive/legacy-output-20260824/05-status-conflict-register.md",
+      "location": "C-001 专武→收容物迁移",
+      "status": "CONFLICT_REGISTER"
+    },
+    {
+      "id": "SYS-OUT-SU-02-EV08",
+      "kind": "design-target",
+      "label": "章节任务重设计讨论稿",
+      "path": "design/章节任务重设计讨论稿-2026-07-22.md",
+      "location": "§3 功能开启约束（收容物玩家34级开放、第五章开始纳入章节任务）",
+      "status": "DESIGN_CONFIRMED_PENDING_CONFIG"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-02-Q01",
+      "priority": "P0",
+      "question": "06 最终配置/收容物抽卡镜像何时写入 SVN Datas 并完成程序接入？",
+      "impact": "决定收容物抽卡是否可上线；当前 SVN 可能仍为旧值，未落地前不得称配置就绪。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV06"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-02-Q02",
+      "priority": "P0",
+      "question": "专武→收容物迁移（C-001）何时由产品/主策给出 canonical 决策与废弃清单？",
+      "impact": "决定旧专武抽卡口径是否彻底清理，避免新旧双口径并存。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01",
+        "SYS-OUT-SU-02-EV07"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-02-Q03",
+      "priority": "P1",
+      "question": "十连整件判断排除 ItemType_WeaponShards、S碎片不触发/重置S整件保底等程序验收重点是否已闭环？",
+      "impact": "影响保底正确性与玩家体验，错误实现可能导致保底提前/延迟或碎片误触发保底。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-02-Q04",
+      "priority": "P1",
+      "question": "服务端扣除/入账原子性与断线补发幂等如何保证？",
+      "impact": "影响玩家资产安全与补发正确性。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-02-Q05",
+      "priority": "P2",
+      "question": "限时 UP 池的保底继承/重置与 UP 规则何时设计？",
+      "impact": "本轮只设计常驻池，限时UP池缺失影响商业化扩展。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-02-EV01"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在进入常驻池→校验→扣除→随机保底→重复转化入账→展示的有序抽卡流程"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在收容物开放条件、资源持有与投放名单动态读取条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "收容物整件/碎片与重复转化碎片经 Drop_draw 入账，本系统决定何时发整件/碎片与品质"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在06镜像未落地、程序接入待核、专武迁移冲突、断线补发与限时UP池缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在常驻池入口、抽卡动画、保底剩余与规则文案界面责任"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 DrawCard/DrawCardPool/Drop_draw/ExclWeapon/ShopGoods 配置源与06镜像"
+    }
+  }
+}

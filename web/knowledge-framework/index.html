@@ -1,0 +1,1567 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Vgame 项目级策划知识库</title>
+  <style>
+    :root {
+      --paper: #f5f8fc;
+      --surface: #ffffff;
+      --surface-2: #edf3f9;
+      --ink: #142338;
+      --muted: #617389;
+      --line: #cad7e5;
+      --line-strong: #a8bed3;
+      --blue: #075f9f;
+      --blue-deep: #06436e;
+      --cyan: #148fa1;
+      --orange: #ec8435;
+      --green: #177b65;
+      --red: #b64f55;
+      --shadow: 0 18px 48px rgba(33, 62, 91, .13);
+      --display: "Microsoft YaHei UI", "PingFang SC", sans-serif;
+      --body: "Microsoft YaHei", "PingFang SC", sans-serif;
+      --utility: "Bahnschrift", "Cascadia Code", "Microsoft YaHei UI", monospace;
+      --rail: 278px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(7, 95, 159, .035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(7, 95, 159, .035) 1px, transparent 1px),
+        var(--paper);
+      background-size: 24px 24px;
+      font-family: var(--body);
+      line-height: 1.62;
+    }
+
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button { color: inherit; }
+    a { color: var(--blue); }
+    :focus-visible { outline: 3px solid rgba(236, 132, 53, .48); outline-offset: 3px; }
+
+    .app { min-height: 100vh; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      min-height: 76px;
+      display: grid;
+      grid-template-columns: var(--rail) minmax(360px, 1fr) auto;
+      align-items: stretch;
+      background: rgba(250, 252, 255, .95);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 13px 24px;
+      border-right: 1px solid var(--line);
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      color: white;
+      background: var(--blue);
+      border-radius: 9px 2px 9px 2px;
+      font: 700 20px/1 var(--utility);
+      transform: skew(-4deg);
+      box-shadow: 5px 5px 0 rgba(20, 143, 161, .2);
+    }
+    .brand-title { font-family: var(--display); font-size: 15px; font-weight: 750; letter-spacing: .02em; }
+    .brand-sub { color: var(--muted); font: 650 10px/1.4 var(--utility); letter-spacing: .14em; text-transform: uppercase; }
+
+    .module-nav { display: flex; align-items: stretch; overflow-x: auto; scrollbar-width: none; }
+    .module-nav::-webkit-scrollbar { display: none; }
+    .module-tab {
+      min-width: 112px;
+      padding: 13px 18px 10px;
+      border: 0;
+      border-right: 1px solid rgba(202, 215, 229, .72);
+      background: transparent;
+      cursor: pointer;
+      text-align: left;
+      position: relative;
+    }
+    .module-tab::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 0;
+      height: 3px;
+      background: transparent;
+    }
+    .module-tab:hover { background: var(--surface-2); }
+    .module-tab.active { color: var(--blue-deep); background: white; }
+    .module-tab.active::after { background: var(--orange); }
+    .tab-code { display: block; color: var(--muted); font: 650 9px/1 var(--utility); letter-spacing: .08em; white-space: nowrap; }
+    .tab-name { display: block; margin-top: 7px; font-weight: 750; }
+
+    .top-tools { display: flex; align-items: center; gap: 8px; padding: 12px 18px; min-width: 0; overflow: hidden; }
+    .search-box {
+      width: min(280px, 21vw);
+      min-width: 170px;
+      height: 42px;
+      padding: 0 14px 0 38px;
+      color: var(--ink);
+      background: white;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background-image: radial-gradient(circle at 17px 17px, transparent 6px, var(--blue) 6.5px, var(--blue) 8px, transparent 8.5px), linear-gradient(45deg, transparent 47%, var(--blue) 49%, var(--blue) 54%, transparent 56%);
+      background-size: 22px 22px, 9px 9px;
+      background-position: 4px 4px, 24px 25px;
+      background-repeat: no-repeat;
+    }
+    .tool-button, .source-button, .comment-button {
+      min-height: 42px;
+      padding: 9px 13px;
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: white;
+      color: var(--blue-deep);
+      text-decoration: none;
+      cursor: pointer;
+      white-space: nowrap;
+      font-weight: 700;
+    }
+    .tool-button:hover, .source-button:hover, .comment-button:hover { border-color: var(--blue); background: #f7fbff; }
+
+    .layout { display: grid; grid-template-columns: var(--rail) minmax(0, 1fr); min-height: calc(100vh - 76px); }
+    .side-rail {
+      position: sticky;
+      top: 76px;
+      align-self: start;
+      height: calc(100vh - 76px);
+      padding: 28px 22px 22px;
+      background: rgba(244, 248, 252, .94);
+      border-right: 1px solid var(--line);
+      overflow-y: auto;
+    }
+    .rail-code { color: var(--orange); font: 700 11px/1 var(--utility); letter-spacing: .16em; }
+    .rail-title { margin: 12px 0 7px; font: 780 24px/1.25 var(--display); }
+    .rail-question { margin: 0 0 24px; color: var(--muted); font-size: 13px; }
+    .subnav { display: grid; gap: 5px; }
+    .subnav button {
+      width: 100%;
+      padding: 10px 11px;
+      border: 0;
+      border-left: 3px solid transparent;
+      background: transparent;
+      text-align: left;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .subnav button:hover, .subnav button.active { color: var(--ink); background: white; border-left-color: var(--orange); }
+    .rail-note {
+      margin-top: 30px;
+      padding-top: 19px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .rail-note strong { color: var(--ink); }
+
+    main { min-width: 0; padding: 42px clamp(26px, 5vw, 78px) 90px; }
+    .content-shell { max-width: 1220px; margin: 0 auto; }
+    .eyebrow { color: var(--blue); font: 700 11px/1.2 var(--utility); letter-spacing: .17em; text-transform: uppercase; }
+    h1, h2, h3 { font-family: var(--display); }
+    .page-hero { position: relative; padding: 10px 0 34px; border-bottom: 1px solid var(--line-strong); }
+    .page-hero::before {
+      content: "";
+      position: absolute;
+      left: -22px;
+      top: 13px;
+      width: 7px;
+      height: 62px;
+      background: linear-gradient(var(--orange) 0 30%, var(--blue) 30% 70%, var(--cyan) 70%);
+    }
+    .page-hero h1 { max-width: 850px; margin: 13px 0 12px; font-size: clamp(32px, 4.5vw, 60px); line-height: 1.08; letter-spacing: -.04em; }
+    .page-lead { max-width: 790px; margin: 0; color: var(--muted); font-size: clamp(15px, 1.5vw, 19px); }
+    .hero-actions { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 23px; }
+    .comment-button { color: white; background: var(--blue); border-color: var(--blue); }
+    .comment-button:hover { color: white; background: var(--blue-deep); }
+
+    .section { padding: 42px 0 8px; scroll-margin-top: 100px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin-bottom: 21px; }
+    .section h2 { margin: 5px 0 0; font-size: clamp(24px, 3vw, 37px); line-height: 1.2; letter-spacing: -.025em; }
+    .section-desc { max-width: 680px; color: var(--muted); margin: 9px 0 0; }
+    .count-label { color: var(--muted); font: 650 11px/1 var(--utility); letter-spacing: .1em; white-space: nowrap; }
+
+    .knowledge-rail { margin-top: 32px; border: 1px solid var(--line-strong); background: white; box-shadow: var(--shadow); }
+    .knowledge-lane {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 154px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      min-height: 112px;
+      padding: 20px 24px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease;
+    }
+    .knowledge-lane:last-child { border-bottom: 0; }
+    .knowledge-lane:hover { background: #f7fbff; transform: translateX(5px); }
+    .lane-name { font: 780 26px/1 var(--display); }
+    .lane-code { display: block; margin-bottom: 9px; color: var(--orange); font: 700 10px/1 var(--utility); letter-spacing: .14em; }
+    .lane-question { color: var(--muted); }
+    .lane-arrow { color: var(--blue); font: 700 24px/1 var(--utility); }
+
+    .loop-strip {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(100px, 1fr));
+      margin-top: 22px;
+      overflow-x: auto;
+      border: 1px solid var(--line-strong);
+      background: white;
+    }
+    .loop-step { min-width: 120px; padding: 18px 15px; border-right: 1px solid var(--line); position: relative; }
+    .loop-step:last-child { border-right: 0; }
+    .loop-step:not(:last-child)::after { content: "→"; position: absolute; right: -9px; top: 42%; z-index: 2; color: var(--orange); font-weight: 900; background: white; }
+    .loop-step b { display: block; margin-bottom: 5px; font-size: 14px; }
+    .loop-step span { color: var(--muted); font-size: 12px; }
+
+    .pillar-list { display: grid; grid-template-columns: repeat(5, 1fr); border-top: 1px solid var(--line-strong); border-left: 1px solid var(--line-strong); background: white; }
+    .pillar { min-height: 175px; padding: 22px 18px; border-right: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
+    .pillar-code { color: var(--cyan); font: 700 10px/1 var(--utility); }
+    .pillar h3 { margin: 15px 0 9px; font-size: 18px; }
+    .pillar p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .tree-board { margin: 26px 0 4px; padding: 28px; border: 1px solid var(--line-strong); background: #fafdff; }
+    .tree-root { display: inline-flex; align-items: center; gap: 10px; padding: 12px 17px; color: white; background: var(--blue-deep); font-weight: 800; }
+    .tree-branches { display: grid; grid-template-columns: .85fr 1.6fr; gap: 26px; margin-top: 22px; }
+    .tree-branch { position: relative; padding: 19px; border-left: 4px solid var(--cyan); background: white; box-shadow: 0 6px 18px rgba(44, 76, 106, .08); }
+    .tree-branch.outer { border-left-color: var(--orange); }
+    .tree-branch h3 { margin: 0 0 8px; }
+    .tree-branch p { margin: 0; color: var(--muted); }
+    .tree-leaves { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 16px; }
+    .tree-leaf { padding: 10px; color: var(--blue-deep); background: var(--surface-2); font-weight: 750; text-align: center; }
+
+    .group-filter { display: flex; flex-wrap: wrap; gap: 8px; margin: 25px 0; }
+    .filter-chip { padding: 9px 13px; border: 1px solid var(--line); background: white; border-radius: 999px; cursor: pointer; color: var(--muted); }
+    .filter-chip.active { color: white; background: var(--blue); border-color: var(--blue); }
+
+    .entity-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .entity-card {
+      min-height: 166px;
+      padding: 19px;
+      border: 1px solid var(--line);
+      border-radius: 2px 10px 2px 10px;
+      background: white;
+      text-align: left;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .entity-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--blue); transform: scaleY(0); transform-origin: top; transition: transform .18s ease; }
+    .entity-card:hover { border-color: var(--blue); box-shadow: 0 9px 24px rgba(31, 73, 108, .1); }
+    .entity-card:hover::before { transform: scaleY(1); }
+    .entity-code { color: var(--muted); font: 650 10px/1 var(--utility); letter-spacing: .08em; }
+    .entity-card h3 { margin: 12px 0 7px; font-size: 17px; }
+    .entity-card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .entity-meta { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-top: 16px; }
+    .entity-meta-left { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .status-tag { display: inline-flex; align-items: center; min-height: 24px; padding: 4px 8px; color: var(--blue-deep); background: #e9f2fa; border-radius: 999px; font-size: 11px; font-weight: 700; }
+    .status-tag[data-risk="true"] { color: #8a3b26; background: #fff0e5; }
+    .detail-level { display: inline-flex; align-items: center; min-height: 24px; padding: 4px 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: white; font-size: 10px; font-weight: 750; }
+    .detail-level[data-level="full"] { color: #0a6654; border-color: #8dcbbd; background: #e8f7f2; }
+    .relation-count { color: var(--muted); font: 650 10px/1 var(--utility); }
+
+    .detail-breadcrumb { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; margin-bottom: 13px; color: var(--muted); font: 650 11px/1.35 var(--utility); }
+    .detail-breadcrumb button { padding: 0; border: 0; color: var(--blue); background: transparent; cursor: pointer; font: inherit; }
+    .detail-kicker { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+    .detail-kicker .status-tag { border-radius: 4px; }
+    .status-axis-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line-strong); border-left: 1px solid var(--line-strong); background: white; }
+    .status-axis { min-height: 148px; padding: 17px; border-right: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
+    .axis-name { color: var(--muted); font: 700 10px/1 var(--utility); letter-spacing: .11em; }
+    .status-axis strong { display: block; margin: 11px 0 7px; line-height: 1.35; }
+    .status-axis p { margin: 0; color: var(--muted); font-size: 12px; }
+    .source-snapshot { margin-top: 12px; padding: 14px 16px; border-left: 4px solid var(--cyan); background: #edf7fb; color: var(--muted); font-size: 12px; }
+    .source-snapshot b { color: var(--blue-deep); }
+    .status-guide { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-top: 12px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); background: white; }
+    .status-guide div { padding: 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .status-guide b { display: block; margin-bottom: 5px; color: var(--blue-deep); font: 700 9px/1.3 var(--utility); overflow-wrap: anywhere; }
+    .status-guide span { color: var(--muted); font-size: 11px; }
+    .scope-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+    .scope-card { padding: 18px; border: 1px solid var(--line); background: white; }
+    .scope-card h3 { margin: 0 0 10px; font-size: 15px; }
+    .scope-card ul { margin: 0; padding-left: 19px; color: var(--muted); font-size: 13px; }
+    .scope-card li + li { margin-top: 6px; }
+    .detail-flow { display: grid; grid-template-columns: repeat(4, minmax(150px, 1fr)); gap: 0; overflow-x: auto; border: 1px solid var(--line-strong); background: white; }
+    .detail-flow-step { min-width: 180px; padding: 18px; border-right: 1px solid var(--line); position: relative; }
+    .detail-flow-step:last-child { border-right: 0; }
+    .detail-flow-step:not(:last-child)::after { content: "→"; position: absolute; right: -9px; top: 42%; z-index: 2; color: var(--orange); background: white; font-weight: 900; }
+    .detail-flow-step small { color: var(--cyan); font: 700 9px/1 var(--utility); }
+    .detail-flow-step b { display: block; margin: 9px 0 5px; }
+    .detail-flow-step span { color: var(--muted); font-size: 12px; }
+    .rule-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    .rule-card { min-width: 0; padding: 20px; border: 1px solid var(--line); border-left: 4px solid var(--blue); background: white; scroll-margin-top: 110px; overflow-wrap: anywhere; }
+    .rule-card[data-risk="true"] { border-left-color: var(--orange); }
+    .rule-head { display: flex; align-items: start; justify-content: space-between; gap: 16px; }
+    .rule-code { color: var(--cyan); font: 700 10px/1 var(--utility); letter-spacing: .08em; }
+    .rule-head h3 { margin: 7px 0 0; font-size: 19px; }
+    .rule-status { max-width: 48%; padding: 5px 8px; color: var(--blue-deep); background: var(--surface-2); border-radius: 4px; font: 700 9px/1.2 var(--utility); overflow-wrap: anywhere; text-align: right; }
+    .rule-card[data-risk="true"] .rule-status { color: #813d28; background: #fff0e5; }
+    .rule-columns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 16px; }
+    .rule-fact { padding: 13px; background: #f8fbfe; border-top: 2px solid var(--line-strong); }
+    .rule-fact b { display: block; margin-bottom: 5px; color: var(--blue-deep); font-size: 12px; }
+    .rule-fact p { margin: 0; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+    .rule-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; }
+    .rule-links { color: var(--muted); font: 650 10px/1.4 var(--utility); overflow-wrap: anywhere; }
+    .mini-comment { min-height: 34px; padding: 7px 11px; border: 1px solid var(--line-strong); color: var(--blue-deep); background: white; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 750; }
+    .mini-comment:hover { border-color: var(--blue); background: #f7fbff; }
+    .detail-card-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .detail-card { min-width: 0; padding: 17px; border: 1px solid var(--line); background: white; overflow-wrap: anywhere; }
+    .detail-card[data-risk="true"] { border-top: 3px solid var(--orange); }
+    .detail-card small { color: var(--cyan); font: 700 9px/1.2 var(--utility); }
+    .detail-card h3 { margin: 8px 0 7px; font-size: 16px; }
+    .detail-card p { margin: 0; color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+    .detail-card .rule-foot { margin-top: 11px; }
+    .table-scroll { overflow-x: auto; border: 1px solid var(--line); background: white; }
+    .table-scroll .relation-table { min-width: 820px; }
+    .relation-target { border: 0; padding: 0; color: var(--blue); background: transparent; text-align: left; cursor: pointer; font-weight: 750; }
+    .evidence-link { color: var(--blue-deep); font-weight: 750; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .evidence-path { display: block; max-width: 440px; margin-top: 5px; color: var(--muted); font: 600 10px/1.45 var(--utility); overflow-wrap: anywhere; }
+    .question-list { display: grid; grid-template-columns: minmax(0, 1fr); gap: 9px; }
+    .question-card { display: grid; grid-template-columns: 54px minmax(0, 1fr) auto; gap: 14px; align-items: start; padding: 17px; border: 1px solid #edc4aa; background: #fff8f1; overflow-wrap: anywhere; }
+    .priority-mark { display: grid; place-items: center; width: 42px; height: 42px; color: white; background: var(--orange); font: 800 11px/1 var(--utility); }
+    .question-card h3 { margin: 0 0 5px; font-size: 15px; }
+    .question-card p { margin: 0; color: #76513d; font-size: 12px; }
+
+    .split-frame { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .frame-panel { border-top: 5px solid var(--blue); background: white; box-shadow: var(--shadow); }
+    .frame-panel.character { border-top-color: var(--orange); }
+    .frame-title { padding: 23px 24px 17px; border-bottom: 1px solid var(--line); }
+    .frame-title h3 { margin: 4px 0 5px; font-size: 27px; }
+    .frame-title p { margin: 0; color: var(--muted); }
+    .frame-list { display: grid; }
+    .frame-item { padding: 16px 20px; border-bottom: 1px solid var(--line); background: white; cursor: pointer; text-align: left; border-left: 0; border-right: 0; border-top: 0; }
+    .frame-item:last-child { border-bottom: 0; }
+    .frame-item:hover { background: #f7fbff; }
+    .frame-item b { display: block; }
+    .frame-item span { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+
+    .pipeline { display: flex; align-items: stretch; gap: 0; margin: 25px 0 8px; overflow-x: auto; }
+    .pipe-node { min-width: 168px; flex: 1; padding: 18px 15px; border: 1px solid var(--line-strong); background: white; position: relative; }
+    .pipe-node + .pipe-node { margin-left: 21px; }
+    .pipe-node + .pipe-node::before { content: "→"; position: absolute; left: -18px; top: 33%; color: var(--orange); font-size: 20px; font-weight: 900; }
+    .pipe-node b { display: block; margin-bottom: 5px; }
+    .pipe-node span { color: var(--muted); font-size: 12px; }
+
+    .numeric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .numeric-domain { display: grid; grid-template-columns: 72px 1fr; gap: 15px; min-height: 130px; padding: 20px; border: 1px solid var(--line); background: white; cursor: pointer; text-align: left; }
+    .numeric-domain:hover { border-color: var(--cyan); }
+    .numeric-id { width: 58px; height: 58px; display: grid; place-items: center; color: white; background: var(--cyan); border-radius: 50% 50% 9px 50%; font: 700 11px/1 var(--utility); }
+    .numeric-domain h3 { margin: 0 0 6px; font-size: 18px; }
+    .numeric-domain p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .relation-table { width: 100%; border-collapse: collapse; background: white; }
+    .relation-table th, .relation-table td { padding: 14px 15px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .relation-table th { color: var(--blue-deep); background: var(--surface-2); }
+    .edge-code { font: 650 11px/1.2 var(--utility); color: var(--cyan); }
+    .sample-chain { display: grid; grid-template-columns: repeat(5, 1fr); margin-top: 20px; border: 1px solid var(--line-strong); }
+    .sample-node { min-height: 130px; padding: 18px; border-right: 1px solid var(--line); background: white; position: relative; }
+    .sample-node:last-child { border-right: 0; }
+    .sample-node:not(:last-child)::after { content: "→"; position: absolute; right: -9px; top: 44%; z-index: 2; color: var(--orange); font-weight: 900; background: white; }
+    .sample-node small { color: var(--muted); font: 650 10px/1 var(--utility); }
+    .sample-node b { display: block; margin: 10px 0 5px; }
+    .sample-node span { color: var(--muted); font-size: 12px; }
+
+    .search-results { display: grid; gap: 8px; margin-top: 24px; }
+    .search-result { display: grid; grid-template-columns: 120px 1fr auto; gap: 16px; align-items: center; width: 100%; padding: 15px 17px; border: 1px solid var(--line); background: white; text-align: left; cursor: pointer; }
+    .search-result:hover { border-color: var(--blue); }
+    .result-path { color: var(--muted); font: 650 10px/1.3 var(--utility); }
+    .result-title { font-weight: 750; }
+    .result-summary { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+    .empty-state { padding: 35px; border: 1px dashed var(--line-strong); color: var(--muted); text-align: center; background: rgba(255,255,255,.72); }
+
+    .governance-links { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .governance-links a { padding: 16px; border: 1px solid var(--line); background: white; text-decoration: none; font-weight: 700; }
+    .warning-strip { margin-top: 20px; padding: 18px 20px; border-left: 5px solid var(--orange); background: #fff7ee; color: #73432b; }
+
+    /* 根横向溢出安全网：长路径/代码/未断词文本强制折行，任何容器不得把 body 撑宽 */
+    .content-shell, body { overflow-x: clip; }
+    body, pre, code, .result-path, .result-summary { overflow-wrap: anywhere; word-break: break-word; }
+    pre { white-space: pre-wrap; }
+
+    .backdrop { position: fixed; inset: 0; z-index: 59; background: rgba(10, 31, 52, .36); opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+    .backdrop.open { opacity: 1; pointer-events: auto; }
+    .drawer {
+      position: fixed;
+      z-index: 60;
+      top: 0;
+      right: 0;
+      width: min(540px, 100vw);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: white;
+      border-left: 1px solid var(--line-strong);
+      box-shadow: -24px 0 60px rgba(15, 41, 65, .2);
+      transform: translateX(102%);
+      transition: transform .24s ease;
+    }
+    .drawer.open { transform: translateX(0); }
+    .drawer-head { display: flex; justify-content: space-between; gap: 15px; align-items: start; padding: 25px 26px 18px; border-bottom: 1px solid var(--line); }
+    .drawer-head h2 { margin: 8px 0 0; font-size: 26px; line-height: 1.25; }
+    .icon-button { width: 38px; height: 38px; border: 1px solid var(--line); background: white; cursor: pointer; font-size: 21px; }
+    .drawer-body { flex: 1; padding: 23px 26px 42px; overflow-y: auto; }
+    .drawer-summary { color: var(--muted); font-size: 14px; }
+    .detail-block { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .detail-block h3 { margin: 0 0 11px; font-size: 15px; }
+    .relation-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+    .relation-chip { padding: 6px 9px; color: var(--blue-deep); background: var(--surface-2); border-radius: 999px; font-size: 12px; }
+    .review-form { display: grid; gap: 12px; }
+    .decision-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .decision-button { min-height: 40px; border: 1px solid var(--line); background: white; cursor: pointer; font-size: 13px; }
+    .decision-button.active { color: white; background: var(--blue); border-color: var(--blue); }
+    .field-row { display: grid; grid-template-columns: 1.25fr .75fr; gap: 9px; }
+    .review-form select, .review-form textarea, .review-form input { width: 100%; padding: 10px 11px; border: 1px solid var(--line-strong); background: white; color: var(--ink); border-radius: 6px; }
+    .review-form textarea { min-height: 112px; resize: vertical; }
+    .save-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .save-state { color: var(--muted); font-size: 12px; }
+    .save-button { min-height: 40px; padding: 9px 16px; border: 0; color: white; background: var(--green); border-radius: 6px; cursor: pointer; font-weight: 750; }
+
+    .toast { position: fixed; z-index: 80; left: 50%; bottom: 28px; padding: 11px 17px; color: white; background: var(--ink); border-radius: 7px; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; transition: .2s ease; }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+    .footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+
+    .section-highlight { animation: section-highlight-fade 2.4s ease-out; }
+    @keyframes section-highlight-fade {
+      0% { background: rgba(236, 132, 53, .22); box-shadow: 0 0 0 2px rgba(236, 132, 53, .4); }
+      100% { background: transparent; box-shadow: none; }
+    }
+    .section-actions { margin-top: 10px; }
+    .section-md-body { margin-top: 12px; line-height: 1.65; }
+    .section-md-body h1, .section-md-body h2, .section-md-body h3 { margin: 16px 0 8px; }
+    .section-md-body ul { padding-left: 22px; }
+    .section-md-body table { margin: 10px 0; }
+    .section-md-body p { margin: 6px 0; }
+    .section-load-btn { margin-top: 8px; }
+
+    @media (max-width: 1320px) {
+      :root { --rail: 238px; }
+      .topbar { grid-template-columns: 238px minmax(0, 1fr); }
+      .top-tools { grid-column: 1 / -1; border-top: 1px solid var(--line); padding: 8px 14px; overflow-x: auto; }
+      .search-box { flex: 1; width: auto; min-width: 0; }
+      .layout { min-height: calc(100vh - 127px); }
+      .side-rail { top: 127px; height: calc(100vh - 127px); }
+      .pillar-list { grid-template-columns: repeat(3, 1fr); }
+      .entity-grid { grid-template-columns: repeat(2, 1fr); }
+      .status-axis-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .status-guide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 1180px) {
+      :root { --rail: 238px; }
+    }
+
+    @media (max-width: 820px) {
+      .topbar { position: relative; display: block; }
+      .brand { border-right: 0; border-bottom: 1px solid var(--line); }
+      .module-nav { border-bottom: 1px solid var(--line); }
+      .module-tab { min-width: 102px; }
+      .top-tools { display: grid; grid-template-columns: 1fr auto; }
+      .search-box { width: 100%; min-width: 0; }
+      .top-tools { grid-template-columns: minmax(190px, 1fr) repeat(4, max-content); overflow-x: auto; }
+      .layout { display: block; }
+      .side-rail { position: relative; top: auto; width: 100%; height: auto; padding: 19px 18px; border-right: 0; border-bottom: 1px solid var(--line); }
+      .rail-title, .rail-question, .rail-note { display: none; }
+      .subnav { display: flex; gap: 6px; overflow-x: auto; }
+      .subnav button { width: auto; min-width: max-content; border-left: 0; border-bottom: 3px solid transparent; }
+      .subnav button:hover, .subnav button.active { border-left-color: transparent; border-bottom-color: var(--orange); }
+      main { padding: 28px 19px 70px; }
+      .page-hero::before { left: -10px; }
+      .knowledge-lane { grid-template-columns: 110px 1fr auto; padding: 17px; }
+      .pillar-list, .entity-grid, .numeric-grid, .governance-links { grid-template-columns: 1fr; }
+      .tree-branches, .split-frame { grid-template-columns: 1fr; }
+      .scope-grid, .rule-columns, .detail-card-grid { grid-template-columns: 1fr; }
+      .tree-leaves { grid-template-columns: repeat(3, 1fr); }
+      .sample-chain { grid-template-columns: 1fr; }
+      .sample-node { border-right: 0; border-bottom: 1px solid var(--line); }
+      .sample-node:last-child { border-bottom: 0; }
+      .sample-node:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -12px; }
+      .search-result { grid-template-columns: 1fr; gap: 6px; }
+    }
+
+    @media (max-width: 520px) {
+      .top-tools { grid-template-columns: 1fr auto; }
+      .top-tools .tool-button { padding-inline: 10px; }
+      .knowledge-lane { grid-template-columns: 1fr auto; }
+      .lane-question { grid-column: 1 / -1; }
+      .pillar-list { display: block; border-right: 1px solid var(--line-strong); }
+      .tree-leaves { grid-template-columns: 1fr; }
+      .entity-grid { grid-template-columns: 1fr; }
+      .status-axis-grid { grid-template-columns: 1fr; }
+      .status-guide { grid-template-columns: 1fr; }
+      .question-card { grid-template-columns: 46px 1fr; }
+      .question-card .mini-comment { grid-column: 1 / -1; }
+      .field-row { grid-template-columns: 1fr; }
+      .drawer-head, .drawer-body { padding-left: 20px; padding-right: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="#project" aria-label="返回项目总览">
+        <span class="brand-mark">V</span>
+        <span><span class="brand-title">Vgame 策划知识库</span><span class="brand-sub">project knowledge · v0.4</span></span>
+      </a>
+      <nav class="module-nav" id="moduleNav" aria-label="知识模块"></nav>
+      <div class="top-tools">
+        <input class="search-box" id="globalSearch" type="search" placeholder="搜索系统、规则、数值或关系" aria-label="全局搜索">
+        <button class="tool-button" type="button" data-route="governance">状态 / 证据</button>
+        <button class="tool-button" type="button" data-route="decisions">决策卡</button>
+        <button class="tool-button" type="button" id="exportComments" title="导出全部知识库评论">导出评论</button>
+        <input id="importFile" type="file" accept="application/json" hidden>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="side-rail">
+        <div class="rail-code" id="railCode">00 / PROJECT</div>
+        <div class="rail-title" id="railTitle">项目总览</div>
+        <p class="rail-question" id="railQuestion"></p>
+        <nav class="subnav" id="subnav" aria-label="本模块目录"></nav>
+        <div class="rail-note"><strong>阅读原则</strong><br>先看项目和模块，再进入具体系统正文。正文区分目标设计、正式源表、运行状态和待裁决冲突。</div>
+      </aside>
+
+      <main id="main" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <div class="backdrop" id="backdrop"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="drawerTitle" tabindex="-1">
+    <div class="drawer-head">
+      <div><div class="eyebrow" id="drawerCode"></div><h2 id="drawerTitle"></h2></div>
+      <button class="icon-button" id="closeDrawer" type="button" aria-label="关闭">×</button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="knowledge-model.js"></script>
+  <script src="knowledge-search-index.js"></script>
+  <script>
+    (() => {
+      "use strict";
+      const KB = window.VGAME_KB;
+      const STORAGE_KEY = "vgame-planning-kb-v02-comments";
+      const RISK_WORDS = ["冲突", "待确认", "待核", "未开放", "封存", "临时", "缺口", "口径待统一", "部分落地", "发布待核", "规则待闭环", "台账缺口"];
+      const moduleNav = document.getElementById("moduleNav");
+      const main = document.getElementById("main");
+      const subnav = document.getElementById("subnav");
+      const railCode = document.getElementById("railCode");
+      const railTitle = document.getElementById("railTitle");
+      const railQuestion = document.getElementById("railQuestion");
+      const searchInput = document.getElementById("globalSearch");
+      const drawer = document.getElementById("drawer");
+      const backdrop = document.getElementById("backdrop");
+      const drawerCode = document.getElementById("drawerCode");
+      const drawerTitle = document.getElementById("drawerTitle");
+      const drawerBody = document.getElementById("drawerBody");
+      const toastEl = document.getElementById("toast");
+      let activeModule = "project";
+      let activeEntity = null;
+      let activeSystemGroup = KB.systemGroups[0]?.id || "battle-in";
+      let autoSaveTimer = null;
+      let drawerReturnFocus = null;
+      let routeEpoch = 0;
+      let review = loadReview();
+      window.VGAME_SYSTEM_DETAILS = window.VGAME_SYSTEM_DETAILS || {};
+      window.VGAME_MODULE_DETAILS = window.VGAME_MODULE_DETAILS || {};
+      const detailLoads = {};
+      const moduleLoads = {};
+
+      const h = value => String(value ?? "").replace(/[&<>\"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[char]);
+      const moduleById = id => KB.modules.find(module => module.id === id);
+      const groupById = id => KB.systemGroups.find(group => group.id === id);
+      const detailById = id => window.VGAME_SYSTEM_DETAILS[id] || null;
+      const detailMetaById = id => KB.detailRegistry?.[id] || null;
+      const hasDetail = id => Boolean(detailMetaById(id));
+      const loadDetail = id => {
+        const cached = detailById(id);
+        if (cached) return Promise.resolve(cached);
+        const meta = detailMetaById(id);
+        if (!meta) return Promise.resolve(null);
+        if (detailLoads[id]) return detailLoads[id];
+        detailLoads[id] = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = meta.chunkRef;
+          script.async = true;
+          script.onload = () => {
+            const detail = detailById(id);
+            if (detail) resolve(detail);
+            else reject(new Error(`${meta.chunkRef} 未注册 ${id}`));
+          };
+          script.onerror = () => reject(new Error(`无法加载 ${meta.chunkRef}`));
+          document.head.appendChild(script);
+        }).catch(error => {
+          delete detailLoads[id];
+          throw error;
+        });
+        return detailLoads[id];
+      };
+      const moduleMetaById = id => KB.moduleRegistry?.find(item => item.moduleId === id) || null;
+      const moduleDetailById = id => window.VGAME_MODULE_DETAILS[id] || null;
+      const loadModuleDetail = id => {
+        const cached = moduleDetailById(id);
+        if (cached) return Promise.resolve(cached);
+        const meta = moduleMetaById(id);
+        if (!meta) return Promise.resolve(null);
+        if (moduleLoads[id]) return moduleLoads[id];
+        moduleLoads[id] = new Promise((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = meta.chunkRef;
+          script.async = true;
+          script.onload = () => {
+            const detail = moduleDetailById(id);
+            if (detail) resolve(detail);
+            else reject(new Error(`${meta.chunkRef} 未注册 ${id}`));
+          };
+          script.onerror = () => reject(new Error(`无法加载 ${meta.chunkRef}`));
+          document.head.appendChild(script);
+        }).catch(error => { delete moduleLoads[id]; throw error; });
+        return moduleLoads[id];
+      };
+      const isRiskStatus = status => /CONFLICT|GAP|UNKNOWN|BROKEN|NOT_SYNCED|PARTIAL|待确认|冲突|缺口/i.test(status || "") || RISK_WORDS.some(word => String(status || "").includes(word));
+      const allEntries = () => {
+        const systems = KB.systems.map(item => ({...item, module:"system", path:`系统 / ${groupById(item.group)?.name || ""}`, detail:hasDetail(item.id)}));
+        const rules = KB.combat.rules.map(item => ({...item, module:"combat", path:"战斗 / 战斗规则"}));
+        const characters = KB.combat.character.map(item => ({...item, module:"combat", path:"战斗 / 角色设计"}));
+        const numeric = KB.numeric.map(item => ({...item, module:"numeric", path:"数值"}));
+        return [...systems, ...rules, ...characters, ...numeric];
+      };
+      const detailAtomEntries = () => window.VGAME_KB_SEARCH || [];
+      const entryById = id => allEntries().find(entry => entry.id === id) || detailAtomEntries().find(entry => entry.id === id) || KB.projectPillars.find(item => item.id === id);
+
+      function renderInlineMarkdown(text) {
+        let value = h(text);
+        value = value.replace(/`([^`]+)`/g, "<code>$1</code>");
+        value = value.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+        value = value.replace(/(^|[^*])\*([^*]+)\*/g, "$1<em>$2</em>");
+        value = value.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        return value;
+      }
+
+      function renderSimpleMarkdown(md) {
+        const lines = md.split("\n");
+        let html = "";
+        let inList = false;
+        let inTable = false;
+        let tableRows = [];
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (/^#{1,6}\s/.test(trimmed)) {
+            if (inList) { html += inList === "ol" ? "</ol>" : "</ul>"; inList = false; }
+            if (inTable) { html += "</tbody></table>"; inTable = false; }
+            const level = trimmed.match(/^#+/)[0].length;
+            const text = trimmed.replace(/^#+\s/, "");
+            html += `<h${level}>${renderInlineMarkdown(text)}</h${level}>`;
+          } else if (/^>\s?/.test(trimmed)) {
+            if (inList) { html += inList === "ol" ? "</ol>" : "</ul>"; inList = false; }
+            if (inTable) { html += "</tbody></table>"; inTable = false; }
+            html += `<blockquote>${renderInlineMarkdown(trimmed.replace(/^>\s?/, ""))}</blockquote>`;
+          } else if (/^\d+\.\s/.test(trimmed)) {
+            if (!inList) { html += '<ol data-md-list="ordered">'; inList = "ol"; }
+            html += `<li>${renderInlineMarkdown(trimmed.replace(/^\d+\.\s/, ""))}</li>`;
+          } else if (/^[-*]\s/.test(trimmed)) {
+            if (!inList) { html += "<ul>"; inList = "ul"; }
+            html += `<li>${renderInlineMarkdown(trimmed.replace(/^[-*]\s/, ""))}</li>`;
+          } else if (/^\|/.test(trimmed)) {
+            if (inList) { html += inList === "ol" ? "</ol>" : "</ul>"; inList = false; }
+            if (/^\|[-\s|]+\|$/.test(trimmed)) continue;
+            if (!inTable) { html += "<table class=\"relation-table\"><tbody>"; inTable = true; }
+            const cells = trimmed.split("|").filter((_, i, a) => i > 0 && i < a.length - 1);
+            html += `<tr>${cells.map(c => `<td>${renderInlineMarkdown(c.trim())}</td>`).join("")}</tr>`;
+          } else if (trimmed === "") {
+            if (inList) { html += inList === "ol" ? "</ol>" : "</ul>"; inList = false; }
+            if (inTable) { html += "</tbody></table>"; inTable = false; }
+          } else {
+            if (inList) { html += inList === "ol" ? "</ol>" : "</ul>"; inList = false; }
+            if (inTable) { html += "</tbody></table>"; inTable = false; }
+            html += `<p>${renderInlineMarkdown(trimmed)}</p>`;
+          }
+        }
+        if (inList) html += inList === "ol" ? "</ol>" : "</ul>";
+        if (inTable) html += "</tbody></table>";
+        return html;
+      }
+
+      function loadReview() {
+        try {
+          const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+          return { schemaVersion: 1, frameworkVersion: KB.meta.version, comments: {}, ...parsed, comments: parsed.comments || {} };
+        } catch {
+          return { schemaVersion: 1, frameworkVersion: KB.meta.version, comments: {} };
+        }
+      }
+
+      function persistReview() {
+        review.savedAt = new Date().toISOString();
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(review));
+      }
+
+      function toast(message) {
+        toastEl.textContent = message;
+        toastEl.classList.add("show");
+        clearTimeout(toast._timer);
+        toast._timer = setTimeout(() => toastEl.classList.remove("show"), 1900);
+      }
+
+      function routeHref(module, id, sectionId) {
+        if (!id) return `#${module}`;
+        let href = `#${module}/${encodeURIComponent(id)}`;
+        if (sectionId) href += `/${encodeURIComponent(sectionId)}`;
+        return href;
+      }
+
+      function navigate(module, id, sectionId) {
+        const nextHash = routeHref(module, id, sectionId);
+        if (location.hash === nextHash) {
+          // hash 未变化时浏览器不会触发 hashchange；搜索结果重复点击仍必须重新渲染、定位和高亮。
+          closeDrawer();
+          void renderRoute();
+          return;
+        }
+        location.hash = nextHash.slice(1);
+      }
+
+      function currentRoute() {
+        const raw = (location.hash || "#project").slice(1);
+        const segs = raw.split("/");
+        const module = segs[0] || "project";
+        const moduleId = module || "project";
+        // 兼容旧路由 #M01 / #M02 → 重定向到 #module/M01 / #module/M02
+        if (moduleId === "M01" || moduleId === "M02") {
+          return { module: "module", id: moduleId, redirect: true };
+        }
+        // 支持 #module/M01/M01-S3 格式（module/section 深链）
+        if (moduleId === "module" && segs.length >= 2) {
+          const mid = decodeURIComponent(segs[1] || "");
+          const sid = segs.length >= 3 ? decodeURIComponent(segs.slice(2).join("/")) : null;
+          return { module: "module", id: mid, sectionId: sid };
+        }
+        return { module: moduleId, id: segs[1] ? decodeURIComponent(segs[1]) : null };
+      }
+
+      function renderModuleNav() {
+        moduleNav.innerHTML = KB.modules.map(module => `
+          <button class="module-tab${module.id === activeModule ? " active" : ""}" type="button" data-route="${h(module.id)}">
+            <span class="tab-code">${h(module.code)} / ${h(module.id.toUpperCase())}</span>
+            <span class="tab-name">${h(module.name)}</span>
+          </button>`).join("");
+      }
+
+      function setRail(module, items) {
+        const data = moduleById(module) || { code:"90", name:"状态与证据", question:"某条知识是否现行，证据在哪里？" };
+        railCode.textContent = `${data.code} / ${module.toUpperCase()}`;
+        railTitle.textContent = data.name;
+        railQuestion.textContent = data.question;
+        subnav.innerHTML = items.map(item => `<button type="button" data-scroll="${h(item.id)}">${h(item.label)}</button>`).join("");
+      }
+
+      function hero(module, title, lead, source) {
+        const moduleData = moduleById(module);
+        return `<header class="page-hero">
+          <div class="eyebrow">${h(moduleData ? `${moduleData.code} / ${moduleData.id}` : "90 / GOVERNANCE")}</div>
+          <h1>${h(title)}</h1>
+          <p class="page-lead">${h(lead)}</p>
+          <div class="hero-actions">
+            <button class="comment-button" type="button" data-comment="MOD-${h(module.toUpperCase())}" data-name="${h(title)}">评论本模块</button>
+            ${source ? `<a class="source-button" href="${h(source)}">打开源 Markdown</a>` : ""}
+          </div>
+        </header>`;
+      }
+
+      function footer() {
+        const count = Object.values(review.comments).filter(item => item.comment || item.suggestion || (item.decision && item.decision !== "unreviewed")).length;
+        return `<footer class="footer">系统详情 JSON 是结构化维护源，Markdown 是生成的人读正文；目录与搜索保持轻量，进入系统时按需加载完整规则。当前已记录 ${count} 个评论对象。结构状态：v0.4，等待项目负责人确认。</footer>`;
+      }
+
+      function renderProject() {
+        activeModule = "project";
+        setRail("project", [{id:"project-thesis",label:"项目定位"},{id:"project-loop",label:"核心循环"},{id:"project-modules",label:"三大模块"},{id:"project-call",label:"AI 调用"},{id:"project-pillars",label:"体验支柱"}]);
+        main.innerHTML = `<div class="content-shell">
+          ${hero("project", "先看整个项目，再进入具体模块", "Vgame 是 5 人小队养成驱动的跑酷战斗射击游戏。知识库按系统、战斗、数值三个专业模块组织，先给结构，再下钻到具体系统与证据。", "00-项目总览.md")}
+
+          <section class="section" id="project-thesis">
+            <div class="section-head"><div><div class="eyebrow">PROJECT THESIS</div><h2>项目定位</h2><p class="section-desc">自动普攻与常规技能构成持续战斗底盘，玩家围绕跑酷遭遇、敌人环境和能量窗口决定必杀；长期成长最终必须在不同玩法中被验证。</p></div></div>
+          </section>
+
+          <section class="section" id="project-loop">
+            <div class="section-head"><div><div class="eyebrow">PLAYER LOOP</div><h2>项目核心循环</h2></div></div>
+            <div class="loop-strip">
+              ${[["开放","主线与等级"],["选择","玩法与编队"],["战斗","跑酷与遭遇"],["结算","胜负与评价"],["获得","资源与角色"],["成长","属性与构筑"],["验证","更高难目标"]].map(item=>`<div class="loop-step"><b>${item[0]}</b><span>${item[1]}</span></div>`).join("")}
+            </div>
+          </section>
+
+          <section class="section" id="project-modules">
+            <div class="section-head"><div><div class="eyebrow">KNOWLEDGE ROUTES</div><h2>三条专业知识轨道</h2><p class="section-desc">三者是不同阅读视图，不是互相竞争的系统分类。</p></div></div>
+            <div class="knowledge-rail">
+              ${KB.modules.filter(item=>["system","combat","numeric"].includes(item.id)).map(item=>`<button class="knowledge-lane" type="button" data-route="${item.id}"><span><span class="lane-code">${item.code} / ${item.id.toUpperCase()}</span><span class="lane-name">${item.name}</span></span><span class="lane-question">${h(item.question)}</span><span class="lane-arrow">→</span></button>`).join("")}
+            </div>
+          </section>
+
+          <section class="section" id="project-call">
+            <div class="section-head"><div><div class="eyebrow">LAYERED AI RETRIEVAL</div><h2>直接自然语言提问，自动按需调用</h2><p class="section-desc">知识保留完整，但单次只加载项目概览、相关目录、最多 3 个系统正文与必要证据。工作副本观察不会被说成 Production/LIVE。</p></div><a class="source-button" href="../../../skills/vgame-knowledge-router/references/prompt-patterns.md">查看提示词样例</a></div>
+            <div class="scope-grid">
+              <article class="scope-card"><h3>日常直接问</h3><ul><li>项目有哪些养成系统？</li><li>主线扫荡规则是什么，哪里还没确认？</li><li>改竞技场奖励会影响哪些上下游？</li></ul></article>
+              <article class="scope-card"><h3>需要精确控制时</h3><p>使用 Vgame 项目知识库回答：&lt;问题&gt;。深度：自动；只加载必要系统；区分原文明确、工作副本观察、跨源归纳、候选设计与待确认。</p></article>
+            </div>
+          </section>
+
+          <section class="section" id="project-pillars">
+            <div class="section-head"><div><div class="eyebrow">EXPERIENCE PILLARS</div><h2>玩家体验支柱</h2></div></div>
+            <div class="pillar-list">${KB.projectPillars.map(item=>`<article class="pillar"><span class="pillar-code">${h(item.id)}</span><h3>${h(item.name)}</h3><p>${h(item.summary)}</p></article>`).join("")}</div>
+          </section>
+          ${footer()}
+        </div>`;
+      }
+
+      function systemCard(item) {
+        const risk = RISK_WORDS.some(word => item.status.includes(word));
+        const detail = hasDetail(item.id);
+        return `<button class="entity-card" type="button" data-entity="${h(item.id)}" data-module="system">
+          <span class="entity-code">${h(item.id)}</span><h3>${h(item.name)}</h3><p>${h(item.summary)}</p>
+          <span class="entity-meta"><span class="entity-meta-left"><span class="status-tag" data-risk="${risk}">${h(item.status)}</span><span class="detail-level" data-level="${detail ? "full" : "summary"}">${detail ? "完整正文" : "摘要索引"}</span></span><span class="relation-count">${item.relations.length} RELATIONS</span></span>
+        </button>`;
+      }
+
+      function renderSystem(groupId = activeSystemGroup) {
+        const selectedGroup = groupById(groupId) ? groupId : KB.systemGroups[0].id;
+        const detailCount = Object.keys(KB.detailRegistry || {}).length;
+        activeSystemGroup = selectedGroup;
+        activeModule = "system";
+        setRail("system", [{id:"system-tree",label:"系统分类"},{id:"system-catalog",label:"具体系统"},{id:"system-boundary",label:"职责边界"}]);
+        main.innerHTML = `<div class="content-shell">
+          ${hero("system", "系统先分战斗内与战斗外", "系统模块解释玩家为什么做、从哪里进入、过程如何组织、结果流向哪里。战斗外再分玩法、养成和周边系统；具体战斗规则与数值参数通过关系进入对应专业模块。", "10-系统框架.md")}
+          <section class="section" id="system-tree">
+            <div class="section-head"><div><div class="eyebrow">SYSTEM TAXONOMY</div><h2>玩家系统分类</h2></div></div>
+            <div class="tree-board"><div class="tree-root">玩家系统</div><div class="tree-branches">
+              <div class="tree-branch"><h3>战斗内系统</h3><p>战斗实例加载至胜负与结算触发。</p></div>
+              <div class="tree-branch outer"><h3>战斗外系统</h3><p>组织挑战、成长、获取、留存、社交与运营。</p><div class="tree-leaves"><div class="tree-leaf">玩法</div><div class="tree-leaf">养成</div><div class="tree-leaf">周边系统</div></div></div>
+            </div></div>
+          </section>
+          <section class="section" id="system-catalog">
+            <div class="section-head"><div><div class="eyebrow">SYSTEM CATALOG</div><h2>具体系统</h2><p class="section-desc">“完整正文”可进入规则、流程、条件、奖励、配置与证据；“摘要索引”表示系统已归类，但正文仍待归并。</p></div><span class="count-label">完整正文 ${detailCount}/${KB.systems.length} · 其余 ${KB.systems.length-detailCount} 仅摘要</span></div>
+            <div class="group-filter">${KB.systemGroups.map(group=>`<button class="filter-chip${group.id===selectedGroup?" active":""}" type="button" data-group="${group.id}">${h(group.name)}</button>`).join("")}<button class="filter-chip" type="button" data-group="all">全部</button></div>
+            <div id="systemGroups">${renderSystemGroup(selectedGroup)}</div>
+          </section>
+          <section class="section" id="system-boundary">
+            <div class="section-head"><div><div class="eyebrow">OWNERSHIP</div><h2>不重复维护同一知识</h2></div></div>
+            <table class="relation-table"><thead><tr><th>系统模块</th><th>战斗模块</th><th>数值模块</th></tr></thead><tbody><tr><td>目的、入口、流程、状态、输入输出、上下游</td><td>实例规则、角色、敌人、技能、关卡和胜负</td><td>预算、公式、曲线、概率、节奏、难度和验算</td></tr></tbody></table>
+          </section>
+          ${footer()}
+        </div>`;
+      }
+
+      function renderSystemGroup(groupId) {
+        const groups = groupId === "all" ? KB.systemGroups : KB.systemGroups.filter(group=>group.id===groupId);
+        return groups.map(group=>`<section data-system-group="${group.id}"><div class="section-head"><div><h3>${h(group.name)}</h3><p class="section-desc">${h(group.summary)}</p></div><a class="source-button" href="${h(group.source)}">源文档</a></div><div class="entity-grid">${KB.systems.filter(item=>item.group===group.id).map(systemCard).join("")}</div></section>`).join("");
+      }
+
+      function detailCards(items, emptyText = "暂无已归并条目。") {
+        if (!items.length) return `<div class="empty-state">${h(emptyText)}</div>`;
+        return `<div class="detail-card-grid">${items.map(item=>`<article class="detail-card" id="${h(item.id)}" data-risk="${isRiskStatus(item.status)}">
+          <small>${h(item.id)} · ${h(item.status)}</small>
+          <h3>${h(item.name)}</h3>
+          <p>${h(item.rule || item.description || "")}</p>
+          <div class="rule-foot"><span class="rule-links">EVIDENCE ${(item.evidenceRefs || []).length} · ${(item.evidenceRefs || []).map(h).join(" · ") || "待补"}</span><button class="mini-comment" type="button" data-comment="${h(item.id)}" data-name="${h(item.name)}">评论此项</button></div>
+        </article>`).join("")}</div>`;
+      }
+
+      function renderSystemDetail(entry, detail) {
+        activeModule = "system";
+        activeSystemGroup = entry.group;
+        const openQuestions = detail.openQuestions.filter(item => (item.lifecycle || "OPEN") !== "CLOSED");
+        const closedQuestions = detail.openQuestions.filter(item => item.lifecycle === "CLOSED");
+        const navItems = [
+          ["detail-overview", "总览"], ["detail-flow", "核心流程"], ["detail-rules", `系统规则 ${detail.rules.length}`],
+          ["detail-conditions", `条件 ${detail.conditions.length}`], ["detail-rewards", `奖励 ${detail.rewards.length}`],
+          ["detail-exceptions", `异常 ${detail.exceptions.length}`], ["detail-ui", `UI ${detail.ui.length}`],
+          ["detail-configs", `配置 ${detail.configs.length}`], ["detail-relations", `关系 ${detail.relationships.length}`],
+          ["detail-evidence", `证据 ${detail.evidence.length}`], ["detail-questions", `开放 ${openQuestions.length} / 关闭 ${closedQuestions.length}`]
+        ].map(([id,label])=>({id,label}));
+        setRail("system", navItems);
+        railTitle.textContent = detail.name;
+        railQuestion.textContent = "完整系统正文：规则、流程、状态、配置、证据与待裁决问题。";
+        const group = groupById(entry.group);
+        const flowSteps = detail.flows.flatMap(flow=>flow.steps || []);
+        const markdownPath = `systems/${detail.systemId}-${detail.name.replace(/[\\/:*?"<>|]/g, "-")}.md`;
+
+        main.innerHTML = `<div class="content-shell">
+          <header class="page-hero">
+            <div class="detail-breadcrumb"><button type="button" data-route="system">系统目录</button><span>/</span><span>${h(group?.name || "系统")}</span><span>/</span><span>${h(detail.systemId)}</span></div>
+            <div class="eyebrow">FULL SYSTEM DESIGN · REV ${h(detail.revision)}</div>
+            <h1>${h(detail.name)}系统正文</h1>
+            <p class="page-lead">${h(detail.overview.purpose)}</p>
+            <div class="detail-kicker"><span class="detail-level" data-level="full">完整正文</span><span class="status-tag" data-risk="false">${detail.rules.length} 条系统规则</span><span class="status-tag" data-risk="${openQuestions.some(item=>item.priority==="P0")}">${openQuestions.filter(item=>item.priority==="P0").length} 个 P0 待裁决</span></div>
+            <div class="hero-actions"><button class="comment-button" type="button" data-comment="${h(entry.id)}" data-name="${h(entry.name)}">评论整个系统</button><a class="source-button" href="${h(markdownPath)}">打开系统正文 Markdown</a><button class="source-button" type="button" data-route="system">返回系统目录</button></div>
+          </header>
+
+          <section class="section" id="detail-overview">
+            <div class="section-head"><div><div class="eyebrow">STATUS LAYERS</div><h2>先分清目标、工作副本与运行状态</h2><p class="section-desc">同一系统允许目标设计与本机工作副本不一致；只有发布证据才能说明 LIVE，冲突直接展示。</p></div></div>
+            <div class="status-axis-grid">${detail.statusAxes.map(item=>`<article class="status-axis"><span class="axis-name">${h(item.axis)} · ${h(item.status)}</span><strong>${h(item.value)}</strong><p>${h(item.note)}</p></article>`).join("")}</div>
+            ${detail.sourceSnapshot ? `<div class="source-snapshot"><b>源表快照：</b>${h(detail.sourceSnapshot.environment)} · 核对 ${h(detail.sourceSnapshot.checkedAt)} · SVN revision ${h(detail.sourceSnapshot.svnRevision)}。${h(detail.sourceSnapshot.liveMeaning)}</div>` : ""}
+            ${detail.statusGuide?.length ? `<div class="status-guide">${detail.statusGuide.map(item=>`<div><b>${h(item.prefix)}</b><span>${h(item.meaning)}</span></div>`).join("")}</div>` : ""}
+            <div class="scope-grid">
+              ${[["包含范围",detail.overview.inScope],["不包含范围",detail.overview.outOfScope],["输入",detail.overview.inputs],["输出",detail.overview.outputs]].map(([title,items])=>`<article class="scope-card"><h3>${h(title)}</h3><ul>${items.map(item=>`<li>${h(item)}</li>`).join("")}</ul></article>`).join("")}
+            </div>
+          </section>
+
+          <section class="section" id="detail-flow">
+            <div class="section-head"><div><div class="eyebrow">CORE FLOW</div><h2>${h(detail.name)}核心流程</h2><p class="section-desc">流程只维护本系统的职责与状态变化；跨系统步骤通过稳定关系 ID 跳转，不复制目标系统全文。</p></div><span class="count-label">${flowSteps.length} STEPS</span></div>
+            <div class="detail-flow">${flowSteps.map(step=>`<article class="detail-flow-step" id="${h(step.id)}"><small>${h(step.id)}</small><b>${h(step.name)}</b><span>${h(step.description)}</span></article>`).join("")}</div>
+          </section>
+
+          <section class="section" id="detail-rules">
+            <div class="section-head"><div><div class="eyebrow">SYSTEM RULES</div><h2>系统规则</h2><p class="section-desc">每条规则同时给出目标规则、当前工作副本事实和验收口径；评论直接绑定稳定规则 ID。</p></div><span class="count-label">${detail.rules.length} RULES</span></div>
+            <div class="rule-list">${detail.rules.map(rule=>`<article class="rule-card" id="${h(rule.id)}" data-risk="${isRiskStatus(rule.status)}"><div class="rule-head"><div><span class="rule-code">${h(rule.id)}</span><h3>${h(rule.name)}</h3></div><span class="rule-status">${h(rule.status)}</span></div><div class="rule-columns"><div class="rule-fact"><b>目标规则</b><p>${h(rule.targetRule)}</p></div><div class="rule-fact"><b>当前工作副本事实</b><p>${h(rule.sourceFact)}</p></div><div class="rule-fact"><b>验收口径</b><p>${h(rule.acceptance)}</p></div></div><div class="rule-foot"><span class="rule-links">关联 ${(rule.relatedIds || []).map(h).join(" · ") || "无"}<br>证据 ${(rule.evidenceRefs || []).map(h).join(" · ") || "待补"}</span><button class="mini-comment" type="button" data-comment="${h(rule.id)}" data-name="${h(rule.name)}">评论此规则</button></div></article>`).join("")}</div>
+          </section>
+
+          <section class="section" id="detail-conditions"><div class="section-head"><div><div class="eyebrow">CONDITIONS</div><h2>入口与条件</h2></div></div>${detailCards(detail.conditions)}</section>
+          <section class="section" id="detail-rewards"><div class="section-head"><div><div class="eyebrow">REWARDS</div><h2>奖励与结算</h2><p class="section-desc">这里只定义奖励类型、边界与权威链；逐关数量仍回到数值框架 v2 与真实 Drop。</p></div></div>${detailCards(detail.rewards)}</section>
+          <section class="section" id="detail-exceptions"><div class="section-head"><div><div class="eyebrow">EXCEPTIONS</div><h2>异常与边界</h2></div></div>${detailCards(detail.exceptions)}</section>
+          <section class="section" id="detail-ui"><div class="section-head"><div><div class="eyebrow">UI CONTRACT</div><h2>UI 与信息表达</h2></div></div>${detailCards(detail.ui)}</section>
+
+          <section class="section" id="detail-configs">
+            <div class="section-head"><div><div class="eyebrow">CONFIG CONTRACT</div><h2>配置契约</h2><p class="section-desc">路径指向本机 SVN 工作副本；“存在配置”不自动等于设计正确、Production 一致或已正式发布。</p></div><span class="count-label">${detail.configs.length} SOURCES</span></div>
+            <div class="table-scroll"><table class="relation-table"><thead><tr><th>ID / 配置</th><th>职责</th><th>状态</th><th>路径</th><th>评论</th></tr></thead><tbody>${detail.configs.map(item=>`<tr id="${h(item.id)}"><td><span class="edge-code">${h(item.id)}</span><br><b>${h(item.name)}</b></td><td>${h(item.role)}</td><td><span class="status-tag" data-risk="${isRiskStatus(item.status)}">${h(item.status)}</span></td><td><span class="evidence-path">${h(item.path)}</span></td><td><button class="mini-comment" type="button" data-comment="${h(item.id)}" data-name="${h(item.name)}">评论</button></td></tr>`).join("")}</tbody></table></div>
+          </section>
+
+          <section class="section" id="detail-relations">
+            <div class="section-head"><div><div class="eyebrow">RELATIONSHIPS</div><h2>系统关系</h2><p class="section-desc">关系带方向、类型、证据与来源/推导边界；点击目标可继续进入对应系统、战斗或数值入口。</p></div></div>
+            <div class="table-scroll"><table class="relation-table"><thead><tr><th>ID / 类型</th><th>方向</th><th>目标</th><th>说明</th><th>状态</th><th>证据</th><th>来源/推导边界</th></tr></thead><tbody>${detail.relationships.map(item=>`<tr id="${h(item.id)}"><td><span class="edge-code">${h(item.id)}</span><br>${h(item.type)}</td><td>${item.direction==="incoming" ? `目标 → ${h(detail.name)}` : `${h(detail.name)} → 目标`}</td><td><button class="relation-target" type="button" data-entity="${h(item.targetId)}" data-module="${h(entryById(item.targetId)?.module || "system")}">${h(item.targetId)}<br>${h(item.targetName)}</button></td><td>${h(item.description)}</td><td><span class="status-tag" data-risk="${isRiskStatus(item.status)}">${h(item.status)}</span></td><td>${(item.evidenceRefs || []).map(h).join(" · ") || "—"}</td><td>${h(item.provenance || "—")}</td></tr>`).join("")}</tbody></table></div>
+          </section>
+
+          <section class="section" id="detail-evidence">
+            <div class="section-head"><div><div class="eyebrow">EVIDENCE</div><h2>策划案与证据</h2><p class="section-desc">目标设计、反推草稿、数值沉淀、交付镜像和本机工作副本源表分开标识；工作副本不自动代表 Production/LIVE。</p></div><span class="count-label">${detail.evidence.length} EVIDENCE</span></div>
+            <div class="table-scroll"><table class="relation-table"><thead><tr><th>ID / 类型</th><th>证据</th><th>位置</th><th>状态</th><th>评论</th></tr></thead><tbody>${detail.evidence.map(item=>`<tr id="${h(item.id)}"><td><span class="edge-code">${h(item.id)}</span><br>${h(item.kind)}</td><td><a class="evidence-link" href="${h(item.href || "#")}">${h(item.label)} →</a><span class="evidence-path">${h(item.path)}</span></td><td>${h(item.location || "")}</td><td><span class="status-tag" data-risk="${isRiskStatus(item.status)}">${h(item.status)}</span></td><td><button class="mini-comment" type="button" data-comment="${h(item.id)}" data-name="${h(item.label)}">评论</button></td></tr>`).join("")}</tbody></table></div>
+          </section>
+
+          ${(detail.humanDecisions || []).length ? `<section class="section" id="detail-human-decisions">
+            <div class="section-head"><div><div class="eyebrow">HUMAN DECISIONS</div><h2>正式人工裁决</h2><p class="section-desc">目标批准、人工确认与实施状态分层展示；IMPLEMENTATION_PENDING 不代表工作副本已实现或 LIVE。</p></div><span class="count-label">${detail.humanDecisions.length} CONFIRMED</span></div>
+            <div class="table-scroll"><table class="relation-table"><thead><tr><th>卡片</th><th>正式选择</th><th>已关闭 QID</th><th>目标/裁决状态</th><th>实施状态</th><th>用户评论</th></tr></thead><tbody>${detail.humanDecisions.map(item=>`<tr><td><span class="edge-code">${h(item.cardId)}</span></td><td>${h(item.selectedOptionId)} · ${h(item.selectedOptionName)}</td><td>${h(item.closeableQuestionId)}</td><td>${h(item.approvalStatus)}<br>${h(item.decisionStatus)}</td><td><span class="status-tag" data-risk="true">${h(item.implementationStatus)}</span><br>${h(item.implementationNote || "")}</td><td>${h(item.userComment || "（空评论）")}</td></tr>`).join("")}</tbody></table></div>
+          </section>` : ""}
+
+          <section class="section" id="detail-questions">
+            <div class="section-head"><div><div class="eyebrow">QUESTION LIFECYCLE</div><h2>问题与闭环记录</h2><p class="section-desc">开放问题按 HUMAN_DECISION / RUNTIME_OWNER / DEFERRED_DETAIL 分流；AI_EVIDENCE 只能以可解析答案和关闭证据进入 CLOSED。</p></div><span class="count-label">${openQuestions.length} OPEN · ${closedQuestions.length} CLOSED</span></div>
+            <div class="question-list">${[...openQuestions, ...closedQuestions].map(item=>`<article class="question-card" id="${h(item.id)}" data-lifecycle="${h(item.lifecycle || "OPEN")}"><span class="priority-mark">${h(item.priority)}</span><div><h3>${h(item.question)}</h3><p>${h(item.impact)}</p><span class="status-tag" data-risk="${item.lifecycle !== "CLOSED"}">${h(item.lifecycle || "OPEN")} · ${h(item.resolutionOwner || "待分流")}</span>${item.decisionStatus ? `<div class="relation-chips" style="margin-top:8px"><span class="relation-chip">${h(item.approvalStatus)}</span><span class="relation-chip">${h(item.decisionStatus)}</span><span class="relation-chip">${h(item.implementationStatus)}</span></div>` : ""}${item.answer ? `<p style="margin-top:8px"><strong>答案：</strong>${h(item.answer)}</p>` : ""}<span class="rule-links">${(item.closureEvidenceRefs || item.evidenceRefs || []).map(h).join(" · ")}</span></div><button class="mini-comment" type="button" data-comment="${h(item.id)}" data-name="${h(item.question)}">评论 / 追踪</button></article>`).join("")}</div>
+          </section>
+          ${footer()}
+        </div>`;
+      }
+
+      function renderCombat() {
+        activeModule = "combat";
+        setRail("combat", [{id:"combat-definition",label:"战斗定义"},{id:"combat-framework",label:"规则与角色"},{id:"combat-interface",label:"模块接口"}]);
+        main.innerHTML = `<div class="content-shell">
+          ${hero("combat", "战斗只抓两件事：规则与角色", "战斗规则说明实例如何运行；角色设计说明五人队中的定位、技能循环、协同、环境适配与强度验证。怪物、技能、关卡和玩法变体都从这两个入口继续下钻。", "20-战斗框架.md")}
+          <div style="margin:0 0 18px;padding:14px 18px;background:var(--surface-2);border-radius:8px;border-left:4px solid var(--orange)"><b>专业模块正文：</b><button class="source-button" type="button" data-route="module/M01" style="margin-left:10px">进入战斗专业正文 →</button><span style="margin-left:10px;color:var(--muted);font-size:13px">M01 包含 CB-R01..R08、角色设计、玩法局内模式、胜负结算、验证模型等 8 节专业视图</span></div>
+          <section class="section" id="combat-definition"><div class="section-head"><div><div class="eyebrow">COMBAT IDENTITY</div><h2>自动战斗底盘，玩家掌握关键时机</h2><p class="section-desc">角色自动普攻与释放常规技能，玩家在移动、敌人阶段、目标覆盖和能量窗口中决定必杀。角色价值必须结合实际有效命中时间和环境适配来判断。</p></div></div></section>
+          <section class="section" id="combat-framework">
+            <div class="section-head"><div><div class="eyebrow">TWO CORE ENTRIES</div><h2>战斗知识骨架</h2></div></div>
+            <div class="split-frame">
+              <article class="frame-panel"><div class="frame-title"><div class="eyebrow">RULES</div><h3>战斗规则</h3><p>实例、单位、属性、行动、敌人、关卡和结果。</p></div><div class="frame-list">${KB.combat.rules.map(item=>`<button class="frame-item" type="button" data-entity="${item.id}" data-module="combat"><b>${h(item.name)}</b><span>${h(item.summary)}</span></button>`).join("")}</div></article>
+              <article class="frame-panel character"><div class="frame-title"><div class="eyebrow">CHARACTER</div><h3>角色设计</h3><p>定位、循环、技能组、协同、环境、成长与验证。</p></div><div class="frame-list">${KB.combat.character.map(item=>`<button class="frame-item" type="button" data-entity="${item.id}" data-module="combat"><b>${h(item.name)}</b><span>${h(item.summary)}</span></button>`).join("")}</div></article>
+            </div>
+          </section>
+          <section class="section" id="combat-interface"><div class="section-head"><div><div class="eyebrow">INTERFACES</div><h2>和系统、数值的边界</h2></div></div><table class="relation-table"><thead><tr><th>战斗拥有</th><th>系统连接</th><th>数值连接</th></tr></thead><tbody><tr><td>规则如何运行、角色如何形成差异</td><td>玩法入口、编队、养成、奖励、任务和长期目标</td><td>属性、倍率、DPS/EHP/TTK、难度和实机校准</td></tr></tbody></table></section>
+          ${footer()}
+        </div>`;
+      }
+
+      function renderNumeric() {
+        activeModule = "numeric";
+        setRail("numeric", [{id:"numeric-tree",label:"数值结构"},{id:"numeric-pipeline",label:"权威链"},{id:"numeric-domains",label:"具体数值域"},{id:"numeric-boundary",label:"职责边界"}]);
+        main.innerHTML = `<div class="content-shell">
+          ${hero("numeric", "数值对齐框架 v2，不再作为杂项", "共享底座之下保持养成、战斗、经济、节奏四条主链；源表和沉淀 MD 拥有事实与参数，数值文档、验算和配置镜像属于派生交付。", "30-数值框架.md")}
+          <div style="margin:0 0 18px;padding:14px 18px;background:var(--surface-2);border-radius:8px;border-left:4px solid var(--orange)"><b>专业模块正文：</b><button class="source-button" type="button" data-route="module/M02" style="margin-left:10px">进入数值框架v2专业正文 →</button><span style="margin-left:10px;color:var(--muted);font-size:13px">M02 包含共享底座、系统映射边界、养成/战斗/经济/节奏四域与配置交付等 9 节专业视图</span></div>
+          <section class="section" id="numeric-tree"><div class="section-head"><div><div class="eyebrow">NUMERIC TAXONOMY</div><h2>四条主链，一个共享底座</h2><p class="section-desc">奖励、掉落和概率归属具体玩法或系统，经济只做后置总账；验算与配置是交付链，不是新的业务数值域。</p></div></div></section>
+          <section class="section" id="numeric-pipeline"><div class="section-head"><div><div class="eyebrow">AUTHORITY PIPELINE</div><h2>从事实到正式配置</h2></div></div><div class="pipeline">${[["01 源表","全局事实"],["03 沉淀 MD","参数/公式/裁决"],["04 数值文档","派生交付"],["05 验算核算","动态门禁"],["06 配置镜像","等待批次批准"],["Datas / Luban","正式落地"]].map(item=>`<div class="pipe-node"><b>${item[0]}</b><span>${item[1]}</span></div>`).join("")}</div></section>
+          <section class="section" id="numeric-domains"><div class="section-head"><div><div class="eyebrow">NUMERIC DOMAINS</div><h2>具体数值模块</h2></div><span class="count-label">${KB.numeric.length} ENTRIES</span></div><div class="numeric-grid">${KB.numeric.map(item=>`<button class="numeric-domain" type="button" data-entity="${item.id}" data-module="numeric"><span class="numeric-id">${item.id}</span><span><h3>${h(item.name)}</h3><p>${h(item.summary)}</p></span></button>`).join("")}</div></section>
+          <section class="section" id="numeric-boundary"><div class="section-head"><div><div class="eyebrow">BOUNDARY</div><h2>模型服务体验，不替代规则</h2></div></div><table class="relation-table"><thead><tr><th>系统输入</th><th>战斗输入</th><th>数值返回</th></tr></thead><tbody><tr><td>触发、周期、成长、消耗和奖励归属</td><td>属性语义、机制、目标体验和胜负规则</td><td>预算、成本、概率、开放节奏、强度模型和验收区间</td></tr></tbody></table></section>
+          ${footer()}
+        </div>`;
+      }
+
+      function renderRelations() {
+        activeModule = "relations";
+        setRail("relations", [{id:"relation-thesis",label:"模块协作"},{id:"relation-types",label:"关系类型"},{id:"relation-sample",label:"调用样板"}]);
+        main.innerHTML = `<div class="content-shell">
+          ${hero("relations", "通过关系调用知识，不再靠目录拼图", "系统定义为什么与做什么，战斗定义局内如何运行，数值定义多少、多久和多难。具体对象只保留一个主记录，其他模块用有类型的关系连接。", "40-系统关系.md")}
+          <section class="section" id="relation-thesis"><div class="section-head"><div><div class="eyebrow">PROJECT INTERFACE</div><h2>系统 → 战斗 → 数值 → 再校准系统</h2></div></div><div class="loop-strip">${[["系统","玩法/成长目标"],["战斗","实例与角色规则"],["数值","预算/模型/曲线"],["配置","真实参数落地"],["实机","时长/死亡/流水"],["校准","回写规则与数值"],["版本","再次验证"]].map(item=>`<div class="loop-step"><b>${item[0]}</b><span>${item[1]}</span></div>`).join("")}</div></section>
+          <section class="section" id="relation-types"><div class="section-head"><div><div class="eyebrow">TYPED EDGES</div><h2>稳定关系类型</h2></div></div><table class="relation-table"><thead><tr><th>关系 ID</th><th>名称</th><th>用途</th></tr></thead><tbody>${KB.relationTypes.map(row=>`<tr><td class="edge-code">${h(row[0])}</td><td><b>${h(row[1])}</b></td><td>${h(row[2])}</td></tr>`).join("")}</tbody></table></section>
+          <section class="section" id="relation-sample"><div class="section-head"><div><div class="eyebrow">EXAMPLE · PVPVE</div><h2>竞技场的一条完整调用链</h2></div></div><div class="sample-chain">${[["系统","入口、门票、段位和赛季"],["战斗","同图竞速、送敌和基地胜负"],["养成","炮台/基地与队伍构筑"],["数值","双方属性、怪伤与奖励"],["周边","任务、排行、商店和 LiveOps"]].map(item=>`<div class="sample-node"><small>${item[0]}</small><b>${item[1].split("、")[0]}</b><span>${item[1]}</span></div>`).join("")}</div></section>
+          ${footer()}
+        </div>`;
+      }
+
+      function renderModuleDetail(moduleId, sectionId) {
+        activeModule = "module";
+        const meta = moduleMetaById(moduleId);
+        if (!meta) { renderProject(); return; }
+        setRail("module", (meta.sections || []).map(s => ({ id: s.id, label: s.name })));
+        railCode.textContent = `${meta.parentModule === "combat" ? "20" : "30"} / MODULE`;
+        railTitle.textContent = meta.name;
+        railQuestion.textContent = "专业模块正文：跨系统的专业视图与映射。";
+        main.innerHTML = `<div class="content-shell">
+          <header class="page-hero">
+            <div class="detail-breadcrumb"><button type="button" data-route="${h(meta.parentModule)}">${h(meta.parentModule === "combat" ? "战斗" : "数值")}</button><span>/</span><span>${h(moduleId)}</span></div>
+            <div class="eyebrow">SPECIALIST MODULE · REV ${h(meta.revision)}</div>
+            <h1>${h(meta.name)}</h1>
+            <p class="page-lead">${h(meta.overview?.purpose || "")}</p>
+            <div class="detail-kicker"><span class="detail-level" data-level="full">完整正文</span><span class="status-tag" data-risk="false">${(meta.sections || []).length} 章节</span></div>
+            <div class="hero-actions"><button class="comment-button" type="button" data-comment="MOD-${h(moduleId)}" data-name="${h(meta.name)}">评论本模块</button><a class="source-button" href="${h(meta.sourceDoc)}">打开源 Markdown</a><button class="source-button" type="button" data-route="${h(meta.parentModule)}">返回${h(meta.parentModule === "combat" ? "战斗" : "数值")}</button></div>
+          </header>
+          <section class="section" id="module-loading"><div class="section-head"><div><div class="eyebrow">LOADING</div><h2>正在按需加载${h(meta.name)}</h2></div></div></section>
+          ${footer()}
+        </div>`;
+        renderModuleNav();
+        loadModuleDetail(moduleId).then(detail => {
+          if (currentRoute().module !== "module" || currentRoute().id !== moduleId) return;
+          renderModuleDetailContent(moduleId, detail, sectionId);
+        }).catch(error => {
+          main.innerHTML = `<div class="content-shell"><header class="page-hero"><div class="eyebrow">MODULE LOAD ERROR</div><h1>模块正文加载失败</h1><p class="page-lead">${h(error.message)}</p><div class="hero-actions"><button class="source-button" type="button" data-route="${h(meta.parentModule)}">返回</button></div></header></div>`;
+          renderModuleNav();
+        });
+      }
+
+      function renderModuleDetailContent(moduleId, detail, sectionId) {
+        const meta = moduleMetaById(moduleId);
+        const sections = detail.sections || [];
+        const group = moduleById(detail.parentModule);
+        main.innerHTML = `<div class="content-shell">
+          <header class="page-hero">
+            <div class="detail-breadcrumb"><button type="button" data-route="${h(detail.parentModule)}">${h(detail.parentModule === "combat" ? "战斗" : "数值")}</button><span>/</span><span>${h(moduleId)}</span></div>
+            <div class="eyebrow">SPECIALIST MODULE · REV ${h(detail.revision)}</div>
+            <h1>${h(detail.name)}</h1>
+            <p class="page-lead">${h(detail.overview?.purpose || "")}</p>
+            <div class="detail-kicker"><span class="detail-level" data-level="full">完整正文</span><span class="status-tag" data-risk="false">${sections.length} 章节</span></div>
+            <div class="hero-actions"><button class="comment-button" type="button" data-comment="MOD-${h(moduleId)}" data-name="${h(detail.name)}">评论本模块</button><a class="source-button" href="${h(detail.sourceDoc)}">打开源 Markdown</a><button class="source-button" type="button" data-route="${h(detail.parentModule)}">返回${h(detail.parentModule === "combat" ? "战斗" : "数值")}</button></div>
+          </header>
+          <section class="section" id="module-status">
+            <div class="section-head"><div><div class="eyebrow">STATUS LAYERS</div><h2>模块状态轴</h2></div></div>
+            <div class="status-axis-grid">${(detail.statusAxes || []).map(item=>`<article class="status-axis"><span class="axis-name">${h(item.axis)} · ${h(item.status)}</span><strong>${h(item.value)}</strong><p>${h(item.note || "")}</p></article>`).join("")}</div>
+            <div class="scope-grid">${[["包含范围",detail.overview?.inScope || []],["不包含范围",detail.overview?.outOfScope || []],["输入",detail.overview?.inputs || []],["输出",detail.overview?.outputs || []]].map(([title,items])=>`<article class="scope-card"><h3>${h(title)}</h3><ul>${items.map(item=>`<li>${h(item)}</li>`).join("")}</ul></article>`).join("")}</div>
+          </section>
+          ${sections.map(section => `<section class="section" id="${h(section.id)}">
+            <div class="section-head"><div><div class="eyebrow">${h(section.id)}</div><h2>${h(section.name)}</h2><p class="section-desc">${h(section.summary || "")}</p></div><span class="status-tag" data-risk="${isRiskStatus(section.status)}">${h(section.status)}</span></div>
+            <div id="${h(section.id)}-content" class="module-section-content"><p class="section-desc">详见源 Markdown：<a class="source-button" href="${h(detail.sourceDoc)}">${h(detail.name)}</a>（锚点 ${h(section.anchor)}）</p><button class="source-button section-load-btn" type="button" data-section-id="${h(section.id)}" data-anchor="${h(section.anchor)}" data-source="${h(detail.sourceDoc)}" data-module-id="${h(moduleId)}">加载本章节完整正文</button></div>
+            <div class="section-actions"><button class="mini-comment" type="button" data-comment="${h(section.id)}" data-name="${h(section.name)}">评论本章节</button></div>
+          </section>`).join("")}
+          ${(detail.crossRefs || []).length ? `<section class="section" id="module-crossrefs">
+            <div class="section-head"><div><div class="eyebrow">CROSS REFS</div><h2>跨系统引用</h2></div></div>
+            <div class="table-scroll"><table class="relation-table"><thead><tr><th>类型</th><th>目标 ID</th><th>关联系统</th><th>说明</th><th>状态</th></tr></thead><tbody>${detail.crossRefs.map(ref=>`<tr><td>${h(ref.targetType)}</td><td><span class="edge-code">${h(ref.targetId)}</span></td><td>${(ref.systemIds || []).map(h).join(" · ")}</td><td>${h(ref.note || "")}</td><td><span class="status-tag" data-risk="${isRiskStatus(ref.status)}">${h(ref.status)}</span></td></tr>`).join("")}</tbody></table></div>
+          </section>` : ""}
+          ${(detail.aggregatedConflicts || []).length ? `<section class="section" id="module-conflicts">
+            <div class="section-head"><div><div class="eyebrow">AGGREGATED CONFLICTS</div><h2>汇总冲突</h2></div></div>
+            <div class="question-list">${detail.aggregatedConflicts.map(c=>`<article class="question-card" id="${h(c.id)}"><span class="priority-mark">${h(c.priority || "P1")}</span><div><h3>${h(c.title || c.id)}</h3><p>${h(c.description || "")}</p>${(c.externalQuestionRefs || []).length ? `<span class="rule-links">${c.externalQuestionRefs.map(h).join(" · ")}</span>` : ""}</div><button class="mini-comment" type="button" data-comment="${h(c.id)}" data-name="${h(c.title || c.id)}">评论</button></article>`).join("")}</div>
+          </section>` : ""}
+          ${footer()}
+        </div>`;
+        renderModuleNav();
+        if (sectionId) {
+          setTimeout(() => {
+            const el = document.getElementById(sectionId);
+            if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "start" });
+              el.classList.add("section-highlight");
+              setTimeout(() => el.classList.remove("section-highlight"), 2400);
+            }
+          }, 120);
+        }
+      }
+
+      function renderDecisionCards() {
+        activeModule = "decisions";
+        const cards = KB.decisionCardRegistry?.cards || [];
+        const cardRange = cards.length ? `${cards[0].cluster || cards[0].id}–${cards[cards.length - 1].cluster || cards[cards.length - 1].id}` : "无";
+        setRail("decisions", [{id:"decisions-overview",label:"决策卡总览"},{id:"decisions-list",label:`全部 ${cards.length} 张`}]);
+        railCode.textContent = "06 / DECISIONS";
+        railTitle.textContent = "决策卡评审台";
+        railQuestion.textContent = "按决策簇逐张裁决，不逐条审核原子问题。";
+        main.innerHTML = `<div class="content-shell">
+          <header class="page-hero">
+            <div class="eyebrow">DECISION CARDS · ${cards.length} CARDS</div>
+            <h1>决策卡评审台</h1>
+            <p class="page-lead">当前注册表动态加载 ${cards.length} 张决策卡（${h(cardRange)}）。18/18 项正式人工裁决已锁定；页面展示原始选择与评论，不允许用浏览器本地状态覆盖 canonical。</p>
+            <div class="hero-actions">
+              <button class="comment-button" type="button" id="exportDecisions">导出裁决 JSON</button>
+              <button class="source-button" type="button" id="exportDecisionsMd">导出裁决 Markdown</button>
+            </div>
+          </header>
+          <section class="section" id="decisions-overview">
+            <div class="section-head"><div><div class="eyebrow">OVERVIEW</div><h2>评审概览</h2></div></div>
+            <div class="pillar-list">${cards.map(card=>`<article class="pillar" id="dc-${h(card.id)}"><span class="pillar-code">${h(card.id)}</span><h3>${h(card.theme)}</h3><p>${h(card.singleQuestion || "")}</p><span class="status-tag" data-risk="${card.priority === "P0"}">${h(card.priority || "P1")} · ${(card.closeableQuestionIds || []).length} 问</span></article>`).join("")}</div>
+          </section>
+          <section class="section" id="decisions-list">
+            <div class="section-head"><div><div class="eyebrow">CARDS</div><h2>全部决策卡</h2><p class="section-desc">正式选择均来自归档 JSON；目标已批准，实施状态仍为待实施。</p></div><span class="count-label">${cards.length} CONFIRMED</span></div>
+            ${cards.map(card => renderDecisionCard(card)).join("")}
+          </section>
+          ${footer()}
+        </div>`;
+        renderModuleNav();
+      }
+
+      function renderDecisionCard(card) {
+        const confirmed = card.decisionStatus === "HUMAN_DECISION_CONFIRMED";
+        const saved = confirmed ? {
+          decision: String(card.selectedOptionId),
+          comment: card.userComment || "",
+          suggestion: card.suggestion || "",
+          updatedAt: card.confirmedAt
+        } : (review.comments[card.id] || { decision: "unreviewed", comment: "", suggestion: "" });
+        const options = card.options || [];
+        return `<article class="rule-card" id="${h(card.id)}" data-risk="${card.priority === "P0"}">
+          <div class="rule-head"><div><span class="rule-code">${h(card.id)}</span><h3>${h(card.theme)}</h3></div><span class="rule-status">${confirmed ? "HUMAN_DECISION_CONFIRMED" : h(card.priority || "P1")}</span></div>
+          ${confirmed ? `<div class="detail-block"><h3>裁决与实施状态</h3><div class="relation-chips"><span class="relation-chip">${h(card.approvalStatus)}</span><span class="relation-chip">${h(card.decisionStatus)}</span><span class="relation-chip">${h(card.implementationStatus)}</span></div><p>${h(card.implementationNote || "")}</p></div>` : ""}
+          <div class="detail-block"><h3>已确认事实</h3><ul>${(card.confirmedFacts || []).map(f=>`<li>${h(f)}</li>`).join("")}</ul></div>
+          <div class="detail-block"><h3>冲突与 UNKNOWN</h3><ul>${(card.conflicts || []).map(f=>`<li>${h(f)}</li>`).join("")}</ul></div>
+          <div class="detail-block"><h3 id="${h(card.id)}-options">选项</h3><div class="decision-row" role="radiogroup" aria-labelledby="${h(card.id)}-options" aria-readonly="${confirmed}" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))">${options.map((opt,index)=>`<button class="decision-button${saved.decision === String(opt.id) ? " active" : ""}" role="radio" aria-checked="${saved.decision === String(opt.id)}" aria-disabled="${confirmed}" tabindex="${saved.decision === String(opt.id) ? "0" : "-1"}" type="button" data-decision="${h(String(opt.id))}" data-card="${h(card.id)}">${h(opt.name)}</button>`).join("")}</div>
+            ${options.map(opt=>`<p style="margin-top:6px;font-size:13px"><b>${h(opt.id)}.</b> ${h(opt.description || opt.name)}</p>`).join("")}
+          </div>
+          <div class="detail-block"><h3>影响系统</h3><div class="relation-chips">${(card.affectedSystems || []).map(s=>`<span class="relation-chip">${h(s)}</span>`).join("")}</div></div>
+          <div class="detail-block"><h3>AI 推荐</h3><p>${h(card.aiRecommendation || "")}</p></div>
+          <div class="detail-block"><h3>单一裁决问题</h3><p style="font-weight:700">${h(card.singleQuestion || "")}</p></div>
+          ${(card.supplementaryItems || []).length ? `<div class="detail-block"><h3>补充裁决项</h3><ul>${card.supplementaryItems.map(f=>`<li>${h(f)}</li>`).join("")}</ul></div>` : ""}
+          <div class="detail-block"><h3>可关闭的问题 ID</h3><div class="relation-chips">${(card.closeableQuestionIds || []).map(q=>`<span class="relation-chip">${h(q)}</span>`).join("")}</div></div>
+          <div class="detail-block"><h3>评论 / 裁决说明</h3><div class="review-form">
+            <textarea id="dc-comment-${h(card.id)}" placeholder="裁决说明、补充条件或驳回理由" data-card="${h(card.id)}"${confirmed ? " readonly" : ""}>${h(saved.comment || "")}</textarea>
+            <input id="dc-suggestion-${h(card.id)}" value="${h(saved.suggestion || "")}" placeholder="建议补充方案或备注" data-card="${h(card.id)}"${confirmed ? " readonly" : ""}>
+            <div class="save-row"><span class="save-state" id="dc-state-${h(card.id)}">${confirmed ? "正式裁决已锁定" : (saved.updatedAt ? "已恢复上次裁决" : "尚未保存")}</span></div>
+          </div></div>
+        </article>`;
+      }
+
+      function saveDecisionCard(cardId, silent) {
+        const canonicalCard = (KB.decisionCardRegistry?.cards || []).find(card => card.id === cardId);
+        if (canonicalCard?.decisionStatus === "HUMAN_DECISION_CONFIRMED") return;
+        const commentEl = document.getElementById(`dc-comment-${cardId}`);
+        const suggestionEl = document.getElementById(`dc-suggestion-${cardId}`);
+        const activeDecision = document.querySelector(`[data-card="${CSS.escape(cardId)}"].decision-button.active`);
+        const stateEl = document.getElementById(`dc-state-${cardId}`);
+        review.comments[cardId] = {
+          targetId: cardId,
+          targetType: "decision-card",
+          decision: activeDecision?.dataset.decision || "unreviewed",
+          comment: commentEl?.value.trim() || "",
+          suggestion: suggestionEl?.value.trim() || "",
+          updatedAt: new Date().toISOString()
+        };
+        persistReview();
+        if (stateEl) stateEl.textContent = silent ? "已自动暂存" : "已保存";
+        if (!silent) toast("裁决已暂存");
+      }
+
+      function selectRadio(button) {
+        if (button.disabled || button.getAttribute("aria-disabled") === "true") return;
+        const group = button.closest('[role="radiogroup"]') || button.closest(".decision-row");
+        if (!group) return;
+        group.querySelectorAll('[role="radio"]').forEach(item => {
+          const selected = item === button;
+          item.classList.toggle("active", selected);
+          item.setAttribute("aria-checked", String(selected));
+          item.tabIndex = selected ? 0 : -1;
+        });
+      }
+
+      function exportDecisionsJSON() {
+        const cards = KB.decisionCardRegistry?.cards || [];
+        const exportData = {
+          schema: "vgame-decision-card-export/v1",
+          exportedAt: new Date().toISOString(),
+          totalCards: cards.length,
+          cards: cards.map(card => ({
+            id: card.id,
+            theme: card.theme,
+            singleQuestion: card.singleQuestion,
+            closeableQuestionIds: card.closeableQuestionIds || [],
+            review: card.decisionStatus === "HUMAN_DECISION_CONFIRMED" ? {
+              targetId: card.id,
+              targetType: "decision-card",
+              decision: String(card.selectedOptionId),
+              comment: card.userComment || "",
+              suggestion: card.suggestion || "",
+              updatedAt: card.exportedReviewUpdatedAt || card.confirmedAt
+            } : (review.comments[card.id] || { decision: "unreviewed", comment: "", suggestion: "" })
+          }))
+        };
+        download(`vgame-decision-cards-${new Date().toISOString().slice(0,10)}.json`, JSON.stringify(exportData, null, 2), "application/json;charset=utf-8");
+        toast("裁决 JSON 已导出");
+      }
+
+      function exportDecisionsMarkdown() {
+        const cards = KB.decisionCardRegistry?.cards || [];
+        const lines = [`# Vgame 决策卡裁决导出`, ``, `- 导出时间：${new Date().toISOString()}`, `- 决策卡总数：${cards.length}`, ``];
+        for (const card of cards) {
+          const r = card.decisionStatus === "HUMAN_DECISION_CONFIRMED" ? { decision:String(card.selectedOptionId), comment:card.userComment || "", suggestion:card.suggestion || "" } : (review.comments[card.id] || {});
+          lines.push(`## ${card.id} ${card.theme}`, ``, `- 单问：${card.singleQuestion || ""}`, `- 可关问题：${(card.closeableQuestionIds || []).join(" · ")}`, `- 选择：${r.decision || "unreviewed"}`, `- 评论：${r.comment || "（无）"}`, `- 建议：${r.suggestion || "（无）"}`, ``);
+        }
+        download(`vgame-decision-cards-${new Date().toISOString().slice(0,10)}.md`, lines.join("\n"), "text/markdown;charset=utf-8");
+        toast("裁决 Markdown 已导出");
+      }
+
+      function renderGovernance() {
+        activeModule = "governance";
+        setRail("governance", [{id:"governance-status",label:"状态原则"},{id:"governance-risks",label:"关键冲突"},{id:"governance-links",label:"治理资料"}]);
+        main.innerHTML = `<div class="content-shell">
+          ${hero("governance", "状态、证据与审计放在主结构之后", "治理材料帮助判断知识是否现行，但不应占据日常找系统、战斗和数值的入口。", "90-状态与证据.md")}
+          <section class="section" id="governance-status"><div class="section-head"><div><div class="eyebrow">STATUS AXES</div><h2>“有设计、已落地、已上线”不是一件事</h2></div></div><table class="relation-table"><thead><tr><th>设计状态</th><th>运行状态</th><th>落地状态</th><th>治理状态</th></tr></thead><tbody><tr><td>规则是否确认</td><td>玩家是否可用</td><td>落到设计/镜像/Datas/客户端/服务端哪层</td><td>是否存在冲突或待办</td></tr></tbody></table></section>
+          <section class="section" id="governance-risks"><div class="section-head"><div><div class="eyebrow">CURRENT RISKS</div><h2>当前必须保留的不确定性</h2></div></div><div class="warning-strip">专武与收容物迁移、玩家终态战力曲线、功能是否 LIVE、大秘境/通行证开放状态、公会临时版本和 BOSS 挑战新旧结构仍需分别裁决。</div></section>
+          <section class="section" id="governance-links"><div class="section-head"><div><div class="eyebrow">GOVERNANCE FILES</div><h2>详细资料</h2></div></div><div class="governance-links">${[["决策卡评审台","#decisions"],["完整状态冲突","../05-status-conflict-register.md"],["项目证据表","../01-project-evidence.md"],["Design 文档映射","../03-design-document-domain-matrix.md"],["跨域责任矩阵","../04-cross-domain-loops.md"],["一致性评审","../06-review.md"],["变更记录","../07-change-log.md"],["验收用例","../08-acceptance-cases.md"]].map(item=>`<a href="${item[1]}">${item[0]} →</a>`).join("")}</div></section>
+          ${footer()}
+        </div>`;
+      }
+
+      function renderSearch(query) {
+        const normalized = query.trim().toLowerCase();
+        const results = [...allEntries(), ...detailAtomEntries()].filter(entry => [entry.id, entry.name, entry.summary, entry.path, entry.status, entry.targetRule, entry.sourceFact, entry.acceptance, entry.rule, entry.role, entry.location, entry.question, entry.impact, ...(entry.relations || []), ...(entry.relatedIds || []), ...(entry.evidenceRefs || [])].join(" ").toLowerCase().includes(normalized));
+        activeModule = "search";
+        setRail("governance", [{id:"search-list",label:`结果 ${results.length}`}]);
+        main.innerHTML = `<div class="content-shell"><header class="page-hero"><div class="eyebrow">GLOBAL SEARCH</div><h1>“${h(query)}”</h1><p class="page-lead">搜索系统、具体规则、条件、奖励、配置、证据、战斗和数值；点击系统进入正文，点击原子条目直接评论。</p></header><section class="section" id="search-list"><div class="section-head"><div><h2>搜索结果</h2></div><span class="count-label">${results.length} MATCHES</span></div>${results.length ? `<div class="search-results">${results.map(entry=>`<button class="search-result" type="button" data-entity="${h(entry.id)}" data-module="${h(entry.module)}"><span class="result-path">${h(entry.path)}</span><span><span class="result-title">${h(entry.name)}</span><span class="result-summary">${h(entry.summary)}</span></span><span>→</span></button>`).join("")}</div>` : `<div class="empty-state">没有找到匹配内容。可以尝试“主线”“扫荡”“体力”“Drop”“竞技场”或“节奏”。</div>`}</section>${footer()}</div>`;
+        renderModuleNav();
+      }
+
+      function openDetail(id, nameOverride, moduleOverride) {
+        clearTimeout(autoSaveTimer);
+        drawerReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+        const entry = entryById(id) || { id, name:nameOverride || id, summary:"请在此记录对本模块结构、边界或内容的评论。", module:moduleOverride || activeModule, relations:[] };
+        activeEntity = { ...entry, name: nameOverride || entry.name, module: moduleOverride || entry.module || activeModule };
+        const saved = review.comments[id] || { decision:"unreviewed", dimension:entry.targetType ? "content" : "structure", priority:"P2", comment:"", suggestion:"" };
+        drawerCode.textContent = `${entry.id} / ${String(entry.targetType || entry.module || activeModule).toUpperCase()}`;
+        drawerTitle.textContent = activeEntity.name;
+        const relations = entry.relations || [];
+        drawerBody.innerHTML = `
+          <p class="drawer-summary">${h(entry.summary || "")}</p>
+          ${entry.status ? `<div class="detail-block"><h3>当前状态</h3><span class="status-tag" data-risk="${RISK_WORDS.some(word=>entry.status.includes(word))}">${h(entry.status)}</span></div>` : ""}
+          ${entry.path ? `<div class="detail-block"><h3>知识路径</h3><div class="relation-chip">${h(entry.path)}</div></div>` : ""}
+          ${entry.parentId ? `<div class="detail-block"><h3>评论对象</h3><div class="relation-chip">${h(entry.targetType)} · ${h(entry.id)} · 父系统 ${h(entry.parentId)} · 版本 ${h(entry.targetRevision || "")}</div></div>` : ""}
+          ${(entry.evidenceRefs || []).length ? `<div class="detail-block"><h3>规则证据</h3><div class="relation-chips">${entry.evidenceRefs.map(item=>`<span class="relation-chip">${h(item)}</span>`).join("")}</div></div>` : ""}
+          ${relations.length ? `<div class="detail-block"><h3>直接关系</h3><div class="relation-chips">${relations.map(item=>`<span class="relation-chip">${h(item)}</span>`).join("")}</div></div>` : ""}
+          <div class="detail-block"><h3>评论 / 发起修订</h3><div class="review-form">
+            <div class="decision-row" role="radiogroup" aria-label="评论结论">${[["accept","认可"],["revise","修改"],["hold","待确认"]].map(([value,label],index)=>`<button class="decision-button${saved.decision===value?" active":""}" role="radio" aria-checked="${saved.decision===value}" tabindex="${saved.decision===value || (saved.decision==="unreviewed" && index===0) ? "0" : "-1"}" type="button" data-decision="${value}">${label}</button>`).join("")}</div>
+            <div class="field-row"><select id="commentDimension" aria-label="评论维度">${[["structure","结构/归类"],["boundary","职责边界"],["content","具体内容"],["relation","系统关系"],["evidence","证据/状态"]].map(([value,label])=>`<option value="${value}"${saved.dimension===value?" selected":""}>${label}</option>`).join("")}</select><select id="commentPriority" aria-label="优先级">${["P0","P1","P2","P3"].map(value=>`<option${saved.priority===value?" selected":""}>${value}</option>`).join("")}</select></div>
+            <textarea id="commentText" placeholder="指出哪里不对、为什么，以及你希望如何调整。">${h(saved.comment)}</textarea>
+            <input id="commentSuggestion" value="${h(saved.suggestion)}" placeholder="建议名称、归类或替代方案">
+            <div class="save-row"><span class="save-state" id="drawerSaveState">${saved.updatedAt ? "已恢复上次评论" : "尚未保存"}</span><button class="save-button" id="saveComment" type="button">保存评论</button></div>
+          </div></div>`;
+        drawer.classList.add("open");
+        backdrop.classList.add("open");
+        drawer.setAttribute("aria-hidden", "false");
+        document.getElementById("closeDrawer").focus({preventScroll:true});
+        requestAnimationFrame(() => document.getElementById("closeDrawer").focus({preventScroll:true}));
+      }
+
+      function closeDrawer() {
+        clearTimeout(autoSaveTimer);
+        drawer.classList.remove("open");
+        backdrop.classList.remove("open");
+        drawer.setAttribute("aria-hidden", "true");
+        activeEntity = null;
+        if (drawerReturnFocus?.isConnected) drawerReturnFocus.focus();
+        drawerReturnFocus = null;
+      }
+
+      function closeDrawerFromUi() {
+        const route = currentRoute();
+        const keepSystemPage = route.module === "system" && route.id && hasDetail(route.id);
+        closeDrawer();
+        if (route.id && !keepSystemPage) location.hash = route.module;
+      }
+
+      function saveActiveComment(silent = false) {
+        if (!activeEntity) return;
+        const id = activeEntity.id;
+        const activeDecision = drawerBody.querySelector(".decision-button.active")?.dataset.decision || "unreviewed";
+        review.comments[id] = {
+          targetId: id,
+          parentId: activeEntity.parentId || "",
+          targetType: activeEntity.targetType || "entity",
+          targetRevision: activeEntity.targetRevision || "",
+          name: activeEntity.name,
+          module: activeEntity.module,
+          decision: activeDecision,
+          dimension: document.getElementById("commentDimension").value,
+          priority: document.getElementById("commentPriority").value,
+          comment: document.getElementById("commentText").value.trim(),
+          suggestion: document.getElementById("commentSuggestion").value.trim(),
+          updatedAt: new Date().toISOString()
+        };
+        persistReview();
+        document.getElementById("drawerSaveState").textContent = silent ? "已自动暂存" : "已保存到浏览器";
+        if (!silent) toast("评论已暂存");
+      }
+
+      function scheduleAutoSave() {
+        if (!activeEntity) return;
+        const state = document.getElementById("drawerSaveState");
+        if (state) state.textContent = "正在暂存…";
+        clearTimeout(autoSaveTimer);
+        autoSaveTimer = setTimeout(() => saveActiveComment(true), 450);
+      }
+
+      function download(name, text, type) {
+        const url = URL.createObjectURL(new Blob([text], {type}));
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = name;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1200);
+      }
+
+      function exportReview() {
+        persistReview();
+        const date = new Date().toISOString().slice(0,10);
+        const dcCards = KB.decisionCardRegistry?.cards || [];
+        const dcReviewed = dcCards.filter(c => review.comments[c.id]?.decision && review.comments[c.id].decision !== "unreviewed").length;
+        download(`vgame-knowledge-comments-${date}.json`, JSON.stringify({...review, catalog:{systems:KB.systems.length, detailedSystems:Object.keys(KB.detailRegistry || {}).length, detailAtoms:detailAtomEntries().length, combat:KB.combat.rules.length+KB.combat.character.length, numeric:KB.numeric.length, decisionCards:dcCards.length, decisionCardsReviewed:dcReviewed}}, null, 2), "application/json;charset=utf-8");
+        toast("评论 JSON 已导出");
+      }
+
+      function exportMarkdown() {
+        const lines = [`# Vgame 项目级策划知识库评论`, ``, `- 框架版本：${KB.meta.version}`, `- 导出时间：${new Date().toISOString()}`, ``];
+        Object.entries(review.comments).forEach(([id,item]) => {
+          if (!item.comment && !item.suggestion && (!item.decision || item.decision === "unreviewed")) return;
+          lines.push(`## ${id} ${item.name || ""}`, ``, `- 模块：${item.module || ""}`, `- 对象类型：${item.targetType || "entity"}`, `- 父系统：${item.parentId || ""}`, `- 目标版本：${item.targetRevision || ""}`, `- 结论：${item.decision || "unreviewed"}`, `- 维度：${item.dimension || ""}`, `- 优先级：${item.priority || ""}`, ``, item.comment || "（无评论）", ``);
+          if (item.suggestion) lines.push(`建议：${item.suggestion}`, ``);
+        });
+        // 决策卡裁决记录
+        const dcCards = KB.decisionCardRegistry?.cards || [];
+        const dcLines = dcCards.filter(c => review.comments[c.id]?.decision && review.comments[c.id].decision !== "unreviewed");
+        if (dcLines.length) {
+          lines.push(`# 决策卡裁决`, ``);
+          for (const card of dcLines) {
+            const r = review.comments[card.id];
+            lines.push(`## ${card.id} ${card.theme}`, ``, `- 单问：${card.singleQuestion || ""}`, `- 可关问题：${(card.closeableQuestionIds || []).join(" · ")}`, `- 选择：${r.decision}`, `- 评论：${r.comment || "（无）"}`, `- 建议：${r.suggestion || "（无）"}`, ``);
+          }
+        }
+        const date = new Date().toISOString().slice(0,10);
+        download(`vgame-knowledge-comments-${date}.md`, lines.join("\n"), "text/markdown;charset=utf-8");
+      }
+
+      async function renderRoute() {
+        const epoch = ++routeEpoch;
+        const route = currentRoute();
+        let openRoutedDetail = Boolean(route.id);
+        searchInput.value = "";
+        if (route.module === "project") renderProject();
+        else if (route.module === "system") {
+          if (route.redirect) { location.hash = `#module/${route.id}`; return; }
+          const target = route.id ? KB.systems.find(item => item.id === route.id) : null;
+          if (target && hasDetail(target.id)) {
+            let detail = detailById(target.id);
+            if (!detail) {
+              activeModule = "system";
+              activeSystemGroup = target.group;
+              setRail("system", []);
+              main.innerHTML = `<div class="content-shell"><header class="page-hero"><div class="eyebrow">LOADING SYSTEM DETAIL</div><h1>正在按需加载${h(target.name)}</h1><p class="page-lead">目录和搜索索引保持轻量；只有进入该系统时才加载完整规则、关系与证据。</p></header></div>`;
+              renderModuleNav();
+              try {
+                detail = await loadDetail(target.id);
+              } catch (error) {
+                if (epoch !== routeEpoch) return;
+                main.innerHTML = `<div class="content-shell"><header class="page-hero"><div class="eyebrow">DETAIL LOAD ERROR</div><h1>系统正文加载失败</h1><p class="page-lead">${h(error.message)}。你仍可返回系统目录查看摘要索引。</p><div class="hero-actions"><button class="source-button" type="button" data-route="system">返回系统目录</button></div></header></div>`;
+                renderModuleNav();
+                return;
+              }
+              if (epoch !== routeEpoch || currentRoute().id !== target.id) return;
+            }
+            if (detail) {
+              renderSystemDetail({...target, module:"system", path:`系统 / ${groupById(target.group)?.name || ""}`}, detail);
+              openRoutedDetail = false;
+            }
+          } else {
+            const targetGroup = target?.group || activeSystemGroup;
+            renderSystem(targetGroup || activeSystemGroup);
+          }
+        }
+        else if (route.module === "combat") renderCombat();
+        else if (route.module === "numeric") renderNumeric();
+        else if (route.module === "relations") renderRelations();
+        else if (route.module === "governance") renderGovernance();
+        else if (route.module === "module") {
+          if (route.redirect) { location.hash = `#module/${route.id}`; return; }
+          if (route.id) renderModuleDetail(route.id, route.sectionId);
+          else renderProject();
+          openRoutedDetail = false;
+        }
+        else if (route.module === "decisions") renderDecisionCards();
+        else renderProject();
+        if (epoch !== routeEpoch) return;
+        renderModuleNav();
+        if (openRoutedDetail) setTimeout(() => openDetail(route.id, null, route.module), 0);
+        main.focus({preventScroll:true});
+      }
+
+      document.addEventListener("click", event => {
+        const route = event.target.closest("[data-route]");
+        if (route) { navigate(route.dataset.route); return; }
+        const scroll = event.target.closest("[data-scroll]");
+        if (scroll) { document.getElementById(scroll.dataset.scroll)?.scrollIntoView({behavior:"smooth", block:"start"}); return; }
+        const entity = event.target.closest("[data-entity]");
+        if (entity) {
+          const mod = entity.dataset.module || activeModule;
+          const eid = entity.dataset.entity;
+          // 模块 section 搜索结果：导航到 #module/<parentId>/<sectionId>
+          if (mod === "module") {
+            const searchEntry = detailAtomEntries().find(e => e.id === eid && e.module === "module");
+            if (searchEntry) { navigate("module", searchEntry.parentId, eid); return; }
+          }
+          navigate(mod, eid);
+          return;
+        }
+        const comment = event.target.closest("[data-comment]");
+        if (comment) { openDetail(comment.dataset.comment, comment.dataset.name, activeModule); return; }
+        const sectionLoadBtn = event.target.closest(".section-load-btn");
+        if (sectionLoadBtn) {
+          const sid = sectionLoadBtn.dataset.sectionId;
+          const anchor = sectionLoadBtn.dataset.anchor;
+          const source = sectionLoadBtn.dataset.source;
+          const contentEl = document.getElementById(`${sid}-content`);
+          if (contentEl) {
+            // 优先使用构建时编译进 module chunk 的 sectionContent（file:// 离线可用，不依赖 fetch）。
+            // sectionContent 存在于已加载的 module detail 中（window.VGAME_MODULE_DETAILS）。
+            const moduleId = sectionLoadBtn.dataset.moduleId || "";
+            const moduleDetail = moduleId ? (window.VGAME_MODULE_DETAILS || {})[moduleId] : null;
+            const section = moduleDetail ? (moduleDetail.sections || []).find(s => s.id === sid) : null;
+            if (section && section.sectionContent) {
+              contentEl.innerHTML = `<div class="section-md-body">${renderSimpleMarkdown(section.sectionContent)}</div>`;
+              return;
+            }
+            // 回退：localhost/http 预览时尝试 fetch 源 Markdown（file:// 下会失败，但构建产物已内嵌正文）。
+            contentEl.innerHTML = '<p class="section-desc">正在加载…</p>';
+            fetch(source).then(r => r.text()).then(md => {
+              const lines = md.split("\n");
+              const anchorIdx = lines.findIndex(l => l.trim() === anchor);
+              if (anchorIdx < 0) { contentEl.innerHTML = '<p class="section-desc">未找到对应锚点，请直接打开源 Markdown。</p>'; return; }
+              let endIdx = lines.length;
+              for (let i = anchorIdx + 1; i < lines.length; i++) {
+                if (/^##\s/.test(lines[i]) && !lines[i].trim().startsWith("###")) { endIdx = i; break; }
+              }
+              const sectionMd = lines.slice(anchorIdx, endIdx).join("\n");
+              contentEl.innerHTML = `<div class="section-md-body">${renderSimpleMarkdown(sectionMd)}</div>`;
+            }).catch(err => { contentEl.innerHTML = `<p class="section-desc">加载失败：${h(err.message)}。请直接打开源 Markdown。</p>`; });
+          }
+          return;
+        }
+        const group = event.target.closest("[data-group]");
+        if (group) {
+          if (group.dataset.group !== "all") activeSystemGroup = group.dataset.group;
+          document.querySelectorAll(".filter-chip").forEach(chip=>chip.classList.toggle("active", chip===group));
+          document.getElementById("systemGroups").innerHTML = renderSystemGroup(group.dataset.group);
+          return;
+        }
+        const decision = event.target.closest("[data-decision]");
+        if (decision) {
+          if (decision.dataset.card) {
+            // 决策卡选择按钮
+            const cardId = decision.dataset.card;
+            selectRadio(decision);
+            saveDecisionCard(cardId, true);
+          } else {
+            selectRadio(decision);
+          }
+          scheduleAutoSave();
+          return;
+        }
+        if (event.target.id === "saveComment") saveActiveComment();
+      });
+
+      searchInput.addEventListener("input", event => {
+        const value = event.target.value;
+        if (value.trim().length >= 1) renderSearch(value);
+        else void renderRoute();
+      });
+
+      drawerBody.addEventListener("input", event => {
+        if (event.target.matches("textarea, input, select")) scheduleAutoSave();
+      });
+      drawerBody.addEventListener("change", event => {
+        if (event.target.matches("textarea, input, select")) scheduleAutoSave();
+      });
+
+      // 决策卡评论自动暂存
+      main.addEventListener("input", event => {
+        if (event.target.matches("[data-card]")) {
+          const cardId = event.target.dataset.card;
+          if (cardId) saveDecisionCard(cardId, true);
+        }
+      });
+      main.addEventListener("change", event => {
+        if (event.target.matches("[data-card]")) {
+          const cardId = event.target.dataset.card;
+          if (cardId) saveDecisionCard(cardId, true);
+        }
+      });
+      // 决策卡导出按钮
+      main.addEventListener("click", event => {
+        if (event.target.id === "exportDecisions") exportDecisionsJSON();
+        else if (event.target.id === "exportDecisionsMd") exportDecisionsMarkdown();
+      });
+
+      document.getElementById("closeDrawer").addEventListener("click", closeDrawerFromUi);
+      backdrop.addEventListener("click", closeDrawerFromUi);
+      document.addEventListener("keydown", event => {
+        const radio = event.target.closest?.('[role="radio"]');
+        if (radio && ["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End", " ", "Enter"].includes(event.key)) {
+          const radios = [...radio.closest('[role="radiogroup"]').querySelectorAll('[role="radio"]')];
+          let index = radios.indexOf(radio);
+          if (event.key === "Home") index = 0;
+          else if (event.key === "End") index = radios.length - 1;
+          else if (["ArrowRight", "ArrowDown"].includes(event.key)) index = (index + 1) % radios.length;
+          else if (["ArrowLeft", "ArrowUp"].includes(event.key)) index = (index - 1 + radios.length) % radios.length;
+          event.preventDefault();
+          const target = radios[index];
+          target.focus();
+          if (![" ", "Enter"].includes(event.key)) target.click(); else radio.click();
+          return;
+        }
+        if (event.key === "Escape" && drawer.classList.contains("open")) { event.preventDefault(); closeDrawerFromUi(); return; }
+        if (event.key === "Tab" && drawer.classList.contains("open")) {
+          const focusable = [...drawer.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')].filter(el => !el.hidden && el.offsetParent !== null);
+          if (!focusable.length) { event.preventDefault(); drawer.focus(); return; }
+          const first = focusable[0], last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+          else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        }
+      });
+      document.getElementById("exportComments").addEventListener("click", event => {
+        if (event.shiftKey) exportMarkdown(); else exportReview();
+      });
+      document.getElementById("exportComments").addEventListener("contextmenu", event => { event.preventDefault(); exportMarkdown(); });
+      window.addEventListener("hashchange", () => { closeDrawer(); void renderRoute(); });
+
+      void renderRoute();
+    })();
+  </script>
+</body>
+</html>

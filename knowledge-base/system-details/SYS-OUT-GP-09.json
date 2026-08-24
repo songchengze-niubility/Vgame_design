@@ -1,0 +1,765 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-GP-09",
+  "name": "大秘境",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在配置或实现线索，不证明 Production/LIVE。SystemOpen(202).CloseSys=true 表明入口在当前工作副本被关闭。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / DRAFT_TARGET",
+      "meaning": "目标设计或反推 Draft 口径；大秘境 Design Doc 为反推 Draft，设计结构存在。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（表或客户端 Lua/C#），不代表 Production/LIVE。"
+    },
+    {
+      "prefix": "CROSS_SOURCE / SYNTHESIS",
+      "meaning": "由多份证据组织出的流程、边界或关系，需要项目负责人确认。"
+    },
+    {
+      "prefix": "CONFLICT / GAP / UNKNOWN",
+      "meaning": "仍需裁决、补规则或补运行证据；本系统核心冲突为「设计存在 vs 运行状态未知（工作副本入口关闭）」。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本系统当前 CloseSys=true，不可盖为 LIVE。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-LEVEL-ENTRY",
+      "ruleRefs": [
+        "SYS-OUT-GP-09-R05",
+        "SYS-OUT-GP-09-C01"
+      ]
+    },
+    {
+      "id": "CONTRACT-BATTLE-RESULT",
+      "ruleRefs": [
+        "SYS-OUT-GP-09-R04"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-GP-09-R07",
+        "SYS-OUT-GP-09-RW01",
+        "SYS-OUT-GP-09-RW02"
+      ]
+    },
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-GP-09-R05",
+        "SYS-OUT-GP-09-EX01"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "大秘境是赛季制终局验证玩法：以 28 天赛季组织 25 层递增难度与环境词缀，验证阵容广度、环境适配与极限输出深度；当前设计结构与配置/代码均存在，SystemOpen(202).CloseSys=true 表明当前工作副本入口关闭，但正式运行是否 NOT_OPEN / 是否曾上线无集中发布台账，运行状态记 UNKNOWN_LIVE。",
+    "inScope": [
+      "大秘境入口开放/关闭状态、赛季生命周期与进度重置",
+      "25 层难度递增、环境词缀(Affix)与赛季差异的玩法壳层",
+      "周奖励（最高层+积分）与赛季奖励（积分档+排名档）发放边界",
+      "「设计存在 vs 运行状态未知（工作副本入口关闭）vs 落地待核」三层的表达"
+    ],
+    "outOfScope": [
+      "局内战斗目标、胜负判定与战斗变体规则归 SYS-IN-06 / CB-R07",
+      "怪物与 Boss 机制归 SYS-IN-04",
+      "奖励真实入账数量与 Drop 包内容归 SYS-OUT-SU-05 与 Drop 权威源",
+      "赛季/LiveOps 全局编排归 SYS-OUT-SU-14；本系统只管玩法壳层",
+      "资源身份归 SYS-OUT-SU-04；玩家等级归 SYS-OUT-GR-01"
+    ],
+    "inputs": [
+      "SystemOpen(202)/Unlock(4102) 开放/关闭状态与玩家等级37条件",
+      "Affix/AffixSchedule 环境词缀与赛季排程",
+      "Dungeon/Layers 层级与副本配置",
+      "WeekMaxLayerReward/WeekScoreReward/SeasonScoreReward/SeasonRankReward 周与赛季奖励",
+      "WeekBalanceDownLayer 周平衡下调层级"
+    ],
+    "outputs": [
+      "当前赛季、层级进度与最高通关层",
+      "周/赛季奖励领取状态与排名快照（当入口开放时）",
+      "向任务、排行、奖励入账与 LiveOps 消费方上报的玩法事件（当入口开放时）"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "设计结构存在·工作副本入口关闭·正式运行UNKNOWN",
+      "status": "CURRENT_DESIGN_IDENTITY_UNKNOWN_LIVE",
+      "note": "SystemOpenID 202=Mystery，UIViewName=UIMysteryMainView。设计结构与配置/代码均存在；当前工作副本入口因 CloseSys=true 关闭（工作副本观察），正式运行状态见运行状态轴 UNKNOWN_LIVE。未裁决前不写「未开放」或「已开放」。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "反推 Draft：28天赛季/25层/40-220级/环境词缀/周+赛季奖励",
+      "status": "DRAFT_TARGET_STRUCTURE_EXISTS",
+      "note": "大秘境Design Doc 为反推 Draft；mythic_dungeon 配置目录(Affix/Layers/Dungeon/周赛季奖励)与 MysteryMode.cs/UIMysteryMainView 均存在，结构吻合 Draft。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "配置/代码存在；SystemOpen(202).CloseSys=true（入口关闭）；Unlock(4102)=玩家等级37",
+      "status": "WORKING_COPY_CLOSED_BY_CLOSESYS",
+      "note": "本机 SVN 工作副本核对于2026-08-18；systemopen.lua [202] CloseSys=true, UnlockId=4102；unlock.lua [4102] Excel Unlock.xlsx 的 UnLockType=UnLock_UUT_player_Grade、UnLockDesc=玩家等级解锁；生成 unlock.lua 将该枚举序列化为数值1/UnLockParams={37}。CloseSys=true 使 IsSystemOpen 直接判负。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "UNKNOWN（工作副本入口关闭，LIVE 未确认）",
+      "status": "UNKNOWN_LIVE",
+      "note": "CloseSys=true 只证明当前工作副本入口关闭，不构成对 Production/LIVE 的裁决；是否曾上线/灰度或曾上线后关闭无集中台账，记 UNKNOWN。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-D=长期维护性关闭",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-GP-09-F01",
+      "name": "大秘境赛季与推进流程（当入口开放时）",
+      "steps": [
+        {
+          "id": "SYS-OUT-GP-09-F01-S01",
+          "name": "校验入口与赛季状态",
+          "description": "SystemOpen(202) 因 CloseSys=true 当前判负；若开放则需 Unlock(4102)=玩家等级37 且赛季处于 Active。"
+        },
+        {
+          "id": "SYS-OUT-GP-09-F01-S02",
+          "name": "赛季开始与词缀生效",
+          "description": "赛季开始重置层数为1，按 AffixSchedule 选取本赛季环境词缀。"
+        },
+        {
+          "id": "SYS-OUT-GP-09-F01-S03",
+          "name": "逐层攀登",
+          "description": "按 Layers 顺序攀登 25 层，通关 N 解锁 N+1，同层可重复挑战但奖励只看最高层。"
+        },
+        {
+          "id": "SYS-OUT-GP-09-F01-S04",
+          "name": "周结算",
+          "description": "每周取最高层(WeekMaxLayerReward)与累计积分(WeekScoreReward)双线发奖。"
+        },
+        {
+          "id": "SYS-OUT-GP-09-F01-S05",
+          "name": "赛季结算与重置",
+          "description": "28 天赛季结束发赛季积分档(SeasonScoreReward)+排名档(SeasonRankReward)，进度重置。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-GP-09-R01",
+      "name": "系统身份与三层状态",
+      "status": "P0_CONFLICT",
+      "targetRule": "大秘境是赛季制终局验证玩法；设计结构存在，但运行状态 UNKNOWN（当前工作副本入口关闭），落地待核。不得盖为 LIVE 或简单标废弃。",
+      "sourceFact": "mythic_dungeon 配置 + MysteryMode.cs + UIMysteryMainView 存在（设计/落地存在）；systemopen.lua [202] CloseSys=true（工作副本入口关闭）；无集中发布台账（LIVE 未确认）。对应 status-conflict-register C-005：设计存在/运行状态未知/落地待核。未裁决前不写「未开放」或「已开放」。",
+      "acceptance": "正文必须同时表达「设计存在」「运行状态未知（工作副本入口关闭）」「落地待核」三层；不得因配置存在而声称可玩或 LIVE。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-SU-14",
+        "SYS-IN-06"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV05",
+        "SYS-OUT-GP-09-EV06",
+        "SYS-OUT-GP-09-EV08",
+        "SYS-OUT-GP-09-EV09",
+        "SYS-OUT-GP-09-EV10"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-R02",
+      "name": "赛季结构（28 天）",
+      "status": "DRAFT_TARGET_STRUCTURE_EXISTS",
+      "targetRule": "以 28 天为一赛季；赛季开始重置层数、生效新词缀，赛季结束发赛季奖励并清空进度。休赛期入口可见但不可战斗。",
+      "sourceFact": "Draft R-01 描述 28 天赛季与 OffSeason→Active→Settling 状态；current-gameplay.md 记 season=28天；mythic_dungeon 配置存在但未逐表核对赛季周期字段。",
+      "acceptance": "赛季周期目标以 Draft + current-gameplay 为口径；具体赛季开关/结算服务端实现不可见，落地待核。",
+      "relatedIds": [
+        "SYS-OUT-SU-14"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-R03",
+      "name": "25 层难度与环境词缀",
+      "status": "DRAFT_TARGET_STRUCTURE_EXISTS",
+      "targetRule": "25 层固定配置，怪物等级 40-220，顺序攀登不可跳层；每赛季选 1-3 个环境词缀修改战斗规则，迫使调整阵容。",
+      "sourceFact": "Draft R-02/R-03 描述 25 层与词缀；mythic_dungeon/Affix.xlsx + AffixSchedule.xlsx + Layers.xlsx + Dungeon.xlsx 存在；MysteryMode.cs 存在。未逐表核对层数/等级/词缀数量。",
+      "acceptance": "层级与词缀结构以 mythic_dungeon 配置为工作副本权威（存在但未逐项审计）；词缀战斗效果归 SYS-IN-06。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-04",
+        "NUM-03"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV03",
+        "SYS-OUT-GP-09-EV04",
+        "SYS-OUT-GP-09-EV05",
+        "SYS-OUT-GP-09-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-R04",
+      "name": "胜负与重复挑战",
+      "status": "DRAFT_TARGET",
+      "targetRule": "通关 N 层解锁 N+1；同层可重复挑战用于刷分/试策略，但周/赛季奖励只看最高层。",
+      "sourceFact": "Draft R-02 描述同层可重复、奖励只看最高层；客户端 MysteryMode/UIMysteryMainView 存在但重复挑战与最高层判定服务端不可见。",
+      "acceptance": "重复挑战与最高层判定需服务端确认；未确认前不以 Draft 为现行运行规则。",
+      "relatedIds": [
+        "SYS-IN-08"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-R05",
+      "name": "入口开放/关闭条件",
+      "status": "WORKING_COPY_CLOSED_BY_CLOSESYS",
+      "targetRule": "GAP/CONFLICT：Draft R-06 写玩家等级>=37 且赛季 Active 解锁；现行 SystemOpen(202).CloseSys=true 使入口当前关闭，Unlock(4102)=玩家等级37 仅在 CloseSys 放开后生效。",
+      "sourceFact": "systemopen.lua [202] CloseSys=true, UnlockId=4102, ParentId=9；unlock.lua [4102] Excel Unlock.xlsx 的 UnLockType=UnLock_UUT_player_Grade、UnLockDesc=玩家等级解锁；生成 unlock.lua 将该枚举序列化为数值1/UnLockParams={37}。IsSystemOpen 顺序：CloseSys→ParentId→Unlock；CloseSys=true 直接判负。current-gameplay.md 记角色等级37。",
+      "acceptance": "入口当前以 CloseSys=true 为关闭权威；玩家等级37 是 CloseSys 放开后的开放条件，不可单独声称入口已开放。",
+      "relatedIds": [
+        "SYS-OUT-SU-13",
+        "SYS-OUT-GR-01"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV08",
+        "SYS-OUT-GP-09-EV09",
+        "SYS-OUT-GP-09-EV10",
+        "SYS-OUT-GP-09-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-R06",
+      "name": "MysteryMode 战斗模式：占位空类",
+      "status": "WORKING_COPY_OBSERVED_EMPTY_PLACEHOLDER",
+      "targetRule": "GAP：C# MysteryMode.cs 为占位空类（仅继承 BaseGameMode，未 override 任何方法/字段/词缀逻辑），不得描述为「大秘境战斗词缀已实装」；外循环逻辑在 Lua（MysterySystem.lua）实现。",
+      "sourceFact": "MysteryMode.cs 全文件仅 10 行占位（`public class MysteryMode : BaseGameMode { }`，注释写「主要处理词缀技能」但类体空），无词缀技能实现；LGameModeMgr.InitGameMode 将 LevelType_Mystery 映射到 MysteryMode；大秘境外循环与周/赛季奖励在 Lua MysterySystem.lua（NetHandler：MYSTERY_CMD_GET_MYSTERY_INFO/RECEIVE_WEEK_SCORE_REWARD/RECEIVE_SEASON_SCORE_REWARD/CHANGE_DUNGEON_AND_LAYER/GET_RANK_LIST）。",
+      "acceptance": "不得把空白 MysteryMode.cs 称为「战斗词缀已实装」；战斗内词缀落地状态记为 GAP（C# 侧无实现，Lua 外循环存在），入口开放与战斗内效果是否可用待核。",
+      "relatedIds": [
+        "SYS-IN-06",
+        "SYS-IN-01"
+      ],
+      "questionRefs": [
+        "SYS-OUT-GP-09-Q05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV05",
+        "SYS-OUT-GP-09-EV11",
+        "SYS-OUT-GP-09-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-R07",
+      "name": "奖励分层与发放边界",
+      "status": "DRAFT_TARGET_STRUCTURE_EXISTS",
+      "targetRule": "本系统决定「何时/为何发」：周最高层+周积分双线、赛季积分档+赛季排名档；具体发什么/发多少回 SYS-OUT-SU-05 与 Drop 权威源。",
+      "sourceFact": "Draft R-04/R-05 描述周(WeekMaxLayerReward+WeekScoreReward)与赛季(SeasonScoreReward+SeasonRankReward)双线；mythic_dungeon 对应四张奖励表 + WeekBalanceDownLayer 均存在。发放幂等与结算窗口不可见。",
+      "acceptance": "奖励结构以 mythic_dungeon 奖励表为工作副本权威（存在但关闭）；具体数量不在本正文维护。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04",
+        "NUM-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV03",
+        "SYS-OUT-GP-09-EV04",
+        "SYS-OUT-GP-09-EV12",
+        "SYS-OUT-GP-09-EV13"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-GP-09-C01",
+      "name": "入口开放/关闭（CloseSys + Unlock）",
+      "status": "WORKING_COPY_CLOSED_BY_CLOSESYS",
+      "rule": "SystemOpen(202) 因 CloseSys=true 当前关闭；Unlock(4102)=UnLockType1/玩家等级37 为 CloseSys 放开后条件；Draft 另要求赛季 Active。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV08",
+        "SYS-OUT-GP-09-EV09",
+        "SYS-OUT-GP-09-EV10",
+        "SYS-OUT-GP-09-EV02"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-C02",
+      "name": "赛季状态",
+      "status": "UNKNOWN_LIVE",
+      "rule": "UNKNOWN：需赛季处于 Active 才可战斗，休赛期入口可见但不可进入；赛季状态服务端不可见，当前因 CloseSys=true 无从观测。",
+      "questionRefs": [
+        "SYS-OUT-GP-09-Q04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV08"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-GP-09-RW01",
+      "name": "周奖励（最高层+积分）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "WeekMaxLayerReward 按最高通关层、WeekScoreReward 按累计积分双线配置存在且有数据（Id=1:WeekMaxLayerReward Layer=25/CommonDropId=25002004；WeekScoreReward Id=1:Score=100/DropId=25001001，约束 MinPlayerLv/MaxPlayerLv）。客户端消费链存在（UIMysteryRewardView 读 WeekMaxLayerReward + DropSystem:GetDropDataList；MysterySystem 领取请求/响应）。但入口 CloseSys=true 关闭；正式服是否实际发放无台账，记 UNKNOWN_LIVE。具体数量回 Drop 权威源。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV03",
+        "SYS-OUT-GP-09-EV12",
+        "SYS-OUT-GP-09-EV11"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-RW02",
+      "name": "赛季奖励（积分档+排名档）",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "SeasonScoreReward（积分档，Id=1:ScoreLimit=8000/Score=500/DropId=25003001）与 SeasonRankReward（排名档，Id=1:RankPer=100/Rank=1/DropId=25004001）配置存在且有数据（mythic_dungeon/）；客户端领取链存在（MysterySystem 的 CReqReceiveMysterySeasonScoreReward / OnCRespReceiveMysterySeasonScoreReward→UIUtil.ShowReward）。但入口 CloseSys=true 关闭；正式服发放状态无台账，记 UNKNOWN_LIVE。具体数量回 Drop 权威源。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV04",
+        "SYS-OUT-GP-09-EV13",
+        "SYS-OUT-GP-09-EV11"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-GP-09-EX01",
+      "name": "设计存在 vs 运行状态未知（工作副本入口关闭）（C-005）",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "rule": "产品状态已确认为长期维护性关闭：保留兼容但不承诺重开版本；发布台账与开关实施仍需补证。",
+      "questionRefs": [
+        "SYS-OUT-GP-09-Q01",
+        "SYS-OUT-GP-09-Q02"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV03",
+        "SYS-OUT-GP-09-EV05",
+        "SYS-OUT-GP-09-EV08",
+        "SYS-OUT-GP-09-EV09"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-EX02",
+      "name": "落地待核",
+      "status": "P1_GAP",
+      "rule": "赛季开关、词缀选取、结算窗口、发放幂等与是否曾上线/灰度无集中台账；配置/代码存在不等于落地完成。",
+      "questionRefs": [
+        "SYS-OUT-GP-09-Q02",
+        "SYS-OUT-GP-09-Q04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV08"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-GP-09-UI01",
+      "name": "大秘境主界面",
+      "status": "WORKING_COPY_OBSERVED_CLOSED",
+      "rule": "UIMysteryMainView 代码展示赛季倒计时、词缀、层级选择与奖励；当前工作副本入口因 CloseSys=true 关闭，界面是否对玩家可见取决于发布环境，不得据 CloseSys 断言 UI 一律不可见。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV06",
+        "SYS-OUT-GP-09-EV08"
+      ]
+    },
+    {
+      "id": "SYS-OUT-GP-09-UI02",
+      "name": "战斗内词缀 HUD",
+      "status": "WORKING_COPY_OBSERVED_CLOSED",
+      "rule": "UIBattleMystery 展示词缀触发提示；当前工作副本入口关闭，词缀 HUD 是否触发取决于发布环境。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV05",
+        "SYS-OUT-GP-09-EV07"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-GP-09-CFG01",
+      "name": "Affix",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\Affix.xlsx",
+      "role": "环境词缀定义与效果",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-CFG02",
+      "name": "AffixSchedule",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\AffixSchedule.xlsx",
+      "role": "赛季词缀排程与选取",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-CFG03",
+      "name": "Dungeon/Layers",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\Dungeon.xlsx",
+      "role": "副本与 25 层层级配置",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-CFG04",
+      "name": "WeekMaxLayerReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\WeekMaxLayerReward.xlsx",
+      "role": "周最高层奖励档位",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-CFG08",
+      "name": "WeekScoreReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\WeekScoreReward.xlsx",
+      "role": "周积分奖励档位",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-CFG05",
+      "name": "SeasonScoreReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\SeasonScoreReward.xlsx",
+      "role": "赛季积分档奖励",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-CFG09",
+      "name": "SeasonRankReward",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\SeasonRankReward.xlsx",
+      "role": "赛季排名档奖励",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-CFG06",
+      "name": "WeekBalanceDownLayer",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\WeekBalanceDownLayer.xlsx",
+      "role": "周平衡下调层级配置",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-CFG07",
+      "name": "SystemOpen/Unlock",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx",
+      "role": "入口开放/关闭：SystemOpen(202) CloseSys=true → Unlock(4102)=玩家等级37",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-GP-09-REL01",
+      "type": "unlocks",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "SystemOpen(202) 当前工作副本 CloseSys=true；Unlock(4102)=玩家等级37 为放开后条件，运行状态 UNKNOWN。",
+      "status": "WORKING_COPY_CLOSED_RUN_UNKNOWN",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV08",
+        "SYS-OUT-GP-09-EV09",
+        "SYS-OUT-GP-09-EV10"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-REL02",
+      "type": "enters",
+      "direction": "outgoing",
+      "targetId": "SYS-IN-06",
+      "targetName": "玩法局内规则",
+      "description": "以 MysteryMode 进入战斗（设计意图：词缀注入局内规则，但 C# 实装为 GAP）。来源：MysteryMode.cs+UIMysteryMainView+局内规则(SYS-IN-06)；推导边界：仅描述进入路径，不含词缀战斗效果实现；UNKNOWN：MysteryMode.cs 为空类（仅继承 BaseGameMode，无 override），战斗内词缀 C# 实装为 GAP，外循环在 Lua MysterySystem.lua；工作副本入口因 CloseSys=true 关闭，正式运行 UNKNOWN_LIVE（见 R06/Q05）。",
+      "status": "WORKING_COPY_OBSERVED_UNKNOWN_LIVE",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-09-REL03",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "周/赛季奖励通过 DropId 入账路径存在（工作副本）。来源：mythic_dungeon 奖励表(EV03/EV04/EV12/EV13)+DropSystem；推导边界：只描述入账路径，具体数量归 SYS-OUT-SU-05；UNKNOWN：正式服是否发放无台账，运行态 UNKNOWN_LIVE。",
+      "status": "WORKING_COPY_OBSERVED_UNKNOWN_LIVE",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-09-REL04",
+      "type": "validates",
+      "direction": "outgoing",
+      "targetId": "PF-04",
+      "targetName": "多玩法验证",
+      "description": "大秘境验证阵容广度、环境适配与终局深度。来源：大秘境 Design Doc(25层/词缀/赛季)+PF-04 多玩法验证；推导边界：只描述验证目标，不含数值验收模型；UNKNOWN：工作副本入口关闭（CloseSys=true），正式运行 UNKNOWN_LIVE，实际验证未运行。",
+      "status": "WORKING_COPY_OBSERVED_UNKNOWN_LIVE",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-09-REL05",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-03",
+      "targetName": "战斗数值",
+      "description": "25 层难度与词缀需用 DPS/生存与环境适配模型验收。来源：大秘境 Design Doc+NUM-03 战斗数值；推导边界：只描述验收维度，具体模型归 NUM-03；UNKNOWN：入口关闭，模型验收未运行。",
+      "status": "MODEL_NOT_CLOSED",
+      "provenance": "UNKNOWN"
+    },
+    {
+      "id": "SYS-OUT-GP-09-REL06",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-14",
+      "targetName": "活动、赛季与 LiveOps",
+      "description": "大秘境赛季生命周期由 LiveOps/赛季编排消费；当前工作副本入口关闭。来源：大秘境 Design Doc(28天赛季)+SYS-OUT-SU-14；推导边界：只描述编排归属，不含 LiveOps 具体规则；UNKNOWN：编排是否运行无台账。",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "provenance": "WORKING_COPY_OBSERVED",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV04"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-GP-09-EV01",
+      "kind": "reverse-design",
+      "label": "大秘境 Design Doc",
+      "path": "design/大秘境Design Doc.md",
+      "location": "R-01～R-07、工作假设；状态 Draft/HIGH 风险",
+      "status": "DRAFT_REVERSE_ENGINEERED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV02",
+      "kind": "decision-record",
+      "label": "current-gameplay 快照",
+      "path": "D:/Vgame_design/skills/vgame-core-understanding/references/current-gameplay.md",
+      "location": "大秘境 unlock=角色等级37, season=28天",
+      "status": "CROSS_SOURCE_SNAPSHOT"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV03",
+      "kind": "source-excel",
+      "label": "WeekMaxLayerReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/mythic_dungeon/WeekMaxLayerReward.xlsx",
+      "location": "本机SVN工作副本；周最高层奖励共4个有效数据行（ID=1..4，Layer=25/13/7/1），工作表物理58行其余为空；样例ID=1 CommonDropId=25002004；核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV04",
+      "kind": "source-excel",
+      "label": "SeasonScoreReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/mythic_dungeon/SeasonScoreReward.xlsx",
+      "location": "本机SVN工作副本；赛季积分档奖励；≈10 行，样例 Id=1:ScoreLimit=8000/Score=500/DropId=25003001；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV12",
+      "kind": "source-excel",
+      "label": "WeekScoreReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/mythic_dungeon/WeekScoreReward.xlsx",
+      "location": "本机SVN工作副本；周积分奖励档位；≈10 行，样例 Id=1:Score=100/DropId=25001001（约束 MinPlayerLv/MaxPlayerLv）；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV13",
+      "kind": "source-excel",
+      "label": "SeasonRankReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/mythic_dungeon/SeasonRankReward.xlsx",
+      "location": "本机SVN工作副本；赛季排名档奖励；≈7 行，样例 Id=1:RankPer=100/Rank=1/DropId=25004001；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV05",
+      "kind": "source-code",
+      "label": "MysteryMode.cs（占位空类）",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.Lockstep/Runtime/Logic/Mode/MysteryMode.cs",
+      "location": "全文件 10 行占位空类：仅继承 BaseGameMode，无 override/字段/词缀逻辑",
+      "status": "WORKING_COPY_SOURCE_EMPTY_PLACEHOLDER"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV11",
+      "kind": "source-code",
+      "label": "MysterySystem.lua（外循环实现）",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/MysterySystem.lua",
+      "location": "当前文件155行；NetHandler覆盖信息、周/赛季积分奖励领取、切换副本层、排行、通知与战斗结束；领取响应调用 UIUtil.ShowReward；核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV06",
+      "kind": "source-code",
+      "label": "UIMysteryMainView.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/UI/Level/Mystery/UIMysteryMainView.lua",
+      "location": "大秘境主界面",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV07",
+      "kind": "source-code",
+      "label": "UIBattleMystery.cs",
+      "path": "D:/Vgame/HorizonFlyProject/Packages/VGame/VGame.GameLogic/Runtime/Combat/BattleUI/GameModePanel/UIBattleMystery.cs",
+      "location": "战斗内大秘境 HUD",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV08",
+      "kind": "source-excel",
+      "label": "SystemOpen.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/system_open/SystemOpen.xlsx",
+      "location": "[202] Mystery, CloseSys=true, UnlockId=4102, ParentId=9；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_CLOSED"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV09",
+      "kind": "source-excel",
+      "label": "Unlock.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/unlock/Unlock.xlsx",
+      "location": "Unlock.xlsx[4102]：UnLockDesc=玩家等级解锁、UnLockType=UnLock_UUT_player_Grade、UnLockParams=37；生成 unlock.lua 序列化为 UnLockType=1；核对 2026-08-20",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV10",
+      "kind": "source-code",
+      "label": "unlock.lua/systemopen.lua 镜像",
+      "path": "D:/Vgame/HorizonFlyProject/LuaConfig/unlock.lua",
+      "location": "[4102] UnLockType=1/UnLockParams={37}；systemopen.lua [202] CloseSys=true, UnlockId=4102",
+      "status": "WORKING_COPY_MIRROR"
+    },
+    {
+      "id": "SYS-OUT-GP-09-EV14",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-D 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-D].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-GP-09-Q01",
+      "priority": "P0",
+      "question": "大秘境 SystemOpen(202).CloseSys=true 是否为正式「未开放」决议？何时放开？",
+      "impact": "决定本系统是否可玩与是否纳入当前内容日历。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV08",
+        "SYS-OUT-GP-09-EV10"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-D",
+      "answer": "用户正式选择「长期维护性关闭」：保留兼容但不承诺重开版本。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GP-09-EV14"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-GP-09-Q02",
+      "priority": "P1",
+      "question": "大秘境是否曾上线/灰度？需补集中版本/开关/发布台账以确认 LIVE。",
+      "impact": "决定运行状态是 UNKNOWN（未开放）还是曾 LIVE 已下线。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV08"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-09-Q03",
+      "priority": "P1",
+      "question": "25 层/40-220 级/词缀数量等 Draft 口径是否与 mythic_dungeon 配置一致？",
+      "impact": "决定结构口径是否需回写 Design。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-09-Q04",
+      "priority": "P1",
+      "question": "赛季开关、词缀选取、周/赛季结算窗口与发放幂等的服务端实现为何？",
+      "impact": "影响放开后的运行正确性与补偿处理。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV01",
+        "SYS-OUT-GP-09-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-GP-09-Q05",
+      "priority": "P1",
+      "question": "MysteryMode.cs 战斗内词缀逻辑是否实装？何时由 C# 侧落地（当前为占位空类，外循环在 Lua）？",
+      "impact": "决定大秘境战斗内词缀效果是否可用，影响入口放开后的玩法完整性。",
+      "evidenceRefs": [
+        "SYS-OUT-GP-09-EV05",
+        "SYS-OUT-GP-09-EV11"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在赛季→词缀→逐层→周结→赛季结的有序流程（当入口开放时）"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在 CloseSys 关闭、玩家等级37 与赛季 Active 条件"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "本系统拥有周/赛季奖励发放边界（结构存在但关闭）"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在「设计存在 vs 运行状态未知（工作副本入口关闭）」(C-005) 与落地待核缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在主界面与战斗词缀 HUD（当前工作副本入口关闭，可见性取决于发布环境）"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 mythic_dungeon 玩法配置与 SystemOpen/Unlock 开放/关闭配置"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-D",
+      "closeableQuestionId": "SYS-OUT-GP-09-Q01",
+      "selectedOptionId": 2,
+      "selectedOptionName": "长期维护性关闭",
+      "approvedTarget": "选择「长期维护性关闭」：保留兼容但不承诺重开版本。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:14:49.154Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "已确认长期维护性关闭的产品目标；发布台账、开关与兼容清单仍待落地。",
+      "evidenceRef": "SYS-OUT-GP-09-EV14",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}

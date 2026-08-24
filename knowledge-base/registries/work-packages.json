@@ -1,0 +1,203 @@
+{
+  "schema": "vgame-knowledge-work-packages/v1",
+  "version": "0.3",
+  "updatedAt": "2026-08-19",
+  "objective": "在不扩大单次上下文的前提下，将其余44个摘要系统扩展为可维护的完整系统正文。",
+  "coordination": {
+    "maxConcurrentAuthors": 3,
+    "integratorRole": "主对话/集成者",
+    "authorWriteScope": [
+      "仅写入自己领取的 system-details/<SYSTEM_ID>.json",
+      "可写入独立 research/batches/<PACKAGE_ID>.md 作为只读回源报告"
+    ],
+    "integratorOnly": [
+      "knowledge-model.json",
+      "shared-contracts/contract-registry.json",
+      "build-web-model.mjs",
+      "validate-knowledge-base.mjs",
+      "index.html",
+      "router-manifest.json",
+      "knowledge-model.js",
+      "knowledge-search-index.js",
+      "system-chunks/",
+      "systems/"
+    ],
+    "generatedOutputs": [
+      "router-manifest.json",
+      "knowledge-model.js",
+      "knowledge-search-index.js",
+      "system-chunks/",
+      "systems/"
+    ]
+  },
+  "qualityRules": [
+    "以 SYSTEM-DETAIL-SPEC.md 为规范，以 SYS-OUT-GP-01.json 为结构实例，不复制主线专属内容。",
+    "每个关键结论必须区分 SOURCE_EXPLICIT、WORKING_COPY_OBSERVED、CROSS_SOURCE_SYNTHESIS、DESIGN_PROPOSAL 或 UNKNOWN。",
+    "工作副本和配置镜像不得写成 Production/LIVE。",
+    "正文不存在时宁可写 GAP/UNKNOWN，也不得从相似系统补造规则。",
+    "不适用的职责允许显式 N/A，不得为了数组非空伪造奖励、配置或异常。",
+    "同一事实只在一个系统正文维护；跨系统只记录稳定ID、关系类型和差异。",
+    "SVN配置和代码默认只读，未经用户明确授权不得修改。"
+  ],
+  "packages": [
+    {
+      "id": "PLATFORM-v0.4",
+      "wave": 0,
+      "name": "分层检索、懒加载与自动路由底座",
+      "systemIds": [
+        "SYS-OUT-GP-01"
+      ],
+      "status": "complete",
+      "notes": "主线完整正文样板；当前全库与接力结构验证51/51通过。"
+    },
+    {
+      "id": "W1-A",
+      "wave": 1,
+      "name": "战斗运行底座",
+      "systemIds": [
+        "SYS-IN-01",
+        "SYS-IN-02",
+        "SYS-IN-03",
+        "SYS-IN-04"
+      ],
+      "status": "complete",
+      "notes": "2026-08-18 交付 4 个 full 正文。P0：断线重连/顶号/失败成本与结算幂等无正式口径（SYS-IN-01）；Skill Action 74/Buff Effect 15 等枚举口径漂移需自动同步（SYS-IN-03）。P1：五人队 vs MaxFrontendPlayerRoles=6；MonsterAi→行为树资产覆盖未核。"
+    },
+    {
+      "id": "W1-B",
+      "wave": 1,
+      "name": "遭遇到结算",
+      "systemIds": [
+        "SYS-IN-05",
+        "SYS-IN-06",
+        "SYS-IN-07",
+        "SYS-IN-08"
+      ],
+      "status": "complete",
+      "notes": "2026-08-18 交付 4 个 full 正文。P0：金币带出「Draft 规则 vs 工作副本字段 vs 未核到服务器消费链」三方冲突未选边（SYS-IN-08）。P1：爬塔 TowerMode 未定位；各玩法失败/超时/断线/投降胜负口径未冻结；掉落 Icon 表现 InReview 未关闭。"
+    },
+    {
+      "id": "W1-C",
+      "wave": 1,
+      "name": "跨系统公共脊柱",
+      "systemIds": [
+        "SYS-OUT-GP-11",
+        "SYS-OUT-GR-01",
+        "SYS-OUT-SU-04",
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-13"
+      ],
+      "status": "complete",
+      "notes": "2026-08-18 交付 5 个 full 正文，公共契约冻结：进入/结算/资源身份/奖励/解锁与引导的 canonical 分别归 GP-11/GR-01/SU-04/SU-05/SU-13。集成者新增 CONTRACT-ITEM-LEDGER，扩展 CONTRACT-SWEEP 与 CONTRACT-UNLOCK-SYSTEMOPEN 语义；DYNAMIC-SETTLEMENT 候选因证据不足暂不注册。P0：扫荡资格与幂等（GP-11-Q01/Q02）；Drop 双源与断引用冲突（SU-05）。P1：玩家等级经验曲线 278,180 vs 302,950 双权威；收容凭证(107) 旧专武子类型残留。"
+    },
+    {
+      "id": "W2-A",
+      "wave": 2,
+      "name": "推进与稳定产出玩法",
+      "systemIds": [
+        "SYS-OUT-GP-02",
+        "SYS-OUT-GP-03",
+        "SYS-OUT-GP-04",
+        "SYS-OUT-GP-05",
+        "SYS-OUT-GP-12"
+      ],
+      "status": "complete",
+      "notes": "2026-08-18 交付 5 个 full 正文（R=49/E=68/Q=32，Q07 补记到 GP-05 映射本多倍/层→品质分档）。P0：高难主线 MainLevel 15-vs-35 冲突、奖励双源与体力字段冲突（GP-02）；跑商 SVN Datas 与 V25 沉淀多处冲突、是否纳入正式结构待确认（GP-12）。P1：金币副本解锁 Design 主线1-6 vs current-gameplay 主线2-4（GP-03）；旅券副本 BossBattleTime 近空、奖励双源（GP-04）；映射副本多倍白名单冲突、无 level 底表（GP-05）。"
+    },
+    {
+      "id": "W2-B",
+      "wave": 2,
+      "name": "验证玩法",
+      "systemIds": [
+        "SYS-OUT-GP-06",
+        "SYS-OUT-GP-07",
+        "SYS-OUT-GP-08",
+        "SYS-OUT-GP-09",
+        "SYS-OUT-GP-10"
+      ],
+      "status": "complete",
+      "notes": "2026-08-18 交付 5 个 full 正文（R=35/E=71/Q=22）。P0：大秘境 SystemOpen(202).CloseSys=true 仅证明工作副本关闭，运行态因无版本/发布台账核为 UNKNOWN_LIVE（不是已确认 NOT_OPEN）；设计存在/工作副本关闭/落地待核三层（GP-09，MysteryMode 为占位空类不称已实装，奖励配置存在且有客户端消费链非「未运行」）。P1：无限挑战 Draft 解锁 2-10 vs 实装 3-15、Draft 与实装结构漂移（GP-06）；爬塔 TowerMode 源码未定位、入口主线3-10 vs 角色等级25 冲突（GP-08）；竞技场 Draft 入口等级未回源（GP-07）；BOSS挑战无独立 Design Doc（GAP）、解锁主线4-15 vs 角色等级30 冲突（GP-10）。"
+    },
+    {
+      "id": "W2-C",
+      "wave": 2,
+      "name": "角色核心养成",
+      "systemIds": [
+        "SYS-OUT-GR-02",
+        "SYS-OUT-GR-03",
+        "SYS-OUT-GR-04",
+        "SYS-OUT-GR-05",
+        "SYS-OUT-GR-10"
+      ],
+      "status": "complete",
+      "notes": "2026-08-18 交付 5 个 full 正文（R=29/E=46/Q=18）。P0：专武→收容物迁移冲突保持 P0_CONFLICT/UNKNOWN，不代主策裁决（C-001），双方证据记录完整，GR-05↔GR-10 双向 supersedes+conflicts-with 关系（GR-05/GR-10）。P1：收容物 ConfigReady 但 SVN Datas/程序接入仍待核，AnomalySystem 已接管 ExclusiveWeapon 旧网络消息（GR-05）；角色经验(记录盘100/101/102) vs 玩家经验(行旅帧片4) 正确区分（GR-02）；星盘能效配置已落06镜像但程序接入待核（GR-04）。"
+    },
+    {
+      "id": "W3-A",
+      "wave": 3,
+      "name": "装备与基地养成",
+      "systemIds": [
+        "SYS-OUT-GR-06",
+        "SYS-OUT-GR-07",
+        "SYS-OUT-GR-08",
+        "SYS-OUT-GR-09"
+      ],
+      "status": "complete",
+      "notes": "2026-08-18 交付 4 个 full 正文（R=30/E=76/Q=28）。P1：映射装备多版数值文档权威性不同，超级爆改Deprecated不等于系统废弃（GR-07）；炮台/基地缺独立Design从竞技场链路反推（GR-08 GAP）；房车多项规则ConfigReady但SVN/程序落地待接入（GR-09）。P2：旅券供给/成长/战斗属性转化三方边界（GR-06）。"
+    },
+    {
+      "id": "W3-B",
+      "wave": 3,
+      "name": "获取与日常留存",
+      "systemIds": [
+        "SYS-OUT-SU-01",
+        "SYS-OUT-SU-02",
+        "SYS-OUT-SU-03",
+        "SYS-OUT-SU-06",
+        "SYS-OUT-SU-07",
+        "SYS-OUT-SU-08"
+      ],
+      "status": "complete",
+      "notes": "2026-08-18 交付 6 个 full 正文（R=42/E=39/Q=29）。P0：收容物抽卡迁移冲突相关，06镜像已生成未写入SVN Datas（SU-02）；任务系统Jottings/Task旧口径与重设计不同步、ChapterTasks.DropId断引用（SU-07）。P1：碎片回收Design InReview回抽闭环未冻结（SU-03）；商店通用/招募/公会只共享契约不共享商品口径（SU-06）；卡池存在不等于当期开放（SU-01）。P2：多类签到周期不可合并为同一模板（SU-08）。"
+    },
+    {
+      "id": "W3-C",
+      "wave": 3,
+      "name": "服务与运营",
+      "systemIds": [
+        "SYS-OUT-SU-09",
+        "SYS-OUT-SU-10",
+        "SYS-OUT-SU-11",
+        "SYS-OUT-SU-12",
+        "SYS-OUT-SU-14",
+        "SYS-OUT-SU-15"
+      ],
+      "status": "complete",
+      "notes": "2026-08-18 交付 6 个 full 正文（R=40/E=41/Q=34）。P0：通行证NOT_OPEN封存(C-006)不计当期供给（SU-10）；公会临时维护版本待大改(C-007)，公会战/拍卖排除（SU-11）。P1：好友/聊天缺独立Design(G-006)规则从GAP不反推；友情点+亲密度配置与Lua代码存在（工作副本观察），正式服发放状态 UNKNOWN（非纯 N/A，亦非已确认入账）（SU-12）；活动/LiveOps缺集中版本台账不能确认LIVE（SU-14 GAP）；月卡有配置但发布状态待确认、礼包缺独立Design（SU-15）。P2：邮件系统邮件与运营补偿需区分触发权威（SU-09）。"
+    },
+    {
+      "id": "M01",
+      "wave": 4,
+      "name": "战斗模块正文：战斗规则与角色设计",
+      "systemIds": [],
+      "status": "complete",
+      "notes": "2026-08-19 交付：module-details/M01.json（vgame-module-detail/v1，sections S0-S7 + crossRefs 29 条真实映射）+ M01-战斗专业正文.md（语义修正：CoinMode 胜利 UNKNOWN/GameOverData 仅候选、CNotifyFightOver 不覆盖 PVPVE、竞技场三层口径 §3.2.1、ResultHash 仅 NormalMessageProcessor 赋值）。已接入构建/搜索/router/validator/QA + 网页正文渲染（#module/M01 深链）。"
+    },
+    {
+      "id": "M02",
+      "wave": 4,
+      "name": "数值模块正文：对齐数值框架v2",
+      "systemIds": [],
+      "status": "complete",
+      "notes": "2026-08-19 交付：module-details/M02.json（vgame-module-detail/v1，sections S0-S8 + crossRefs NUM 域×45 系统映射，§0.5 收窄为 41 显式映射 + 4 域级占位）+ M02-数值框架v2专业正文.md（映射边界声明，行级/域级深度区分）。已接入构建/搜索/router/validator/QA + 网页正文渲染（#module/M02 深链）。"
+    },
+    {
+      "id": "M03",
+      "wave": 5,
+      "name": "混合检索准备",
+      "systemIds": [],
+      "status": "deferred",
+      "notes": "正文覆盖充分后再接入向量检索；随系统正文积累别名、边界词、排除词和来源优先级。"
+    }
+  ]
+}

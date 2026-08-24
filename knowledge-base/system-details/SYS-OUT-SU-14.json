@@ -1,0 +1,751 @@
+{
+  "schema": "vgame-system-detail/v1",
+  "systemId": "SYS-OUT-SU-14",
+  "name": "活动、赛季与 LiveOps",
+  "revision": "2026-08-24.1",
+  "updatedAt": "2026-08-24",
+  "detailLevel": "full",
+  "sourceSnapshot": {
+    "environment": "本机 SVN 工作副本 + 客户端 Lua 工作副本",
+    "checkedAt": "2026-08-18",
+    "svnRevision": "未建立集中记录",
+    "liveMeaning": "仅证明核对时工作副本中存在活动配置族与客户端实现线索，不证明 Production/LIVE。缺集中版本—功能—开关—灰度—回滚台账（G-003/C-003），不能确认任何活动或赛季的 LIVE 状态。"
+  },
+  "statusGuide": [
+    {
+      "prefix": "TARGET / CONFIRMED",
+      "meaning": "目标设计或已确认策划口径；本系统该类资产缺失，目标规则多为 GAP。"
+    },
+    {
+      "prefix": "WORKING_COPY / OBSERVED",
+      "meaning": "本机 SVN 工作副本观察（Excel 或客户端 Lua），不代表 Production/LIVE，也不代表正式策划规则。"
+    },
+    {
+      "prefix": "GAP",
+      "meaning": "已确认该职责适用，但策划规则、Design 资产或台账缺失；不得从实现反推补造规则。"
+    },
+    {
+      "prefix": "UNKNOWN",
+      "meaning": "现有证据不足以判断是否适用或当前状态；LIVE 必须有版本与实机证据。"
+    },
+    {
+      "prefix": "LIVE",
+      "meaning": "只有集中版本、开关和发布时间证据齐全时才能使用；本页运行状态未确认，缺集中台账。"
+    }
+  ],
+  "contractRefs": [
+    {
+      "id": "CONTRACT-UNLOCK-SYSTEMOPEN",
+      "ruleRefs": [
+        "SYS-OUT-SU-14-R01",
+        "SYS-OUT-SU-14-R02",
+        "SYS-OUT-SU-14-R06"
+      ]
+    },
+    {
+      "id": "CONTRACT-REWARD-SETTLEMENT",
+      "ruleRefs": [
+        "SYS-OUT-SU-14-R03",
+        "SYS-OUT-SU-14-R04",
+        "SYS-OUT-SU-14-R05"
+      ]
+    },
+    {
+      "id": "CONTRACT-TASK-REPORT",
+      "ruleRefs": [
+        "SYS-OUT-SU-14-R04"
+      ]
+    },
+    {
+      "id": "CONTRACT-FAILURE-IDEMPOTENCY",
+      "ruleRefs": [
+        "SYS-OUT-SU-14-R05"
+      ]
+    }
+  ],
+  "overview": {
+    "purpose": "活动、赛季与 LiveOps 系统承载当期内容投放、限时活动、赛季周期、双倍掉落、十四日活动、结算重置与运营奖励发布，是玩法、任务、排行与经济之间的运营调度层，决定哪些内容在何时对哪些玩家可参与。",
+    "inScope": [
+      "活动日历、活动开关、开放/结束时间与功能灰度的配置消费",
+      "限时活动（TimeLimitedActivity）与双倍掉落（DoubleDropActivity）的窗口与次数控制",
+      "十四日活动（FourteenDayActivity）的日程、任务点与活跃奖励",
+      "赛季周期、重置与结算的运营调度（消费玩法赛季，如大秘境）",
+      "活动奖励的结算时机与发布（经 Drop_TimeLimitedActivity 入账）",
+      "活动补偿、回滚与发布台账的职责声明"
+    ],
+    "outOfScope": [
+      "活动奖励 Drop 包具体内容与数量；该内容归 SYS-OUT-SU-05 与 Drop_TimeLimitedActivity 源表",
+      "活动任务的具体任务项与目标；任务权威归 SYS-OUT-SU-07",
+      "各玩法赛季规则本体（如大秘境赛季层级/排行）；玩法规则归对应 GP 系统",
+      "活动补偿邮件投递；投递归 SYS-OUT-SU-09",
+      "系统开放条件与 Unlock 参数；开放权威归 SYS-OUT-SU-13",
+      "服务器全局/灰度/AB 开关的具体实现；当前仅有框架模板，无登记台账"
+    ],
+    "inputs": [
+      "Activity.xlsx（活动定义、开放/结束时间、系统关联）",
+      "ActiveReward.xlsx（活跃奖励配置）",
+      "DoubleDropActivity.xlsx（双倍掉落活动配置）",
+      "FourteenDayActivity.xlsx（十四日活动配置）",
+      "玩法赛季结算事件（如大秘境）与任务/排行结果"
+    ],
+    "outputs": [
+      "活动开放/关闭状态与时间窗口",
+      "双倍掉落开关与每日次数",
+      "十四日活动日程与活跃点奖励领取状态",
+      "活动/赛季结算奖励发放事件（交由 SYS-OUT-SU-05 入账）",
+      "活动补偿/回滚的邮件补发事件"
+    ]
+  },
+  "statusAxes": [
+    {
+      "axis": "系统身份",
+      "value": "正式外循环运营调度层",
+      "status": "CURRENT_DESIGN_IDENTITY",
+      "note": "活动与赛季在项目总 Skill 中列为正式外循环运营内容承载；outer-domain-audit §4.4 确认配置和客户端系统存在。"
+    },
+    {
+      "axis": "目标设计",
+      "value": "GAP — 无独立 Design Doc，缺活动日历/周期/重置/台账",
+      "status": "DESIGN_GAP",
+      "note": "仓库无独立活动/LiveOps Design Doc（outer-domain-audit §5/§7 P1 确认）；缺活动日历、ActivityId/AvyId/任务/Drop/商店/版本映射与当前活动目录。规则不得从实现反推补造。"
+    },
+    {
+      "axis": "当前工作副本",
+      "value": "4 Activity xlsx + ActivitySystem/FourteenDayTaskSystem.lua 实现存在",
+      "status": "WORKING_COPY_OBSERVED",
+      "note": "本机 SVN 工作副本核对于 2026-08-18；Activity/ActiveReward/DoubleDropActivity/FourteenDayActivity 四文件与客户端 ActivitySystem.lua/FourteenDayTaskSystem.lua 实现存在；实现存在不证明正式规则或当期发布。"
+    },
+    {
+      "axis": "运行状态",
+      "value": "缺集中版本—功能—开关—灰度—回滚台账，不能确认 LIVE",
+      "status": "UNKNOWN_LIVE_NO_REGISTRY",
+      "note": "05-status-conflict-register C-003/G-003 记录缺集中版本/开关/回滚登记；outer-domain-audit §4.9 记录服务器开关/AB/灰度仅有框架模板无登记，版本号/节奏全部待确认。配置存在只记为实现证据，不能判 LIVE。"
+    },
+    {
+      "axis": "人工裁决",
+      "value": "DC-M=建立且强制门禁",
+      "status": "HUMAN_DECISION_CONFIRMED_IMPLEMENTATION_PENDING",
+      "note": "仅冻结 APPROVED_TARGET；工作副本实现与 Production/LIVE 仍需独立证据。证据：review/decisions/vgame-decision-cards-2026-08-24.json"
+    }
+  ],
+  "flows": [
+    {
+      "id": "SYS-OUT-SU-14-F01",
+      "name": "活动开放与参与流程（实现观察）",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-14-F01-S01",
+          "name": "查询活动信息",
+          "description": "客户端请求活动信息（ActivitySystem CReqActivityInfo/CRespActivityInfo 实现线索）。"
+        },
+        {
+          "id": "SYS-OUT-SU-14-F01-S02",
+          "name": "判断开放状态",
+          "description": "按活动开放/结束时间判断是否开放（IsActivityOpen/GetActivityTime 实现线索）。"
+        },
+        {
+          "id": "SYS-OUT-SU-14-F01-S03",
+          "name": "参与与推进",
+          "description": "玩家参与活动任务/玩法，结果上报任务与活跃点。"
+        },
+        {
+          "id": "SYS-OUT-SU-14-F01-S04",
+          "name": "结算与发奖",
+          "description": "活动结算触发奖励发放（经 Drop_TimeLimitedActivity 入账归 SYS-OUT-SU-05）。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-F02",
+      "name": "十四日活动流程（实现观察）",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-14-F02-S01",
+          "name": "开启活动",
+          "description": "十四日活动开启（FourteenDayTaskSystem Open/BuildActivityData 实现线索）。"
+        },
+        {
+          "id": "SYS-OUT-SU-14-F02-S02",
+          "name": "推进日程",
+          "description": "按日程推进任务与活跃点（RefreshData/InitActiveReward 实现线索）。"
+        },
+        {
+          "id": "SYS-OUT-SU-14-F02-S03",
+          "name": "领取活跃奖励",
+          "description": "领取活跃点奖励（CReqGetFourteenDayActivityPointReward 实现线索）。"
+        },
+        {
+          "id": "SYS-OUT-SU-14-F02-S04",
+          "name": "关闭",
+          "description": "活动结束关闭（Close 实现线索）。"
+        }
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-F03",
+      "name": "赛季结算与重置流程（职责声明）",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "steps": [
+        {
+          "id": "SYS-OUT-SU-14-F03-S01",
+          "name": "赛季周期到期",
+          "description": "玩法赛季（如大秘境28天）周期到期触发结算。"
+        },
+        {
+          "id": "SYS-OUT-SU-14-F03-S02",
+          "name": "结算与排行",
+          "description": "结算排行与赛季奖励（玩法规则归对应 GP 系统，本系统调度时间窗口）。"
+        },
+        {
+          "id": "SYS-OUT-SU-14-F03-S03",
+          "name": "重置与新一期",
+          "description": "重置赛季进度并开启新一期（重置口径与时间待确认）。"
+        }
+      ]
+    }
+  ],
+  "rules": [
+    {
+      "id": "SYS-OUT-SU-14-R01",
+      "name": "活动调度职责边界",
+      "status": "DESIGN_GAP",
+      "targetRule": "GAP：缺独立活动/LiveOps Design Doc，活动日历、周期、重置、开关与灰度的正式策划规则未确认。本系统作为玩法、任务、排行与经济之间的运营调度层，决定内容何时对谁可参与。",
+      "sourceFact": "outer-domain-audit §4.4/§4.9/§7 P1 记录活动配置和客户端系统存在但缺当前活动目录与节奏；ActivitySystem.lua 提供 IsActivityOpen/GetActivityTime/GetSysActivity 等调度实现。仓库无独立活动 Design Doc。",
+      "acceptance": "活动调度规则需独立 Design 与活动日历确认后方可称 canonical；当前不得从实现反推补造规则。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-07",
+        "SYS-OUT-SU-09"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-R02",
+      "name": "活动开放时间与开关",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：活动开放/结束时间的判定规则、功能开关与灰度策略未在独立 Design 中确认。",
+      "sourceFact": "ActivitySystem.lua IsActivityOpen/GetActivityTime/GetRelativeDayActivityTime 按活动 openingPara/endingPara 判定开放；Activity.xlsx 承载活动定义与时间。具体时间字段语义、时区与灰度策略未在 Design 中确认。",
+      "acceptance": "活动开放时间判定需 Design 确认；当前只记录实现观察。",
+      "relatedIds": [],
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV01",
+        "SYS-OUT-SU-14-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-R03",
+      "name": "双倍掉落活动",
+      "status": "WORKING_COPY_OBSERVED_DELEGATED",
+      "targetRule": "双倍掉落活动按活动开关限定窗口与每日次数；本系统调度窗口与次数，真实掉落放大归 SYS-OUT-SU-05。",
+      "sourceFact": "DoubleDropActivity.xlsx 存在；SYS-OUT-SU-05 记录 DropSystem:IsDailyDoubleDropActivityOpen/GetDailyDoubleDropActivityNum 控制每日双倍掉落次数。本系统只调度活动开关，掉落放大权威归 SYS-OUT-SU-05。",
+      "acceptance": "双倍掉落窗口与次数由本系统调度；真实掉落倍率与入账归 SYS-OUT-SU-05。",
+      "relatedIds": [
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-R04",
+      "name": "十四日活动",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "targetRule": "GAP：十四日活动的日程结构、任务点、活跃奖励层级与重置规则的正式策划口径未在独立 Design 中确认。",
+      "sourceFact": "FourteenDayActivity.xlsx 与 ActiveReward.xlsx 存在；FourteenDayTaskSystem.lua 提供 Open/BuildActivityData/InitTotalDays/InitActiveReward/RefreshData/CReqGetFourteenDayActivityPointReward 等实现。具体日程天数、活跃点阈值与奖励层级未在 Design 中确认。",
+      "acceptance": "十四日活动规则需 Design 确认；当前只记录配置与实现观察。",
+      "relatedIds": [
+        "SYS-OUT-SU-07",
+        "SYS-OUT-SU-05"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV02",
+        "SYS-OUT-SU-14-EV04",
+        "SYS-OUT-SU-14-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-R05",
+      "name": "活动奖励结算时机",
+      "status": "WORKING_COPY_OBSERVED_AUTHORITY_DELEGATED",
+      "targetRule": "活动/赛季结算触发奖励发放；本系统决定何时/为何发，具体发什么/发多少由 SYS-OUT-SU-05 经 Drop_TimeLimitedActivity 决定。",
+      "sourceFact": "Drop_TimeLimitedActivity 为逻辑 Drop 8源之一，承载限时活动奖励包；ActiveReward.xlsx 承载活跃奖励。真实入账归 SYS-OUT-SU-05。",
+      "acceptance": "活动奖励有明确窗口、次数与领取幂等；真实入账归 SYS-OUT-SU-05。",
+      "relatedIds": [
+        "SYS-OUT-SU-05",
+        "SYS-OUT-SU-04"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-R06",
+      "name": "赛季周期与重置调度",
+      "status": "CROSS_SOURCE_SYNTHESIS_NEEDS_CONFIRMATION",
+      "targetRule": "GAP：赛季周期、重置时点与结算调度的统一规则未确认；本系统为玩法赛季提供时间窗口调度，玩法赛季规则本体归对应 GP 系统。",
+      "sourceFact": "current-gameplay 记录竞技场赛季14天、爬塔14天、大秘境28天；GP-09 大秘境消费活动赛季。但跨玩法的统一赛季周期、重置时点与结算调度规则无集中台账。",
+      "acceptance": "赛季周期与重置需集中活动日历与 Design 确认；本系统只调度时间窗口，不替代玩法赛季规则。",
+      "relatedIds": [
+        "SYS-OUT-GP-07",
+        "SYS-OUT-GP-08",
+        "SYS-OUT-GP-09"
+      ],
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV05"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "SYS-OUT-SU-14-C01",
+      "name": "活动开放时间",
+      "status": "WORKING_COPY_OBSERVED_DESIGN_GAP",
+      "rule": "活动开放按 openingPara/endingPara 判定（ActivitySystem GetRelativeDayActivityTime/IsActivityOpen 实现线索）；具体时间字段语义与灰度策略待 Design 确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV01",
+        "SYS-OUT-SU-14-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-C02",
+      "name": "系统关联活动",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "活动按 systemid 关联系统（ActivitySystem GetSysActivity/GetOpenActivityIds/GetActivityIdsBySystemId 实现线索）；具体系统-活动映射待活动日历确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-C03",
+      "name": "双倍掉落次数",
+      "status": "WORKING_COPY_DELEGATED",
+      "rule": "每日双倍掉落次数由活动开关与次数限制控制；掉落放大判定归 SYS-OUT-SU-05。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03"
+      ]
+    }
+  ],
+  "rewards": [
+    {
+      "id": "SYS-OUT-SU-14-RW01",
+      "name": "活动/限时奖励",
+      "status": "WORKING_COPY_OBSERVED_AUTHORITY_DELEGATED",
+      "rule": "活动/限时奖励经 Drop_TimeLimitedActivity 真实 Drop 入账；本系统决定何时/为何发，真实入账归 SYS-OUT-SU-05。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-RW02",
+      "name": "十四日活跃奖励",
+      "status": "WORKING_COPY_OBSERVED_AUTHORITY_DELEGATED",
+      "rule": "十四日活动活跃点奖励经 ActiveReward 配置与领取事件入账；真实入账归 SYS-OUT-SU-05。具体层级与阈值待 Design 确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV02",
+        "SYS-OUT-SU-14-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-RW03",
+      "name": "赛季结算奖励",
+      "status": "CROSS_SOURCE_SYNTHESIS_AUTHORITY_DELEGATED",
+      "rule": "赛季结算奖励由玩法系统（如大秘境排行/段位）上报结果，本系统调度结算时间窗口；真实入账归 SYS-OUT-SU-05，玩法规则归对应 GP 系统。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03"
+      ]
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "SYS-OUT-SU-14-EX01",
+      "name": "缺集中版本—功能—开关—灰度—回滚台账",
+      "status": "P0_GAP",
+      "rule": "05-status-conflict-register C-003/G-003 记录缺集中版本/开关/回滚登记；outer-domain-audit §4.9 记录服务器开关/AB/灰度仅有框架模板无登记，版本号/节奏全部待确认。无法可靠回答任何活动或赛季是否 LIVE。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV07"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-EX02",
+      "name": "缺独立活动 Design Doc 与活动日历",
+      "status": "P1_GAP",
+      "rule": "仓库无独立活动/LiveOps Design Doc（outer-domain-audit §7 P1）；缺活动日历与 ActivityId/AvyId/任务/Drop/商店/版本映射，活动供给、双倍、任务、版本内容无法做长期审计。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV04"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-EX03",
+      "name": "当前活动目录与发布状态待确认",
+      "status": "P1_GAP",
+      "rule": "配置和客户端系统存在，但当前活动目录、时间、正式发布状态待确认；不能因表存在判 LIVE。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-EX04",
+      "name": "赛季重置与结算口径未确认",
+      "status": "P2_GAP",
+      "rule": "跨玩法的统一赛季周期、重置时点与结算调度规则无集中台账；各玩法赛季天数（14/28天）散落在 current-gameplay，需集中活动日历确认。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03"
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "id": "SYS-OUT-SU-14-UI01",
+      "name": "活动入口与列表",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示当期活动入口、活动时间与参与状态；活动按系统关联展示；客户端 Activity UI 入口承载。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV05"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-UI02",
+      "name": "十四日活动面板",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "展示十四日日程、任务进度、活跃点与奖励领取状态；客户端 FourteenActivity UI 族承载。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV06"
+      ]
+    },
+    {
+      "id": "SYS-OUT-SU-14-UI03",
+      "name": "双倍掉落反馈",
+      "status": "WORKING_COPY_OBSERVED",
+      "rule": "双倍掉落活动开放时在相关玩法入口/结算展示双倍标识与剩余次数。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03"
+      ]
+    }
+  ],
+  "configs": [
+    {
+      "id": "SYS-OUT-SU-14-CFG01",
+      "name": "Activity.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\Activity.xlsx",
+      "role": "活动定义、开放/结束时间、系统关联；时间字段语义待 Design 确认",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-OUT-SU-14-CFG02",
+      "name": "ActiveReward.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\ActiveReward.xlsx",
+      "role": "活跃点奖励配置（十四日活动等）",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-14-CFG03",
+      "name": "DoubleDropActivity.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DoubleDropActivity.xlsx",
+      "role": "双倍掉落活动配置；掉落放大归 SYS-OUT-SU-05",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-14-CFG04",
+      "name": "FourteenDayActivity.xlsx",
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\FourteenDayActivity.xlsx",
+      "role": "十四日活动日程与任务配置",
+      "status": "WORKING_COPY_SOURCE"
+    }
+  ],
+  "relationships": [
+    {
+      "id": "SYS-OUT-SU-14-REL01",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-05",
+      "targetName": "掉落与奖励",
+      "description": "来源：Activity.xlsx(EV01)/ActiveReward.xlsx(EV02)定义活动奖励，ActivitySystem.lua(EV05)实现奖励发放，outer-domain-audit活动/版本运营(EV03)定义运营调度。推导：活动/限时/赛季奖励经Drop_TimeLimitedActivity真实Drop入账(SU-05)，本系统决定何时/为何发，真实入账归SYS-OUT-SU-05，构成 reports/outgoing 关系。推导边界：活动奖励配置已由工作副本确认，但真实入账权威在SU-05侧维护。UNKNOWN：活动奖励的服务端入账幂等与活动结束后的入账规则仍待SU-05确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN",
+      "evidenceRefs": []
+    },
+    {
+      "id": "SYS-OUT-SU-14-REL02",
+      "type": "consumes",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-07",
+      "targetName": "任务与章节任务",
+      "description": "活动消费任务系统组织活动任务与活跃点；任务规则归 SYS-OUT-SU-07。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV02"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-14-REL03",
+      "type": "reports",
+      "direction": "outgoing",
+      "targetId": "SYS-OUT-SU-09",
+      "targetName": "邮件",
+      "description": "来源：ActivitySystem.lua(EV05)实现活动补偿，outer-domain-audit活动/版本运营(EV03)定义补偿投递，SYS-OUT-SU-09邮件正文定义邮件投递。推导：活动补偿、回滚与赛季未领奖励经邮件补发(SU-09)，投递归SYS-OUT-SU-09，构成 reports/outgoing 关系。推导边界：活动补偿配置已由工作副本确认，但邮件投递规则在SU-09侧维护。UNKNOWN：活动补偿邮件的服务端发放时机与回滚补发的幂等规则仍待SU-09确认。",
+      "status": "KNOWLEDGE_CURRENT",
+      "provenance": "UNKNOWN",
+      "evidenceRefs": []
+    },
+    {
+      "id": "SYS-OUT-SU-14-REL04",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-GP-09",
+      "targetName": "大秘境",
+      "description": "来源：outer-domain-audit活动/版本运营(EV03)定义活动与大秘境赛季关系，12-战斗外系统§4.4活动与赛季(EV04)定义调度职责，SYS-OUT-GP-09大秘境正文定义玩法赛季规则。推导：大秘境(GP-09)消费活动赛季周期与结算，玩法赛季规则归SYS-OUT-GP-09，本系统调度时间窗口，构成 consumes/incoming 关系。推导边界：活动与大秘境赛季关系已由审计确认，但大秘境玩法赛季规则在GP-09侧维护。UNKNOWN：大秘境赛季周期与本系统调度时间窗口的精确对应关系仍待GP-09确认。",
+      "status": "KNOWLEDGE_CURRENT_NEEDS_REGISTRY",
+      "provenance": "UNKNOWN",
+      "evidenceRefs": []
+    },
+    {
+      "id": "SYS-OUT-SU-14-REL05",
+      "type": "consumes",
+      "direction": "incoming",
+      "targetId": "SYS-OUT-SU-13",
+      "targetName": "新手引导与系统开放",
+      "description": "活动入口与系统关联开放受 SystemOpen/Unlock 控制；开放权威归 SYS-OUT-SU-13。",
+      "status": "KNOWLEDGE_CURRENT",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV02"
+      ],
+      "provenance": "WORKING_COPY_OBSERVED"
+    },
+    {
+      "id": "SYS-OUT-SU-14-REL06",
+      "type": "balances",
+      "direction": "incoming",
+      "targetId": "NUM-04",
+      "targetName": "经济数值",
+      "description": "来源：Activity.xlsx(EV01)/ActiveReward.xlsx(EV02)定义活动供给，outer-domain-audit活动/版本运营(EV03)定义双倍掉落与赛季奖励，知识目录定义NUM-04经济数值域职责。推导：活动供给、双倍掉落与赛季奖励进入经济账(NUM-04)，具体数量归数值/Drop权威源，构成 balances/incoming 关系。推导边界：活动供给配置已由工作副本确认，但供给量在经济账中的占比属经济数值域维护。UNKNOWN：活动供给在整体经济账中的占比与双倍掉落的经济影响仍待经济域核算确认。",
+      "status": "KNOWLEDGE_CURRENT_WITH_GAP",
+      "provenance": "UNKNOWN"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "SYS-OUT-SU-14-EV01",
+      "kind": "source-excel",
+      "label": "Activity.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Activity/Activity.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Activity/Activity.xlsx",
+      "location": "本机SVN工作副本；活动定义/时间/系统关联；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE_NEEDS_DESIGN_CONFIRMATION"
+    },
+    {
+      "id": "SYS-OUT-SU-14-EV02",
+      "kind": "source-excel",
+      "label": "ActiveReward.xlsx",
+      "path": "D:/Vgame/Config/GameConfig/Datas/Activity/ActiveReward.xlsx",
+      "href": "file:///D:/Vgame/Config/GameConfig/Datas/Activity/ActiveReward.xlsx",
+      "location": "本机SVN工作副本；活跃点奖励配置；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-14-EV03",
+      "kind": "knowledge-ref",
+      "label": "outer-domain-audit 活动/版本运营",
+      "path": "archive/legacy-output-20260824/research/outer-domain-audit.md",
+      "href": "../../research/outer-domain-audit.md",
+      "location": "§4.4 活动/十四日/双倍掉落、§4.9 版本运营、§7 P1 缺口(活动日历/G-003台账)",
+      "status": "CONFIRMED_GAP"
+    },
+    {
+      "id": "SYS-OUT-SU-14-EV04",
+      "kind": "knowledge-ref",
+      "label": "12-战斗外系统 §4.4 活动与赛季",
+      "path": "archive/legacy-output-20260824/knowledge-base/12-战斗外系统.md",
+      "href": "../12-战斗外系统.md",
+      "location": "§4.4 社交、引导与运营：活动与赛季列为正式外循环",
+      "status": "CONFIRMED_GAP"
+    },
+    {
+      "id": "SYS-OUT-SU-14-EV05",
+      "kind": "source-code",
+      "label": "ActivitySystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Activity/ActivitySystem.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/ActivitySystem.lua",
+      "location": "GetRelativeDayActivityTime(8)/IsActivityOpen(37)/GetActivityTime(49)/GetSysActivity(144)/GetOpenActivityIds(171)/CReqActivityInfo(237)；196行；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-14-EV06",
+      "kind": "source-code",
+      "label": "FourteenDayTaskSystem.lua",
+      "path": "D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Activity/FourteenDay/FourteenDayTaskSystem.lua",
+      "href": "file:///D:/Vgame/HorizonFlyProject/Lua/Logic/PlayerData/Systems/Activity/FourteenDay/FourteenDayTaskSystem.lua",
+      "location": "Open(86)/BuildActivityData(111)/InitTotalDays(117)/InitActiveReward(128)/RefreshData(142)/CReqGetFourteenDayActivityPointReward(65)；320行；核对 2026-08-18",
+      "status": "WORKING_COPY_SOURCE"
+    },
+    {
+      "id": "SYS-OUT-SU-14-EV07",
+      "kind": "decision-record",
+      "label": "状态冲突登记 C-003/G-003",
+      "path": "archive/legacy-output-20260824/05-status-conflict-register.md",
+      "href": "../../05-status-conflict-register.md",
+      "location": "§2 P0 C-003 功能是否LIVE、§5 G-003 版本/活动/AB/灰度/Hotfix台账缺失",
+      "status": "CONFIRMED_GAP"
+    },
+    {
+      "id": "SYS-OUT-SU-14-EV08",
+      "kind": "human-decision",
+      "label": "2026-08-24 DC-M 正式人工裁决",
+      "path": "archive/legacy-output-20260824/registries/decision-card-registry.json",
+      "location": "cards[id=DC-M].review；原始JSON SHA256=8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3",
+      "status": "HUMAN_DECISION_CONFIRMED"
+    }
+  ],
+  "openQuestions": [
+    {
+      "id": "SYS-OUT-SU-14-Q01",
+      "priority": "P0",
+      "question": "是否建立集中版本—功能—开关—灰度—回滚台账，并将其作为 LIVE/GRAY/MAINTAIN 状态的唯一权威源？",
+      "impact": "无台账则无法可靠判断任何活动或赛季的 LIVE 状态（C-003/G-003）。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV07"
+      ],
+      "resolutionOwner": "HUMAN_DECISION",
+      "lifecycle": "CLOSED",
+      "decisionCardId": "DC-M",
+      "answer": "用户正式选择「建立且强制门禁」：没有发布/开关证据不得标 LIVE。 状态为 APPROVED_TARGET / HUMAN_DECISION_CONFIRMED / IMPLEMENTATION_PENDING；未在评论中给出的数值、版本、范围、ID、运行状态或实现细节均不得补造。",
+      "resolvedBy": "用户正式确认（source_thread 019fff2d-5b87-7ca3-9911-22a7950c2bb5）",
+      "resolvedAt": "2026-08-24T03:34:25.926Z",
+      "closureEvidenceRefs": [
+        "SYS-OUT-SU-14-EV08"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING"
+    },
+    {
+      "id": "SYS-OUT-SU-14-Q02",
+      "priority": "P1",
+      "question": "是否立项独立活动/LiveOps Design Doc 与活动日历？ActivityId/AvyId/任务/Drop/商店/版本映射如何建立？",
+      "impact": "缺活动日历导致活动供给、双倍、任务、版本内容无法长期审计。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV04"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-14-Q03",
+      "priority": "P1",
+      "question": "当前活动目录、开放时间与正式发布状态是什么？",
+      "impact": "配置存在不证明当期发布；需活动日历确认当前可参与活动。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03",
+        "SYS-OUT-SU-14-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-14-Q04",
+      "priority": "P2",
+      "question": "跨玩法的统一赛季周期、重置时点与结算调度规则是什么？",
+      "impact": "各玩法赛季天数散落，需集中调度规则避免冲突。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV03"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-14-Q05",
+      "priority": "P2",
+      "question": "十四日活动的日程结构、活跃点阈值与奖励层级如何定义？",
+      "impact": "决定十四日活动玩法与供给节奏。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV02",
+        "SYS-OUT-SU-14-EV06"
+      ],
+      "resolutionOwner": "DEFERRED_DETAIL",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-14-Q06",
+      "priority": "P2",
+      "question": "活动开放时间字段语义、时区与灰度策略如何定义？",
+      "impact": "决定活动开放判定的准确性与灰度能力。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV01",
+        "SYS-OUT-SU-14-EV05"
+      ],
+      "resolutionOwner": "RUNTIME_OWNER",
+      "lifecycle": "OPEN"
+    },
+    {
+      "id": "SYS-OUT-SU-14-Q07",
+      "priority": "P0",
+      "question": "当前各活动/赛季实际处于 LIVE、GRAY、MAINTAIN 还是 CLOSED 的运行台账是什么？",
+      "impact": "需版本、开关、灰度和发布记录才能回答，工作副本存在不能代替。",
+      "evidenceRefs": [
+        "SYS-OUT-SU-14-EV01"
+      ],
+      "lifecycle": "OPEN",
+      "resolutionOwner": "RUNTIME_OWNER"
+    }
+  ],
+  "sectionApplicability": {
+    "flows": {
+      "state": "APPLICABLE",
+      "reason": "存在活动开放参与、十四日流程与赛季结算等有序流程（多为实现观察/职责声明，目标规则为 GAP）"
+    },
+    "conditions": {
+      "state": "APPLICABLE",
+      "reason": "存在活动开放时间、系统关联与双倍次数等条件（多为 GAP/实现观察）"
+    },
+    "rewards": {
+      "state": "APPLICABLE",
+      "reason": "活动拥有奖励结算时机权威；具体 Drop 内容归 SYS-OUT-SU-05"
+    },
+    "exceptions": {
+      "state": "APPLICABLE",
+      "reason": "存在缺台账(P0)、缺Design/活动日历、当前发布状态待确认与赛季重置口径未确认等缺口"
+    },
+    "ui": {
+      "state": "APPLICABLE",
+      "reason": "存在活动入口列表、十四日面板与双倍反馈等玩家可见界面"
+    },
+    "configs": {
+      "state": "APPLICABLE",
+      "reason": "存在 Activity/ActiveReward/DoubleDropActivity/FourteenDayActivity 四个配置源"
+    }
+  },
+  "humanDecisions": [
+    {
+      "cardId": "DC-M",
+      "closeableQuestionId": "SYS-OUT-SU-14-Q01",
+      "selectedOptionId": 1,
+      "selectedOptionName": "建立且强制门禁",
+      "approvedTarget": "选择「建立且强制门禁」：没有发布/开关证据不得标 LIVE。",
+      "userComment": "",
+      "suggestion": "",
+      "exportedReviewUpdatedAt": "2026-08-24T03:18:48.384Z",
+      "confirmedAt": "2026-08-24T03:34:25.926Z",
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "HUMAN_DECISION_CONFIRMED",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "implementationNote": "需建立集中版本—功能—开关—灰度—回滚台账及强制门禁；台账尚未建成，不能据此标 LIVE。",
+      "evidenceRef": "SYS-OUT-SU-14-EV08",
+      "evidencePath": "review/decisions/vgame-decision-cards-2026-08-24.json",
+      "evidenceSha256": "8736877372517ec7a20f4d0996b9b9fb3599d828eb34d83d66d425a433f827f3"
+    }
+  ]
+}
