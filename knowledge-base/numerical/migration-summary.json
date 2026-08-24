@@ -1,0 +1,24 @@
+{
+  "schema": "vgame-numerical-migration-summary/v2",
+  "generatedAt": "2026-08-24T11:21:08.718145+00:00",
+  "sourceFiles": 1329,
+  "authoritativeMarkdownFiles": 74,
+  "sourceWorkbooks": 33,
+  "atoms": 999,
+  "activeAtoms": 958,
+  "supersededAtoms": 8,
+  "historicalAtoms": 33,
+  "formulas": 1062,
+  "parameterSets": 14,
+  "dispositions": {
+    "ARCHIVE_TRACE_ONLY": 333,
+    "MIRROR_OR_STAGING_TRACE_ONLY": 324,
+    "NORMALIZED_INTO_CANONICAL": 70,
+    "REGENERATABLE_OR_READING_OUTPUT": 106,
+    "REGISTERED_EVIDENCE": 344,
+    "SOURCE_WORKBOOK_EVIDENCE": 34,
+    "TOOLING_OR_RULE_EVIDENCE": 91,
+    "VALIDATION_EVIDENCE": 27
+  },
+  "status": "AUTHORED_PENDING_GATES"
+}

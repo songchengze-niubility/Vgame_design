@@ -28,6 +28,7 @@ copyDir(path.join(kbSource, "system-details"), path.join(kbOut, "system-details"
 copyFile(path.join(kbSource, "domains", "M01-战斗专业正文.md"), path.join(kbOut, "M01-战斗专业正文.md"));
 copyFile(path.join(kbSource, "domains", "M02-数值框架v2专业正文.md"), path.join(kbOut, "M02-数值框架v2专业正文.md"));
 copyDir(path.join(kbSource, "domain-details"), path.join(kbOut, "module-details"));
+copyDir(path.join(kbSource, "numerical"), path.join(kbOut, "numerical"));
 copyFile(path.join(kbSource, "registries", "contract-registry.json"), path.join(kbOut, "shared-contracts", "contract-registry.json"));
 copyFile(path.join(kbSource, "governance", "retrieval-policy.json"), path.join(kbOut, "retrieval-policy.json"));
 copyFile(path.join(kbSource, "registries", "work-packages.json"), path.join(kbOut, "work-packages.json"));
@@ -91,6 +92,10 @@ const systemSkill = readJson(path.join(kbSource, "mappings", "system-to-skill.js
 const rulings = readJson(path.join(kbSource, "governance", "rulings.json"));
 const evidenceRegistry = readJson(path.join(kbSource, "evidence", "evidence-registry.json"));
 const authority = readJson(path.join(kbSource, "AUTHORITY.json"));
+const numericalRegistry = readJson(path.join(kbSource, "numerical", "atom-registry.json"));
+const numericalSources = readJson(path.join(kbSource, "numerical", "source-registry.json"));
+const numericalWorkbooks = readJson(path.join(kbSource, "numerical", "workbook-registry.json"));
+const numericalSummary = readJson(path.join(kbSource, "numerical", "migration-summary.json"));
 const indexOut = path.join(stageRoot, "indexes");
 for (const [name, source] of [
   ["skill-registry.json", path.join(kbSource, "registries", "skill-registry.json")],
@@ -102,6 +107,36 @@ for (const [name, source] of [
   ["evidence-registry.json", path.join(kbSource, "evidence", "evidence-registry.json")],
   ["rulings.json", path.join(kbSource, "governance", "rulings.json")]
 ]) copyFile(source, path.join(indexOut, name));
+for (const name of ["source-registry.json", "workbook-registry.json", "atom-registry.json", "formula-registry.json", "parameter-registry.json", "migration-summary.json"]) {
+  copyFile(path.join(kbSource, "numerical", name), path.join(indexOut, "numerical", name));
+}
+for (const name of ["numeric-to-system.json", "numeric-to-skill.json", "numeric-to-evidence.json", "numeric-to-config.json", "numeric-to-framework-node.json"]) {
+  copyFile(path.join(kbSource, "numerical", "mappings", name), path.join(indexOut, "numerical", "mappings", name));
+}
+
+const numericalSearch = numericalRegistry.atoms.map(atom => ({
+  id: atom.atomId,
+  parentId: "PFN-13",
+  parentName: "数值框架 V2",
+  module: "numeric",
+  path: `数值 / ${atom.domain} / ${atom.title}`,
+  targetRevision: "2.0.0",
+  targetType: atom.atomType === "HUMAN_RULING" ? "numeric-ruling" : "numeric-atom",
+  name: atom.title,
+  summary: atom.statement,
+  status: atom.status,
+  evidenceRefs: atom.evidenceRefs,
+  sourceLocator: atom.sourceLocator,
+  systemIds: atom.coveredSystems,
+  skillIds: atom.skillIds
+}));
+writeJson(path.join(indexOut, "numerical-search-index.json"), { schema: "vgame-numerical-search-index/v2", count: numericalSearch.length, entries: numericalSearch });
+writeText(path.join(kbOut, "numerical-search-index.js"), `/* Generated numerical atom search index. */\nwindow.VGAME_NUMERICAL_SEARCH = ${JSON.stringify(numericalSearch, null, 2)};\n`);
+const numericChunkRoot = path.join(kbOut, "numerical-chunks");
+for (const domain of [...new Set(numericalRegistry.atoms.map(atom => atom.domain))].sort()) {
+  const atoms = numericalRegistry.atoms.filter(atom => atom.domain === domain);
+  writeText(path.join(numericChunkRoot, `${domain}.js`), `/* Generated numerical domain chunk. */\nwindow.VGAME_NUMERICAL_DOMAINS = window.VGAME_NUMERICAL_DOMAINS || {};\nwindow.VGAME_NUMERICAL_DOMAINS[${JSON.stringify(domain)}] = ${JSON.stringify(atoms, null, 2)};\n`);
+}
 
 const routerPath = path.join(kbOut, "router-manifest.json");
 const router = readJson(routerPath);
@@ -109,6 +144,20 @@ router.version = "1.0.0";
 router.authorityRef = "knowledge-base/README.md";
 router.skillRegistryRef = "indexes/skill-registry.json";
 router.skillCount = skillRegistry.skills.length;
+router.numerical = {
+  schema: "vgame-numerical-router/v2",
+  atomCount: numericalRegistry.atoms.length,
+  sourceCount: numericalSources.files.length,
+  workbookCount: numericalWorkbooks.workbooks.length,
+  atomIndexRef: "numerical/atom-registry.json",
+  searchIndexRef: "../indexes/numerical-search-index.json",
+  domains: [...new Set(numericalRegistry.atoms.map(atom => atom.domain))].sort().map(domain => ({
+    id: domain,
+    count: numericalRegistry.atoms.filter(atom => atom.domain === domain).length,
+    chunkRef: `numerical-chunks/${domain}.js`,
+    canonicalRef: `numerical/domains/${domain}.md`
+  }))
+};
 writeJson(routerPath, router);
 
 const matrixLines = ["# 33 个 Skill 覆盖矩阵", "", "| Skill | 分类 | 覆盖系统数 | 依赖 | 知识层 | 状态 |", "|---|---|---:|---|---|---|"];
@@ -120,7 +169,17 @@ const classCounts = Object.groupBy ? Object.groupBy(archiveManifest.files, x => 
 const migrationLines = ["# 新旧内容迁移清单", "", `旧文件总数：${archiveManifest.fileCount}。`, "", "| 分类 | 数量 | 新处置 |", "|---|---:|---|"];
 for (const [key, rows] of Object.entries(classCounts)) migrationLines.push(`| ${key} | ${rows.length} | ${key === "REGENERATABLE" ? "由新生成链重建" : "archive 清单追溯；权威内容已原子化迁入 knowledge-base"} |`);
 writeText(path.join(stageRoot, "reports", "migration-manifest.md"), `${migrationLines.join("\n")}\n`);
-writeText(path.join(stageRoot, "reports", "delete-archive-keep.md"), `# 删除、归档、保留清单\n\n- 删除/不迁入：旧网页、chunk、搜索索引、router manifest、预览图和孤立生成物；均由新链重建。\n- 归档：旧决策卡、冲突登记、评审、交接、验证报告与全量 SHA-256 清单。\n- 保留：knowledge-base 权威正文、skills 唯一 Skill 正文、scripts/tests/web 生成与验证源。\n`);
+const numericalDispositionRows = Object.entries(numericalSummary.dispositions).map(([key, count]) => `| ${key} | ${count} | ${key === "NORMALIZED_INTO_CANONICAL" || key === "TOOLING_OR_RULE_EVIDENCE" ? "原子化或规则化纳入" : "只做可追溯登记，不复制为正文"} |`);
+writeText(path.join(stageRoot, "reports", "numerical-migration-manifest.md"), `# 数值框架迁移清单\n\n- 磁盘实际文件：${numericalSummary.sourceFiles}\n- 权威 Markdown：${numericalSummary.authoritativeMarkdownFiles}\n- 源工作簿：${numericalSummary.sourceWorkbooks}\n- 数值原子：${numericalSummary.atoms}（ACTIVE ${numericalSummary.activeAtoms} / SUPERSEDED_TRACE ${numericalSummary.supersededAtoms} / HISTORICAL_TRACE ${numericalSummary.historicalAtoms}）\n- 公式/计算规则候选：${numericalSummary.formulas}\n- 机器参数块：${numericalSummary.parameterSets}\n\n| 处置 | 数量 | 迁移策略 |\n|---|---:|---|\n${numericalDispositionRows.join("\n")}\n`);
+const numericalSkillIds = [...new Set(numericalRegistry.atoms.flatMap(atom => atom.skillIds))].sort();
+const numericalSkillLines = ["# 数值层 Skill 覆盖矩阵", "", "| Skill | 数值原子数 | 数值域 | 状态 |", "|---|---:|---|---|"];
+for (const skillId of numericalSkillIds) {
+  const rows = numericalRegistry.atoms.filter(atom => atom.skillIds.includes(skillId));
+  const skill = skillRegistry.skills.find(item => item.skillId === skillId);
+  numericalSkillLines.push(`| ${skillId} | ${rows.length} | ${[...new Set(rows.map(row => row.domain))].sort().join("、")} | ${skill?.versionStatus || "UNKNOWN"} |`);
+}
+writeText(path.join(stageRoot, "reports", "numerical-skill-coverage-matrix.md"), `${numericalSkillLines.join("\n")}\n`);
+writeText(path.join(stageRoot, "reports", "delete-archive-keep.md"), `# 删除、归档、保留清单\n\n- 删除/不迁入：旧网页、chunk、搜索索引、router manifest、预览图和孤立生成物；均由新链重建。\n- 数值层不复制：04 派生文档、05 验算输出、06 配置镜像、reports、backups 与 staging；全部在 source-registry 保留哈希和处置。\n- 归档：旧决策卡、冲突登记、评审、交接、验证报告、历史数值结论与全量 SHA-256 清单；8 个被 B/C 覆盖的原子标 SUPERSEDED_SOURCE_CONTEXT。\n- 保留：knowledge-base 权威正文与数值原子、skills 唯一 Skill 正文、scripts/tests/web 生成与验证源、外部数值源证据定位。\n`);
 writeText(path.join(stageRoot, "reports", "manual-confirmation-minimum.md"), `# 需要人工确认的最小问题列表\n\n1. 专武 B 方案：确认兼容期的起止版本、旧数据读写边界、迁移批次和最终清理版本。\n2. 房车 C 方案：确认强化进度达到 100 时的溢出/进位规则，并补 Production/LIVE 发布证据。\n3. 由独立审核对话执行终验；本重建对话不自行宣称终验通过。\n`);
 
 const model = readJson(path.join(kbSource, "registries", "knowledge-model.json"));
@@ -131,6 +190,7 @@ const addEdge = e => graphEdges.push({ weight: 0.6, ...e });
 for (const n of frameworkNodes.nodes) addNode({ id: `concept:${n.id}`, type: "concept", name: n.name, summary: n.responsibility, tags: ["framework", n.layer] });
 for (const s of model.systems) addNode({ id: `module:${s.id}`, type: "module", name: s.name, summary: s.summary, tags: ["system", s.group] });
 for (const s of skillRegistry.skills) addNode({ id: `module:skill:${s.skillId}`, type: "module", name: s.skillId, summary: s.responsibility, tags: ["skill", s.category] });
+for (const atom of numericalRegistry.atoms) addNode({ id: `numeric:${atom.atomId}`, type: "concept", name: atom.title, summary: atom.statement, tags: ["numeric", atom.domain, atom.sourceNature] });
 for (const n of frameworkNodes.nodes.slice(1)) addEdge({ source: "concept:PFN-01", target: `concept:${n.id}`, type: "contains", weight: 1 });
 const groupNode = { "system-in": "PFN-03", "system-out-gameplay": "PFN-05", "system-out-growth": "PFN-06", "system-out-support": "PFN-09" };
 for (const s of model.systems) addEdge({ source: `concept:${groupNode[s.group]}`, target: `module:${s.id}`, type: "contains", weight: 1 });
@@ -139,16 +199,23 @@ for (const s of skillRegistry.skills) {
   addEdge({ source: "concept:PFN-17", target: `module:skill:${s.skillId}`, type: "contains", weight: 1 });
   for (const dep of s.dependsOnSkills) addEdge({ source: `module:skill:${s.skillId}`, target: `module:skill:${dep}`, type: "depends_on" });
 }
+for (const atom of numericalRegistry.atoms) {
+  addEdge({ source: "concept:PFN-13", target: `numeric:${atom.atomId}`, type: "contains", weight: 1 });
+  for (const sid of atom.coveredSystems) addEdge({ source: `numeric:${atom.atomId}`, target: `module:${sid}`, type: "quantifies", weight: 0.7 });
+  for (const skillId of atom.skillIds) addEdge({ source: `module:skill:${skillId}`, target: `numeric:${atom.atomId}`, type: "loads", weight: 0.5 });
+  for (const nodeId of atom.frameworkNodeIds.filter(id => id !== "PFN-13")) addEdge({ source: `concept:${nodeId}`, target: `numeric:${atom.atomId}`, type: "classifies", weight: 0.4 });
+}
 for (const d of details) for (const r of d.relationships || []) if (model.systems.some(x => x.id === r.targetId)) addEdge({ source: `module:${d.systemId}`, target: `module:${r.targetId}`, type: "related", weight: 0.5 });
 const uniqueEdges = [...new Map(graphEdges.map(e => [`${e.source}|${e.target}|${e.type}`, e])).values()];
 const layers = [
   { id: "layer:framework", name: "项目框架", description: "19个项目框架节点", nodeIds: graphNodes.filter(x => x.id.startsWith("concept:")).map(x => x.id) },
   { id: "layer:systems", name: "系统正文", description: "45个系统", nodeIds: graphNodes.filter(x => /^module:SYS/.test(x.id)).map(x => x.id) },
   { id: "layer:skills", name: "Skill调用", description: "33个Skill", nodeIds: graphNodes.filter(x => x.id.startsWith("module:skill:")).map(x => x.id) }
+  ,{ id: "layer:numerical", name: "全栈数值原子", description: `${numericalRegistry.atoms.length}个数值原子`, nodeIds: graphNodes.filter(x => x.id.startsWith("numeric:")).map(x => x.id) }
 ];
 writeJson(path.join(stageRoot, "understand", "knowledge-graph.json"), {
   version: "1.0.0",
-  project: { name: "Vgame 项目级策划知识框架", languages: ["zh", "json", "markdown"], frameworks: ["Vgame Knowledge Framework V1"], description: "项目策划知识、系统、Skill和证据治理图", analyzedAt: new Date().toISOString(), gitCommitHash: cp.execFileSync("git", ["-C", repoRoot, "rev-parse", "HEAD"], { encoding: "utf8" }).trim() },
+  project: { name: "Vgame 全栈策划知识框架", languages: ["zh", "json", "markdown"], frameworks: ["Vgame Knowledge Framework V2"], description: "项目策划、全栈数值、系统、Skill和证据治理图", analyzedAt: new Date().toISOString(), gitCommitHash: cp.execFileSync("git", ["-C", repoRoot, "rev-parse", "HEAD"], { encoding: "utf8" }).trim() },
   nodes: graphNodes, edges: uniqueEdges, layers,
   tour: [
     { order: 1, title: "项目与核心循环", description: "从19个框架节点理解项目。", nodeIds: ["concept:PFN-01", "concept:PFN-02"] },
@@ -161,9 +228,10 @@ const sourceDigest = crypto.createHash("sha256")
   .update(fs.readFileSync(path.join(kbSource, "AUTHORITY.json")))
   .update(fs.readFileSync(path.join(kbSource, "registries", "skill-registry.json")))
   .update(fs.readFileSync(path.join(kbSource, "registries", "knowledge-model.json")))
+  .update(fs.readFileSync(path.join(kbSource, "numerical", "atom-registry.json")))
   .digest("hex");
 writeJson(path.join(stageRoot, "build-manifest.json"), {
-  schema: "vgame-knowledge-build/v1", version: "1.0.0", generatedAt: new Date().toISOString(), sourceDigest,
-  authority, counts: { skills: skillRegistry.skills.length, systems: model.systems.length, frameworkNodes: frameworkNodes.nodes.length, evidence: evidenceRegistry.count }, rulings: rulings.rulings.map(x => x.rulingId)
+  schema: "vgame-knowledge-build/v2", version: "2.0.0", generatedAt: new Date().toISOString(), sourceDigest,
+  authority, counts: { skills: skillRegistry.skills.length, systems: model.systems.length, frameworkNodes: frameworkNodes.nodes.length, evidence: evidenceRegistry.count, numericalSources: numericalSummary.sourceFiles, numericalAtoms: numericalRegistry.atoms.length, numericalWorkbooks: numericalWorkbooks.workbooks.length }, rulings: rulings.rulings.map(x => x.rulingId)
 });
 console.log(JSON.stringify({ stageRoot, questionTotal, statsSummary, lifecycleSummary, ownerSummary, nodes: graphNodes.length, edges: uniqueEdges.length }, null, 2));

@@ -11,6 +11,10 @@ description: 自动为 Vgame 项目事实、系统盘点、规则流程、系统
 
 本 Skill 只负责知识检索与来源边界。需要修改策划案、配置或代码时，在完成路由和回源确认后，再按 `vgame-core-understanding` 进入对应专项 Skill。
 
+## 全栈数值层
+
+当问题命中数值、公式、参数、概率、成长、经济、节奏、难度、奖励或验算语义时，路由脚本从 `knowledge-base/numerical/atom-registry.json` 选择最小 `numericAtoms`，并返回对应系统、Skill、配置候选和 `sourceLocator`。普通系统查询不加载全部数值原子；需要完整源上下文或源表当前值时才沿 `sourceLocator` 回到外部数值框架。生成物、配置镜像和验算结果不得被当作 Production/LIVE 证明。
+
 ## 必须先运行路由器
 
 从仓库根目录运行：

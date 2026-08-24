@@ -29,6 +29,21 @@ GROUP_ALIASES = {
 CATALOG_SIGNALS = (
     "有哪些", "哪些系统", "哪些玩法", "列出", "列一下", "清单", "目录", "全部系统", "所有系统", "都有什么",
 )
+NUMERIC_SIGNALS = (
+    "数值", "公式", "参数", "概率", "权重", "倍率", "成长曲线", "战力曲线", "成本", "产出", "消耗",
+    "收入", "天数", "节奏", "难度线", "定价", "经济", "掉落率", "期望", "模拟", "强化",
+)
+NUMERIC_DOMAIN_ALIASES = {
+    "shared-foundation": ("共享", "底座", "术语", "属性", "定价"),
+    "combat": ("战斗", "伤害", "dps", "ttk", "怪物", "boss"),
+    "growth": ("养成", "成长", "升级", "升星", "突破", "专武", "房车", "装备", "战力"),
+    "economy": ("经济", "资源", "产出", "消耗", "成本", "收入", "货币"),
+    "pacing": ("节奏", "开放", "天数", "日程", "难度线", "里程碑"),
+    "probability": ("概率", "随机", "权重", "保底", "抽卡"),
+    "reward-drop": ("奖励", "掉落", "drop", "首通"),
+    "monetization-liveops": ("商业化", "付费", "月卡", "礼包", "通行证", "活动", "赛季"),
+    "validation-delivery": ("验算", "核算", "验证", "配置", "落表", "回执"),
+}
 
 
 def normalize(value: Any) -> str:
@@ -67,6 +82,71 @@ def relative_to_repo(path: Path) -> str:
 def load_json(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8-sig") as handle:
         return json.load(handle)
+
+
+def choose_numeric_atoms(manifest: dict[str, Any], query: str, profile: str) -> tuple[list[dict[str, Any]], list[str]]:
+    """仅在数值语义明确时加载原子注册，不对普通系统查询扩大知识包。"""
+    query_norm = normalize(query)
+    numeric_signal_hits = [term for term in NUMERIC_SIGNALS if normalize(term) in query_norm]
+    matched_domains = [
+        domain for domain, aliases in NUMERIC_DOMAIN_ALIASES.items()
+        if any(normalize(alias) in query_norm for alias in aliases)
+    ]
+    if not numeric_signal_hits:
+        return [], []
+    numeric_meta = manifest.get("numerical") or {}
+    ref = numeric_meta.get("atomIndexRef")
+    if not ref:
+        return [], ["路由清单未登记数值原子索引，数值知识层为 UNKNOWN。"]
+    candidate = (KB_ROOT / ref).resolve()
+    try:
+        candidate.relative_to(KB_ROOT.resolve())
+    except ValueError:
+        return [], ["数值原子索引路径越出知识库，已拒绝读取。"]
+    if not candidate.exists():
+        return [], [f"数值原子索引不存在：{relative_to_repo(candidate)}。"]
+    registry = load_json(candidate)
+    scored: list[dict[str, Any]] = []
+    for atom in registry.get("atoms") or []:
+        if atom.get("status") != "ACTIVE":
+            continue
+        score = 0
+        matches: list[str] = []
+        if atom.get("domain") in matched_domains:
+            score += 30
+            matches.append(atom.get("domain"))
+        fields = [atom.get("title"), atom.get("statement"), *(atom.get("numericStatements") or []), *(atom.get("coveredSystems") or [])]
+        blob = normalize(" ".join(str(item or "") for item in fields))
+        title_norm = normalize(atom.get("title"))
+        title_core = re.sub(r"[a-z0-9]+", "", title_norm)
+        if len(title_core) >= 2 and title_core in query_norm:
+            score += 180
+            matches.append(atom.get("title"))
+        if atom.get("atomType") == "HUMAN_RULING" and any(token in query_norm for token in ("房车", "专武", "迁移", "强化")):
+            score += 120
+            matches.append("最新人工裁决")
+        for term in unique([*numeric_signal_hits, *NUMERIC_SIGNALS]):
+            term_norm = normalize(term)
+            if term_norm and term_norm in query_norm and term_norm in blob:
+                score += 18 + min(len(term_norm), 12)
+                matches.append(term)
+        # 直接命中标题中的系统词要高于仅命中宽域。
+        for token in re.findall(r"[\u4e00-\u9fff]{2,}|[A-Za-z0-9_]{3,}", query):
+            token_norm = normalize(token)
+            if token_norm and token_norm in title_norm:
+                score += 60
+                matches.append(token)
+        if score > 0:
+            scored.append({**atom, "_score": score, "_matches": unique(matches)})
+    scored.sort(key=lambda item: (-item["_score"], item.get("atomId", "")))
+    limit = {"quick": 5, "design": 12, "audit": 20}[profile]
+    selected = scored[:limit]
+    unknowns = []
+    if len(scored) > limit:
+        unknowns.append(f"数值原子命中 {len(scored)} 个，本次按 {profile} 档只返回前 {limit} 个；请缩小系统或参数范围以继续。")
+    if not selected:
+        unknowns.append("检测到数值意图，但未命中具体数值原子；不得自行补写参数。")
+    return selected, unknowns
 
 
 # 硬编码的 audit 实质信号：询问运行/LIVE/开放/迁移裁决/入账/空壳/源码实现等需要核验证据的问题，
@@ -509,6 +589,7 @@ def build_read_plan(
     contracts: list[dict[str, Any]],
     evidence: list[dict[str, Any]],
     modules: list[dict[str, Any]] | None = None,
+    numeric_atoms: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     plan: list[dict[str, Any]] = [{
         "order": 1,
@@ -517,6 +598,14 @@ def build_read_plan(
         "reason": "使用本脚本已筛选出的目录摘要；不要再次全文读取 router-manifest.json。",
     }]
     order = 2
+    if numeric_atoms:
+        plan.append({
+            "order": order,
+            "layer": "L1" if profile == "quick" else "L2",
+            "ref": "ROUTER_OUTPUT.numericAtoms",
+            "reason": "使用路由已筛选的最小数值原子；需要完整上下文或精确源表值时再按 sourceLocator 回源。",
+        })
+        order += 1
     for module in modules or []:
         source_doc = module.get("sourceDoc")
         if source_doc:
@@ -599,6 +688,8 @@ def route(args: argparse.Namespace) -> dict[str, Any]:
     if profile != "audit":
         unknowns.extend(l1_boundary_notes(systems))
     modules = choose_modules(manifest, args.query)
+    numeric_atoms, numeric_unknowns = choose_numeric_atoms(manifest, args.query, profile)
+    unknowns.extend(numeric_unknowns)
     # Fix: 如果命中专业模块但未命中具体系统，将"未命中具体系统"替换为更准确的描述
     if modules and not systems:
         unknowns = [u for u in unknowns if "未命中具体系统" not in u]
@@ -655,10 +746,17 @@ def route(args: argparse.Namespace) -> dict[str, Any]:
         "matchedTerms": terms,
         "systems": [clean_system(item) for item in systems],
         "specialistModules": [clean_module(item) for item in modules],
+        "numericAtoms": [{
+            "atomId": item.get("atomId"), "domain": item.get("domain"), "title": item.get("title"),
+            "statement": item.get("statement"), "numericStatements": item.get("numericStatements") or [],
+            "sourceNature": item.get("sourceNature"), "sourceLocator": item.get("sourceLocator"),
+            "coveredSystems": item.get("coveredSystems") or [], "skillIds": item.get("skillIds") or [],
+            "configCandidates": item.get("configCandidates") or [], "matchedTerms": item.get("_matches") or [],
+        } for item in numeric_atoms],
         "catalogLayers": catalog_layers,
         "contracts": [clean_contract(item) for item in contracts],
         "evidence": [clean_evidence(item) for item in evidence],
-        "readPlan": build_read_plan(profile, systems, contracts, evidence, modules),
+        "readPlan": build_read_plan(profile, systems, contracts, evidence, modules, numeric_atoms),
         "unknowns": unique(unknowns),
         "provenance": manifest.get("provenance") or [],
         "safety": [
@@ -695,6 +793,12 @@ def markdown(result: dict[str, Any]) -> str:
             lines.append(f"| {item['id']} | {item['name']} | {item['groupName']} | {item['detailLevel']} | {item['status']} | {'、'.join(item['matchedTerms']) or '-'} |")
     else:
         lines.append("- 未命中具体系统。")
+    lines.extend(["", "## 数值原子", ""])
+    if result.get("numericAtoms"):
+        for item in result["numericAtoms"]:
+            lines.append(f"- **{item['atomId']} {item['title']}**（{item['domain']} / {item['sourceNature']}）：{item['statement']}；来源 `{item['sourceLocator']}`")
+    else:
+        lines.append("- 本问题未触发数值原子层。")
     if result.get("catalogLayers"):
         lines.extend(["", "## 目录分层（按运行状态）", ""])
         layer_labels = {

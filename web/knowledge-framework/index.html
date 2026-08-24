@@ -567,6 +567,7 @@
 
   <script src="knowledge-model.js"></script>
   <script src="knowledge-search-index.js"></script>
+  <script src="numerical-search-index.js"></script>
   <script>
     (() => {
       "use strict";
@@ -657,7 +658,7 @@
         const numeric = KB.numeric.map(item => ({...item, module:"numeric", path:"数值"}));
         return [...systems, ...rules, ...characters, ...numeric];
       };
-      const detailAtomEntries = () => window.VGAME_KB_SEARCH || [];
+      const detailAtomEntries = () => [...(window.VGAME_KB_SEARCH || []), ...(window.VGAME_NUMERICAL_SEARCH || [])];
       const entryById = id => allEntries().find(entry => entry.id === id) || detailAtomEntries().find(entry => entry.id === id) || KB.projectPillars.find(item => item.id === id);
 
       function renderInlineMarkdown(text) {
@@ -1234,7 +1235,7 @@
         main.innerHTML = `<div class="content-shell">
           ${hero("governance", "状态、证据与审计放在主结构之后", "治理材料帮助判断知识是否现行，但不应占据日常找系统、战斗和数值的入口。", "90-状态与证据.md")}
           <section class="section" id="governance-status"><div class="section-head"><div><div class="eyebrow">STATUS AXES</div><h2>“有设计、已落地、已上线”不是一件事</h2></div></div><table class="relation-table"><thead><tr><th>设计状态</th><th>运行状态</th><th>落地状态</th><th>治理状态</th></tr></thead><tbody><tr><td>规则是否确认</td><td>玩家是否可用</td><td>落到设计/镜像/Datas/客户端/服务端哪层</td><td>是否存在冲突或待办</td></tr></tbody></table></section>
-          <section class="section" id="governance-risks"><div class="section-head"><div><div class="eyebrow">CURRENT RISKS</div><h2>当前必须保留的不确定性</h2></div></div><div class="warning-strip">专武与收容物迁移、玩家终态战力曲线、功能是否 LIVE、大秘境/通行证开放状态、公会临时版本和 BOSS 挑战新旧结构仍需分别裁决。</div></section>
+          <section class="section" id="governance-risks"><div class="section-head"><div><div class="eyebrow">CURRENT RISKS</div><h2>当前必须保留的不确定性</h2></div></div><div class="warning-strip">专武 B 已冻结一个大版本兼容迁移期，但实施起止与清理批次仍待确认；房车 C 已冻结 +30/+60/+100 与 50/30/20，仍需溢出规则及 LIVE 证据。玩家终态战力曲线、部分功能 LIVE 状态和新旧配置边界继续按证据治理。</div></section>
           <section class="section" id="governance-links"><div class="section-head"><div><div class="eyebrow">GOVERNANCE FILES</div><h2>详细资料</h2></div></div><div class="governance-links">${[["决策卡评审台","#decisions"],["完整状态冲突","../05-status-conflict-register.md"],["项目证据表","../01-project-evidence.md"],["Design 文档映射","../03-design-document-domain-matrix.md"],["跨域责任矩阵","../04-cross-domain-loops.md"],["一致性评审","../06-review.md"],["变更记录","../07-change-log.md"],["验收用例","../08-acceptance-cases.md"]].map(item=>`<a href="${item[1]}">${item[0]} →</a>`).join("")}</div></section>
           ${footer()}
         </div>`;

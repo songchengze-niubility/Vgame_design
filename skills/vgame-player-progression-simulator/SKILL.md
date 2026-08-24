@@ -12,16 +12,17 @@ This is an **executable** skill. It provides both documentation for manual reaso
 ## Load Order
 
 1. Read `vgame-core-understanding` first for project identity and formal gameplay structure.
-2. Read `references/simulation-model-overview.md` for the simulation framework and assumptions.
-3. Read `references/daily-income-model.md` for the per-source daily resource income parameters.
-4. Read `references/growth-cost-model.md` for the growth system cost curves (character, weapon, equipment).
-5. Read `references/scenario-templates.md` for pre-built simulation scenarios (F2P / light spender / dolphin / whale).
-6. Run `scripts/simulate_progression.py` when quantitative output is needed.
-7. Use `vgame-economy-source-map` for exact source/sink tracing when a source is unclear.
-8. Use `vgame-growth-combat-conversion-map` for understanding what reaching a milestone means in combat terms.
-9. Use `vgame-reward-drop-sync` for exact reward package content.
-10. Use `senior-game-economy` for value judgment and risk assessment on simulation results.
-11. Use `game-numerical-analysis` for deeper mathematical modeling beyond this simulation scope.
+2. Route the scenario through `vgame-knowledge-router` and load the smallest matching atoms from `knowledge-base/numerical/`; use their source locators for exact parameter verification.
+3. Read `references/simulation-model-overview.md` for the simulation framework and assumptions.
+4. Read `references/daily-income-model.md` for the per-source daily resource income parameters.
+5. Read `references/growth-cost-model.md` for the growth system cost curves (character, weapon, equipment).
+6. Read `references/scenario-templates.md` for pre-built simulation scenarios (F2P / light spender / dolphin / whale).
+7. Run `scripts/simulate_progression.py` when quantitative output is needed.
+8. Use `vgame-economy-source-map` for exact source/sink tracing when a source is unclear.
+9. Use `vgame-growth-combat-conversion-map` for understanding what reaching a milestone means in combat terms.
+10. Use `vgame-reward-drop-sync` for exact reward package content.
+11. Use `senior-game-economy` for value judgment and risk assessment on simulation results.
+12. Use `game-numerical-analysis` for deeper mathematical modeling beyond this simulation scope.
 
 ## Scope
 
@@ -29,7 +30,7 @@ Covered in v1:
 
 - day-by-day resource accumulation simulation (gold, diamonds, EXP items, gacha tickets, materials)
 - stamina budget: daily stamina income vs. spending allocation across content
-- growth milestone estimation: days to Lv30/40/50/60 for character; C-001 虽已确认迁移目标，但在 IMPLEMENTATION_PENDING 期间专武/收容物仍不进入默认里程碑
+- growth milestone estimation: days to Lv30/40/50/60 for character; 专武 B 方案已确认保留一个大版本兼容迁移期，但在 IMPLEMENTATION_PENDING 期间专武/收容物仍不进入默认里程碑
 - gacha simulation: expected pulls to SSR, diamond/ticket budget over time
 - bottleneck detection: which resource runs out first, where players stall
 - scenario comparison: F2P vs. spender progression curves

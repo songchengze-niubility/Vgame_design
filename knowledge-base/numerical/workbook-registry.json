@@ -1,0 +1,1034 @@
+{
+  "schema": "vgame-numerical-workbook-registry/v2",
+  "generatedAt": "2026-08-24T11:21:08.718145+00:00",
+  "count": 33,
+  "workbooks": [
+    {
+      "workbookId": "NWB-7E02C44A27E1",
+      "sourceId": "NSRC-7E02C44A27E1",
+      "relativePath": "01_源表/全玩法难度填写表.xlsx",
+      "sha256": "e9146ba74e0de7693d971c521706a774f25ae830a7d31922ba6c8144575d198f",
+      "domain": "combat",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-865617B3DA86",
+          "name": "使用说明"
+        },
+        {
+          "sheetId": "NSHEET-E33DAAEBF381",
+          "name": "玩法汇总"
+        },
+        {
+          "sheetId": "NSHEET-C5355D466778",
+          "name": "主线"
+        },
+        {
+          "sheetId": "NSHEET-6B64F514351F",
+          "name": "困难主线"
+        },
+        {
+          "sheetId": "NSHEET-E405323C54B5",
+          "name": "角色经验"
+        },
+        {
+          "sheetId": "NSHEET-9CD9C75E7FBF",
+          "name": "金币"
+        },
+        {
+          "sheetId": "NSHEET-C06A4A3AC6F3",
+          "name": "收容经验"
+        },
+        {
+          "sheetId": "NSHEET-8F39B58249B5",
+          "name": "旅券"
+        },
+        {
+          "sheetId": "NSHEET-111F1201BEFE",
+          "name": "映射"
+        },
+        {
+          "sheetId": "NSHEET-93D8F7C6BB89",
+          "name": "爬塔"
+        },
+        {
+          "sheetId": "NSHEET-53167B55DA7D",
+          "name": "Boss挑战"
+        },
+        {
+          "sheetId": "NSHEET-C4B12EB216FE",
+          "name": "肉鸽"
+        },
+        {
+          "sheetId": "NSHEET-164FDE743805",
+          "name": "大秘境"
+        },
+        {
+          "sheetId": "NSHEET-90536C5D7A70",
+          "name": "PVPVE"
+        },
+        {
+          "sheetId": "NSHEET-A0188611DFC4",
+          "name": "_玩家曲线"
+        },
+        {
+          "sheetId": "NSHEET-989B397E05F2",
+          "name": "_怪物模型"
+        },
+        {
+          "sheetId": "NSHEET-61EB136B6943",
+          "name": "_字典"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-EECA769C87C7",
+      "sourceId": "NSRC-EECA769C87C7",
+      "relativePath": "01_源表/养成属性分配.xlsx",
+      "sha256": "778be76696ef01d5e44dfd2236fe79a402476ad3e15fac08623ac6620d83f55d",
+      "domain": "combat",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-B1805C633657",
+          "name": "模块规划"
+        },
+        {
+          "sheetId": "NSHEET-868347C57A4E",
+          "name": "角色属性分配"
+        },
+        {
+          "sheetId": "NSHEET-E78E4AA9CBBC",
+          "name": "收容物属性分配"
+        },
+        {
+          "sheetId": "NSHEET-34965C11823F",
+          "name": "玩家战力曲线"
+        },
+        {
+          "sheetId": "NSHEET-574DC87AB416",
+          "name": "_曲线基线"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-5FE868A1790A",
+      "sourceId": "NSRC-5FE868A1790A",
+      "relativePath": "01_源表/属性定价.xlsx",
+      "sha256": "6490dadd4bbc418d843a28e81bf5d887ddf3cb0ee60fb167eeb73072925e657e",
+      "domain": "combat",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-2CF083B7F930",
+          "name": "属性定价"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-967B503E96C9",
+      "sourceId": "NSRC-967B503E96C9",
+      "relativePath": "01_源表/战斗公式.xlsx",
+      "sha256": "31cf4d1f81b70e91b6ee1b73410272c9d88934cfa958bced8dc7125767d2014a",
+      "domain": "combat",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-D7648FD318ED",
+          "name": "战斗公式"
+        },
+        {
+          "sheetId": "NSHEET-BDF156294B87",
+          "name": "预计投放属性数值"
+        },
+        {
+          "sheetId": "NSHEET-CC06E9275DE1",
+          "name": "怪物标准模型"
+        },
+        {
+          "sheetId": "NSHEET-04971E575B67",
+          "name": "技能系数"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-811B1F27E50D",
+      "sourceId": "NSRC-811B1F27E50D",
+      "relativePath": "01_源表/战斗属性.xlsx",
+      "sha256": "94f964d7673bad3837902c0b43f5e82fd4d798c378a8d0611bca401f56ebb971",
+      "domain": "combat",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-FE3DAF05729F",
+          "name": "战斗属性说明以及计算"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-B8B1798E3354",
+      "sourceId": "NSRC-B8B1798E3354",
+      "relativePath": "01_源表/抽卡概率.xlsx",
+      "sha256": "a3210f00bf5fd71afffaf8177184867d603063417173d3535ebd8ec9c91d5e96",
+      "domain": "probability",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-04CF98D33863",
+          "name": "角色抽卡概率"
+        },
+        {
+          "sheetId": "NSHEET-FB856DBE7412",
+          "name": "专武抽卡概率"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-F74068A2D6AA",
+      "sourceId": "NSRC-F74068A2D6AA",
+      "relativePath": "01_源表/术语表.xlsx",
+      "sha256": "d2cf5fd881283ae83ff7927eac29d545c524ba4ffa85c22c369b06ab0835012a",
+      "domain": "shared-foundation",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-8995C877E85A",
+          "name": "项目说明"
+        },
+        {
+          "sheetId": "NSHEET-1ECAB05D0293",
+          "name": "战斗相关术语表"
+        },
+        {
+          "sheetId": "NSHEET-ADA5DDBB0283",
+          "name": "养成相关术语表"
+        },
+        {
+          "sheetId": "NSHEET-10E72E644A03",
+          "name": "道具术语表"
+        },
+        {
+          "sheetId": "NSHEET-6FCA1F6A1CCE",
+          "name": "品质表"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-D4F5ECA2935F",
+      "sourceId": "NSRC-D4F5ECA2935F",
+      "relativePath": "01_源表/爬塔TeamHero配置表.xlsx",
+      "sha256": "3121d22db833d4eb8075c979836ab8fe072455b9b839cfcd55bb595388e2541a",
+      "domain": "validation-delivery",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-941E492FC3E3",
+          "name": "使用说明"
+        },
+        {
+          "sheetId": "NSHEET-408453FB6692",
+          "name": "参数"
+        },
+        {
+          "sheetId": "NSHEET-D5C4F7804342",
+          "name": "楼层配置"
+        },
+        {
+          "sheetId": "NSHEET-74C2EFB13CCF",
+          "name": "_怪物基线"
+        },
+        {
+          "sheetId": "NSHEET-7A19624FA2FF",
+          "name": "_角色基线"
+        },
+        {
+          "sheetId": "NSHEET-D584C59AEAC0",
+          "name": "TeamHero生成"
+        },
+        {
+          "sheetId": "NSHEET-678AE8DD610D",
+          "name": "落表结果"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-CDFDFF602AA3",
+      "sourceId": "NSRC-CDFDFF602AA3",
+      "relativePath": "01_源表/经济口径.xlsx",
+      "sha256": "3fcfbef83b98376e6fc9ddddabfcf443fdec79762bd6d5666ac27f31d1a3d6bd",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-37A9E357FE86",
+          "name": "经济口径说明"
+        },
+        {
+          "sheetId": "NSHEET-60838594CA04",
+          "name": "玩法归类"
+        },
+        {
+          "sheetId": "NSHEET-3D7F9DE0EE7C",
+          "name": "材料归类"
+        },
+        {
+          "sheetId": "NSHEET-001C55433298",
+          "name": "玩法材料职责矩阵"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-B15AF831BD4C",
+      "sourceId": "NSRC-B15AF831BD4C",
+      "relativePath": "01_源表/节奏口径.xlsx",
+      "sha256": "0d461217f5bc7e8a53a73585afda654f27bb5ccaad1e554740cbcbe02dcd5024",
+      "domain": "pacing",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-BA94DD1A72EE",
+          "name": "开放节奏"
+        },
+        {
+          "sheetId": "NSHEET-A980CA318D5F",
+          "name": "角色等级"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-4936035ECE4F",
+      "sourceId": "NSRC-4936035ECE4F",
+      "relativePath": "01_源表/道具定价.xlsx",
+      "sha256": "3a1b101606ec61d210eeca49210cd27fe5da5226e675236be93f1321a0c39e9f",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-679897B6D36A",
+          "name": "资源定价"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-4AC4B4B339F2",
+      "sourceId": "NSRC-4AC4B4B339F2",
+      "relativePath": "经济/模块产销表/01_玩法_主线.xlsx",
+      "sha256": "4e94f28efe99e44632179af8121cef20080c3dcef3046f39ab3c12810d2a6e8a",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-B5EAB67545F4",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-1F9A1F91A7E0",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-64935F8982C9",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-C8358C250C56",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-D538325D194F",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-E11ADA3043FA",
+      "sourceId": "NSRC-E11ADA3043FA",
+      "relativePath": "经济/模块产销表/02_玩法_困难主线.xlsx",
+      "sha256": "4de3837172a711c5d520878ad410e58b8ec404e3d094e00c1bf5088db0f86daf",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-03F102125663",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-B9AFB41C0543",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-AAC2283F6499",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-BE498631BF72",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-6E31005D7D97",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-7B87AB23F56A",
+      "sourceId": "NSRC-7B87AB23F56A",
+      "relativePath": "经济/模块产销表/03_玩法_资源副本.xlsx",
+      "sha256": "598e19db89f657744066bb92f584e31f2de645c63b43e55336ee93349519115d",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-4DA014A2F36C",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-6317244BC1BE",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-BDEA83DA53D2",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-5AB1FCF1EFF4",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-ECA39AC826C6",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-69CD731DF4BC",
+      "sourceId": "NSRC-69CD731DF4BC",
+      "relativePath": "经济/模块产销表/04_玩法_旅券副本.xlsx",
+      "sha256": "2f81e075706e7fd068472ea1771ac40800329bb6ef1c4cf9198964d3ca962e4e",
+      "domain": "growth",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-F92E185984CF",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-3778A44FD3F5",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-AA8D0AD5E52B",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-4BF006607AD2",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-B799CFDDE717",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-43B80A1DC580",
+      "sourceId": "NSRC-43B80A1DC580",
+      "relativePath": "经济/模块产销表/05_玩法_映射副本.xlsx",
+      "sha256": "eafbc98574cdac2a9a8c20f725d5ec74f2e63992100d1529de248d7a5ca7e01d",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-C5A415B290E0",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-143A6CBF69C1",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-40DBC39F33DE",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-E39B1DCA6326",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-D44268AEB0CB",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-BD3F96BE4E58",
+      "sourceId": "NSRC-BD3F96BE4E58",
+      "relativePath": "经济/模块产销表/06_玩法_无限挑战.xlsx",
+      "sha256": "120f9b80582025e29fbb0e85ac67048dfe00cb839e93cd4f5724cb4f6084d021",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-C51832146AFE",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-4FE8BE823005",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-F5477639F6A5",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-5048ED94278D",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-4D9D4E962D2F",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-09573B76854A",
+      "sourceId": "NSRC-09573B76854A",
+      "relativePath": "经济/模块产销表/07_玩法_竞技场.xlsx",
+      "sha256": "1e1dd8c9e94ba61f39b5a9afc304e19e179ab603b43a869609a00e70af66b58f",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-A998677EE22F",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-A53F901A163D",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-977FCCC1E6B7",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-13E59BE176DB",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-DD64E2E4CF0C",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-B1117454F8DA",
+      "sourceId": "NSRC-B1117454F8DA",
+      "relativePath": "经济/模块产销表/08_玩法_爬塔.xlsx",
+      "sha256": "4d3f4cc6934293e5469905c4b10b6be24d8aa468a17a852892e20cda50127c17",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-6D22845DB55C",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-62190510435B",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-64CDEC0549ED",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-269A8FEA81D6",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-91EDC62A561E",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-8396B8C63B6B",
+      "sourceId": "NSRC-8396B8C63B6B",
+      "relativePath": "经济/模块产销表/09_玩法_大秘境.xlsx",
+      "sha256": "d1d9230ba41ad4b1e56a0c2f328a00a388493f9a470fb38f2cac8196b2624a3e",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-EE439585D0A0",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-58D988000D1F",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-89E7126B72F9",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-270777F89AA4",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-4D8CA1DEC057",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-ED47EF534E35",
+      "sourceId": "NSRC-ED47EF534E35",
+      "relativePath": "经济/模块产销表/10_玩法_BOSS挑战.xlsx",
+      "sha256": "c01666d37a246942885e0f18d4e83cd0f00bf88a8c3c3daa61dcd16eb2beedbd",
+      "domain": "combat",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-916FA3C60DD7",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-4F06C724BC3A",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-09E6E5F7C9A4",
+          "name": "玩法产出"
+        },
+        {
+          "sheetId": "NSHEET-DF1A3AB962BE",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-52EF501EABCD",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-41932D3A6D60",
+      "sourceId": "NSRC-41932D3A6D60",
+      "relativePath": "经济/模块产销表/11_外循环_任务.xlsx",
+      "sha256": "5d754207635301550a412e2629e2f28db4b3ca8dfb87c7fe65ca9d178ed7aeab",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-A243AC16B9AD",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-5BCF4C06342C",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-086667A2C019",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-1F43952D0635",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-EDC409C06B71",
+      "sourceId": "NSRC-EDC409C06B71",
+      "relativePath": "经济/模块产销表/12_外循环_签到.xlsx",
+      "sha256": "303523fc582b8d1811b96d9b96ba5d2afdfd2d0157642eda085146a415be3e35",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-3B2512B524D6",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-232929E0A15D",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-3B11837FF5EC",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-032E0DE8D048",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-71A52A83E426",
+      "sourceId": "NSRC-71A52A83E426",
+      "relativePath": "经济/模块产销表/13_外循环_通行证.xlsx",
+      "sha256": "5b4b155e97295245f250546c8df5df474cecb35fd01e48cd795c44d450641d7e",
+      "domain": "monetization-liveops",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-266A3B33F704",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-40704446AE89",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-5C899FFE7612",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-B8EE880EF345",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-DF0C26725227",
+      "sourceId": "NSRC-DF0C26725227",
+      "relativePath": "经济/模块产销表/14_外循环_商店公会.xlsx",
+      "sha256": "253ca07c232b79992436fbb41a4180aef6823802af38a0917f52576cab496581",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-9D3482415331",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-845669FFA180",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-D035B2F73E45",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-33FDAE012428",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-285B8FA61D87",
+      "sourceId": "NSRC-285B8FA61D87",
+      "relativePath": "经济/模块产销表/15_养成_角色.xlsx",
+      "sha256": "ede6f7b2a06f22f596197191cf7a94a0fa1907d0d675f9a059f4072eace1fc05",
+      "domain": "growth",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-D4F76CF225AD",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-2AB05D3EF7E5",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-E42C497ED722",
+          "name": "升级"
+        },
+        {
+          "sheetId": "NSHEET-A3B363855172",
+          "name": "升阶"
+        },
+        {
+          "sheetId": "NSHEET-0125184B0D7A",
+          "name": "升星"
+        },
+        {
+          "sheetId": "NSHEET-50F962691F9D",
+          "name": "星盘能效"
+        },
+        {
+          "sheetId": "NSHEET-2B4E75714496",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-79E7D0AB95D3",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-DDE58B04E4AE",
+      "sourceId": "NSRC-DDE58B04E4AE",
+      "relativePath": "经济/模块产销表/16_养成_专武.xlsx",
+      "sha256": "01f95baf5608400f1a5b952ab79242fce8c223e9e2277aa4e8b37f33a2a1d181",
+      "domain": "growth",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-BBCDA5CF44ED",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-2019D7E687EA",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-8AAC65DD60D1",
+          "name": "升级"
+        },
+        {
+          "sheetId": "NSHEET-C0B41928D9EC",
+          "name": "升阶"
+        },
+        {
+          "sheetId": "NSHEET-A7AFD9C7CE47",
+          "name": "升星"
+        },
+        {
+          "sheetId": "NSHEET-959FF8F27A44",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-C93367C077FC",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-E5223CAEE1EB",
+      "sourceId": "NSRC-E5223CAEE1EB",
+      "relativePath": "经济/模块产销表/17_养成_旅券.xlsx",
+      "sha256": "7548ffce7e80aa2a77f135d62f0d9b23a28304d34f45cd90a43326089e6534b4",
+      "domain": "growth",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-B95B9222FC2C",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-A9532AF3F2CC",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-4436B8C89C57",
+          "name": "制作"
+        },
+        {
+          "sheetId": "NSHEET-D0906A14CE11",
+          "name": "升级"
+        },
+        {
+          "sheetId": "NSHEET-13637EBF443F",
+          "name": "商店"
+        },
+        {
+          "sheetId": "NSHEET-E8A42FEC7794",
+          "name": "分解"
+        },
+        {
+          "sheetId": "NSHEET-FABD6B6AF424",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-4A4BC157D455",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-AAA8A5362086",
+      "sourceId": "NSRC-AAA8A5362086",
+      "relativePath": "经济/模块产销表/18_养成_映射装备.xlsx",
+      "sha256": "7f361e4e09671622a5d05362b917353164bc921891feedfbc6953960b69ae370",
+      "domain": "growth",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-D741B5A82C94",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-232B1AB3DF8B",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-F37578F68764",
+          "name": "升级"
+        },
+        {
+          "sheetId": "NSHEET-594A3E5DCD28",
+          "name": "打孔"
+        },
+        {
+          "sheetId": "NSHEET-574534ADBB89",
+          "name": "宝石"
+        },
+        {
+          "sheetId": "NSHEET-9A27F2626C20",
+          "name": "鉴定"
+        },
+        {
+          "sheetId": "NSHEET-CA06C1FFBC27",
+          "name": "词条"
+        },
+        {
+          "sheetId": "NSHEET-9AC486B1E8DF",
+          "name": "品质额外"
+        },
+        {
+          "sheetId": "NSHEET-65A9E00A9215",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-26FAD3EB7C58",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-F363B897A9EB",
+      "sourceId": "NSRC-F363B897A9EB",
+      "relativePath": "经济/模块产销表/19_养成_炮台.xlsx",
+      "sha256": "967607221e192b179c4038c5ea37841be0ffecea536e884030396bd3604c9e46",
+      "domain": "growth",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-FDF61F0818AF",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-95FA6322A330",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-7CCBE5730FD4",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-BA982AD6D001",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-25F5A98F93ED",
+      "sourceId": "NSRC-25F5A98F93ED",
+      "relativePath": "经济/模块产销表/20_养成_房车.xlsx",
+      "sha256": "589ae8ef3d69e79b9247b0b244d7fb0dc0f8237010a6868d0c28692e63b3b348",
+      "domain": "growth",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-AFA1E9B60ABF",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-901A35400D59",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-9FF1E54005C4",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-262C81639F86",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-564B00178D2D",
+      "sourceId": "NSRC-564B00178D2D",
+      "relativePath": "经济/模块产销表/21_抽卡_概率.xlsx",
+      "sha256": "40b19913c212f00ce3b0a5149feb5a0f0c401445535a7ca6bcbf3fb72bf0d369",
+      "domain": "probability",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-E3996374C39A",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-7D16FE119056",
+          "name": "卡池总览"
+        },
+        {
+          "sheetId": "NSHEET-A598A2B28AF5",
+          "name": "品质概率"
+        },
+        {
+          "sheetId": "NSHEET-4BEE71761813",
+          "name": "保底规则"
+        },
+        {
+          "sheetId": "NSHEET-0A00080C86CE",
+          "name": "权重曲线"
+        },
+        {
+          "sheetId": "NSHEET-1014B2D0B701",
+          "name": "自选池"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    },
+    {
+      "workbookId": "NWB-774209CE3A64",
+      "sourceId": "NSRC-774209CE3A64",
+      "relativePath": "经济/模块产销表/22_外循环_章节任务.xlsx",
+      "sha256": "44e6863a19ed82207c4fbdbb203e8e0edbb4a0767b093e12ebc29e4dfb1f6ff4",
+      "domain": "economy",
+      "sheets": [
+        {
+          "sheetId": "NSHEET-EA5EE0F925B7",
+          "name": "阅读摘要"
+        },
+        {
+          "sheetId": "NSHEET-A0379E86AFDE",
+          "name": "产销阅读"
+        },
+        {
+          "sheetId": "NSHEET-24C7A002C8F2",
+          "name": "资源汇总"
+        },
+        {
+          "sheetId": "NSHEET-1134EB53E8AE",
+          "name": "机器明细"
+        }
+      ],
+      "inspectionError": null,
+      "status": "STRUCTURE_REGISTERED"
+    }
+  ]
+}

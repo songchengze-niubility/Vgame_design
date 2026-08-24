@@ -1,6 +1,6 @@
 {
-  "schema": "vgame-skill-registry/v1",
-  "version": "1.0.0",
+  "schema": "vgame-skill-registry/v2",
+  "version": "2.0.0",
   "generatedFrom": "skills/*/SKILL.md + registry metadata",
   "expectedCount": 33,
   "skills": [
@@ -123,7 +123,8 @@
         "skills/game-monetization/SKILL.md",
         "skills/game-monetization/references/patterns.md",
         "skills/game-monetization/references/sharp_edges.md",
-        "skills/game-monetization/references/validations.md"
+        "skills/game-monetization/references/validations.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_confirmed",
@@ -133,9 +134,10 @@
       "knowledgeLayers": [
         "PFN-04",
         "PFN-08",
-        "PFN-09"
+        "PFN-09",
+        "PFN-13"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/game-monetization/SKILL.md",
       "sourceSha256": "a20a85fc1b0fed1ce96efa4f852d69bfd8627bfa9a3d9054eac5076afef090ad"
     },
@@ -206,7 +208,8 @@
       ],
       "dependsOnSkills": [],
       "evidenceSources": [
-        "skills/game-numerical-analysis/SKILL.md"
+        "skills/game-numerical-analysis/SKILL.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_confirmed",
@@ -218,9 +221,9 @@
         "PFN-13",
         "PFN-14"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/game-numerical-analysis/SKILL.md",
-      "sourceSha256": "4e0dad609e143dc12c5461d2ecb4a09b5fff6cc68531fb58e7beb334ecce6224"
+      "sourceSha256": "2a364e593667841eabbb93e3ee6ffe914aa8ad7f77356537f5cc20f14d245cc7"
     },
     {
       "skillId": "localize",
@@ -319,7 +322,8 @@
       ],
       "dependsOnSkills": [],
       "evidenceSources": [
-        "skills/outer-loop-progression-pacing/SKILL.md"
+        "skills/outer-loop-progression-pacing/SKILL.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_confirmed",
@@ -331,9 +335,9 @@
         "PFN-13",
         "PFN-14"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/outer-loop-progression-pacing/SKILL.md",
-      "sourceSha256": "5d29594de68a0b9f5674388704989dcd555d92cebd0916b66290f3ddd97f39c9"
+      "sourceSha256": "a0ce662ed986b3505dbed6cd81bfbf4ccea2a1e6368d62f9f704b65e0f0f5a2c"
     },
     {
       "skillId": "planning-acceptance-traceability",
@@ -528,7 +532,8 @@
       "evidenceSources": [
         "skills/planning-liveops-readiness/SKILL.md",
         "skills/planning-liveops-readiness/references/live-review-template.md",
-        "skills/planning-liveops-readiness/references/liveops-template.md"
+        "skills/planning-liveops-readiness/references/liveops-template.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_traceable",
@@ -537,9 +542,10 @@
       ],
       "knowledgeLayers": [
         "PFN-18",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/planning-liveops-readiness/SKILL.md",
       "sourceSha256": "1c33aae5496e3fb999359a38b37483eadd2288e736ba14f87f60d40645cabbe3"
     },
@@ -696,7 +702,8 @@
         "skills/senior-game-economy/references/vgame-battle-system.md",
         "skills/senior-game-economy/references/vgame-onboarding-and-unlock-overview.md",
         "skills/senior-game-economy/references/vgame-progression-structure.md",
-        "skills/senior-game-economy/references/vgame-terminology.md"
+        "skills/senior-game-economy/references/vgame-terminology.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_confirmed",
@@ -708,9 +715,9 @@
         "PFN-13",
         "PFN-14"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/senior-game-economy/SKILL.md",
-      "sourceSha256": "337e3739bf14a0f49cdaf7d2f048f4acd9c8753eca5c3efc5ca36b0a4c20fdec"
+      "sourceSha256": "f506e9af57bcf16881bdc2f8340a8e1495306a520b6b7d7b39eeb53a324ba774"
     },
     {
       "skillId": "vgame-battle-content-map",
@@ -830,7 +837,8 @@
         "skills/vgame-battle-tuning-helper/references/monster-scaling-reference.md",
         "skills/vgame-battle-tuning-helper/references/peer-comparison-rules.md",
         "skills/vgame-battle-tuning-helper/references/role-strength-benchmarks.md",
-        "skills/vgame-battle-tuning-helper/references/standard-validation-scenarios.md"
+        "skills/vgame-battle-tuning-helper/references/standard-validation-scenarios.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_confirmed",
@@ -842,7 +850,7 @@
         "PFN-13",
         "PFN-14"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-battle-tuning-helper/SKILL.md",
       "sourceSha256": "e20fe32f4a88580fe29d2d54683712de538783e43f362b965011140d44846d83"
     },
@@ -971,7 +979,8 @@
         "skills/vgame-config-quality-audit/references/audit-checklist.md",
         "skills/vgame-config-quality-audit/references/audit-overview.md",
         "skills/vgame-config-quality-audit/references/automated-checks.md",
-        "skills/vgame-config-quality-audit/references/known-baselines.md"
+        "skills/vgame-config-quality-audit/references/known-baselines.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "source_schema_confirmed",
@@ -980,9 +989,10 @@
       ],
       "knowledgeLayers": [
         "PFN-18",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-config-quality-audit/SKILL.md",
       "sourceSha256": "0c22e0841a71058d5f58131ec0f77a228f011f50e7e89cd53770f6889e755ba0"
     },
@@ -1057,7 +1067,8 @@
         "skills/vgame-config-schema/references/config-pipeline.md",
         "skills/vgame-config-schema/references/new-config-table-onboarding.md",
         "skills/vgame-config-schema/references/schema-map.md",
-        "skills/vgame-config-schema/references/validation.md"
+        "skills/vgame-config-schema/references/validation.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "source_schema_confirmed",
@@ -1066,9 +1077,10 @@
       ],
       "knowledgeLayers": [
         "PFN-18",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-config-schema/SKILL.md",
       "sourceSha256": "105b9e3646b126096248d39bf3e9e7a5bf1d4a021d4d5c8078522d663958871c"
     },
@@ -1146,7 +1158,8 @@
         "skills/vgame-core-understanding/references/delivery-gates.md",
         "skills/vgame-core-understanding/references/evidence-map.md",
         "skills/vgame-core-understanding/references/project-control-workflow.md",
-        "skills/vgame-core-understanding/references/project-profile.md"
+        "skills/vgame-core-understanding/references/project-profile.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_traceable",
@@ -1155,11 +1168,12 @@
       ],
       "knowledgeLayers": [
         "PFN-17",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-core-understanding/SKILL.md",
-      "sourceSha256": "5bf7e93fc9150705a954c8f474b1976cb3a5e575f9788d67cdb4037bcd8b3153"
+      "sourceSha256": "199d8f9a91bbaa26fdfd35cbb6d0fec4775194ef18ae11bdeda7d26f4e7cb2e9"
     },
     {
       "skillId": "vgame-economy-source-map",
@@ -1212,7 +1226,8 @@
         "skills/vgame-economy-source-map/references/economy-config-map.md",
         "skills/vgame-economy-source-map/references/economy-risk-notes.md",
         "skills/vgame-economy-source-map/references/resource-ledger-overview.md",
-        "skills/vgame-economy-source-map/references/source-sink-audit-checklist.md"
+        "skills/vgame-economy-source-map/references/source-sink-audit-checklist.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_confirmed",
@@ -1224,7 +1239,7 @@
         "PFN-13",
         "PFN-14"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-economy-source-map/SKILL.md",
       "sourceSha256": "7977457d7f0f35ad437b969e2ab64a8842f99a4162193faf3ffe07e89cc85c4a"
     },
@@ -1320,7 +1335,8 @@
         "skills/vgame-growth-combat-conversion-map/references/combat-conversion-fields.md",
         "skills/vgame-growth-combat-conversion-map/references/growth-combat-overview.md",
         "skills/vgame-growth-combat-conversion-map/references/growth-module-map.md",
-        "skills/vgame-growth-combat-conversion-map/references/verification-mode-map.md"
+        "skills/vgame-growth-combat-conversion-map/references/verification-mode-map.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_traceable",
@@ -1332,7 +1348,7 @@
         "PFN-11",
         "PFN-13"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-growth-combat-conversion-map/SKILL.md",
       "sourceSha256": "8fa0d82cda8d1f459c297a722830669b24ec4c8b55231be1a4191e39c915f508"
     },
@@ -1453,7 +1469,8 @@
       ],
       "evidenceSources": [
         "skills/vgame-knowledge-router/SKILL.md",
-        "skills/vgame-knowledge-router/references/prompt-patterns.md"
+        "skills/vgame-knowledge-router/references/prompt-patterns.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_traceable",
@@ -1462,11 +1479,12 @@
       ],
       "knowledgeLayers": [
         "PFN-17",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-knowledge-router/SKILL.md",
-      "sourceSha256": "ebe32ca731a35e9450fb97d71d565105a1c6f2d86c49b530418409a4a8904e86"
+      "sourceSha256": "2cf2e5eb2754bdd0469d97e5e4508fb86e3ba60d77ffd50b364d19801af1b3f6"
     },
     {
       "skillId": "vgame-level-design-map",
@@ -1570,7 +1588,8 @@
         "skills/vgame-level-progression-map/references/level-config-map.md",
         "skills/vgame-level-progression-map/references/progression-audit-checklist.md",
         "skills/vgame-level-progression-map/references/progression-overview.md",
-        "skills/vgame-level-progression-map/references/unlock-system-map.md"
+        "skills/vgame-level-progression-map/references/unlock-system-map.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_traceable",
@@ -1580,9 +1599,10 @@
       "knowledgeLayers": [
         "PFN-03",
         "PFN-10",
-        "PFN-12"
+        "PFN-12",
+        "PFN-13"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-level-progression-map/SKILL.md",
       "sourceSha256": "9100b72796135b6dabb80c61afbb2487fbe961f45c006ecbc2b1d00ff5931240"
     },
@@ -1700,7 +1720,8 @@
         "skills/vgame-player-progression-simulator/references/daily-income-model.md",
         "skills/vgame-player-progression-simulator/references/growth-cost-model.md",
         "skills/vgame-player-progression-simulator/references/scenario-templates.md",
-        "skills/vgame-player-progression-simulator/references/simulation-model-overview.md"
+        "skills/vgame-player-progression-simulator/references/simulation-model-overview.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_confirmed",
@@ -1712,9 +1733,9 @@
         "PFN-13",
         "PFN-14"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-player-progression-simulator/SKILL.md",
-      "sourceSha256": "8fb50e14c1664b3c09ecbc37caea1d181c3d4921d875267b4342a8c35163b710"
+      "sourceSha256": "a3ae51618dd794b0e5866e026c69f100d75cdfd56516ff43f5c39a7ba4072a42"
     },
     {
       "skillId": "vgame-reward-drop-sync",
@@ -1766,7 +1787,8 @@
         "skills/vgame-reward-drop-sync/SKILL.md",
         "skills/vgame-reward-drop-sync/references/drop-uilevel-rules.md",
         "skills/vgame-reward-drop-sync/references/id-ranges-and-tables.md",
-        "skills/vgame-reward-drop-sync/references/validation.md"
+        "skills/vgame-reward-drop-sync/references/validation.md",
+        "knowledge-base/numerical/atom-registry.json"
       ],
       "deliveryGates": [
         "evidence_confirmed",
@@ -1778,7 +1800,7 @@
         "PFN-13",
         "PFN-14"
       ],
-      "versionStatus": "ACTIVE_V1",
+      "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-reward-drop-sync/SKILL.md",
       "sourceSha256": "eb2f99571437bf884ef0612a70b2304f029dc94d305802932261d94225f09cdf"
     },
@@ -1954,5 +1976,6 @@
       "sourcePath": "skills/vgame-version-release-map/SKILL.md",
       "sourceSha256": "3fc5cd3e5a23ac421728970f5f9a4a3b1f6c66644b5869fdb2e9439801949b26"
     }
-  ]
+  ],
+  "count": 33
 }

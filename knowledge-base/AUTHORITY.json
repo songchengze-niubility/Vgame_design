@@ -1,10 +1,12 @@
 {
-  "schema": "vgame-knowledge-authority/v1",
+  "schema": "vgame-knowledge-authority/v2",
   "repository": "D:/Vgame/_design",
   "formalEntry": "knowledge-base/README.md",
   "canonicalContentRoot": "knowledge-base/",
   "skillSourceRoot": "skills/",
   "generatedOutputRoot": "output/knowledge-framework/",
   "archiveRoot": "archive/",
-  "rule": "只有 formalEntry 是正式权威入口；output 不得作为正文源。"
+  "numericalCanonicalRoot": "knowledge-base/numerical/",
+  "numericalEvidenceInput": "vgame-numeric-source://框架v2/",
+  "rule": "只有 formalEntry 是正式权威入口；numerical 是其子层；skills 只保存 Skill 正文；output 不得作为正文源。"
 }

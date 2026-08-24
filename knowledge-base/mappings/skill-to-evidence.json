@@ -1,5 +1,5 @@
 {
-  "schema": "vgame-skill-to-evidence/v1",
+  "schema": "vgame-skill-to-evidence/v2",
   "mappings": [
     {
       "skillId": "accessibility-compliance",
@@ -30,13 +30,15 @@
         "skills/game-monetization/SKILL.md",
         "skills/game-monetization/references/patterns.md",
         "skills/game-monetization/references/sharp_edges.md",
-        "skills/game-monetization/references/validations.md"
+        "skills/game-monetization/references/validations.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
       "skillId": "game-numerical-analysis",
       "evidenceSources": [
-        "skills/game-numerical-analysis/SKILL.md"
+        "skills/game-numerical-analysis/SKILL.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -48,7 +50,8 @@
     {
       "skillId": "outer-loop-progression-pacing",
       "evidenceSources": [
-        "skills/outer-loop-progression-pacing/SKILL.md"
+        "skills/outer-loop-progression-pacing/SKILL.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -86,7 +89,8 @@
       "evidenceSources": [
         "skills/planning-liveops-readiness/SKILL.md",
         "skills/planning-liveops-readiness/references/live-review-template.md",
-        "skills/planning-liveops-readiness/references/liveops-template.md"
+        "skills/planning-liveops-readiness/references/liveops-template.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -122,7 +126,8 @@
         "skills/senior-game-economy/references/vgame-battle-system.md",
         "skills/senior-game-economy/references/vgame-onboarding-and-unlock-overview.md",
         "skills/senior-game-economy/references/vgame-progression-structure.md",
-        "skills/senior-game-economy/references/vgame-terminology.md"
+        "skills/senior-game-economy/references/vgame-terminology.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -149,7 +154,8 @@
         "skills/vgame-battle-tuning-helper/references/monster-scaling-reference.md",
         "skills/vgame-battle-tuning-helper/references/peer-comparison-rules.md",
         "skills/vgame-battle-tuning-helper/references/role-strength-benchmarks.md",
-        "skills/vgame-battle-tuning-helper/references/standard-validation-scenarios.md"
+        "skills/vgame-battle-tuning-helper/references/standard-validation-scenarios.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -169,7 +175,8 @@
         "skills/vgame-config-quality-audit/references/audit-checklist.md",
         "skills/vgame-config-quality-audit/references/audit-overview.md",
         "skills/vgame-config-quality-audit/references/automated-checks.md",
-        "skills/vgame-config-quality-audit/references/known-baselines.md"
+        "skills/vgame-config-quality-audit/references/known-baselines.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -179,7 +186,8 @@
         "skills/vgame-config-schema/references/config-pipeline.md",
         "skills/vgame-config-schema/references/new-config-table-onboarding.md",
         "skills/vgame-config-schema/references/schema-map.md",
-        "skills/vgame-config-schema/references/validation.md"
+        "skills/vgame-config-schema/references/validation.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -192,7 +200,8 @@
         "skills/vgame-core-understanding/references/delivery-gates.md",
         "skills/vgame-core-understanding/references/evidence-map.md",
         "skills/vgame-core-understanding/references/project-control-workflow.md",
-        "skills/vgame-core-understanding/references/project-profile.md"
+        "skills/vgame-core-understanding/references/project-profile.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -202,7 +211,8 @@
         "skills/vgame-economy-source-map/references/economy-config-map.md",
         "skills/vgame-economy-source-map/references/economy-risk-notes.md",
         "skills/vgame-economy-source-map/references/resource-ledger-overview.md",
-        "skills/vgame-economy-source-map/references/source-sink-audit-checklist.md"
+        "skills/vgame-economy-source-map/references/source-sink-audit-checklist.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -219,7 +229,8 @@
         "skills/vgame-growth-combat-conversion-map/references/combat-conversion-fields.md",
         "skills/vgame-growth-combat-conversion-map/references/growth-combat-overview.md",
         "skills/vgame-growth-combat-conversion-map/references/growth-module-map.md",
-        "skills/vgame-growth-combat-conversion-map/references/verification-mode-map.md"
+        "skills/vgame-growth-combat-conversion-map/references/verification-mode-map.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -235,7 +246,8 @@
       "skillId": "vgame-knowledge-router",
       "evidenceSources": [
         "skills/vgame-knowledge-router/SKILL.md",
-        "skills/vgame-knowledge-router/references/prompt-patterns.md"
+        "skills/vgame-knowledge-router/references/prompt-patterns.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -255,7 +267,8 @@
         "skills/vgame-level-progression-map/references/level-config-map.md",
         "skills/vgame-level-progression-map/references/progression-audit-checklist.md",
         "skills/vgame-level-progression-map/references/progression-overview.md",
-        "skills/vgame-level-progression-map/references/unlock-system-map.md"
+        "skills/vgame-level-progression-map/references/unlock-system-map.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -275,7 +288,8 @@
         "skills/vgame-player-progression-simulator/references/daily-income-model.md",
         "skills/vgame-player-progression-simulator/references/growth-cost-model.md",
         "skills/vgame-player-progression-simulator/references/scenario-templates.md",
-        "skills/vgame-player-progression-simulator/references/simulation-model-overview.md"
+        "skills/vgame-player-progression-simulator/references/simulation-model-overview.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {
@@ -284,7 +298,8 @@
         "skills/vgame-reward-drop-sync/SKILL.md",
         "skills/vgame-reward-drop-sync/references/drop-uilevel-rules.md",
         "skills/vgame-reward-drop-sync/references/id-ranges-and-tables.md",
-        "skills/vgame-reward-drop-sync/references/validation.md"
+        "skills/vgame-reward-drop-sync/references/validation.md",
+        "knowledge-base/numerical/atom-registry.json"
       ]
     },
     {

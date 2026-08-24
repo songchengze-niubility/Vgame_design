@@ -6,6 +6,13 @@ import { fileURLToPath } from "node:url";
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDir, "..", "..");
 const kbRoot = path.join(repoRoot, "knowledge-base");
+const authorityPath = path.join(kbRoot, "AUTHORITY.json");
+if (fs.existsSync(authorityPath)) {
+  const authority = JSON.parse(fs.readFileSync(authorityPath, "utf8"));
+  if (authority.schema === "vgame-knowledge-authority/v2" && !process.argv.includes("--force-v1-destructive")) {
+    throw new Error("V2 authority detected. author-v1.mjs is frozen to prevent rollback; use scripts/numerical-knowledge/import-framework.py plus rebuild.ps1.");
+  }
+}
 const legacyRoot = process.argv[2] || "C:/Users/songchengze/.codex/worktrees/3f62/Vgame_design/output/项目级策划知识框架";
 const today = "2026-08-24";
 

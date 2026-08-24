@@ -42,7 +42,7 @@ When called by the generic `game-planning-control` skill:
 
 ## Numerical Deposit MD Rule
 
-- Interpret `沉淀 MD`、`沉淀md`、`数值沉淀` as Markdown under `${VGAME_SOURCE_DOCS_ROOT}\框架v2\03_沉淀MD`.
+- Interpret `沉淀 MD`、`沉淀md`、`数值沉淀` as Markdown under `${VGAME_SOURCE_DOCS_ROOT}\框架v2\03_沉淀MD`. For ordinary numerical knowledge queries, first route through `knowledge-base/numerical/`; only load the external source when exact source context or current workbook values are required.
 - When the user asks to read a deposit MD, search and read the relevant files in that directory first. Do not substitute `design/*.md`, skill `references/*.md`, generated reports, or source Excel for the requested deposit MD.
 - Search project aliases together. For example, treat `无限挑战`、`无限之旅`、`neural_roam` as aliases when locating the relevant deposit MD.
 - Use design docs, skill references, generated reports, or source Excel only as explicitly labeled supplementary evidence, or when no matching deposit MD exists.
@@ -96,7 +96,7 @@ When called by the generic `game-planning-control` skill:
 - `资源副本-角色经验`
   Daily character EXP supply.
 - `资源副本-专武经验`
-  Historical signature-weapon EXP supply. C-001 was formally decided on 2026-08-24 as "deprecate the exclusive-weapon line and migrate"; this is an APPROVED_TARGET with IMPLEMENTATION_PENDING, so the current working copy must not be described as already migrated or LIVE.
+  Historical signature-weapon EXP supply. C-001 was formally decided on 2026-08-24 as option B: retain one major-version compatibility migration period; this is an APPROVED_TARGET with IMPLEMENTATION_PENDING, so the current working copy must not be described as already migrated or LIVE.
 - `旅券副本`
   Four boss-style stages with clearly different combat pacing and style. Main stable source for `旅券`.
 - `映射装备副本`

@@ -15,6 +15,7 @@ Use this skill to keep outer-loop progression tables readable, tunable, and test
    - Identify whether the system is retention, economy, social, shop support, monetization support, or combat verification support.
    - Name the loop currency, real rewards, virtual-only goods, daily cadence, reset time, and maximum meaningful completion horizon.
    - For Vgame tasks, read `vgame-core-understanding` first and treat outer-loop systems as support loops unless the source design says otherwise.
+   - Route Vgame pacing facts through `knowledge-base/numerical/` and cite the selected atom/source locator; external workbooks are exact-value evidence, not a second planning authority.
 
 2. Define the unlock atom before filling levels.
    - Count each of these as one unlock atom: new feature, new station/area, new shop tier, new goods group, capacity increase, daily supply/subsidy increase, price modifier, probability modifier, reward quality tier, automation slot, event rule, milestone title.

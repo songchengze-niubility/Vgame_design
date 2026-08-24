@@ -1,5 +1,5 @@
 {
-  "schema": "vgame-skill-to-layer/v1",
+  "schema": "vgame-skill-to-layer/v2",
   "mappings": [
     {
       "skillId": "accessibility-compliance",
@@ -20,7 +20,8 @@
       "frameworkNodeIds": [
         "PFN-04",
         "PFN-08",
-        "PFN-09"
+        "PFN-09",
+        "PFN-13"
       ]
     },
     {
@@ -78,7 +79,8 @@
       "skillId": "planning-liveops-readiness",
       "frameworkNodeIds": [
         "PFN-18",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ]
     },
     {
@@ -131,21 +133,24 @@
       "skillId": "vgame-config-quality-audit",
       "frameworkNodeIds": [
         "PFN-18",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ]
     },
     {
       "skillId": "vgame-config-schema",
       "frameworkNodeIds": [
         "PFN-18",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ]
     },
     {
       "skillId": "vgame-core-understanding",
       "frameworkNodeIds": [
         "PFN-17",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ]
     },
     {
@@ -183,7 +188,8 @@
       "skillId": "vgame-knowledge-router",
       "frameworkNodeIds": [
         "PFN-17",
-        "PFN-19"
+        "PFN-19",
+        "PFN-13"
       ]
     },
     {
@@ -199,7 +205,8 @@
       "frameworkNodeIds": [
         "PFN-03",
         "PFN-10",
-        "PFN-12"
+        "PFN-12",
+        "PFN-13"
       ]
     },
     {
