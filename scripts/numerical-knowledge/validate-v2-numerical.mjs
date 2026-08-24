@@ -27,6 +27,7 @@ const mappingNames = ["numeric-to-system", "numeric-to-skill", "numeric-to-evide
 const mappings = Object.fromEntries(mappingNames.map(name => [name, read(path.join(numeric, "mappings", `${name}.json`))]));
 
 const unique = values => new Set(values).size === values.length;
+const portableTextHash = p => crypto.createHash("sha256").update(fs.readFileSync(p, "utf8").replace(/\r\n/g, "\n").replace(/\r/g, "\n")).digest("hex");
 const sourceIds = new Set(source.files.map(x => x.sourceId));
 const atomIds = new Set(atoms.atoms.map(x => x.atomId));
 const skillIds = new Set(skills.skills.map(x => x.skillId));
@@ -69,7 +70,7 @@ gate("latest-ew-ruling-atom", atoms.atoms.some(x => x.atomId === "NATOM-RULING-E
 gate("formula-and-parameter-traceable", formulas.formulas.every(x => atomIds.has(x.atomId) && sourceIds.has(x.sourceId)) && parameters.parameterSets.every(x => atomIds.has(x.atomId) && sourceIds.has(x.sourceId)), `${formulas.count}/${parameters.count}`);
 
 gate("skill-registry-still-33", skills.count === 33 && skills.skills.length === 33 && unique(skills.skills.map(x => x.skillId)), `${skills.skills.length}/33`);
-gate("skill-source-hashes-current", skills.skills.every(x => crypto.createHash("sha256").update(fs.readFileSync(path.join(repoRoot, x.sourcePath))).digest("hex") === x.sourceSha256));
+gate("skill-source-hashes-current", skills.skills.every(x => portableTextHash(path.join(repoRoot, x.sourcePath)) === x.sourceSha256));
 gate("canonical-not-ignored", cp.spawnSync("git", ["-C", repoRoot, "check-ignore", "knowledge-base/numerical/atom-registry.json"]).status !== 0);
 
 const stageKb = path.join(stageRoot, "knowledge-base");

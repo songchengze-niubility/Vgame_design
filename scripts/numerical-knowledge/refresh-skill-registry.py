@@ -17,6 +17,11 @@ RELEVANT = {
 }
 
 
+def portable_text_sha256(path: Path) -> str:
+    text = path.read_text(encoding="utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
 def main() -> int:
     repo = Path(__file__).resolve().parents[2]
     path = repo / "knowledge-base" / "registries" / "skill-registry.json"
@@ -25,7 +30,7 @@ def main() -> int:
     registry["version"] = "2.0.0"
     for skill in registry["skills"]:
         source = repo / skill["sourcePath"]
-        skill["sourceSha256"] = hashlib.sha256(source.read_bytes()).hexdigest()
+        skill["sourceSha256"] = portable_text_sha256(source)
         if skill["skillId"] in RELEVANT:
             evidence = skill.setdefault("evidenceSources", [])
             if "knowledge-base/numerical/atom-registry.json" not in evidence:

@@ -45,7 +45,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/accessibility-compliance/SKILL.md",
-      "sourceSha256": "0dec9723f6ce8dc86f2254cd597419b5af81a824c1bc033eb125d17ce2117093"
+      "sourceSha256": "3ad0fbcb0a69b69e70652641a8eeb59f168cceb4bc9d9b9c8b47154072b9e1a2"
     },
     {
       "skillId": "experimentation-analytics",
@@ -90,7 +90,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/experimentation-analytics/SKILL.md",
-      "sourceSha256": "3c4c4a2313c48805bb5557ebcf5a341b4ea57e5286c63433ca5f5e0569fc1d42"
+      "sourceSha256": "7af7fef9b3186c5c5d1151263eaf3d327e9147533ca950faf149314a1d5e9619"
     },
     {
       "skillId": "game-monetization",
@@ -139,7 +139,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/game-monetization/SKILL.md",
-      "sourceSha256": "a20a85fc1b0fed1ce96efa4f852d69bfd8627bfa9a3d9054eac5076afef090ad"
+      "sourceSha256": "fb4c9b0b52c42c670c69d948ea44028ffff6c8c28ada5d89f7ee3c1a562c791b"
     },
     {
       "skillId": "game-numerical-analysis",
@@ -223,7 +223,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/game-numerical-analysis/SKILL.md",
-      "sourceSha256": "2a364e593667841eabbb93e3ee6ffe914aa8ad7f77356537f5cc20f14d245cc7"
+      "sourceSha256": "ff7485328c557dc23b6926a1ad84b49bee47750dc2a52249c5602757f822c86d"
     },
     {
       "skillId": "localize",
@@ -261,7 +261,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/localize/SKILL.md",
-      "sourceSha256": "320de32e35920f89ffb9589c342ba2adca5c5bcf2859a62d0ed51579b1b16234"
+      "sourceSha256": "cdc4684361c2f793fbc9355a1c1c08d69b0e3b2aa60f5a172c1c1f5d947b79b2"
     },
     {
       "skillId": "outer-loop-progression-pacing",
@@ -379,7 +379,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/planning-acceptance-traceability/SKILL.md",
-      "sourceSha256": "563662e4826edd62cd54d7e78af4afcb46a8f38d0f4e140bc6883bfb3cb429cd"
+      "sourceSha256": "c882929549bf5c88a2a82451b8098b3164f967df0c0b7c26a17fa14c49c8120d"
     },
     {
       "skillId": "planning-analytics-instrumentation",
@@ -420,7 +420,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/planning-analytics-instrumentation/SKILL.md",
-      "sourceSha256": "5e19753a243e32caba1c1da7effe138a1a9e5c5657f06d005a45e45e50b3e6cd"
+      "sourceSha256": "2f7722fe2cf2f574442bedaa384301ffdc7b4b67b3c03006492318a0f3b365a0"
     },
     {
       "skillId": "planning-change-sync",
@@ -462,7 +462,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/planning-change-sync/SKILL.md",
-      "sourceSha256": "3d0d6d43d4833f793e3fe809bbe49c3b59bc6a3f273d7453d6fdc0f26e479df1"
+      "sourceSha256": "069e701bae65279de9c66638c32bda55904649815fa794372f12eda277ed6234"
     },
     {
       "skillId": "planning-feature-workflow",
@@ -502,7 +502,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/planning-feature-workflow/SKILL.md",
-      "sourceSha256": "48347bba191b351da1b2a490802e9aebbde907085648171946315e15d7adc8b3"
+      "sourceSha256": "907577647cb150bda3d422c471260d794d500b1501e1d24dafa899a59981f9a7"
     },
     {
       "skillId": "planning-liveops-readiness",
@@ -547,7 +547,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/planning-liveops-readiness/SKILL.md",
-      "sourceSha256": "1c33aae5496e3fb999359a38b37483eadd2288e736ba14f87f60d40645cabbe3"
+      "sourceSha256": "6670eb13c8f0c66144f36af599b74903a299281e4606910882c27c60ebb63446"
     },
     {
       "skillId": "planning-requirement-clarification",
@@ -586,7 +586,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/planning-requirement-clarification/SKILL.md",
-      "sourceSha256": "1634b79e453d48063dc931746203de301e33fdec2f69af940a6a6449cda62b46"
+      "sourceSha256": "d810cde32799379d2c21c2e2a1c681c94d07d82242d85ba3b450e709ec0b02aa"
     },
     {
       "skillId": "product-analytics-setup",
@@ -633,7 +633,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/product-analytics-setup/SKILL.md",
-      "sourceSha256": "a0afe0671073336bdddbe624ff3fa3d43b9d7b159220b1f5b40b1d277b7722d8"
+      "sourceSha256": "6455c5f1a506d936752380b785ca4f154e356d4710a3da98aff61b3ce0cf1103"
     },
     {
       "skillId": "senior-game-economy",
@@ -717,7 +717,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/senior-game-economy/SKILL.md",
-      "sourceSha256": "f506e9af57bcf16881bdc2f8340a8e1495306a520b6b7d7b39eeb53a324ba774"
+      "sourceSha256": "f661172fe5a1ea9a3661ff89727a8a6e47b387a2ed5dafa98f17be41f73e7571"
     },
     {
       "skillId": "vgame-battle-content-map",
@@ -783,7 +783,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/vgame-battle-content-map/SKILL.md",
-      "sourceSha256": "5ab294b9b108da9f06bccd3f75025c1103dda99f73e14acfd67d662ef61ed96f"
+      "sourceSha256": "24968f531a9a461189316edce2096393306d8c2bdb3c82d08a739e2864e5d536"
     },
     {
       "skillId": "vgame-battle-tuning-helper",
@@ -852,7 +852,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-battle-tuning-helper/SKILL.md",
-      "sourceSha256": "e20fe32f4a88580fe29d2d54683712de538783e43f362b965011140d44846d83"
+      "sourceSha256": "930591e7b3088fb185483fa50ead23b6766c71c89305eff89399cb2b0757610b"
     },
     {
       "skillId": "vgame-character-kit-design-map",
@@ -903,7 +903,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/vgame-character-kit-design-map/SKILL.md",
-      "sourceSha256": "401afc0fb08c99193d1d2f0a3ab869ac83e6a5f32f04dce11a9ff6b6aeffdaa8"
+      "sourceSha256": "a791cb3b817032f5db80dd3889e6a8c3431bccbc7693bd48a27911df3e5f17bd"
     },
     {
       "skillId": "vgame-config-quality-audit",
@@ -994,7 +994,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-config-quality-audit/SKILL.md",
-      "sourceSha256": "0c22e0841a71058d5f58131ec0f77a228f011f50e7e89cd53770f6889e755ba0"
+      "sourceSha256": "bc9528b72dd4e2a36e620004cd5ae7d72b898781b25d7c04926fafc93ac50c2b"
     },
     {
       "skillId": "vgame-config-schema",
@@ -1082,7 +1082,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-config-schema/SKILL.md",
-      "sourceSha256": "105b9e3646b126096248d39bf3e9e7a5bf1d4a021d4d5c8078522d663958871c"
+      "sourceSha256": "ddfac5f398328ef66dae1b3bd63a95c1e815b34c60f06bc6a90865c7a68c50be"
     },
     {
       "skillId": "vgame-core-understanding",
@@ -1173,7 +1173,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-core-understanding/SKILL.md",
-      "sourceSha256": "199d8f9a91bbaa26fdfd35cbb6d0fec4775194ef18ae11bdeda7d26f4e7cb2e9"
+      "sourceSha256": "392e43b9078b06044897389d7477bab17057cee5b66a81ef9b6829df7406b78b"
     },
     {
       "skillId": "vgame-economy-source-map",
@@ -1241,7 +1241,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-economy-source-map/SKILL.md",
-      "sourceSha256": "7977457d7f0f35ad437b969e2ab64a8842f99a4162193faf3ffe07e89cc85c4a"
+      "sourceSha256": "f61e9286a99d2e74db085f40df1c82c022a51e5daffcdd2ca5dd5376e7b9148d"
     },
     {
       "skillId": "vgame-figma-ui",
@@ -1282,7 +1282,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/vgame-figma-ui/SKILL.md",
-      "sourceSha256": "0bcfcb76a7a2e18e4613168b3fed04a05b6634a1290687712d7389ffdc17d897"
+      "sourceSha256": "055e875f98d2a9c45165af66abbc2b80de498d3bdcbe7e72e57066e73faba01d"
     },
     {
       "skillId": "vgame-growth-combat-conversion-map",
@@ -1350,7 +1350,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-growth-combat-conversion-map/SKILL.md",
-      "sourceSha256": "8fa0d82cda8d1f459c297a722830669b24ec4c8b55231be1a4191e39c915f508"
+      "sourceSha256": "750d5c829e39afce5c1d0116f2a2fb3e9f7a18ed111206c18a9e3f6b8d58d283"
     },
     {
       "skillId": "vgame-hero-skill-config-map",
@@ -1397,7 +1397,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/vgame-hero-skill-config-map/SKILL.md",
-      "sourceSha256": "73d9d852d12d3713fe0fef41b7a37f081ec1f09112b004c4d8899a1de210f148"
+      "sourceSha256": "72bff7a8ff1b5b47f227a58f89a85e0bfbd6cf960fc44c97c2bfbdc8f281d66a"
     },
     {
       "skillId": "vgame-knowledge-router",
@@ -1544,7 +1544,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/vgame-level-design-map/SKILL.md",
-      "sourceSha256": "633a2abdf520dd9af093ec9f55e247443dfe1ccaef78830656caf91d48665ea2"
+      "sourceSha256": "20271fda0b952f544664d0343867a4bea95895415eff2e2700d846bdd2503133"
     },
     {
       "skillId": "vgame-level-progression-map",
@@ -1604,7 +1604,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-level-progression-map/SKILL.md",
-      "sourceSha256": "9100b72796135b6dabb80c61afbb2487fbe961f45c006ecbc2b1d00ff5931240"
+      "sourceSha256": "3c9d4db7fc9d883bf001387d2b9959fd6bcbf7c5735de80d454fd3de95543916"
     },
     {
       "skillId": "vgame-outer-loop-system-map",
@@ -1661,7 +1661,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/vgame-outer-loop-system-map/SKILL.md",
-      "sourceSha256": "3502cd6cfe5431680da93506c6b13d6ad08b1d881d88ffd1243da7d5c0d4b714"
+      "sourceSha256": "6e6fe83cc984d9210c3273c2be60a6b43adba2deac18dd183554ce9583687d61"
     },
     {
       "skillId": "vgame-player-progression-simulator",
@@ -1735,7 +1735,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-player-progression-simulator/SKILL.md",
-      "sourceSha256": "a3ae51618dd794b0e5866e026c69f100d75cdfd56516ff43f5c39a7ba4072a42"
+      "sourceSha256": "54bf8b984c55da2ccd62683ce6ee8ac1495623ce7c900934b377d870b9788023"
     },
     {
       "skillId": "vgame-reward-drop-sync",
@@ -1802,7 +1802,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-reward-drop-sync/SKILL.md",
-      "sourceSha256": "eb2f99571437bf884ef0612a70b2304f029dc94d305802932261d94225f09cdf"
+      "sourceSha256": "e171515dc1ded6c1879162ef08159956d5191f84b73b3f939ad978b9ab9d1cf4"
     },
     {
       "skillId": "vgame-tutorial-onboarding-map",
@@ -1847,7 +1847,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/vgame-tutorial-onboarding-map/SKILL.md",
-      "sourceSha256": "cb7ea82217453b9dfb3c2e9def9001c4d580a8a6fc4954f04a7f3b44158a2d00"
+      "sourceSha256": "0475249e29361c0bf641ba699b3d13c1e4813d14dda6dcb687e7bd81f832cafc"
     },
     {
       "skillId": "vgame-ui-prototype",
@@ -1888,7 +1888,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/vgame-ui-prototype/SKILL.md",
-      "sourceSha256": "63cb88c6d3d4e72ebd00bf01e454251b975a3102745ce9d03d320aff8209bb09"
+      "sourceSha256": "42dfe6ec937c70744e814d6c3c8464a9865cd2965dd64011d6dd7280a7a9d019"
     },
     {
       "skillId": "vgame-version-release-map",
@@ -1974,7 +1974,7 @@
       ],
       "versionStatus": "ACTIVE_V1",
       "sourcePath": "skills/vgame-version-release-map/SKILL.md",
-      "sourceSha256": "3fc5cd3e5a23ac421728970f5f9a4a3b1f6c66644b5869fdb2e9439801949b26"
+      "sourceSha256": "b92e7530a8d1a8ed4d146c1ab771471399cada0b4f4d5f0d8f3d49ab6da4af09"
     }
   ],
   "count": 33
