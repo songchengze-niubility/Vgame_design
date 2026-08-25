@@ -24,7 +24,10 @@ LEGACY_WORKBOOKS = (
 FORMAL_WRITE_SCRIPTS = {"02_AI规则/apply_uilevel_reward_previews_to_formal.py"}
 
 
-def sha256(path: Path) -> str:
+def sha256(path: Path, *, portable_text: bool = False) -> str:
+    if portable_text and path.suffix.lower() in {".py", ".md", ".json"}:
+        normalized = path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
+        return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
     digest = hashlib.sha256()
     with path.open("rb") as stream:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
@@ -172,7 +175,7 @@ def main() -> int:
             "repositoryPath": target.relative_to(REPO_ROOT).as_posix(),
             "role": role,
             "sourceSha256": sha256(source),
-            "migratedSha256": sha256(target),
+            "migratedSha256": sha256(target, portable_text=True),
             "bytes": target.stat().st_size,
             "requiresExplicitFormalWriteApproval": role == "FORMAL_WRITE_TOOL",
         })
@@ -188,7 +191,7 @@ def main() -> int:
             "repositoryPath": target.relative_to(REPO_ROOT).as_posix(),
             "role": "LEGACY_EDITABLE_SOURCE_WORKBOOK",
             "sourceSha256": sha256(source),
-            "migratedSha256": sha256(target),
+            "migratedSha256": sha256(target, portable_text=True),
             "bytes": target.stat().st_size,
             "requiresExplicitFormalWriteApproval": False,
         })
@@ -203,6 +206,7 @@ def main() -> int:
         "runtimeOutputRoot": "output/numerical-production-workflow-v2/",
         "legacyExternalSourceRequiredAtRuntime": False,
         "formalConfigWriteDefault": "DENY",
+        "contentHashPolicy": "TEXT_UTF8_NORMALIZED_LF_BINARY_RAW_SHA256",
         "counts": {
             "files": len(rows),
             "originalPythonFiles": len(original_python),

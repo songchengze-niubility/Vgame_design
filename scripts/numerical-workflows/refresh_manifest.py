@@ -16,12 +16,17 @@ def main() -> int:
     changed = []
     for row in manifest["files"]:
         target = root / row["repositoryPath"]
-        value = hashlib.sha256(target.read_bytes()).hexdigest()
+        if target.suffix.lower() in {".py", ".md", ".json"}:
+            normalized = target.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
+            value = hashlib.sha256(normalized.encode("utf-8")).hexdigest()
+        else:
+            value = hashlib.sha256(target.read_bytes()).hexdigest()
         if value != row["migratedSha256"]:
             row["migratedSha256"] = value
             row["bytes"] = target.stat().st_size
             row["repositoryCompatibilityAdaptation"] = True
             changed.append(row["repositoryPath"])
+    manifest["contentHashPolicy"] = "TEXT_UTF8_NORMALIZED_LF_BINARY_RAW_SHA256"
     manifest["refreshedAt"] = datetime.now().astimezone().isoformat(timespec="seconds")
     path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"updated": len(changed), "paths": changed}, ensure_ascii=False, indent=2))

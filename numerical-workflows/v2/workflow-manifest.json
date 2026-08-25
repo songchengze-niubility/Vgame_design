@@ -1576,5 +1576,6 @@
       "requiresExplicitFormalWriteApproval": false
     }
   ],
-  "refreshedAt": "2026-08-25T10:09:56+08:00"
+  "refreshedAt": "2026-08-25T10:22:28+08:00",
+  "contentHashPolicy": "TEXT_UTF8_NORMALIZED_LF_BINARY_RAW_SHA256"
 }

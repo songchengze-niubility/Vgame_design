@@ -20,6 +20,9 @@ END = "<!-- VGAME_PARAMETER_JSON_END -->"
 
 
 def digest(path: Path) -> str:
+    if path.suffix.lower() in {".py", ".md", ".json"}:
+        normalized = path.read_text(encoding="utf-8").replace("\r\n", "\n").replace("\r", "\n")
+        return hashlib.sha256(normalized.encode("utf-8")).hexdigest()
     value = hashlib.sha256()
     with path.open("rb") as stream:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
@@ -80,7 +83,11 @@ def run_checks(report_path: Path | None = None) -> tuple[list[dict], dict]:
 
     counts = manifest["counts"]
     check("M01 CompleteInventory", len(rows) == counts["files"] and not missing, {"files": len(rows), "missing": missing})
-    check("M02 ImmutableMigrationHashes", not changed, {"changed": changed})
+    check(
+        "M02 ImmutableMigrationHashes",
+        not changed and manifest.get("contentHashPolicy") == "TEXT_UTF8_NORMALIZED_LF_BINARY_RAW_SHA256",
+        {"changed": changed, "contentHashPolicy": manifest.get("contentHashPolicy")},
+    )
     python_count = sum(row["repositoryPath"].endswith(".py") for row in rows)
     check("M03 AllProductionScripts", python_count == counts["originalPythonFiles"] == counts["migratedPythonFiles"], {"original": counts["originalPythonFiles"], "migrated": python_count})
     workbook_count = sum(row["repositoryPath"].endswith(".xlsx") for row in rows)
