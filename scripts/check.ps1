@@ -150,6 +150,7 @@ $todoHits = Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction Silentl
     Where-Object {
         $_.FullName -notmatch "\\.git\\" -and
         $_.FullName -notmatch "\\output\\" -and
+        $_.FullName -notmatch "\\numerical-workflows\\v2\\framework\\" -and
         $_.FullName -notmatch "\\knowledge-graph\\understand-anything-new\\" -and
         $_.Name -ne "tech-debt-tracker.md"
     } |
@@ -185,6 +186,7 @@ $largeDocs = Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction Silent
         $_.FullName -notmatch "\\.git\\" -and
         $_.FullName -notmatch "\\output\\" -and
         $_.FullName -notmatch "\\archive\\" -and
+        $_.FullName -notmatch "\\numerical-workflows\\v2\\framework\\03_沉淀MD\\" -and
         $_.FullName -notmatch "\\knowledge-graph\\understand-anything-new\\"
     } |
     ForEach-Object {
@@ -205,6 +207,10 @@ $tableLikeFiles = Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction S
 
 foreach ($file in $tableLikeFiles) {
     $rel = $file.FullName.Replace($Root, "").TrimStart("\")
+    # 数值生产工作流的可编辑源表属于 Git 权威输入，不是 SVN 正式配置。
+    if ($rel -match '^numerical-workflows\\v2\\(?:framework\\01_源表\\|framework\\经济\\模块产销表\\|legacy-inputs\\)') {
+        continue
+    }
     if ($file.Name -notmatch "sample|example|示例") {
         Write-Result "WARN" "$rel looks like a real table file" "Confirm it is a sample. Real configs should stay under VGAME_ROOT."
     }

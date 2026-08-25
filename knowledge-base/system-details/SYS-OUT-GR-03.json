@@ -434,7 +434,7 @@
       "id": "SYS-OUT-GR-03-EV03",
       "kind": "numeric-deposit",
       "label": "角色升星数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/角色升星数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/角色升星数值沉淀-2026-07-07.md",
       "location": "核心口径、各角色升星属性选择、验算结论、边界说明",
       "status": "CONFIRMED_TARGET"
     },
@@ -458,7 +458,7 @@
       "id": "SYS-OUT-GR-03-EV06",
       "kind": "numeric-deposit",
       "label": "角色升星经济消耗沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/17_养成_角色升星经济消耗沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/17_养成_角色升星经济消耗沉淀-2026-07-08.md",
       "location": "升星碎片/金币消耗与供需口径（权威关系索引）",
       "status": "CONFIRMED_TARGET_PARTIAL"
     }

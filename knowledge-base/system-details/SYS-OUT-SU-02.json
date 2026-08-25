@@ -463,9 +463,11 @@
     {
       "id": "SYS-OUT-SU-02-CFG06",
       "name": "06 最终配置/收容物抽卡镜像",
-      "path": "D:\\数值文档\\数值文档\\框架v2\\06_最终配置\\收容物抽卡",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/收容物抽卡",
       "role": "DrawCard/DrawCardPool/Drop_draw/ExclWeapon/Items/ShopGoods/WeaponDuplicateReward/CommonRuleDesc 八张镜像与校验报告",
-      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     }
   ],
   "relationships": [
@@ -554,7 +556,7 @@
       "id": "SYS-OUT-SU-02-EV01",
       "kind": "numeric-deposit",
       "label": "角色与收容物抽卡数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
       "location": "§4 新版收容物抽卡（4.1前提/4.2常驻池v0.4/4.3期望/4.4落地/4.5不继承/4.6招募联动/4.7券投放/4.8满星回收）",
       "status": "CONFIRMED_TARGET_IN_REVIEW"
     },
@@ -594,9 +596,11 @@
       "id": "SYS-OUT-SU-02-EV06",
       "kind": "delivery-mirror",
       "label": "06 最终配置/收容物抽卡镜像",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/收容物抽卡",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/收容物抽卡",
       "location": "DrawCard/DrawCardPool/Drop_draw/ExclWeapon/Items/ShopGoods/WeaponDuplicateReward/CommonRuleDesc 八张镜像 + 收容物常驻抽卡配置校验.json",
-      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-SU-02-EV07",

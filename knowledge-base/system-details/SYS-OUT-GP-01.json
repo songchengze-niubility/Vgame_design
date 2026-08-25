@@ -868,8 +868,8 @@
       "id": "SYS-OUT-GP-01-EV03",
       "kind": "numeric-deposit",
       "label": "主线经济沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
-      "href": "file:///D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "href": "../../../numerical-workflows/v2/framework/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
       "location": "经济职责、已确认口径、新版主线支线奖励",
       "status": "MIXED_CURRENT_AND_HISTORY"
     },
@@ -877,10 +877,12 @@
       "id": "SYS-OUT-GP-01-EV04",
       "kind": "delivery-mirror",
       "label": "主线高难奖励配置校验",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/主线高难/主线高难奖励配置校验.json",
-      "href": "file:///D:/数值文档/数值文档/框架v2/06_最终配置/主线高难/主线高难奖励配置校验.json",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/主线高难/主线高难奖励配置校验.json",
+      "href": "../../../knowledge-base/numerical/source-registry.json",
       "location": "status=PASS、普通99、支线44、星级37+21",
-      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-GP-01-EV05",
@@ -994,8 +996,8 @@
       "id": "SYS-OUT-GP-01-EV17",
       "kind": "numeric-deposit",
       "label": "全玩法难度线数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
-      "href": "file:///D:/数值文档/数值文档/框架v2/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
+      "href": "../../../numerical-workflows/v2/framework/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
       "location": "DL-R01～DL-R09、覆盖状态、养成版本关系",
       "status": "KNOWLEDGE_CURRENT_MODEL_WITH_GAPS"
     },
@@ -1003,10 +1005,12 @@
       "id": "SYS-OUT-GP-01-EV18",
       "kind": "numeric-source-excel",
       "label": "主角等级唯一权威单源",
-      "path": "D:/数值文档/数值文档/框架v2/节奏/生成_主角等级单源.xlsx",
-      "href": "file:///D:/数值文档/数值文档/框架v2/节奏/生成_主角等级单源.xlsx",
+      "path": "vgame-numeric-source://框架v2/节奏/生成_主角等级单源.xlsx",
+      "href": "../../../knowledge-base/numerical/source-registry.json",
       "location": "sheet 主角等级_单源；旧章节起始等级：0章1、1章6、2章14、3章20、4章25、5章30、6章34、7章37；第3～7章已被用户最新截图覆盖，核对 2026-08-18",
-      "status": "NUMERICAL_SOURCE_PARTIALLY_SUPERSEDED"
+      "status": "NUMERICAL_SOURCE_PARTIALLY_SUPERSEDED",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-GP-01-EV19",

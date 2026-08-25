@@ -1,0 +1,25 @@
+{
+  "schema": "vgame-numerical-production-governance/v1",
+  "canonicalRulings": "knowledge-base/governance/rulings.json",
+  "formalConfigWriteDefault": "DENY",
+  "sourceOwnedDriftPolicy": "SYNCHRONIZE_STAGING_ONLY",
+  "missingDerivedFormulaCachePolicy": "PRESERVE_APPROVED_MD",
+  "rules": {
+    "RULING-RV-C": {
+      "decisionLabel": "C",
+      "randomStrengtheningProgress": [30, 60, 100],
+      "weights": [50, 30, 20],
+      "productionParameterSource": "framework/03_沉淀MD/参数基线/养成参数基线.md"
+    },
+    "RULING-EW-B": {
+      "decisionLabel": "B",
+      "compatibilityMajorVersions": 1,
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "compatibilityArtifact": "养成/专武_数值文档.xlsx",
+      "removedSourceWorksheet": "专武属性分配",
+      "frozenCompatibilityParameterSource": "framework/03_沉淀MD/参数基线/养成参数基线.md",
+      "targetSystem": "收容物"
+    }
+  },
+  "independentFinalAcceptance": "PENDING"
+}

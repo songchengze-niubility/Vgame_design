@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-08-24T19:33:40",
+  "generated_at": "2026-08-25T10:15:39",
   "nodes": [
     {
       "id": "document:37dd68363fc1",
@@ -17,8 +17,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 113,
-        "sha256": "d8538c3f7d0964ddb2760aa28cdc64c18ac3e777e953c3268283174d24721fc1"
+        "line_count": 115,
+        "sha256": "adcd408b309cc1e62b5491871a4d9f3085ca53353157575e4ec00a8c4216c0a9"
       }
     },
     {
@@ -608,6 +608,25 @@
         "category": "design",
         "line_count": 52,
         "sha256": "1190af890bd8bc9e45c8b63cd11f4fb5c893431609f8a3c31f90e3f633c86b74"
+      }
+    },
+    {
+      "id": "document:c5074ef09056",
+      "type": "document",
+      "name": "数值生产工作流单仓迁移 V2",
+      "filePath": "design/数值生产工作流单仓迁移V2.md",
+      "summary": "数值生产工作流单仓迁移 V2",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 26,
+        "sha256": "146dca932f9073e7b3df8ab8685f56ec521da0d6efa315914a761758d6d31283"
       }
     },
     {
@@ -1290,8 +1309,8 @@
       "layer": "design",
       "metadata": {
         "category": "harness",
-        "line_count": 230,
-        "sha256": "68778bbaa37e6ea6c58a5d6b8d948fee7862fdd0adbac5897f6a21a9134708c3"
+        "line_count": 242,
+        "sha256": "0e9c81a17b83eeefdd66fbbfd60253321dbadaffe55f4fbe1643a1d28bc339df"
       }
     },
     {
@@ -1368,6 +1387,25 @@
         "category": "proposal",
         "line_count": 25,
         "sha256": "5363a68236da59abce28e6f0d0ec8ac2d54c0f1c2e100bf8c7bc76857a2dd013"
+      }
+    },
+    {
+      "id": "document:c42f5a20f908",
+      "type": "document",
+      "name": "数值生产工作流单仓迁移提案",
+      "filePath": "proposals/数值生产工作流单仓迁移-2026-08-25.md",
+      "summary": "数值生产工作流单仓迁移提案",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "proposal"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "proposal",
+        "line_count": 22,
+        "sha256": "8ee08f971deb044e056d81b8c14834cf83a692f8fbfb2c87a0eb7139e0d2cef1"
       }
     },
     {
@@ -1542,6 +1580,25 @@
       }
     },
     {
+      "id": "document:3c515dbd837b",
+      "type": "document",
+      "name": "数值生产工作流单仓迁移任务",
+      "filePath": "tasks/数值生产工作流单仓迁移-2026-08-25.md",
+      "summary": "数值生产工作流单仓迁移任务",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 11,
+        "sha256": "0e67c97f13fcfd60f325dfea96a784167be94fde2c84e03eaf4ff973ba63dd50"
+      }
+    },
+    {
       "id": "document:f7496c4bbd1e",
       "type": "document",
       "name": "Vgame Tech Debt Tracker",
@@ -1585,7 +1642,7 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（83份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（86份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
@@ -1619,6 +1676,7 @@
         "document:0c2343f2dcf2",
         "document:01f6a8c23a8a",
         "document:8f312864e493",
+        "document:c5074ef09056",
         "document:ecdc3ed343c0",
         "document:e9d8745b6ec8",
         "document:5dbf432d2672",
@@ -1659,6 +1717,7 @@
         "document:c87739c5c66a",
         "document:6268c74d06bc",
         "document:d88b2b68ad4e",
+        "document:c42f5a20f908",
         "document:dff8119f5f8d",
         "document:cb6127d985e8",
         "document:240c2b50eb9f",
@@ -1668,13 +1727,14 @@
         "document:70bd5cea30ff",
         "document:10b809b8e39b",
         "document:569045608c19",
+        "document:3c515dbd837b",
         "document:f7496c4bbd1e",
         "document:060c16cf65a7"
       ]
     }
   ],
   "statistics": {
-    "documents": 83,
+    "documents": 86,
     "edges": 0
   }
 }

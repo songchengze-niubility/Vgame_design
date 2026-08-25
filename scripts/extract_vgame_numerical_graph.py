@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from datetime import datetime
 from pathlib import Path
@@ -47,6 +48,7 @@ def extract(output: Path) -> dict:
     skill_registry = load(KB / "registries" / "skill-registry.json")
     framework_registry = load(KB / "registries" / "framework-nodes.json")
     system_mappings = load(KB / "mappings" / "system-to-skill.json")
+    production_manifest = load(REPO_ROOT / "numerical-workflows" / "v2" / "workflow-manifest.json")
 
     atoms = atom_registry["atoms"]
     source_by_id = {item["sourceId"]: item for item in source_registry["files"]}
@@ -73,6 +75,62 @@ def extract(output: Path) -> dict:
     ]
     edges = []
 
+    production_counts = production_manifest["counts"]
+    production_root_id = "numerical-production:v2"
+    nodes.append(
+        make_node(
+            production_root_id,
+            "concept",
+            "数值生产工作流 V2",
+            (
+                f"单仓纳管 {production_counts['migratedPythonFiles']} 个生产脚本、"
+                f"{production_counts['inputWorkbooks']} 份受控输入、"
+                f"{production_counts['mainGenerationJobs']} 条任务和 "
+                f"{production_counts['expectedFinalWorkbooks']} 份可重建终稿。"
+            ),
+            ["vgame", "numerical", "production", "single-repository"],
+            canonicalPath="numerical-workflows/v2/workflow-manifest.json",
+            externalNumericalSourceRequired=production_manifest["legacyExternalSourceRequiredAtRuntime"],
+            formalConfigWriteDefault=production_manifest["formalConfigWriteDefault"],
+            **production_counts,
+        )
+    )
+    edges.append(make_edge("numerical-framework:v2", production_root_id, "contains", "数值框架纳入完整单仓生产工作流"))
+
+    production_roles = sorted({item["role"] for item in production_manifest["files"]})
+    for role in production_roles:
+        category_id = f"numerical-production-category:{role}"
+        role_files = [item for item in production_manifest["files"] if item["role"] == role]
+        nodes.append(
+            make_node(
+                category_id,
+                "concept",
+                f"生产资产：{role}",
+                f"{role} 分类下共有 {len(role_files)} 份 Git 管理生产资产。",
+                ["vgame", "numerical-production-category", role.lower()],
+                role=role,
+                fileCount=len(role_files),
+            )
+        )
+        edges.append(make_edge(production_root_id, category_id, "contains", "生产工作流按资产职责分组"))
+        for item in role_files:
+            path_digest = hashlib.sha256(item["repositoryPath"].encode("utf-8")).hexdigest()[:20]
+            asset_id = f"numerical-production-file:{path_digest}"
+            nodes.append(
+                make_node(
+                    asset_id,
+                    "file",
+                    Path(item["repositoryPath"]).name,
+                    f"单仓数值生产资产：{item['repositoryPath']}。",
+                    ["vgame", "numerical-production-file", role.lower()],
+                    repositoryPath=item["repositoryPath"],
+                    role=role,
+                    sha256=item["migratedSha256"],
+                    requiresExplicitFormalWriteApproval=item["requiresExplicitFormalWriteApproval"],
+                )
+            )
+            edges.append(make_edge(category_id, asset_id, "contains", "生产资产登记了职责、路径和内容哈希"))
+
     for domain_id in domain_ids:
         domain_node_id = f"numerical-domain:{domain_id}"
         nodes.append(make_node(domain_node_id, "concept", f"数值域：{domain_id}", f"{domain_id} 数值原子集合。", ["vgame", "numerical-domain", domain_id], domain=domain_id))
@@ -81,6 +139,8 @@ def extract(output: Path) -> dict:
     for skill_id in used_skill_ids:
         skill = skill_by_id.get(skill_id, {})
         nodes.append(make_node(f"skill:{skill_id}", "concept", skill_id, skill.get("responsibility", "数值原子登记的调用 Skill。"), ["vgame", "skill", skill.get("category", "unclassified")], skillId=skill_id, sourcePath=skill.get("sourcePath"), versionStatus=skill.get("versionStatus")))
+        if skill_id == "game-numerical-analysis":
+            edges.append(make_edge(f"skill:{skill_id}", production_root_id, "routes", "数值专项 Skill 按需调用仓库内生产工作流"))
 
     for system_id in used_system_ids:
         system = system_by_id.get(system_id, {})
@@ -122,6 +182,10 @@ def extract(output: Path) -> dict:
         "layer:numerical-systems": [item["id"] for item in nodes if item["id"].startswith("system:")],
         "layer:numerical-framework-nodes": [item["id"] for item in nodes if item["id"].startswith("framework:")],
         "layer:numerical-evidence": [item["id"] for item in nodes if item["id"].startswith("numerical-evidence:")],
+        "layer:numerical-production": [
+            item["id"] for item in nodes
+            if item["id"].startswith(("numerical-production:", "numerical-production-category:", "numerical-production-file:"))
+        ],
     }
     layer_names = {
         "layer:numerical-domains": "数值框架与领域",
@@ -130,6 +194,7 @@ def extract(output: Path) -> dict:
         "layer:numerical-systems": "数值覆盖系统",
         "layer:numerical-framework-nodes": "数值归属策划层",
         "layer:numerical-evidence": "数值证据",
+        "layer:numerical-production": "单仓数值生产工作流",
     }
     layers = [{"id": layer_id, "name": layer_names[layer_id], "description": f"由权威数值原子注册表生成（{len(node_ids)} 节点）", "nodeIds": node_ids} for layer_id, node_ids in layer_groups.items()]
 
@@ -146,6 +211,10 @@ def extract(output: Path) -> dict:
             "systems": len(used_system_ids),
             "frameworkNodes": len(used_framework_ids),
             "evidence": len(used_evidence_ids),
+            "productionFiles": len(production_manifest["files"]),
+            "productionScripts": production_counts["migratedPythonFiles"],
+            "productionInputWorkbooks": production_counts["inputWorkbooks"],
+            "productionTasks": production_counts["mainGenerationJobs"],
             "nodes": len(nodes),
             "edges": len(edges),
         },

@@ -488,7 +488,7 @@
       "id": "SYS-OUT-GR-01-EV03",
       "kind": "numeric-deposit",
       "label": "主角升级经济消耗沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/14_外循环_主角升级经济消耗沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/14_外循环_主角升级经济消耗沉淀-2026-07-08.md",
       "location": "结论、与角色升级边界、分段汇总、逐级资源表、风险与待确认",
       "status": "CONFIRMED_TARGET_WITH_CONFLICT"
     },
@@ -496,7 +496,7 @@
       "id": "SYS-OUT-GR-01-EV04",
       "kind": "numeric-deposit",
       "label": "体力补充经济沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
       "location": "Power 配置、储能来源观察、邮票精力口径差异",
       "status": "CONFIRMED_TARGET_WITH_CONFLICT"
     },

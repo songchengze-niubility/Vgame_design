@@ -495,7 +495,7 @@
       "id": "SYS-OUT-GR-02-EV03",
       "kind": "numeric-deposit",
       "label": "角色升级数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/角色升级数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/角色升级数值沉淀-2026-07-07.md",
       "location": "核心口径、各角色升级属性、经济引用、验算结论、当前状态",
       "status": "CONFIRMED_TARGET"
     },

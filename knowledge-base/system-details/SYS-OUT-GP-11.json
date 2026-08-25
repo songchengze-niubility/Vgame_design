@@ -633,7 +633,7 @@
       "id": "SYS-OUT-GP-11-EV10",
       "kind": "numeric-deposit",
       "label": "体力补充经济沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
       "location": "CHG-004 邮票副本关闭扫荡（第 154-159 行）",
       "status": "DESIGN_CONFIRMED_WORKING_COPY_NOT_SYNCED"
     },

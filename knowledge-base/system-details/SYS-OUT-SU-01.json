@@ -636,7 +636,7 @@
       "id": "SYS-OUT-SU-01-EV02",
       "kind": "numeric-deposit",
       "label": "角色与收容物抽卡数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
       "location": "§2配置证据、§3角色抽卡结论（待确认）、§3.4软保底状态、§3.6重复返还、§4.5不继承、§7变更记录",
       "status": "IN_REVIEW_OBSERVED"
     },

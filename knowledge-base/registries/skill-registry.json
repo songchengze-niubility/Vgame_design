@@ -223,7 +223,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/game-numerical-analysis/SKILL.md",
-      "sourceSha256": "ff7485328c557dc23b6926a1ad84b49bee47750dc2a52249c5602757f822c86d"
+      "sourceSha256": "8109ffee2443254cd2d363c3f92259e1ae6ae2487a650ff034597e68b90fcf0e"
     },
     {
       "skillId": "localize",
@@ -717,7 +717,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/senior-game-economy/SKILL.md",
-      "sourceSha256": "f661172fe5a1ea9a3661ff89727a8a6e47b387a2ed5dafa98f17be41f73e7571"
+      "sourceSha256": "ba43f5c62e1d673cb07af61828c7989c7d4527033b94ddaf277c9893fba6c687"
     },
     {
       "skillId": "vgame-battle-content-map",
@@ -1173,7 +1173,7 @@
       ],
       "versionStatus": "ACTIVE_V2_NUMERICAL",
       "sourcePath": "skills/vgame-core-understanding/SKILL.md",
-      "sourceSha256": "392e43b9078b06044897389d7477bab17057cee5b66a81ef9b6829df7406b78b"
+      "sourceSha256": "ba4dff0a6440e4318f2dc22a512de49f0ae1aabe64b88afd076a88711ee1d6f7"
     },
     {
       "skillId": "vgame-economy-source-map",

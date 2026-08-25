@@ -7,7 +7,7 @@ description: "Game numerical design and experience analysis expert. Deep analysi
 
 ## Vgame Canonical Load Order
 
-For Vgame, read `../vgame-core-understanding/SKILL.md`, then route the question through `../vgame-knowledge-router/`. Load the smallest matching domain and atoms from `../../knowledge-base/numerical/atom-registry.json` and `../../knowledge-base/numerical/mappings/` before opening external numerical documents. Use `sourceLocator` to return to `${VGAME_SOURCE_DOCS_ROOT}/框架v2` only when exact context, workbook values, or authoring evidence is required. Never treat `04_数值文档`, `06_最终配置`, generated reports, or SVN working-copy observations as Production/LIVE proof.
+For Vgame, read `../vgame-core-understanding/SKILL.md`, then route the question through `../vgame-knowledge-router/`. Load the smallest matching domain and atoms from `../../knowledge-base/numerical/atom-registry.json` and `../../knowledge-base/numerical/mappings/`. When exact production context, workbook values, or authoring evidence is required, resolve `sourceLocator` against the Git-managed `../../numerical-workflows/v2/framework/` or `../../numerical-workflows/v2/legacy-inputs/`; use `../../numerical-workflows/v2/workflow-manifest.json` to identify the canonical asset. `${VGAME_SOURCE_DOCS_ROOT}` is historical migration evidence and is not a runtime prerequisite. Never treat `04_数值文档`, `06_最终配置`, generated reports, or SVN working-copy observations as Production/LIVE proof.
 
 Every Vgame numerical conclusion must cite an atom ID or explicit source locator and state whether it is `SOURCE_EXPLICIT`, `HUMAN_DECISION`, a synthesis, or an assumption. Current rulings: 房车 C (`+30/+60/+100`, `50/30/20`); 专武 B (one major-version compatibility migration period, implementation pending).
 

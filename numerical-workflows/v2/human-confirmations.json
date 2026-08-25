@@ -1,0 +1,37 @@
+{
+  "schema": "vgame-numerical-production-human-confirmations/v1",
+  "independentFinalAcceptance": "PENDING",
+  "questions": [
+    {
+      "id": "NUM-HUMAN-001",
+      "priority": "P0",
+      "system": "角色星盘",
+      "question": "是否将养成属性分配.xlsx/模块规划中的角色星盘基础属性系数，从当前0同步为已确认设计的1.2？",
+      "confirmedDesign": "基础生命6000、攻击1800、防御1200；二级预算1.8",
+      "currentSourceWorkbookValue": 0,
+      "confirmedDesignValue": 1.2,
+      "currentHandling": "生产终稿按最新已确认沉淀生成；不擅自改写人工源表。",
+      "status": "WAITING_HUMAN_CONFIRMATION"
+    },
+    {
+      "id": "NUM-HUMAN-002",
+      "priority": "P0",
+      "system": "专武迁移至收容物",
+      "question": "请确认一个大版本兼容期的起止版本、旧数据读写与入口/投放切换边界，以及最终清理版本。",
+      "ruling": "RULING-EW-B",
+      "currentHandling": "保留冻结专武兼容参数和终稿；不自动迁移旧消耗，不修改正式Datas。",
+      "implementationStatus": "IMPLEMENTATION_PENDING",
+      "status": "WAITING_HUMAN_CONFIRMATION"
+    },
+    {
+      "id": "NUM-HUMAN-003",
+      "priority": "P1",
+      "system": "房车随机强化",
+      "question": "请确认强化进度达到100时的溢出/进位规则，并补充Production/LIVE发布证据。",
+      "ruling": "RULING-RV-C",
+      "confirmedDesign": "随机强化+30/+60/+100，权重50/30/20。",
+      "currentHandling": "生产参数和知识框架均执行最新C裁决；缺失边界规则不擅自推断。",
+      "status": "WAITING_HUMAN_CONFIRMATION"
+    }
+  ]
+}

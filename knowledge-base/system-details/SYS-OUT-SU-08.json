@@ -427,9 +427,11 @@
     {
       "id": "SYS-OUT-SU-08-CFG06",
       "name": "06 最终配置/签到镜像",
-      "path": "D:\\数值文档\\数值文档\\框架v2\\06_最终配置\\签到",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/签到",
       "role": "DailySign/MonthlyAccumulate/SevenDaySign/TravelAccumulate 配置镜像",
-      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     }
   ],
   "relationships": [
@@ -529,9 +531,11 @@
       "id": "SYS-OUT-SU-08-EV06",
       "kind": "delivery-mirror",
       "label": "06 最终配置/签到镜像",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/签到",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/签到",
       "location": "DailySign/MonthlyAccumulate/SevenDaySign/TravelAccumulate 配置镜像",
-      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     }
   ],
   "openQuestions": [

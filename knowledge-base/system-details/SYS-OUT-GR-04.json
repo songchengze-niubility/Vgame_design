@@ -500,7 +500,7 @@
       "id": "SYS-OUT-GR-04-EV03",
       "kind": "numeric-deposit",
       "label": "角色星盘数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/角色星盘数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/角色星盘数值沉淀-2026-07-07.md",
       "location": "当前权威结论、属性节点结构、各角色基础属性偏移、二级属性节点、变更记录 CHG-005~CHG-011、当前状态",
       "status": "CONFIRMED_TARGET"
     },
@@ -516,9 +516,11 @@
       "id": "SYS-OUT-GR-04-EV05",
       "kind": "delivery-mirror",
       "label": "能效配置最终配置镜像",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/能效配置/HeroEnergyEfficiencyMap.xlsx",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/能效配置/HeroEnergyEfficiencyMap.xlsx",
       "location": "06最终配置镜像；Map153条/Attr992条新结构；00_配置清单.xlsx；未写入真实SVN",
-      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-GR-04-EV06",
@@ -540,7 +542,7 @@
       "id": "SYS-OUT-GR-04-EV08",
       "kind": "numeric-deposit",
       "label": "角色星盘能效经济消耗沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/18_养成_角色星盘能效经济消耗沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/18_养成_角色星盘能效经济消耗沉淀-2026-07-08.md",
       "location": "星盘校准点/材料/金币/体力价值口径（权威关系索引）",
       "status": "CONFIRMED_TARGET_PARTIAL"
     }

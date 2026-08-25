@@ -543,7 +543,7 @@
       "id": "SYS-OUT-GR-10-EV08",
       "kind": "numeric-deposit",
       "label": "专武数值沉淀(已废弃)",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/专武数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/专武数值沉淀-2026-07-07.md",
       "location": "文档状态DEPRECATED(2026-07-24)、signature_weapon_system_removed、usable_as_current_input=false、replacement=收容物沉淀；旧专武属性/突破数值仅供历史追溯",
       "status": "DEPRECATED"
     },
@@ -575,7 +575,7 @@
       "id": "SYS-OUT-GR-10-EV12",
       "kind": "numeric-deposit",
       "label": "养成总览(专武废弃标记)",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/养成总览数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/养成总览数值沉淀-2026-07-07.md",
       "location": "模块规划专武行标「已废弃历史值，不再参与当前预算」；当前总量口径含废弃专武仅供历史复现",
       "status": "DEPRECATED"
     },

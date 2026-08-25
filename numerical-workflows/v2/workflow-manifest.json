@@ -1,0 +1,1580 @@
+{
+  "schema": "vgame-numerical-production-workflow-manifest/v1",
+  "generatedAt": "2026-08-25T09:59:48+08:00",
+  "authority": "knowledge-base/README.md",
+  "workflowRoot": "numerical-workflows/v2",
+  "runtimeOutputRoot": "output/numerical-production-workflow-v2/",
+  "legacyExternalSourceRequiredAtRuntime": false,
+  "formalConfigWriteDefault": "DENY",
+  "counts": {
+    "files": 172,
+    "originalPythonFiles": 59,
+    "migratedPythonFiles": 59,
+    "legacyWorkbooks": 4,
+    "inputWorkbooks": 37,
+    "markdownInputs": 76,
+    "formalWriteTools": 1,
+    "mainGenerationJobs": 22,
+    "expectedFinalWorkbooks": 44
+  },
+  "files": [
+    {
+      "sourceRelativePath": "00_总览/README.md",
+      "repositoryPath": "numerical-workflows/v2/framework/00_总览/README.md",
+      "role": "WORKFLOW_CONTEXT",
+      "sourceSha256": "9b473ad1730fca4bc7dbecc85087208e6f25436a75f51cc1751c0fb216e90bdc",
+      "migratedSha256": "9b473ad1730fca4bc7dbecc85087208e6f25436a75f51cc1751c0fb216e90bdc",
+      "bytes": 857,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "00_总览/总体规划.md",
+      "repositoryPath": "numerical-workflows/v2/framework/00_总览/总体规划.md",
+      "role": "WORKFLOW_CONTEXT",
+      "sourceSha256": "1efa58901270812573836c28c14a42747ccd0e2016caba0f38fab3d9a4d84752",
+      "migratedSha256": "1efa58901270812573836c28c14a42747ccd0e2016caba0f38fab3d9a4d84752",
+      "bytes": 4005,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "00_总览/数值边界与口径.md",
+      "repositoryPath": "numerical-workflows/v2/framework/00_总览/数值边界与口径.md",
+      "role": "WORKFLOW_CONTEXT",
+      "sourceSha256": "677d2d5a09d61fac42245557122487ef419814462bfd2e55e914b2299cb36789",
+      "migratedSha256": "677d2d5a09d61fac42245557122487ef419814462bfd2e55e914b2299cb36789",
+      "bytes": 7047,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "00_总览/模块索引.md",
+      "repositoryPath": "numerical-workflows/v2/framework/00_总览/模块索引.md",
+      "role": "WORKFLOW_CONTEXT",
+      "sourceSha256": "f7734aa44cceedd03f78e60f3a5f6e979b29fc317adb11ed642a3677adead491",
+      "migratedSha256": "ecc9e515939c1f26d8cd024f549e730a18f8116b2f12d61b9da1196782283389",
+      "bytes": 8947,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
+    },
+    {
+      "sourceRelativePath": "01_源表/README.md",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/README.md",
+      "role": "SOURCE_DOCUMENT",
+      "sourceSha256": "8ed8217a8bc94fcb3d4a1c871d8cdf8812c65c14b6d6f3ab6b7e9bda1e1868f7",
+      "migratedSha256": "8ed8217a8bc94fcb3d4a1c871d8cdf8812c65c14b6d6f3ab6b7e9bda1e1868f7",
+      "bytes": 626,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/全玩法难度填写表.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/全玩法难度填写表.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "e9146ba74e0de7693d971c521706a774f25ae830a7d31922ba6c8144575d198f",
+      "migratedSha256": "e9146ba74e0de7693d971c521706a774f25ae830a7d31922ba6c8144575d198f",
+      "bytes": 431110,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/养成属性分配.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/养成属性分配.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "778be76696ef01d5e44dfd2236fe79a402476ad3e15fac08623ac6620d83f55d",
+      "migratedSha256": "778be76696ef01d5e44dfd2236fe79a402476ad3e15fac08623ac6620d83f55d",
+      "bytes": 280244,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/属性定价.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/属性定价.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "6490dadd4bbc418d843a28e81bf5d887ddf3cb0ee60fb167eeb73072925e657e",
+      "migratedSha256": "6490dadd4bbc418d843a28e81bf5d887ddf3cb0ee60fb167eeb73072925e657e",
+      "bytes": 9893,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/战斗公式.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/战斗公式.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "31cf4d1f81b70e91b6ee1b73410272c9d88934cfa958bced8dc7125767d2014a",
+      "migratedSha256": "31cf4d1f81b70e91b6ee1b73410272c9d88934cfa958bced8dc7125767d2014a",
+      "bytes": 423987,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/战斗属性.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/战斗属性.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "94f964d7673bad3837902c0b43f5e82fd4d798c378a8d0611bca401f56ebb971",
+      "migratedSha256": "94f964d7673bad3837902c0b43f5e82fd4d798c378a8d0611bca401f56ebb971",
+      "bytes": 14632,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/抽卡概率.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/抽卡概率.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "a3210f00bf5fd71afffaf8177184867d603063417173d3535ebd8ec9c91d5e96",
+      "migratedSha256": "a3210f00bf5fd71afffaf8177184867d603063417173d3535ebd8ec9c91d5e96",
+      "bytes": 23263,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/术语表.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/术语表.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "d2cf5fd881283ae83ff7927eac29d545c524ba4ffa85c22c369b06ab0835012a",
+      "migratedSha256": "d2cf5fd881283ae83ff7927eac29d545c524ba4ffa85c22c369b06ab0835012a",
+      "bytes": 29393,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/爬塔TeamHero配置表.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/爬塔TeamHero配置表.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "3121d22db833d4eb8075c979836ab8fe072455b9b839cfcd55bb595388e2541a",
+      "migratedSha256": "3121d22db833d4eb8075c979836ab8fe072455b9b839cfcd55bb595388e2541a",
+      "bytes": 269400,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/经济口径.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/经济口径.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "3fcfbef83b98376e6fc9ddddabfcf443fdec79762bd6d5666ac27f31d1a3d6bd",
+      "migratedSha256": "3fcfbef83b98376e6fc9ddddabfcf443fdec79762bd6d5666ac27f31d1a3d6bd",
+      "bytes": 32989,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/节奏口径.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/节奏口径.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "0d461217f5bc7e8a53a73585afda654f27bb5ccaad1e554740cbcbe02dcd5024",
+      "migratedSha256": "0d461217f5bc7e8a53a73585afda654f27bb5ccaad1e554740cbcbe02dcd5024",
+      "bytes": 56173,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "01_源表/道具定价.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/01_源表/道具定价.xlsx",
+      "role": "EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "3a1b101606ec61d210eeca49210cd27fe5da5226e675236be93f1321a0c39e9f",
+      "migratedSha256": "3a1b101606ec61d210eeca49210cd27fe5da5226e675236be93f1321a0c39e9f",
+      "bytes": 23647,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/apply_uilevel_reward_previews_to_formal.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/apply_uilevel_reward_previews_to_formal.py",
+      "role": "FORMAL_WRITE_TOOL",
+      "sourceSha256": "dd5a276459d36cfedc94cf0e31c611e506090d1bf76dc570afa098c9084c2fa2",
+      "migratedSha256": "02a3c2ac9b287a255e429cebb9e6da0db4daf80b0be48ddb1d96df1d48055e64",
+      "bytes": 7612,
+      "requiresExplicitFormalWriteApproval": true
+    },
+    {
+      "sourceRelativePath": "02_AI规则/check_final_document_independence.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/check_final_document_independence.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "90f6e2b9344dca4e9132e82d2e6749b79b5930bb60abb243097ea10c7562e3a1",
+      "migratedSha256": "90f6e2b9344dca4e9132e82d2e6749b79b5930bb60abb243097ea10c7562e3a1",
+      "bytes": 3909,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/check_md_parameters.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/check_md_parameters.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "2a8f590fa351b7c8454e384c7d020c0780528e87ffcb2b735a8df36bb4d3e32e",
+      "migratedSha256": "2a8f590fa351b7c8454e384c7d020c0780528e87ffcb2b735a8df36bb4d3e32e",
+      "bytes": 2660,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/generate_mapping_equip_final_mirrors.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/generate_mapping_equip_final_mirrors.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "88cff2486f1fa3d38c885c97ee256d9f91acde01b20697732926530c3a404aba",
+      "migratedSha256": "22e4499ff70f0cdc57e1d907bb98dd6491fa369040a02aa237325826de5d3314",
+      "bytes": 35547,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/generate_mapping_equip_full_package.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/generate_mapping_equip_full_package.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "744522e8672fe4d0d7fd044966fdc2583111bbdb8b6c242875bf7a8070a32c46",
+      "migratedSha256": "08843c106838f66c7b711aa781d2803587e877ad5f5cf140b56becc913f337cb",
+      "bytes": 96840,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/generate_mapping_equip_paste_package.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/generate_mapping_equip_paste_package.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "cdb9f9aec293cebf753973f886d61ead7e99f518e0e52bf874013037b30249a2",
+      "migratedSha256": "952138e47ba0781db83f4f4f9177bf722746c8a288038b2b60a5f76ebf3dc2c5",
+      "bytes": 34941,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/generate_rv_final_mirrors.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/generate_rv_final_mirrors.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "4ba5c47562fc98b2def416b703286b4e302155e2f43ab8310253c72990c5c537",
+      "migratedSha256": "c375718ec0d8882db89c776f2efafe7d971024e36ae1ced71610baa2bae7bcdd",
+      "bytes": 11597,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/generate_trade_final_mirrors.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/generate_trade_final_mirrors.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "dbe6dd0fbcf56cbbcd56f7b712f7587e48825620a65c8494cd9aec94abed19cf",
+      "migratedSha256": "3656165ad8123b86c8afdb9c1674a82201fb6e975a34f61055acf54cdf071423",
+      "bytes": 28658,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/generate_travel_dungeon_uilevel_display.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/generate_travel_dungeon_uilevel_display.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "25dcdad8b209f3f4c322723caafd177a9a8455f521a56cde228556c481f7062d",
+      "migratedSha256": "864f4297667e02a0ca9473ad9148e9d4ef1b4cd83b92d0719fae5da23ed4d89c",
+      "bytes": 6759,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/generate_vgame_config_mapping.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/generate_vgame_config_mapping.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "6a1ea29513c5d4d3f7c3853ef48d33d5e97ccc93555af227c1fdf3a908e8d8a7",
+      "migratedSha256": "c5661514d06bc41febeb3b7b75f4a036fbbba77ed7ac93ac4be5c50aa5888b2e",
+      "bytes": 40946,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/MD参数契约.md",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/MD参数契约.md",
+      "role": "EXECUTION_RULE",
+      "sourceSha256": "8cc6efdf9735824d4980f6e722e2878330a8e53a380299b271019057799fa697",
+      "migratedSha256": "8cc6efdf9735824d4980f6e722e2878330a8e53a380299b271019057799fa697",
+      "bytes": 2210,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/populate_mapping_equip_draft.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/populate_mapping_equip_draft.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "ab567f900216e0a07dd0b983be6e5511976d98415fba21d01116ab149de160eb",
+      "migratedSha256": "6500428ed1453835cb1b2f1cb28fc6fc08671a883f8dc5a5cac255d9534acfdf",
+      "bytes": 63931,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/README.md",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/README.md",
+      "role": "EXECUTION_RULE",
+      "sourceSha256": "abca9d05e48466e19e0b2d84ff00cc761d44c2bae7cd5c8975e567a83b10f8e9",
+      "migratedSha256": "abca9d05e48466e19e0b2d84ff00cc761d44c2bae7cd5c8975e567a83b10f8e9",
+      "bytes": 2434,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/stage_final_documents_from_md.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/stage_final_documents_from_md.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "85afc56ed6f103adf6ad05fdc53bd2b3045ac51326f8c9ebd02fa04f3063b9f2",
+      "migratedSha256": "85afc56ed6f103adf6ad05fdc53bd2b3045ac51326f8c9ebd02fa04f3063b9f2",
+      "bytes": 9572,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/sync_global_sources_to_md.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/sync_global_sources_to_md.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "e54b9d3a70872690728c57b4c2f101732728b5ba13244c1b476577e019beae9d",
+      "migratedSha256": "808aa2e804c60e9de501d186bc92d0521af23c12384adda666624175f0e6e1e0",
+      "bytes": 16240,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_mapping_equip_attr_final.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_mapping_equip_attr_final.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "4fd5aeb97fdebea37c7184d850df8fb81bf1a8e6fd714c4d6d6eca531d2ffa59",
+      "migratedSha256": "d3595df5a6159774f09773706543ff8eafd30d1aaeb27214074a8986c363f1a2",
+      "bytes": 10550,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_mapping_equip_draft.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_mapping_equip_draft.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "fd591c8ae1286bd6c9a8da6d62bf73baa8e3112234cb1e40f976599ef5b749fa",
+      "migratedSha256": "fd591c8ae1286bd6c9a8da6d62bf73baa8e3112234cb1e40f976599ef5b749fa",
+      "bytes": 19592,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_mapping_equip_drop_final.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_mapping_equip_drop_final.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "d5967f668813a89594423f29426f8c10a6c3b70bf84785ee753f542ce309ddd1",
+      "migratedSha256": "84d9a677b51ab991e826b22f3dd22307e9141ba9b4c4e68290f3807c6077c681",
+      "bytes": 9041,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_mapping_equip_final_mirrors.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_mapping_equip_final_mirrors.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "a063144d1166b9a8752a1776e976e5b2430042af322dd6ea5ed4a5491f34a753",
+      "migratedSha256": "b33805f72c4f719c167f035cab3fb26762bea5f05c3a89a7ddbbc11a6861af28",
+      "bytes": 38908,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_mapping_equip_full_package.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_mapping_equip_full_package.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "af01abeddf828a5da6f60fd7846698c9a23b0735643c8691e7e6a136be151a2c",
+      "migratedSha256": "556c55820c51ec43bff782aa59911c699cdc2b1cba185a9e62773f6f0dd38789",
+      "bytes": 26367,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_mapping_equip_paste_package.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_mapping_equip_paste_package.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "77b15dab26b34fc2a7ec257f4f1c74b927d374f70256d141d14937dcc0441b46",
+      "migratedSha256": "e85f6e9c880dc62b7495c92b5a95da2685dd4529fcc86572bd5b52ce8a293160",
+      "bytes": 26571,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_rv_final_mirrors.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_rv_final_mirrors.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "e62135b721929d7a93e495f10c03bf05179cccdeedd643b97c5aaccb5cda0d8e",
+      "migratedSha256": "b56a87fefe004a28c077d71d7616fe56802e146811aa53e9c58965ed83bb21be",
+      "bytes": 9977,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_trade_final_mirrors.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_trade_final_mirrors.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "d05bf4f436290cbe30b9dcb799e386cd32587d1889a354b9ff640a91acf2fc78",
+      "migratedSha256": "9446934ca82f4c523d7b21d02b5a32d30d14c36bcd6ffa19cc72d87617b7f715",
+      "bytes": 18963,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_travel_dungeon_uilevel_display.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_travel_dungeon_uilevel_display.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "5206f551dc530c8071324c45227fbcfb45003fa37a9d5a382b1022e0208239dd",
+      "migratedSha256": "02a605a8136576fdc10220a284007dd963f36ee1281e74abd2234b01febe805f",
+      "bytes": 4932,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/validate_vgame_config_mapping.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/validate_vgame_config_mapping.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "7d8c842aa050924266d7836d12097f7ac69bf3560c5b1a1017ec2ffe0943ea5f",
+      "migratedSha256": "7d8c842aa050924266d7836d12097f7ac69bf3560c5b1a1017ec2ffe0943ea5f",
+      "bytes": 32733,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/vgame_config_schema_extractor.py",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/vgame_config_schema_extractor.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "128c5793a2e1c62faef9ee6c6a1721f5e07cb1a19fc1ee9e401cebefbd2bb47b",
+      "migratedSha256": "128c5793a2e1c62faef9ee6c6a1721f5e07cb1a19fc1ee9e401cebefbd2bb47b",
+      "bytes": 49041,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/模块读写规则.md",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/模块读写规则.md",
+      "role": "EXECUTION_RULE",
+      "sourceSha256": "afdbefbb99cfea27fefa84636c0dabe3e1390b640933a3679d16ee5a68f5e4d7",
+      "migratedSha256": "afdbefbb99cfea27fefa84636c0dabe3e1390b640933a3679d16ee5a68f5e4d7",
+      "bytes": 2931,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/表结构说明.md",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/表结构说明.md",
+      "role": "EXECUTION_RULE",
+      "sourceSha256": "f7caae15ac3acde8f0736cfce62618d540e83623d54259dc864b96aeef149585",
+      "migratedSha256": "f7caae15ac3acde8f0736cfce62618d540e83623d54259dc864b96aeef149585",
+      "bytes": 2216,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "02_AI规则/配置映射与正式落表流程.md",
+      "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/配置映射与正式落表流程.md",
+      "role": "EXECUTION_RULE",
+      "sourceSha256": "0266af819d12f1f8c51360ca4eda0f7c616cf5e9537a34ebe29ccf7f37ebcd1b",
+      "migratedSha256": "0266af819d12f1f8c51360ca4eda0f7c616cf5e9537a34ebe29ccf7f37ebcd1b",
+      "bytes": 10968,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/README.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/README.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "993dbae3b438b15394b08f962144c691ef5e2caa9d2d476a228f39df3bbba820",
+      "migratedSha256": "993dbae3b438b15394b08f962144c691ef5e2caa9d2d476a228f39df3bbba820",
+      "bytes": 1148,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/专武数值沉淀-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/专武数值沉淀-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "4f34dfc8d8bc704c17e12ca53eadbc147d48c33bd88c755d10e1df75db3a775b",
+      "migratedSha256": "349e100ff66c7867140d666458a320d607e0513dff84a6f5f60af4e1ab6111d3",
+      "bytes": 11544,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/养成主链路收口-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/养成主链路收口-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "295486c839b6615f767c6aecafb3ea0bc0bc65d77b80ef87f9d2d1a98ba6dd21",
+      "migratedSha256": "511803621cef386553c13f0f0c4054d6402b1a0ea9e9308159dfb6fb9bfb4a3b",
+      "bytes": 3945,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/养成总览数值沉淀-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/养成总览数值沉淀-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "0a427e0abee3c385822c0bfd2b193d338ee5056391f53b4cd0712a3ba85ae777",
+      "migratedSha256": "9227eebc6defafcaa04f4eb27577382a03de3ae61813651a139a02026f3b69a3",
+      "bytes": 6759,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/房车养成系统数值设计文档-2026-07-03.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/房车养成系统数值设计文档-2026-07-03.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "d6d2cd2de54c8cf192d76e6efbd49863fc21b399bb0140327f261897d4833196",
+      "migratedSha256": "dbe6f08467e3873cda5890661a447cb93470e513cd5412130e69f0773a261412",
+      "bytes": 23275,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/收容物养成数值沉淀-2026-07-24.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/收容物养成数值沉淀-2026-07-24.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "640120083d9a94bb243296af5e7ac04690510f86a8638faaeaa29acc459f938e",
+      "migratedSha256": "98abd73512e9a1999072233ae2bad8084130f5487be778c6fb45c6712ab24cff",
+      "bytes": 22698,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/旅券属性数值沉淀-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/旅券属性数值沉淀-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "89edca044e33043d7c2fcf513aec033b13aac81149d062729b9f6b410a6e2c6c",
+      "migratedSha256": "89edca044e33043d7c2fcf513aec033b13aac81149d062729b9f6b410a6e2c6c",
+      "bytes": 10162,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/映射装备养成数值沉淀-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/映射装备养成数值沉淀-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "8b8433469e3897289e7a38df4e859f188fd66a7b502623460deb655cbb764820",
+      "migratedSha256": "a31e2b0ce43234f8323d5eabbd01ef88c0f5a5fbf465280d198721aec2d4760b",
+      "bytes": 18487,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/映射装备合成制作8档调整-2026-07-06.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/映射装备合成制作8档调整-2026-07-06.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "be4fd01fa9ec247812692703cdcb8bf6c80f0818fe7bff612778ce33d0da7fff",
+      "migratedSha256": "5479286970667a484a4d5c4299354e40b3ae6c809413ec606786730169d59014",
+      "bytes": 10048,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/映射装备数值总表生成参数-2026-07-10.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/映射装备数值总表生成参数-2026-07-10.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "cdf86cf4fa41913354e7af9159fba88be510d9663395e01d13f2aa0b31970371",
+      "migratedSha256": "cdf86cf4fa41913354e7af9159fba88be510d9663395e01d13f2aa0b31970371",
+      "bytes": 2711,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/映射装备配置落地方式-2026-07-13.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/映射装备配置落地方式-2026-07-13.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "02f02434c74561359bb873f36f4b9d1c620b1b3ded4d3538e7b73bd95c2adfd8",
+      "migratedSha256": "6737d5d65f89b3f9719ceeb978805c10e29d848cf0e2e235475688b851a99385",
+      "bytes": 34757,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/炮台数值沉淀-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/炮台数值沉淀-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "c47d1537388ed65a1e68427add72696bda1532fb8ffc6b0686787bb0536fc6ed",
+      "migratedSha256": "c47d1537388ed65a1e68427add72696bda1532fb8ffc6b0686787bb0536fc6ed",
+      "bytes": 2471,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/玩家战力曲线数值沉淀-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/玩家战力曲线数值沉淀-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "c7d9f4c4bc43079c9ca057ebe3010f0a0539eea953f884a4c8f70360d06e5b5f",
+      "migratedSha256": "03008d518878c50d4a9de7e175283a25ccd64949cae487509ccb06a649996fc8",
+      "bytes": 7192,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/角色升星数值沉淀-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/角色升星数值沉淀-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "c7164647fa0a4143e5d780e7e3b1853c69d75116fb1e4cd544a54827f00d5edb",
+      "migratedSha256": "c7164647fa0a4143e5d780e7e3b1853c69d75116fb1e4cd544a54827f00d5edb",
+      "bytes": 7366,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/角色升级数值沉淀-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/角色升级数值沉淀-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "83a02859e6c14e2443ed4bac1e6d994be6b23185c2478eb42e9c9cc9f83c6868",
+      "migratedSha256": "83a02859e6c14e2443ed4bac1e6d994be6b23185c2478eb42e9c9cc9f83c6868",
+      "bytes": 10184,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/养成/角色星盘数值沉淀-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/养成/角色星盘数值沉淀-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "34ba97b2bc2a8820d62e10a3cace5d354d8f3c3a4e3da5f713730079fef786d8",
+      "migratedSha256": "34ba97b2bc2a8820d62e10a3cace5d354d8f3c3a4e3da5f713730079fef786d8",
+      "bytes": 22936,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/参数基线/README.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/README.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "46f15b5e71b7055b29c6843979ff6890576ad9b289a85fb61b606c6869fd5e70",
+      "migratedSha256": "46f15b5e71b7055b29c6843979ff6890576ad9b289a85fb61b606c6869fd5e70",
+      "bytes": 1046,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/参数基线/共享参数基线.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/共享参数基线.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "cfd7e9b417a1b0f7d194dcd9c2fac9328fae1057c8e5ab47effc39923ed813a8",
+      "migratedSha256": "4c065edf155ef5f8334b450e9472f32d9a37aa1eb918b9b7e13fb8c2fd1c7cc0",
+      "bytes": 5971,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/参数基线/养成参数基线.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/养成参数基线.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "2e5777315d8d8fad61d0c19a5a55642a80e0862d7f532bd2971a2dfd113a687f",
+      "migratedSha256": "079309f7a2cd5dafd6922c496004ca223861d0361d91a96418c1237350bb6fdf",
+      "bytes": 282437,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/参数基线/战斗参数基线.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/战斗参数基线.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "ac6bf3dad7f5947b78fb194f05ab8f503833caf362317e97857ddd945ad180dc",
+      "migratedSha256": "c7f8232f44e455b2bd633d727846c8f0d7eba71dce01d1c5814484d9db26fdac",
+      "bytes": 40414,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/参数基线/经济参数基线.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/经济参数基线.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "a056220fea916e15fb7a3a957db6da1d5e31cc2b84d7edec7a77a803ea9852cf",
+      "migratedSha256": "3a949104bac744a7b56d8c4a5b0ed9b44651774d3896a1f8217dd48adf17d7bc",
+      "bytes": 2001,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/参数基线/节奏参数基线.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/节奏参数基线.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "b6aab07bf8b1578648ec652cde11de658540c66ff1c0d7ae5812e7f78058520f",
+      "migratedSha256": "a8239eba14cdaf8f8c13bc4283f46f067520aaf7024426ce4f0974fdad1ad34e",
+      "bytes": 9444,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/战斗/战斗模型收口-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/战斗/战斗模型收口-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "236bc3febe5135bdbbaf17d6de5051cde2d8363315f993ff7a7802cd1e18ba56",
+      "migratedSha256": "236bc3febe5135bdbbaf17d6de5051cde2d8363315f993ff7a7802cd1e18ba56",
+      "bytes": 1652,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "fe6803f1773185b526df2d080034fd91472348c4ebe9959c1d396e8ccc152efd",
+      "migratedSha256": "a3788319ea0a4a9b3f95729f7aba38bf2120405daa70c2bde567225aa0c59489",
+      "bytes": 50828,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/02_玩法_困难主线经济沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/02_玩法_困难主线经济沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "e771717a859cc2096c4c04b68f33bafc4c374ab86cbbe7cb8cbdd05bc4ca1289",
+      "migratedSha256": "e771717a859cc2096c4c04b68f33bafc4c374ab86cbbe7cb8cbdd05bc4ca1289",
+      "bytes": 20481,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/03_玩法_资源副本经济沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/03_玩法_资源副本经济沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "7be9812e13686beba20803105e5c1997cee1721a489e6391917d690851dc8ea8",
+      "migratedSha256": "7be9812e13686beba20803105e5c1997cee1721a489e6391917d690851dc8ea8",
+      "bytes": 29714,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/04_玩法_旅券副本经济沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/04_玩法_旅券副本经济沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "d3ec552176b8c480b36d0cf8f35e6ee8a8d18da84c80d4d82609eeb489a8421e",
+      "migratedSha256": "aca367ea8b38ed9e0253e7a1eeab9d358eb7053bd1d761a3cbbfebe61a098133",
+      "bytes": 31236,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/05_玩法_映射副本经济沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/05_玩法_映射副本经济沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "d82021b859a5cb37950ce54c5c28b5e3ee5cbd8700bd060d19f3847831ab4c8c",
+      "migratedSha256": "ad84ffab5f36d2b8747cbe7b4e30c79cb9e8f1bbb0429123ccadddad6bd36e54",
+      "bytes": 35316,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/06_玩法_无限挑战经济沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/06_玩法_无限挑战经济沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "f7b0985b02576a90e8b345c193989251d66c71684c655c0e26c70e093f0ad550",
+      "migratedSha256": "698e6541f70cdc5fae25233b3b98d4fd5642e8dbf782f50949d7608f0571fd80",
+      "bytes": 68987,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/07_玩法_竞技场经济沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/07_玩法_竞技场经济沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "f2c85462ca93008a8c95a5cc1ea637709575f25b1f049d537026759d5f34ea48",
+      "migratedSha256": "a72c238a624cc3dec14f6e73249d54626eb13674c48ba389721a3383b04b6452",
+      "bytes": 24698,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/08_玩法_爬塔经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/08_玩法_爬塔经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "a058c5e8cc4fe4b2a8fd6a8c527b5b9f332d8615f7804b6856f8fbe5d11dc54c",
+      "migratedSha256": "8d32ed8a4acb90478f10e30619fda61585723fe94685e765bae2e94907283a70",
+      "bytes": 58486,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/09_玩法_大秘境经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/09_玩法_大秘境经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "fe7ded3b3f78f087e90d3f73feba352068ca7cc8a36cf06581acee858278436e",
+      "migratedSha256": "d0635d254a46dca682e9970cd75d037f098b0dd3a9fa809ff58ebf44f823439f",
+      "bytes": 21569,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/10_玩法_BOSS挑战经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/10_玩法_BOSS挑战经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "a6e724f86c36996b878e40101e0505cf11159f814cb0cb7bca28a523a5cd41a0",
+      "migratedSha256": "8e6ec781e8fc0b919ab174d7b56f8791b2bd5ca04c993ec67bb126d552a81773",
+      "bytes": 33711,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/11_外循环_任务_01_每日每周任务经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/11_外循环_任务_01_每日每周任务经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "a61a51821c961dc03bc364897980d75019efc3d870ffc7b72f63eb8d9059de77",
+      "migratedSha256": "60934a070891750f0ec445b15bcee79e8056b0ecee683f8f9b5c5af869612b2f",
+      "bytes": 15538,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/11_外循环_任务_02_七日签到经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/11_外循环_任务_02_七日签到经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "0e49c98f1c8e6566307153dfb8467aca444af70792331a9f8f6615c254e2be52",
+      "migratedSha256": "719cb1d416a66b4bf45692e35c7973d9024495e00cbd18fa81779c671b50ab43",
+      "bytes": 4606,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/11_外循环_任务_03_开服挑战经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/11_外循环_任务_03_开服挑战经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "d98f6b75f814f4b4e2981c72be9fd3690bc319f23dedd0dbbb5a542e4c118c62",
+      "migratedSha256": "9ab453d300da9bacccc871808a3de04d717158734bffd3e39a0bae4e20558adb",
+      "bytes": 26144,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/11_外循环_任务_04_章节任务经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/11_外循环_任务_04_章节任务经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "7457cba2bd2d8f55b44945bc104c8134831611820dd751f95d6c0eceffcf49d6",
+      "migratedSha256": "e3cdfd0c247d521f429891dfcbb97bd87a144e72f9f3510a83b1fc7fbf62aafe",
+      "bytes": 18700,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/11_外循环_任务经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/11_外循环_任务经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "37d464679b400664903af166062687ab1dae89279769838df299c441b3b5be95",
+      "migratedSha256": "822da3d2d9ed9d47eb19b9ba434351cf87edbe30b8a46426e95448dcd5b1ff14",
+      "bytes": 69223,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/11_玩法_肉鸽经济沉淀-2026-08-04.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/11_玩法_肉鸽经济沉淀-2026-08-04.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "578432a6d83f85eb25538e1b634cb91ab14bb0da6fae8aba632c3618836a2815",
+      "migratedSha256": "578432a6d83f85eb25538e1b634cb91ab14bb0da6fae8aba632c3618836a2815",
+      "bytes": 6278,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/12_外循环_签到经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/12_外循环_签到经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "7153dfb4e99cb6987b8f086cad95994986876530e9847122201bf209907f7348",
+      "migratedSha256": "09b94c618d2e4999b2e50fd0504059d1fc9b9fba7f9862b5139fee212447da0f",
+      "bytes": 16829,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/13_外循环_通行证经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/13_外循环_通行证经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "899c0c4edc35e446cc170de233d11b868dfabf23aa7ad275ab3de270fc539582",
+      "migratedSha256": "68f0d1d52ce02aa0792fd00aac35e81da2b936a2bbfaf060b4a7e224ef1e87f1",
+      "bytes": 22041,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/14_外循环_主角升级经济消耗沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/14_外循环_主角升级经济消耗沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "e0e8863a08094f78fb0380f9f49bda14440d5a275c5e4f700abc6fca628758e7",
+      "migratedSha256": "e0e8863a08094f78fb0380f9f49bda14440d5a275c5e4f700abc6fca628758e7",
+      "bytes": 6749,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/14_外循环_公会整体数值审查-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/14_外循环_公会整体数值审查-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "295244104e1c0187ec9c302acfb9749c84a1752116393e01f0fe32cb0a00c582",
+      "migratedSha256": "6ee71e2d8f637bbd2476be1f20d71b4944ad6005ff9b20959ab5e426f68ffdcd",
+      "bytes": 15214,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "032e34901561c1c3616f01507dd9db9050ad94caedbfd36a81dff297fa354592",
+      "migratedSha256": "032e34901561c1c3616f01507dd9db9050ad94caedbfd36a81dff297fa354592",
+      "bytes": 15971,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/15_养成_角色升级经济消耗沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/15_养成_角色升级经济消耗沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "d88739792e1d7aa3167d0aa9ba5b893487661afc57acba70672151748f9b86dc",
+      "migratedSha256": "d88739792e1d7aa3167d0aa9ba5b893487661afc57acba70672151748f9b86dc",
+      "bytes": 11270,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/16_养成_角色升阶突破经济消耗沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/16_养成_角色升阶突破经济消耗沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "9db3866505336b389bbb2a8d5f7ff8aab67116d22713aa084c431c99f16300c6",
+      "migratedSha256": "9db3866505336b389bbb2a8d5f7ff8aab67116d22713aa084c431c99f16300c6",
+      "bytes": 9986,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/17_养成_角色升星经济消耗沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/17_养成_角色升星经济消耗沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "12480c93e2025aadd01509995f814cfb23df79e78ba41538e001b842651f6f16",
+      "migratedSha256": "12480c93e2025aadd01509995f814cfb23df79e78ba41538e001b842651f6f16",
+      "bytes": 11277,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/18_养成_角色星盘能效经济消耗沉淀-2026-07-08.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/18_养成_角色星盘能效经济消耗沉淀-2026-07-08.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "dd4f882ca8c883ca0d57a56847d96cab4e8382dbe233f4585f595770496c3085",
+      "migratedSha256": "dd4f882ca8c883ca0d57a56847d96cab4e8382dbe233f4585f595770496c3085",
+      "bytes": 18421,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/19_养成_专武经济消耗沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/19_养成_专武经济消耗沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "4568c42cb5969a03c3f55cb423868b1217e0d649eb76c805b973200d9079ac8e",
+      "migratedSha256": "221197032c4a9f206128b4fa2356d2dec0d1861077b99e45271dd1b9d43ebd26",
+      "bytes": 21523,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/19_养成_收容物经济消耗沉淀-2026-07-24.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/19_养成_收容物经济消耗沉淀-2026-07-24.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "35d96fa0084e45b0a06554794fe90b7b3ecf53b47f6706e4c1a5c147fe0010e1",
+      "migratedSha256": "410b436d7ef962c990b598eaa99204771c1ed5500821b947cd54cbb2562647fd",
+      "bytes": 32381,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/20_养成_旅券经济消耗沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/20_养成_旅券经济消耗沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "e60439cb5d76be8883f91e1f2b26d19e42b8ad2b23e1666c06a9051152b87560",
+      "migratedSha256": "e60439cb5d76be8883f91e1f2b26d19e42b8ad2b23e1666c06a9051152b87560",
+      "bytes": 17647,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/21_养成_映射装备经济消耗沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/21_养成_映射装备经济消耗沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "70b179ae1a37e9ab09f829c0d9f1ccc22b5f03d6454b3c8f551cbcdae1aa48ab",
+      "migratedSha256": "70b179ae1a37e9ab09f829c0d9f1ccc22b5f03d6454b3c8f551cbcdae1aa48ab",
+      "bytes": 34410,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/21_抽卡_概率经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/21_抽卡_概率经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "ee666e96ff82d7b3d431f3e0060a4dc4224942756250d6da68691a3fde78980b",
+      "migratedSha256": "60e2d78196cf73bb5647af05146d580d5b316c09428fa48861ea1eb5c08d9a36",
+      "bytes": 11652,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "774b9b14758d5e5da0daa40cbf61beac06cb0efb3320d8d6d599189f5eabc357",
+      "migratedSha256": "774b9b14758d5e5da0daa40cbf61beac06cb0efb3320d8d6d599189f5eabc357",
+      "bytes": 23265,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/22_养成_炮台经济消耗沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/22_养成_炮台经济消耗沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "543ecb6c034e6dfd5a69a252637ff0d955bfffb38d9ca029589ddcf3805b2af5",
+      "migratedSha256": "543ecb6c034e6dfd5a69a252637ff0d955bfffb38d9ca029589ddcf3805b2af5",
+      "bytes": 18040,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/23_养成_房车经济消耗沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/23_养成_房车经济消耗沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "e4d61fd0f5ddbd8dcab3c4c7a47ac43b922c7af145bfb0bf92ceb8aa31d55522",
+      "migratedSha256": "e4d61fd0f5ddbd8dcab3c4c7a47ac43b922c7af145bfb0bf92ceb8aa31d55522",
+      "bytes": 10287,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/24_外循环_招募商店经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/24_外循环_招募商店经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "a34a1443a6ad2da6c953a94716262d5b957b33bfcecfdac89ecb42ba2ae12aee",
+      "migratedSha256": "09a93def6bd2ece1ba4940942869de47d63b52f357e87a2d361b73990688485e",
+      "bytes": 11066,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "a14ece99633d2ef8eb78ed2e548a7e66dac72646e2007922ef8d061e56b5e47b",
+      "migratedSha256": "53d1c4ce71f18443afbb7fd53296e3afd6ea6ec413e5b41eb55e0ad2788b7393",
+      "bytes": 9779,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/经济总账收口-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/经济总账收口-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "ca1f0eecae9e955a5eef0c8af2e1c60225629e2d650910353ad9cc3a08828b6b",
+      "migratedSha256": "c9139ece778e5405f94fb31ddcd7cf4cdee1b5ac6ef83c1d595d571d80a9fd7c",
+      "bytes": 18572,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/经济/跑商玩法数值设计文档-2026-07-06.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/经济/跑商玩法数值设计文档-2026-07-06.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "a06acc3c2002ba0b422e58990186521118826b702efdc15e99bcd937140391b9",
+      "migratedSha256": "ed70bd377bc0f872630a56e737b87b697726fae558115ee8ace8a3e4afda420b",
+      "bytes": 59154,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "fce19e0f71e7a93dcc21be1db85a23a5e7a74da7da7a6dba2c6baea62649fc15",
+      "migratedSha256": "19c05c25568db495b744a55d5b40524e935b35b09893fb3de43333d16f5c92b5",
+      "bytes": 21193,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
+    },
+    {
+      "sourceRelativePath": "03_沉淀MD/节奏/开放节奏收口-2026-07-07.md",
+      "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/节奏/开放节奏收口-2026-07-07.md",
+      "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "sourceSha256": "c398c628db044ff70f8292388923b373b1c1af314fd4709419e6ff5b11b9ce1a",
+      "migratedSha256": "c398c628db044ff70f8292388923b373b1c1af314fd4709419e6ff5b11b9ce1a",
+      "bytes": 2299,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "05_验算核算/README.md",
+      "repositoryPath": "numerical-workflows/v2/framework/05_验算核算/README.md",
+      "role": "WORKFLOW_DOCUMENT",
+      "sourceSha256": "e1d7c9c86223167f3ae80a1fc8c90796ca8dab951ff304fa6c4f13b56d3a94c3",
+      "migratedSha256": "e1d7c9c86223167f3ae80a1fc8c90796ca8dab951ff304fa6c4f13b56d3a94c3",
+      "bytes": 1654,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "05_验算核算/scripts/validate_rebuild.py",
+      "repositoryPath": "numerical-workflows/v2/framework/05_验算核算/scripts/validate_rebuild.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "856b0084dd283670a1ba3ec852e69bed8e2ed0ca4d2ac67f59e98a0bd0361002",
+      "migratedSha256": "856b0084dd283670a1ba3ec852e69bed8e2ed0ca4d2ac67f59e98a0bd0361002",
+      "bytes": 30167,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "_shared/md_parameter_reader.py",
+      "repositoryPath": "numerical-workflows/v2/framework/_shared/md_parameter_reader.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "5034d1babb69c5a145d2f7cb243d6664780b5b5ba600561ba1ed1ce381057b7e",
+      "migratedSha256": "5034d1babb69c5a145d2f7cb243d6664780b5b5ba600561ba1ed1ce381057b7e",
+      "bytes": 7821,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "_shared/paths.py",
+      "repositoryPath": "numerical-workflows/v2/framework/_shared/paths.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "6a3e32c6ebb1fad6fb1b135825e057b81758219d04b90e393deff8aa2caa7a48",
+      "migratedSha256": "6a3e32c6ebb1fad6fb1b135825e057b81758219d04b90e393deff8aa2caa7a48",
+      "bytes": 1376,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "_shared/shared_reader.py",
+      "repositoryPath": "numerical-workflows/v2/framework/_shared/shared_reader.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "d10b8a12e53e9619aadc1ea31c89c04d805f30a6d4f9bdd1d20fc6b7ba126992",
+      "migratedSha256": "d10b8a12e53e9619aadc1ea31c89c04d805f30a6d4f9bdd1d20fc6b7ba126992",
+      "bytes": 1351,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "README.md",
+      "repositoryPath": "numerical-workflows/v2/framework/README.md",
+      "role": "WORKFLOW_DOCUMENT",
+      "sourceSha256": "6ddb75d589a29cbf4811e37e8e34041d5047e3e60795afaae80858e1bf031d15",
+      "migratedSha256": "6ddb75d589a29cbf4811e37e8e34041d5047e3e60795afaae80858e1bf031d15",
+      "bytes": 18496,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "run_all.py",
+      "repositoryPath": "numerical-workflows/v2/framework/run_all.py",
+      "role": "PRODUCTION_ENTRY",
+      "sourceSha256": "9af844a887a8e2b4e4808499f5d811b311cbf71257dab52111d44d081de3cf4d",
+      "migratedSha256": "9af844a887a8e2b4e4808499f5d811b311cbf71257dab52111d44d081de3cf4d",
+      "bytes": 9522,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "养成/README.md",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/README.md",
+      "role": "WORKFLOW_DOCUMENT",
+      "sourceSha256": "9485e2fc7fb5b2e1418aa63b26a4f47a7b4d4c207e7c9cdc97fedd66dc4bdd8c",
+      "migratedSha256": "9485e2fc7fb5b2e1418aa63b26a4f47a7b4d4c207e7c9cdc97fedd66dc4bdd8c",
+      "bytes": 6516,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_constellation.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_constellation.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "1fff1a9b47797a9792d282829685d3dc96932b4cec018a8e6d1c0411888a5d24",
+      "migratedSha256": "1102ae5c6af5cba4e3a09c257373923cf141ddf89f405e8f537e292e3f5c91a6",
+      "bytes": 10381,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_growth_budget.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_growth_budget.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "d985856a3ee8436d01a95d5c17129480b455d56a6ce333e253d83b2a41136857",
+      "migratedSha256": "d985856a3ee8436d01a95d5c17129480b455d56a6ce333e253d83b2a41136857",
+      "bytes": 16902,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_growth_modules.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_growth_modules.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "2876ab3ff8b70b443c471f91d400aaf392ec2c8798fb10e5f10c80157987b643",
+      "migratedSha256": "2876ab3ff8b70b443c471f91d400aaf392ec2c8798fb10e5f10c80157987b643",
+      "bytes": 14370,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_mapping_crafting_8_tiers.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_mapping_crafting_8_tiers.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "f17b790604656001cafc790e496b46555be3fb543403ba1660b5051c78b544a4",
+      "migratedSha256": "f17b790604656001cafc790e496b46555be3fb543403ba1660b5051c78b544a4",
+      "bytes": 12062,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_mapping_equip.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_mapping_equip.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "1115f6c3f4d0bcdd0911da2b947ec8d3e87d135a2af720fb88447f5e6b676ef1",
+      "migratedSha256": "1115f6c3f4d0bcdd0911da2b947ec8d3e87d135a2af720fb88447f5e6b676ef1",
+      "bytes": 15730,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_mapping_equip_full.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_mapping_equip_full.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "d520f8a6d6eba468c6e3cfd78bb666d002e446e36216e80dc754d41605166b97",
+      "migratedSha256": "dea4655d687461b7fd76c34f6f4d85edc268fa9cd1b15e05aee77586f8a99d40",
+      "bytes": 49777,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_power_curve.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_power_curve.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "e4c44081cd8881b842112593f3643dbaaa1c4083ba4d435e905b803c7b22b231",
+      "migratedSha256": "e4c44081cd8881b842112593f3643dbaaa1c4083ba4d435e905b803c7b22b231",
+      "bytes": 9961,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_rv_growth.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_rv_growth.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "dc8c180e2f70d2fdb4533e283969664918bedf118b3a8b0408039b8ec5a34b62",
+      "migratedSha256": "dc8c180e2f70d2fdb4533e283969664918bedf118b3a8b0408039b8ec5a34b62",
+      "bytes": 16864,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_star_upgrade.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_star_upgrade.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "8e672ba32f9ee9054965962a200d85d117e561d042fad56ea52a8dc829b62fc4",
+      "migratedSha256": "8e672ba32f9ee9054965962a200d85d117e561d042fad56ea52a8dc829b62fc4",
+      "bytes": 12431,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "养成/scripts/gen_voucher.py",
+      "repositoryPath": "numerical-workflows/v2/framework/养成/scripts/gen_voucher.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "7387a41c71f611cd41cb4692d7225322c59efaa0a83ad31d8c8064bf4477c11c",
+      "migratedSha256": "7387a41c71f611cd41cb4692d7225322c59efaa0a83ad31d8c8064bf4477c11c",
+      "bytes": 16383,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "战斗/scripts/gen_combat_late.py",
+      "repositoryPath": "numerical-workflows/v2/framework/战斗/scripts/gen_combat_late.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "5e09bd69f6b1b0a880b9b77e2524451e556f9791155f1bc6b22bf421f769d164",
+      "migratedSha256": "5e09bd69f6b1b0a880b9b77e2524451e556f9791155f1bc6b22bf421f769d164",
+      "bytes": 13901,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "战斗/scripts/gen_combat_model.py",
+      "repositoryPath": "numerical-workflows/v2/framework/战斗/scripts/gen_combat_model.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "4a2a07e6d2bef3ad9d82a6677cccfcc103f138efb3161764d33a40f166d9a9c1",
+      "migratedSha256": "4a2a07e6d2bef3ad9d82a6677cccfcc103f138efb3161764d33a40f166d9a9c1",
+      "bytes": 8478,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "战斗/scripts/gen_monster_model.py",
+      "repositoryPath": "numerical-workflows/v2/framework/战斗/scripts/gen_monster_model.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "cc37b0d767fdc279f21d42444f0375b8f6d28fd51bd3d3ec2eb34a21b6fffa30",
+      "migratedSha256": "cc37b0d767fdc279f21d42444f0375b8f6d28fd51bd3d3ec2eb34a21b6fffa30",
+      "bytes": 10377,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "战斗/scripts/gen_skill_coefficients.py",
+      "repositoryPath": "numerical-workflows/v2/framework/战斗/scripts/gen_skill_coefficients.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "aa4c819568f3efa6d414bc4c3cd3e4e42932faea019eacea87a4387e0796b0eb",
+      "migratedSha256": "aa4c819568f3efa6d414bc4c3cd3e4e42932faea019eacea87a4387e0796b0eb",
+      "bytes": 17739,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "战斗/scripts/sync_battle_knowledge_pages.py",
+      "repositoryPath": "numerical-workflows/v2/framework/战斗/scripts/sync_battle_knowledge_pages.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "764f72544ce7401e209f18e7be08cb8978eb33e73143804c040e964dfcc80fad",
+      "migratedSha256": "764f72544ce7401e209f18e7be08cb8978eb33e73143804c040e964dfcc80fad",
+      "bytes": 7328,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "战斗/scripts/sync_skill_coefficient_params.py",
+      "repositoryPath": "numerical-workflows/v2/framework/战斗/scripts/sync_skill_coefficient_params.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "3c4100233d5fe3b30c9446640324013608bd038124465e9222162c4f42fad7ff",
+      "migratedSha256": "3c4100233d5fe3b30c9446640324013608bd038124465e9222162c4f42fad7ff",
+      "bytes": 8045,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/scripts/audit_economy_system_coverage.py",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/scripts/audit_economy_system_coverage.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "98e66d356bc673e6a8d6cd4646629aaf5031c482c229ee29bbcd688a573cafc9",
+      "migratedSha256": "da1dd5f952b3c796354ed5c62dcaeeff4030d3acb6e49b7c235c8a2ccd6a2b01",
+      "bytes": 26611,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/scripts/gen_economy_ledger.py",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/scripts/gen_economy_ledger.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "32b2ef07ed71ad99d0ec95279737750988e217b18879e239c02057c5f42f8562",
+      "migratedSha256": "14aa681b3d6bb21e1f1b8c84ba3d5f6871bca568c6bde7e7bcf0fd6930f8e61e",
+      "bytes": 186390,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/scripts/gen_economy_readable_views.py",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/scripts/gen_economy_readable_views.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "939f6280b051e24a1a97f7910957ddc9eaa0b88a2c64f20940b54fc824378540",
+      "migratedSha256": "939f6280b051e24a1a97f7910957ddc9eaa0b88a2c64f20940b54fc824378540",
+      "bytes": 21895,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/scripts/gen_levelup_cost.py",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/scripts/gen_levelup_cost.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "d538100cc99a84661e08f991193643e2abfe6bb91b9cb6fb94a34f8ca0e52a7c",
+      "migratedSha256": "d538100cc99a84661e08f991193643e2abfe6bb91b9cb6fb94a34f8ca0e52a7c",
+      "bytes": 4892,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/scripts/generate_trade_workbook.py",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/scripts/generate_trade_workbook.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "e0f4b90d28582ef84c3c0e3739f11aceed1f4810efac356f3b10a4130b1ed325",
+      "migratedSha256": "e0f4b90d28582ef84c3c0e3739f11aceed1f4810efac356f3b10a4130b1ed325",
+      "bytes": 37556,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/scripts/sync_economy_knowledge_pages.py",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/scripts/sync_economy_knowledge_pages.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "38b925b09157f650b2b8ba336a75b7c10cfee82a1c636e06bdaf673d6c896122",
+      "migratedSha256": "38b925b09157f650b2b8ba336a75b7c10cfee82a1c636e06bdaf673d6c896122",
+      "bytes": 8279,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/scripts/validate_economy_against_config.py",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/scripts/validate_economy_against_config.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "9266a7860dd35a25227f1b0702e650ee60bbd801e54a33f96d9c44c0a0ba3be5",
+      "migratedSha256": "0ecd74c94eeead2b3dfc325fd8d43f0045ec0bc2ae3db4a589531323e95ed0a2",
+      "bytes": 35211,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/scripts/validate_trade_workbook.py",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/scripts/validate_trade_workbook.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "8479b5232e7edc1717a3707a691af66f4ce3cca5dada747e57a324d68a514aab",
+      "migratedSha256": "8479b5232e7edc1717a3707a691af66f4ce3cca5dada747e57a324d68a514aab",
+      "bytes": 13015,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/01_玩法_主线.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/01_玩法_主线.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "4e94f28efe99e44632179af8121cef20080c3dcef3046f39ab3c12810d2a6e8a",
+      "migratedSha256": "4e94f28efe99e44632179af8121cef20080c3dcef3046f39ab3c12810d2a6e8a",
+      "bytes": 100503,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/02_玩法_困难主线.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/02_玩法_困难主线.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "4de3837172a711c5d520878ad410e58b8ec404e3d094e00c1bf5088db0f86daf",
+      "migratedSha256": "4de3837172a711c5d520878ad410e58b8ec404e3d094e00c1bf5088db0f86daf",
+      "bytes": 30570,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/03_玩法_资源副本.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/03_玩法_资源副本.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "598e19db89f657744066bb92f584e31f2de645c63b43e55336ee93349519115d",
+      "migratedSha256": "598e19db89f657744066bb92f584e31f2de645c63b43e55336ee93349519115d",
+      "bytes": 42489,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/04_玩法_旅券副本.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/04_玩法_旅券副本.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "2f81e075706e7fd068472ea1771ac40800329bb6ef1c4cf9198964d3ca962e4e",
+      "migratedSha256": "2f81e075706e7fd068472ea1771ac40800329bb6ef1c4cf9198964d3ca962e4e",
+      "bytes": 49308,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/05_玩法_映射副本.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/05_玩法_映射副本.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "eafbc98574cdac2a9a8c20f725d5ec74f2e63992100d1529de248d7a5ca7e01d",
+      "migratedSha256": "eafbc98574cdac2a9a8c20f725d5ec74f2e63992100d1529de248d7a5ca7e01d",
+      "bytes": 89057,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/06_玩法_无限挑战.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/06_玩法_无限挑战.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "120f9b80582025e29fbb0e85ac67048dfe00cb839e93cd4f5724cb4f6084d021",
+      "migratedSha256": "120f9b80582025e29fbb0e85ac67048dfe00cb839e93cd4f5724cb4f6084d021",
+      "bytes": 187812,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/07_玩法_竞技场.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/07_玩法_竞技场.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "1e1dd8c9e94ba61f39b5a9afc304e19e179ab603b43a869609a00e70af66b58f",
+      "migratedSha256": "1e1dd8c9e94ba61f39b5a9afc304e19e179ab603b43a869609a00e70af66b58f",
+      "bytes": 41568,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/08_玩法_爬塔.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/08_玩法_爬塔.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "4d3f4cc6934293e5469905c4b10b6be24d8aa468a17a852892e20cda50127c17",
+      "migratedSha256": "4d3f4cc6934293e5469905c4b10b6be24d8aa468a17a852892e20cda50127c17",
+      "bytes": 89325,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/09_玩法_大秘境.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/09_玩法_大秘境.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "d1d9230ba41ad4b1e56a0c2f328a00a388493f9a470fb38f2cac8196b2624a3e",
+      "migratedSha256": "d1d9230ba41ad4b1e56a0c2f328a00a388493f9a470fb38f2cac8196b2624a3e",
+      "bytes": 25771,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/10_玩法_BOSS挑战.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/10_玩法_BOSS挑战.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "c01666d37a246942885e0f18d4e83cd0f00bf88a8c3c3daa61dcd16eb2beedbd",
+      "migratedSha256": "c01666d37a246942885e0f18d4e83cd0f00bf88a8c3c3daa61dcd16eb2beedbd",
+      "bytes": 54032,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/11_外循环_任务.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/11_外循环_任务.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "5d754207635301550a412e2629e2f28db4b3ca8dfb87c7fe65ca9d178ed7aeab",
+      "migratedSha256": "5d754207635301550a412e2629e2f28db4b3ca8dfb87c7fe65ca9d178ed7aeab",
+      "bytes": 69182,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/12_外循环_签到.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/12_外循环_签到.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "303523fc582b8d1811b96d9b96ba5d2afdfd2d0157642eda085146a415be3e35",
+      "migratedSha256": "303523fc582b8d1811b96d9b96ba5d2afdfd2d0157642eda085146a415be3e35",
+      "bytes": 17316,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/13_外循环_通行证.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/13_外循环_通行证.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "5b4b155e97295245f250546c8df5df474cecb35fd01e48cd795c44d450641d7e",
+      "migratedSha256": "5b4b155e97295245f250546c8df5df474cecb35fd01e48cd795c44d450641d7e",
+      "bytes": 49730,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/14_外循环_商店公会.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/14_外循环_商店公会.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "253ca07c232b79992436fbb41a4180aef6823802af38a0917f52576cab496581",
+      "migratedSha256": "253ca07c232b79992436fbb41a4180aef6823802af38a0917f52576cab496581",
+      "bytes": 42244,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/15_养成_角色.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/15_养成_角色.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "ede6f7b2a06f22f596197191cf7a94a0fa1907d0d675f9a059f4072eace1fc05",
+      "migratedSha256": "ede6f7b2a06f22f596197191cf7a94a0fa1907d0d675f9a059f4072eace1fc05",
+      "bytes": 35947,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/16_养成_专武.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/16_养成_专武.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "01f95baf5608400f1a5b952ab79242fce8c223e9e2277aa4e8b37f33a2a1d181",
+      "migratedSha256": "01f95baf5608400f1a5b952ab79242fce8c223e9e2277aa4e8b37f33a2a1d181",
+      "bytes": 47506,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/17_养成_旅券.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/17_养成_旅券.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "7548ffce7e80aa2a77f135d62f0d9b23a28304d34f45cd90a43326089e6534b4",
+      "migratedSha256": "7548ffce7e80aa2a77f135d62f0d9b23a28304d34f45cd90a43326089e6534b4",
+      "bytes": 87916,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/18_养成_映射装备.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/18_养成_映射装备.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "7f361e4e09671622a5d05362b917353164bc921891feedfbc6953960b69ae370",
+      "migratedSha256": "7f361e4e09671622a5d05362b917353164bc921891feedfbc6953960b69ae370",
+      "bytes": 109342,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/19_养成_炮台.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/19_养成_炮台.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "967607221e192b179c4038c5ea37841be0ffecea536e884030396bd3604c9e46",
+      "migratedSha256": "967607221e192b179c4038c5ea37841be0ffecea536e884030396bd3604c9e46",
+      "bytes": 52371,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/20_养成_房车.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/20_养成_房车.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "589ae8ef3d69e79b9247b0b244d7fb0dc0f8237010a6868d0c28692e63b3b348",
+      "migratedSha256": "589ae8ef3d69e79b9247b0b244d7fb0dc0f8237010a6868d0c28692e63b3b348",
+      "bytes": 102800,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/21_抽卡_概率.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/21_抽卡_概率.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "40b19913c212f00ce3b0a5149feb5a0f0c401445535a7ca6bcbf3fb72bf0d369",
+      "migratedSha256": "40b19913c212f00ce3b0a5149feb5a0f0c401445535a7ca6bcbf3fb72bf0d369",
+      "bytes": 18289,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "经济/模块产销表/22_外循环_章节任务.xlsx",
+      "repositoryPath": "numerical-workflows/v2/framework/经济/模块产销表/22_外循环_章节任务.xlsx",
+      "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "sourceSha256": "44e6863a19ed82207c4fbdbb203e8e0edbb4a0767b093e12ebc29e4dfb1f6ff4",
+      "migratedSha256": "44e6863a19ed82207c4fbdbb203e8e0edbb4a0767b093e12ebc29e4dfb1f6ff4",
+      "bytes": 16341,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "节奏/scripts/gen_difficulty_all.py",
+      "repositoryPath": "numerical-workflows/v2/framework/节奏/scripts/gen_difficulty_all.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "6689edcb9f1688a2ce973a3cdedbb07e28886215d638735f48a0e2fe7a84f94e",
+      "migratedSha256": "6689edcb9f1688a2ce973a3cdedbb07e28886215d638735f48a0e2fe7a84f94e",
+      "bytes": 14610,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "节奏/scripts/gen_difficulty_inf.py",
+      "repositoryPath": "numerical-workflows/v2/framework/节奏/scripts/gen_difficulty_inf.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "a015f564f8cb726a35fa63f1f769601a1a284a56b68fc6f9eaf37fb0f0d6d351",
+      "migratedSha256": "a015f564f8cb726a35fa63f1f769601a1a284a56b68fc6f9eaf37fb0f0d6d351",
+      "bytes": 4197,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "节奏/scripts/gen_difficulty_tower.py",
+      "repositoryPath": "numerical-workflows/v2/framework/节奏/scripts/gen_difficulty_tower.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "01348204f1987d03394f201a7a52fe29c5cadccb59009f877de98eabe4fa059d",
+      "migratedSha256": "01348204f1987d03394f201a7a52fe29c5cadccb59009f877de98eabe4fa059d",
+      "bytes": 6798,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "节奏/scripts/gen_hero_level.py",
+      "repositoryPath": "numerical-workflows/v2/framework/节奏/scripts/gen_hero_level.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "06eec73fcc9eac65899270fdfa44ed5cecc234cf8560a6f77e443102342f88d1",
+      "migratedSha256": "06eec73fcc9eac65899270fdfa44ed5cecc234cf8560a6f77e443102342f88d1",
+      "bytes": 8958,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "节奏/scripts/gen_onboarding_pace.py",
+      "repositoryPath": "numerical-workflows/v2/framework/节奏/scripts/gen_onboarding_pace.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "2dbdf82e91a4cddaf17d9859f8f7396d93f499adc7a0b2cc753d4eae59cd1258",
+      "migratedSha256": "2dbdf82e91a4cddaf17d9859f8f7396d93f499adc7a0b2cc753d4eae59cd1258",
+      "bytes": 13691,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "节奏/scripts/sync_pace_inputs_from_source.py",
+      "repositoryPath": "numerical-workflows/v2/framework/节奏/scripts/sync_pace_inputs_from_source.py",
+      "role": "PRODUCTION_SCRIPT",
+      "sourceSha256": "bef6190e8e9b6ee18cdc3432d1d8d79a52a2e13a3632218f361118b2393dae4f",
+      "migratedSha256": "bef6190e8e9b6ee18cdc3432d1d8d79a52a2e13a3632218f361118b2393dae4f",
+      "bytes": 5965,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "输入文档更新流程.md",
+      "repositoryPath": "numerical-workflows/v2/framework/输入文档更新流程.md",
+      "role": "WORKFLOW_DOCUMENT",
+      "sourceSha256": "31745ff44d747de5d12c8942d836338923a5107d35687acf21170101d7a445a5",
+      "migratedSha256": "31745ff44d747de5d12c8942d836338923a5107d35687acf21170101d7a445a5",
+      "bytes": 4144,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "../Vgame基本战斗框架.xlsx",
+      "repositoryPath": "numerical-workflows/v2/legacy-inputs/Vgame基本战斗框架.xlsx",
+      "role": "LEGACY_EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "7e3a6e1e45a33cb4470c058b5875c512fa5fe305ddf1173856f70467e7c30d5b",
+      "migratedSha256": "7e3a6e1e45a33cb4470c058b5875c512fa5fe305ddf1173856f70467e7c30d5b",
+      "bytes": 681191,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "../Vgame经济框架.xlsx",
+      "repositoryPath": "numerical-workflows/v2/legacy-inputs/Vgame经济框架.xlsx",
+      "role": "LEGACY_EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "ab1a0228abfbc3f8a3f1b177ab369370e8d8411b05aba474b5bf175964bc2c9f",
+      "migratedSha256": "ab1a0228abfbc3f8a3f1b177ab369370e8d8411b05aba474b5bf175964bc2c9f",
+      "bytes": 467632,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "../Vgame新手引导以及开启节奏.xlsx",
+      "repositoryPath": "numerical-workflows/v2/legacy-inputs/Vgame新手引导以及开启节奏.xlsx",
+      "role": "LEGACY_EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "7fa49119f8b71d279d55e7c79ca1541b5a2d200b6067a2539ab50ab0c0884762",
+      "migratedSha256": "7fa49119f8b71d279d55e7c79ca1541b5a2d200b6067a2539ab50ab0c0884762",
+      "bytes": 44593,
+      "requiresExplicitFormalWriteApproval": false
+    },
+    {
+      "sourceRelativePath": "../Vgame养成数值.xlsx",
+      "repositoryPath": "numerical-workflows/v2/legacy-inputs/Vgame养成数值.xlsx",
+      "role": "LEGACY_EDITABLE_SOURCE_WORKBOOK",
+      "sourceSha256": "73afdf9e43db8b8773207b2024e98cd3f17b17c34ee251311ba5faf5718d8f0a",
+      "migratedSha256": "73afdf9e43db8b8773207b2024e98cd3f17b17c34ee251311ba5faf5718d8f0a",
+      "bytes": 813483,
+      "requiresExplicitFormalWriteApproval": false
+    }
+  ],
+  "refreshedAt": "2026-08-25T10:09:56+08:00"
+}

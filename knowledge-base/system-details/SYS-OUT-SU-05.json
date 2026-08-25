@@ -604,7 +604,7 @@
       "id": "SYS-OUT-SU-05-EV09",
       "kind": "numeric-deposit",
       "label": "主线经济沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
       "location": "经济职责、已确认口径、首通/重复/星级奖励（只作权威关系索引）",
       "status": "CONFIRMED_TARGET_PARTIAL"
     },

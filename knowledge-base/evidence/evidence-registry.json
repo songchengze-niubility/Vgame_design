@@ -1072,8 +1072,8 @@
       "id": "SYS-OUT-GP-01-EV03",
       "kind": "numeric-deposit",
       "label": "主线经济沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
-      "href": "file:///D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "href": "../../../numerical-workflows/v2/framework/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
       "location": "经济职责、已确认口径、新版主线支线奖励",
       "status": "MIXED_CURRENT_AND_HISTORY",
       "systemId": "SYS-OUT-GP-01"
@@ -1082,11 +1082,13 @@
       "id": "SYS-OUT-GP-01-EV04",
       "kind": "delivery-mirror",
       "label": "主线高难奖励配置校验",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/主线高难/主线高难奖励配置校验.json",
-      "href": "file:///D:/数值文档/数值文档/框架v2/06_最终配置/主线高难/主线高难奖励配置校验.json",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/主线高难/主线高难奖励配置校验.json",
+      "href": "../../../knowledge-base/numerical/source-registry.json",
       "location": "status=PASS、普通99、支线44、星级37+21",
       "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
-      "systemId": "SYS-OUT-GP-01"
+      "systemId": "SYS-OUT-GP-01",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-GP-01-EV05",
@@ -1212,8 +1214,8 @@
       "id": "SYS-OUT-GP-01-EV17",
       "kind": "numeric-deposit",
       "label": "全玩法难度线数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
-      "href": "file:///D:/数值文档/数值文档/框架v2/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
+      "href": "../../../numerical-workflows/v2/framework/03_沉淀MD/节奏/全玩法难度线数值沉淀-2026-08-04.md",
       "location": "DL-R01～DL-R09、覆盖状态、养成版本关系",
       "status": "KNOWLEDGE_CURRENT_MODEL_WITH_GAPS",
       "systemId": "SYS-OUT-GP-01"
@@ -1222,11 +1224,13 @@
       "id": "SYS-OUT-GP-01-EV18",
       "kind": "numeric-source-excel",
       "label": "主角等级唯一权威单源",
-      "path": "D:/数值文档/数值文档/框架v2/节奏/生成_主角等级单源.xlsx",
-      "href": "file:///D:/数值文档/数值文档/框架v2/节奏/生成_主角等级单源.xlsx",
+      "path": "vgame-numeric-source://框架v2/节奏/生成_主角等级单源.xlsx",
+      "href": "../../../knowledge-base/numerical/source-registry.json",
       "location": "sheet 主角等级_单源；旧章节起始等级：0章1、1章6、2章14、3章20、4章25、5章30、6章34、7章37；第3～7章已被用户最新截图覆盖，核对 2026-08-18",
       "status": "NUMERICAL_SOURCE_PARTIALLY_SUPERSEDED",
-      "systemId": "SYS-OUT-GP-01"
+      "systemId": "SYS-OUT-GP-01",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-GP-01-EV19",
@@ -1540,7 +1544,7 @@
       "id": "SYS-OUT-GP-04-EV04",
       "kind": "numeric-deposit",
       "label": "体力补充经济沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
       "location": "CHG-004 旅券副本关闭扫荡",
       "status": "CONFIRMED_TARGET_PARTIAL",
       "systemId": "SYS-OUT-GP-04"
@@ -1657,7 +1661,7 @@
       "id": "SYS-OUT-GP-05-EV05",
       "kind": "numeric-deposit",
       "label": "经济总账收口",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/经济总账收口-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/经济总账收口-2026-07-07.md",
       "location": "映射装备副本产出与钥匙供给经济账（权威关系索引）",
       "status": "CONFIRMED_TARGET_PARTIAL",
       "systemId": "SYS-OUT-GP-05"
@@ -2576,7 +2580,7 @@
       "id": "SYS-OUT-GP-11-EV10",
       "kind": "numeric-deposit",
       "label": "体力补充经济沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
       "location": "CHG-004 邮票副本关闭扫荡（第 154-159 行）",
       "status": "DESIGN_CONFIRMED_WORKING_COPY_NOT_SYNCED",
       "systemId": "SYS-OUT-GP-11"
@@ -2603,7 +2607,7 @@
       "id": "SYS-OUT-GP-12-EV02",
       "kind": "design-target",
       "label": "跑商玩法数值设计文档（V25 沉淀 MD）",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/跑商玩法数值设计文档-2026-07-06.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/跑商玩法数值设计文档-2026-07-06.md",
       "location": "V25/CHG-025；R-01~R-09 全套规则、等级表、事件表、商店表、风险清单",
       "status": "CONFIRMED_TARGET_INREVIEW",
       "systemId": "SYS-OUT-GP-12"
@@ -2774,7 +2778,7 @@
       "id": "SYS-OUT-GR-01-EV03",
       "kind": "numeric-deposit",
       "label": "主角升级经济消耗沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/14_外循环_主角升级经济消耗沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/14_外循环_主角升级经济消耗沉淀-2026-07-08.md",
       "location": "结论、与角色升级边界、分段汇总、逐级资源表、风险与待确认",
       "status": "CONFIRMED_TARGET_WITH_CONFLICT",
       "systemId": "SYS-OUT-GR-01"
@@ -2783,7 +2787,7 @@
       "id": "SYS-OUT-GR-01-EV04",
       "kind": "numeric-deposit",
       "label": "体力补充经济沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/25_外循环_体力补充经济沉淀-2026-07-09.md",
       "location": "Power 配置、储能来源观察、邮票精力口径差异",
       "status": "CONFIRMED_TARGET_WITH_CONFLICT",
       "systemId": "SYS-OUT-GR-01"
@@ -2864,7 +2868,7 @@
       "id": "SYS-OUT-GR-02-EV03",
       "kind": "numeric-deposit",
       "label": "角色升级数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/角色升级数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/角色升级数值沉淀-2026-07-07.md",
       "location": "核心口径、各角色升级属性、经济引用、验算结论、当前状态",
       "status": "CONFIRMED_TARGET",
       "systemId": "SYS-OUT-GR-02"
@@ -2945,7 +2949,7 @@
       "id": "SYS-OUT-GR-03-EV03",
       "kind": "numeric-deposit",
       "label": "角色升星数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/角色升星数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/角色升星数值沉淀-2026-07-07.md",
       "location": "核心口径、各角色升星属性选择、验算结论、边界说明",
       "status": "CONFIRMED_TARGET",
       "systemId": "SYS-OUT-GR-03"
@@ -2972,7 +2976,7 @@
       "id": "SYS-OUT-GR-03-EV06",
       "kind": "numeric-deposit",
       "label": "角色升星经济消耗沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/17_养成_角色升星经济消耗沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/17_养成_角色升星经济消耗沉淀-2026-07-08.md",
       "location": "升星碎片/金币消耗与供需口径（权威关系索引）",
       "status": "CONFIRMED_TARGET_PARTIAL",
       "systemId": "SYS-OUT-GR-03"
@@ -2999,7 +3003,7 @@
       "id": "SYS-OUT-GR-04-EV03",
       "kind": "numeric-deposit",
       "label": "角色星盘数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/角色星盘数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/角色星盘数值沉淀-2026-07-07.md",
       "location": "当前权威结论、属性节点结构、各角色基础属性偏移、二级属性节点、变更记录 CHG-005~CHG-011、当前状态",
       "status": "CONFIRMED_TARGET",
       "systemId": "SYS-OUT-GR-04"
@@ -3017,10 +3021,12 @@
       "id": "SYS-OUT-GR-04-EV05",
       "kind": "delivery-mirror",
       "label": "能效配置最终配置镜像",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/能效配置/HeroEnergyEfficiencyMap.xlsx",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/能效配置/HeroEnergyEfficiencyMap.xlsx",
       "location": "06最终配置镜像；Map153条/Attr992条新结构；00_配置清单.xlsx；未写入真实SVN",
       "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
-      "systemId": "SYS-OUT-GR-04"
+      "systemId": "SYS-OUT-GR-04",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-GR-04-EV06",
@@ -3044,7 +3050,7 @@
       "id": "SYS-OUT-GR-04-EV08",
       "kind": "numeric-deposit",
       "label": "角色星盘能效经济消耗沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/18_养成_角色星盘能效经济消耗沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/18_养成_角色星盘能效经济消耗沉淀-2026-07-08.md",
       "location": "星盘校准点/材料/金币/体力价值口径（权威关系索引）",
       "status": "CONFIRMED_TARGET_PARTIAL",
       "systemId": "SYS-OUT-GR-04"
@@ -3071,7 +3077,7 @@
       "id": "SYS-OUT-GR-05-EV03",
       "kind": "numeric-deposit",
       "label": "收容物养成数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/收容物养成数值沉淀-2026-07-24.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/收容物养成数值沉淀-2026-07-24.md",
       "location": "CG-R01~CG-R08、第一期属性预算、机器参数契约、待确认项、沉淀变更记录",
       "status": "CONFIRMED_TARGET",
       "systemId": "SYS-OUT-GR-05"
@@ -3116,7 +3122,7 @@
       "id": "SYS-OUT-GR-05-EV08",
       "kind": "numeric-deposit",
       "label": "收容物经济消耗沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/19_养成_收容物经济消耗沉淀-2026-07-24.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/19_养成_收容物经济消耗沉淀-2026-07-24.md",
       "location": "升级经验曲线/金币、升星碎片/金币、供需适配",
       "status": "CONFIRMED_TARGET",
       "systemId": "SYS-OUT-GR-05"
@@ -3125,10 +3131,12 @@
       "id": "SYS-OUT-GR-05-EV09",
       "kind": "delivery-mirror",
       "label": "收容物属性/养成材料最终配置镜像",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/收容物属性/ExclWeapon.xlsx",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/收容物属性/ExclWeapon.xlsx",
       "location": "06最终配置镜像（未写入真实SVN）：收容物属性/{00_配置清单.xlsx,收容物属性配置校验.json,ExclWeapon.xlsx}；收容物养成材料/{00_配置清单.xlsx,收容物养成材料配置校验.json,ExclWeapon.xlsx,ExclWeaponLv.xlsx,ExclWeaponLvLimit.xlsx,ExclWeaponStar.xlsx,globals_conf.xlsx,Items.xlsx}；只读核对 2026-08-20",
       "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
-      "systemId": "SYS-OUT-GR-05"
+      "systemId": "SYS-OUT-GR-05",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-GR-05-EV10",
@@ -3926,7 +3934,7 @@
       "id": "SYS-OUT-GR-10-EV08",
       "kind": "numeric-deposit",
       "label": "专武数值沉淀(已废弃)",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/专武数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/专武数值沉淀-2026-07-07.md",
       "location": "文档状态DEPRECATED(2026-07-24)、signature_weapon_system_removed、usable_as_current_input=false、replacement=收容物沉淀；旧专武属性/突破数值仅供历史追溯",
       "status": "DEPRECATED",
       "systemId": "SYS-OUT-GR-10"
@@ -3962,7 +3970,7 @@
       "id": "SYS-OUT-GR-10-EV12",
       "kind": "numeric-deposit",
       "label": "养成总览(专武废弃标记)",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/养成/养成总览数值沉淀-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/养成/养成总览数值沉淀-2026-07-07.md",
       "location": "模块规划专武行标「已废弃历史值，不再参与当前预算」；当前总量口径含废弃专武仅供历史复现",
       "status": "DEPRECATED",
       "systemId": "SYS-OUT-GR-10"
@@ -4025,7 +4033,7 @@
       "id": "SYS-OUT-SU-01-EV02",
       "kind": "numeric-deposit",
       "label": "角色与收容物抽卡数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
       "location": "§2配置证据、§3角色抽卡结论（待确认）、§3.4软保底状态、§3.6重复返还、§4.5不继承、§7变更记录",
       "status": "IN_REVIEW_OBSERVED",
       "systemId": "SYS-OUT-SU-01"
@@ -4088,7 +4096,7 @@
       "id": "SYS-OUT-SU-02-EV01",
       "kind": "numeric-deposit",
       "label": "角色与收容物抽卡数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
       "location": "§4 新版收容物抽卡（4.1前提/4.2常驻池v0.4/4.3期望/4.4落地/4.5不继承/4.6招募联动/4.7券投放/4.8满星回收）",
       "status": "CONFIRMED_TARGET_IN_REVIEW",
       "systemId": "SYS-OUT-SU-02"
@@ -4133,10 +4141,12 @@
       "id": "SYS-OUT-SU-02-EV06",
       "kind": "delivery-mirror",
       "label": "06 最终配置/收容物抽卡镜像",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/收容物抽卡",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/收容物抽卡",
       "location": "DrawCard/DrawCardPool/Drop_draw/ExclWeapon/Items/ShopGoods/WeaponDuplicateReward/CommonRuleDesc 八张镜像 + 收容物常驻抽卡配置校验.json",
       "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
-      "systemId": "SYS-OUT-SU-02"
+      "systemId": "SYS-OUT-SU-02",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-SU-02-EV07",
@@ -4169,7 +4179,7 @@
       "id": "SYS-OUT-SU-03-EV02",
       "kind": "numeric-deposit",
       "label": "角色与收容物抽卡数值沉淀（满星回收）",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
       "location": "§4.8满星碎片回收（4.8.1结算/4.8.2回收数值/4.8.3回抽折算）、§4.6招募商店联动",
       "status": "CONFIRMED_TARGET_CONFIG_PENDING",
       "systemId": "SYS-OUT-SU-03"
@@ -4268,7 +4278,7 @@
       "id": "SYS-OUT-SU-04-EV07",
       "kind": "numeric-deposit",
       "label": "经济总账收口",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/经济总账收口-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/经济总账收口-2026-07-07.md",
       "location": "经济总账与产销口径（只作权威关系索引，未逐项数值审计）",
       "status": "CONFIRMED_TARGET_PARTIAL",
       "systemId": "SYS-OUT-SU-04"
@@ -4358,7 +4368,7 @@
       "id": "SYS-OUT-SU-05-EV09",
       "kind": "numeric-deposit",
       "label": "主线经济沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/01_玩法_主线经济沉淀-2026-07-08.md",
       "location": "经济职责、已确认口径、首通/重复/星级奖励（只作权威关系索引）",
       "status": "CONFIRMED_TARGET_PARTIAL",
       "systemId": "SYS-OUT-SU-05"
@@ -4547,10 +4557,12 @@
       "id": "SYS-OUT-SU-08-EV06",
       "kind": "delivery-mirror",
       "label": "06 最终配置/签到镜像",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/签到",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/签到",
       "location": "DailySign/MonthlyAccumulate/SevenDaySign/TravelAccumulate 配置镜像",
       "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
-      "systemId": "SYS-OUT-SU-08"
+      "systemId": "SYS-OUT-SU-08",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-SU-09-EV01",
@@ -4676,8 +4688,8 @@
       "id": "SYS-OUT-SU-11-EV02",
       "kind": "numeric-deposit",
       "label": "公会系统数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
-      "href": "file:///D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
+      "href": "../../../numerical-workflows/v2/framework/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
       "location": "公会派遣、个人科技、公会科技、商店与补给数值沉淀",
       "status": "CONFIRMED_TARGET_PARTIAL",
       "systemId": "SYS-OUT-SU-11"
@@ -4736,11 +4748,13 @@
       "id": "SYS-OUT-SU-11-EV08",
       "kind": "delivery-mirror",
       "label": "06_最终配置/公会 镜像",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/公会",
-      "href": "file:///D:/数值文档/数值文档/框架v2/06_最终配置/公会/",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/公会",
+      "href": "../../../knowledge-base/numerical/source-registry.json",
       "location": "GuildTech.xlsx/GuildNodeLv.xlsx/ShopGoods.xlsx/Drop_other.xlsx 等公会新数值最终配置镜像；70000007~70000018重复行##停用",
       "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
-      "systemId": "SYS-OUT-SU-11"
+      "systemId": "SYS-OUT-SU-11",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-SU-11-EV09",

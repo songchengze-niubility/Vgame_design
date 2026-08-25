@@ -81,7 +81,7 @@
 
 | 文件 | 路径 | 职责 |
 |---|---|---|
-| Vgame新手引导以及开启节奏.xlsx | `${VGAME_SOURCE_DOCS_ROOT}\` | 开启节奏/新手流程/主角等级/养成预估 |
+| Vgame新手引导以及开启节奏.xlsx | `${VGAME_DESIGN_ROOT}\numerical-workflows\v2\legacy-inputs\` | Git 管理的开启节奏/新手流程/主角等级/养成预估源表 |
 
 ## 新手体验时间线
 

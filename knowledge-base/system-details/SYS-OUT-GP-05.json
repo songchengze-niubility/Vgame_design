@@ -686,7 +686,7 @@
       "id": "SYS-OUT-GP-05-EV05",
       "kind": "numeric-deposit",
       "label": "经济总账收口",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/经济总账收口-2026-07-07.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/经济总账收口-2026-07-07.md",
       "location": "映射装备副本产出与钥匙供给经济账（权威关系索引）",
       "status": "CONFIRMED_TARGET_PARTIAL"
     },

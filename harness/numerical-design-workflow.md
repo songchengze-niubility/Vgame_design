@@ -2,6 +2,18 @@
 
 > 适用于新增系统数值、旧系统大改、成长/经济/战斗/概率/奖励等需要沉淀并落到正式数值文档的任务。
 
+## 单仓权威位置与运行入口
+
+- 策划知识唯一入口：`knowledge-base/README.md`；数值正文子层：`knowledge-base/numerical/`。
+- 数值生产源码、规则、源表与参数 MD：`numerical-workflows/v2/framework/`。
+- 四份历史基础输入工作簿：`numerical-workflows/v2/legacy-inputs/`。
+- 文件职责与哈希清单：`numerical-workflows/v2/workflow-manifest.json`。
+- 全量生产：`python scripts/numerical-workflows/run_production.py`。
+- 迁移/安全门禁：`python scripts/numerical-workflows/validate_migration.py`。
+- 全部终稿、staging、动态验算及运行报告：`output/numerical-production-workflow-v2/`。
+
+旧外部数值盘不再是生产依赖。`VGAME_CONFIG_DATAS` 仅提供真实项目配置的只读事实，任何正式配置写入都需要用户单独明确授权。房车执行 C；专武执行 B 的一个大版本兼容期，缺失专武源页时使用已沉淀的冻结兼容参数。
+
 ## 总原则
 
 数值文档要分成三层主资料，并在最后追加验算与核算表：人工手改源表、AI 读写规则与 MD 参数沉淀、全量派生的最终数值文档、验算与核算表。

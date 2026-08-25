@@ -42,11 +42,12 @@ When called by the generic `game-planning-control` skill:
 
 ## Numerical Deposit MD Rule
 
-- Interpret `沉淀 MD`、`沉淀md`、`数值沉淀` as Markdown under `${VGAME_SOURCE_DOCS_ROOT}\框架v2\03_沉淀MD`. For ordinary numerical knowledge queries, first route through `knowledge-base/numerical/`; only load the external source when exact source context or current workbook values are required.
+- Interpret `沉淀 MD`、`沉淀md`、`数值沉淀` as Git-managed Markdown under `${VGAME_DESIGN_ROOT}/numerical-workflows/v2/framework/03_沉淀MD`. For ordinary numerical knowledge queries, first route through `knowledge-base/numerical/`; load the matching repository production MD or source workbook only when exact production context is required. `${VGAME_SOURCE_DOCS_ROOT}` is historical migration evidence, not a runtime prerequisite.
 - When the user asks to read a deposit MD, search and read the relevant files in that directory first. Do not substitute `design/*.md`, skill `references/*.md`, generated reports, or source Excel for the requested deposit MD.
 - Search project aliases together. For example, treat `无限挑战`、`无限之旅`、`neural_roam` as aliases when locating the relevant deposit MD.
 - Use design docs, skill references, generated reports, or source Excel only as explicitly labeled supplementary evidence, or when no matching deposit MD exists.
 - If a matching deposit MD is absent, say so directly before using another source.
+- For complete numerical regeneration, use `scripts/numerical-workflows/run_production.py`; preserve the single authority entry, keep SVN Datas read-only, and never call a formal-config write tool without explicit user authorization.
 
 ## Specialist Routing
 

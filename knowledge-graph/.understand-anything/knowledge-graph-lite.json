@@ -11,7 +11,7 @@
       "Unity",
       "Luban"
     ],
-    "analyzedAt": "2026-08-24T19:33:40Z",
+    "analyzedAt": "2026-08-25T10:15:40Z",
     "gitCommitHash": "49c40c44e30c5c2d3bde08bfd6d2ee9bc5989485",
     "sources": [
       "client-code",
@@ -27153,8 +27153,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 113,
-        "sha256": "d8538c3f7d0964ddb2760aa28cdc64c18ac3e777e953c3268283174d24721fc1"
+        "line_count": 115,
+        "sha256": "adcd408b309cc1e62b5491871a4d9f3085ca53353157575e4ec00a8c4216c0a9"
       },
       "source": "design"
     },
@@ -27775,6 +27775,26 @@
         "category": "design",
         "line_count": 52,
         "sha256": "1190af890bd8bc9e45c8b63cd11f4fb5c893431609f8a3c31f90e3f633c86b74"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:c5074ef09056",
+      "type": "document",
+      "name": "数值生产工作流单仓迁移 V2",
+      "filePath": "design/数值生产工作流单仓迁移V2.md",
+      "summary": "数值生产工作流单仓迁移 V2",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 26,
+        "sha256": "146dca932f9073e7b3df8ab8685f56ec521da0d6efa315914a761758d6d31283"
       },
       "source": "design"
     },
@@ -28493,8 +28513,8 @@
       "layer": "design",
       "metadata": {
         "category": "harness",
-        "line_count": 230,
-        "sha256": "68778bbaa37e6ea6c58a5d6b8d948fee7862fdd0adbac5897f6a21a9134708c3"
+        "line_count": 242,
+        "sha256": "0e9c81a17b83eeefdd66fbbfd60253321dbadaffe55f4fbe1643a1d28bc339df"
       },
       "source": "design"
     },
@@ -28575,6 +28595,26 @@
         "category": "proposal",
         "line_count": 25,
         "sha256": "5363a68236da59abce28e6f0d0ec8ac2d54c0f1c2e100bf8c7bc76857a2dd013"
+      },
+      "source": "design"
+    },
+    {
+      "id": "document:c42f5a20f908",
+      "type": "document",
+      "name": "数值生产工作流单仓迁移提案",
+      "filePath": "proposals/数值生产工作流单仓迁移-2026-08-25.md",
+      "summary": "数值生产工作流单仓迁移提案",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "proposal"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "proposal",
+        "line_count": 22,
+        "sha256": "8ee08f971deb044e056d81b8c14834cf83a692f8fbfb2c87a0eb7139e0d2cef1"
       },
       "source": "design"
     },
@@ -28759,6 +28799,26 @@
       "source": "design"
     },
     {
+      "id": "document:3c515dbd837b",
+      "type": "document",
+      "name": "数值生产工作流单仓迁移任务",
+      "filePath": "tasks/数值生产工作流单仓迁移-2026-08-25.md",
+      "summary": "数值生产工作流单仓迁移任务",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 11,
+        "sha256": "0e67c97f13fcfd60f325dfea96a784167be94fde2c84e03eaf4ff973ba63dd50"
+      },
+      "source": "design"
+    },
+    {
       "id": "document:f7496c4bbd1e",
       "type": "document",
       "name": "Vgame Tech Debt Tracker",
@@ -28814,6 +28874,233 @@
       "metadata": {
         "canonicalPath": "knowledge-base/numerical/README.md",
         "atomCount": 999
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production:v2",
+      "type": "concept",
+      "name": "数值生产工作流 V2",
+      "summary": "单仓纳管 59 个生产脚本、37 份受控输入、22 条任务和 44 份可重建终稿。",
+      "tags": [
+        "vgame",
+        "numerical",
+        "production",
+        "single-repository"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "canonicalPath": "numerical-workflows/v2/workflow-manifest.json",
+        "externalNumericalSourceRequired": false,
+        "formalConfigWriteDefault": "DENY",
+        "files": 172,
+        "originalPythonFiles": 59,
+        "migratedPythonFiles": 59,
+        "legacyWorkbooks": 4,
+        "inputWorkbooks": 37,
+        "markdownInputs": 76,
+        "formalWriteTools": 1,
+        "mainGenerationJobs": 22,
+        "expectedFinalWorkbooks": 44
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "type": "concept",
+      "name": "生产资产：EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "summary": "EDITABLE_ECONOMY_MODULE_WORKBOOK 分类下共有 22 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "editable_economy_module_workbook"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "EDITABLE_ECONOMY_MODULE_WORKBOOK",
+        "fileCount": 22
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:EDITABLE_SOURCE_WORKBOOK",
+      "type": "concept",
+      "name": "生产资产：EDITABLE_SOURCE_WORKBOOK",
+      "summary": "EDITABLE_SOURCE_WORKBOOK 分类下共有 11 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "editable_source_workbook"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "EDITABLE_SOURCE_WORKBOOK",
+        "fileCount": 11
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:EXECUTION_RULE",
+      "type": "concept",
+      "name": "生产资产：EXECUTION_RULE",
+      "summary": "EXECUTION_RULE 分类下共有 5 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "execution_rule"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "EXECUTION_RULE",
+        "fileCount": 5
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:FORMAL_WRITE_TOOL",
+      "type": "concept",
+      "name": "生产资产：FORMAL_WRITE_TOOL",
+      "summary": "FORMAL_WRITE_TOOL 分类下共有 1 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "formal_write_tool"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "FORMAL_WRITE_TOOL",
+        "fileCount": 1
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:LEGACY_EDITABLE_SOURCE_WORKBOOK",
+      "type": "concept",
+      "name": "生产资产：LEGACY_EDITABLE_SOURCE_WORKBOOK",
+      "summary": "LEGACY_EDITABLE_SOURCE_WORKBOOK 分类下共有 4 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "legacy_editable_source_workbook"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "LEGACY_EDITABLE_SOURCE_WORKBOOK",
+        "fileCount": 4
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "type": "concept",
+      "name": "生产资产：MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "summary": "MACHINE_PARAMETER_OR_SYSTEM_INPUT 分类下共有 62 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "machine_parameter_or_system_input"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+        "fileCount": 62
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:PRODUCTION_ENTRY",
+      "type": "concept",
+      "name": "生产资产：PRODUCTION_ENTRY",
+      "summary": "PRODUCTION_ENTRY 分类下共有 1 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "production_entry"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "PRODUCTION_ENTRY",
+        "fileCount": 1
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:PRODUCTION_SCRIPT",
+      "type": "concept",
+      "name": "生产资产：PRODUCTION_SCRIPT",
+      "summary": "PRODUCTION_SCRIPT 分类下共有 57 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "production_script"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "PRODUCTION_SCRIPT",
+        "fileCount": 57
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:SOURCE_DOCUMENT",
+      "type": "concept",
+      "name": "生产资产：SOURCE_DOCUMENT",
+      "summary": "SOURCE_DOCUMENT 分类下共有 1 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "source_document"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "SOURCE_DOCUMENT",
+        "fileCount": 1
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:WORKFLOW_CONTEXT",
+      "type": "concept",
+      "name": "生产资产：WORKFLOW_CONTEXT",
+      "summary": "WORKFLOW_CONTEXT 分类下共有 4 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "workflow_context"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "WORKFLOW_CONTEXT",
+        "fileCount": 4
+      },
+      "source": "numerical"
+    },
+    {
+      "id": "numerical-production-category:WORKFLOW_DOCUMENT",
+      "type": "concept",
+      "name": "生产资产：WORKFLOW_DOCUMENT",
+      "summary": "WORKFLOW_DOCUMENT 分类下共有 4 份 Git 管理生产资产。",
+      "tags": [
+        "vgame",
+        "numerical-production-category",
+        "workflow_document"
+      ],
+      "complexity": "moderate",
+      "layer": "numerical",
+      "metadata": {
+        "role": "WORKFLOW_DOCUMENT",
+        "fileCount": 4
       },
       "source": "numerical"
     },
@@ -58352,6 +58639,126 @@
     },
     {
       "source": "numerical-framework:v2",
+      "target": "numerical-production:v2",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "数值框架纳入完整单仓生产工作流"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:EDITABLE_ECONOMY_MODULE_WORKBOOK",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:EDITABLE_SOURCE_WORKBOOK",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:EXECUTION_RULE",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:FORMAL_WRITE_TOOL",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:LEGACY_EDITABLE_SOURCE_WORKBOOK",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:PRODUCTION_ENTRY",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:PRODUCTION_SCRIPT",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:SOURCE_DOCUMENT",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:WORKFLOW_CONTEXT",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-production:v2",
+      "target": "numerical-production-category:WORKFLOW_DOCUMENT",
+      "type": "contains",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "生产工作流按资产职责分组"
+      }
+    },
+    {
+      "source": "numerical-framework:v2",
       "target": "numerical-domain:combat",
       "type": "contains",
       "direction": "forward",
@@ -58438,6 +58845,16 @@
       "weight": 0.8,
       "metadata": {
         "description": "数值框架包含领域"
+      }
+    },
+    {
+      "source": "skill:game-numerical-analysis",
+      "target": "numerical-production:v2",
+      "type": "routes",
+      "direction": "forward",
+      "weight": 0.8,
+      "metadata": {
+        "description": "数值专项 Skill 按需调用仓库内生产工作流"
       }
     },
     {
@@ -180951,7 +181368,7 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（83份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（86份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
@@ -180985,6 +181402,7 @@
         "document:0c2343f2dcf2",
         "document:01f6a8c23a8a",
         "document:8f312864e493",
+        "document:c5074ef09056",
         "document:ecdc3ed343c0",
         "document:e9d8745b6ec8",
         "document:5dbf432d2672",
@@ -181025,6 +181443,7 @@
         "document:c87739c5c66a",
         "document:6268c74d06bc",
         "document:d88b2b68ad4e",
+        "document:c42f5a20f908",
         "document:dff8119f5f8d",
         "document:cb6127d985e8",
         "document:240c2b50eb9f",
@@ -181034,6 +181453,7 @@
         "document:70bd5cea30ff",
         "document:10b809b8e39b",
         "document:569045608c19",
+        "document:3c515dbd837b",
         "document:f7496c4bbd1e",
         "document:060c16cf65a7"
       ]
@@ -182235,6 +182655,25 @@
         "numerical-evidence:RULING-EW-B",
         "numerical-evidence:RULING-RV-C"
       ]
+    },
+    {
+      "id": "layer:numerical-production",
+      "name": "单仓数值生产工作流",
+      "description": "由权威数值原子注册表生成（184 节点）",
+      "nodeIds": [
+        "numerical-production:v2",
+        "numerical-production-category:EDITABLE_ECONOMY_MODULE_WORKBOOK",
+        "numerical-production-category:EDITABLE_SOURCE_WORKBOOK",
+        "numerical-production-category:EXECUTION_RULE",
+        "numerical-production-category:FORMAL_WRITE_TOOL",
+        "numerical-production-category:LEGACY_EDITABLE_SOURCE_WORKBOOK",
+        "numerical-production-category:MACHINE_PARAMETER_OR_SYSTEM_INPUT",
+        "numerical-production-category:PRODUCTION_ENTRY",
+        "numerical-production-category:PRODUCTION_SCRIPT",
+        "numerical-production-category:SOURCE_DOCUMENT",
+        "numerical-production-category:WORKFLOW_CONTEXT",
+        "numerical-production-category:WORKFLOW_DOCUMENT"
+      ]
     }
   ],
   "tour": [
@@ -182355,15 +182794,15 @@
     }
   ],
   "statistics": {
-    "total_nodes": 3121,
-    "total_edges": 13428,
-    "total_layers": 20,
+    "total_nodes": 3308,
+    "total_edges": 13613,
+    "total_layers": 21,
     "tour_steps": 12,
     "sources": {
       "client": 1550,
       "config": 332,
-      "design": 83,
-      "numerical": 1156
+      "design": 86,
+      "numerical": 1340
     }
   }
 }

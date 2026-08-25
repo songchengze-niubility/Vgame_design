@@ -161,13 +161,21 @@ const ruleFieldErrors = details.flatMap(({ data }) => (data.rules || []).flatMap
 check("system-detail-rule-required-fields", ruleFieldErrors.length === 0, ruleFieldErrors.join(", "));
 check("system-detail-rule-links", details.every(({ data }) => data.rules.every(rule => (rule.relatedIds || []).every(id => navigableIds.has(id)))), details.flatMap(({ data }) => data.rules.flatMap(rule => (rule.relatedIds || []).filter(id => !navigableIds.has(id)))).join(", "));
 check("system-detail-typed-relations", details.every(({ data }) => data.relationships.every(item => relationTypeIds.has(item.type) && ["incoming", "outgoing"].includes(item.direction) && navigableIds.has(item.targetId))));
-const evidencePathExists = value => {
+const historicalNumericalRegistry = JSON.parse(fs.readFileSync(path.join(repositoryRoot, "knowledge-base", "numerical", "source-registry.json"), "utf8"));
+const historicalNumericalPaths = historicalNumericalRegistry.files.map(item => item.relativePath);
+const evidencePathExists = item => {
+  const value = item.path;
   if (!value) return false;
+  if (String(value).startsWith("vgame-numeric-source://框架v2/")) {
+    if (item.historicalEvidenceOnly !== true || item.sourceRegistryRef !== "knowledge-base/numerical/source-registry.json") return false;
+    const historicalPath = String(value).slice("vgame-numeric-source://框架v2/".length).replace(/\/+$/, "");
+    return historicalNumericalPaths.some(sourcePath => sourcePath === historicalPath || sourcePath.startsWith(`${historicalPath}/`));
+  }
   if (fs.existsSync(value)) return true;
   const candidate = path.resolve(repositoryRoot, ...String(value).replace(/\\/g, "/").split("/"));
   return fs.existsSync(candidate);
 };
-const missingEvidencePaths = details.flatMap(({ data }) => data.evidence.filter(item => !evidencePathExists(item.path)).map(item => item.path));
+const missingEvidencePaths = details.flatMap(({ data }) => data.evidence.filter(item => !evidencePathExists(item)).map(item => item.path));
 check("system-detail-evidence-paths", missingEvidencePaths.length === 0, missingEvidencePaths.join(", "));
 const missingDetailMarkdown = details.filter(({ data }) => !fs.existsSync(path.join(root, "systems", `${data.systemId}-${data.name.replace(/[\\/:*?"<>|]/g, "-")}.md`))).map(({ data }) => data.systemId);
 check("system-detail-markdown", missingDetailMarkdown.length === 0, missingDetailMarkdown.join(", "));

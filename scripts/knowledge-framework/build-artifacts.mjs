@@ -96,6 +96,8 @@ const numericalRegistry = readJson(path.join(kbSource, "numerical", "atom-regist
 const numericalSources = readJson(path.join(kbSource, "numerical", "source-registry.json"));
 const numericalWorkbooks = readJson(path.join(kbSource, "numerical", "workbook-registry.json"));
 const numericalSummary = readJson(path.join(kbSource, "numerical", "migration-summary.json"));
+const numericalProduction = readJson(path.join(repoRoot, "numerical-workflows", "v2", "workflow-manifest.json"));
+const numericalHumanConfirmations = readJson(path.join(repoRoot, "numerical-workflows", "v2", "human-confirmations.json"));
 const indexOut = path.join(stageRoot, "indexes");
 for (const [name, source] of [
   ["skill-registry.json", path.join(kbSource, "registries", "skill-registry.json")],
@@ -110,6 +112,8 @@ for (const [name, source] of [
 for (const name of ["source-registry.json", "workbook-registry.json", "atom-registry.json", "formula-registry.json", "parameter-registry.json", "migration-summary.json"]) {
   copyFile(path.join(kbSource, "numerical", name), path.join(indexOut, "numerical", name));
 }
+copyFile(path.join(repoRoot, "numerical-workflows", "v2", "workflow-manifest.json"), path.join(indexOut, "numerical", "production-workflow-manifest.json"));
+copyFile(path.join(repoRoot, "numerical-workflows", "v2", "human-confirmations.json"), path.join(indexOut, "numerical", "production-human-confirmations.json"));
 for (const name of ["numeric-to-system.json", "numeric-to-skill.json", "numeric-to-evidence.json", "numeric-to-config.json", "numeric-to-framework-node.json"]) {
   copyFile(path.join(kbSource, "numerical", "mappings", name), path.join(indexOut, "numerical", "mappings", name));
 }
@@ -149,6 +153,15 @@ router.numerical = {
   atomCount: numericalRegistry.atoms.length,
   sourceCount: numericalSources.files.length,
   workbookCount: numericalWorkbooks.workbooks.length,
+  production: {
+    workflowRoot: numericalProduction.workflowRoot,
+    manifestRef: "../indexes/numerical/production-workflow-manifest.json",
+    inputWorkbooks: numericalProduction.counts.inputWorkbooks,
+    scripts: numericalProduction.counts.migratedPythonFiles,
+    tasks: numericalProduction.counts.mainGenerationJobs,
+    finalWorkbooks: numericalProduction.counts.expectedFinalWorkbooks,
+    externalNumericalSourceRequired: numericalProduction.legacyExternalSourceRequiredAtRuntime
+  },
   atomIndexRef: "numerical/atom-registry.json",
   searchIndexRef: "../indexes/numerical-search-index.json",
   domains: [...new Set(numericalRegistry.atoms.map(atom => atom.domain))].sort().map(domain => ({
@@ -170,7 +183,7 @@ const migrationLines = ["# 新旧内容迁移清单", "", `旧文件总数：${a
 for (const [key, rows] of Object.entries(classCounts)) migrationLines.push(`| ${key} | ${rows.length} | ${key === "REGENERATABLE" ? "由新生成链重建" : "archive 清单追溯；权威内容已原子化迁入 knowledge-base"} |`);
 writeText(path.join(stageRoot, "reports", "migration-manifest.md"), `${migrationLines.join("\n")}\n`);
 const numericalDispositionRows = Object.entries(numericalSummary.dispositions).map(([key, count]) => `| ${key} | ${count} | ${key === "NORMALIZED_INTO_CANONICAL" || key === "TOOLING_OR_RULE_EVIDENCE" ? "原子化或规则化纳入" : "只做可追溯登记，不复制为正文"} |`);
-writeText(path.join(stageRoot, "reports", "numerical-migration-manifest.md"), `# 数值框架迁移清单\n\n- 磁盘实际文件：${numericalSummary.sourceFiles}\n- 权威 Markdown：${numericalSummary.authoritativeMarkdownFiles}\n- 源工作簿：${numericalSummary.sourceWorkbooks}\n- 数值原子：${numericalSummary.atoms}（ACTIVE ${numericalSummary.activeAtoms} / SUPERSEDED_TRACE ${numericalSummary.supersededAtoms} / HISTORICAL_TRACE ${numericalSummary.historicalAtoms}）\n- 公式/计算规则候选：${numericalSummary.formulas}\n- 机器参数块：${numericalSummary.parameterSets}\n\n| 处置 | 数量 | 迁移策略 |\n|---|---:|---|\n${numericalDispositionRows.join("\n")}\n`);
+writeText(path.join(stageRoot, "reports", "numerical-migration-manifest.md"), `# 数值框架与生产工作流迁移清单\n\n- 磁盘实际文件：${numericalSummary.sourceFiles}\n- 权威 Markdown：${numericalSummary.authoritativeMarkdownFiles}\n- 源工作簿结构登记：${numericalSummary.sourceWorkbooks}\n- 数值原子：${numericalSummary.atoms}（ACTIVE ${numericalSummary.activeAtoms} / SUPERSEDED_TRACE ${numericalSummary.supersededAtoms} / HISTORICAL_TRACE ${numericalSummary.historicalAtoms}）\n- 公式/计算规则候选：${numericalSummary.formulas}\n- 机器参数块：${numericalSummary.parameterSets}\n- Git 管理生产资产：${numericalProduction.counts.files}/${numericalProduction.counts.files}\n- 旧 Python 生产脚本：${numericalProduction.counts.migratedPythonFiles}/${numericalProduction.counts.originalPythonFiles}\n- 受控生产输入工作簿：${numericalProduction.counts.inputWorkbooks}/${numericalProduction.counts.inputWorkbooks}\n- 主生产任务：${numericalProduction.counts.mainGenerationJobs}/${numericalProduction.counts.mainGenerationJobs}\n- 可重建最终数值工作簿：${numericalProduction.counts.expectedFinalWorkbooks}/${numericalProduction.counts.expectedFinalWorkbooks}\n- 运行时是否依赖旧数值文档盘：${numericalProduction.legacyExternalSourceRequiredAtRuntime ? "是" : "否"}\n\n| 处置 | 数量 | 迁移策略 |\n|---|---:|---|\n${numericalDispositionRows.join("\n")}\n`);
 const numericalSkillIds = [...new Set(numericalRegistry.atoms.flatMap(atom => atom.skillIds))].sort();
 const numericalSkillLines = ["# 数值层 Skill 覆盖矩阵", "", "| Skill | 数值原子数 | 数值域 | 状态 |", "|---|---:|---|---|"];
 for (const skillId of numericalSkillIds) {
@@ -179,8 +192,13 @@ for (const skillId of numericalSkillIds) {
   numericalSkillLines.push(`| ${skillId} | ${rows.length} | ${[...new Set(rows.map(row => row.domain))].sort().join("、")} | ${skill?.versionStatus || "UNKNOWN"} |`);
 }
 writeText(path.join(stageRoot, "reports", "numerical-skill-coverage-matrix.md"), `${numericalSkillLines.join("\n")}\n`);
-writeText(path.join(stageRoot, "reports", "delete-archive-keep.md"), `# 删除、归档、保留清单\n\n- 删除/不迁入：旧网页、chunk、搜索索引、router manifest、预览图和孤立生成物；均由新链重建。\n- 数值层不复制：04 派生文档、05 验算输出、06 配置镜像、reports、backups 与 staging；全部在 source-registry 保留哈希和处置。\n- 归档：旧决策卡、冲突登记、评审、交接、验证报告、历史数值结论与全量 SHA-256 清单；8 个被 B/C 覆盖的原子标 SUPERSEDED_SOURCE_CONTEXT。\n- 保留：knowledge-base 权威正文与数值原子、skills 唯一 Skill 正文、scripts/tests/web 生成与验证源、外部数值源证据定位。\n`);
-writeText(path.join(stageRoot, "reports", "manual-confirmation-minimum.md"), `# 需要人工确认的最小问题列表\n\n1. 专武 B 方案：确认兼容期的起止版本、旧数据读写边界、迁移批次和最终清理版本。\n2. 房车 C 方案：确认强化进度达到 100 时的溢出/进位规则，并补 Production/LIVE 发布证据。\n3. 由独立审核对话执行终验；本重建对话不自行宣称终验通过。\n`);
+writeText(path.join(stageRoot, "reports", "delete-archive-keep.md"), `# 删除、归档、保留清单\n\n- 删除/不迁入：旧网页、chunk、搜索索引、router manifest、预览图和孤立生成物；均由新链重建，外部旧目录原件未删除。\n- 数值层不复制：04 派生文档、05 验算输出、06 配置镜像、reports、backups 与 staging；全部在 source-registry 保留哈希和处置。\n- 归档：旧决策卡、冲突登记、评审、交接、验证报告、历史数值结论与全量 SHA-256 清单；8 个被 B/C 覆盖的原子标 SUPERSEDED_SOURCE_CONTEXT；被替换正式生成物转入 output 下可追溯归档。\n- Git 保留：knowledge-base 权威正文与数值原子、skills 唯一 Skill 正文、${numericalProduction.counts.migratedPythonFiles} 个完整生产脚本、${numericalProduction.counts.inputWorkbooks} 个受控数值输入工作簿，以及 scripts/tests/web 生成与验证源。\n- 外部只读保留：历史数值目录证据和 SVN Datas 工程配置；运行时不依赖外部历史数值盘，正式配置写入默认拒绝。\n`);
+const confirmationLines = ["# 需要人工确认的最小问题列表", ""];
+for (const [index, item] of numericalHumanConfirmations.questions.entries()) {
+  confirmationLines.push(`${index + 1}. ${item.system}：${item.question}`);
+}
+confirmationLines.push(`${numericalHumanConfirmations.questions.length + 1}. 由独立审核对话执行终验；本重建对话不自行宣称终验通过。`);
+writeText(path.join(stageRoot, "reports", "manual-confirmation-minimum.md"), `${confirmationLines.join("\n")}\n`);
 
 const model = readJson(path.join(kbSource, "registries", "knowledge-model.json"));
 const graphNodes = [];
@@ -191,6 +209,14 @@ for (const n of frameworkNodes.nodes) addNode({ id: `concept:${n.id}`, type: "co
 for (const s of model.systems) addNode({ id: `module:${s.id}`, type: "module", name: s.name, summary: s.summary, tags: ["system", s.group] });
 for (const s of skillRegistry.skills) addNode({ id: `module:skill:${s.skillId}`, type: "module", name: s.skillId, summary: s.responsibility, tags: ["skill", s.category] });
 for (const atom of numericalRegistry.atoms) addNode({ id: `numeric:${atom.atomId}`, type: "concept", name: atom.title, summary: atom.statement, tags: ["numeric", atom.domain, atom.sourceNature] });
+addNode({ id: "numeric-production:v2", type: "concept", name: "数值生产工作流 V2", summary: `${numericalProduction.counts.migratedPythonFiles} 个生产脚本、${numericalProduction.counts.inputWorkbooks} 个受控输入和 ${numericalProduction.counts.mainGenerationJobs} 条生产任务全部归入 Git 权威仓库。`, tags: ["numeric", "production", "single-repository"] });
+for (const item of numericalProduction.files) {
+  const digest = crypto.createHash("sha256").update(item.repositoryPath).digest("hex").slice(0, 20);
+  addNode({ id: `numeric-production-file:${digest}`, type: "file", name: path.basename(item.repositoryPath), summary: `${item.role}：${item.repositoryPath}`, tags: ["numeric", "production", item.role] });
+  addEdge({ source: "numeric-production:v2", target: `numeric-production-file:${digest}`, type: "contains", weight: 1 });
+}
+addEdge({ source: "concept:PFN-13", target: "numeric-production:v2", type: "contains", weight: 1 });
+addEdge({ source: "module:skill:game-numerical-analysis", target: "numeric-production:v2", type: "routes", weight: 0.8 });
 for (const n of frameworkNodes.nodes.slice(1)) addEdge({ source: "concept:PFN-01", target: `concept:${n.id}`, type: "contains", weight: 1 });
 const groupNode = { "system-in": "PFN-03", "system-out-gameplay": "PFN-05", "system-out-growth": "PFN-06", "system-out-support": "PFN-09" };
 for (const s of model.systems) addEdge({ source: `concept:${groupNode[s.group]}`, target: `module:${s.id}`, type: "contains", weight: 1 });
@@ -212,6 +238,7 @@ const layers = [
   { id: "layer:systems", name: "系统正文", description: "45个系统", nodeIds: graphNodes.filter(x => /^module:SYS/.test(x.id)).map(x => x.id) },
   { id: "layer:skills", name: "Skill调用", description: "33个Skill", nodeIds: graphNodes.filter(x => x.id.startsWith("module:skill:")).map(x => x.id) }
   ,{ id: "layer:numerical", name: "全栈数值原子", description: `${numericalRegistry.atoms.length}个数值原子`, nodeIds: graphNodes.filter(x => x.id.startsWith("numeric:")).map(x => x.id) }
+  ,{ id: "layer:numerical-production", name: "单仓数值生产工作流", description: `${numericalProduction.counts.files}份 Git 管理生产资产`, nodeIds: graphNodes.filter(x => x.id.startsWith("numeric-production:") || x.id.startsWith("numeric-production-file:")).map(x => x.id) }
 ];
 writeJson(path.join(stageRoot, "understand", "knowledge-graph.json"), {
   version: "1.0.0",
@@ -229,9 +256,10 @@ const sourceDigest = crypto.createHash("sha256")
   .update(fs.readFileSync(path.join(kbSource, "registries", "skill-registry.json")))
   .update(fs.readFileSync(path.join(kbSource, "registries", "knowledge-model.json")))
   .update(fs.readFileSync(path.join(kbSource, "numerical", "atom-registry.json")))
+  .update(fs.readFileSync(path.join(repoRoot, "numerical-workflows", "v2", "workflow-manifest.json")))
   .digest("hex");
 writeJson(path.join(stageRoot, "build-manifest.json"), {
   schema: "vgame-knowledge-build/v2", version: "2.0.0", generatedAt: new Date().toISOString(), sourceDigest,
-  authority, counts: { skills: skillRegistry.skills.length, systems: model.systems.length, frameworkNodes: frameworkNodes.nodes.length, evidence: evidenceRegistry.count, numericalSources: numericalSummary.sourceFiles, numericalAtoms: numericalRegistry.atoms.length, numericalWorkbooks: numericalWorkbooks.workbooks.length }, rulings: rulings.rulings.map(x => x.rulingId)
+  authority, counts: { skills: skillRegistry.skills.length, systems: model.systems.length, frameworkNodes: frameworkNodes.nodes.length, evidence: evidenceRegistry.count, numericalSources: numericalSummary.sourceFiles, numericalAtoms: numericalRegistry.atoms.length, numericalWorkbooks: numericalWorkbooks.workbooks.length, numericalProductionFiles: numericalProduction.counts.files, numericalProductionScripts: numericalProduction.counts.migratedPythonFiles, numericalProductionInputWorkbooks: numericalProduction.counts.inputWorkbooks, numericalProductionTasks: numericalProduction.counts.mainGenerationJobs }, rulings: rulings.rulings.map(x => x.rulingId)
 });
 console.log(JSON.stringify({ stageRoot, questionTotal, statsSummary, lifecycleSummary, ownerSummary, nodes: graphNodes.length, edges: uniqueEdges.length }, null, 2));

@@ -58,6 +58,7 @@ def main() -> int:
 
     if numerical:
         canonical = load(ROOT / "knowledge-base" / "numerical" / "atom-registry.json")
+        production_manifest = load(ROOT / "numerical-workflows" / "v2" / "workflow-manifest.json")
         atom_nodes = [
             node for node in numerical.get("nodes", [])
             if str(node.get("id", "")).startswith("numerical-atom:")
@@ -68,6 +69,16 @@ def main() -> int:
             failures += 1
         else:
             print(f"[PASS] 数值原子图谱覆盖 {len(atom_nodes)}/{expected_atoms}")
+        production_nodes = [
+            node for node in numerical.get("nodes", [])
+            if str(node.get("id", "")).startswith("numerical-production-file:")
+        ]
+        expected_production = production_manifest.get("counts", {}).get("files", -1) if production_manifest else -1
+        if len(production_nodes) != expected_production:
+            print(f"[FAIL] 数值生产资产图谱覆盖 {len(production_nodes)}/{expected_production}")
+            failures += 1
+        else:
+            print(f"[PASS] 数值生产资产图谱覆盖 {len(production_nodes)}/{expected_production}")
 
     if graph:
         project = graph.get("project", {})
@@ -85,6 +96,12 @@ def main() -> int:
             failures += 1
         elif numerical:
             print(f"[PASS] 统一图谱包含全部 {graph_atom_count} 个数值原子")
+        graph_production_count = sum(str(node_id).startswith("numerical-production-file:") for node_id in node_ids)
+        if numerical and graph_production_count != numerical.get("statistics", {}).get("productionFiles"):
+            print(f"[FAIL] 统一图谱生产资产覆盖异常: {graph_production_count}")
+            failures += 1
+        elif numerical:
+            print(f"[PASS] 统一图谱包含全部 {graph_production_count} 份数值生产资产")
         invalid_nodes = [
             node for node in graph.get("nodes", [])
             if not isinstance(node.get("summary"), str)

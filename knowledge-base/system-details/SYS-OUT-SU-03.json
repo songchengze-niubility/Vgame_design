@@ -525,7 +525,7 @@
       "id": "SYS-OUT-SU-03-EV02",
       "kind": "numeric-deposit",
       "label": "角色与收容物抽卡数值沉淀（满星回收）",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md",
       "location": "§4.8满星碎片回收（4.8.1结算/4.8.2回收数值/4.8.3回抽折算）、§4.6招募商店联动",
       "status": "CONFIRMED_TARGET_CONFIG_PENDING"
     },

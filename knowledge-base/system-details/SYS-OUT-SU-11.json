@@ -804,8 +804,8 @@
       "id": "SYS-OUT-SU-11-EV02",
       "kind": "numeric-deposit",
       "label": "公会系统数值沉淀",
-      "path": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
-      "href": "file:///D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
+      "path": "numerical-workflows/v2/framework/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
+      "href": "../../../numerical-workflows/v2/framework/03_沉淀MD/经济/14_外循环_公会系统数值沉淀-2026-07-31.md",
       "location": "公会派遣、个人科技、公会科技、商店与补给数值沉淀",
       "status": "CONFIRMED_TARGET_PARTIAL"
     },
@@ -858,10 +858,12 @@
       "id": "SYS-OUT-SU-11-EV08",
       "kind": "delivery-mirror",
       "label": "06_最终配置/公会 镜像",
-      "path": "D:/数值文档/数值文档/框架v2/06_最终配置/公会",
-      "href": "file:///D:/数值文档/数值文档/框架v2/06_最终配置/公会/",
+      "path": "vgame-numeric-source://框架v2/06_最终配置/公会",
+      "href": "../../../knowledge-base/numerical/source-registry.json",
       "location": "GuildTech.xlsx/GuildNodeLv.xlsx/ShopGoods.xlsx/Drop_other.xlsx 等公会新数值最终配置镜像；70000007~70000018重复行##停用",
-      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF"
+      "status": "VERIFIED_MIRROR_NOT_LIVE_PROOF",
+      "historicalEvidenceOnly": true,
+      "sourceRegistryRef": "knowledge-base/numerical/source-registry.json"
     },
     {
       "id": "SYS-OUT-SU-11-EV09",

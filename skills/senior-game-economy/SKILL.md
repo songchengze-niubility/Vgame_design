@@ -18,7 +18,7 @@ description: 面向卡牌游戏、长线成长与 Excel 数值规划的资深游
 
 ## 默认工作流
 
-1. 一般 Vgame 经济问题先经 `vgame-knowledge-router` 加载 `knowledge-base/numerical/` 的最小经济原子；用户明确要求读取“沉淀 MD / 沉淀md / 数值沉淀”或需要精确源上下文时，再按原子的 `sourceLocator` 到 `${VGAME_SOURCE_DOCS_ROOT}\框架v2\03_沉淀MD` 读取对应 Markdown，同时检索功能名、旧名、配置名和别名。不得用本 skill 的 `references/*.md`、`design/*.md`、生成报告或 Excel 替代指定源文。
+1. 一般 Vgame 经济问题先经 `vgame-knowledge-router` 加载 `knowledge-base/numerical/` 的最小经济原子；用户明确要求读取“沉淀 MD / 沉淀md / 数值沉淀”或需要精确源上下文时，再按原子的 `sourceLocator` 到 `${VGAME_DESIGN_ROOT}\numerical-workflows\v2\framework\03_沉淀MD` 读取 Git 管理的对应 Markdown，同时检索功能名、旧名、配置名和别名。旧 `${VGAME_SOURCE_DOCS_ROOT}` 只保留历史迁移证据定位，不作为生产或查询前提。不得用本 skill 的 `references/*.md`、`design/*.md`、生成报告或 Excel 替代指定源文。
 2. 先判断系统目标。
 3. 再判断奖励职责：成长、留存、荣誉、商业化支撑、溢出消耗。
 4. 将候选资源拆成低价值池和高价值池。
