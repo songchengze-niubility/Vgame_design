@@ -3647,8 +3647,8 @@
       "kind": "reverse-design",
       "label": "房车设备数值设计(2026-07-21)",
       "path": "design/房车设备数值设计-2026-07-21.md",
-      "location": "§4核心规则(RV-EQ-R01~R05)/§5设备10级数值/§6建材消耗/§7工作台配方/§8溢出经验兑换/§9跨系统影响；InReview",
-      "status": "DRAFT_TARGET",
+      "location": "§4核心规则(RV-EQ-R01~R05)/§5设备10级数值/§6单品质建材消耗/§7.1~7.5工作台31条配方/§8溢出经验兑换/§9跨系统影响；2026-08-20确认能效2合1、角色升阶与舱室材料3合1",
+      "status": "CONFIRMED_TARGET",
       "systemId": "SYS-OUT-GR-09"
     },
     {
@@ -4680,7 +4680,7 @@
       "label": "公会系统 Design Doc",
       "path": "design/公会系统Design Doc.md",
       "href": "../../../design/公会系统Design Doc.md",
-      "location": "元信息(Draft/最近更新2026-08-17)、背景与目标、R-01~R-10(含R-04-1~4/R-05-1/R-07-1/R-09-1~2/R-10-1~4)、技术方案、工作假设、变更记录CHG-001~037",
+      "location": "元信息(Draft/最近更新2026-08-24)、背景与目标、R-01~R-10(含R-04-1~4/R-05-1/R-07-1/R-09-1~2/R-10-1~4)、技术方案、工作假设、变更记录CHG-001~038；CHG-038确认公会商店9商品及7100/8200周购空成本",
       "status": "DRAFT_REVERSE_ENGINEERED_WITH_VERIFIED_CHANGES",
       "systemId": "SYS-OUT-SU-11"
     },

@@ -2,8 +2,8 @@
   "schema": "vgame-system-detail/v1",
   "systemId": "SYS-OUT-GR-09",
   "name": "房车",
-  "revision": "2026-08-24.2",
-  "updatedAt": "2026-08-24",
+  "revision": "2026-08-25.1",
+  "updatedAt": "2026-08-25",
   "detailLevel": "full",
   "sourceSnapshot": {
     "environment": "本机 SVN 工作副本（只读）+ 4份房车Design + 客户端 Lua 工作副本",
@@ -52,7 +52,7 @@
       "房车强化：单次/一键强化与强化结果档（RvStrengthenResult）",
       "出行指南：5职业×62节点小分叉天赋树（RvGuide/RvStage/RvGuideNode/RvGuideNodeLv），A/B非互斥分支",
       "房车设备：5设备10级持续生产（RvDevice/DeviceLvUp），驾驶台/工作台/车载电脑/储藏架/夜航调律灯",
-      "工作台合成：加工零件合成基础经验材料（DeviceCraft）",
+      "工作台合成：5条基础经验配方、18条能效2合1、6条角色升阶3合1与2条舱室材料3合1（DeviceCraft，目标共31条）",
       "溢出经验兑换：驾驶台满级后溢出经验兑换资源（ExpExchange）",
       "储藏架与跑商联动：载货量30→36提升跑商单次利润效率"
     ],
@@ -68,8 +68,8 @@
     "inputs": [
       "房车零件（ItemId 1074，爬塔挂机产出）+ 金币 → 房车整备升级",
       "便签指南（ItemId 1075-1079，跑商产出）+ 金币 → 出行指南节点激活/升级",
-      "房车建材（低/中/高三级，ItemId待规划）→ 房车设备升级",
-      "加工零件（工作台产出）→ 工作台合成基础经验材料",
+      "房车建材（简式/精校/星旅设备图纸，ItemId 3028/3029/3030）→ 房车设备按目标等级消耗单一品质材料升级",
+      "加工零件（工作台产出）与同系低档能效/角色升阶/舱室材料 → 工作台基础经验合成及同系向上合成",
       "溢出经验（驾驶台满级后产出）→ 溢出经验兑换",
       "RvAttribute/RvLvUp/RvStrengthenResult/RvGuide/RvStage/RvGuideNode/RvGuideNodeLv/RvDevice/DeviceLvUp/DeviceCraft/ExpExchange 配置",
       "玩家等级（驾驶台产出经验与等级上限判定）"
@@ -79,7 +79,7 @@
       "职业百分比属性与二级属性（出行指南节点激活）",
       "持续生产资源（玩家经验/加工零件/邮票精力/金币/体力）",
       "跑商载货量提升（储藏架30→36）",
-      "基础经验材料（工作台合成：低阶/中阶记录盘、泛黄档案、录像带、沿途随笔）",
+      "基础经验材料与同系高档能效/角色升阶/舱室材料（工作台目标31条配方；禁止逆向、跨职业、跨材料线和自选箱参与）",
       "溢出经验兑换资源（金币/房车零件/加工零件/体力）"
     ]
   },
@@ -249,12 +249,12 @@
         {
           "id": "SYS-OUT-GR-09-F05-S01",
           "name": "选择配方",
-          "description": "玩家在工作台界面选择 DeviceCraft 配方（低阶/中阶记录盘、泛黄档案、录像带、沿途随笔），预览加工零件消耗与产出。"
+          "description": "玩家在工作台界面选择 DeviceCraft 四类目标配方：5条基础经验、18条能效材料2合1、6条角色升阶材料3合1或2条舱室材料3合1，预览对应同系输入与产出。"
         },
         {
           "id": "SYS-OUT-GR-09-F05-S02",
           "name": "批量合成",
-          "description": "客户端发送 RV_CMD_RV_DEVICE_CRAFT(CraftId, Count)；服务端扣除加工零件×Count、发放产出×Count、回 Count。"
+          "description": "客户端发送 RV_CMD_RV_DEVICE_CRAFT(CraftId, Count)；服务端按配方扣除加工零件或同系低档材料×Count，发放目标产出×Count；不额外扣金币，不允许跨职业、跨材料线、逆向或自选箱参与。"
         },
         {
           "id": "SYS-OUT-GR-09-F05-S03",
@@ -340,9 +340,9 @@
       "id": "SYS-OUT-GR-09-R05",
       "name": "房车设备定义与升级",
       "status": "WORKING_COPY_OBSERVED",
-      "targetRule": "五个设备（驾驶台/工作台/车载电脑/储藏架/夜航调律灯）分别独立养成，等级上限10级，设备升级不受房车本体等级限制，只消耗房车建材（低/中/高三级可混合），不消耗房车零件。",
+      "targetRule": "五个设备（驾驶台/工作台/车载电脑/储藏架/夜航调律灯）分别独立养成，等级上限10级，设备升级不受房车本体等级限制；每个目标等级只消耗一种品质的房车建材，低/中/高品质按等级阶段切换，不消耗房车零件。",
       "sourceFact": "07-21 Design RV-EQ-R01：五设备独立10级、无房车等级门槛、只消耗房车建材；RvDevice.xlsx 17行含 Id/Name/DeviceType/Icon/ProduceItem/UnlockId；DeviceLvUp.xlsx 54行含 Id/DeviceId/TargetLv/ProduceNum/CumulativeTime/BuffGainTypeList/CostItemList/CostCurrencyNum；RVSystem.lua InitDeviceData/RefreshDeviceRuntimeData/BuildDeviceUpgradeCostList 读 RvDevice/DeviceLvUp 配置，CanUpgradeDevice 校验 nextLvCfg 与材料。",
-      "acceptance": "设备定义与升级以 RvDevice/DeviceLvUp 为权威；设备升级不扣房车零件；房车建材 ItemId 待规划（07-21 Design §待确认）。",
+      "acceptance": "设备定义与升级以 RvDevice/DeviceLvUp 为权威；设备升级不扣房车零件，每个目标等级只使用3028/3029/3030三档建材中的单一品质。",
       "relatedIds": [
         "NUM-04",
         "SYS-OUT-SU-04"
@@ -376,9 +376,9 @@
       "id": "SYS-OUT-GR-09-R07",
       "name": "工作台合成配方",
       "status": "WORKING_COPY_OBSERVED",
-      "targetRule": "工作台生产加工零件，加工零件用于合成基础经验类材料（低阶/中阶记录盘、泛黄档案、录像带、沿途随笔）；所有配方随工作台开放，支持批量合成，不消耗额外金币，不合成突破材料或高级资源。",
-      "sourceFact": "07-21 Design RV-EQ-R03 + §7配方表：5配方（低阶记录盘100/中阶记录盘101/泛黄档案108/录像带109/邮票经验6）；DeviceCraft.xlsx 9行含 CraftId/CostItem/CostCurrency/UnlockId/Tab；RVSystem.lua BuildDeviceCraftDataList/BuildDeviceCraftCostList/GetMaxDeviceCraftCount 读 DeviceCraft 配置，ReqRvDeviceCraft 发送合成请求。",
-      "acceptance": "合成配方以 DeviceCraft 为权威；工作台不合成突破材料/高级资源以07-21 Design为约束。",
+      "targetRule": "工作台目标共31条有效配方：5条加工零件制作基础经验材料、18条能效材料六线逐档2合1、6条角色升阶材料三职业逐档3合1、2条房车舱室材料3028→3029→3030逐档3合1。所有配方随工作台开放，支持批量合成，不额外消耗金币，无等级或每日次数限制；只允许同职业同材料线向上合成，不允许逆向、跨职业、跨材料线或自选箱参与，不开放专武突破材料、抽卡资源或房车零件合成。",
+      "sourceFact": "07-21 Design RV-EQ-R03 + §7.1~7.5及2026-08-20变更确认5+18+6+2=31条目标配方；能效2合1、角色升阶和舱室材料3合1。2026-08-18工作副本DeviceCraft.xlsx仅观察到9行（8配方+表头），不能据此宣称31条目标配方已经实施或LIVE；RVSystem.lua读取DeviceCraft并发送合成请求。",
+      "acceptance": "按DeviceCraft目标配置核对31条配方、四类页签、2合1/3合1比例和3028→3029→3030链；确认无金币/等级/次数限制，不可逆向、跨职业、跨材料线或使用自选箱；区分已确认设计与仅8配方的历史工作副本观察。",
       "relatedIds": [
         "SYS-OUT-SU-04"
       ],
@@ -492,7 +492,7 @@
       "id": "SYS-OUT-GR-09-RW02",
       "name": "工作台合成产出",
       "status": "WORKING_COPY_OBSERVED",
-      "rule": "工作台合成按 DeviceCraft 配方产出对应道具（低阶/中阶记录盘、泛黄档案、录像带、沿途随笔），批量合成按 Count 倍数发放；UIUtil.ShowReward 展示。",
+      "rule": "工作台按DeviceCraft目标31条配方产出基础经验材料或同系更高档能效、角色升阶、舱室材料；能效2合1，角色升阶与舱室材料3合1，批量合成按Count倍数发放；当前工作副本配方数量不等于目标方案已实施。",
       "evidenceRefs": [
         "SYS-OUT-GR-09-EV13",
         "SYS-OUT-GR-09-EV16"
@@ -821,8 +821,8 @@
       "kind": "reverse-design",
       "label": "房车设备数值设计(2026-07-21)",
       "path": "design/房车设备数值设计-2026-07-21.md",
-      "location": "§4核心规则(RV-EQ-R01~R05)/§5设备10级数值/§6建材消耗/§7工作台配方/§8溢出经验兑换/§9跨系统影响；InReview",
-      "status": "DRAFT_TARGET"
+      "location": "§4核心规则(RV-EQ-R01~R05)/§5设备10级数值/§6单品质建材消耗/§7.1~7.5工作台31条配方/§8溢出经验兑换/§9跨系统影响；2026-08-20确认能效2合1、角色升阶与舱室材料3合1",
+      "status": "CONFIRMED_TARGET"
     },
     {
       "id": "SYS-OUT-GR-09-EV04",

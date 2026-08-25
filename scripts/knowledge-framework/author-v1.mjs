@@ -449,7 +449,7 @@ writeJson(path.join(kbRoot, "registries", "system-io-dependency-map.json"), {
 
 writeJson(path.join(kbRoot, "AUTHORITY.json"), {
   schema: "vgame-knowledge-authority/v1",
-  repository: "D:/Vgame/_design",
+  repository: repoRoot.replace(/\\/g, "/"),
   formalEntry: "knowledge-base/README.md",
   canonicalContentRoot: "knowledge-base/",
   skillSourceRoot: "skills/",

@@ -89,7 +89,7 @@ Write-Output '[8/8] 生成重建报告'
 $Report = @"
 # Vgame 全栈策划知识框架 V2.0 重建报告
 
-- 权威仓库：`${VGAME_DESIGN_ROOT}`（本机解析为 `D:/Vgame/_design`）
+- 权威仓库：$($RepoRoot.Replace('\', '/'))（独立于 Vgame 客户端）
 - 唯一入口：`knowledge-base/README.md`
 - Skill：33/33；正文唯一来源为 `skills/`
 - 系统：$($Validation.summary.systems)；系统→Skill 覆盖 100%

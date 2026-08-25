@@ -1,6 +1,6 @@
 {
   "schema": "vgame-knowledge-authority/v2",
-  "repository": "D:/Vgame/_design",
+  "repository": "D:/Vgame_design",
   "formalEntry": "knowledge-base/README.md",
   "canonicalContentRoot": "knowledge-base/",
   "skillSourceRoot": "skills/",
