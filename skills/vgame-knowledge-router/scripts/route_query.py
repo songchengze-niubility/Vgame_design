@@ -492,6 +492,8 @@ def inherit_audit_unknowns(systems: list[dict[str, Any]]) -> list[str]:
             elif "GAP" in st:
                 unknowns.append(f"{sid} {name}·{axis_name}：{st}（{val}）为缺口，尚缺规则/运行证据。")
         for q in detail.get("openQuestions") or []:
+            if str(q.get("lifecycle") or "OPEN").upper() != "OPEN":
+                continue
             prior = str(q.get("priority") or "")
             if prior in ("P0", "P1"):
                 unknowns.append(f"{sid} {name} 待裁决问题 Q{q.get('id')}（{prior}）：{q.get('question')}")

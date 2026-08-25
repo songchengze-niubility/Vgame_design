@@ -2,7 +2,7 @@
   "schema": "vgame-system-detail/v1",
   "systemId": "SYS-OUT-GR-09",
   "name": "房车",
-  "revision": "2026-08-25.1",
+  "revision": "2026-08-25.2",
   "updatedAt": "2026-08-25",
   "detailLevel": "full",
   "sourceSnapshot": {
@@ -136,7 +136,7 @@
     },
     "exceptions": {
       "state": "APPLICABLE",
-      "reason": "存在强化结果档与07-09口径冲突、07-09 vs 07-14结构替代、设备Design InReview、建材ItemId待分配等边界"
+      "reason": "强化结果档、设备Design状态与房车建材ItemId旧缺口均已关闭；仍保留07-09 vs 07-14结构继承、旧ShopGoods引用和运行/LIVE边界"
     },
     "ui": {
       "state": "APPLICABLE",
@@ -535,9 +535,9 @@
     },
     {
       "id": "SYS-OUT-GR-09-EX03",
-      "name": "房车设备Design InReview但配置与代码已存在",
-      "status": "P1_GAP",
-      "rule": "07-21 Design 状态为 InReview（规则与数值方案已确认，待配置方案与经济验算），但 Car/Facility/ 4表配置与 RVSystem.lua RVDevice 全链路实现已存在；实现可能先行于Design正式冻结。",
+      "name": "房车设备Design状态缺口已关闭",
+      "status": "RESOLVED_BY_SOURCE_CONFIRMATION",
+      "rule": "07-21 Design 已更新为 Confirmed，设备规则、舱室升级与工作台向上合成方案均已同步；Car/Facility工作副本与RVSystem.lua只能作为实现观察，不自动证明31条目标配方已完整落地或LIVE。",
       "evidenceRefs": [
         "SYS-OUT-GR-09-EV03",
         "SYS-OUT-GR-09-EV14",
@@ -547,9 +547,9 @@
     },
     {
       "id": "SYS-OUT-GR-09-EX04",
-      "name": "房车建材ItemId未分配",
-      "status": "P1_GAP",
-      "rule": "07-21 Design §待确认：低/中/高三级房车建材均未分配正式ItemId；DeviceLvUp.CostItemList 已有消耗配置但ItemId身份待确认。",
+      "name": "房车建材ItemId缺口已关闭",
+      "status": "RESOLVED_BY_SOURCE_CONFIRMATION",
+      "rule": "当前权威设计与数值沉淀统一为简式设备图纸(3028)、精校设备图纸(3029)、星旅设备图纸(3030)，价值5/15/45；每个目标等级只消耗单一品质，不能再路由为ItemId未分配。",
       "evidenceRefs": [
         "SYS-OUT-GR-09-EV03",
         "SYS-OUT-GR-09-EV15"
@@ -1073,7 +1073,16 @@
         "SYS-OUT-GR-09-EV14"
       ],
       "resolutionOwner": "RUNTIME_OWNER",
-      "lifecycle": "OPEN"
+      "lifecycle": "CLOSED",
+      "answer": "已确认：低/中/高三级房车建材分别为简式设备图纸(3028)、精校设备图纸(3029)、星旅设备图纸(3030)。",
+      "resolvedBy": "2026-08-20 已确认房车设备设计与数值沉淀",
+      "resolvedAt": "2026-08-25T10:45:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-09-EV03"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "SOURCE_CONFIRMATION",
+      "implementationStatus": "WORKING_COPY_OBSERVED_UNKNOWN_LIVE"
     },
     {
       "id": "SYS-OUT-GR-09-Q04",
@@ -1086,7 +1095,16 @@
         "SYS-OUT-GR-09-EV14"
       ],
       "resolutionOwner": "RUNTIME_OWNER",
-      "lifecycle": "OPEN"
+      "lifecycle": "CLOSED",
+      "answer": "已关闭Design状态问题：07-21房车设备设计已标记Confirmed；目标31条配方与客户端工作副本观察仍分轴追踪，不由文档状态推导LIVE。",
+      "resolvedBy": "独立仓库现行Design元信息与2026-08-20变更记录",
+      "resolvedAt": "2026-08-25T10:45:00+08:00",
+      "closureEvidenceRefs": [
+        "SYS-OUT-GR-09-EV03"
+      ],
+      "approvalStatus": "APPROVED_TARGET",
+      "decisionStatus": "SOURCE_CONFIRMATION",
+      "implementationStatus": "IMPLEMENTATION_PARTIAL_UNKNOWN_LIVE"
     },
     {
       "id": "SYS-OUT-GR-09-Q05",

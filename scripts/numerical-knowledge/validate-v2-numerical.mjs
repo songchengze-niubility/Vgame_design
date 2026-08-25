@@ -94,7 +94,7 @@ function route(query, profile = "design") {
 const rvRoute = route("房车随机强化数值权重是多少");
 const ewRoute = route("专武兼容迁移期数值规则");
 const costRoute = route("角色升级成本数值怎么计算");
-gate("route-rv-current", !rvRoute.error && rvRoute.numericAtoms.some(x => x.atomId === "NATOM-RULING-RV-C") && rvRoute.numericAtoms.every(x => x.sourceNature !== "SOURCE_EXPLICIT_SUPERSEDED"));
+gate("route-rv-current", !rvRoute.error && rvRoute.numericAtoms.some(x => x.atomId === "NATOM-RULING-RV-C") && rvRoute.numericAtoms.every(x => x.sourceNature !== "SOURCE_EXPLICIT_SUPERSEDED") && !(rvRoute.unknowns || []).some(x => x.includes("随机强化结果档采用哪组")));
 gate("route-ew-current", !ewRoute.error && ewRoute.numericAtoms.some(x => x.atomId === "NATOM-RULING-EW-B") && ewRoute.numericAtoms.every(x => x.sourceNature !== "SOURCE_EXPLICIT_SUPERSEDED"));
 gate("route-numerical-general", !costRoute.error && costRoute.numericAtoms.length > 0 && costRoute.readPlan.some(x => x.ref === "ROUTER_OUTPUT.numericAtoms"));
 
