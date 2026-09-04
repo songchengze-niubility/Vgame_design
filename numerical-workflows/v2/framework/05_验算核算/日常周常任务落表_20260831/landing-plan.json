@@ -1,0 +1,457 @@
+{
+ "baseline": "本机SVN工作副本未查询远端HEAD",
+ "generated_at": "2026-08-31T16:11:09.562114",
+ "scope": "用户确认日常周常任务（除温泉TaskId1112、房车挂机TaskId1113外）落SVN；WorldId保留SVN原值不落；Drop与Daily/WeeklyTask、活跃奖励表已一致不涉及",
+ "cell_edits": [
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1106,
+   "field": "TaskName",
+   "old": "击败50名普通敌人",
+   "new": "跑商完成1次",
+   "svn_cell": "C149"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1106,
+   "field": "TaskDesc",
+   "old": "击败50名普通敌人",
+   "new": "跑商完成1次",
+   "svn_cell": "D149"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1106,
+   "field": "UnlockId",
+   "old": null,
+   "new": 4039,
+   "svn_cell": "L149"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1107,
+   "field": "TaskName",
+   "old": "挑战资源副本1次",
+   "new": "挑战资源副本3次",
+   "svn_cell": "C150"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1107,
+   "field": "TaskDesc",
+   "old": "挑战资源副本1次",
+   "new": "挑战资源副本3次",
+   "svn_cell": "D150"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1108,
+   "field": "UnlockId",
+   "old": 123,
+   "new": 4112,
+   "svn_cell": "L151"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1109,
+   "field": "TaskName",
+   "old": "挑战装备宝库1次",
+   "new": "挑战映射装备副本1次",
+   "svn_cell": "C152"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1109,
+   "field": "TaskDesc",
+   "old": "挑战装备宝库1次",
+   "new": "挑战映射装备副本1次",
+   "svn_cell": "D152"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1110,
+   "field": "TaskName",
+   "old": "分解1件装备",
+   "new": "完成1次公会委托派遣",
+   "svn_cell": "C153"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1110,
+   "field": "TaskDesc",
+   "old": "分解1件装备",
+   "new": "完成1次公会委托派遣",
+   "svn_cell": "D153"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1110,
+   "field": "UnlockId",
+   "old": 4314,
+   "new": 4011,
+   "svn_cell": "L153"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1111,
+   "field": "TaskName",
+   "old": "挑战邮票副本1次",
+   "new": "挑战旅券副本1次",
+   "svn_cell": "C154"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 1111,
+   "field": "TaskDesc",
+   "old": "挑战邮票副本1次",
+   "new": "挑战旅券副本1次",
+   "svn_cell": "D154"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12061,
+   "field": "TaskName",
+   "old": "累计挑战装备宝库3次",
+   "new": "累计挑战映射装备副本3次",
+   "svn_cell": "C170"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12061,
+   "field": "TaskDesc",
+   "old": "累计挑战装备宝库3次",
+   "new": "累计挑战映射装备副本3次",
+   "svn_cell": "D170"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12062,
+   "field": "TaskName",
+   "old": "累计挑战装备宝库8次",
+   "new": "累计挑战映射装备副本8次",
+   "svn_cell": "C171"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12062,
+   "field": "TaskDesc",
+   "old": "累计挑战装备宝库8次",
+   "new": "累计挑战映射装备副本8次",
+   "svn_cell": "D171"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12063,
+   "field": "TaskName",
+   "old": "累计挑战装备宝库15次",
+   "new": "累计挑战映射装备副本15次",
+   "svn_cell": "C172"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12063,
+   "field": "TaskDesc",
+   "old": "累计挑战装备宝库15次",
+   "new": "累计挑战映射装备副本15次",
+   "svn_cell": "D172"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12111,
+   "field": "TaskName",
+   "old": "累计挑战邮票副本5次",
+   "new": "累计挑战旅券副本5次",
+   "svn_cell": "C185"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12111,
+   "field": "TaskDesc",
+   "old": "累计挑战邮票副本5次",
+   "new": "累计挑战旅券副本5次",
+   "svn_cell": "D185"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12112,
+   "field": "TaskName",
+   "old": "累计挑战邮票副本10次",
+   "new": "累计挑战旅券副本10次",
+   "svn_cell": "C186"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12112,
+   "field": "TaskDesc",
+   "old": "累计挑战邮票副本10次",
+   "new": "累计挑战旅券副本10次",
+   "svn_cell": "D186"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12113,
+   "field": "TaskName",
+   "old": "累计挑战邮票副本15次",
+   "new": "累计挑战旅券副本15次",
+   "svn_cell": "C187"
+  },
+  {
+   "file": "Task.xlsx",
+   "sheet": "Task",
+   "id": 12113,
+   "field": "TaskDesc",
+   "old": "累计挑战邮票副本15次",
+   "new": "累计挑战旅券副本15次",
+   "svn_cell": "D187"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1106,
+   "field": "TargetDesc",
+   "old": "击败50名普通敌人",
+   "new": "跑商完成1次",
+   "svn_cell": "C132"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1106,
+   "field": "TargetType",
+   "old": "Target_TTT_TypeMonsterNum",
+   "new": "Target_TTT_Trade_CompleteTimes",
+   "svn_cell": "D132"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1106,
+   "field": "ParamList",
+   "old": "3,50",
+   "new": "0,1",
+   "svn_cell": "E132"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1106,
+   "field": "TaskAccessList",
+   "old": 213,
+   "new": 46,
+   "svn_cell": "I132"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1107,
+   "field": "TargetDesc",
+   "old": "挑战资源副本1次",
+   "new": "挑战资源副本3次",
+   "svn_cell": "C133"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1107,
+   "field": "ParamList",
+   "old": "0,1",
+   "new": "0,3",
+   "svn_cell": "E133"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1109,
+   "field": "TargetDesc",
+   "old": "挑战装备宝库1次",
+   "new": "挑战映射装备副本1次",
+   "svn_cell": "C135"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1109,
+   "field": "TaskAccessList",
+   "old": 208,
+   "new": 314,
+   "svn_cell": "I135"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1110,
+   "field": "TargetDesc",
+   "old": "分解1件装备",
+   "new": "完成1次公会委托派遣",
+   "svn_cell": "C136"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1110,
+   "field": "TargetType",
+   "old": "Target_TTT_BreakdowntSpecialEquipment_Num",
+   "new": "Target_TTT_GuildDelegate",
+   "svn_cell": "D136"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1110,
+   "field": "ParamList",
+   "old": "0,1",
+   "new": "0,1",
+   "svn_cell": "E136"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1110,
+   "field": "TaskAccessList",
+   "old": 59,
+   "new": 42,
+   "svn_cell": "I136"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 1111,
+   "field": "TargetDesc",
+   "old": "挑战邮票副本1次",
+   "new": "挑战旅券副本1次",
+   "svn_cell": "C137"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12061,
+   "field": "TargetDesc",
+   "old": "累计挑战装备宝库3次",
+   "new": "累计挑战映射装备副本3次",
+   "svn_cell": "C153"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12061,
+   "field": "TaskAccessList",
+   "old": 208,
+   "new": 314,
+   "svn_cell": "I153"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12062,
+   "field": "TargetDesc",
+   "old": "累计挑战装备宝库8次",
+   "new": "累计挑战映射装备副本8次",
+   "svn_cell": "C154"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12062,
+   "field": "TaskAccessList",
+   "old": 208,
+   "new": 314,
+   "svn_cell": "I154"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12063,
+   "field": "TargetDesc",
+   "old": "累计挑战装备宝库15次",
+   "new": "累计挑战映射装备副本15次",
+   "svn_cell": "C155"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12063,
+   "field": "TaskAccessList",
+   "old": 208,
+   "new": 314,
+   "svn_cell": "I155"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12101,
+   "field": "TargetDesc",
+   "old": "累计获得旧日归处积分1000分",
+   "new": "累计获得肉鸽积分1000分",
+   "svn_cell": "C165"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12102,
+   "field": "TargetDesc",
+   "old": "累计获得旧日归处积分3000分",
+   "new": "累计获得肉鸽积分3000分",
+   "svn_cell": "C166"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12103,
+   "field": "TargetDesc",
+   "old": "累计获得旧日归处积分5000分",
+   "new": "累计获得肉鸽积分5000分",
+   "svn_cell": "C167"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12111,
+   "field": "TargetDesc",
+   "old": "累计挑战邮票副本5次",
+   "new": "累计挑战旅券副本5次",
+   "svn_cell": "C168"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12112,
+   "field": "TargetDesc",
+   "old": "累计挑战邮票副本10次",
+   "new": "累计挑战旅券副本10次",
+   "svn_cell": "C169"
+  },
+  {
+   "file": "TaskTarget.xlsx",
+   "sheet": "TaskTarget",
+   "id": 12113,
+   "field": "TargetDesc",
+   "old": "累计挑战邮票副本15次",
+   "new": "累计挑战旅券副本15次",
+   "svn_cell": "C170"
+  }
+ ]
+}

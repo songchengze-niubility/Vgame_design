@@ -1,0 +1,49 @@
+{
+  "revision": "CHG-023",
+  "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射装备CHG023_候选备份\\20260827T075323",
+  "files": [
+    "SpecialEquipment.xlsx",
+    "SpecialEquipmentEffect.xlsx",
+    "SpecialEquipmentEffectDrop.xlsx",
+    "00_配置清单.xlsx"
+  ],
+  "counts": {
+    "SpecialEquipment.xlsx": 480,
+    "SpecialEquipmentEffect.xlsx": 918,
+    "SpecialEquipmentEffectDrop.xlsx": 259
+  },
+  "equipmentChanged": 192,
+  "newEffects": 72,
+  "newPools": 6,
+  "formalHashes": {
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipment.xlsx": "e4bcef13652e96819cb3b0be1508d1315d31efcf334571644a4a0790de0e5098",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffect.xlsx": "456bd7032f9e57afd082c375da4197ab40f67f3b23e25b3ee4ed5c010d083acd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffectDrop.xlsx": "e3fd63d4f5083bfc51f8ef66ece8618497a21288628bbf7f4ee732c17479e7fd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\Skill.xlsx": "2be47219b90b2ef0cc4b84d2e60abe0e998c39fdcc7cf20f1192e193aaa27a19",
+    "C:\\Users\\songchengze\\Downloads\\映射装备.xlsx": "0f6a7dd17242a56ac85d28066d329b14628f31927ed660de33b493560bd3628a"
+  },
+  "candidateHashes": {
+    "00_配置清单.xlsx": "9b428faa7f72861144f2fb63cccf24b8851c175914f361e8a2b8e150f49ad64f",
+    "Drop_dungeon.xlsx": "0ae699273764071295e838b4c312d73c28551053a5ebb9b51919dbec07b8fda2",
+    "EquipmentLevel.xlsx": "95515039097cb192674d9ec2d3e3cfa59b6e0da8611c7904b606618b844a550b",
+    "ItemAccess.xlsx": "2d9cc3932679ab4580700768eab8b4cc8d2b82c8fdc0b0ac9c9954db9e996f18",
+    "Items.xlsx": "4f9ff9d45cf5d134280bd4cbea64e18f06f6b1b77df78846749beb0fd382629b",
+    "PortableCompoundProb.xlsx": "aeb78dffa6ec84411d8913522a181ac0ca93350f250bc93c1e052fd69a785ec5",
+    "PortableCraftProb.xlsx": "254af241b1714fd26e64b0cc21769e797fbc36b9d561d614889c224227efb95b",
+    "PortableEquipCompound.xlsx": "2ec107f71a85289378bf8baabae7c9e583cee1d67570827c60a6a8c96075c374",
+    "PortableEquipCraft.xlsx": "c02e9fb2097acbe1cf5eff3046d3112ce98042ba34671e45d3268637ced46679",
+    "PortableExp.xlsx": "6ef0eb730e87beb43eb43baed123dfd8e0f1e17356f77cfaf1c00bba466d630f",
+    "PortableLvUp.xlsx": "83653dec6daa64e468b575090ea60cccc49a1375e8ec31dfb36ee38063be0850",
+    "PortableRange.xlsx": "73fea6fc7c02e8a56727a2cb7f8f1c9286622f899bfb53d30121ff250b183415",
+    "SpecialEquipment.xlsx": "4d824282e42316b1228cdf9a2ee1112258f89b861b73c12908529cd87f9edd50",
+    "SpecialEquipmentEffect.xlsx": "30e4f48c3fd554f082ede1194641ab01a612aa5675522e43fd02acf1353dd5e4",
+    "SpecialEquipmentEffectDrop.xlsx": "82907a77adb821b86014ffd73e860e050468cdf04d3be412e2933ef5848a18a1",
+    "SpecialEquipmentGenerate.xlsx": "eaa5555e884cbc7fe85b1883a5bbdb2921c6743e45ff75ba369a29fffb7db6d7",
+    "SpecialEquipmentMain.xlsx": "b9657bd840efc3071e1b5fef6958c94ccbe08ea2951a6f8bc7f527be1bc62a7f",
+    "SpecialEquipmentQuality.xlsx": "7b3f2ed283efe2599955336c17ec57f3c608e42068abe27d80c3dc41e8ee42c0",
+    "SpecialEquipmentSubAttrCoef.xlsx": "7c04c83f0c9b40fefbc942373b995c140e2dbab11f10a45ffc2cba7583615fe7",
+    "SystemOpen.xlsx": "d7b2faad04cd8b0142f8fbe6ae2404734b3ade339cd84ccda1b531947b36c9ad",
+    "UIlevel.xlsx": "1761b5c1fb0ac0b1336207292739b26cf653d553e9c9f3d6344ceeb584a56754",
+    "Unlock.xlsx": "7f888497b4969cf4215153affbf702be7a4ab772771c0500156fb797d2511f02"
+  }
+}

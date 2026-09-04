@@ -1,0 +1,5542 @@
+{
+  "status": "PASS",
+  "target": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备",
+  "checks": 1094,
+  "pass": 1094,
+  "fail": 0,
+  "matrix": {
+    "Green": [
+      96,
+      0,
+      0,
+      0
+    ],
+    "Blue": [
+      96,
+      0,
+      0,
+      0
+    ],
+    "Purple": [
+      96,
+      0,
+      0,
+      0
+    ],
+    "Orange": [
+      96,
+      96,
+      0,
+      0
+    ],
+    "Red": [
+      96,
+      96,
+      22,
+      0
+    ]
+  },
+  "hashes": {
+    "SpecialEquipment.xlsx": "3a592b3c3b5026ea649112e4b3c9e1eabd6f0219b03dbdc6846c472f9355a0cb",
+    "SpecialEquipmentEffectDrop.xlsx": "8051aaea5ffeb3716cbc2fb0ff78d0d90d9ab822d660bf1ce48935dd05d34098",
+    "SpecialEquipmentEffect.xlsx": "6c75a46de10c02f016269304b0a684efdf79f3fc6ac8e1ac2143d92f2fe0b074",
+    "00_配置清单.xlsx": "0f73c4ca63808c5354686eaa6fe4a860b01025b70422b3b0a9953c894a757b6b"
+  },
+  "details": [
+    {
+      "name": "Schema和480条装备",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80001",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80003",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80004",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80005",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80006",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80007",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80008",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80009",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80016",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80017",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80018",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80019",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80020",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80026",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80028",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80029",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80030",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80036",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80037",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80038",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80039",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80040",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80042",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80043",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80044",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80045",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80046",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80047",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80048",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80049",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80050",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80054",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80055",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80056",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80057",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80058",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80059",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80060",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80064",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80065",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80066",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80067",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80068",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80069",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80070",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80071",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80072",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80073",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80075",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80076",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80077",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80078",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80079",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80081",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80082",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80083",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80084",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80086",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80087",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80088",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80089",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80090",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80091",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80092",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80093",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80094",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80095",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80096",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80097",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80098",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80099",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80116",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80117",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80118",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80119",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80120",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80126",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80128",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80129",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80130",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80136",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80137",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80138",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80140",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80146",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80147",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80148",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80149",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80150",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80151",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80152",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80155",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80156",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80157",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80158",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80159",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80161",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80162",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80163",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80164",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80165",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80166",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80167",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80168",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80169",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80170",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80171",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80172",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80173",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80174",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80175",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80176",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80177",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80178",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80179",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80180",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80181",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80182",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80183",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80184",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80185",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80186",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80187",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80188",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80189",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80190",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80191",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80193",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80194",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80195",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80196",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80197",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80198",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80199",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80200",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80204",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80206",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80207",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80208",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80209",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80210",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80211",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80214",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80215",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80216",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80217",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80218",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80219",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80220",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80221",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80222",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80223",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80224",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80225",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80226",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80227",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80228",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80229",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80230",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80231",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80232",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80233",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80234",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80235",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80236",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80237",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80238",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80239",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80240",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80241",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80242",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80243",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80244",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80245",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80246",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80247",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80248",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80249",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80253",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80254",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80255",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80256",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80257",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80258",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80259",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80260",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80261",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80262",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80263",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80264",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80265",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80266",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80268",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80269",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80270",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80271",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80272",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80273",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80274",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80275",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80276",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80277",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80279",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80280",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80281",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80282",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80283",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80284",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80285",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80286",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80287",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80288",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80289",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80290",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80291",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80292",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80293",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80294",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80295",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80296",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80297",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80298",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80299",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80300",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80304",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80306",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80307",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80308",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80309",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80310",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80311",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80312",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80313",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80314",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80315",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80316",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80317",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80318",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80319",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80321",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80322",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80323",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80324",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80325",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80326",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80327",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80328",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80329",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80330",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80331",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80332",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80333",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80334",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80335",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80336",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80337",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80338",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80339",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80340",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80341",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80342",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80343",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80344",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80345",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80346",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80347",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80348",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80349",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80350",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80351",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80352",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80353",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80354",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80355",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80356",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80357",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80358",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80359",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80360",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80361",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80362",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80363",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80364",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80365",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80366",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80367",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80368",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80369",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80370",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80371",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80372",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80374",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80376",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80378",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80379",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80380",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80381",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80382",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80383",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80384",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80385",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80386",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80387",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80388",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80389",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80391",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80392",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80393",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80394",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80395",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80396",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80397",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80398",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80399",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80400",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80401",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80402",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80403",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80404",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80405",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80406",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80407",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80408",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80409",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80410",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80411",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80412",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80413",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80414",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80415",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80416",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80418",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80419",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80420",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80421",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80422",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80423",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80424",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80425",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80426",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80428",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80429",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80430",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80431",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80432",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80433",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80434",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80435",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80436",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80437",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80438",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80439",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80441",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80442",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80443",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80444",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80445",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80446",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80447",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80448",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80449",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80450",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80451",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80452",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80453",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80454",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80455",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80456",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80457",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80458",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80459",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80460",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80461",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80462",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80463",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80464",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80465",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80466",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80467",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80468",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80469",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80470",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80471",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80472",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80473",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80474",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80475",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80476",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80477",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80478",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80479",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备完整行:80480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "品质准入矩阵:Green",
+      "pass": true,
+      "detail": [
+        96,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "品质准入矩阵:Blue",
+      "pass": true,
+      "detail": [
+        96,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "品质准入矩阵:Purple",
+      "pass": true,
+      "detail": [
+        96,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "品质准入矩阵:Orange",
+      "pass": true,
+      "detail": [
+        96,
+        96,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "品质准入矩阵:Red",
+      "pass": true,
+      "detail": [
+        96,
+        96,
+        22,
+        0
+      ]
+    },
+    {
+      "name": "所有480件FixEffect为空",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "两件手套与三组别名",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "虚空无特殊效果",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "22件红装覆盖21技能",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "原259池逐格不变",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "280池且Id唯一",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "新增21池Id无多余",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "939条Effect业务与Schema不变",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30401",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30401",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30402",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30402",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30502",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30502",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30601",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30601",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30602",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30602",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30701",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30701",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30702",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30702",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "单技能池:30802",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Effect到Skill:30802",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80387",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80394",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80395",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80396",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80398",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80407",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80408",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80413",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80419",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80420",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80424",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80432",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80438",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80442",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80444",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80451",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80455",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80456",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80464",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80468",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80469",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备到池到效果到技能:80480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "稀有池完整:1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "稀有池完整:2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "稀有池完整:3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "稀有池完整:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "稀有池完整:5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "稀有池完整:6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未授权说明/历史页单元格不变:SpecialEquipment.xlsx/中文说明",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "现行说明不再宣称FixEffect绑定:SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "说明行数:SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "页签完整:SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "公式缓存无错:SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权说明/历史页单元格不变:SpecialEquipmentEffectDrop.xlsx/中文说明",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "现行说明不再宣称FixEffect绑定:SpecialEquipmentEffectDrop.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "说明行数:SpecialEquipmentEffectDrop.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "页签完整:SpecialEquipmentEffectDrop.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "公式缓存无错:SpecialEquipmentEffectDrop.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权说明/历史页单元格不变:SpecialEquipmentEffect.xlsx/中文说明",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "现行说明不再宣称FixEffect绑定:SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "说明行数:SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "页签完整:SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "公式缓存无错:SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权说明/历史页单元格不变:00_配置清单.xlsx/配置清单",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权说明/历史页单元格不变:00_配置清单.xlsx/CHG019概率展示",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权说明/历史页单元格不变:00_配置清单.xlsx/CHG023稀有词条",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权说明/历史页单元格不变:00_配置清单.xlsx/CHG024具名技能",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "页签完整:00_配置清单.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "公式缓存无错:00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "清单品质矩阵与真实数据一致",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "具名清单22件SpecialEffect",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:Drop_dungeon.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:EquipmentLevel.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:ItemAccess.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:Items.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:PortableCompoundProb.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:PortableCraftProb.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:PortableEquipCompound.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:PortableEquipCraft.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:PortableExp.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:PortableLvUp.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:PortableRange.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:SpecialEquipmentGenerate.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:SpecialEquipmentMain.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:SpecialEquipmentQuality.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:SpecialEquipmentSubAttrCoef.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:SystemOpen.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:UIlevel.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "其他候选未改:Unlock.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件未改:D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件未改:D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffectDrop.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件未改:D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件未改:D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentQuality.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件未改:D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\Skill.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件未改:C:\\Users\\songchengze\\Downloads\\映射装备.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯数据生成池一致",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "池生成幂等",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "池ID冲突拒绝",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80001",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80003",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80004",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80005",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80006",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80007",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80008",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80009",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80016",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80017",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80018",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80019",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80020",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80026",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80028",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80029",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80030",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80036",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80037",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80038",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80039",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80040",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80042",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80043",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80044",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80045",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80046",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80047",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80048",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80049",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80050",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80054",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80055",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80056",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80057",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80058",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80059",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80060",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80064",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80065",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80066",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80067",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80068",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80069",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80070",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80071",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80072",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80073",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80075",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80076",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80077",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80078",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80079",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80081",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80082",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80083",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80084",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80086",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80087",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80088",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80089",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80090",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80091",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80092",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80093",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80094",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80095",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80096",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80097",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80098",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80099",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80116",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80117",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80118",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80119",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80120",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80126",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80128",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80129",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80130",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80136",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80137",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80138",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80140",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80146",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80147",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80148",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80149",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80150",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80151",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80152",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80155",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80156",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80157",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80158",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80159",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80161",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80162",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80163",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80164",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80165",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80166",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80167",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80168",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80169",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80170",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80171",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80172",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80173",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80174",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80175",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80176",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80177",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80178",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80179",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80180",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80181",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80182",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80183",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80184",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80185",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80186",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80187",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80188",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80189",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80190",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80191",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80193",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80194",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80195",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80196",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80197",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80198",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80199",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80200",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80204",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80206",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80207",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80208",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80209",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80210",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80211",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80214",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80215",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80216",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80217",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80218",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80219",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80220",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80221",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80222",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80223",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80224",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80225",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80226",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80227",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80228",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80229",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80230",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80231",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80232",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80233",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80234",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80235",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80236",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80237",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80238",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80239",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80240",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80241",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80242",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80243",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80244",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80245",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80246",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80247",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80248",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80249",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80253",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80254",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80255",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80256",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80257",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80258",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80259",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80260",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80261",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80262",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80263",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80264",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80265",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80266",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80268",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80269",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80270",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80271",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80272",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80273",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80274",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80275",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80276",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80277",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80279",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80280",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80281",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80282",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80283",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80284",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80285",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80286",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80287",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80288",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80289",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80290",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80291",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80292",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80293",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80294",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80295",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80296",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80297",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80298",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80299",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80300",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80304",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80306",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80307",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80308",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80309",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80310",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80311",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80312",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80313",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80314",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80315",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80316",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80317",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80318",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80319",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80321",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80322",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80323",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80324",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80325",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80326",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80327",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80328",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80329",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80330",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80331",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80332",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80333",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80334",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80335",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80336",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80337",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80338",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80339",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80340",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80341",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80342",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80343",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80344",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80345",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80346",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80347",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80348",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80349",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80350",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80351",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80352",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80353",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80354",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80355",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80356",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80357",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80358",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80359",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80360",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80361",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80362",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80363",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80364",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80365",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80366",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80367",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80368",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80369",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80370",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80371",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80372",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80374",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80376",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80378",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80379",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80380",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80381",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80382",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80383",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80384",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80385",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80386",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80387",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80388",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80389",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80391",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80392",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80393",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80394",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80395",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80396",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80397",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80398",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80399",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80400",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80401",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80402",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80403",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80404",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80405",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80406",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80407",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80408",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80409",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80410",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80411",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80412",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80413",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80414",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80415",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80416",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80418",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80419",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80420",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80421",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80422",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80423",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80424",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80425",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80426",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80428",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80429",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80430",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80431",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80432",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80433",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80434",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80435",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80436",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80437",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80438",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80439",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80441",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80442",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80443",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80444",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80445",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80446",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80447",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80448",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80449",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80450",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80451",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80452",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80453",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80454",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80455",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80456",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80457",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80458",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80459",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80460",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80461",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80462",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80463",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80464",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80465",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80466",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80467",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80468",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80469",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80470",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80471",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80472",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80473",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80474",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80475",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80476",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80477",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80478",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80479",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成函数品质映射:80480",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

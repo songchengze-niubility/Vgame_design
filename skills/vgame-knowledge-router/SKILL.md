@@ -15,6 +15,10 @@ description: 自动为 Vgame 项目事实、系统盘点、规则流程、系统
 
 当问题命中数值、公式、参数、概率、成长、经济、节奏、难度、奖励或验算语义时，路由脚本从 `knowledge-base/numerical/atom-registry.json` 选择最小 `numericAtoms`，并返回对应系统、Skill、配置候选和 `sourceLocator`。普通系统查询不加载全部数值原子；需要完整源上下文或源表当前值时才沿 `sourceLocator` 回到外部数值框架。生成物、配置镜像和验算结果不得被当作 Production/LIVE 证明。
 
+## 历史经验层
+
+路由脚本在每次检索时同步扫描 `knowledge-base/experience/exp-*.md` 的条目头部（triggerTerms/tags/标题），把命中的 active 教训作为 `experienceHints` 返回，并放入 readPlan 最前（L1，先于任何系统正文）。命中即必读：条目记录的是同类问题已踩过的坑与规避动作；它与当前结论冲突时按来源性质标注冲突，不得静默忽略。`incorporated` / `obsolete` 条目不参与召回。新教训的写入时机见 `planning-feature-workflow` 第 9 步。
+
 ## 必须先运行路由器
 
 从仓库根目录运行：
@@ -88,4 +92,5 @@ python skills/vgame-knowledge-router/scripts/route_query.py "<用户问题>" --f
 - 路由脚本：`scripts/route_query.py`
 - 提问与输出示例：`references/prompt-patterns.md`
 - 权威入口：`knowledge-base/README.md`
+- 经验沉淀规范：`knowledge-base/experience/README.md`
 - 可重建路由清单：`output/knowledge-framework/knowledge-base/router-manifest.json`

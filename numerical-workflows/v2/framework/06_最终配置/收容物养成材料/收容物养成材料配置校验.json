@@ -1,0 +1,131 @@
+{
+  "status": "PASS_WITH_RUNTIME_GAPS",
+  "scope": "收容物养成最终配置 v3（2026-08-10）",
+  "source_of_truth": {
+    "attributes": "D:\\数值文档\\数值文档\\框架v2\\06_最终配置\\收容物属性\\ExclWeapon.xlsx",
+    "config_schema": "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon",
+    "output": "D:\\数值文档\\数值文档\\框架v2\\06_最终配置\\收容物养成材料"
+  },
+  "checks": {
+    "first_phase_count": 22,
+    "level_rows": 60,
+    "level_total_exp": 5997000,
+    "level_total_gold": 1199400,
+    "level_limit_rows": 60,
+    "star_rows": 21,
+    "star_fragment_total": {
+      "S": 1300,
+      "A": 1200,
+      "B": 1300
+    },
+    "star_gold_total": 100000,
+    "exp_items": {
+      "108": 1000,
+      "109": 4000,
+      "110": 20000
+    },
+    "fragment_item_count": 39,
+    "upgrade_gold_ratio": {
+      "row": 32,
+      "old": 0.1,
+      "new": 0.2
+    }
+  },
+  "workbooks": {
+    "00_配置清单.xlsx": {
+      "opened": true,
+      "sheets": [
+        "配置清单",
+        "养成口径",
+        "程序接入项",
+        "首期线性属性映射"
+      ],
+      "formula_cells": 0
+    },
+    "ExclWeapon.xlsx": {
+      "opened": true,
+      "sheets": [
+        "Eqpt",
+        "@Desc1"
+      ],
+      "formula_cells": 0
+    },
+    "ExclWeaponLv.xlsx": {
+      "opened": true,
+      "sheets": [
+        "EqptLv",
+        "@Desc1"
+      ],
+      "formula_cells": 0
+    },
+    "ExclWeaponLvLimit.xlsx": {
+      "opened": true,
+      "sheets": [
+        "ExclWeaponLvLimit"
+      ],
+      "formula_cells": 0
+    },
+    "ExclWeaponStar.xlsx": {
+      "opened": true,
+      "sheets": [
+        "EqptStar",
+        "@Desc1"
+      ],
+      "formula_cells": 0
+    },
+    "Items.xlsx": {
+      "opened": true,
+      "sheets": [
+        "items",
+        "@Desc1"
+      ],
+      "formula_cells": 0
+    },
+    "globals_conf.xlsx": {
+      "opened": true,
+      "sheets": [
+        "globals_conf"
+      ],
+      "formula_cells": 0
+    }
+  },
+  "runtime_gaps": [
+    {
+      "priority": "P0",
+      "item": "升级经验公共曲线",
+      "evidence": "当前 ExclusiveWeaponSystem 仍按 cfg.Lv + cfg.Quality 查 ExclWeaponLv；最终表只有 Quality=4 一组公共曲线。",
+      "acceptance": "S/A/B 任一收容物在同等级显示并扣除相同经验。"
+    },
+    {
+      "priority": "P0",
+      "item": "玩家等级联动上限",
+      "evidence": "当前逻辑仍读取 ExclWeaponAscendLv；新增 ExclWeaponLvLimit 尚无非生成代码引用。",
+      "acceptance": "玩家1~55级时上限=玩家+5；56~60级时均为60。"
+    },
+    {
+      "priority": "P0",
+      "item": "同名碎片升星",
+      "evidence": "当前升星仍读取 StarCostEqptNum/StarCostItem，未读取 ExclWeapon.ShardsList/WeaponShards。",
+      "acceptance": "S六次依次扣100/100/200/200/300/400片，A扣50/100/150/200/300/400片，B扣60/120/180/240/300/400片；不接受同名本体或旧通用材料。"
+    },
+    {
+      "priority": "P0",
+      "item": "一级、二级属性公式与系数边界",
+      "evidence": "当前展示逻辑为 base+(Lv-1)×grow，未向上取整；品质与位置系数无现成配置字段。",
+      "acceptance": "一级=ceil(满级×Lv/60)×位置；二级=星级档×品质(1/0.75/0.5)×位置。"
+    },
+    {
+      "priority": "P0",
+      "item": "二级属性按0~6星取档",
+      "evidence": "当前逻辑用 ascendId 索引 AttrNameList；新方案应使用 star，且0星读取第1档。",
+      "acceptance": "0~6星分别读取40/50/60/70/80/90/100%累计档。"
+    },
+    {
+      "priority": "P1",
+      "item": "五槽与未上阵继承",
+      "evidence": "配置表无槽位继承字段。",
+      "acceptance": "五槽独立升级；未上阵等级取五槽最低等级，属性按10%生效且不封顶。"
+    }
+  ],
+  "datas_modified": false
+}

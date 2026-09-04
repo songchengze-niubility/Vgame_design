@@ -86,12 +86,13 @@ def extract(output: Path) -> dict:
                 f"单仓纳管 {production_counts['migratedPythonFiles']} 个生产脚本、"
                 f"{production_counts['inputWorkbooks']} 份受控输入、"
                 f"{production_counts['mainGenerationJobs']} 条任务和 "
-                f"{production_counts['expectedFinalWorkbooks']} 份可重建终稿。"
+                f"{production_counts['expectedFinalWorkbooks']} 份 Git 管理的可重建正式终稿。"
             ),
             ["vgame", "numerical", "production", "single-repository"],
             canonicalPath="numerical-workflows/v2/workflow-manifest.json",
             externalNumericalSourceRequired=production_manifest["legacyExternalSourceRequiredAtRuntime"],
             formalConfigWriteDefault=production_manifest["formalConfigWriteDefault"],
+            formalDocumentRoot=production_manifest["formalDocumentRoot"],
             **production_counts,
         )
     )

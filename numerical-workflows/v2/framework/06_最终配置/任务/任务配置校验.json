@@ -1,0 +1,404 @@
+{
+  "batch": "CHAPTER-CORRECTION-20260827",
+  "generated_at": "2026-08-27T14:30:06.527691",
+  "status": "PASS_STATIC_WITH_RUNTIME_GATES",
+  "scope": "06候选局部落表；SVN未改；历史整包结果不作为本轮全量验收证明",
+  "current_validation": "../../05_验算核算/章节任务纠偏_20260827/published-validation.json",
+  "weekly_keys": 41,
+  "monthly_keys": 8,
+  "runtime_gates": [
+    "资源副本目标1107/12041~12043复用Type_LevelClearNum参数0,N；仅资源类型过滤和挑战/通关语义未验证。",
+    "无限之旅周最高分暂复用InfiniteChallenge_Score；需验证最高值/非累计、周清零和四难度奖励互斥。",
+    "未解锁任务隐藏及解锁后下一日/周入池需服务端联调。",
+    "当前__tables__未注册DailyTask输入；需确认TaskType与任务池配置的消费入口。",
+    "本轮未执行Luban或服务端运行验证；SVN未改。"
+  ],
+  "previous_validation": "../../05_验算核算/映射之匙任务_20260827/published-validation.json",
+  "daily_count": 10,
+  "weekly_count": 33,
+  "task_keys_per_week": 31,
+  "seven_day_keys": 8,
+  "task_unlocks": {
+    "arena": 4112,
+    "mapping": 4314,
+    "basis": "撤回用户否决的9条日周解锁改动，恢复原06值；不是新增设计确认"
+  },
+  "chapter_audit": {
+    "group_counts": [
+      5,
+      6,
+      7,
+      8,
+      10,
+      10,
+      10
+    ],
+    "group_total": 56,
+    "task_count": 69,
+    "mapping_keys_one_time": 18,
+    "verified_existing_chapter_rows": [
+      {
+        "chapter": 1,
+        "group_id": 22,
+        "task_id": 1313,
+        "target_id": 1313,
+        "task_row": 190,
+        "target_row": 173,
+        "description": "玩家等级达到10级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "10,1",
+        "drop_id": 1030202,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 20000,
+            "max": 20000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 1,
+        "group_id": 24,
+        "task_id": 1315,
+        "target_id": 1315,
+        "task_row": 192,
+        "target_row": 175,
+        "description": "1个舱室达到2级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "2,1",
+        "drop_id": 1030205,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 2,
+            "max": 2
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 2,
+        "group_id": 32,
+        "task_id": 1324,
+        "target_id": 1324,
+        "task_row": 198,
+        "target_row": 181,
+        "description": "玩家等级达到20级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "20,1",
+        "drop_id": 1030301,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 25000,
+            "max": 25000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 2,
+        "group_id": 35,
+        "task_id": 1327,
+        "target_id": 1327,
+        "task_row": 201,
+        "target_row": 184,
+        "description": "收集4件5级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "5,4",
+        "drop_id": 1030307,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 2,
+        "group_id": 36,
+        "task_id": 1328,
+        "target_id": 1328,
+        "task_row": 202,
+        "target_row": 185,
+        "description": "2个舱室达到2级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "2,2",
+        "drop_id": 1030304,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 3,
+        "group_id": 42,
+        "task_id": 1334,
+        "target_id": 1334,
+        "task_row": 206,
+        "target_row": 189,
+        "description": "玩家等级达到25级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "25,1",
+        "drop_id": 1030401,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 30000,
+            "max": 30000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 3,
+        "group_id": 46,
+        "task_id": 1338,
+        "target_id": 1338,
+        "task_row": 210,
+        "target_row": 193,
+        "description": "1个舱室达到3级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "3,1",
+        "drop_id": 1030405,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 4,
+            "max": 4
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 3,
+        "group_id": 47,
+        "task_id": 1339,
+        "target_id": 1339,
+        "task_row": 211,
+        "target_row": 194,
+        "description": "收集4件10级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "10,4",
+        "drop_id": 1030407,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 4,
+        "group_id": 52,
+        "task_id": 1344,
+        "target_id": 1344,
+        "task_row": 215,
+        "target_row": 198,
+        "description": "玩家等级达到30级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "30,1",
+        "drop_id": 1030501,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 35000,
+            "max": 35000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 4,
+        "group_id": 56,
+        "task_id": 1348,
+        "target_id": 1348,
+        "task_row": 219,
+        "target_row": 202,
+        "description": "2个舱室达到3级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "3,2",
+        "drop_id": 1030509,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 5,
+            "max": 5
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 4,
+        "group_id": 57,
+        "task_id": 1349,
+        "target_id": 1349,
+        "task_row": 220,
+        "target_row": 203,
+        "description": "收集8件15级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "15,8",
+        "drop_id": 1030507,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 5,
+        "group_id": 62,
+        "task_id": 1354,
+        "target_id": 1354,
+        "task_row": 225,
+        "target_row": 208,
+        "description": "玩家等级达到33级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "33,1",
+        "drop_id": 1030601,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 40000,
+            "max": 40000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 5,
+        "group_id": 67,
+        "task_id": 1381,
+        "target_id": 1381,
+        "task_row": 230,
+        "target_row": 213,
+        "description": "收集8件25级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "25,8",
+        "drop_id": 1030607,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 5,
+        "group_id": 26,
+        "task_id": 1401,
+        "target_id": 1401,
+        "task_row": 194,
+        "target_row": 177,
+        "description": "1个舱室达到4级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "4,1",
+        "drop_id": 1030610,
+        "rewards": [
+          {
+            "item": 3029,
+            "min": 4,
+            "max": 4
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 6,
+        "group_id": 72,
+        "task_id": 1364,
+        "target_id": 1364,
+        "task_row": 236,
+        "target_row": 219,
+        "description": "玩家等级达到36级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "36,1",
+        "drop_id": 1030701,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 45000,
+            "max": 45000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 6,
+        "group_id": 77,
+        "task_id": 1384,
+        "target_id": 1384,
+        "task_row": 241,
+        "target_row": 224,
+        "description": "收集8件35级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "35,8",
+        "drop_id": 1030707,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 7,
+        "group_id": 82,
+        "task_id": 1374,
+        "target_id": 1374,
+        "task_row": 248,
+        "target_row": 231,
+        "description": "玩家等级达到38级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "38,1",
+        "drop_id": 1030801,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 50000,
+            "max": 50000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 7,
+        "group_id": 87,
+        "task_id": 1388,
+        "target_id": 1388,
+        "task_row": 253,
+        "target_row": 236,
+        "description": "收集8件45级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "45,8",
+        "drop_id": 1030807,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      }
+    ],
+    "chapter_config_changes_this_batch": 0
+  },
+  "previous_validation_notice": "旧报告中9条UnlockId为123/140的规则被用户否决；钥匙数值修改保留。"
+}

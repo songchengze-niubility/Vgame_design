@@ -1,0 +1,122 @@
+[
+  {
+    "file": "任务/Drop_other.xlsx",
+    "sheet": "Drop",
+    "range": "B430:O438",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\任务_Drop_other_Drop.png"
+  },
+  {
+    "file": "任务/Task.xlsx",
+    "sheet": "Task",
+    "range": "H151:O155",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\任务_Task_Task.png"
+  },
+  {
+    "file": "签到/DailySign.xlsx",
+    "sheet": "Sheet1",
+    "range": "B1:F14",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\签到_DailySign_Sheet1.png"
+  },
+  {
+    "file": "无限之旅/Drop_dungeon.xlsx",
+    "sheet": "Drop",
+    "range": "B7:O15",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\无限之旅_Drop_dungeon_Drop.png"
+  },
+  {
+    "file": "无限之旅/Drop_dungeon.xlsx",
+    "sheet": "中文说明",
+    "range": "A1:B9",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\无限之旅_Drop_dungeon_中文说明.png"
+  },
+  {
+    "file": "主线高难/Drop_mainlevel.xlsx",
+    "sheet": "中文说明",
+    "range": "A1:B9",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\主线高难_Drop_mainlevel_中文说明.png"
+  },
+  {
+    "file": "主线高难/Drop_mainlevel.xlsx",
+    "sheet": "Drop",
+    "range": "B998:O1006",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\主线高难_Drop_mainlevel_Drop.png"
+  },
+  {
+    "file": "任务/00_配置清单.xlsx",
+    "sheet": "配置清单",
+    "range": "A1:D14",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\任务_00_配置清单_配置清单.png"
+  },
+  {
+    "file": "任务/00_配置清单.xlsx",
+    "sheet": "任务总览",
+    "range": "A1:D5",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\任务_00_配置清单_任务总览.png"
+  },
+  {
+    "file": "任务/00_配置清单.xlsx",
+    "sheet": "新增任务类型",
+    "range": "A1:E13",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\任务_00_配置清单_新增任务类型.png"
+  },
+  {
+    "file": "任务/00_配置清单.xlsx",
+    "sheet": "数值校验",
+    "range": "A1:D11",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\任务_00_配置清单_数值校验.png"
+  },
+  {
+    "file": "任务/00_配置清单.xlsx",
+    "sheet": "落地说明",
+    "range": "A1:C10",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\任务_00_配置清单_落地说明.png"
+  },
+  {
+    "file": "签到/00_配置清单.xlsx",
+    "sheet": "配置清单",
+    "range": "A1:H6",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\签到_00_配置清单_配置清单.png"
+  },
+  {
+    "file": "签到/00_配置清单.xlsx",
+    "sheet": "验收结果",
+    "range": "A1:C11",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\签到_00_配置清单_验收结果.png"
+  },
+  {
+    "file": "无限之旅/00_配置清单.xlsx",
+    "sheet": "配置清单",
+    "range": "A1:F9",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\无限之旅_00_配置清单_配置清单.png"
+  },
+  {
+    "file": "无限之旅/00_配置清单.xlsx",
+    "sheet": "周奖励预览",
+    "range": "A1:N11",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\无限之旅_00_配置清单_周奖励预览.png"
+  },
+  {
+    "file": "无限之旅/00_配置清单.xlsx",
+    "sheet": "周奖励汇总",
+    "range": "A1:L5",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\无限之旅_00_配置清单_周奖励汇总.png"
+  },
+  {
+    "file": "主线高难/00_配置清单.xlsx",
+    "sheet": "配置清单",
+    "range": "A1:E10",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\主线高难_00_配置清单_配置清单.png"
+  },
+  {
+    "file": "主线高难/00_配置清单.xlsx",
+    "sheet": "ID号段",
+    "range": "A1:D12",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\主线高难_00_配置清单_ID号段.png"
+  },
+  {
+    "file": "主线高难/00_配置清单.xlsx",
+    "sheet": "验收结果",
+    "range": "A1:C11",
+    "path": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\before\\主线高难_00_配置清单_验收结果.png"
+  }
+]

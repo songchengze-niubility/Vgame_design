@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-08-25T10:15:39",
+  "generated_at": "2026-09-02T15:44:55",
   "nodes": [
     {
       "id": "document:37dd68363fc1",
@@ -17,8 +17,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 115,
-        "sha256": "adcd408b309cc1e62b5491871a4d9f3085ca53353157575e4ec00a8c4216c0a9"
+        "line_count": 116,
+        "sha256": "d834a0c3057099593e9991657b609e44ceb5a068253602c33bf5aee7c284016a"
       }
     },
     {
@@ -70,12 +70,12 @@
         "design-doc",
         "governance"
       ],
-      "complexity": "simple",
+      "complexity": "moderate",
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 28,
-        "sha256": "4f42676c8fe3b8e4bccb85331b840e4589945e2aba0dffc2a3151c2977aa8245"
+        "line_count": 404,
+        "sha256": "1ea9bff93f0d2bc8c1765f12c3d54e44ffad9c496d008093834d89da1c649218"
       }
     },
     {
@@ -250,6 +250,44 @@
       }
     },
     {
+      "id": "document:4a743253e270",
+      "type": "document",
+      "name": "主线关卡扩展 — 支线·小游戏·引导·节点演出 Design Doc",
+      "filePath": "design/主线关卡扩展-支线·小游戏·引导·节点演出Design Doc.md",
+      "summary": "主线关卡扩展 — 支线·小游戏·引导·节点演出 Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "moderate",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 395,
+        "sha256": "93ddf48d07faad92846f2aa1127d0bc883e1a819d9778eb7d3f2a235a8a9ef01"
+      }
+    },
+    {
+      "id": "document:7c83e0fa5e5f",
+      "type": "document",
+      "name": "主线关卡扩展 — 番外（间章）Design Doc",
+      "filePath": "design/主线关卡扩展-间章(番外)Design Doc.md",
+      "summary": "主线关卡扩展 — 番外（间章）Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "moderate",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 451,
+        "sha256": "48a7ce26579e6b62110074fc1a2922b2cd765b7b35b265cb9c9675af37f4d62f"
+      }
+    },
+    {
       "id": "document:74acaa4f574c",
       "type": "document",
       "name": "主线关卡系统 — Design Doc",
@@ -341,7 +379,26 @@
       "metadata": {
         "category": "design",
         "line_count": 32,
-        "sha256": "e48117c655cadcc1d0d1751347fabebe123a248767a49583e0d2fd4ebd30d36c"
+        "sha256": "fed7f14af39078395ea0a142dfd52fc61c4fd16c2e1a7475c2a7ec568064cd3f"
+      }
+    },
+    {
+      "id": "document:39db3ff4c7d2",
+      "type": "document",
+      "name": "公会BOSS挑战 — Design Doc",
+      "filePath": "design/公会BOSS挑战Design Doc.md",
+      "summary": "公会BOSS挑战 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "moderate",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 368,
+        "sha256": "76d3874384a42753e44c98a02e54158db12fbd135dcae8643de231e5e165a14b"
       }
     },
     {
@@ -359,8 +416,8 @@
       "layer": "design",
       "metadata": {
         "category": "design",
-        "line_count": 566,
-        "sha256": "d19a839d2a623ec4f758bc23e2ebc92f0468e7568a36c5b29db24e6203f5c853"
+        "line_count": 571,
+        "sha256": "fed3bb57a24553dfe088d334bf7ae81814be0da8c4f18858606a224ba23f63aa"
       }
     },
     {
@@ -421,6 +478,215 @@
       }
     },
     {
+      "id": "document:f00a56cb3e4a",
+      "type": "document",
+      "name": "信号解码 — Design Doc",
+      "filePath": "design/小游戏-信号解码Design Doc.md",
+      "summary": "信号解码 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 147,
+        "sha256": "dd3c888bd10a8ed1062b4378a0d6c98bd325c1c5eeb40bb4b9f33e899c40f573"
+      }
+    },
+    {
+      "id": "document:c37788df1d5f",
+      "type": "document",
+      "name": "元能切割（切水果） — Design Doc",
+      "filePath": "design/小游戏-元能切割Design Doc.md",
+      "summary": "元能切割（切水果） — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 175,
+        "sha256": "5d3d96fa67be20772ade3acbff71e57b5787a07c0fc4cda1de94b1b680365346"
+      }
+    },
+    {
+      "id": "document:75d1e7a6c0a8",
+      "type": "document",
+      "name": "元能管线拼接 — Design Doc",
+      "filePath": "design/小游戏-元能管线拼接Design Doc.md",
+      "summary": "元能管线拼接 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 148,
+        "sha256": "1a743cb6b365b744850e5d5ae33fefa8d943cd411ed22938e5e3467ac0b8743f"
+      }
+    },
+    {
+      "id": "document:0a12eb3c73f0",
+      "type": "document",
+      "name": "异星钓鱼 — Design Doc",
+      "filePath": "design/小游戏-异星钓鱼Design Doc.md",
+      "summary": "异星钓鱼 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 213,
+        "sha256": "232d3e577c6fa9e73da6fdac8cfc5bfb40452ed69c331e8de7896a4e2126fd0b"
+      }
+    },
+    {
+      "id": "document:fd6c0fd994fc",
+      "type": "document",
+      "name": "房车烹饪 — Design Doc",
+      "filePath": "design/小游戏-房车烹饪Design Doc.md",
+      "summary": "房车烹饪 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 185,
+        "sha256": "20269cf5e4045756c5cfa8c778c0bb4ed94c6ac6d9db82473b29a8ab3c3d6a85"
+      }
+    },
+    {
+      "id": "document:80f9d0423ff4",
+      "type": "document",
+      "name": "打地鼠 — Design Doc",
+      "filePath": "design/小游戏-打地鼠Design Doc.md",
+      "summary": "打地鼠 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 228,
+        "sha256": "3b40e0f21d02a47f8a23c9e173dda0d847f3ef9d4dd22c3c423fa905e8bc78af"
+      }
+    },
+    {
+      "id": "document:da9443b16e79",
+      "type": "document",
+      "name": "星图连线 — Design Doc",
+      "filePath": "design/小游戏-星图连线Design Doc.md",
+      "summary": "星图连线 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 146,
+        "sha256": "57751edcfc516b2864a76fb0f13b999b4b76a037fd7e71dc72fadbc76972c738"
+      }
+    },
+    {
+      "id": "document:3a0c8f2fa635",
+      "type": "document",
+      "name": "沙尘躲避 — Design Doc",
+      "filePath": "design/小游戏-沙尘躲避Design Doc.md",
+      "summary": "沙尘躲避 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 156,
+        "sha256": "9918f5f15393149bdbc7ef45548a6fd2737a15be9e3d9b594fda75752650f527"
+      }
+    },
+    {
+      "id": "document:e110f7e0bad1",
+      "type": "document",
+      "name": "薯片接食物 — Design Doc",
+      "filePath": "design/小游戏-薯片接食物Design Doc.md",
+      "summary": "薯片接食物 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 165,
+        "sha256": "3875e223586098ad272186210eceac247aa00ca7a8ef5acaa21f8109fc11bd85"
+      }
+    },
+    {
+      "id": "document:7790fa677d35",
+      "type": "document",
+      "name": "货物整理 — Design Doc",
+      "filePath": "design/小游戏-货物整理Design Doc.md",
+      "summary": "货物整理 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 150,
+        "sha256": "3ac7922607fbd7ddc49f8709bab2c0e43c9077a01e6c97dac74e3f71e44629a6"
+      }
+    },
+    {
+      "id": "document:dd33b1ce7d0c",
+      "type": "document",
+      "name": "齿轮啮合 — Design Doc",
+      "filePath": "design/小游戏-齿轮啮合Design Doc.md",
+      "summary": "齿轮啮合 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 164,
+        "sha256": "ad4212982ef9a1deca685a8c47d1c75824e525c282b22fb541738ec80f3aa4de"
+      }
+    },
+    {
       "id": "document:2667be3df241",
       "type": "document",
       "name": "局内金币带出 — Design Doc",
@@ -456,6 +722,25 @@
         "category": "design",
         "line_count": 117,
         "sha256": "03b41e62ea8ccd4299afe03e878b5f3078f11fd497d0421a00a52d8b919c6b27"
+      }
+    },
+    {
+      "id": "document:0c7d7730bfbf",
+      "type": "document",
+      "name": "战力系统 — Design Doc",
+      "filePath": "design/战力系统Design Doc.md",
+      "summary": "战力系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 202,
+        "sha256": "6042d6b3824880327acc2cd85c3ecd46b2f5fc528587bdec71a23abbba2a617f"
       }
     },
     {
@@ -545,12 +830,31 @@
         "design-doc",
         "design"
       ],
+      "complexity": "moderate",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 325,
+        "sha256": "f17a6e6f24079f3ab3d75e593a2f2bd9a7e586082262003edd8a102ab0f5e1a9"
+      }
+    },
+    {
+      "id": "document:7b586aa0e9fc",
+      "type": "document",
+      "name": "房车设备等级上限与玩家等级挂钩 — Design Doc",
+      "filePath": "design/房车设备等级与玩家等级挂钩设计-2026-08-31.md",
+      "summary": "房车设备等级上限与玩家等级挂钩 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
       "complexity": "simple",
       "layer": "design",
       "metadata": {
         "category": "design",
-        "line_count": 269,
-        "sha256": "4397d7603d8d0187e265ed2646c028dcc987026884a73b1f1e3865337e29e5ce"
+        "line_count": 143,
+        "sha256": "78e606308c42e5c5c21348c1678bd2b820e5291ef28eafd4602769ef0b156217"
       }
     },
     {
@@ -625,8 +929,8 @@
       "layer": "design",
       "metadata": {
         "category": "design",
-        "line_count": 26,
-        "sha256": "146dca932f9073e7b3df8ab8685f56ec521da0d6efa315914a761758d6d31283"
+        "line_count": 27,
+        "sha256": "942afed01fdbaf61f07399e8b1212196ec9c0bb5558e270458603893eebd698a"
       }
     },
     {
@@ -706,6 +1010,25 @@
       }
     },
     {
+      "id": "document:7553053e0035",
+      "type": "document",
+      "name": "映射装备数值超级爆改",
+      "filePath": "design/映射装备数值超级爆改-2026-08-14.md",
+      "summary": "映射装备数值超级爆改",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 145,
+        "sha256": "84fef8dc4a3b8738218383188b83495fdbe50a8029c9dc39d274e5d05aac653b"
+      }
+    },
+    {
       "id": "document:60ce44b676ff",
       "type": "document",
       "name": "映射装备系统 — Design Doc",
@@ -782,6 +1105,44 @@
       }
     },
     {
+      "id": "document:d3a6cba510ee",
+      "type": "document",
+      "name": "每日委托系统 — Design Doc",
+      "filePath": "design/每日委托系统Design Doc.md",
+      "summary": "每日委托系统 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 281,
+        "sha256": "b8725229eeaa3121eab9419d0b8217191ba1d3eb8db24d67b7e4d0df1895f08d"
+      }
+    },
+    {
+      "id": "document:6ace4a19b314",
+      "type": "document",
+      "name": "温泉系统 — 策划配置表结构",
+      "filePath": "design/温泉配置表结构.md",
+      "summary": "温泉系统 — 策划配置表结构",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 203,
+        "sha256": "743f8a526135076498c1981f786e2ed9deb829fd5846429f3e733d04eef0424b"
+      }
+    },
+    {
       "id": "document:84a548fa694d",
       "type": "document",
       "name": "爬塔 — Design Doc",
@@ -853,8 +1214,27 @@
       "layer": "design",
       "metadata": {
         "category": "design",
-        "line_count": 228,
-        "sha256": "db6611cd7d5e60d03ce262e66493a1d7baea3fe808a36a31746ed48571a88ac9"
+        "line_count": 230,
+        "sha256": "2bec65043f7f9e3fd3e29dd4dac974bf70c02253976d84e6289ca60e177d704d"
+      }
+    },
+    {
+      "id": "document:6305a9d9e641",
+      "type": "document",
+      "name": "答题玩法 — Design Doc",
+      "filePath": "design/答题玩法Design Doc.md",
+      "summary": "答题玩法 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 178,
+        "sha256": "c9bd9764b8449e51a38b54b674590509bb71351a457e5b4aea93dfd33a4a95ed"
       }
     },
     {
@@ -950,6 +1330,25 @@
         "category": "design",
         "line_count": 156,
         "sha256": "387fe4991e61704beff587bfbdff864a3e5e7ac2a88aa5c9344aef6a9e6c9367"
+      }
+    },
+    {
+      "id": "document:00ad3a4b8436",
+      "type": "document",
+      "name": "资源副本五层重构与舱室材料副本 — Design Doc",
+      "filePath": "design/资源副本五层重构与舱室材料副本-2026-08-20.md",
+      "summary": "资源副本五层重构与舱室材料副本 — Design Doc",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "moderate",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 279,
+        "sha256": "1aa49c20877ec9c6f23972a86ff1ca475f7dbb68825d6aefd9037bc926b7f47a"
       }
     },
     {
@@ -1290,8 +1689,8 @@
       "layer": "design",
       "metadata": {
         "category": "harness",
-        "line_count": 27,
-        "sha256": "4a7a466ec2e2f6c0cf6e23818d401012240f98a19ad77e7bd2e544b832e2a544"
+        "line_count": 42,
+        "sha256": "bdbf87a7c56d1de39edda58eacca30e3b451074f45c95b4b702bf11f7839caf8"
       }
     },
     {
@@ -1352,6 +1751,25 @@
       }
     },
     {
+      "id": "document:135ea5be6b92",
+      "type": "document",
+      "name": "Proposal: 主线前三章删关奖励调整",
+      "filePath": "proposals/主线前三章删关奖励调整-2026-07-13.md",
+      "summary": "Proposal: 主线前三章删关奖励调整",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "proposal"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "proposal",
+        "line_count": 36,
+        "sha256": "49e95f40154af09347f29851766eebb722643d2722c092892ac1a847ea6cf363"
+      }
+    },
+    {
       "id": "document:6268c74d06bc",
       "type": "document",
       "name": "Proposal: 主线首通金币翻倍",
@@ -1404,8 +1822,27 @@
       "layer": "design",
       "metadata": {
         "category": "proposal",
-        "line_count": 22,
-        "sha256": "8ee08f971deb044e056d81b8c14834cf83a692f8fbfb2c87a0eb7139e0d2cef1"
+        "line_count": 23,
+        "sha256": "62a8feb211576d0da1a539f8a2159e27ba591858ac39cc377fe08b9b28a1b09e"
+      }
+    },
+    {
+      "id": "document:d5deb830cdf7",
+      "type": "document",
+      "name": "提案：映射装备副本掉落装备等级追平玩家等级",
+      "filePath": "proposals/映射装备副本掉落等级追平玩家等级-2026-09-02.md",
+      "summary": "提案：映射装备副本掉落装备等级追平玩家等级",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "proposal"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "proposal",
+        "line_count": 94,
+        "sha256": "0bd249944d365214058009154cd71e436b2a4f59183d1fd6f1c367d45f70f667"
       }
     },
     {
@@ -1425,6 +1862,25 @@
         "category": "proposal",
         "line_count": 42,
         "sha256": "22b5776a7f886c3777f1d485f24ee3c15110cdf167671283f99ccff28fa6adac"
+      }
+    },
+    {
+      "id": "document:a5bbd3a0eca3",
+      "type": "document",
+      "name": "Proposal: 竞技场怪物生命乘区需求",
+      "filePath": "proposals/竞技场怪物生命乘区需求-2026-07-14.md",
+      "summary": "Proposal: 竞技场怪物生命乘区需求",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "proposal"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "proposal",
+        "line_count": 129,
+        "sha256": "c573e8676f8eb402cd89c128b222c8e68fb37e569c62a9317ec4d485bfe09f3b"
       }
     },
     {
@@ -1542,6 +1998,44 @@
       }
     },
     {
+      "id": "document:c85eb7c1568c",
+      "type": "document",
+      "name": "映射与爬塔推荐战力同步正式UIlevel",
+      "filePath": "tasks/UIlevel推荐战力同步-2026-08-27.md",
+      "summary": "映射与爬塔推荐战力同步正式UIlevel",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 21,
+        "sha256": "937d496d15331cc09548f3c8abcb175f2295abc24671df0aa4f9dcbe345a18e2"
+      }
+    },
+    {
+      "id": "document:3e0da3e94c9c",
+      "type": "document",
+      "name": "Task: 主线前三章删关奖励调整",
+      "filePath": "tasks/主线前三章删关奖励调整-2026-07-13.md",
+      "summary": "Task: 主线前三章删关奖励调整",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 35,
+        "sha256": "fd6d8ecb5c19c59febc3cd84e0af0c1156b3445fecbcd66ad688616f9582eeeb"
+      }
+    },
+    {
       "id": "document:10b809b8e39b",
       "type": "document",
       "name": "Task: 主线首通金币翻倍执行",
@@ -1580,6 +2074,25 @@
       }
     },
     {
+      "id": "document:a01025acac5b",
+      "type": "document",
+      "name": "全玩法难度同步 SVN 工作副本",
+      "filePath": "tasks/全玩法难度同步SVN-2026-08-27.md",
+      "summary": "全玩法难度同步 SVN 工作副本",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 73,
+        "sha256": "7757efabdcbe9d052906966c5c3de848b7ed71cc3c97172834c0c0eff1640422"
+      }
+    },
+    {
       "id": "document:3c515dbd837b",
       "type": "document",
       "name": "数值生产工作流单仓迁移任务",
@@ -1594,8 +2107,46 @@
       "layer": "design",
       "metadata": {
         "category": "task",
-        "line_count": 11,
-        "sha256": "0e67c97f13fcfd60f325dfea96a784167be94fde2c84e03eaf4ff973ba63dd50"
+        "line_count": 12,
+        "sha256": "2f5c6039ebda064ca22b1bd641b91b1882b6215c9c2facf0e158ba233664c582"
+      }
+    },
+    {
+      "id": "document:246393d81901",
+      "type": "document",
+      "name": "源表统一与全玩法难度联动",
+      "filePath": "tasks/源表统一与全玩法难度联动-2026-08-27.md",
+      "summary": "源表统一与全玩法难度联动",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 39,
+        "sha256": "f6fcb65b6718b5a572971d2531e51bdd3483607e6eb79a9062f349f01428f71b"
+      }
+    },
+    {
+      "id": "document:db187bcc537c",
+      "type": "document",
+      "name": "爬塔280级封顶与前期降难度",
+      "filePath": "tasks/爬塔280级封顶与前期降难度-2026-08-27.md",
+      "summary": "爬塔280级封顶与前期降难度",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "task"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "task",
+        "line_count": 46,
+        "sha256": "2569422a66826e9d225a44a9726507dcf3c1a8bbf7efff37dad2926460cb9ed3"
       }
     },
     {
@@ -1613,8 +2164,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 11,
-        "sha256": "badd3b2c207b8e7344345d4f3a8bec5095734b10a342108062e36248534c23b0"
+        "line_count": 12,
+        "sha256": "ca6812a926171024186eafb43c4b009ea82822ac55d2ceae727240c0e1e7145d"
       }
     },
     {
@@ -1642,7 +2193,7 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（86份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（115份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
@@ -1657,22 +2208,38 @@
         "document:487697f18bea",
         "document:6316d1684f87",
         "document:18c671149656",
+        "document:4a743253e270",
+        "document:7c83e0fa5e5f",
         "document:74acaa4f574c",
         "document:360ac4879486",
         "document:2a009184f7b0",
         "document:44f7261307c7",
         "document:f5111ef7763a",
+        "document:39db3ff4c7d2",
         "document:3f208c0fb9c3",
         "document:4882c66d2091",
         "document:3bf6bbf18a5d",
         "document:2378f56b2353",
+        "document:f00a56cb3e4a",
+        "document:c37788df1d5f",
+        "document:75d1e7a6c0a8",
+        "document:0a12eb3c73f0",
+        "document:fd6c0fd994fc",
+        "document:80f9d0423ff4",
+        "document:da9443b16e79",
+        "document:3a0c8f2fa635",
+        "document:e110f7e0bad1",
+        "document:7790fa677d35",
+        "document:dd33b1ce7d0c",
         "document:2667be3df241",
         "document:a2f36e0a6b4c",
+        "document:0c7d7730bfbf",
         "document:8eae19eb3978",
         "document:8ca1753cbba3",
         "document:cc4408e56e27",
         "document:7e2d4b6e44a6",
         "document:0bc47e9e63d9",
+        "document:7b586aa0e9fc",
         "document:0c2343f2dcf2",
         "document:01f6a8c23a8a",
         "document:8f312864e493",
@@ -1681,19 +2248,24 @@
         "document:e9d8745b6ec8",
         "document:5dbf432d2672",
         "document:287cb0ab0b13",
+        "document:7553053e0035",
         "document:60ce44b676ff",
         "document:61e09bb1becb",
         "document:628cbf4f340c",
         "document:aa30e31a65a0",
+        "document:d3a6cba510ee",
+        "document:6ace4a19b314",
         "document:84a548fa694d",
         "document:952c9348db3c",
         "document:fdfaf62f631a",
         "document:a818265c760f",
+        "document:6305a9d9e641",
         "document:b51d25f37857",
         "document:2387fa5df778",
         "document:fe5ae2a54a2c",
         "document:24a0945aa31f",
         "document:43e289477609",
+        "document:00ad3a4b8436",
         "document:26843c697c95",
         "document:8400a5c36f45",
         "document:9b7723659bd1",
@@ -1715,26 +2287,34 @@
         "document:0dde5587a32b",
         "document:d00524f22f76",
         "document:c87739c5c66a",
+        "document:135ea5be6b92",
         "document:6268c74d06bc",
         "document:d88b2b68ad4e",
         "document:c42f5a20f908",
+        "document:d5deb830cdf7",
         "document:dff8119f5f8d",
+        "document:a5bbd3a0eca3",
         "document:cb6127d985e8",
         "document:240c2b50eb9f",
         "document:424882b888c7",
         "document:7c875fef5426",
         "document:a1f9f489774e",
         "document:70bd5cea30ff",
+        "document:c85eb7c1568c",
+        "document:3e0da3e94c9c",
         "document:10b809b8e39b",
         "document:569045608c19",
+        "document:a01025acac5b",
         "document:3c515dbd837b",
+        "document:246393d81901",
+        "document:db187bcc537c",
         "document:f7496c4bbd1e",
         "document:060c16cf65a7"
       ]
     }
   ],
   "statistics": {
-    "documents": 86,
+    "documents": 115,
     "edges": 0
   }
 }

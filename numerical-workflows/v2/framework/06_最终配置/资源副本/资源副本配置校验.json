@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-08-21T10:04:36+08:00",
+  "status": "REVIEW_MIRROR_GENERATED_NOT_READY_FOR_SVN",
+  "scope": "06_最终配置评审镜像；非正式Datas",
+  "formula_recalculation": "Excel COM CalculateFullRebuild completed for __enums__.xlsx, Drop_dungeon.xlsx, UIlevel.xlsx and Unlock.xlsx",
+  "checks": [
+    {
+      "name": "四类各5层启用",
+      "result": "PASS",
+      "detail": "启用20行，停用16行"
+    },
+    {
+      "name": "等级与储能字段",
+      "result": "PASS",
+      "detail": "等级要求1/20/30/40/50；UI储能为空；未误填每层3次"
+    },
+    {
+      "name": "底层首通奖励引用",
+      "result": "PASS",
+      "detail": "level.FirstReward与UIlevel.FirstRewardDrop同步到四类20个首通包"
+    },
+    {
+      "name": "Drop公式保护列",
+      "result": "PASS",
+      "detail": "ID/DropId/DropId2 与SVN源完全一致；未插入或删除行"
+    },
+    {
+      "name": "人工新增Drop行清单",
+      "result": "PASS",
+      "detail": "需人工新增0行：[]"
+    },
+    {
+      "name": "SVN源文件未修改",
+      "result": "PASS",
+      "detail": "生成前后11个SVN源文件SHA256一致"
+    },
+    {
+      "name": "公式错误扫描",
+      "result": "PASS",
+      "detail": "未发现Excel错误值"
+    }
+  ],
+  "blockers": [
+    "每类共享每日3次需要程序按LevelType实现，当前镜像未误配为每层3次。"
+  ],
+  "pending": [
+    "旧ThreeStarRewardDrop=10000002是否取消",
+    "金币CoinLevel与固定Drop结算总额联调",
+    "首通扣次数、失败/退出/断线、刷新、扫荡和批量结算规则",
+    "舱室材料入口专用UI图标"
+  ]
+}

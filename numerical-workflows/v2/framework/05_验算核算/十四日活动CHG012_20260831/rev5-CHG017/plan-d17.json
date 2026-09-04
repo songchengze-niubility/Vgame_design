@@ -1,0 +1,156 @@
+{
+  "batch": "USERV2-CHG017-D17",
+  "created": "2026-09-02T18:20:46.772380",
+  "edits": {
+    "5104": [
+      "映射装备副本最高通过第2层",
+      "Target_TTT_WeaponLevel_PassMax",
+      "0,2"
+    ],
+    "5106": [
+      "累计挑战资源副本3次",
+      "Target_TTT_Type_LevelClearNum",
+      "0,3"
+    ],
+    "5108": [
+      "分解1次装备",
+      "Target_TTT_BreakdowntSpecialEquipment_Num",
+      "0,1"
+    ],
+    "5204": [
+      "映射装备副本最高通过第4层",
+      "Target_TTT_WeaponLevel_PassMax",
+      "0,4"
+    ],
+    "5206": [
+      "累计挑战资源副本9次",
+      "Target_TTT_Type_LevelClearNum",
+      "0,9"
+    ],
+    "5207": [
+      "爬塔最高通过第5层",
+      "Target_TTT_Tower_MaxPassLayer",
+      "0,5"
+    ],
+    "5209": [
+      "获得8件15级以上的装备",
+      "Target_TTT_Invaild",
+      "15,8"
+    ],
+    "5210": [
+      "领取1次爬塔挂机奖励",
+      "Target_TTT_Invaild",
+      "0,1"
+    ],
+    "5304": [
+      "映射装备副本最高通过第5层",
+      "Target_TTT_WeaponLevel_PassMax",
+      "0,5"
+    ],
+    "5305": [
+      "累计挑战竞技场9次",
+      "Target_TTT_Arena_Challenge_Times",
+      "0,9"
+    ],
+    "5306": [
+      "爬塔最高通过第8层",
+      "Target_TTT_Tower_MaxPassLayer",
+      "0,8"
+    ],
+    "5307": [
+      "累计挑战资源副本15次",
+      "Target_TTT_Type_LevelClearNum",
+      "0,15"
+    ],
+    "5310": [
+      "获得4件20级以上的装备",
+      "Target_TTT_Invaild",
+      "20,4"
+    ],
+    "5404": [
+      "映射装备副本最高通过第6层",
+      "Target_TTT_WeaponLevel_PassMax",
+      "0,6"
+    ],
+    "5405": [
+      "累计挑战竞技场12次",
+      "Target_TTT_Arena_Challenge_Times",
+      "0,12"
+    ],
+    "5406": [
+      "爬塔最高通过第12层",
+      "Target_TTT_Tower_MaxPassLayer",
+      "0,12"
+    ],
+    "5407": [
+      "通关BOSS最高通过难度1",
+      "Target_TTT_BossChallenge_AnyBossDifficulty",
+      "0,1"
+    ],
+    "5504": [
+      "映射装备副本最高通过第7层",
+      "Target_TTT_WeaponLevel_PassMax",
+      "0,7"
+    ],
+    "5505": [
+      "累计挑战竞技场15次",
+      "Target_TTT_Arena_Challenge_Times",
+      "0,15"
+    ],
+    "5506": [
+      "爬塔最高通过第15层",
+      "Target_TTT_Tower_MaxPassLayer",
+      "0,15"
+    ],
+    "5507": [
+      "通关BOSS最高通过难度2",
+      "Target_TTT_BossChallenge_AnyBossDifficulty",
+      "0,2"
+    ],
+    "5508": [
+      "通关高难1-5",
+      "Target_TTT_pass_Level",
+      "110105,1"
+    ],
+    "5604": [
+      "映射装备副本最高通过第9层",
+      "Target_TTT_WeaponLevel_PassMax",
+      "0,9"
+    ],
+    "5605": [
+      "累计挑战竞技场18次",
+      "Target_TTT_Arena_Challenge_Times",
+      "0,18"
+    ],
+    "5606": [
+      "爬塔最高通过第18层",
+      "Target_TTT_Tower_MaxPassLayer",
+      "0,18"
+    ],
+    "5609": [
+      "通关高难2-3",
+      "Target_TTT_pass_Level",
+      "110203,1"
+    ],
+    "5704": [
+      "映射装备副本最高通过第10层",
+      "Target_TTT_WeaponLevel_PassMax",
+      "0,10"
+    ],
+    "5705": [
+      "累计挑战竞技场21次",
+      "Target_TTT_Arena_Challenge_Times",
+      "0,21"
+    ],
+    "5706": [
+      "爬塔最高通过第22层",
+      "Target_TTT_Tower_MaxPassLayer",
+      "0,22"
+    ],
+    "5710": [
+      "邮票副本最高通过第1层",
+      "Target_TTT_StrategyCardLevel_PassMax",
+      "0,1"
+    ]
+  }
+}

@@ -1,0 +1,8575 @@
+{
+  "revision": "CHG-019",
+  "scope": "06候选配置；非正式Datas导出",
+  "summary": {
+    "checks": 1697,
+    "pass": 1697,
+    "fail": 0
+  },
+  "checks": [
+    {
+      "name": "Drop业务ID集合未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop总行数696",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "本次补18行或幂等重跑0行",
+      "result": "PASS",
+      "detail": [
+        [
+          22310,
+          1099
+        ],
+        [
+          22310,
+          1102
+        ],
+        [
+          22310,
+          1105
+        ],
+        [
+          22320,
+          1109
+        ],
+        [
+          22320,
+          1112
+        ],
+        [
+          22320,
+          1115
+        ],
+        [
+          22321,
+          1109
+        ],
+        [
+          22321,
+          1112
+        ],
+        [
+          22321,
+          1115
+        ],
+        [
+          22322,
+          1118
+        ],
+        [
+          22322,
+          1121
+        ],
+        [
+          22322,
+          1124
+        ],
+        [
+          22323,
+          1118
+        ],
+        [
+          22323,
+          1121
+        ],
+        [
+          22323,
+          1124
+        ],
+        [
+          22324,
+          1118
+        ],
+        [
+          22324,
+          1121
+        ],
+        [
+          22324,
+          1124
+        ]
+      ]
+    },
+    {
+      "name": "非本次DropId20000010逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000010数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000010权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000011逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000011数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000011权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000012逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000012数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000012权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000013逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000013数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000013权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000014逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000014数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000014权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000015逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000015数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000015权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000016逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000016数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000016权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000017逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000017数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000017权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000018逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000018数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000018权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000019逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000019数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000019权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000020逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000020数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000020权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000021逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000021数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000021权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000022逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000022数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000022权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000023逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000023数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000023权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000024逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000024数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000024权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000025逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000025数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000025权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000026逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000026数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000026权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000027逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000027数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000027权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000028逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000028数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000028权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000029逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000029数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000029权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000030逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000030数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000030权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000031逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000031数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000031权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000032逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000032数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000032权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000033逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000033数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000033权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000034逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000034数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000034权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000035逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000035数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000035权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000036逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000036数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000036权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000037逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000037数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000037权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000038逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000038数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000038权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20000039逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000039数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20000039权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005101逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005101数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005101权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005102逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005102数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005102权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005103逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005103数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005103权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005104逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005104数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005104权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005105逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005105数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005105权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005106逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005106数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005106权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005107逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005107数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005107权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005108逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005108数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005108权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005109逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005109数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005109权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005110逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005110数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005110权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005111逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005111数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005111权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005112逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005112数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005112权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005113逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005113数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005113权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005114逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005114数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005114权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005115逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005115数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005115权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005116逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005116数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005116权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005117逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005117数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005117权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005118逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005118数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005118权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005119逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005119数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005119权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005120逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005120数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005120权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005121逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005121数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005121权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005122逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005122数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005122权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005123逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005123数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005123权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005124逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005124数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005124权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005125逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005125数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005125权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005126逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005126数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005126权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005127逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005127数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005127权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005128逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005128数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005128权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005129逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005129数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005129权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId20005130逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005130数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId20005130权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22101数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22101权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22102数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22102权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22103数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22103权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22104数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22104权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22105数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22105权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22106数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22106权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22107数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22107权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22108数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22108权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22109数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22109权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22110数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22110权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22111数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22111权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22112数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22112权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22113数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22113权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22114数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22114权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22115数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22115权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22116数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22116权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22117数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22117权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22118数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22118权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22119数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22119权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22120数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22120权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22121数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22121权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22122数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22122权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22123数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22123权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22124数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22124权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22125数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22125权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22126数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22126权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22127数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22127权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22128数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22128权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22129数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22129权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22130数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22130权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22201数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22201权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22202数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22202权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22203数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22203权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22204数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22204权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22205数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22205权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22206数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22206权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22207数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22207权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22208数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22208权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22209数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22209权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22210数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22210权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22211数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22211权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22212数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22212权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22213数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22213权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22214数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22214权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22215数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22215权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22216数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22216权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22217数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22217权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22218数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22218权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22219数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22219权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22220数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22220权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22221数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22221权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22222数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22222权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22223数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22223权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22224数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22224权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22225数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22225权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22226数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22226权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22227数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22227权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22228数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22228权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22229数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22229权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22230数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22230权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId22306逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22306数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22306权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId22307逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22307数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22307权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId22308逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22308数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22308权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId22309逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22309数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22309权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22310数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22310权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22311数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22311权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22312数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22312权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22313数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22313权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22314数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22314权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22315数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22315权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22316数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22316权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22317数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22317权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22318数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22318权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22319数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22319权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22320数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22320权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22321数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22321权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22322数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22322权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22323数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22323权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22324数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22324权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22325数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22325权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22326数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22326权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22327数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22327权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22328数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22328权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22329数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22329权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22330数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22330权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId22400逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22400数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22400权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId22451逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22451数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22451权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId22452逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22452数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22452权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "非本次DropId22453逐值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22453数量范围合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "DropId22453权重为非负int32",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4201全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4202全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4203全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4204全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4205全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4206全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4207全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4208全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4209全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4210全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4211全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4212全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4213全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4214全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4215全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4216全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4217全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4218全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4219全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4220全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4221全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4222全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4223全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4224全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4225全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4226全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4227全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4228全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4229全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4230全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4231全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4232全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4233全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4234全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4235全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4236全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4237全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4238全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4239全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4240全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4241全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4242全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4243全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4244全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4245全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4246全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4247全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4248全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4249全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4250全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4251全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4252全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4253全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4254全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4255全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4256全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4257全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4258全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4259全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4260全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4261全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4262全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4263全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4264全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4265全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4266全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4267全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4268全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4269全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4270全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4271全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4272全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4273全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4274全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4275全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4276全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4277全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4278全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4279全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4280全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4281全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4282全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4283全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4284全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4285全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4286全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4287全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4288全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4289全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4290全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4291全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4292全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4293全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4294全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4295全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4296全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4297全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4298全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4299全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4300全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4301全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4302全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4303全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4304全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4305全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4306全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4307全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4308全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4309全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4310全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4311全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4312全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4313全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4314全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4315全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4316全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4317全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4318全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4319全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4320全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4321全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4322全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4323全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4324全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4325全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4326全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4327全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4328全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4329全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4330全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4331全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4332全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4333全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4334全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4335全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4336全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4337全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4338全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4339全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4340全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4341全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4342全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4343全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4344全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4345全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4346全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4347全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4348全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4349全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4350全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1080全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1081全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1082全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1083全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1084全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1085全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1086全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1087全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1088全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1089全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1090全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1091全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1092全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1093全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1094全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1095全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1096全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1097全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1098全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1099全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1100全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1101全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1102全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1103全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1104全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1105全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1106全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1107全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1108全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1109全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1110全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1111全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1112全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1113全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1114全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1115全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1116全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1117全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1118全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1119全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1120全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1121全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1122全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1123全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1124全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1125全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1126全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1127全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1128全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1129全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1130全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1131全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1132全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1133全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1134全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1135全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1136全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1137全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1138全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1139全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1140全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1141全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1142全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1143全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1144全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1145全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1146全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1147全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1148全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1149全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1150全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1151全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1152全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1153全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1154全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1155全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4351全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4352全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4353全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4354全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4365全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4366全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4367全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4368全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4369全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4370全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4371全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4372全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4355全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4356全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4357全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4358全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4359全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4360全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4361全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4362全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4363全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4364全部字段未变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "45个新UI Item全部存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI占位无发放引用",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI占位不调用开箱",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "新增候选Item未占正式ID",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "真实掉落Item引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI表头不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "150个UI LevelId完全保留",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L1金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L1红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L1绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L1紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L1额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250011只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250011全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250011品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250011等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250012只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250012全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250012品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250012等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250013只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250013全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250013品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250013等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250014只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250014全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250014品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250014等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250015只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250015全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250015品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250015等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L2金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L2红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L2绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L2紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L2额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250021只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250021全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250021品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250021等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250022只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250022全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250022品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250022等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250023只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250023全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250023品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250023等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250024只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250024全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250024品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250024等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250025只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250025全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250025品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250025等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L3金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L3红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L3绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L3紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L3额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250031只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250031全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250031品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250031等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250032只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250032全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250032品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250032等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250033只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250033全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250033品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250033等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250034只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250034全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250034品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250034等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250035只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250035全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250035品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250035等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L4金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L4红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L4绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L4紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L4额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250041只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250041全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250041品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250041等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250042只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250042全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250042品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250042等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250043只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250043全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250043品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250043等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250044只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250044全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250044品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250044等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250045只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250045全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250045品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250045等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L5金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L5红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L5绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L5紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L5额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250051只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250051全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250051品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250051等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250052只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250052全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250052品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250052等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250053只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250053全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250053品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250053等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250054只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250054全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250054品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250054等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250055只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250055全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250055品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250055等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L6主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250061只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250061全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250061品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250061等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250061材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250062只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250062全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250062品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250062等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250062材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250063只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250063全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250063品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250063等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250063材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250064只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250064全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250064品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250064等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250064材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250065只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250065全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250065品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250065等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250065材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L7主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250071只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250071全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250071品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250071等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250071材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250072只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250072全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250072品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250072等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250072材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250073只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250073全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250073品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250073等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250073材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250074只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250074全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250074品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250074等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250074材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250075只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250075全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250075品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250075等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250075材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L8主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250081只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250081全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250081品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250081等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250081材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250082只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250082全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250082品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250082等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250082材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250083只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250083全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250083品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250083等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250083材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250084只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250084全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250084品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250084等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250084材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250085只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250085全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250085品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250085等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250085材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L9主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250091只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250091全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250091品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250091等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250091材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250092只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250092全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250092品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250092等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250092材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250093只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250093全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250093品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250093等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250093材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250094只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250094全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250094品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250094等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250094材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250095只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250095全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250095品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250095等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250095材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L10主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250101只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250101全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250101品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250101等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250101材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250102只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250102全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250102品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250102等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250102材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250103只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250103全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250103品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250103等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250103材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250104只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250104全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250104品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250104等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250104材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250105只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250105全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250105品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250105等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250105材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L11主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250111只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250111全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250111品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250111等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250111材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250112只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250112全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250112品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250112等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250112材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250113只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250113全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250113品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250113等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250113材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250114只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250114全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250114品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250114等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250114材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250115只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250115全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250115品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250115等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250115材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L12主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250121只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250121全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250121品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250121等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250121材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250122只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250122全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250122品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250122等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250122材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250123只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250123全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250123品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250123等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250123材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250124只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250124全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250124品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250124等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250124材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250125只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250125全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250125品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250125等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250125材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L13主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250131只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250131全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250131品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250131等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250131材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250132只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250132全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250132品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250132等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250132材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250133只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250133全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250133品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250133等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250133材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250134只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250134全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250134品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250134等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250134材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250135只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250135全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250135品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250135等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250135材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L14主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250141只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250141全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250141品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250141等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250141材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250142只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250142全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250142品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250142等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250142材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250143只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250143全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250143品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250143等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250143材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250144只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250144全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250144品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250144等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250144材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250145只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250145全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250145品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250145等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250145材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L15主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250151只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250151全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250151品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250151等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250151材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250152只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250152全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250152品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250152等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250152材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250153只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250153全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250153品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250153等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250153材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250154只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250154全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250154品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250154等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250154材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250155只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250155全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250155品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250155等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250155材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L16主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250161只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250161全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250161品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250161等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250161材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250162只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250162全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250162品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250162等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250162材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250163只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250163全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250163品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250163等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250163材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250164只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250164全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250164品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250164等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250164材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250165只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250165全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250165品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250165等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250165材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L17主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250171只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250171全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250171品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250171等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250171材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250172只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250172全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250172品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250172等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250172材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250173只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250173全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250173品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250173等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250173材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250174只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250174全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250174品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250174等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250174材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250175只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250175全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250175品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250175等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250175材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L18主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250181只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250181全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250181品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250181等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250181材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250182只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250182全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250182品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250182等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250182材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250183只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250183全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250183品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250183等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250183材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250184只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250184全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250184品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250184等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250184材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250185只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250185全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250185品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250185等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250185材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L19主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250191只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250191全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250191品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250191等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250191材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250192只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250192全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250192品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250192等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250192材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250193只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250193全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250193品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250193等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250193材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250194只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250194全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250194品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250194等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250194材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250195只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250195全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250195品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250195等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250195材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L20主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250201只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250201全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250201品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250201等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250201材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250202只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250202全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250202品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250202等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250202材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250203只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250203全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250203品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250203等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250203材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250204只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250204全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250204品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250204等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250204材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250205只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250205全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250205品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250205等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250205材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L21主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250211只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250211全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250211品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250211等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250211材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250212只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250212全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250212品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250212等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250212材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250213只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250213全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250213品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250213等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250213材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250214只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250214全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250214品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250214等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250214材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250215只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250215全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250215品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250215等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250215材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L22主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250221只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250221全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250221品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250221等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250221材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250222只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250222全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250222品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250222等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250222材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250223只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250223全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250223品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250223等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250223材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250224只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250224全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250224品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250224等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250224材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250225只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250225全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250225品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250225等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250225材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L23主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250231只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250231全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250231品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250231等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250231材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250232只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250232全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250232品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250232等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250232材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250233只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250233全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250233品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250233等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250233材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250234只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250234全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250234品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250234等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250234材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250235只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250235全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250235品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250235等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250235材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L24主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250241只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250241全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250241品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250241等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250241材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250242只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250242全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250242品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250242等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250242材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250243只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250243全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250243品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250243等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250243材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250244只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250244全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250244品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250244等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250244材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250245只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250245全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250245品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250245等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250245材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L25主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250251只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250251全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250251品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250251等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250251材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250252只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250252全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250252品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250252等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250252材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250253只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250253全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250253品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250253等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250253材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250254只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250254全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250254品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250254等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250254材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250255只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250255全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250255品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250255等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250255材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L26主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250261只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250261全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250261品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250261等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250261材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250262只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250262全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250262品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250262等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250262材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250263只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250263全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250263品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250263等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250263材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250264只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250264全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250264品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250264等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250264材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250265只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250265全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250265品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250265等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250265材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L27主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250271只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250271全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250271品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250271等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250271材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250272只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250272全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250272品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250272等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250272材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250273只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250273全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250273品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250273等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250273材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250274只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250274全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250274品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250274等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250274材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250275只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250275全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250275品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250275等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250275材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L28主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250281只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250281全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250281品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250281等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250281材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250282只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250282全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250282品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250282等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250282材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250283只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250283全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250283品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250283等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250283材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250284只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250284全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250284品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250284等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250284材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250285只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250285全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250285品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250285等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250285材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29额外箱内品质精确匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L29主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250291只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250291全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250291品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250291等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250291材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250292只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250292全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250292品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250292等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250292材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250293只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250293全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250293品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250293等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250293材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250294只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250294全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250294品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250294等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250294材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250295只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250295全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250295品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250295等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250295材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30金箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30红箱曲线",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30绿蓝与原值相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30紫承接剩余",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30额外箱触发率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30主材总掉率保持",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30主材品质0精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30主材品质1精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30主材品质2精确",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30主材大类0比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30主材大类1比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L30主材大类2比例",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250301只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250301全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250301品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250301等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250301材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250302只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250302全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250302品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250302等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250302材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250303只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250303全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250303品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250303等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250303材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250304只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250304全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250304品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250304等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250304材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250305只改Des/Reward",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250305全部引用存在且数量-1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250305品质等级顺序匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250305等级文案完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250305材料最高品质匹配",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop_dungeon.xlsx缓存无公式错误",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "Items.xlsx缓存无公式错误",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "UIlevel.xlsx缓存无公式错误",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "00_配置清单.xlsx缓存无公式错误",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "核对页第30层终点",
+      "result": "PASS",
+      "detail": null
+    }
+  ],
+  "knownLimits": [
+    "未运行正式Datas导出或客户端实机验收。",
+    "首通保留本次前06镜像；与正式工作副本已有差异未纳入本次变更。",
+    "旧第1～9层额外箱池保留原整数取整；第10层起精确归一化。"
+  ],
+  "formal_items_sha256": "4251c95feb8c8061ec21db5aefcd52f7368c4a85269897511c200269fb348c95"
+}

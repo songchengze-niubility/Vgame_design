@@ -1,0 +1,2337 @@
+{
+  "revision": "CHG-022",
+  "output": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备",
+  "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射装备CHG022_候选备份\\20260827T054129",
+  "summary": {
+    "checks": 565,
+    "pass": 565,
+    "fail": 0
+  },
+  "checks": [
+    {
+      "name": "Drop_dungeon.xlsx仅指定业务单元格及新增4375行变化",
+      "result": "PASS"
+    },
+    {
+      "name": "Items.xlsx仅指定业务单元格及新增4375行变化",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentGenerate.xlsx仅指定业务单元格及新增4375行变化",
+      "result": "PASS"
+    },
+    {
+      "name": "UIlevel.xlsx仅指定业务单元格及新增4375行变化",
+      "result": "PASS"
+    },
+    {
+      "name": "第三层实际包固定发4375和25各1",
+      "result": "PASS"
+    },
+    {
+      "name": "4375唯一且确为实际开箱道具",
+      "result": "PASS"
+    },
+    {
+      "name": "4375外观蓝色而产物为金色",
+      "result": "PASS"
+    },
+    {
+      "name": "4375仅10级且固定一件",
+      "result": "PASS"
+    },
+    {
+      "name": "4375文案精确且非占位",
+      "result": "PASS"
+    },
+    {
+      "name": "4375只由第三层首通发放",
+      "result": "PASS"
+    },
+    {
+      "name": "4375没有固定装备ID覆写",
+      "result": "PASS"
+    },
+    {
+      "name": "4375部位保留8部位",
+      "result": "PASS"
+    },
+    {
+      "name": "文档30层与4375例外完整",
+      "result": "PASS"
+    },
+    {
+      "name": "L1实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L1首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250011首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250011首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250011常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250012首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250012首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250012常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250013首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250013首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250013常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250014首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250014首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250014常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250015首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250015首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250015常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L2实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L2首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250021首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250021首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250021常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250022首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250022首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250022常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250023首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250023首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250023常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250024首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250024首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250024常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250025首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250025首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250025常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L3实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L3首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250031首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250031首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250031常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250032首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250032首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250032常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250033首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250033首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250033常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250034首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250034首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250034常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250035首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250035首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250035常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L4实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L4首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250041首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250041首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250041常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250042首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250042首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250042常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250043首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250043首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250043常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250044首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250044首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250044常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250045首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250045首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250045常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L5实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L5首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250051首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250051首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250051常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250052首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250052首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250052常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250053首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250053首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250053常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250054首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250054首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250054常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250055首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250055首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250055常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L6实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L6首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250061首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250061首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250061常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250062首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250062首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250062常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250063首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250063首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250063常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250064首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250064首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250064常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250065首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250065首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250065常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L7实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L7首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250071首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250071首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250071常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250072首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250072首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250072常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250073首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250073首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250073常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250074首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250074首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250074常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250075首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250075首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250075常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L8实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L8首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250081首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250081首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250081常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250082首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250082首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250082常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250083首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250083首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250083常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250084首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250084首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250084常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250085首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250085首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250085常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L9实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L9首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250091首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250091首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250091常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250092首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250092首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250092常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250093首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250093首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250093常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250094首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250094首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250094常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250095首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250095首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250095常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L10实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L10首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250101首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250101首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250101常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250102首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250102首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250102常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250103首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250103首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250103常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250104首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250104首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250104常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250105首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250105首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250105常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L11实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L11首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250111首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250111首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250111常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250112首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250112首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250112常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250113首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250113首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250113常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250114首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250114首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250114常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250115首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250115首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250115常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L12实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L12首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250121首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250121首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250121常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250122首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250122首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250122常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250123首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250123首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250123常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250124首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250124首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250124常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250125首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250125首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250125常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L13实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L13首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250131首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250131首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250131常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250132首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250132首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250132常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250133首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250133首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250133常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250134首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250134首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250134常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250135首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250135首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250135常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L14实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L14首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250141首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250141首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250141常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250142首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250142首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250142常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250143首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250143首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250143常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250144首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250144首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250144常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250145首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250145首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250145常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L15实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L15首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250151首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250151首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250151常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250152首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250152首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250152常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250153首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250153首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250153常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250154首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250154首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250154常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250155首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250155首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250155常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L16实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L16首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250161首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250161首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250161常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250162首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250162首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250162常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250163首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250163首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250163常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250164首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250164首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250164常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250165首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250165首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250165常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L17实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L17首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250171首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250171首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250171常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250172首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250172首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250172常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250173首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250173首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250173常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250174首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250174首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250174常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250175首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250175首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250175常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L18实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L18首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250181首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250181首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250181常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250182首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250182首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250182常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250183首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250183首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250183常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250184首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250184首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250184常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250185首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250185首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250185常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L19实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L19首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250191首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250191首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250191常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250192首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250192首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250192常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250193首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250193首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250193常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250194首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250194首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250194常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250195首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250195首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250195常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L20实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L20首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250201首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250201首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250201常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250202首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250202首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250202常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250203首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250203首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250203常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250204首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250204首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250204常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250205首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250205首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250205常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L21实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L21首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250211首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250211首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250211常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250212首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250212首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250212常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250213首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250213首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250213常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250214首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250214首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250214常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250215首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250215首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250215常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L22实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L22首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250221首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250221首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250221常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250222首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250222首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250222常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250223首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250223首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250223常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250224首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250224首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250224常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250225首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250225首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250225常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L23实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L23首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250231首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250231首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250231常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250232首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250232首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250232常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250233首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250233首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250233常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250234首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250234首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250234常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250235首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250235首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250235常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L24实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L24首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250241首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250241首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250241常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250242首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250242首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250242常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250243首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250243首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250243常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250244首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250244首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250244常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250245首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250245首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250245常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L25实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L25首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250251首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250251首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250251常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250252首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250252首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250252常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250253首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250253首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250253常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250254首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250254首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250254常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250255首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250255首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250255常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L26实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L26首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250261首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250261首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250261常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250262首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250262首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250262常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250263首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250263首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250263常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250264首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250264首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250264常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250265首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250265首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250265常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L27实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L27首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250271首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250271首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250271常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250272首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250272首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250272常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250273首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250273首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250273常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250274首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250274首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250274常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250275首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250275首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250275常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L28实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L28首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250281首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250281首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250281常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250282首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250282首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250282常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250283首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250283首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250283常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250284首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250284首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250284常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250285首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250285首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250285常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L29实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L29首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250291首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250291首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250291常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250292首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250292首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250292常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250293首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250293首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250293常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250294首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250294首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250294常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250295首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250295首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250295常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "L30实际首通符合MD且无子池",
+      "result": "PASS"
+    },
+    {
+      "name": "L30首通预览描述等级与开箱一致",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250301首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250301首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250301常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250302首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250302首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250302常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250303首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250303首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250303常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250304首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250304首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250304常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250305首通预览完整对应实际必得项",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250305首通常规联合展示引用有效",
+      "result": "PASS"
+    },
+    {
+      "name": "UI250305常规预览不含专用首通箱",
+      "result": "PASS"
+    },
+    {
+      "name": "首通开装品质期望更新为1.6/5.5/9.9/9.84/3.16",
+      "result": "PASS"
+    },
+    {
+      "name": "Drop_dungeon.xlsx所有公式不变",
+      "result": "PASS"
+    },
+    {
+      "name": "Drop_dungeon.xlsx无单元格错误",
+      "result": "PASS"
+    },
+    {
+      "name": "Items.xlsx所有公式不变",
+      "result": "PASS"
+    },
+    {
+      "name": "Items.xlsx无单元格错误",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentGenerate.xlsx所有公式不变",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentGenerate.xlsx无单元格错误",
+      "result": "PASS"
+    },
+    {
+      "name": "UIlevel.xlsx所有公式不变",
+      "result": "PASS"
+    },
+    {
+      "name": "UIlevel.xlsx无单元格错误",
+      "result": "PASS"
+    },
+    {
+      "name": "00_配置清单.xlsx所有公式不变",
+      "result": "PASS"
+    },
+    {
+      "name": "00_配置清单.xlsx无单元格错误",
+      "result": "PASS"
+    },
+    {
+      "name": "SVN未改 Drop_dungeon.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "SVN未改 Items.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "SVN未改 SpecialEquipmentGenerate.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "SVN未改 UIlevel.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "SVN未改 EquipmentLevel.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 EquipmentLevel.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 ItemAccess.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 PortableCompoundProb.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 PortableCraftProb.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 PortableEquipCompound.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 PortableEquipCraft.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 PortableExp.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 PortableLvUp.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 PortableRange.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 SpecialEquipment.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 SpecialEquipmentEffect.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 SpecialEquipmentMain.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 SpecialEquipmentQuality.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 SpecialEquipmentSubAttrCoef.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 SystemOpen.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "其他候选未改 Unlock.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "已确认MD未被并发修改",
+      "result": "PASS"
+    },
+    {
+      "name": "生成器真实Drop使用4375",
+      "result": "PASS"
+    },
+    {
+      "name": "生成器实际箱身份正确",
+      "result": "PASS"
+    },
+    {
+      "name": "生成器开箱固定10级金装",
+      "result": "PASS"
+    },
+    {
+      "name": "生成器五变体均匙1箱1",
+      "result": "PASS"
+    },
+    {
+      "name": "生成器包含专用开箱记录",
+      "result": "PASS"
+    },
+    {
+      "name": "全量纯函数生成151个实际箱且4375唯一",
+      "result": "PASS"
+    },
+    {
+      "name": "全量纯函数生成151个开箱记录且4375唯一",
+      "result": "PASS"
+    },
+    {
+      "name": "全量首通75行且仅第三层发4375",
+      "result": "PASS"
+    }
+  ],
+  "files": {
+    "Drop_dungeon.xlsx": "0ae699273764071295e838b4c312d73c28551053a5ebb9b51919dbec07b8fda2",
+    "Items.xlsx": "4f9ff9d45cf5d134280bd4cbea64e18f06f6b1b77df78846749beb0fd382629b",
+    "SpecialEquipmentGenerate.xlsx": "eaa5555e884cbc7fe85b1883a5bbdb2921c6743e45ff75ba369a29fffb7db6d7",
+    "UIlevel.xlsx": "1761b5c1fb0ac0b1336207292739b26cf653d553e9c9f3d6344ceeb584a56754",
+    "00_配置清单.xlsx": "9b428faa7f72861144f2fb63cccf24b8851c175914f361e8a2b8e150f49ad64f"
+  },
+  "formalUnchangedGaps": {
+    "missingRewardItems": [
+      4403,
+      4404,
+      4405,
+      4406,
+      4407,
+      4408,
+      4409,
+      4410,
+      4411,
+      4412,
+      4413,
+      4414,
+      4415,
+      4416,
+      4417,
+      4418,
+      4419,
+      4420,
+      4421,
+      4422,
+      4423,
+      4424,
+      4425,
+      4426,
+      4427,
+      4428,
+      4429,
+      4430,
+      4431,
+      4432,
+      4433,
+      4434,
+      4435,
+      4436,
+      4437,
+      4438,
+      4439,
+      4440,
+      4441,
+      4442,
+      4443,
+      4444,
+      4445,
+      4446,
+      4447
+    ],
+    "oldKeyPreviewRows": 120,
+    "notPublished": true
+  },
+  "firstEquipmentExpectation": {
+    "Green": "8/5",
+    "Blue": "11/2",
+    "Orange": "246/25",
+    "Purple": "99/10",
+    "Red": "79/25"
+  }
+}

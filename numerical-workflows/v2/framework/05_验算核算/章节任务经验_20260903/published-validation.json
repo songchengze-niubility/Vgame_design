@@ -1,0 +1,129 @@
+{
+  "batch": "CHAPTER-TASK-EXP-20260903",
+  "checks": [
+    {
+      "check": "md_69_rows",
+      "ok": true,
+      "detail": "69"
+    },
+    {
+      "check": "md_mainline_rows_retargeted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_all_rows_have_exp",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_totals_row",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_chg009",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_no_stale_1030201_in_mounted",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "design_chg006",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "batch_doc_exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "manifest_updated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "rows_same_count_round2",
+      "ok": true,
+      "detail": "585->585"
+    },
+    {
+      "check": "exactly_32_exp_value_changes",
+      "ok": true,
+      "detail": "[(1030206, 4, 50, 100), (1030408, 4, 150, 200), (1030611, 4, 250, 200)]"
+    },
+    {
+      "check": "min_max_both_updated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "task_still_exactly_20_changes",
+      "ok": true,
+      "detail": "20"
+    },
+    {
+      "check": "md_mount_69",
+      "ok": true,
+      "detail": "69"
+    },
+    {
+      "check": "exp_totals_600_800_1800_2000_2400_3600_3600",
+      "ok": true,
+      "detail": "{1: 600, 2: 800, 3: 1800, 4: 2000, 5: 2400, 6: 3600, 7: 3600}"
+    },
+    {
+      "check": "no_task_missing_exp",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "grand_total_14800",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_ladder_text",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_totals_row_14800",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_69_rows_match_ladder",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "svn_read_only_round2",
+      "ok": true,
+      "detail": "hashes re-archived"
+    },
+    {
+      "check": "mounted_task_exp_match_ladder",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "all_mounted_tasks_resolve",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "svn_hashes": {
+    "Task": "d638b49498f9c3b2a886ff3bb412e63c",
+    "Drop_other": "a197c88cac799ccdd68f0707459ee9b8",
+    "Items": "19b61dc03be661ab9d920c724b1e3c83",
+    "SpecialEquipmentGenerate": "0ed69979d71ba185ec21e3b112c0d050",
+    "Jottings": "e1a219700ee07138cd11c7567bc1de50",
+    "PlayerLv": "1f84e0f1fded782ade262425a762dd65"
+  },
+  "status": "PASS_STATIC_WITH_RUNTIME_GATES"
+}

@@ -1,0 +1,100 @@
+{
+  "batch": "CHAPTER-REWARD-20260903",
+  "date": "2026-09-03",
+  "rounds": 2,
+  "checks": [
+    {
+      "check": "net_diff_whitelist",
+      "ok": true,
+      "detail": "removed=[(1040202, 103)] added=[(1040206, 103), (1040208, 103)]"
+    },
+    {
+      "check": "other_rows_identical_in_order",
+      "ok": true,
+      "detail": "mism=0 dels=1 ins=2 end=521/521,522/522"
+    },
+    {
+      "check": "ids_unique",
+      "ok": true,
+      "detail": "n=503"
+    },
+    {
+      "check": "new_ids_present",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ch1_no_molycrystal",
+      "ok": true,
+      "detail": "[(106, 3), (111, 3), (102, 8), (3016, 5)]"
+    },
+    {
+      "check": "ch3_molycrystal_retained",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "ch5_molycrystal_added",
+      "ok": true,
+      "detail": "[(106, 3), (111, 3), (107, 10), (110, 5), (3011, 2), (2508, 1), (103, 1)]"
+    },
+    {
+      "check": "ch7_molycrystal_added",
+      "ok": true,
+      "detail": "[(106, 3), (111, 3), (107, 10), (2510, 1), (3013, 2), (3018, 5), (103, 1)]"
+    },
+    {
+      "check": "kinds_per_chapter",
+      "ok": true,
+      "detail": "{1040202: 4, 1040203: 5, 1040204: 6, 1040205: 5, 1040206: 7, 1040207: 6, 1040208: 7}"
+    },
+    {
+      "check": "items_staging_diff_whitelist",
+      "ok": true,
+      "detail": "{'Name': [2505, 2506, 2507, 2508, 2509, 2510], 'Icon': [2505, 2506], 'ItemQuality': [2505, 2506], 'Description': [2505, 2506, 2507, 2508, 2509, 2510]}"
+    },
+    {
+      "check": "pool_staging_diff_whitelist",
+      "ok": true,
+      "detail": "{'GradeList': [4621, 4622, 4623, 4624, 4625, 4626], 'QualityList': [4621, 4622]}"
+    },
+    {
+      "check": "svn_read_only",
+      "ok": true,
+      "detail": "本批次SVN访问均为read_only；哈希存档"
+    },
+    {
+      "check": "md_ch5_molycrystal",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_ch7_molycrystal",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_ch1_clean",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_total_3",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "md_kinds_note",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "svn_hashes": {
+    "Items": "19b61dc03be661ab9d920c724b1e3c83",
+    "SpecialEquipmentGenerate": "0ed69979d71ba185ec21e3b112c0d050",
+    "Jottings": "e1a219700ee07138cd11c7567bc1de50",
+    "Task": "d638b49498f9c3b2a886ff3bb412e63c",
+    "Drop_other": "a197c88cac799ccdd68f0707459ee9b8"
+  },
+  "status": "PASS_STATIC_WITH_RUNTIME_GATES"
+}

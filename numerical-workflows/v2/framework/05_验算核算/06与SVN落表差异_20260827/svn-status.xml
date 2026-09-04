@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<status>
+<target
+   path="D:\Vgame\Config\GameConfig\Datas">
+<entry
+   path="D:\Vgame\Config\GameConfig\Datas\SpecialEquipment\SpecialEquipment.xlsx">
+<wc-status
+   item="modified"
+   revision="40473"
+   props="normal">
+<commit
+   revision="40443">
+<author>chenjiahong</author>
+<date>2026-08-27T06:35:26.065146Z</date>
+</commit>
+</wc-status>
+</entry>
+<entry
+   path="D:\Vgame\Config\GameConfig\Datas\SpecialEquipment\SpecialEquipmentEffectDrop.xlsx">
+<wc-status
+   item="modified"
+   revision="40473"
+   props="normal">
+<commit
+   revision="40311">
+<author>songchengze</author>
+<date>2026-08-26T07:09:40.987834Z</date>
+</commit>
+</wc-status>
+</entry>
+<entry
+   path="D:\Vgame\Config\GameConfig\Datas\items\Items - 副本.xlsx">
+<wc-status
+   item="unversioned"
+   props="none">
+</wc-status>
+</entry>
+</target>
+</status>

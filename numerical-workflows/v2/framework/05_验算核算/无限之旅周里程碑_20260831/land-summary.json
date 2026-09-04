@@ -1,0 +1,31 @@
+{
+  "batch": "INFINITE-WEEKLY-20260831-CHG017",
+  "generated_at": "2026-08-31T15:04:40.551344",
+  "status": "PENDING_VALIDATION",
+  "design_basis": "06_玩法_无限挑战经济沉淀 CHG-011～CHG-017（2026-08-31已确认口径）",
+  "scope": "06候选包全量重铺：NR_HighestScoreReward 42行、Drop_dungeon 45行、配置清单同步；SVN只读未改",
+  "dropid_scheme": "15个共享包 23000001~23000015，同分跨档复用；合SVN前需程序确认按Difficult+Score领取时复用无副作用",
+  "difficulties": {
+    "1": {
+      "cap": 6000,
+      "nodes": 6,
+      "unlock": "默认开放"
+    },
+    "2": {
+      "cap": 9000,
+      "nodes": 9,
+      "unlock": "通关难度1＋35级"
+    },
+    "3": {
+      "cap": 12000,
+      "nodes": 12,
+      "unlock": "通关难度2＋45级"
+    },
+    "4": {
+      "cap": 15000,
+      "nodes": 15,
+      "unlock": "通关难度3＋55级"
+    }
+  },
+  "previous_validation": "无限之旅配置校验.json旧内容已备份至backup/"
+}

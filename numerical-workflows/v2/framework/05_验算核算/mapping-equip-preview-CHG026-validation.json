@@ -1,0 +1,4775 @@
+{
+  "revision": "CHG-026",
+  "target": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备",
+  "passed": 952,
+  "total": 952,
+  "allPassed": true,
+  "fileHashes": {
+    "Items.xlsx": "886245d99af93f5dc484ff4292b93004e77375686a72b8177b0b930b34034967",
+    "UIlevel.xlsx": "6da971a1db6b7108cdea1e5e34e08be71159ea219755dd14b15718e1bba49b9a",
+    "00_配置清单.xlsx": "69648c84e8692ddec20747457f925b47626361dbd3911189af8150e558932ee2"
+  },
+  "checks": [
+    {
+      "name": "323条Items，Id唯一",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "150条关卡，LevelId唯一",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "U列SpecialShow且无重复字段",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4403",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4403",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4404",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4404",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4405",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4405",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4406",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4406",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4407",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4407",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4408",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4408",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4409",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4409",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4410",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4410",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4411",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4411",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4412",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4412",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4413",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4413",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4414",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4414",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4415",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4415",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4416",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4416",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4418",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4418",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4419",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4419",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4420",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4420",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4421",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4421",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4422",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4422",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4423",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4423",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4424",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4424",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4425",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4425",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4426",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4426",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4428",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4428",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4429",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4429",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4430",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4430",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4431",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4431",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4432",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4432",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4433",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4433",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4434",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4434",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4435",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4435",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4436",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4436",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4437",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4437",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4438",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4438",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4439",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4439",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4441",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4441",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4442",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4442",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4443",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4443",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4444",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4444",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览道具身份:4445",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规预览等级:4445",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "43个常规占位不进入真实Drop",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "第三层4375真实蓝箱固定10级金装",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250042",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250042",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250042",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250042",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250042",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250043",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250043",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250043",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250043",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250043",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250044",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250044",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250044",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250044",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250044",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250045",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250045",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250045",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250045",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250045",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250054",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250054",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250054",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250054",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250054",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250055",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "前5层无材料且预览不变:250055",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250055",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250055",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250055",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250064",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250064",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250064",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250064",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250064",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250065",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250065",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250065",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250065",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250065",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250071",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250071",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250071",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250071",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250071",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250072",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250072",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250072",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250072",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250072",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250073",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250073",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250073",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250073",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250073",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250075",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250075",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250075",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250075",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250075",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250081",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250081",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250081",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250081",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250081",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250082",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250082",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250082",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250082",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250082",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250083",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250083",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250083",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250083",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250083",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250084",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250084",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250084",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250084",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250084",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L9",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L9",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250091",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250091",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250091",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250091",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250091",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250092",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250092",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250092",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250092",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250092",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250093",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250093",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250093",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250093",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250093",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250094",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250094",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250094",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250094",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250094",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250095",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250095",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250095",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250095",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250095",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L13",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L13",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L14",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L14",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L15",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L15",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250151",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250151",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250151",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250151",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250151",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250152",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250152",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250152",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250152",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250152",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250155",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250155",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250155",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250155",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250155",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250161",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250161",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250161",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250161",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250161",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250162",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250162",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250162",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250162",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250162",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250163",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250163",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250163",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250163",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250163",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250164",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250164",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250164",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250164",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250164",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250165",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250165",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250165",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250165",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250165",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250171",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250171",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250171",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250171",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250171",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250172",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250172",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250172",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250172",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250172",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250173",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250173",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250173",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250173",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250173",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250174",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250174",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250174",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250174",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250174",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250175",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250175",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250175",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250175",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250175",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L18",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L18",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250181",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250181",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250181",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250181",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250181",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250182",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250182",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250182",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250182",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250182",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250183",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250183",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250183",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250183",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250183",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250184",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250184",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250184",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250184",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250184",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250185",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250185",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250185",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250185",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250185",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250191",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250191",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250191",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250191",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250191",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250193",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250193",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250193",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250193",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250193",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250194",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250194",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250194",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250194",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250194",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250195",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250195",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250195",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250195",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250195",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L20",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L20",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250204",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250204",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250204",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250204",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250204",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L21",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L21",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250211",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250211",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250211",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250211",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250211",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250214",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250214",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250214",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250214",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250214",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250215",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250215",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250215",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250215",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250215",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L22",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L22",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250221",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250221",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250221",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250221",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250221",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250222",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250222",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250222",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250222",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250222",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250223",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250223",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250223",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250223",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250223",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250224",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250224",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250224",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250224",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250224",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250225",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250225",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250225",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250225",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250225",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L23",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L23",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250231",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250231",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250231",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250231",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250231",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250232",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250232",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250232",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250232",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250232",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250233",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250233",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250233",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250233",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250233",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250234",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250234",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250234",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250234",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250234",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250235",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250235",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250235",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250235",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250235",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L24",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L24",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250241",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250241",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250241",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250241",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250241",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250242",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250242",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250242",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250242",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250242",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250243",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250243",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250243",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250243",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250243",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250244",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250244",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250244",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250244",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250244",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250245",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250245",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250245",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250245",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250245",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250253",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250253",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250253",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250253",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250253",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250254",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250254",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250254",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250254",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250254",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250255",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250255",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250255",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250255",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250255",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L26",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L26",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250261",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250261",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250261",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250261",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250261",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250262",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250262",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250262",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250262",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250262",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250263",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250263",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250263",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250263",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250263",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250264",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250264",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250264",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250264",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250264",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250265",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250265",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250265",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250265",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250265",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L27",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L27",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250271",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250271",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250271",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250271",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250271",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250272",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250272",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250272",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250272",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250272",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250273",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250273",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250273",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250273",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250273",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250274",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250274",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250274",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250274",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250274",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250275",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250275",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250275",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250275",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250275",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250281",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250281",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250281",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250281",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250281",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250282",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250282",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250282",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250282",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250282",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250283",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250283",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250283",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250283",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250283",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250284",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250284",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250284",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250284",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250284",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250285",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250285",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250285",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250285",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250285",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L29",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L29",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250291",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250291",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250291",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250291",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250291",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250292",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250292",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250292",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250292",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250292",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250293",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250293",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250293",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250293",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250293",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250294",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250294",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250294",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250294",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250294",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250295",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250295",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250295",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250295",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250295",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通固定一箱与一匙:L30",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通等级源链:L30",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250304",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250304",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250304",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250304",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250304",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "常规真实品质和等级分配:250305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "主材前置且原箱顺序不变:250305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首通未改且箱数1:250305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "首次和重复联合预览引用完整:250305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "数量负一且图标等级可见:250305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "仅73个目标箱有新SpecialShow",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "125条Reward变化",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "页签完整:Items.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未授权字段保留:Items.xlsx/items",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "原公式原样保留:Items.xlsx/items",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权字段保留:Items.xlsx/中文说明",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "原公式原样保留:Items.xlsx/中文说明",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "保存后可读且无公式错误:Items.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "页签完整:UIlevel.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未授权字段保留:UIlevel.xlsx/level",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "原公式原样保留:UIlevel.xlsx/level",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权字段保留:UIlevel.xlsx/中文说明",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "原公式原样保留:UIlevel.xlsx/中文说明",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "保存后可读且无公式错误:UIlevel.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "页签完整:00_配置清单.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未授权字段保留:00_配置清单.xlsx/配置清单",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "原公式原样保留:00_配置清单.xlsx/配置清单",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权字段保留:00_配置清单.xlsx/CHG019概率展示",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "原公式原样保留:00_配置清单.xlsx/CHG019概率展示",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权字段保留:00_配置清单.xlsx/CHG023稀有词条",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "原公式原样保留:00_配置清单.xlsx/CHG023稀有词条",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权字段保留:00_配置清单.xlsx/CHG024具名技能",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "原公式原样保留:00_配置清单.xlsx/CHG024具名技能",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "未授权字段保留:00_配置清单.xlsx/CHG025品质准入",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "原公式原样保留:00_配置清单.xlsx/CHG025品质准入",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "保存后可读且无公式错误:00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "业务仅199处变化含新表头",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "清单73行等级链与实际配置一致",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:Drop_dungeon.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:EquipmentLevel.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:ItemAccess.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:PortableCompoundProb.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:PortableCraftProb.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:PortableEquipCompound.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:PortableEquipCraft.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:PortableExp.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:PortableLvUp.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:PortableRange.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:SpecialEquipmentEffectDrop.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:SpecialEquipmentGenerate.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:SpecialEquipmentMain.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:SpecialEquipmentQuality.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:SpecialEquipmentSubAttrCoef.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:SystemOpen.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未改候选哈希:Unlock.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVN未改:D:\\Vgame\\Config\\GameConfig\\Datas\\items\\Items.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVN未改:D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVN未改:D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_dungeon.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "SVN未改:D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentGenerate.xlsx",
+      "pass": true,
+      "detail": null
+    }
+  ],
+  "scope": "06候选；无SVN导表或运行时/用户验收"
+}

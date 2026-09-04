@@ -4,6 +4,8 @@
   "authority": "knowledge-base/README.md",
   "workflowRoot": "numerical-workflows/v2",
   "runtimeOutputRoot": "output/numerical-production-workflow-v2/",
+  "formalDocumentRoot": "numerical-workflows/v2/framework/04_数值文档",
+  "formalDocumentsVersionControlled": true,
   "legacyExternalSourceRequiredAtRuntime": false,
   "formalConfigWriteDefault": "DENY",
   "counts": {
@@ -285,9 +287,10 @@
       "repositoryPath": "numerical-workflows/v2/framework/02_AI规则/stage_final_documents_from_md.py",
       "role": "PRODUCTION_SCRIPT",
       "sourceSha256": "85afc56ed6f103adf6ad05fdc53bd2b3045ac51326f8c9ebd02fa04f3063b9f2",
-      "migratedSha256": "85afc56ed6f103adf6ad05fdc53bd2b3045ac51326f8c9ebd02fa04f3063b9f2",
-      "bytes": 9572,
-      "requiresExplicitFormalWriteApproval": false
+      "migratedSha256": "4ccf3dd96faa0bae26ff88eb0aa401dcbda4e6083ada7d01c39c899ba4514a65",
+      "bytes": 9977,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
     },
     {
       "sourceRelativePath": "02_AI规则/sync_global_sources_to_md.py",
@@ -586,27 +589,30 @@
       "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/共享参数基线.md",
       "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
       "sourceSha256": "cfd7e9b417a1b0f7d194dcd9c2fac9328fae1057c8e5ab47effc39923ed813a8",
-      "migratedSha256": "4c065edf155ef5f8334b450e9472f32d9a37aa1eb918b9b7e13fb8c2fd1c7cc0",
-      "bytes": 5971,
-      "requiresExplicitFormalWriteApproval": false
+      "migratedSha256": "c408326f530d1fa8238b97892f7183ba010a5c7722cbec3bacb790537f2fee19",
+      "bytes": 6262,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
     },
     {
       "sourceRelativePath": "03_沉淀MD/参数基线/养成参数基线.md",
       "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/养成参数基线.md",
       "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
       "sourceSha256": "2e5777315d8d8fad61d0c19a5a55642a80e0862d7f532bd2971a2dfd113a687f",
-      "migratedSha256": "079309f7a2cd5dafd6922c496004ca223861d0361d91a96418c1237350bb6fdf",
-      "bytes": 282437,
-      "requiresExplicitFormalWriteApproval": false
+      "migratedSha256": "d92159f56cd724e3a0535214ebddb4c50350838a6a50e0d941bcbc7bb8d36cf7",
+      "bytes": 296250,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
     },
     {
       "sourceRelativePath": "03_沉淀MD/参数基线/战斗参数基线.md",
       "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/战斗参数基线.md",
       "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
       "sourceSha256": "ac6bf3dad7f5947b78fb194f05ab8f503833caf362317e97857ddd945ad180dc",
-      "migratedSha256": "c7f8232f44e455b2bd633d727846c8f0d7eba71dce01d1c5814484d9db26fdac",
-      "bytes": 40414,
-      "requiresExplicitFormalWriteApproval": false
+      "migratedSha256": "ebe7e1cd70156d83f9578bc5ba559b22ee972a063c755e25d0218785d08535da",
+      "bytes": 42858,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
     },
     {
       "sourceRelativePath": "03_沉淀MD/参数基线/经济参数基线.md",
@@ -622,9 +628,10 @@
       "repositoryPath": "numerical-workflows/v2/framework/03_沉淀MD/参数基线/节奏参数基线.md",
       "role": "MACHINE_PARAMETER_OR_SYSTEM_INPUT",
       "sourceSha256": "b6aab07bf8b1578648ec652cde11de658540c66ff1c0d7ae5812e7f78058520f",
-      "migratedSha256": "a8239eba14cdaf8f8c13bc4283f46f067520aaf7024426ce4f0974fdad1ad34e",
-      "bytes": 9444,
-      "requiresExplicitFormalWriteApproval": false
+      "migratedSha256": "c58ef1b4d9734f894fd48161d0b45cc550d0521a2f5689fdfe01dda580bbe0f0",
+      "bytes": 10040,
+      "requiresExplicitFormalWriteApproval": false,
+      "repositoryCompatibilityAdaptation": true
     },
     {
       "sourceRelativePath": "03_沉淀MD/战斗/战斗模型收口-2026-07-07.md",
@@ -1576,6 +1583,6 @@
       "requiresExplicitFormalWriteApproval": false
     }
   ],
-  "refreshedAt": "2026-08-25T10:22:28+08:00",
+  "refreshedAt": "2026-08-25T11:27:36+08:00",
   "contentHashPolicy": "TEXT_UTF8_NORMALIZED_LF_BINARY_RAW_SHA256"
 }

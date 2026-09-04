@@ -1,4 +1,4 @@
-# Vgame Harness Check Script
+﻿# Vgame Harness Check Script
 # Run: powershell -ExecutionPolicy Bypass -File scripts/check.ps1
 
 $ErrorActionPreference = "Continue"
@@ -142,6 +142,18 @@ if (-not $python) {
 }
 
 Write-Host ""
+Write-Host "--- Experience Knowledge Check ---" -ForegroundColor "White"
+
+if ($python) {
+    & python (Join-Path $PSScriptRoot "check_experience.py")
+    if ($LASTEXITCODE -ne 0) {
+        Write-Result "FAIL" "Experience knowledge entries failed validation" "Run 'python scripts/check_experience.py' and fix the reported entries."
+    }
+} else {
+    Write-Host "  [SKIP] python not found; skipping experience entry check." -ForegroundColor "DarkGray"
+}
+
+Write-Host ""
 Write-Host "--- Repository Hygiene ---" -ForegroundColor "White"
 
 $pendingPattern = "\bT" + "ODO\b"
@@ -203,15 +215,22 @@ foreach ($doc in $largeDocs) {
 $tableExtensions = @(".xlsx", ".xlsm", ".csv")
 $tableLikeFiles = Get-ChildItem -LiteralPath $Root -Recurse -File -ErrorAction SilentlyContinue |
     Where-Object { $tableExtensions -contains $_.Extension.ToLowerInvariant() } |
-    Where-Object { $_.FullName -notmatch "\\.git\\" -and $_.FullName -notmatch "\\output\\" }
+    Where-Object {
+        $_.FullName -notmatch "\\.git\\" -and
+        $_.FullName -notmatch "\\output\\" -and
+        $_.FullName -notmatch "\\outputs\\" -and
+        $_.FullName -notmatch "\\codex_output\\" -and
+        $_.FullName -notmatch "\\.codex-tmp\\" -and
+        $_.FullName -notmatch "\\备份\\"
+    }
 
 foreach ($file in $tableLikeFiles) {
     $rel = $file.FullName.Replace($Root, "").TrimStart("\")
-    # 数值生产工作流的可编辑源表属于 Git 权威输入，不是 SVN 正式配置。
-    if ($rel -match '^numerical-workflows\\v2\\(?:framework\\01_源表\\|framework\\经济\\模块产销表\\|legacy-inputs\\)') {
+    # 数值生产工作流的源表和正式数值交付物属于 Git 策划资产，不是 SVN 正式配置。
+    if ($rel -match '^numerical-workflows\\v2\\(?:framework\\01_源表\\|framework\\04_数值文档\\|framework\\05_验算核算\\|framework\\06_最终配置\\|framework\\经济\\模块产销表\\|legacy-inputs\\)') {
         continue
     }
-    if ($file.Name -notmatch "sample|example|示例") {
+    if ($file.Name -notmatch "sample|example|示例|设计稿|设计文档|表现需求") {
         Write-Result "WARN" "$rel looks like a real table file" "Confirm it is a sample. Real configs should stay under VGAME_ROOT."
     }
 }

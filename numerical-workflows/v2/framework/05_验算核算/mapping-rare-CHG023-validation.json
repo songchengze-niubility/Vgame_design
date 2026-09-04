@@ -1,0 +1,3368 @@
+{
+  "revision": "CHG-023",
+  "checks": 840,
+  "pass": 840,
+  "fail": 0,
+  "details": [
+    {
+      "name": "SpecialEquipment.xlsx:headers",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipment.xlsx:uniqueIDs",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipment.xlsx:noFormulaErrors",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipment.xlsx:notesScope",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffect.xlsx:headers",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffect.xlsx:uniqueIDs",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffect.xlsx:noFormulaErrors",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffect.xlsx:originalRowsUnchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffect.xlsx:notesScope",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffectDrop.xlsx:headers",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffectDrop.xlsx:uniqueIDs",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffectDrop.xlsx:noFormulaErrors",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffectDrop.xlsx:originalRowsUnchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "SpecialEquipmentEffectDrop.xlsx:notesScope",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80001:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80002:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80003:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80004:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80005:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80006:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80007:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80008:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80009:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80010:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80011:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80012:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80013:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80014:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80015:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80016:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80017:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80018:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80019:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80020:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80021:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80022:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80023:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80024:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80025:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80026:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80027:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80028:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80029:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80030:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80031:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80032:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80033:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80034:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80035:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80036:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80037:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80038:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80039:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80040:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80041:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80042:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80043:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80044:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80045:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80046:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80047:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80048:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80049:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80050:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80051:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80052:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80053:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80054:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80055:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80056:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80057:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80058:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80059:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80060:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80061:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80062:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80063:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80064:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80065:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80066:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80067:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80068:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80069:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80070:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80071:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80072:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80073:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80074:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80075:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80076:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80077:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80078:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80079:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80080:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80081:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80082:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80083:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80084:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80085:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80086:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80087:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80088:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80089:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80090:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80091:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80092:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80093:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80094:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80095:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80096:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80097:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80098:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80099:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80100:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80101:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80102:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80103:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80104:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80105:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80106:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80107:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80108:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80109:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80110:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80111:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80112:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80113:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80114:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80115:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80116:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80117:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80118:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80119:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80120:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80121:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80122:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80123:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80124:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80125:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80126:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80127:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80128:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80129:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80130:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80131:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80132:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80133:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80134:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80135:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80136:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80137:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80138:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80139:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80140:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80141:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80142:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80143:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80144:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80145:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80146:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80147:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80148:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80149:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80150:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80151:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80152:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80153:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80154:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80155:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80156:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80157:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80158:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80159:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80160:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80161:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80162:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80163:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80164:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80165:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80166:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80167:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80168:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80169:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80170:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80171:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80172:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80173:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80174:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80175:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80176:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80177:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80178:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80179:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80180:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80181:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80182:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80183:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80184:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80185:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80186:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80187:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80188:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80189:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80190:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80191:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80192:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80193:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80194:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80195:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80196:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80197:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80198:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80199:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80200:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80201:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80202:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80203:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80204:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80205:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80206:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80207:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80208:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80209:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80210:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80211:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80212:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80213:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80214:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80215:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80216:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80217:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80218:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80219:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80220:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80221:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80222:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80223:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80224:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80225:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80226:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80227:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80228:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80229:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80230:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80231:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80232:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80233:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80234:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80235:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80236:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80237:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80238:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80239:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80240:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80241:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80242:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80243:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80244:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80245:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80246:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80247:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80248:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80249:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80250:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80251:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80252:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80253:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80254:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80255:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80256:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80257:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80258:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80259:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80260:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80261:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80262:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80263:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80264:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80265:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80266:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80267:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80268:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80269:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80270:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80271:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80272:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80273:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80274:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80275:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80276:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80277:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80278:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80279:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80280:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80281:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80282:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80283:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80284:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80285:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80286:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80287:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80288:untouchedQuality",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80289:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80289:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80290:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80290:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80291:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80291:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80292:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80292:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80293:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80293:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80294:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80294:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80295:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80295:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80296:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80296:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80297:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80297:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80298:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80298:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80299:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80299:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80300:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80300:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80301:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80301:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80302:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80302:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80303:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80303:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80304:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80304:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80305:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80305:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80306:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80306:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80307:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80307:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80308:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80308:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80309:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80309:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80310:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80310:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80311:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80311:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80312:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80312:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80313:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80313:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80314:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80314:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80315:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80315:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80316:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80316:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80317:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80317:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80318:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80318:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80319:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80319:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80320:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80320:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80321:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80321:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80322:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80322:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80323:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80323:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80324:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80324:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80325:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80325:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80326:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80326:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80327:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80327:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80328:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80328:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80329:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80329:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80330:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80330:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80331:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80331:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80332:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80332:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80333:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80333:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80334:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80334:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80335:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80335:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80336:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80336:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80337:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80337:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80338:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80338:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80339:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80339:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80340:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80340:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80341:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80341:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80342:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80342:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80343:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80343:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80344:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80344:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80345:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80345:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80346:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80346:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80347:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80347:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80348:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80348:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80349:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80349:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80350:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80350:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80351:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80351:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80352:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80352:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80353:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80353:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80354:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80354:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80355:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80355:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80356:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80356:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80357:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80357:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80358:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80358:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80359:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80359:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80360:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80360:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80361:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80361:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80362:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80362:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80363:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80363:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80364:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80364:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80365:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80365:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80366:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80366:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80367:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80367:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80368:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80368:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80369:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80369:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80370:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80370:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80371:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80371:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80372:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80372:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80373:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80373:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80374:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80374:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80375:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80375:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80376:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80376:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80377:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80377:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80378:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80378:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80379:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80379:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80380:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80380:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80381:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80381:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80382:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80382:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80383:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80383:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80384:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80384:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80385:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80385:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80386:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80386:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80387:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80387:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80388:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80388:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80389:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80389:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80390:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80390:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80391:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80391:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80392:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80392:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80393:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80393:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80394:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80394:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80395:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80395:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80396:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80396:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80397:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80397:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80398:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80398:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80399:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80399:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80400:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80400:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80401:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80401:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80402:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80402:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80403:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80403:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80404:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80404:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80405:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80405:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80406:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80406:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80407:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80407:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80408:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80408:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80409:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80409:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80410:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80410:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80411:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80411:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80412:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80412:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80413:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80413:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80414:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80414:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80415:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80415:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80416:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80416:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80417:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80417:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80418:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80418:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80419:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80419:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80420:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80420:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80421:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80421:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80422:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80422:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80423:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80423:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80424:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80424:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80425:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80425:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80426:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80426:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80427:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80427:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80428:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80428:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80429:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80429:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80430:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80430:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80431:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80431:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80432:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80432:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80433:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80433:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80434:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80434:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80435:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80435:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80436:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80436:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80437:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80437:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80438:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80438:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80439:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80439:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80440:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80440:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80441:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80441:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80442:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80442:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80443:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80443:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80444:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80444:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80445:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80445:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80446:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80446:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80447:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80447:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80448:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80448:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80449:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80449:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80450:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80450:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80451:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80451:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80452:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80452:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80453:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80453:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80454:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80454:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80455:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80455:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80456:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80456:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80457:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80457:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80458:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80458:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80459:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80459:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80460:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80460:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80461:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80461:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80462:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80462:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80463:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80463:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80464:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80464:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80465:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80465:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80466:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80466:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80467:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80467:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80468:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80468:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80469:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80469:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80470:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80470:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80471:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80471:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80472:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80472:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80473:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80473:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80474:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80474:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80475:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80475:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80476:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80476:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80477:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80477:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80478:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80478:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80479:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80479:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80480:pool",
+      "result": "PASS"
+    },
+    {
+      "name": "equipment80480:otherFields",
+      "result": "PASS"
+    },
+    {
+      "name": "480EquipmentRows",
+      "result": "PASS"
+    },
+    {
+      "name": "sixPools32EquipmentEach",
+      "result": "PASS"
+    },
+    {
+      "name": "72NewEffects",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31101:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31102:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31103:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31104:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31105:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31106:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31201:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31202:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31203:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31204:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31205:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31206:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31301:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31302:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31303:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31304:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31305:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31306:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31401:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31402:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31403:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31404:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31405:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31406:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31501:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31502:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31503:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31504:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31505:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31506:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31601:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31602:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31603:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31604:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31605:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31606:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31701:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31702:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31703:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31704:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31705:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31706:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31801:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31802:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31803:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31804:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31805:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31806:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31901:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31902:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31903:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31904:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31905:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect31906:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32001:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32002:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32003:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32004:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32005:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32006:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32101:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32102:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32103:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32104:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32105:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32106:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32201:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32202:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32203:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32204:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32205:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "effect32206:singleSkillBinding",
+      "result": "PASS"
+    },
+    {
+      "name": "sixNewPools",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6001:12ExactIDsEqualWeights",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6001:effectReferences",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6002:12ExactIDsEqualWeights",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6002:effectReferences",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6003:12ExactIDsEqualWeights",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6003:effectReferences",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6004:12ExactIDsEqualWeights",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6004:effectReferences",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6005:12ExactIDsEqualWeights",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6005:effectReferences",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6006:12ExactIDsEqualWeights",
+      "result": "PASS"
+    },
+    {
+      "name": "pool6006:effectReferences",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:Drop_dungeon.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:EquipmentLevel.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:ItemAccess.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:Items.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:PortableCompoundProb.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:PortableCraftProb.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:PortableEquipCompound.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:PortableEquipCraft.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:PortableExp.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:PortableLvUp.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:PortableRange.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:SpecialEquipmentGenerate.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:SpecialEquipmentMain.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:SpecialEquipmentQuality.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:SpecialEquipmentSubAttrCoef.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:SystemOpen.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:UIlevel.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedCandidate:Unlock.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedSource:SpecialEquipment.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedSource:SpecialEquipmentEffect.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedSource:SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedSource:Skill.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "unchangedSource:映射装备.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow1:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow2:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow3:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow4:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow5:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow6:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow7:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow8:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow9:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "index:SpecialEquipmentEffect.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "indexScope:SpecialEquipmentEffect.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow11:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow12:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "index:SpecialEquipment.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "indexScope:SpecialEquipment.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "index:SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "indexScope:SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow15:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow16:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow17:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow18:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow19:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow20:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow21:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "indexRow22:unchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "CHG019AuditUnchanged",
+      "result": "PASS"
+    },
+    {
+      "name": "auditSixCounts",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorReplay:SpecialEquipmentEffect.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorIdempotent:SpecialEquipmentEffect.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorReplay:SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorIdempotent:SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Orange/5",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Orange/20",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Orange/25",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Orange/40",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Orange/45",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Orange/60",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Red/5",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Red/20",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Red/25",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Red/40",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Red/45",
+      "result": "PASS"
+    },
+    {
+      "name": "generatorBoundary:Red/60",
+      "result": "PASS"
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import hashlib
 import json
 import os
 import shutil
+import sys
 from copy import copy
 from datetime import datetime
 from pathlib import Path
@@ -13,11 +14,13 @@ from pathlib import Path
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Alignment, Font, PatternFill
 from openpyxl.utils import get_column_letter
+from mapping_rare_rules import add_rare_effects, add_rare_pools, rare_pool_id
+from mapping_named_rules import add_named_effects, add_named_pools, named_effect_id, EFFECT_IDS as NAMED_EFFECT_IDS
 
 ROOT = Path(os.environ.get("VGAME_NUMERICAL_RUNTIME_ROOT", str(Path(__file__).resolve().parents[1])))
 P02 = ROOT / "04_数值文档" / "配置粘贴包" / "映射装备全链路配置包_P02.xlsx"
 OUT = Path(os.environ.get("MAPPING_EQUIP_FINAL_OUT", str(ROOT / "06_最终配置" / "映射装备")))
-REPORT = ROOT / "05_验算核算" / "mapping-equip-final-mirrors-F01.json"
+REPORT = Path(os.environ.get("MAPPING_EQUIP_FINAL_REPORT", str(ROOT / "05_验算核算" / "mapping-equip-final-mirrors-F01.json")))
 CONFIG = Path(os.environ.get("VGAME_CONFIG_DATAS", ""))
 CRAFT_UNLOCK_ID = 1198
 CRAFT_UNLOCK_LEVEL_ID = 250061
@@ -37,23 +40,61 @@ MAIN_TARGET_BY_PART = {
     "SEPart_Decoration": ("CritLevel", 7200),
 }
 QUALITY_MAIN_COEF = {"Green": .20, "Blue": .30, "Purple": .45, "Orange": .70, "Red": 1.00}
-QUALITY_SUB_COEF = {"Green": .50, "Blue": .60, "Purple": .70, "Orange": .85, "Red": 1.00}
+QUALITY_SUB_COEF = {"Green": .35, "Blue": .50, "Purple": .65, "Orange": .85, "Red": 1.00}
 QUALITY_SUB_COUNT = {"Green": (2, 2), "Blue": (2, 3), "Purple": (4, 4), "Orange": (4, 4), "Red": (4, 4)}
-SUB_LEVEL_COEF = {
-    5: .400, 10: .455, 15: .509, 20: .564, 25: .618, 30: .673,
-    35: .727, 40: .782, 45: .836, 50: .891, 55: .945, 60: 1.000,
+PERCENT_SUB_ATTRS = {"AttackBonus", "ArmorBonus", "HpBonus"}
+FIXED_SUB_ATTRS = {
+    "Attack", "Armor", "Hp", "CritLevel", "CritDmgBonusLevel",
+    "EnergyPreAddBonusLevel", "CoolDownReduceLevel",
 }
-SUB_VALUE_RANGE = {
-    "AttackBonus": (.329, .0987, .001),
-    "ArmorBonus": (.329, .0987, .001),
-    "HpBonus": (.329, .0987, .001),
-    "Attack": (3701, 1110, 1),
-    "Armor": (2468, 740, 1),
-    "Hp": (12338, 3701, 1),
-    "CritLevel": (2961, 888, 1),
-    "CritDmgBonusLevel": (3619, 1086, 1),
-    "EnergyPreAddBonusLevel": (2961, 888, 1),
-    "CoolDownReduceLevel": (4277, 1283, 1),
+SUB_CURRENT_CAP = {
+    "AttackBonus": .329,
+    "ArmorBonus": .329,
+    "HpBonus": .329,
+    "Attack": 3701,
+    "Armor": 2468,
+    "Hp": 12338,
+    "CritLevel": 2961,
+    "CritDmgBonusLevel": 3619,
+    "EnergyPreAddBonusLevel": 2961,
+    "CoolDownReduceLevel": 4277,
+}
+SUB_STANDARD = {attr: cap * .50 for attr, cap in SUB_CURRENT_CAP.items()}
+SUB_RANDOM_MULTIPLIER = {
+    "Green": (1.00, 1.00),
+    "Blue": (1.00, 1.00),
+    "Purple": (1.00, 1.00),
+    "Orange": (1.00, 1.20),
+    "Red": (1.20, 1.40),
+}
+SUB_RANDOM_STEP = {attr: (.001 if attr in PERCENT_SUB_ATTRS else 1) for attr in SUB_CURRENT_CAP}
+SUB_PERCENT_LEVEL_COEF = {level: .45 + .55 * ((level - 5) / 55) for level in range(5, 61, 5)}
+SUB_FIXED_LEVEL_COEF = {level: .03 + .97 * (((level - 5) / 55) ** 1.35) for level in range(5, 61, 5)}
+# 当前正式装备覆盖完整5品质×12等级。现有单列SubAttrCoef无法表达百分比/固定值双曲线，
+# 因此为60个组合各建独立词条池，把对应类别等级倍率预乘进Effect数值，SubAttrCoef统一写1。
+QUALITY_LEVEL_COMBOS = tuple(
+    (quality, level)
+    for quality in ("Green", "Blue", "Purple", "Orange", "Red")
+    for level in range(5, 61, 5)
+)
+# 5001~5060为60个品质等级池；50001~50600为60组×10类新普通副属性定义。
+SUB_POOL_ID_BY_COMBO = {combo: 5001 + index for index, combo in enumerate(QUALITY_LEVEL_COMBOS)}
+SUB_EFFECT_IDS_BY_COMBO = {
+    combo: tuple(50001 + index * 10 + slot for slot in range(10))
+    for index, combo in enumerate(QUALITY_LEVEL_COMBOS)
+}
+NEW_SUB_POOL_IDS = set(SUB_POOL_ID_BY_COMBO.values())
+NEW_SUB_EFFECT_IDS = {effect_id for ids in SUB_EFFECT_IDS_BY_COMBO.values() for effect_id in ids}
+SUB_ATTR_ORDER = (
+    "AttackBonus", "ArmorBonus", "HpBonus", "CoolDownReduceLevel",
+    "EnergyPreAddBonusLevel", "CritLevel", "CritDmgBonusLevel",
+    "Attack", "Armor", "Hp",
+)
+LEGACY_TEMPLATE_OFFSET = {"Green": 300, "Blue": 300, "Purple": 200, "Orange": 100, "Red": 0}
+LEGACY_SLOT_BY_ATTR = {
+    "AttackBonus": 1, "ArmorBonus": 3, "HpBonus": 4, "CoolDownReduceLevel": 5,
+    "EnergyPreAddBonusLevel": 6, "CritLevel": 7, "CritDmgBonusLevel": 8,
+    "Attack": 9, "Armor": 11, "Hp": 12,
 }
 ORDINARY_EFFECT_IDS = {offset + slot for offset in (0, 100, 200, 300) for slot in range(1, 13)}
 REMOVED_DAMAGE_EFFECT_IDS = {offset + slot for offset in (0, 100, 200, 300) for slot in (13, 14)}
@@ -261,41 +302,102 @@ def build_formal_rows(file_name, sheet_name, formal_rel, rows, status, note):
     for c in range(1,width+1): ws.column_dimensions[get_column_letter(c)].width=max(12,min(28,len(str(ws.cell(4,c).value or ''))+4))
     fw.close(); wb.save(OUT/file_name)
 
+
+def sub_level_coef(attr, level):
+    if attr in PERCENT_SUB_ATTRS:
+        return SUB_PERCENT_LEVEL_COEF[level]
+    if attr in FIXED_SUB_ATTRS:
+        return SUB_FIXED_LEVEL_COEF[level]
+    raise KeyError(f"未知副属性类型：{attr}")
+
+
+def sub_effect_range(attr, quality, level):
+    standard = SUB_STANDARD[attr]
+    level_coef = sub_level_coef(attr, level)
+    quality_coef = QUALITY_SUB_COEF[quality]
+    random_min, random_max = SUB_RANDOM_MULTIPLIER[quality]
+    # 保留足够精度，最终展示仍按百分比0.001、固定值整数取整。
+    # 当前可见消费代码直接读取Effect数值；QualityCoefficient用于参数门槛/评分，不在取值时二次缩放。
+    # 因此品质系数必须在配置生成时预乘，确保Effect里就是玩家最终获得的副属性区间。
+    value_min = round(standard * level_coef * quality_coef * random_min, 9 if attr in PERCENT_SUB_ATTRS else 6)
+    value_max = round(standard * level_coef * quality_coef * random_max, 9 if attr in PERCENT_SUB_ATTRS else 6)
+    return value_max, value_min, SUB_RANDOM_STEP[attr]
+
+
 def attribute_delivery_records():
     # 程序式：Value * Grow^(装备等级/5) + Param。
     # 转换规则：Lv5/Lv60精确命中设计目标，并对Lv10~55完整精度目标曲线做最小二乘拟合。
     # 沿用正式SpecialEquipment每件装备原Attribute1List的独立ID，只撤销Attribute2List。
     eqw=load_workbook(CONFIG/"SpecialEquipment/SpecialEquipment.xlsx",data_only=False); eqs=eqw["SpecialEquipment"]
     eq_cols={eqs.cell(1,c).value:c for c in range(1,eqs.max_column+1) if eqs.cell(1,c).value}
-    main_rows=[]
+    main_rule_by_id={}
     for r in range(5,eqs.max_row+1):
         if eqs.cell(r,eq_cols["Id"]).value is None: continue
         main_id=int(str(eqs.cell(r,eq_cols["Attribute1List"]).value).split(",")[0])
         attr,target=MAIN_TARGET_BY_PART[eqs.cell(r,eq_cols["Part"]).value]
-        main_rows.append([None,main_id,attr,round(target*MAIN_FIT_A,12),round(MAIN_FIT_B,12),round(target*MAIN_FIT_C,12)])
+        candidate=(attr,target)
+        if main_id in main_rule_by_id and main_rule_by_id[main_id] != candidate:
+            raise ValueError(f"MainId={main_id} 被不同部位口径复用")
+        main_rule_by_id[main_id]=candidate
     eqw.close()
+    mp="SpecialEquipment/SpecialEquipmentMain.xlsx"; mw=load_workbook(CONFIG/mp,data_only=False); ms=mw["SpecialEquipment"]
+    width=schema_width(ms); main_cols={ms.cell(1,c).value:c-1 for c in range(1,width+1)}; main_rows=[]
+    target_by_attr={attr:target for attr,target in MAIN_TARGET_BY_PART.values()}
+    for r in range(5,ms.max_row+1):
+        vals=[ms.cell(r,c).value for c in range(1,width+1)]
+        main_id=vals[main_cols["Id"]]
+        if main_id is None: continue
+        attr,target=main_rule_by_id.get(main_id,(vals[main_cols["Attribute"]],None))
+        if target is None:
+            if attr not in target_by_attr:
+                raise ValueError(f"未引用MainId={main_id} 的属性 {attr} 无兼容目标值")
+            target=target_by_attr[attr]
+        vals[main_cols["Attribute"]]=attr
+        vals[main_cols["Value"]]=round(target*MAIN_FIT_A,12)
+        vals[main_cols["Grow"]]=round(MAIN_FIT_B,12)
+        vals[main_cols["Param"]]=round(target*MAIN_FIT_C,12)
+        main_rows.append(vals)
+    mw.close()
     build_formal_rows("SpecialEquipmentMain.xlsx","SpecialEquipment","SpecialEquipment/SpecialEquipmentMain.xlsx",main_rows,"可粘贴：190条独立主属性参数",
-        "沿用正式190件装备各自Attribute1List的独立Main ID；每件只保留一条主属性。部位口径：武器攻击、头盔/护甲生命、手套/腰带/鞋子防御、装置暴伤等级、饰品暴击等级。公式：Value×Grow^(装备等级/5)+Param，品质差异由GradeCoefficient相乘。")
+        f"以当前正式{sum(1 for _ in main_rule_by_id)}个在用Main ID校验部位映射，并保留SpecialEquipmentMain完整{len(main_rows)}行兼容定义。每件只保留一条主属性。部位口径：武器攻击、头盔/护甲生命、手套/腰带/鞋子防御、装置暴伤等级、饰品暴击等级。公式：Value×Grow^(装备等级/5)+Param，品质差异由GradeCoefficient相乘。")
 
-    # 只改正式普通副属性定义的随机区间；保留特殊效果、评分、限制参数和已退出池的历史定义。
+    # 保留正式普通/特殊/历史定义，并追加60组“品质×等级”的十类普通副属性。
+    # 双等级曲线预乘进Effect：百分比前期高且慢成长，固定值前期低且快成长。
     ep="SpecialEquipment/SpecialEquipmentEffect.xlsx"; ew=load_workbook(CONFIG/ep,data_only=False); es=ew["SpecialEquipment"]
     width=schema_width(es); effect_rows=[]
     effect_cols={es.cell(1,c).value:c-1 for c in range(1,width+1)}
+    source_effect_by_id={}
     for r in range(5,es.max_row+1):
         vals=[es.cell(r,c).value for c in range(1,width+1)]
         effect_id=vals[effect_cols["Id"]]
         if effect_id is None: continue
-        if effect_id in ORDINARY_EFFECT_IDS:
-            attr=vals[effect_cols["Attribute"]]
-            if attr not in SUB_VALUE_RANGE:
-                raise ValueError(f"普通副属性ID {effect_id} 的属性 {attr} 不在沉淀MD十类词条中")
-            value_max,value_min,random_min=SUB_VALUE_RANGE[attr]
+        # 正式表可能已经同步过上一版06；新ID段按当前规则覆盖重建，不重复追加。
+        if effect_id in NEW_SUB_EFFECT_IDS: continue
+        source_effect_by_id[effect_id]=vals
+        effect_rows.append(vals)
+    existing_ids={row[effect_cols["Id"]] for row in effect_rows}
+    new_effect_rows=[]
+    for combo in QUALITY_LEVEL_COMBOS:
+        quality,level=combo
+        for attr,new_id in zip(SUB_ATTR_ORDER,SUB_EFFECT_IDS_BY_COMBO[combo]):
+            if new_id in existing_ids:
+                raise ValueError(f"新增副属性EffectId冲突：{new_id}")
+            template_id=LEGACY_TEMPLATE_OFFSET[quality]+LEGACY_SLOT_BY_ATTR[attr]
+            if template_id not in source_effect_by_id:
+                raise ValueError(f"副属性模板EffectId不存在：{template_id}")
+            vals=list(source_effect_by_id[template_id])
+            value_max,value_min,random_min=sub_effect_range(attr,quality,level)
+            vals[effect_cols["Id"]]=new_id
+            vals[effect_cols["Attribute"]]=attr
             vals[effect_cols["ValueMax"]]=value_max
             vals[effect_cols["ValueMin"]]=value_min
             vals[effect_cols["RandomMin"]]=random_min
-        effect_rows.append(vals)
-    ew.close(); build_formal_rows("SpecialEquipmentEffect.xlsx","SpecialEquipment",ep,effect_rows,"可粘贴：普通副属性随机区间",
-        "十类普通副属性统一按60级红装单条上限与30%下限写入 ValueMax/ValueMin，并保留 RandomMin 随机步长；最终数值再乘品质 QualityCoefficient 与等级 SubAttrCoef。物理/魔法伤害历史定义保留，但在用池不得引用。")
+            new_effect_rows.append(vals)
+    effect_rows.extend(new_effect_rows)
+    add_rare_effects(effect_rows, effect_cols)
+    add_named_effects(effect_rows, effect_cols)
+    ew.close(); build_formal_rows("SpecialEquipmentEffect.xlsx","SpecialEquipment",ep,effect_rows,"可粘贴：双曲线分品质等级副属性",
+        "保留正式历史定义，新增50001~50600共600条普通副属性。百分比/固定值等级倍率与0.35/0.50/0.65/0.85/1.00品质系数均已预乘进ValueMin/ValueMax，使Effect直接存最终值。绿/蓝/紫ValueMin=ValueMax；金为标准值100%~120%；红为120%~140%。QualityCoefficient保留作参数门槛/评分，取值时不得再次缩放；SubAttrCoef统一为1。CHG-023补72条稀有增伤Effect。CHG-025：21条具名Effect经同号单技能池供红装SpecialEffect引用，不使用FixEffect；普通副属性不变。")
 
     sp="SpecialEquipment/SpecialEquipmentSubAttrCoef.xlsx"; sw=load_workbook(CONFIG/sp,data_only=False); ss=sw["SpecialEquipmentSubAttrCoef"]
     width=schema_width(ss); sub_rows=[]
@@ -304,13 +406,13 @@ def attribute_delivery_records():
         vals=[ss.cell(r,c).value for c in range(1,width+1)]
         if vals[sub_cols["Id"]] is None: continue
         equip_lv=vals[sub_cols["EquipLv"]]
-        if equip_lv not in SUB_LEVEL_COEF: raise ValueError(f"未知副属性等级档：{equip_lv}")
-        vals[sub_cols["SubAttrCoef"]]=SUB_LEVEL_COEF[equip_lv]
+        if equip_lv not in SUB_PERCENT_LEVEL_COEF: raise ValueError(f"未知副属性等级档：{equip_lv}")
+        vals[sub_cols["SubAttrCoef"]]=1.0
         sub_rows.append(vals)
-    if {row[sub_cols["EquipLv"]] for row in sub_rows} != set(SUB_LEVEL_COEF):
+    if {row[sub_cols["EquipLv"]] for row in sub_rows} != set(SUB_PERCENT_LEVEL_COEF):
         raise ValueError("SpecialEquipmentSubAttrCoef 未覆盖沉淀MD的12个等级档")
-    sw.close(); build_formal_rows("SpecialEquipmentSubAttrCoef.xlsx","SpecialEquipmentSubAttrCoef",sp,sub_rows,"可粘贴：12档副属性等级倍率",
-        "副属性等级倍率按5级一档写入：Lv5=0.40，Lv60=1.00，中间12档以沉淀MD为准。")
+    sw.close(); build_formal_rows("SpecialEquipmentSubAttrCoef.xlsx","SpecialEquipmentSubAttrCoef",sp,sub_rows,"可粘贴：12档副属性公共倍率",
+        "现有Schema只有一列SubAttrCoef，无法同时承载百分比/固定值双曲线；双曲线已预乘进分品质等级Effect，故12档统一写1.00，避免重复缩放。")
 
     qp="SpecialEquipment/SpecialEquipmentQuality.xlsx"; qw=load_workbook(CONFIG/qp,data_only=False); qs=qw["SpecialEquipment"]
     width=schema_width(qs); quality_rows=[]
@@ -326,11 +428,11 @@ def attribute_delivery_records():
         vals[quality_cols["QualityCoefficient"]]=QUALITY_SUB_COEF[quality]
         quality_rows.append(vals)
     qw.close(); build_formal_rows("SpecialEquipmentQuality.xlsx","SpecialEquipment",qp,quality_rows,"可粘贴：品质系数与副属性条数",
-        "主属性系数为0.20/0.30/0.45/0.70/1.00；副属性系数为0.50/0.60/0.70/0.85/1.00；条数为绿2、蓝2~3、紫4、金4、红4。必须与 Equipment/Main/Effect/EffectDrop 原子评审。")
+        "主属性系数保持0.20/0.30/0.45/0.70/1.00；副属性品质系数为0.35/0.50/0.65/0.85/1.00，并已预乘进新Effect最终值；条数为绿2、蓝2~3、紫4、金4、红4。红色随机上限相对绿色定值为1.40/0.35=4倍。QualityCoefficient继续保留作参数门槛/评分。必须与 Equipment/Main/Effect/EffectDrop/SubAttrCoef 原子评审。")
     return [
         {"file":"SpecialEquipmentMain.xlsx","sheet":"SpecialEquipment","status":"可粘贴：190条独立主属性参数","rows":len(main_rows),"formal":str(CONFIG/"SpecialEquipment/SpecialEquipmentMain.xlsx")},
-        {"file":"SpecialEquipmentEffect.xlsx","sheet":"SpecialEquipment","status":"可粘贴：普通副属性随机区间","rows":len(effect_rows),"formal":str(CONFIG/ep)},
-        {"file":"SpecialEquipmentSubAttrCoef.xlsx","sheet":"SpecialEquipmentSubAttrCoef","status":"可粘贴：12档副属性等级倍率","rows":len(sub_rows),"formal":str(CONFIG/sp)},
+        {"file":"SpecialEquipmentEffect.xlsx","sheet":"SpecialEquipment","status":"可粘贴：双曲线分品质等级副属性","rows":len(effect_rows),"formal":str(CONFIG/ep)},
+        {"file":"SpecialEquipmentSubAttrCoef.xlsx","sheet":"SpecialEquipmentSubAttrCoef","status":"可粘贴：12档副属性公共倍率","rows":len(sub_rows),"formal":str(CONFIG/sp)},
         {"file":"SpecialEquipmentQuality.xlsx","sheet":"SpecialEquipment","status":"可粘贴：品质系数与副属性条数","rows":len(quality_rows),"formal":str(CONFIG/qp)},
     ]
 
@@ -343,56 +445,65 @@ def equipment_template_records(records):
         if vals[equip_cols["Id"]] is None: continue
         # Attribute1List保留每件正式装备原有的独立Main ID。
         vals[equip_cols["Attribute2List"]]=None
+        quality=vals[equip_cols["Quality"]]; level=vals[equip_cols["Grade"]]
+        combo=(quality,level)
+        if combo not in QUALITY_LEVEL_COMBOS:
+            raise ValueError(f"正式装备出现未登记品质等级组合：{combo}")
+        vals[equip_cols["Effect"]]=SUB_POOL_ID_BY_COMBO[combo]
+        rare_pool=rare_pool_id(quality,level)
+        vals[equip_cols["RareEffect"]]=rare_pool
+        vals[equip_cols["SpecialEffect"]]=named_effect_id(quality, vals[equip_cols["Name"]])
+        if vals[equip_cols["FixEffect"]] in NAMED_EFFECT_IDS:
+            vals[equip_cols["FixEffect"]]=None
         equip_rows.append(vals)
     ew.close()
-    build_formal_rows("SpecialEquipment.xlsx","SpecialEquipment",ep,equip_rows,"可粘贴：190条正式装备主属性改造",
-        "以正式SpecialEquipment 80001~80190为底稿；Attribute1List保留每件装备原独立Main ID，仅清空Attribute2List。其余字段逐格保留正式值。")
+    equip_ids=[row[equip_cols["Id"]] for row in equip_rows]
+    build_formal_rows("SpecialEquipment.xlsx","SpecialEquipment",ep,equip_rows,f"可粘贴：{len(equip_rows)}条正式装备属性改造",
+        f"以当前正式SpecialEquipment {min(equip_ids)}~{max(equip_ids)}为底稿；Attribute1List保留既有Main ID并清空Attribute2List。全部装备Effect按品质×等级改指向5001~5060；CHG-025绿蓝紫RareEffect为空，金红仍按5~20/25~40/45~60级指向6001~6006。SpecialEffect仅红装按名称引用21个同号单技能池；三组别名、同名35/55级手套共用30602，虚空不绑定。撤回具名FixEffect；刷新数量不改。")
 
     dp="SpecialEquipment/SpecialEquipmentEffectDrop.xlsx"; dw=load_workbook(CONFIG/dp,data_only=False); ds=dw["SpecialEquipment"]
-    effect_wb=load_workbook(CONFIG/"SpecialEquipment/SpecialEquipmentEffect.xlsx",data_only=True,read_only=True)
-    effect_sheet=effect_wb["SpecialEquipment"]
-    attr_by_effect={row[1]:row[2] for row in effect_sheet.iter_rows(min_row=5,values_only=True) if row[1] is not None}
     active_pool_ids={row[equip_cols["Effect"]] for row in equip_rows if row[equip_cols["Effect"]] is not None}
-    red_pool_ids={row[equip_cols["Effect"]] for row in equip_rows if row[equip_cols["Quality"]]=="Red" and row[equip_cols["Effect"]] is not None}
-    red_tokens=[]; red_seen=set()
-    for effect_id in range(1,13):
-        attr=attr_by_effect.get(effect_id)
-        if attr in SUB_VALUE_RANGE and attr not in red_seen:
-            red_tokens.append(f"{effect_id},100")
-            red_seen.add(attr)
-    if red_seen != set(SUB_VALUE_RANGE):
-        raise ValueError(f"红装通用池未覆盖十类普通副属性：{sorted(red_seen)}")
-    red_effect_list=";".join(red_tokens)
     width=schema_width(ds); pool_rows=[]
     pool_cols={ds.cell(1,c).value:c-1 for c in range(1,width+1)}
+    existing_pool_ids=set()
     for r in range(5,ds.max_row+1):
         vals=[ds.cell(r,c).value for c in range(1,width+1)]
         pool_id=vals[pool_cols["Id"]]
         if pool_id is None: continue
-        if pool_id in red_pool_ids:
-            # 红装固定4条全部从十类普通副属性中无放回随机；取消每件红装的专属效果。
-            vals[pool_cols["EffectList"]]=red_effect_list
+        # 5001~5060为本设计受控ID段；正式表已有旧版时跳过并在下方全量重建。
+        if pool_id in NEW_SUB_POOL_IDS: continue
+        existing_pool_ids.add(pool_id)
+        if pool_id in (101,201,301):
+            # 旧通用品质池退出在用引用但继续清理伤害类与语义重复，兼容历史数据。
+            offset={101:100,201:200,301:300}[pool_id]
+            vals[pool_cols["EffectList"]]=";".join(
+                f"{offset+LEGACY_SLOT_BY_ATTR[attr]},100" for attr in SUB_ATTR_ORDER
+            )
         elif pool_id in active_pool_ids:
             kept=[]; seen_attrs=set()
             for token in str(vals[pool_cols["EffectList"]] or "").split(";"):
                 if not token: continue
                 effect_id=int(token.split(",")[0])
                 if effect_id in REMOVED_DAMAGE_EFFECT_IDS: continue
-                attr=attr_by_effect.get(effect_id)
-                if attr is not None:
-                    if attr not in SUB_VALUE_RANGE:
-                        raise ValueError(f"在用副属性池 {pool_id} 仍引用非十类词条 {effect_id}:{attr}")
-                    if attr in seen_attrs: continue
-                    seen_attrs.add(attr)
                 kept.append(token)
             vals[pool_cols["EffectList"]]=";".join(kept)
         pool_rows.append(vals)
-    dw.close(); effect_wb.close()
-    build_formal_rows("SpecialEquipmentEffectDrop.xlsx","SpecialEquipment",dp,pool_rows,"可粘贴：十类全随机副属性池",
-        "保留正式Effect池ID；所有在用池移除物理/魔法伤害引用并按Attribute语义去重。通用品质池101/201/301各保留十类词条；37个红装池统一改为十类普通副属性等权池，固定随机4条，不再引用任何红装专属效果。")
+    for combo,pool_id in SUB_POOL_ID_BY_COMBO.items():
+        if pool_id in existing_pool_ids:
+            raise ValueError(f"新增副属性池ID冲突：{pool_id}")
+        effect_list=";".join(f"{effect_id},100" for effect_id in SUB_EFFECT_IDS_BY_COMBO[combo])
+        vals=[None]*width
+        vals[pool_cols["Id"]]=pool_id
+        vals[pool_cols["EffectList"]]=effect_list
+        pool_rows.append(vals)
+    add_rare_pools(pool_rows, pool_cols)
+    add_named_pools(pool_rows, pool_cols)
+    dw.close()
+    build_formal_rows("SpecialEquipmentEffectDrop.xlsx","SpecialEquipment",dp,pool_rows,"可粘贴：分品质等级十类副属性池",
+        "保留正式历史池和5001~5060共60个品质等级池。6001~6006六个稀有增伤池只供金红RareEffect使用。CHG-025新增21个具名池30101~30802（按技能编号保留间隔），每池仅同号Effect、权重100，供红装SpecialEffect按名称引用。")
     return [
-        {"file":"SpecialEquipment.xlsx","sheet":"SpecialEquipment","status":"可粘贴：190条正式装备主属性改造","rows":len(equip_rows),"formal":str(CONFIG/ep)},
-        {"file":"SpecialEquipmentEffectDrop.xlsx","sheet":"SpecialEquipment","status":"可粘贴：十类全随机副属性池","rows":len(pool_rows),"formal":str(CONFIG/dp)},
+        {"file":"SpecialEquipment.xlsx","sheet":"SpecialEquipment","status":f"可粘贴：{len(equip_rows)}条正式装备属性改造","rows":len(equip_rows),"formal":str(CONFIG/ep)},
+        {"file":"SpecialEquipmentEffectDrop.xlsx","sheet":"SpecialEquipment","status":"可粘贴：分品质等级十类副属性池","rows":len(pool_rows),"formal":str(CONFIG/dp)},
     ]
 
 def portable_range_records():
@@ -544,6 +655,20 @@ def build_index(records):
         for c in row: c.alignment=Alignment(vertical="top",wrap_text=True)
     wb.save(OUT/"00_配置清单.xlsx")
 
+def main_attributes_only():
+    """只重建映射装备属性六表，供正式装备模板变化后的原子重基使用。"""
+    if OUT.exists(): shutil.rmtree(OUT)
+    OUT.mkdir(parents=True)
+    before={str(p.relative_to(CONFIG)):sha(p) for p in CONFIG.rglob('*.xlsx') if not p.name.startswith('~$')}
+    records=attribute_delivery_records()
+    records.extend(equipment_template_records(records))
+    build_index(records)
+    after={str(p.relative_to(CONFIG)):sha(p) for p in CONFIG.rglob('*.xlsx') if not p.name.startswith('~$')}
+    report={"generated_at":datetime.now().astimezone().isoformat(),"mode":"attributes-only","output":str(OUT),"files":len(records)+1,"records":records,"formal_datas_unchanged":before==after}
+    REPORT.parent.mkdir(parents=True,exist_ok=True)
+    REPORT.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
+    print(json.dumps(report,ensure_ascii=False,indent=2))
+
 def main():
     if OUT.exists(): shutil.rmtree(OUT)
     OUT.mkdir(parents=True)
@@ -567,4 +692,8 @@ def main():
     REPORT.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
     print(json.dumps(report,ensure_ascii=False,indent=2))
 
-if __name__=="__main__": main()
+if __name__=="__main__":
+    if "--attributes-only" in sys.argv:
+        main_attributes_only()
+    else:
+        main()

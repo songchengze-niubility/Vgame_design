@@ -1,0 +1,51 @@
+{
+  "generated_at": "2026-08-26T15:39:53.814708+08:00",
+  "mode": "attributes-only",
+  "output": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG018_staging",
+  "files": 7,
+  "records": [
+    {
+      "file": "SpecialEquipmentMain.xlsx",
+      "sheet": "SpecialEquipment",
+      "status": "可粘贴：190条独立主属性参数",
+      "rows": 190,
+      "formal": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentMain.xlsx"
+    },
+    {
+      "file": "SpecialEquipmentEffect.xlsx",
+      "sheet": "SpecialEquipment",
+      "status": "可粘贴：双曲线分品质等级副属性",
+      "rows": 846,
+      "formal": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffect.xlsx"
+    },
+    {
+      "file": "SpecialEquipmentSubAttrCoef.xlsx",
+      "sheet": "SpecialEquipmentSubAttrCoef",
+      "status": "可粘贴：12档副属性公共倍率",
+      "rows": 12,
+      "formal": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentSubAttrCoef.xlsx"
+    },
+    {
+      "file": "SpecialEquipmentQuality.xlsx",
+      "sheet": "SpecialEquipment",
+      "status": "可粘贴：品质系数与副属性条数",
+      "rows": 5,
+      "formal": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentQuality.xlsx"
+    },
+    {
+      "file": "SpecialEquipment.xlsx",
+      "sheet": "SpecialEquipment",
+      "status": "可粘贴：480条正式装备属性改造",
+      "rows": 480,
+      "formal": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipment.xlsx"
+    },
+    {
+      "file": "SpecialEquipmentEffectDrop.xlsx",
+      "sheet": "SpecialEquipment",
+      "status": "可粘贴：分品质等级十类副属性池",
+      "rows": 253,
+      "formal": "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffectDrop.xlsx"
+    }
+  ],
+  "formal_datas_unchanged": true
+}

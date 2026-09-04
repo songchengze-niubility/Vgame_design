@@ -1,0 +1,1850 @@
+{
+  "batch": "CHAPTER-CORRECTION-20260827",
+  "status": "PASS_STATIC_WITH_RUNTIME_GATES",
+  "stage": "staged",
+  "task_restored_byte_identical": true,
+  "restored_cells": [
+    {
+      "sheet": "Task",
+      "row": 151,
+      "col": 11,
+      "old": 123,
+      "new": 4112
+    },
+    {
+      "sheet": "Task",
+      "row": 151,
+      "col": 12,
+      "old": "主线2-8",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 152,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 152,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 153,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 153,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 167,
+      "col": 11,
+      "old": 123,
+      "new": 4112
+    },
+    {
+      "sheet": "Task",
+      "row": 167,
+      "col": 12,
+      "old": "主线2-8",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 168,
+      "col": 11,
+      "old": 123,
+      "new": 4112
+    },
+    {
+      "sheet": "Task",
+      "row": 168,
+      "col": 12,
+      "old": "主线2-8",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 169,
+      "col": 11,
+      "old": 123,
+      "new": 4112
+    },
+    {
+      "sheet": "Task",
+      "row": 169,
+      "col": 12,
+      "old": "主线2-8",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 170,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 170,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 171,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 171,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 172,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 172,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    }
+  ],
+  "chapter_audit": {
+    "group_counts": [
+      5,
+      6,
+      7,
+      8,
+      10,
+      10,
+      10
+    ],
+    "group_total": 56,
+    "task_count": 69,
+    "mapping_keys_one_time": 18,
+    "verified_existing_chapter_rows": [
+      {
+        "chapter": 1,
+        "group_id": 22,
+        "task_id": 1313,
+        "target_id": 1313,
+        "task_row": 190,
+        "target_row": 173,
+        "description": "玩家等级达到10级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "10,1",
+        "drop_id": 1030202,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 20000,
+            "max": 20000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 1,
+        "group_id": 24,
+        "task_id": 1315,
+        "target_id": 1315,
+        "task_row": 192,
+        "target_row": 175,
+        "description": "1个舱室达到2级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "2,1",
+        "drop_id": 1030205,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 2,
+            "max": 2
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 2,
+        "group_id": 32,
+        "task_id": 1324,
+        "target_id": 1324,
+        "task_row": 198,
+        "target_row": 181,
+        "description": "玩家等级达到20级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "20,1",
+        "drop_id": 1030301,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 25000,
+            "max": 25000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 2,
+        "group_id": 35,
+        "task_id": 1327,
+        "target_id": 1327,
+        "task_row": 201,
+        "target_row": 184,
+        "description": "收集4件5级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "5,4",
+        "drop_id": 1030307,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 2,
+        "group_id": 36,
+        "task_id": 1328,
+        "target_id": 1328,
+        "task_row": 202,
+        "target_row": 185,
+        "description": "2个舱室达到2级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "2,2",
+        "drop_id": 1030304,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 3,
+        "group_id": 42,
+        "task_id": 1334,
+        "target_id": 1334,
+        "task_row": 206,
+        "target_row": 189,
+        "description": "玩家等级达到25级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "25,1",
+        "drop_id": 1030401,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 30000,
+            "max": 30000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 3,
+        "group_id": 46,
+        "task_id": 1338,
+        "target_id": 1338,
+        "task_row": 210,
+        "target_row": 193,
+        "description": "1个舱室达到3级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "3,1",
+        "drop_id": 1030405,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 4,
+            "max": 4
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 3,
+        "group_id": 47,
+        "task_id": 1339,
+        "target_id": 1339,
+        "task_row": 211,
+        "target_row": 194,
+        "description": "收集4件10级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "10,4",
+        "drop_id": 1030407,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 4,
+        "group_id": 52,
+        "task_id": 1344,
+        "target_id": 1344,
+        "task_row": 215,
+        "target_row": 198,
+        "description": "玩家等级达到30级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "30,1",
+        "drop_id": 1030501,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 35000,
+            "max": 35000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 4,
+        "group_id": 56,
+        "task_id": 1348,
+        "target_id": 1348,
+        "task_row": 219,
+        "target_row": 202,
+        "description": "2个舱室达到3级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "3,2",
+        "drop_id": 1030509,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 5,
+            "max": 5
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 4,
+        "group_id": 57,
+        "task_id": 1349,
+        "target_id": 1349,
+        "task_row": 220,
+        "target_row": 203,
+        "description": "收集8件15级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "15,8",
+        "drop_id": 1030507,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 5,
+        "group_id": 62,
+        "task_id": 1354,
+        "target_id": 1354,
+        "task_row": 225,
+        "target_row": 208,
+        "description": "玩家等级达到33级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "33,1",
+        "drop_id": 1030601,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 40000,
+            "max": 40000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 5,
+        "group_id": 67,
+        "task_id": 1381,
+        "target_id": 1381,
+        "task_row": 230,
+        "target_row": 213,
+        "description": "收集8件25级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "25,8",
+        "drop_id": 1030607,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 5,
+        "group_id": 26,
+        "task_id": 1401,
+        "target_id": 1401,
+        "task_row": 194,
+        "target_row": 177,
+        "description": "1个舱室达到4级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "4,1",
+        "drop_id": 1030610,
+        "rewards": [
+          {
+            "item": 3029,
+            "min": 4,
+            "max": 4
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 6,
+        "group_id": 72,
+        "task_id": 1364,
+        "target_id": 1364,
+        "task_row": 236,
+        "target_row": 219,
+        "description": "玩家等级达到36级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "36,1",
+        "drop_id": 1030701,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 45000,
+            "max": 45000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 6,
+        "group_id": 77,
+        "task_id": 1384,
+        "target_id": 1384,
+        "task_row": 241,
+        "target_row": 224,
+        "description": "收集8件35级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "35,8",
+        "drop_id": 1030707,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 7,
+        "group_id": 82,
+        "task_id": 1374,
+        "target_id": 1374,
+        "task_row": 248,
+        "target_row": 231,
+        "description": "玩家等级达到38级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "38,1",
+        "drop_id": 1030801,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 50000,
+            "max": 50000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 7,
+        "group_id": 87,
+        "task_id": 1388,
+        "target_id": 1388,
+        "task_row": 253,
+        "target_row": 236,
+        "description": "收集8件45级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "45,8",
+        "drop_id": 1030807,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      }
+    ],
+    "chapter_config_changes_this_batch": 0
+  },
+  "preserved_workbooks": 287,
+  "formal_protected": {
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Task.xlsx": "bc10de22264d7f620f96091af5da78948301b6cb82dad6473324c343d1d2642d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\TaskTarget.xlsx": "671d7498b9f8b04d053217c3af8e78d27f68a6b1367dd9c819e9eaff3c347b7e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Jottings.xlsx": "0a624d07d9f3838d4f0ce7b049879fe058787b80e648f7b2d68a746f93189270",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\JottingsTask.xlsx": "0a121dd54291ca8378fe4f113c2788fb0f919c3a06b80c37591a28b83cc3d7d0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_other.xlsx": "35be77b95572ad4003b073dfefdec647fa0991d31016ec62128551d98be56ec7"
+  },
+  "mapping_first_clear_4375_unchanged": true,
+  "weekly_keys": 41,
+  "monthly_keys": 8,
+  "manifest_diff": [
+    {
+      "sheet": "任务总览",
+      "row": 4,
+      "col": 3,
+      "old": "主线按关卡顺序完成；舱室目标按1个Lv2、2个Lv2、1个Lv3、2个Lv3、1个Lv4递进；映射装备目标从第二章4件5级起递进；玩家等级10/20/25/30/33/36/38；章节奖励均为元晶",
+      "new": "5/6/7/8/10/10/10组；玩家等级10/20/25/30/33/36/38。舱室按1个Lv2、2个Lv2、1个Lv3、2个Lv3、1个Lv4递进。第二至七章映射任务各奖3把钥匙。"
+    },
+    {
+      "sheet": "任务总览",
+      "row": 4,
+      "col": 4,
+      "old": "主线每个检查点元晶30；章节奖励含旅券/限时旅券及系统稀有材料",
+      "new": "主线每分步元晶30；章节映射任务共18把钥匙（一次性）。其余任务奖励及章节完成奖励保留。"
+    },
+    {
+      "sheet": "数值校验",
+      "row": 6,
+      "col": 2,
+      "old": 55,
+      "new": 56
+    },
+    {
+      "sheet": "数值校验",
+      "row": 6,
+      "col": 3,
+      "old": 55,
+      "new": 56
+    },
+    {
+      "sheet": "数值校验",
+      "row": 7,
+      "col": 2,
+      "old": 68,
+      "new": 69
+    },
+    {
+      "sheet": "数值校验",
+      "row": 7,
+      "col": 3,
+      "old": 68,
+      "new": 69
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 1,
+      "col": 1,
+      "old": null,
+      "new": "类别"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 1,
+      "col": 2,
+      "old": null,
+      "new": "章节"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 1,
+      "col": 3,
+      "old": null,
+      "new": "组ID"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 1,
+      "col": 4,
+      "old": null,
+      "new": "TaskId"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 1,
+      "col": 5,
+      "old": null,
+      "new": "TargetId"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 1,
+      "col": 6,
+      "old": null,
+      "new": "任务目标 / ParamList"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 1,
+      "col": 7,
+      "old": null,
+      "new": "DropId"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 1,
+      "col": 8,
+      "old": null,
+      "new": "实际奖励"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 1,
+      "col": 9,
+      "old": null,
+      "new": "本轮处理"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 2,
+      "col": 1,
+      "old": null,
+      "new": "映射装备"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 2,
+      "col": 2,
+      "old": null,
+      "new": 2
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 2,
+      "col": 3,
+      "old": null,
+      "new": 35
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 2,
+      "col": 4,
+      "old": null,
+      "new": 1327
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 2,
+      "col": 5,
+      "old": null,
+      "new": 1327
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 2,
+      "col": 6,
+      "old": null,
+      "new": "收集4件5级的映射装备\n参数：5,4"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 2,
+      "col": 7,
+      "old": null,
+      "new": 1030307
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 2,
+      "col": 8,
+      "old": null,
+      "new": "映射之匙×3"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 2,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 3,
+      "col": 1,
+      "old": null,
+      "new": "映射装备"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 3,
+      "col": 2,
+      "old": null,
+      "new": 3
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 3,
+      "col": 3,
+      "old": null,
+      "new": 47
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 3,
+      "col": 4,
+      "old": null,
+      "new": 1339
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 3,
+      "col": 5,
+      "old": null,
+      "new": 1339
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 3,
+      "col": 6,
+      "old": null,
+      "new": "收集4件10级的映射装备\n参数：10,4"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 3,
+      "col": 7,
+      "old": null,
+      "new": 1030407
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 3,
+      "col": 8,
+      "old": null,
+      "new": "映射之匙×3"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 3,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 4,
+      "col": 1,
+      "old": null,
+      "new": "映射装备"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 4,
+      "col": 2,
+      "old": null,
+      "new": 4
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 4,
+      "col": 3,
+      "old": null,
+      "new": 57
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 4,
+      "col": 4,
+      "old": null,
+      "new": 1349
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 4,
+      "col": 5,
+      "old": null,
+      "new": 1349
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 4,
+      "col": 6,
+      "old": null,
+      "new": "收集8件15级的映射装备\n参数：15,8"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 4,
+      "col": 7,
+      "old": null,
+      "new": 1030507
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 4,
+      "col": 8,
+      "old": null,
+      "new": "映射之匙×3"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 4,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 5,
+      "col": 1,
+      "old": null,
+      "new": "映射装备"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 5,
+      "col": 2,
+      "old": null,
+      "new": 5
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 5,
+      "col": 3,
+      "old": null,
+      "new": 67
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 5,
+      "col": 4,
+      "old": null,
+      "new": 1381
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 5,
+      "col": 5,
+      "old": null,
+      "new": 1381
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 5,
+      "col": 6,
+      "old": null,
+      "new": "收集8件25级的映射装备\n参数：25,8"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 5,
+      "col": 7,
+      "old": null,
+      "new": 1030607
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 5,
+      "col": 8,
+      "old": null,
+      "new": "映射之匙×3"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 5,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 6,
+      "col": 1,
+      "old": null,
+      "new": "映射装备"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 6,
+      "col": 2,
+      "old": null,
+      "new": 6
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 6,
+      "col": 3,
+      "old": null,
+      "new": 77
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 6,
+      "col": 4,
+      "old": null,
+      "new": 1384
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 6,
+      "col": 5,
+      "old": null,
+      "new": 1384
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 6,
+      "col": 6,
+      "old": null,
+      "new": "收集8件35级的映射装备\n参数：35,8"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 6,
+      "col": 7,
+      "old": null,
+      "new": 1030707
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 6,
+      "col": 8,
+      "old": null,
+      "new": "映射之匙×3"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 6,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 7,
+      "col": 1,
+      "old": null,
+      "new": "映射装备"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 7,
+      "col": 2,
+      "old": null,
+      "new": 7
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 7,
+      "col": 3,
+      "old": null,
+      "new": 87
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 7,
+      "col": 4,
+      "old": null,
+      "new": 1388
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 7,
+      "col": 5,
+      "old": null,
+      "new": 1388
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 7,
+      "col": 6,
+      "old": null,
+      "new": "收集8件45级的映射装备\n参数：45,8"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 7,
+      "col": 7,
+      "old": null,
+      "new": 1030807
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 7,
+      "col": 8,
+      "old": null,
+      "new": "映射之匙×3"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 7,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 8,
+      "col": 1,
+      "old": null,
+      "new": "舱室"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 8,
+      "col": 2,
+      "old": null,
+      "new": 1
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 8,
+      "col": 3,
+      "old": null,
+      "new": 24
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 8,
+      "col": 4,
+      "old": null,
+      "new": 1315
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 8,
+      "col": 5,
+      "old": null,
+      "new": 1315
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 8,
+      "col": 6,
+      "old": null,
+      "new": "1个舱室达到2级\n参数：2,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 8,
+      "col": 7,
+      "old": null,
+      "new": 1030205
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 8,
+      "col": 8,
+      "old": null,
+      "new": "道具3028×2"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 8,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 9,
+      "col": 1,
+      "old": null,
+      "new": "舱室"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 9,
+      "col": 2,
+      "old": null,
+      "new": 2
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 9,
+      "col": 3,
+      "old": null,
+      "new": 36
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 9,
+      "col": 4,
+      "old": null,
+      "new": 1328
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 9,
+      "col": 5,
+      "old": null,
+      "new": 1328
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 9,
+      "col": 6,
+      "old": null,
+      "new": "2个舱室达到2级\n参数：2,2"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 9,
+      "col": 7,
+      "old": null,
+      "new": 1030304
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 9,
+      "col": 8,
+      "old": null,
+      "new": "道具3028×3"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 9,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 10,
+      "col": 1,
+      "old": null,
+      "new": "舱室"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 10,
+      "col": 2,
+      "old": null,
+      "new": 3
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 10,
+      "col": 3,
+      "old": null,
+      "new": 46
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 10,
+      "col": 4,
+      "old": null,
+      "new": 1338
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 10,
+      "col": 5,
+      "old": null,
+      "new": 1338
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 10,
+      "col": 6,
+      "old": null,
+      "new": "1个舱室达到3级\n参数：3,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 10,
+      "col": 7,
+      "old": null,
+      "new": 1030405
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 10,
+      "col": 8,
+      "old": null,
+      "new": "道具3028×4"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 10,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 11,
+      "col": 1,
+      "old": null,
+      "new": "舱室"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 11,
+      "col": 2,
+      "old": null,
+      "new": 4
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 11,
+      "col": 3,
+      "old": null,
+      "new": 56
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 11,
+      "col": 4,
+      "old": null,
+      "new": 1348
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 11,
+      "col": 5,
+      "old": null,
+      "new": 1348
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 11,
+      "col": 6,
+      "old": null,
+      "new": "2个舱室达到3级\n参数：3,2"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 11,
+      "col": 7,
+      "old": null,
+      "new": 1030509
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 11,
+      "col": 8,
+      "old": null,
+      "new": "道具3028×5"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 11,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 12,
+      "col": 1,
+      "old": null,
+      "new": "舱室"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 12,
+      "col": 2,
+      "old": null,
+      "new": 5
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 12,
+      "col": 3,
+      "old": null,
+      "new": 26
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 12,
+      "col": 4,
+      "old": null,
+      "new": 1401
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 12,
+      "col": 5,
+      "old": null,
+      "new": 1401
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 12,
+      "col": 6,
+      "old": null,
+      "new": "1个舱室达到4级\n参数：4,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 12,
+      "col": 7,
+      "old": null,
+      "new": 1030610
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 12,
+      "col": 8,
+      "old": null,
+      "new": "道具3029×4"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 12,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 13,
+      "col": 1,
+      "old": null,
+      "new": "玩家等级"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 13,
+      "col": 2,
+      "old": null,
+      "new": 1
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 13,
+      "col": 3,
+      "old": null,
+      "new": 22
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 13,
+      "col": 4,
+      "old": null,
+      "new": 1313
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 13,
+      "col": 5,
+      "old": null,
+      "new": 1313
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 13,
+      "col": 6,
+      "old": null,
+      "new": "玩家等级达到10级\n参数：10,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 13,
+      "col": 7,
+      "old": null,
+      "new": 1030202
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 13,
+      "col": 8,
+      "old": null,
+      "new": "道具1×20000"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 13,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 14,
+      "col": 1,
+      "old": null,
+      "new": "玩家等级"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 14,
+      "col": 2,
+      "old": null,
+      "new": 2
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 14,
+      "col": 3,
+      "old": null,
+      "new": 32
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 14,
+      "col": 4,
+      "old": null,
+      "new": 1324
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 14,
+      "col": 5,
+      "old": null,
+      "new": 1324
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 14,
+      "col": 6,
+      "old": null,
+      "new": "玩家等级达到20级\n参数：20,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 14,
+      "col": 7,
+      "old": null,
+      "new": 1030301
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 14,
+      "col": 8,
+      "old": null,
+      "new": "道具1×25000"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 14,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 15,
+      "col": 1,
+      "old": null,
+      "new": "玩家等级"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 15,
+      "col": 2,
+      "old": null,
+      "new": 3
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 15,
+      "col": 3,
+      "old": null,
+      "new": 42
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 15,
+      "col": 4,
+      "old": null,
+      "new": 1334
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 15,
+      "col": 5,
+      "old": null,
+      "new": 1334
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 15,
+      "col": 6,
+      "old": null,
+      "new": "玩家等级达到25级\n参数：25,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 15,
+      "col": 7,
+      "old": null,
+      "new": 1030401
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 15,
+      "col": 8,
+      "old": null,
+      "new": "道具1×30000"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 15,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 16,
+      "col": 1,
+      "old": null,
+      "new": "玩家等级"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 16,
+      "col": 2,
+      "old": null,
+      "new": 4
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 16,
+      "col": 3,
+      "old": null,
+      "new": 52
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 16,
+      "col": 4,
+      "old": null,
+      "new": 1344
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 16,
+      "col": 5,
+      "old": null,
+      "new": 1344
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 16,
+      "col": 6,
+      "old": null,
+      "new": "玩家等级达到30级\n参数：30,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 16,
+      "col": 7,
+      "old": null,
+      "new": 1030501
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 16,
+      "col": 8,
+      "old": null,
+      "new": "道具1×35000"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 16,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 17,
+      "col": 1,
+      "old": null,
+      "new": "玩家等级"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 17,
+      "col": 2,
+      "old": null,
+      "new": 5
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 17,
+      "col": 3,
+      "old": null,
+      "new": 62
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 17,
+      "col": 4,
+      "old": null,
+      "new": 1354
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 17,
+      "col": 5,
+      "old": null,
+      "new": 1354
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 17,
+      "col": 6,
+      "old": null,
+      "new": "玩家等级达到33级\n参数：33,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 17,
+      "col": 7,
+      "old": null,
+      "new": 1030601
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 17,
+      "col": 8,
+      "old": null,
+      "new": "道具1×40000"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 17,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 18,
+      "col": 1,
+      "old": null,
+      "new": "玩家等级"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 18,
+      "col": 2,
+      "old": null,
+      "new": 6
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 18,
+      "col": 3,
+      "old": null,
+      "new": 72
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 18,
+      "col": 4,
+      "old": null,
+      "new": 1364
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 18,
+      "col": 5,
+      "old": null,
+      "new": 1364
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 18,
+      "col": 6,
+      "old": null,
+      "new": "玩家等级达到36级\n参数：36,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 18,
+      "col": 7,
+      "old": null,
+      "new": 1030701
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 18,
+      "col": 8,
+      "old": null,
+      "new": "道具1×45000"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 18,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 19,
+      "col": 1,
+      "old": null,
+      "new": "玩家等级"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 19,
+      "col": 2,
+      "old": null,
+      "new": 7
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 19,
+      "col": 3,
+      "old": null,
+      "new": 82
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 19,
+      "col": 4,
+      "old": null,
+      "new": 1374
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 19,
+      "col": 5,
+      "old": null,
+      "new": 1374
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 19,
+      "col": 6,
+      "old": null,
+      "new": "玩家等级达到38级\n参数：38,1"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 19,
+      "col": 7,
+      "old": null,
+      "new": 1030801
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 19,
+      "col": 8,
+      "old": null,
+      "new": "道具1×50000"
+    },
+    {
+      "sheet": "章节任务落点",
+      "row": 19,
+      "col": 9,
+      "old": null,
+      "new": "已在06，核对保留"
+    },
+    {
+      "sheet": "落地说明",
+      "row": 5,
+      "col": 3,
+      "old": "按2026-08-26任务MD：竞技场任务Unlock=123（2-8），映射任务Unlock=140（3-10）；其余保留。次日/次周刷新入池需联调。",
+      "new": "撤回本轮擅自同步：竞技场任务UnlockId恢复4112，映射日周任务恢复4314，9条新增备注清空。其余解锁不动。"
+    },
+    {
+      "sheet": "落地说明",
+      "row": 9,
+      "col": 3,
+      "old": "日常10、周常33、章节68、七日70；只补钥匙和9条日周任务开放条件，章节及七日数据保留。",
+      "new": "已从Jottings逐层核对56组、69条章节任务：前两章舱室及第二章映射任务均已在06；本轮未新增或覆盖章节任务。"
+    },
+    {
+      "sheet": "落地说明",
+      "row": 10,
+      "col": 3,
+      "old": "参见03_沉淀MD/经济/映射之匙与任务落06-2026-08-27.md；只更新候选，未导出SVN。",
+      "new": "章节要求按8月26日用户确认；本轮纠偏见03_沉淀MD/经济/映射之匙与任务落06-2026-08-27.md。仅06，SVN未改。"
+    },
+    {
+      "sheet": "配置清单",
+      "row": 3,
+      "col": 3,
+      "old": "写入每日10、每周33、章节68行任务目标、七日70条正式可配置目标；章节玩家等级10/20/25/30/33/36/38",
+      "new": "每日10、每周33、章节当前挂载69条任务目标、七日70；章节玩家等级10/20/25/30/33/36/38。未挂载旧记录不计入章节数量。"
+    },
+    {
+      "sheet": "配置清单",
+      "row": 4,
+      "col": 3,
+      "old": "保留四套任务本体及引用；按每日每周任务MD修正9条任务UnlockId为123/140",
+      "new": "保留四套任务本体及引用；撤回误改的9条日周UnlockId及备注。章节任务实际落点见“章节任务落点”。"
+    },
+    {
+      "sheet": "配置清单",
+      "row": 10,
+      "col": 3,
+      "old": "7章共55个任务类型组，主线组内有序",
+      "new": "7章共56组目标；主线分步展开后69条任务。第二章组35已挂载1327映射装备任务。"
+    },
+    {
+      "sheet": "钥匙来源核对",
+      "row": 9,
+      "col": 1,
+      "old": null,
+      "new": "章节映射装备任务"
+    },
+    {
+      "sheet": "钥匙来源核对",
+      "row": 9,
+      "col": 2,
+      "old": null,
+      "new": 3
+    },
+    {
+      "sheet": "钥匙来源核对",
+      "row": 9,
+      "col": 3,
+      "old": null,
+      "new": 6
+    },
+    {
+      "sheet": "钥匙来源核对",
+      "row": 9,
+      "col": 4,
+      "old": null,
+      "new": "=B9*C9"
+    },
+    {
+      "sheet": "钥匙来源核对",
+      "row": 9,
+      "col": 5,
+      "old": null,
+      "new": "一次性"
+    },
+    {
+      "sheet": "钥匙来源核对",
+      "row": 9,
+      "col": 6,
+      "old": null,
+      "new": "第二至七章各1条；不并入每周产出"
+    }
+  ],
+  "runtime_gates": [
+    "仅06静态验收；未合SVN、未执行Luban或客户端/服务端运行验收。"
+  ]
+}

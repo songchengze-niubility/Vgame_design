@@ -645,7 +645,21 @@ def box_item_rows(model: dict) -> list[list]:
             )
     if len(rows) != 150:
         raise AssertionError(len(rows))
+    rows.append(first_special_box_item_row())
     return rows
+
+
+def first_special_box_item_row() -> list:
+    """CHG-022: actual first-clear box, blue appearance, fixed level-10 gold equipment."""
+    return [4375, "标准装备补给箱", 4375, "ItemType_Other", "ItemSubType_SpecialEquip_Box", None,
+            "UIRes/UIAtlas/Icon/Items/item_specialequipment_2.png", None, "Blue",
+            "开启后固定获得1件10级金色映射装备。", "第三层首通专用实际宝箱；蓝色外观，固定10级金装",
+            None, None, None, None, True, "CHG-022_ACTUAL_FIRST_CLEAR_BOX"]
+
+
+def first_special_box_generate_row() -> list:
+    return [4375, "第3层首通专用蓝箱（固定10级金装）", "10,1000", "Orange,1000", None,
+            "1;2;3;4;5;6;7;8", None, 1, 1, "CHG-022_FIXED_LEVEL10_GOLD"]
 
 
 def generate_rows(model: dict) -> list[list]:
@@ -674,6 +688,7 @@ def generate_rows(model: dict) -> list[list]:
                     "PROPOSED_ID_RUNTIME_BLOCKED",
                 ]
             )
+    rows.append(first_special_box_generate_row())
     return rows
 
 
@@ -948,31 +963,6 @@ def sub_material_pool_rows() -> list[list]:
     ]
 
 
-FIRST_BOX_ARCHIVE = {
-    1: ("Blue", 1),
-    2: ("Blue", 1),
-    3: ("Blue", 1),
-    4: ("Blue", 1),
-    5: ("Blue", 1),
-    6: ("Blue", 1),
-    8: ("Blue", 2),
-    9: ("Blue", 2),
-    10: ("Blue", 1),
-    12: ("Blue", 2),
-    13: ("Blue", 1),
-    14: ("Purple", 1),
-    15: ("Purple", 1),
-    17: ("Purple", 1),
-    18: ("Purple", 1),
-    19: ("Purple", 2),
-    20: ("Purple", 1),
-    22: ("Purple", 2),
-    23: ("Purple", 1),
-    24: ("Purple", 2),
-    25: ("Purple", 1),
-    28: ("Purple", 2),
-}
-
 FIRST_MATERIAL_CATEGORY = {
     6: "Weapon",
     7: "Armor",
@@ -991,33 +981,32 @@ FIRST_MATERIAL_CATEGORY = {
     30: "Weapon",
 }
 
-FIRST_RANDOM_BOX_LAYERS = [27, 29, 30]
+def first_box_reward(layer: dict) -> tuple[str, int]:
+    """Read the approved fixed box from the MD row, never from the archived P02 constants."""
+    match = re.search(r"([绿蓝紫金红])宝箱\s*[x×]\s*(\d+)", layer["first_archive"])
+    if not match or int(match.group(2)) != 1:
+        raise ValueError(f"第{layer['layer']}层首通必须明确固定宝箱x1：{layer['first_archive']}")
+    return {"绿": "Green", "蓝": "Blue", "紫": "Purple", "金": "Orange", "红": "Red"}[match.group(1)], 1
 
 
 def first_clear_rows(model: dict) -> tuple[list[list], list[list]]:
     """
-    首通宝箱节奏沿用MD归档；第1～5层仅给宝箱，第6～8层统一按10档过渡，第9层起旧胚料映射为“当层打造档+同大类+紫主材”。
-    这是可评审的 P02 新提案，不是已获得用户确认的MD最终值。
+    首通箱直接读取当前MD：每层固定一箱，不再使用旧缺箱/双箱/随机池常量。
+    材料仍按已保留的当层打造档和大类映射，不改变材料设计。
     """
     rows: list[list] = []
     summary: list[list] = []
-    random_pool_by_layer = {layer: FIRST_RANDOM_POOL_BASE + index for index, layer in enumerate(FIRST_RANDOM_BOX_LAYERS)}
     for layer in model["layers"]:
         layer_no = layer["layer"]
         root = 20000009 + layer_no
         rows.append(drop_row(root, "映射之匙固定返还", f"第{layer_no}层首通", 0, "fixed_", 1, 1, 25, 1, 1, 10000, "VALUE_READY"))
         proposed = ["映射之匙(25)x1"]
-        if layer_no in FIRST_BOX_ARCHIVE:
-            quality, count = FIRST_BOX_ARCHIVE[layer_no]
-            item_id = box_item_id(layer_no, quality)
-            rows.append(drop_row(root, f"首通{QUALITY_CN[quality]}箱", f"第{layer_no}层首通", 0, "fixed_", 1, 1, item_id, count, count, 10000, "PROPOSED_RUNTIME_BLOCKED"))
-            proposed.append(f"{QUALITY_CN[quality]}箱({item_id})x{count}")
-        if layer_no in FIRST_RANDOM_BOX_LAYERS:
-            pool_id = random_pool_by_layer[layer_no]
-            rows.append(drop_row(root, "金/红首通随机箱", f"第{layer_no}层首通", pool_id, "fixed__random", 1, 1, 0, 0, 0, 0, "PROPOSED_RUNTIME_BLOCKED"))
-            rows.append(drop_row(pool_id, "金箱82%", f"第{layer_no}层首通金红箱池", 0, "random", 1, 1, box_item_id(layer_no, "Orange"), 1, 1, 8200, "PROPOSED_RUNTIME_BLOCKED"))
-            rows.append(drop_row(pool_id, "红箱18%", f"第{layer_no}层首通金红箱池", 0, "random", 1, 1, box_item_id(layer_no, "Red"), 1, 1, 1800, "PROPOSED_RUNTIME_BLOCKED"))
-            proposed.append("金/红随机箱(82/18)x1")
+        quality, count = first_box_reward(layer)
+        item_id = 4375 if layer_no == 3 else box_item_id(layer_no, quality)
+        if layer_no == 3 and "4375" not in layer["first_archive"]:
+            raise ValueError("CHG-022第三层来源必须明确4375专用首通箱，禁止恢复旧普通蓝箱")
+        rows.append(drop_row(root, f"首通{QUALITY_CN[quality]}箱", f"第{layer_no}层首通", 0, "fixed_", 1, 1, item_id, count, count, 10000, "VALUE_READY"))
+        proposed.append(f"{QUALITY_CN[quality]}箱({item_id})x{count}")
         if layer_no in FIRST_MATERIAL_CATEGORY:
             category = FIRST_MATERIAL_CATEGORY[layer_no]
             item_id = material_item_id(layer["craft_tier"], category, "Purple")
@@ -1052,18 +1041,14 @@ def ui_preview_items(layer: dict, multiplier: int) -> str:
     return ";".join(f"{item_id},-1" for item_id in item_ids)
 
 
-def first_preview_items(layer: dict, multiplier: int) -> str:
+def first_preview_items(layer: dict, variant: int) -> str:
     layer_no = layer["layer"]
-    values = [f"25,{multiplier}"]
-    if layer_no in FIRST_BOX_ARCHIVE or layer_no in FIRST_RANDOM_BOX_LAYERS:
-        values.extend(
-            f"{PREVIEW_GRADE_BOX_ITEM_IDS[grade]},-1"
-            for grade, probability in layer["grade_probs"]
-            if probability > 0
-        )
+    # LevelId suffix is equipment quality, not reward multiplicity (CHG-021).
+    first_box_reward(layer)
+    values = ["25,1", f"{4372 + layer_no},1"]
     if layer_no in FIRST_MATERIAL_CATEGORY:
         category = FIRST_MATERIAL_CATEGORY[layer_no]
-        values.append(f"{material_item_id(layer['craft_tier'], category, 'Purple')},{multiplier}")
+        values.append(f"{material_item_id(layer['craft_tier'], category, 'Purple')},1")
     return ";".join(values)
 
 
@@ -1186,7 +1171,7 @@ def id_plan_rows() -> list[list]:
         ["DropId", "额外宝箱池", 22201, 22230, 30, "每层1池", "PROPOSED", "含空掉落"],
         ["DropId", "主材池", 22301, 22330, 30, "每层1池", "PROPOSED", "含空掉落"],
         ["DropId", "副材共用池", 22400, 22400, 1, "4种等权", "PROPOSED", "根包按层重复调1..4次"],
-        ["DropId", "首通金/红箱池", 22451, 22453, 3, "层27/29/30", "PROPOSED", "82%/18%"],
+        ["DropId", "已退役首通金/红箱池", 22451, 22453, 3, "层27/29/30", "RETIRED", "CHG-021：首通按MD直接固定箱，不生成子池"],
         ["DropId", "常规一级入口", 20005101, 20005130, 30, "复用现有", "REUSE", "UIlevel引用不需变"],
         ["DropId", "首通一级入口", 20000010, 20000039, 30, "复用现有", "REUSE", "UIlevel引用不需变"],
     ]
@@ -1478,8 +1463,8 @@ def validation_rows(
             ("主属性行数", len(main_rows), 480, "8×5×12"),
             ("副属性行数", len(sub_rows), 600, "10×5×12"),
             ("副本层数", len(model["layers"]), 30, "MD三张30层表对齐"),
-            ("层级宝箱Items", len(box_rows), 150, "30×5"),
-            ("Generate行数", len(generate_rows_data), 150, "30×5"),
+            ("层级及首通专用宝箱Items", len(box_rows), 151, "30×5+第三层4375"),
+            ("Generate行数", len(generate_rows_data), 151, "30×5+第三层4375固定10级金装"),
             ("主材Items", len(material_rows), 72, "8×3×3"),
             ("副材Items", len(sub_material_rows_data), 4, "副材1..4"),
             ("UI预览占位Items", len(preview_item_rows), 22, "12等级箱+9主材档位品质+1随机副材"),
@@ -1670,8 +1655,8 @@ def build_workbook(output_path: Path, config_root: Path, report_path: Path) -> d
     add_table_sheet(
         wb,
         name="21_层级宝箱Items150",
-        title="Items：30层×5品质层级宝箱",
-        target="items/Items.xlsx / items / B:Q（候选ID 4201..4350）",
+        title="Items：150层级宝箱与第三层专用箱4375",
+        target="items/Items.xlsx / items / 按字段映射（4201..4350及4375）",
         instruction="数据完整，但须先实现按确切ItemId/层级开箱；图标暂复用现有映射装备通用图标。",
         headers=item_headers,
         rows=box_rows,
@@ -1681,8 +1666,8 @@ def build_workbook(output_path: Path, config_root: Path, report_path: Path) -> d
         wb,
         name="22_Generate150",
         title="SpecialEquipmentGenerate：层级宝箱开装配置",
-        target="SpecialEquipment/SpecialEquipmentGenerate.xlsx / SpecialEquipment / Id→B，GradeList..GenerateMin→E:K",
-        instruction="每个层级宝箱生成1件装备；部位8等权，等级池和宝箱品质池都已按MD展开。",
+        target="SpecialEquipment/SpecialEquipmentGenerate.xlsx / SpecialEquipment / 按具名字段映射，识别正式FirstQualityList列",
+        instruction="150个层级宝箱按等级池和品质池生成1件装备；额外4375仅第三层首通使用，固定生成1件10级金装，蓝色外观不代表蓝色产物。",
         headers=["Id", "##Name", "GradeList", "QualityList", "UnidentifiedList", "PartList", "SpecialEquipmentId", "GenerateMax", "GenerateMin", "Status"],
         rows=generate_rows_data,
         status="PROPOSED_RUNTIME_BLOCKED",
@@ -1714,7 +1699,7 @@ def build_workbook(output_path: Path, config_root: Path, report_path: Path) -> d
         name="24A_预览占位Items22",
         title="Items：UIlevel等级箱与随机材料预览占位",
         target="items/Items.xlsx / items / B:Q（正式ID 4351..4364）",
-        instruction="22个道具只供UIlevel奖励展示：12个装备等级箱、9个主材档位×最高品质、1个随机副材；等级箱同时用于Reward与FirstReward，不按品质区分；不得进入Drop、背包、商店或打造消耗。",
+        instruction="22个道具只供UIlevel常规Reward展示：12个装备等级箱、9个主材档位×最高品质、1个随机副材；首通FirstReward引用正式已有4373..4402，并固定显示数量1；展示引用不得进入Drop、背包、商店或打造消耗。",
         headers=item_headers,
         rows=preview_item_rows,
         status="UI_PREVIEW_ONLY",
@@ -1730,7 +1715,7 @@ def build_workbook(output_path: Path, config_root: Path, report_path: Path) -> d
         name="30_首通提案",
         title="30层首通重配提案（需用户确认）",
         target="DropId 20000010..20000039",
-        instruction="匙x1和宝箱节奏沿用MD；第1～5层不投放主材/副材，原材料位改为蓝宝箱；第6～8层统一按10档过渡，第9层起旧胚料位按‘当层打造档+同大类+紫主材x1’映射。",
+        instruction="每层匙x1与固定品质宝箱x1直接读取当前MD；第1～5层不投放材料；第6～8层统一按10档过渡，第9层起旧胚料位按‘当层打造档+同大类+紫主材x1’映射。",
         headers=["Layer", "FirstRewardDrop", "MD旧额外奖励留档", "P02新提案", "Status"],
         rows=first_summary,
         status="PROPOSED_DESIGN_APPROVAL",
@@ -1751,7 +1736,7 @@ def build_workbook(output_path: Path, config_root: Path, report_path: Path) -> d
         name="32_UIlevel150",
         title="UIlevel：30层×5结算变体奖励预览",
         target="level/UIlevel.xlsx / level / 正式行247:396的指定字段",
-        instruction="仅基准行(末位1)保留FirstRewardDrop/FallRewardDrop；Reward与FirstReward中的宝箱均按当层装备等级池逐级展示，品质不参与展示；主材/副材口径不变，负一数量表示仅展示图标。",
+        instruction="仅基准行(末位1)保留FirstRewardDrop/FallRewardDrop；Reward按当层装备等级池展示；FirstReward为钥匙1、正式首通占位1、原有材料1，同层五个品质变体一致；品质编号不是首通奖励倍率。常规负一数量表示仅展示图标。",
         headers=["LevelId", "Name", "LevelType", "TierNum", "Variant", "Unlock", "Reward", "FirstReward", "FirstRewardDrop", "FallRewardDrop", "MultiSettlementTimes", "Vitality", "Status"],
         rows=ui_rows,
         status="PROPOSED_ID_UI_SEMANTICS_GATE",

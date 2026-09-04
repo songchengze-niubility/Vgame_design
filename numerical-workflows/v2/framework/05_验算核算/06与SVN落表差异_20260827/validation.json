@@ -1,0 +1,29 @@
+{
+  "status": "PASS_READ_ONLY_SCOPED_COMPARISON",
+  "files_to_change": 7,
+  "existing_pure_data_cell_edits": 96,
+  "manual_new_rows": 6,
+  "old_material_rows_to_disable": 15,
+  "physical_cells_rechecked": 96,
+  "chapter_drop_collision": [],
+  "chapter_task_refs_outside_scope": {},
+  "candidate_chapter_md_match": true,
+  "candidate_mapping_first_clear_30_layers": true,
+  "third_floor_fixed_10_orange": true,
+  "all_read_sources_unchanged": true,
+  "svn_written": false,
+  "remote_head_checked": false,
+  "runtime_verified": false,
+  "additional_source_hashes": {
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_other.xlsx": "35be77b95572ad4003b073dfefdec647fa0991d31016ec62128551d98be56ec7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_dungeon.xlsx": "725cdc7f696bd3e473838c25907166fee89c11f187fa9165517a1a5c5c6d29a4",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_mainlevel.xlsx": "fffd28c7eb94b05f26b915284a04622f93b186b0c107210692aad066f2ea69ae",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_draw.xlsx": "f6ddd8b71c21819b3bae906bf1c71d079c5abfa5d1181c26100c0544872e8b4e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_GiftBox.xlsx": "4488d4ff5d7faf57eaeb50917ec035979cf4c0cf6bc257c9d6c92755c5634e21",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_TimeLimitedActivity.xlsx": "e003b15f640bda40848c1ac128f95321abfce485b9faba6a053430b05f38ac14",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_world.xlsx": "b8ff30403c17942b5d0f8eb96b5ea0edf00ef711062105d6c135b5c652e79b74",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_BattlePass.xlsx": "d08c85a1ab23f970f57a20c4f1fe62d18a7afd0224f6d6e0d06cb4e2ca8e0dd8",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\Drop_dungeon.xlsx": "0ae699273764071295e838b4c312d73c28551053a5ebb9b51919dbec07b8fda2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentGenerate.xlsx": "eaa5555e884cbc7fe85b1883a5bbdb2921c6743e45ff75ba369a29fffb7db6d7"
+  }
+}

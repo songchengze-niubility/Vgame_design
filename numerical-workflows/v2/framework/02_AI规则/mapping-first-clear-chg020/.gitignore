@@ -1,0 +1,6 @@
+node_modules/
+outputs/
+previews/
+source.json
+repair.json
+__pycache__/

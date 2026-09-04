@@ -1,0 +1,101 @@
+{
+  "revision": "CHG-022",
+  "files": [
+    "Drop_dungeon.xlsx",
+    "Items.xlsx",
+    "SpecialEquipmentGenerate.xlsx",
+    "UIlevel.xlsx",
+    "00_配置清单.xlsx"
+  ],
+  "patches": [
+    {
+      "file": "Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "row": 9,
+      "col": 9,
+      "old": 4212,
+      "new": 4375
+    },
+    {
+      "file": "Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "row": 9,
+      "col": 2,
+      "old": "首通蓝箱",
+      "new": "首通专用蓝箱（固定10级金装）"
+    },
+    {
+      "file": "Items.xlsx",
+      "sheet": "items",
+      "row": 302,
+      "col": 9,
+      "old": "本层首通可获得1个标准装备补给箱，开启后随机获得1件5级或10级蓝色映射装备。",
+      "new": "开启后固定获得1件10级金色映射装备。"
+    },
+    {
+      "file": "Items.xlsx",
+      "sheet": "items",
+      "row": 302,
+      "col": 10,
+      "old": "映射装备第3层首通专用实际宝箱；蓝色外观，必出金装",
+      "new": "第三层首通专用实际宝箱；蓝色外观，固定开出1件10级金装"
+    },
+    {
+      "file": "Items.xlsx",
+      "sheet": "items",
+      "row": 302,
+      "col": 16,
+      "old": "CHG-021：正式已有首通占位引用",
+      "new": "CHG-022_ACTUAL_FIRST_CLEAR_BOX"
+    }
+  ],
+  "newGenerate": {
+    "sheet": "SpecialEquipment",
+    "row": 282,
+    "values": [
+      null,
+      4375,
+      "第3层首通专用蓝箱（固定10级金装）",
+      null,
+      "10,1000",
+      "Orange,1000",
+      null,
+      "1;2;3;4;5;6;7;8",
+      null,
+      1,
+      1
+    ]
+  },
+  "candidateHashes": {
+    "00_配置清单.xlsx": "6429e0c388603ded206f00476730ab7036eaf3492cd2caf7280ee13afc91af5f",
+    "Drop_dungeon.xlsx": "cf17cd78b635f5fa44e3aad534fa791ef3387a94d60c53e0e983cd9d22746ceb",
+    "EquipmentLevel.xlsx": "95515039097cb192674d9ec2d3e3cfa59b6e0da8611c7904b606618b844a550b",
+    "ItemAccess.xlsx": "2d9cc3932679ab4580700768eab8b4cc8d2b82c8fdc0b0ac9c9954db9e996f18",
+    "Items.xlsx": "88f42f02dd965d7cf91607159000beeba651a45a22f0e93e9f3bf6e7421a8a5b",
+    "PortableCompoundProb.xlsx": "aeb78dffa6ec84411d8913522a181ac0ca93350f250bc93c1e052fd69a785ec5",
+    "PortableCraftProb.xlsx": "254af241b1714fd26e64b0cc21769e797fbc36b9d561d614889c224227efb95b",
+    "PortableEquipCompound.xlsx": "2ec107f71a85289378bf8baabae7c9e583cee1d67570827c60a6a8c96075c374",
+    "PortableEquipCraft.xlsx": "c02e9fb2097acbe1cf5eff3046d3112ce98042ba34671e45d3268637ced46679",
+    "PortableExp.xlsx": "6ef0eb730e87beb43eb43baed123dfd8e0f1e17356f77cfaf1c00bba466d630f",
+    "PortableLvUp.xlsx": "83653dec6daa64e468b575090ea60cccc49a1375e8ec31dfb36ee38063be0850",
+    "PortableRange.xlsx": "73fea6fc7c02e8a56727a2cb7f8f1c9286622f899bfb53d30121ff250b183415",
+    "SpecialEquipment.xlsx": "4d824282e42316b1228cdf9a2ee1112258f89b861b73c12908529cd87f9edd50",
+    "SpecialEquipmentEffect.xlsx": "30e4f48c3fd554f082ede1194641ab01a612aa5675522e43fd02acf1353dd5e4",
+    "SpecialEquipmentEffectDrop.xlsx": "82907a77adb821b86014ffd73e860e050468cdf04d3be412e2933ef5848a18a1",
+    "SpecialEquipmentGenerate.xlsx": "ba9575786cd033f76f92c18bfd027e10ba3d7b3063e6a74d2f69b81b240f5d3b",
+    "SpecialEquipmentMain.xlsx": "b9657bd840efc3071e1b5fef6958c94ccbe08ea2951a6f8bc7f527be1bc62a7f",
+    "SpecialEquipmentQuality.xlsx": "7b3f2ed283efe2599955336c17ec57f3c608e42068abe27d80c3dc41e8ee42c0",
+    "SpecialEquipmentSubAttrCoef.xlsx": "7c04c83f0c9b40fefbc942373b995c140e2dbab11f10a45ffc2cba7583615fe7",
+    "SystemOpen.xlsx": "d7b2faad04cd8b0142f8fbe6ae2404734b3ade339cd84ccda1b531947b36c9ad",
+    "UIlevel.xlsx": "5ac5ef084b8522e60ebca4ed26adaaf5474cf8af2b7e76ec8adba9c31bbacdd5",
+    "Unlock.xlsx": "7f888497b4969cf4215153affbf702be7a4ab772771c0500156fb797d2511f02"
+  },
+  "formalHashes": {
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_dungeon.xlsx": "e262257caf7d4c5a3f357c0dbe4e84248345705c0c80e87969b388215a47b3bd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\Items.xlsx": "4251c95feb8c8061ec21db5aefcd52f7368c4a85269897511c200269fb348c95",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentGenerate.xlsx": "4322df757a27e824eda16c954b3d29e9868b4b773b5b4eceacfad51a8252972d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx": "583f0aeccaa1afd6b22615c9224b85b2172643678b8dc44ce0c5615983c2800c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\EquipmentLevel.xlsx": "e7f71e5e0641b5c65995f27ca63ca249be4170c7646e3f75d280ed1940516842"
+  },
+  "mdHash": "bf8db78bc7b3b80c761e6e5a2f1df8f551fe7dd51614bd9cf10bb338b6270007"
+}

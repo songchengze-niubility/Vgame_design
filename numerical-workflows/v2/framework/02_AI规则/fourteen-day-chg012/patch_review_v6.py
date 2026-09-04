@@ -1,0 +1,24 @@
+# -*- coding: utf-8 -*-
+"""make_review_xlsx.py 的 D17 区块替换为用户 v2 定稿，并升版 v6。"""
+from pathlib import Path
+
+p = Path(__file__).resolve().parent / "make_review_xlsx.py"
+t = p.read_text(encoding="utf-8")
+i1 = t.index("D17 = {")
+i2 = t.index("TID17 =")
+new_d17 = '''D17 = {
+1: [("累计登录1天","Target_TTT_Login_Total","0,1",(102,5)),("累计消耗200点储能","Target_TTT_Item_Consume","3,200",(102,5)),("玩家等级达到22级","Target_TTT_PlayerLevel","0,22",(3015,3)),("映射装备副本最高通过第2层","Target_TTT_WeaponLevel_PassMax","0,2",(25,1)),("累计挑战竞技场3次","Target_TTT_Arena_Challenge_Times","0,3",(19,10)),("累计挑战资源副本3次","Target_TTT_Type_LevelClearNum","0,3",(102,5)),("任意卡池累计抽卡10次","Target_TTT_DrawCard_AnyGachaTimes","0,10",(1,50000)),("分解1次装备","Target_TTT_BreakdowntSpecialEquipment_Num","0,1",(106,1)),("累计完成扫荡3次","Target_TTT_Sweep_Times","0,3",(1,50000)),("累计击败BOSS敌人3个","Target_TTT_BossMonster_Kill_Times","0,3",(102,5))],
+2: [("累计登录2天","Target_TTT_Login_Total","0,2",(102,5)),("累计消耗400点储能","Target_TTT_Item_Consume","3,400",(102,5)),("玩家等级达到26级","Target_TTT_PlayerLevel","0,26",(1074,100)),("映射装备副本最高通过第4层","Target_TTT_WeaponLevel_PassMax","0,4",(25,1)),("累计挑战竞技场6次","Target_TTT_Arena_Challenge_Times","0,6",(19,10)),("累计挑战资源副本9次","Target_TTT_Type_LevelClearNum","0,9",(25,1)),("爬塔最高通过第5层","Target_TTT_Tower_MaxPassLayer","0,5",(1074,100)),("累计挑战无限之旅1次","Target_TTT_InfiniteChallenge_Times","0,1",(1,50000)),("获得8件15级以上的装备","Target_TTT_Invaild","15,8",(100,40)),("领取1次爬塔挂机奖励","Target_TTT_Invaild","0,1",(102,5))],
+3: [("累计登录3天","Target_TTT_Login_Total","0,3",(301,3000)),("累计消耗600点储能","Target_TTT_Item_Consume","3,600",(102,5)),("玩家等级达到30级","Target_TTT_PlayerLevel","0,30",(3027,2)),("映射装备副本最高通过第5层","Target_TTT_WeaponLevel_PassMax","0,5",(25,1)),("累计挑战竞技场9次","Target_TTT_Arena_Challenge_Times","0,9",(19,10)),("爬塔最高通过第8层","Target_TTT_Tower_MaxPassLayer","0,8",(1074,100)),("累计挑战资源副本15次","Target_TTT_Type_LevelClearNum","0,15",(1,50000)),("无限之旅本周最高分达到2000分","Target_TTT_InfiniteChallenge_Score","0,2000",(108,40)),("累计完成跑商1次","Target_TTT_Trade_CompleteTimes","0,1",(301,3000)),("获得4件20级以上的装备","Target_TTT_Invaild","20,4",(3027,2))],
+4: [("累计登录4天","Target_TTT_Login_Total","0,4",(3010,1)),("累计消耗800点储能","Target_TTT_Item_Consume","3,800",(3010,1)),("玩家等级达到32级","Target_TTT_PlayerLevel","0,32",(3010,1)),("映射装备副本最高通过第6层","Target_TTT_WeaponLevel_PassMax","0,6",(25,1)),("累计挑战竞技场12次","Target_TTT_Arena_Challenge_Times","0,12",(19,10)),("爬塔最高通过第12层","Target_TTT_Tower_MaxPassLayer","0,12",(1074,100)),("通关BOSS最高通过难度1","Target_TTT_BossChallenge_AnyBossDifficulty","0,1",(106,1)),("累计通关高难主线1次","Target_TTT_Type_LevelClearNum","37,1",(3010,1)),("无限之旅本周最高分达到3000分","Target_TTT_InfiniteChallenge_Score","0,3000",(1,50000)),("行商等级达到2级","Target_TTT_Trade_Level","0,2",(301,3000))],
+5: [("累计登录5天","Target_TTT_Login_Total","0,5",(3010,1)),("累计消耗1000点储能","Target_TTT_Item_Consume","3,1000",(3010,1)),("玩家等级达到34级","Target_TTT_PlayerLevel","0,34",(107,2)),("映射装备副本最高通过第7层","Target_TTT_WeaponLevel_PassMax","0,7",(25,1)),("累计挑战竞技场15次","Target_TTT_Arena_Challenge_Times","0,15",(19,10)),("爬塔最高通过第15层","Target_TTT_Tower_MaxPassLayer","0,15",(1074,100)),("通关BOSS最高通过难度2","Target_TTT_BossChallenge_AnyBossDifficulty","0,2",(3010,2)),("通关高难1-5","Target_TTT_pass_Level","110105,1",(3011,1)),("无限之旅本周最高分达到4000分","Target_TTT_InfiniteChallenge_Score","0,4000",(28,100)),("行商等级达到3级","Target_TTT_Trade_Level","0,3",(3027,3))],
+6: [("累计登录6天","Target_TTT_Login_Total","0,6",(107,2)),("累计消耗1200点储能","Target_TTT_Item_Consume","3,1200",(3010,2)),("玩家等级达到36级","Target_TTT_PlayerLevel","0,36",(109,5)),("映射装备副本最高通过第9层","Target_TTT_WeaponLevel_PassMax","0,9",(25,1)),("累计挑战竞技场18次","Target_TTT_Arena_Challenge_Times","0,18",(19,10)),("爬塔最高通过第18层","Target_TTT_Tower_MaxPassLayer","0,18",(3027,3)),("无限之旅本周最高分达到5000分","Target_TTT_InfiniteChallenge_Score","0,5000",(1074,40)),("行商等级达到4级","Target_TTT_Trade_Level","0,4",(1156,1)),("通关高难2-3","Target_TTT_pass_Level","110203,1",(3011,1)),("累计获得肉鸽积分2000分","Target_TTT_Roguelike_AccumulateScore","0,2000",(107,3))],
+7: [("累计登录7天","Target_TTT_Login_Total","0,7",(107,2)),("累计消耗1500点储能","Target_TTT_Item_Consume","3,1500",(33,10)),("玩家等级达到38级","Target_TTT_PlayerLevel","0,38",(6,10000)),("映射装备副本最高通过第10层","Target_TTT_WeaponLevel_PassMax","0,10",(25,1)),("累计挑战竞技场21次","Target_TTT_Arena_Challenge_Times","0,21",(19,20)),("爬塔最高通过第22层","Target_TTT_Tower_MaxPassLayer","0,22",(3027,5)),("无限之旅本周最高分达到6000分","Target_TTT_InfiniteChallenge_Score","0,6000",(100,40)),("行商等级达到5级","Target_TTT_Trade_Level","0,5",(3027,5)),("累计获得肉鸽积分5000分","Target_TTT_Roguelike_AccumulateScore","0,5000",(107,3)),("邮票副本最高通过第1层","Target_TTT_StrategyCardLevel_PassMax","0,1",(6,10000))],
+}
+'''
+t = t[:i1] + new_d17 + t[i2:]
+t = t.replace('path = out / "14日任务总表-评审v5-2026-08-31.xlsx"',
+              'path = out / "14日任务总表-评审v6-2026-08-31.xlsx"')
+t = t.replace('【CHG-016修订】全14天统一斜率：', '【CHG-017修订】前7天以用户v2评审表定稿；')
+p.write_text(t, encoding="utf-8")
+print("patched")

@@ -1,8 +1,5543 @@
 {
   "schema": "vgame-numerical-parameter-registry/v2",
-  "generatedAt": "2026-08-24T11:33:39.981856+00:00",
-  "count": 14,
+  "generatedAt": "2026-09-02T07:43:57.383155+00:00",
+  "count": 275,
   "parameterSets": [
+    {
+      "parameterSetId": "NPARAM-2D2D350CA770",
+      "atomId": "NATOM-A40F26F1A88B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "chart.add",
+        "sheet": "Charts",
+        "props": {
+          "chartType": "line",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 1,
+              "rowOffsetPx": 4,
+              "colOffsetPx": 8
+            },
+            "extent": {
+              "widthPx": 520,
+              "heightPx": 280
+            }
+          },
+          "title": "Milky Way Star Birth Rate",
+          "categories": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "series": [
+            {
+              "name": "Milky Way",
+              "values": [
+                1.8,
+                1.9,
+                2,
+                2.2
+              ]
+            }
+          ],
+          "hasLegend": true,
+          "legend": {
+            "position": "bottom"
+          },
+          "dataLabels": {
+            "showValue": true
+          }
+        }
+      },
+      "sourceId": "NSRC-D061018105A1",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/chart.md#L9:`chart.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-BB2C473FC994",
+      "atomId": "NATOM-1DF6446DE4CD",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "comments.self.set",
+        "person": {
+          "displayName": "Artifact Bot",
+          "initials": "AB"
+        }
+      },
+      "sourceId": "NSRC-48645F16AACB",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/comments.md#L9:`comments.self.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-3C508C2AD759",
+      "atomId": "NATOM-57E7A1BC8BD2",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "conditionalformat.add",
+        "target": {
+          "sheet": "CF",
+          "range": "A1:A3"
+        },
+        "props": {
+          "rule": {
+            "type": "cellIs",
+            "operator": "greaterThan",
+            "formula": 3,
+            "format": {
+              "fill": "accent2",
+              "font": {
+                "bold": true,
+                "color": "accent3"
+              }
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-3FAC0BD84DFD",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/conditionalformat.md#L9:`conditionalformat.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8962BCB03F95",
+      "atomId": "NATOM-FC9514534891",
+      "domain": "reward-drop",
+      "value": {
+        "op": "datavalidation.set",
+        "target": {
+          "sheet": "Validation",
+          "range": "B2:B10"
+        },
+        "props": {
+          "rule": {
+            "type": "list",
+            "values": [
+              "Dog",
+              "Cat",
+              "Bat"
+            ]
+          },
+          "prompt": {
+            "title": "Pick an animal",
+            "show": true
+          },
+          "errorAlert": {
+            "title": "Invalid choice",
+            "show": true
+          },
+          "ignoreBlanks": true,
+          "inCellDropDown": true
+        }
+      },
+      "sourceId": "NSRC-C112F619F847",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/datavalidation.md#L9:`datavalidation.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A27FE3B5EB27",
+      "atomId": "NATOM-26ECA033D5B7",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "image.add",
+        "sheet": "Images",
+        "props": {
+          "dataUrl": "data:image/png;base64,...",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 2
+            },
+            "extent": {
+              "widthPx": 160,
+              "heightPx": 120
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-FA155A2D4F79",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/image.md#L9:`image.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8626FFFD7316",
+      "atomId": "NATOM-B3286C6C592E",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.function.add",
+        "name": "AddTax",
+        "lambda": "LAMBDA(price, tax, price*(1+tax))",
+        "description": "Adds tax to a price",
+        "parameters": [
+          {
+            "name": "price",
+            "description": "Base price"
+          },
+          {
+            "name": "tax",
+            "description": "Tax rate (e.g. 0.1)"
+          }
+        ],
+        "returns": "Taxed price"
+      },
+      "sourceId": "NSRC-180172AD34D8",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L10:`names.function.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-D799F8E76EF4",
+      "atomId": "NATOM-8E47B38A9F57",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.range.add",
+        "name": "SalesRange",
+        "formula": "Data!$A$1:$A$3",
+        "description": "Input sales data"
+      },
+      "sourceId": "NSRC-180172AD34D8",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L46:`names.range.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-692709675DEC",
+      "atomId": "NATOM-8551082E830A",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.format.set",
+        "target": {
+          "sheet": "Scorecard",
+          "range": "A1:C1"
+        },
+        "props": {
+          "fill": "accent1",
+          "font": {
+            "bold": true,
+            "size": 14
+          },
+          "horizontalAlignment": "Center"
+        }
+      },
+      "sourceId": "NSRC-70F4B4F0ECC0",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L13:`range.format.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CC1DE1D9DA60",
+      "atomId": "NATOM-05FCE0665E03",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.formulas.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "E2"
+        },
+        "formulas": [
+          [
+            "=AVERAGE(C2:C4)"
+          ]
+        ]
+      },
+      "sourceId": "NSRC-70F4B4F0ECC0",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L60:`range.formulas.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-EEBED68A055F",
+      "atomId": "NATOM-2E54D4C33930",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.merge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D1"
+        }
+      },
+      "sourceId": "NSRC-70F4B4F0ECC0",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L88:`range.merge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-32B74D66466C",
+      "atomId": "NATOM-0E377404A3B0",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.unmerge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D4"
+        }
+      },
+      "sourceId": "NSRC-70F4B4F0ECC0",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L110:`range.unmerge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-74264B30F107",
+      "atomId": "NATOM-3EC5A6E9B54A",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.values.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "A1:C2"
+        },
+        "values": [
+          [
+            "SKU",
+            "Color",
+            "Stock"
+          ],
+          [
+            "100-001",
+            "Black",
+            15
+          ]
+        ]
+      },
+      "sourceId": "NSRC-70F4B4F0ECC0",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L132:`range.values.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-F910C11F8D69",
+      "atomId": "NATOM-31982577F181",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "shape.add",
+        "sheet": "Shapes",
+        "props": {
+          "geometry": "rect",
+          "anchor": {
+            "from": {
+              "row": 2,
+              "col": 3
+            },
+            "extent": {
+              "widthPx": 260,
+              "heightPx": 140
+            }
+          },
+          "fill": "accent1",
+          "line": {
+            "style": "dashed",
+            "fill": "accent4",
+            "width": 1
+          }
+        }
+      },
+      "sourceId": "NSRC-25BF737A752B",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/shape.md#L9:`shape.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-F0866790D121",
+      "atomId": "NATOM-71362FD36194",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sheet.add",
+        "name": "Inventory"
+      },
+      "sourceId": "NSRC-B386000A9540",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sheet.md#L9:`sheet.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7D176FFD89C6",
+      "atomId": "NATOM-FC05A1B43AC9",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sparkline.add",
+        "props": {
+          "type": "line",
+          "targetRange": {
+            "sheet": "KPIs",
+            "range": "H2:H3"
+          },
+          "sourceData": {
+            "sheet": "KPIs",
+            "range": "B2:G3"
+          },
+          "dateAxisRange": {
+            "sheet": "KPIs",
+            "range": "B1:G1"
+          },
+          "seriesColor": "accent1",
+          "markers": {
+            "show": true,
+            "high": true,
+            "low": true
+          }
+        }
+      },
+      "sourceId": "NSRC-1D6C6FC204CA",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sparkline.md#L9:`sparkline.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-17297B1A08A4",
+      "atomId": "NATOM-621F86F66716",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.add",
+        "props": {
+          "range": {
+            "sheet": "Inventory",
+            "range": "A1:C3"
+          },
+          "hasHeaders": true,
+          "name": "InventoryTable"
+        }
+      },
+      "sourceId": "NSRC-304E13EEE615",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L10:`table.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-6E0E363A7907",
+      "atomId": "NATOM-17EBE25F3E86",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.rows.add",
+        "target": {
+          "name": "InventoryTable",
+          "sheet": "Inventory"
+        },
+        "props": {
+          "index": null,
+          "values": [
+            [
+              "100-003",
+              "Denim",
+              12
+            ]
+          ]
+        }
+      },
+      "sourceId": "NSRC-304E13EEE615",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L39:`table.rows.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-02DA4C1D6F7C",
+      "atomId": "NATOM-A8871A485DCB",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.add",
+        "target": {
+          "cell": {
+            "sheet": "Sheet1",
+            "address": "F5"
+          }
+        },
+        "body": "Cell comment"
+      },
+      "sourceId": "NSRC-329E5406C6FA",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L12:`thread.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C85381BB9F08",
+      "atomId": "NATOM-D1976D1A38E0",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reopen",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-329E5406C6FA",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L39:`thread.reopen`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-EA67D0526A5E",
+      "atomId": "NATOM-6871504F0CA2",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reply",
+        "target": "threadId",
+        "body": "Reply on cell"
+      },
+      "sourceId": "NSRC-329E5406C6FA",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L58:`thread.reply`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7EF975BC10B5",
+      "atomId": "NATOM-19273143A958",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.resolve",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-329E5406C6FA",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L80:`thread.resolve`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A638A4DE689C",
+      "atomId": "NATOM-63E71D7CCC52",
+      "domain": "shared-foundation",
+      "value": {
+        "follow-redirects/http": "http",
+        "follow-redirects/https": "https"
+      },
+      "sourceId": "NSRC-0B7F4103B79B",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/node_modules/follow-redirects/README.md#L117:Browser Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-B3B358037B36",
+      "atomId": "NATOM-0830CD601E67",
+      "domain": "shared-foundation",
+      "value": {
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "skia-canvas"
+          ]
+        }
+      },
+      "sourceId": "NSRC-73D4C11848F2",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/@oai/artifact-tool/node_modules/skia-canvas/README.md#L59:`pnpm`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5C580F1B40CD",
+      "atomId": "NATOM-9EA3D5231A8B",
+      "domain": "shared-foundation",
+      "value": {
+        "cookies": [
+          {
+            "name": "session_id",
+            "value": "abc123",
+            "domain": "example.com",
+            "path": "/",
+            "expires": 1893456000,
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax"
+          }
+        ],
+        "origins": [
+          {
+            "origin": "https://example.com",
+            "localStorage": [
+              {
+                "name": "theme",
+                "value": "dark"
+              },
+              {
+                "name": "user_id",
+                "value": "12345"
+              }
+            ]
+          }
+        ]
+      },
+      "sourceId": "NSRC-AC0C87541A63",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md#L29:Storage State File Format",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-987EB6265AE4",
+      "atomId": "NATOM-BFAD75B358CD",
+      "domain": "shared-foundation",
+      "value": {
+        "mcpServers": {
+          "playwright": {
+            "command": "npx",
+            "args": [
+              "@playwright/mcp@latest"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-AE49026372C8",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/playwright/README.md#L163:Setup",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-942ED8684C9F",
+      "atomId": "NATOM-8438D79E9E18",
+      "domain": "shared-foundation",
+      "value": {
+        "str": 1000
+      },
+      "sourceId": "NSRC-573F4059A6D6",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/safe-buffer/README.md#L366:Would this ever be a problem in real code?",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-636BA5696256",
+      "atomId": "NATOM-AFCEB81AA921",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "importHelpers": true
+        }
+      },
+      "sourceId": "NSRC-D3F47DF07603",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/tslib/README.md#L77:Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8186E8FB5E24",
+      "atomId": "NATOM-5D9799BF0F49",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "amd",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "bower_components/tslib/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-D3F47DF07603",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CAA3533410EC",
+      "atomId": "NATOM-5D9799BF0F49",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "system",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "jspm_packages/npm/tslib@1.[version].0/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-D3F47DF07603",
+      "sourceLocator": "02_AI规则/key-task-20260827/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-181AE6FC6841",
+      "atomId": "NATOM-1499B5873A22",
+      "domain": "reward-drop",
+      "value": {
+        "op": "chart.add",
+        "sheet": "Charts",
+        "props": {
+          "chartType": "line",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 1,
+              "rowOffsetPx": 4,
+              "colOffsetPx": 8
+            },
+            "extent": {
+              "widthPx": 520,
+              "heightPx": 280
+            }
+          },
+          "title": "Milky Way Star Birth Rate",
+          "categories": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "series": [
+            {
+              "name": "Milky Way",
+              "values": [
+                1.8,
+                1.9,
+                2,
+                2.2
+              ]
+            }
+          ],
+          "hasLegend": true,
+          "legend": {
+            "position": "bottom"
+          },
+          "dataLabels": {
+            "showValue": true
+          }
+        }
+      },
+      "sourceId": "NSRC-9B7F69DB7090",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/chart.md#L9:`chart.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CDC034E2B3E6",
+      "atomId": "NATOM-03C28981127B",
+      "domain": "reward-drop",
+      "value": {
+        "op": "comments.self.set",
+        "person": {
+          "displayName": "Artifact Bot",
+          "initials": "AB"
+        }
+      },
+      "sourceId": "NSRC-3F2FFAFE7BBE",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/comments.md#L9:`comments.self.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-3CF97DAB1059",
+      "atomId": "NATOM-1C8CA712F792",
+      "domain": "reward-drop",
+      "value": {
+        "op": "conditionalformat.add",
+        "target": {
+          "sheet": "CF",
+          "range": "A1:A3"
+        },
+        "props": {
+          "rule": {
+            "type": "cellIs",
+            "operator": "greaterThan",
+            "formula": 3,
+            "format": {
+              "fill": "accent2",
+              "font": {
+                "bold": true,
+                "color": "accent3"
+              }
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-34E8AD085F62",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/conditionalformat.md#L9:`conditionalformat.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-62877EC25797",
+      "atomId": "NATOM-F22A387AC40F",
+      "domain": "reward-drop",
+      "value": {
+        "op": "datavalidation.set",
+        "target": {
+          "sheet": "Validation",
+          "range": "B2:B10"
+        },
+        "props": {
+          "rule": {
+            "type": "list",
+            "values": [
+              "Dog",
+              "Cat",
+              "Bat"
+            ]
+          },
+          "prompt": {
+            "title": "Pick an animal",
+            "show": true
+          },
+          "errorAlert": {
+            "title": "Invalid choice",
+            "show": true
+          },
+          "ignoreBlanks": true,
+          "inCellDropDown": true
+        }
+      },
+      "sourceId": "NSRC-1ACA1616AE36",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/datavalidation.md#L9:`datavalidation.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-483DDF1639EC",
+      "atomId": "NATOM-9412038AAEAA",
+      "domain": "reward-drop",
+      "value": {
+        "op": "image.add",
+        "sheet": "Images",
+        "props": {
+          "dataUrl": "data:image/png;base64,...",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 2
+            },
+            "extent": {
+              "widthPx": 160,
+              "heightPx": 120
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-1224FFA9A559",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/image.md#L9:`image.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C07E33EAFACD",
+      "atomId": "NATOM-35D547103AD8",
+      "domain": "reward-drop",
+      "value": {
+        "op": "names.function.add",
+        "name": "AddTax",
+        "lambda": "LAMBDA(price, tax, price*(1+tax))",
+        "description": "Adds tax to a price",
+        "parameters": [
+          {
+            "name": "price",
+            "description": "Base price"
+          },
+          {
+            "name": "tax",
+            "description": "Tax rate (e.g. 0.1)"
+          }
+        ],
+        "returns": "Taxed price"
+      },
+      "sourceId": "NSRC-DF948FF88450",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L10:`names.function.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-102A239FC13A",
+      "atomId": "NATOM-C9E4F00AC874",
+      "domain": "reward-drop",
+      "value": {
+        "op": "names.range.add",
+        "name": "SalesRange",
+        "formula": "Data!$A$1:$A$3",
+        "description": "Input sales data"
+      },
+      "sourceId": "NSRC-DF948FF88450",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L46:`names.range.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-BA0FB046B289",
+      "atomId": "NATOM-4F4EDB407F08",
+      "domain": "reward-drop",
+      "value": {
+        "op": "range.format.set",
+        "target": {
+          "sheet": "Scorecard",
+          "range": "A1:C1"
+        },
+        "props": {
+          "fill": "accent1",
+          "font": {
+            "bold": true,
+            "size": 14
+          },
+          "horizontalAlignment": "Center"
+        }
+      },
+      "sourceId": "NSRC-4FEFD5C4B11A",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L13:`range.format.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-0599BC63C9FC",
+      "atomId": "NATOM-6AB3ADD7F15C",
+      "domain": "reward-drop",
+      "value": {
+        "op": "range.formulas.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "E2"
+        },
+        "formulas": [
+          [
+            "=AVERAGE(C2:C4)"
+          ]
+        ]
+      },
+      "sourceId": "NSRC-4FEFD5C4B11A",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L60:`range.formulas.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-E2EDF14B8DEC",
+      "atomId": "NATOM-4C78B0C075A0",
+      "domain": "reward-drop",
+      "value": {
+        "op": "range.merge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D1"
+        }
+      },
+      "sourceId": "NSRC-4FEFD5C4B11A",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L88:`range.merge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A7F956ABE5E5",
+      "atomId": "NATOM-221CA8657398",
+      "domain": "reward-drop",
+      "value": {
+        "op": "range.unmerge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D4"
+        }
+      },
+      "sourceId": "NSRC-4FEFD5C4B11A",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L110:`range.unmerge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-30E637C54FF2",
+      "atomId": "NATOM-1FDF7C99077F",
+      "domain": "reward-drop",
+      "value": {
+        "op": "range.values.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "A1:C2"
+        },
+        "values": [
+          [
+            "SKU",
+            "Color",
+            "Stock"
+          ],
+          [
+            "100-001",
+            "Black",
+            15
+          ]
+        ]
+      },
+      "sourceId": "NSRC-4FEFD5C4B11A",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L132:`range.values.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7EE39602E99E",
+      "atomId": "NATOM-AC6DD9CE99E3",
+      "domain": "reward-drop",
+      "value": {
+        "op": "shape.add",
+        "sheet": "Shapes",
+        "props": {
+          "geometry": "rect",
+          "anchor": {
+            "from": {
+              "row": 2,
+              "col": 3
+            },
+            "extent": {
+              "widthPx": 260,
+              "heightPx": 140
+            }
+          },
+          "fill": "accent1",
+          "line": {
+            "style": "dashed",
+            "fill": "accent4",
+            "width": 1
+          }
+        }
+      },
+      "sourceId": "NSRC-78EF521F9897",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/shape.md#L9:`shape.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-6982A423389E",
+      "atomId": "NATOM-FB50823F7A6B",
+      "domain": "reward-drop",
+      "value": {
+        "op": "sheet.add",
+        "name": "Inventory"
+      },
+      "sourceId": "NSRC-F3AE39AE6FC6",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sheet.md#L9:`sheet.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-53A3A71A0A6F",
+      "atomId": "NATOM-9525094455D1",
+      "domain": "reward-drop",
+      "value": {
+        "op": "sparkline.add",
+        "props": {
+          "type": "line",
+          "targetRange": {
+            "sheet": "KPIs",
+            "range": "H2:H3"
+          },
+          "sourceData": {
+            "sheet": "KPIs",
+            "range": "B2:G3"
+          },
+          "dateAxisRange": {
+            "sheet": "KPIs",
+            "range": "B1:G1"
+          },
+          "seriesColor": "accent1",
+          "markers": {
+            "show": true,
+            "high": true,
+            "low": true
+          }
+        }
+      },
+      "sourceId": "NSRC-D62918A221F5",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sparkline.md#L9:`sparkline.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-16C0AD9CCB86",
+      "atomId": "NATOM-C6D66AE77FAE",
+      "domain": "reward-drop",
+      "value": {
+        "op": "table.add",
+        "props": {
+          "range": {
+            "sheet": "Inventory",
+            "range": "A1:C3"
+          },
+          "hasHeaders": true,
+          "name": "InventoryTable"
+        }
+      },
+      "sourceId": "NSRC-08907BB2A5BB",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L10:`table.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-64195B3770F8",
+      "atomId": "NATOM-26E399547FA4",
+      "domain": "reward-drop",
+      "value": {
+        "op": "table.rows.add",
+        "target": {
+          "name": "InventoryTable",
+          "sheet": "Inventory"
+        },
+        "props": {
+          "index": null,
+          "values": [
+            [
+              "100-003",
+              "Denim",
+              12
+            ]
+          ]
+        }
+      },
+      "sourceId": "NSRC-08907BB2A5BB",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L39:`table.rows.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7D8D1C7525EE",
+      "atomId": "NATOM-AB444742373A",
+      "domain": "reward-drop",
+      "value": {
+        "op": "thread.add",
+        "target": {
+          "cell": {
+            "sheet": "Sheet1",
+            "address": "F5"
+          }
+        },
+        "body": "Cell comment"
+      },
+      "sourceId": "NSRC-22357C430C25",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L12:`thread.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8A517BB511B3",
+      "atomId": "NATOM-4BA68C76A698",
+      "domain": "reward-drop",
+      "value": {
+        "op": "thread.reopen",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-22357C430C25",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L39:`thread.reopen`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-AEB18FCC2FC4",
+      "atomId": "NATOM-4AFA6D0640C2",
+      "domain": "reward-drop",
+      "value": {
+        "op": "thread.reply",
+        "target": "threadId",
+        "body": "Reply on cell"
+      },
+      "sourceId": "NSRC-22357C430C25",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L58:`thread.reply`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-060EF3E0B8AF",
+      "atomId": "NATOM-3CCCCBE34D07",
+      "domain": "reward-drop",
+      "value": {
+        "op": "thread.resolve",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-22357C430C25",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L80:`thread.resolve`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8CCE2C311009",
+      "atomId": "NATOM-6903D2FAC50E",
+      "domain": "reward-drop",
+      "value": {
+        "follow-redirects/http": "http",
+        "follow-redirects/https": "https"
+      },
+      "sourceId": "NSRC-0DE457296AFC",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/node_modules/follow-redirects/README.md#L117:Browser Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-3A6D97B89528",
+      "atomId": "NATOM-6B946FBBCEFC",
+      "domain": "reward-drop",
+      "value": {
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "skia-canvas"
+          ]
+        }
+      },
+      "sourceId": "NSRC-30BDA46DD362",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/@oai/artifact-tool/node_modules/skia-canvas/README.md#L59:`pnpm`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-9A10324B8B55",
+      "atomId": "NATOM-EE570D1E9872",
+      "domain": "reward-drop",
+      "value": {
+        "cookies": [
+          {
+            "name": "session_id",
+            "value": "abc123",
+            "domain": "example.com",
+            "path": "/",
+            "expires": 1893456000,
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax"
+          }
+        ],
+        "origins": [
+          {
+            "origin": "https://example.com",
+            "localStorage": [
+              {
+                "name": "theme",
+                "value": "dark"
+              },
+              {
+                "name": "user_id",
+                "value": "12345"
+              }
+            ]
+          }
+        ]
+      },
+      "sourceId": "NSRC-6A963A136213",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md#L29:Storage State File Format",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-331EC29F7DD9",
+      "atomId": "NATOM-EDF648A99DAD",
+      "domain": "reward-drop",
+      "value": {
+        "mcpServers": {
+          "playwright": {
+            "command": "npx",
+            "args": [
+              "@playwright/mcp@latest"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-302AC6A27A04",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/playwright/README.md#L163:Setup",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-D75E4E4CAEA8",
+      "atomId": "NATOM-C3416B5DC2CB",
+      "domain": "reward-drop",
+      "value": {
+        "str": 1000
+      },
+      "sourceId": "NSRC-494C72C1AFF4",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/safe-buffer/README.md#L366:Would this ever be a problem in real code?",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C1BD420EEA9B",
+      "atomId": "NATOM-B8A61784801F",
+      "domain": "reward-drop",
+      "value": {
+        "compilerOptions": {
+          "importHelpers": true
+        }
+      },
+      "sourceId": "NSRC-469C14E86EF5",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/tslib/README.md#L77:Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-54908018F424",
+      "atomId": "NATOM-180D06E1D377",
+      "domain": "reward-drop",
+      "value": {
+        "compilerOptions": {
+          "module": "amd",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "bower_components/tslib/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-469C14E86EF5",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-0AE5F69103FE",
+      "atomId": "NATOM-180D06E1D377",
+      "domain": "reward-drop",
+      "value": {
+        "compilerOptions": {
+          "module": "system",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "jspm_packages/npm/tslib@1.[version].0/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-469C14E86EF5",
+      "sourceLocator": "02_AI规则/mapping-drop-chg019/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-0E96295A9FA8",
+      "atomId": "NATOM-3497B709E10F",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "chart.add",
+        "sheet": "Charts",
+        "props": {
+          "chartType": "line",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 1,
+              "rowOffsetPx": 4,
+              "colOffsetPx": 8
+            },
+            "extent": {
+              "widthPx": 520,
+              "heightPx": 280
+            }
+          },
+          "title": "Milky Way Star Birth Rate",
+          "categories": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "series": [
+            {
+              "name": "Milky Way",
+              "values": [
+                1.8,
+                1.9,
+                2,
+                2.2
+              ]
+            }
+          ],
+          "hasLegend": true,
+          "legend": {
+            "position": "bottom"
+          },
+          "dataLabels": {
+            "showValue": true
+          }
+        }
+      },
+      "sourceId": "NSRC-AA94AED60EA6",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/chart.md#L9:`chart.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2578067BEF04",
+      "atomId": "NATOM-C3F2A65FE838",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "comments.self.set",
+        "person": {
+          "displayName": "Artifact Bot",
+          "initials": "AB"
+        }
+      },
+      "sourceId": "NSRC-D0E423A0E360",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/comments.md#L9:`comments.self.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-14336CCA51F6",
+      "atomId": "NATOM-12F82593B70C",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "conditionalformat.add",
+        "target": {
+          "sheet": "CF",
+          "range": "A1:A3"
+        },
+        "props": {
+          "rule": {
+            "type": "cellIs",
+            "operator": "greaterThan",
+            "formula": 3,
+            "format": {
+              "fill": "accent2",
+              "font": {
+                "bold": true,
+                "color": "accent3"
+              }
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-13556C1D1EF3",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/conditionalformat.md#L9:`conditionalformat.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-45C7165D2269",
+      "atomId": "NATOM-614EF1918B29",
+      "domain": "reward-drop",
+      "value": {
+        "op": "datavalidation.set",
+        "target": {
+          "sheet": "Validation",
+          "range": "B2:B10"
+        },
+        "props": {
+          "rule": {
+            "type": "list",
+            "values": [
+              "Dog",
+              "Cat",
+              "Bat"
+            ]
+          },
+          "prompt": {
+            "title": "Pick an animal",
+            "show": true
+          },
+          "errorAlert": {
+            "title": "Invalid choice",
+            "show": true
+          },
+          "ignoreBlanks": true,
+          "inCellDropDown": true
+        }
+      },
+      "sourceId": "NSRC-069DAE1FE511",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/datavalidation.md#L9:`datavalidation.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-AEF1A467C30E",
+      "atomId": "NATOM-5AD6A8545070",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "image.add",
+        "sheet": "Images",
+        "props": {
+          "dataUrl": "data:image/png;base64,...",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 2
+            },
+            "extent": {
+              "widthPx": 160,
+              "heightPx": 120
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-6A7144DD97BD",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/image.md#L9:`image.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7FD14FE79C09",
+      "atomId": "NATOM-BA0CD7165558",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.function.add",
+        "name": "AddTax",
+        "lambda": "LAMBDA(price, tax, price*(1+tax))",
+        "description": "Adds tax to a price",
+        "parameters": [
+          {
+            "name": "price",
+            "description": "Base price"
+          },
+          {
+            "name": "tax",
+            "description": "Tax rate (e.g. 0.1)"
+          }
+        ],
+        "returns": "Taxed price"
+      },
+      "sourceId": "NSRC-220BA50BB0EE",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L10:`names.function.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-64EAA73C5FFF",
+      "atomId": "NATOM-ED342325B3F7",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.range.add",
+        "name": "SalesRange",
+        "formula": "Data!$A$1:$A$3",
+        "description": "Input sales data"
+      },
+      "sourceId": "NSRC-220BA50BB0EE",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L46:`names.range.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2D933CA137DF",
+      "atomId": "NATOM-EFF2984217A4",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.format.set",
+        "target": {
+          "sheet": "Scorecard",
+          "range": "A1:C1"
+        },
+        "props": {
+          "fill": "accent1",
+          "font": {
+            "bold": true,
+            "size": 14
+          },
+          "horizontalAlignment": "Center"
+        }
+      },
+      "sourceId": "NSRC-CA3E1090D410",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L13:`range.format.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-9F45398E1017",
+      "atomId": "NATOM-D078B19132C1",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.formulas.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "E2"
+        },
+        "formulas": [
+          [
+            "=AVERAGE(C2:C4)"
+          ]
+        ]
+      },
+      "sourceId": "NSRC-CA3E1090D410",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L60:`range.formulas.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C657EE0519A6",
+      "atomId": "NATOM-4EBA137CD78F",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.merge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D1"
+        }
+      },
+      "sourceId": "NSRC-CA3E1090D410",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L88:`range.merge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-281586907DD3",
+      "atomId": "NATOM-6739A1C7E2EF",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.unmerge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D4"
+        }
+      },
+      "sourceId": "NSRC-CA3E1090D410",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L110:`range.unmerge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-76B71B73E0CB",
+      "atomId": "NATOM-FBCCA40F584F",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.values.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "A1:C2"
+        },
+        "values": [
+          [
+            "SKU",
+            "Color",
+            "Stock"
+          ],
+          [
+            "100-001",
+            "Black",
+            15
+          ]
+        ]
+      },
+      "sourceId": "NSRC-CA3E1090D410",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L132:`range.values.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CE065D9E3B0C",
+      "atomId": "NATOM-0A4DB8921878",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "shape.add",
+        "sheet": "Shapes",
+        "props": {
+          "geometry": "rect",
+          "anchor": {
+            "from": {
+              "row": 2,
+              "col": 3
+            },
+            "extent": {
+              "widthPx": 260,
+              "heightPx": 140
+            }
+          },
+          "fill": "accent1",
+          "line": {
+            "style": "dashed",
+            "fill": "accent4",
+            "width": 1
+          }
+        }
+      },
+      "sourceId": "NSRC-DE1165649ED8",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/shape.md#L9:`shape.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-12F6592D76C3",
+      "atomId": "NATOM-0E8AADE23149",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sheet.add",
+        "name": "Inventory"
+      },
+      "sourceId": "NSRC-125240FF4DF3",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sheet.md#L9:`sheet.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8FF5D4EA25BA",
+      "atomId": "NATOM-CF819662AC7D",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sparkline.add",
+        "props": {
+          "type": "line",
+          "targetRange": {
+            "sheet": "KPIs",
+            "range": "H2:H3"
+          },
+          "sourceData": {
+            "sheet": "KPIs",
+            "range": "B2:G3"
+          },
+          "dateAxisRange": {
+            "sheet": "KPIs",
+            "range": "B1:G1"
+          },
+          "seriesColor": "accent1",
+          "markers": {
+            "show": true,
+            "high": true,
+            "low": true
+          }
+        }
+      },
+      "sourceId": "NSRC-C4C806472D25",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sparkline.md#L9:`sparkline.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-04336A2B4723",
+      "atomId": "NATOM-D287A9533957",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.add",
+        "props": {
+          "range": {
+            "sheet": "Inventory",
+            "range": "A1:C3"
+          },
+          "hasHeaders": true,
+          "name": "InventoryTable"
+        }
+      },
+      "sourceId": "NSRC-3933B431A6DF",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L10:`table.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5ED00C5705FB",
+      "atomId": "NATOM-F3CEDF7C955D",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.rows.add",
+        "target": {
+          "name": "InventoryTable",
+          "sheet": "Inventory"
+        },
+        "props": {
+          "index": null,
+          "values": [
+            [
+              "100-003",
+              "Denim",
+              12
+            ]
+          ]
+        }
+      },
+      "sourceId": "NSRC-3933B431A6DF",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L39:`table.rows.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A51430091EA6",
+      "atomId": "NATOM-D2FD46E33EC2",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.add",
+        "target": {
+          "cell": {
+            "sheet": "Sheet1",
+            "address": "F5"
+          }
+        },
+        "body": "Cell comment"
+      },
+      "sourceId": "NSRC-B5364563C21E",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L12:`thread.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-9A79B0946943",
+      "atomId": "NATOM-5BC0200FFB28",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reopen",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-B5364563C21E",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L39:`thread.reopen`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-113C0A051F88",
+      "atomId": "NATOM-5AAEAA17B868",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reply",
+        "target": "threadId",
+        "body": "Reply on cell"
+      },
+      "sourceId": "NSRC-B5364563C21E",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L58:`thread.reply`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-27471D29222E",
+      "atomId": "NATOM-3CC22B93519A",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.resolve",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-B5364563C21E",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L80:`thread.resolve`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C3738F144FE5",
+      "atomId": "NATOM-4E9F6EBA4F2E",
+      "domain": "shared-foundation",
+      "value": {
+        "follow-redirects/http": "http",
+        "follow-redirects/https": "https"
+      },
+      "sourceId": "NSRC-CD0A06A40A7E",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/node_modules/follow-redirects/README.md#L117:Browser Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-760157A0242B",
+      "atomId": "NATOM-F918F10336C2",
+      "domain": "shared-foundation",
+      "value": {
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "skia-canvas"
+          ]
+        }
+      },
+      "sourceId": "NSRC-29925CA4B4DD",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/@oai/artifact-tool/node_modules/skia-canvas/README.md#L59:`pnpm`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-FA7B5647068B",
+      "atomId": "NATOM-E7DB4E2AE812",
+      "domain": "shared-foundation",
+      "value": {
+        "cookies": [
+          {
+            "name": "session_id",
+            "value": "abc123",
+            "domain": "example.com",
+            "path": "/",
+            "expires": 1893456000,
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax"
+          }
+        ],
+        "origins": [
+          {
+            "origin": "https://example.com",
+            "localStorage": [
+              {
+                "name": "theme",
+                "value": "dark"
+              },
+              {
+                "name": "user_id",
+                "value": "12345"
+              }
+            ]
+          }
+        ]
+      },
+      "sourceId": "NSRC-F07A162F246E",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md#L29:Storage State File Format",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-50461391D95C",
+      "atomId": "NATOM-2F016211AB94",
+      "domain": "shared-foundation",
+      "value": {
+        "mcpServers": {
+          "playwright": {
+            "command": "npx",
+            "args": [
+              "@playwright/mcp@latest"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-6541A7956CD9",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/playwright/README.md#L163:Setup",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A21B7C61E6C5",
+      "atomId": "NATOM-ECD9BC9624CD",
+      "domain": "shared-foundation",
+      "value": {
+        "str": 1000
+      },
+      "sourceId": "NSRC-5056BE2A3389",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/safe-buffer/README.md#L366:Would this ever be a problem in real code?",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7C544B7885C7",
+      "atomId": "NATOM-52F45D4F9D6D",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "importHelpers": true
+        }
+      },
+      "sourceId": "NSRC-13B6FDD78CEE",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/tslib/README.md#L77:Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-E29285C8D034",
+      "atomId": "NATOM-ED37E8945EBD",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "amd",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "bower_components/tslib/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-13B6FDD78CEE",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5F680AEE0699",
+      "atomId": "NATOM-ED37E8945EBD",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "system",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "jspm_packages/npm/tslib@1.[version].0/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-13B6FDD78CEE",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg020/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5D52C2D51FD6",
+      "atomId": "NATOM-1F3103699A9E",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "chart.add",
+        "sheet": "Charts",
+        "props": {
+          "chartType": "line",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 1,
+              "rowOffsetPx": 4,
+              "colOffsetPx": 8
+            },
+            "extent": {
+              "widthPx": 520,
+              "heightPx": 280
+            }
+          },
+          "title": "Milky Way Star Birth Rate",
+          "categories": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "series": [
+            {
+              "name": "Milky Way",
+              "values": [
+                1.8,
+                1.9,
+                2,
+                2.2
+              ]
+            }
+          ],
+          "hasLegend": true,
+          "legend": {
+            "position": "bottom"
+          },
+          "dataLabels": {
+            "showValue": true
+          }
+        }
+      },
+      "sourceId": "NSRC-E2B15674E3D8",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/chart.md#L9:`chart.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-238529F1674C",
+      "atomId": "NATOM-CABC24CF9A1B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "comments.self.set",
+        "person": {
+          "displayName": "Artifact Bot",
+          "initials": "AB"
+        }
+      },
+      "sourceId": "NSRC-D6BD7A5AA2BC",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/comments.md#L9:`comments.self.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-0732373B7D6A",
+      "atomId": "NATOM-2C353ED7269E",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "conditionalformat.add",
+        "target": {
+          "sheet": "CF",
+          "range": "A1:A3"
+        },
+        "props": {
+          "rule": {
+            "type": "cellIs",
+            "operator": "greaterThan",
+            "formula": 3,
+            "format": {
+              "fill": "accent2",
+              "font": {
+                "bold": true,
+                "color": "accent3"
+              }
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-91CFC90E8261",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/conditionalformat.md#L9:`conditionalformat.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-130659231A07",
+      "atomId": "NATOM-D6AE9DC168C3",
+      "domain": "reward-drop",
+      "value": {
+        "op": "datavalidation.set",
+        "target": {
+          "sheet": "Validation",
+          "range": "B2:B10"
+        },
+        "props": {
+          "rule": {
+            "type": "list",
+            "values": [
+              "Dog",
+              "Cat",
+              "Bat"
+            ]
+          },
+          "prompt": {
+            "title": "Pick an animal",
+            "show": true
+          },
+          "errorAlert": {
+            "title": "Invalid choice",
+            "show": true
+          },
+          "ignoreBlanks": true,
+          "inCellDropDown": true
+        }
+      },
+      "sourceId": "NSRC-9BA80000794F",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/datavalidation.md#L9:`datavalidation.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CFF839D70610",
+      "atomId": "NATOM-FE10BAFD61D6",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "image.add",
+        "sheet": "Images",
+        "props": {
+          "dataUrl": "data:image/png;base64,...",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 2
+            },
+            "extent": {
+              "widthPx": 160,
+              "heightPx": 120
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-43A59A451A73",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/image.md#L9:`image.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-AC327D6F4755",
+      "atomId": "NATOM-3D6C2C3985C3",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.function.add",
+        "name": "AddTax",
+        "lambda": "LAMBDA(price, tax, price*(1+tax))",
+        "description": "Adds tax to a price",
+        "parameters": [
+          {
+            "name": "price",
+            "description": "Base price"
+          },
+          {
+            "name": "tax",
+            "description": "Tax rate (e.g. 0.1)"
+          }
+        ],
+        "returns": "Taxed price"
+      },
+      "sourceId": "NSRC-C4C5E3178667",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L10:`names.function.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-361829F34FF5",
+      "atomId": "NATOM-38BC01849455",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.range.add",
+        "name": "SalesRange",
+        "formula": "Data!$A$1:$A$3",
+        "description": "Input sales data"
+      },
+      "sourceId": "NSRC-C4C5E3178667",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L46:`names.range.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-87C7D01658C0",
+      "atomId": "NATOM-34B443A41B97",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.format.set",
+        "target": {
+          "sheet": "Scorecard",
+          "range": "A1:C1"
+        },
+        "props": {
+          "fill": "accent1",
+          "font": {
+            "bold": true,
+            "size": 14
+          },
+          "horizontalAlignment": "Center"
+        }
+      },
+      "sourceId": "NSRC-D3E86190CED4",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L13:`range.format.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-38AF4A779EA7",
+      "atomId": "NATOM-2A375E79634E",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.formulas.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "E2"
+        },
+        "formulas": [
+          [
+            "=AVERAGE(C2:C4)"
+          ]
+        ]
+      },
+      "sourceId": "NSRC-D3E86190CED4",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L60:`range.formulas.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-DFB71351F844",
+      "atomId": "NATOM-62332456FE3A",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.merge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D1"
+        }
+      },
+      "sourceId": "NSRC-D3E86190CED4",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L88:`range.merge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-B5FDE27679C1",
+      "atomId": "NATOM-0B9D1BA49274",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.unmerge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D4"
+        }
+      },
+      "sourceId": "NSRC-D3E86190CED4",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L110:`range.unmerge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5DB42ECEFA49",
+      "atomId": "NATOM-59E3DB90A84D",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.values.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "A1:C2"
+        },
+        "values": [
+          [
+            "SKU",
+            "Color",
+            "Stock"
+          ],
+          [
+            "100-001",
+            "Black",
+            15
+          ]
+        ]
+      },
+      "sourceId": "NSRC-D3E86190CED4",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L132:`range.values.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2D3B50D6C91E",
+      "atomId": "NATOM-B299A49EF6C2",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "shape.add",
+        "sheet": "Shapes",
+        "props": {
+          "geometry": "rect",
+          "anchor": {
+            "from": {
+              "row": 2,
+              "col": 3
+            },
+            "extent": {
+              "widthPx": 260,
+              "heightPx": 140
+            }
+          },
+          "fill": "accent1",
+          "line": {
+            "style": "dashed",
+            "fill": "accent4",
+            "width": 1
+          }
+        }
+      },
+      "sourceId": "NSRC-14AABBBF5B52",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/shape.md#L9:`shape.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-92909F62F84F",
+      "atomId": "NATOM-A83464B82C31",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sheet.add",
+        "name": "Inventory"
+      },
+      "sourceId": "NSRC-52CCFDAD33AB",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sheet.md#L9:`sheet.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-10C5050536A7",
+      "atomId": "NATOM-CD6BF03604B4",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sparkline.add",
+        "props": {
+          "type": "line",
+          "targetRange": {
+            "sheet": "KPIs",
+            "range": "H2:H3"
+          },
+          "sourceData": {
+            "sheet": "KPIs",
+            "range": "B2:G3"
+          },
+          "dateAxisRange": {
+            "sheet": "KPIs",
+            "range": "B1:G1"
+          },
+          "seriesColor": "accent1",
+          "markers": {
+            "show": true,
+            "high": true,
+            "low": true
+          }
+        }
+      },
+      "sourceId": "NSRC-A3E4CC8101BE",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sparkline.md#L9:`sparkline.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-EFCE243F394E",
+      "atomId": "NATOM-BFDE322687E5",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.add",
+        "props": {
+          "range": {
+            "sheet": "Inventory",
+            "range": "A1:C3"
+          },
+          "hasHeaders": true,
+          "name": "InventoryTable"
+        }
+      },
+      "sourceId": "NSRC-7930D65857ED",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L10:`table.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2AFE048523D8",
+      "atomId": "NATOM-92DC2E5E81A3",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.rows.add",
+        "target": {
+          "name": "InventoryTable",
+          "sheet": "Inventory"
+        },
+        "props": {
+          "index": null,
+          "values": [
+            [
+              "100-003",
+              "Denim",
+              12
+            ]
+          ]
+        }
+      },
+      "sourceId": "NSRC-7930D65857ED",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L39:`table.rows.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7D6B0CA5A794",
+      "atomId": "NATOM-FA91F9A9A9CC",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.add",
+        "target": {
+          "cell": {
+            "sheet": "Sheet1",
+            "address": "F5"
+          }
+        },
+        "body": "Cell comment"
+      },
+      "sourceId": "NSRC-040C0175C080",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L12:`thread.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-83252BAA0F00",
+      "atomId": "NATOM-D240C81CCE2B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reopen",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-040C0175C080",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L39:`thread.reopen`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7EA3FE1F54BF",
+      "atomId": "NATOM-710FC9CE4638",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reply",
+        "target": "threadId",
+        "body": "Reply on cell"
+      },
+      "sourceId": "NSRC-040C0175C080",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L58:`thread.reply`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CC807CA16607",
+      "atomId": "NATOM-E4FC721CD0FA",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.resolve",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-040C0175C080",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L80:`thread.resolve`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A44694E70B8B",
+      "atomId": "NATOM-B0D07F3269A9",
+      "domain": "shared-foundation",
+      "value": {
+        "follow-redirects/http": "http",
+        "follow-redirects/https": "https"
+      },
+      "sourceId": "NSRC-6B68C36C09A0",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/node_modules/follow-redirects/README.md#L117:Browser Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2F97B589AA15",
+      "atomId": "NATOM-E673D253E0A6",
+      "domain": "shared-foundation",
+      "value": {
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "skia-canvas"
+          ]
+        }
+      },
+      "sourceId": "NSRC-F2D7D1153108",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/@oai/artifact-tool/node_modules/skia-canvas/README.md#L59:`pnpm`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-D5C93139E160",
+      "atomId": "NATOM-9EFACF18DE62",
+      "domain": "shared-foundation",
+      "value": {
+        "cookies": [
+          {
+            "name": "session_id",
+            "value": "abc123",
+            "domain": "example.com",
+            "path": "/",
+            "expires": 1893456000,
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax"
+          }
+        ],
+        "origins": [
+          {
+            "origin": "https://example.com",
+            "localStorage": [
+              {
+                "name": "theme",
+                "value": "dark"
+              },
+              {
+                "name": "user_id",
+                "value": "12345"
+              }
+            ]
+          }
+        ]
+      },
+      "sourceId": "NSRC-5885CCF659A6",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md#L29:Storage State File Format",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2C2FF2AE7D61",
+      "atomId": "NATOM-50CD88D39DBE",
+      "domain": "shared-foundation",
+      "value": {
+        "mcpServers": {
+          "playwright": {
+            "command": "npx",
+            "args": [
+              "@playwright/mcp@latest"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-A1F22C38E6DC",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/playwright/README.md#L163:Setup",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-D69CEC45BEFD",
+      "atomId": "NATOM-5030DE1E755F",
+      "domain": "shared-foundation",
+      "value": {
+        "str": 1000
+      },
+      "sourceId": "NSRC-C69B1F91AACF",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/safe-buffer/README.md#L366:Would this ever be a problem in real code?",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-889A802CB4B7",
+      "atomId": "NATOM-A2FD96ECAA76",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "importHelpers": true
+        }
+      },
+      "sourceId": "NSRC-571081A2A953",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/tslib/README.md#L77:Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-BD271F1778A6",
+      "atomId": "NATOM-AF890A2B139A",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "amd",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "bower_components/tslib/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-571081A2A953",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-3B6C21677359",
+      "atomId": "NATOM-AF890A2B139A",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "system",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "jspm_packages/npm/tslib@1.[version].0/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-571081A2A953",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg021/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A50A8BFDBE3A",
+      "atomId": "NATOM-88EEF26BB8F2",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "chart.add",
+        "sheet": "Charts",
+        "props": {
+          "chartType": "line",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 1,
+              "rowOffsetPx": 4,
+              "colOffsetPx": 8
+            },
+            "extent": {
+              "widthPx": 520,
+              "heightPx": 280
+            }
+          },
+          "title": "Milky Way Star Birth Rate",
+          "categories": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "series": [
+            {
+              "name": "Milky Way",
+              "values": [
+                1.8,
+                1.9,
+                2,
+                2.2
+              ]
+            }
+          ],
+          "hasLegend": true,
+          "legend": {
+            "position": "bottom"
+          },
+          "dataLabels": {
+            "showValue": true
+          }
+        }
+      },
+      "sourceId": "NSRC-6BC30398C3D2",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/chart.md#L9:`chart.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-4B0E3930C7AD",
+      "atomId": "NATOM-84C7E82258E8",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "comments.self.set",
+        "person": {
+          "displayName": "Artifact Bot",
+          "initials": "AB"
+        }
+      },
+      "sourceId": "NSRC-ED8D6462AF48",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/comments.md#L9:`comments.self.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-0EC77C66CCCD",
+      "atomId": "NATOM-EE7FBA89D2D8",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "conditionalformat.add",
+        "target": {
+          "sheet": "CF",
+          "range": "A1:A3"
+        },
+        "props": {
+          "rule": {
+            "type": "cellIs",
+            "operator": "greaterThan",
+            "formula": 3,
+            "format": {
+              "fill": "accent2",
+              "font": {
+                "bold": true,
+                "color": "accent3"
+              }
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-AAAD5C033392",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/conditionalformat.md#L9:`conditionalformat.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-043A30A660F9",
+      "atomId": "NATOM-41DB040288D4",
+      "domain": "reward-drop",
+      "value": {
+        "op": "datavalidation.set",
+        "target": {
+          "sheet": "Validation",
+          "range": "B2:B10"
+        },
+        "props": {
+          "rule": {
+            "type": "list",
+            "values": [
+              "Dog",
+              "Cat",
+              "Bat"
+            ]
+          },
+          "prompt": {
+            "title": "Pick an animal",
+            "show": true
+          },
+          "errorAlert": {
+            "title": "Invalid choice",
+            "show": true
+          },
+          "ignoreBlanks": true,
+          "inCellDropDown": true
+        }
+      },
+      "sourceId": "NSRC-041EDDC097A2",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/datavalidation.md#L9:`datavalidation.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5A47E33FA13F",
+      "atomId": "NATOM-CC0BAA31A923",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "image.add",
+        "sheet": "Images",
+        "props": {
+          "dataUrl": "data:image/png;base64,...",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 2
+            },
+            "extent": {
+              "widthPx": 160,
+              "heightPx": 120
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-23E348E820D1",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/image.md#L9:`image.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-12F8086FC07E",
+      "atomId": "NATOM-34EFC17C083E",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.function.add",
+        "name": "AddTax",
+        "lambda": "LAMBDA(price, tax, price*(1+tax))",
+        "description": "Adds tax to a price",
+        "parameters": [
+          {
+            "name": "price",
+            "description": "Base price"
+          },
+          {
+            "name": "tax",
+            "description": "Tax rate (e.g. 0.1)"
+          }
+        ],
+        "returns": "Taxed price"
+      },
+      "sourceId": "NSRC-9916760FBFF8",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L10:`names.function.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2FDA385F5FB9",
+      "atomId": "NATOM-ADC71C1A0ECA",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.range.add",
+        "name": "SalesRange",
+        "formula": "Data!$A$1:$A$3",
+        "description": "Input sales data"
+      },
+      "sourceId": "NSRC-9916760FBFF8",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L46:`names.range.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-4AF4D5AC02DB",
+      "atomId": "NATOM-D0AFFFBB9B2D",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.format.set",
+        "target": {
+          "sheet": "Scorecard",
+          "range": "A1:C1"
+        },
+        "props": {
+          "fill": "accent1",
+          "font": {
+            "bold": true,
+            "size": 14
+          },
+          "horizontalAlignment": "Center"
+        }
+      },
+      "sourceId": "NSRC-7CA4F5CDFB65",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L13:`range.format.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C5937801451D",
+      "atomId": "NATOM-192F331A38E6",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.formulas.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "E2"
+        },
+        "formulas": [
+          [
+            "=AVERAGE(C2:C4)"
+          ]
+        ]
+      },
+      "sourceId": "NSRC-7CA4F5CDFB65",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L60:`range.formulas.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-92CD5510FFA7",
+      "atomId": "NATOM-39340A997DF6",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.merge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D1"
+        }
+      },
+      "sourceId": "NSRC-7CA4F5CDFB65",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L88:`range.merge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-604DDA821E52",
+      "atomId": "NATOM-508D9CC38DC8",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.unmerge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D4"
+        }
+      },
+      "sourceId": "NSRC-7CA4F5CDFB65",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L110:`range.unmerge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-39EB11BD3037",
+      "atomId": "NATOM-FE2B1C816531",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.values.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "A1:C2"
+        },
+        "values": [
+          [
+            "SKU",
+            "Color",
+            "Stock"
+          ],
+          [
+            "100-001",
+            "Black",
+            15
+          ]
+        ]
+      },
+      "sourceId": "NSRC-7CA4F5CDFB65",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L132:`range.values.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-E401AD2D2A9D",
+      "atomId": "NATOM-7A4453AA2407",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "shape.add",
+        "sheet": "Shapes",
+        "props": {
+          "geometry": "rect",
+          "anchor": {
+            "from": {
+              "row": 2,
+              "col": 3
+            },
+            "extent": {
+              "widthPx": 260,
+              "heightPx": 140
+            }
+          },
+          "fill": "accent1",
+          "line": {
+            "style": "dashed",
+            "fill": "accent4",
+            "width": 1
+          }
+        }
+      },
+      "sourceId": "NSRC-693AE1561F1A",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/shape.md#L9:`shape.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-1B42C86926F6",
+      "atomId": "NATOM-192C4F124692",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sheet.add",
+        "name": "Inventory"
+      },
+      "sourceId": "NSRC-F051AFA551E5",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sheet.md#L9:`sheet.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-29B9A1EB45B9",
+      "atomId": "NATOM-AD05A4C5FBF6",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sparkline.add",
+        "props": {
+          "type": "line",
+          "targetRange": {
+            "sheet": "KPIs",
+            "range": "H2:H3"
+          },
+          "sourceData": {
+            "sheet": "KPIs",
+            "range": "B2:G3"
+          },
+          "dateAxisRange": {
+            "sheet": "KPIs",
+            "range": "B1:G1"
+          },
+          "seriesColor": "accent1",
+          "markers": {
+            "show": true,
+            "high": true,
+            "low": true
+          }
+        }
+      },
+      "sourceId": "NSRC-B94BCD052F54",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sparkline.md#L9:`sparkline.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-DC5476B27841",
+      "atomId": "NATOM-9904D7AB9678",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.add",
+        "props": {
+          "range": {
+            "sheet": "Inventory",
+            "range": "A1:C3"
+          },
+          "hasHeaders": true,
+          "name": "InventoryTable"
+        }
+      },
+      "sourceId": "NSRC-0E2D6BD8A096",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L10:`table.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-D88D819CF036",
+      "atomId": "NATOM-69E0DA583BA3",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.rows.add",
+        "target": {
+          "name": "InventoryTable",
+          "sheet": "Inventory"
+        },
+        "props": {
+          "index": null,
+          "values": [
+            [
+              "100-003",
+              "Denim",
+              12
+            ]
+          ]
+        }
+      },
+      "sourceId": "NSRC-0E2D6BD8A096",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L39:`table.rows.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-70C5EBA65B27",
+      "atomId": "NATOM-D6276B348C5A",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.add",
+        "target": {
+          "cell": {
+            "sheet": "Sheet1",
+            "address": "F5"
+          }
+        },
+        "body": "Cell comment"
+      },
+      "sourceId": "NSRC-26C9551319BF",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L12:`thread.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-AD5DB17FB513",
+      "atomId": "NATOM-B3B48C903B5D",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reopen",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-26C9551319BF",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L39:`thread.reopen`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-B190C22675D0",
+      "atomId": "NATOM-883005EFF0C1",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reply",
+        "target": "threadId",
+        "body": "Reply on cell"
+      },
+      "sourceId": "NSRC-26C9551319BF",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L58:`thread.reply`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-898B3E5E79A3",
+      "atomId": "NATOM-CE197D6AFE21",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.resolve",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-26C9551319BF",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L80:`thread.resolve`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-0DB813F09603",
+      "atomId": "NATOM-9192097598F8",
+      "domain": "shared-foundation",
+      "value": {
+        "follow-redirects/http": "http",
+        "follow-redirects/https": "https"
+      },
+      "sourceId": "NSRC-2E1EF66AB74E",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/node_modules/follow-redirects/README.md#L117:Browser Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-4FA2C736995E",
+      "atomId": "NATOM-343F90A1F4DE",
+      "domain": "shared-foundation",
+      "value": {
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "skia-canvas"
+          ]
+        }
+      },
+      "sourceId": "NSRC-50E781C26DCC",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/@oai/artifact-tool/node_modules/skia-canvas/README.md#L59:`pnpm`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-975603F73C8C",
+      "atomId": "NATOM-BFC427CE06B6",
+      "domain": "shared-foundation",
+      "value": {
+        "cookies": [
+          {
+            "name": "session_id",
+            "value": "abc123",
+            "domain": "example.com",
+            "path": "/",
+            "expires": 1893456000,
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax"
+          }
+        ],
+        "origins": [
+          {
+            "origin": "https://example.com",
+            "localStorage": [
+              {
+                "name": "theme",
+                "value": "dark"
+              },
+              {
+                "name": "user_id",
+                "value": "12345"
+              }
+            ]
+          }
+        ]
+      },
+      "sourceId": "NSRC-A204B23E538A",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md#L29:Storage State File Format",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-FB5550CCC29C",
+      "atomId": "NATOM-AA1D697CDFA3",
+      "domain": "shared-foundation",
+      "value": {
+        "mcpServers": {
+          "playwright": {
+            "command": "npx",
+            "args": [
+              "@playwright/mcp@latest"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-D5C370B2257E",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/playwright/README.md#L163:Setup",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5FD4DE6E478C",
+      "atomId": "NATOM-1F01D24BE09F",
+      "domain": "shared-foundation",
+      "value": {
+        "str": 1000
+      },
+      "sourceId": "NSRC-6CC506E99507",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/safe-buffer/README.md#L366:Would this ever be a problem in real code?",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-72DB2A177C78",
+      "atomId": "NATOM-BCF49E45BE71",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "importHelpers": true
+        }
+      },
+      "sourceId": "NSRC-DA26DC51D675",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/tslib/README.md#L77:Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-1D4646F7A7AA",
+      "atomId": "NATOM-ACA9F4FBE52A",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "amd",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "bower_components/tslib/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-DA26DC51D675",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-659BC5294BEE",
+      "atomId": "NATOM-ACA9F4FBE52A",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "system",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "jspm_packages/npm/tslib@1.[version].0/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-DA26DC51D675",
+      "sourceLocator": "02_AI规则/mapping-first-clear-chg022/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2F21E51E8EF0",
+      "atomId": "NATOM-5586E2E8BD47",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "chart.add",
+        "sheet": "Charts",
+        "props": {
+          "chartType": "line",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 1,
+              "rowOffsetPx": 4,
+              "colOffsetPx": 8
+            },
+            "extent": {
+              "widthPx": 520,
+              "heightPx": 280
+            }
+          },
+          "title": "Milky Way Star Birth Rate",
+          "categories": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "series": [
+            {
+              "name": "Milky Way",
+              "values": [
+                1.8,
+                1.9,
+                2,
+                2.2
+              ]
+            }
+          ],
+          "hasLegend": true,
+          "legend": {
+            "position": "bottom"
+          },
+          "dataLabels": {
+            "showValue": true
+          }
+        }
+      },
+      "sourceId": "NSRC-20A796D2F2D0",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/chart.md#L9:`chart.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-4697823B946B",
+      "atomId": "NATOM-34A16B179B6B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "comments.self.set",
+        "person": {
+          "displayName": "Artifact Bot",
+          "initials": "AB"
+        }
+      },
+      "sourceId": "NSRC-31A75B6AD5B9",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/comments.md#L9:`comments.self.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-4F9B3B581E91",
+      "atomId": "NATOM-39576AF3F555",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "conditionalformat.add",
+        "target": {
+          "sheet": "CF",
+          "range": "A1:A3"
+        },
+        "props": {
+          "rule": {
+            "type": "cellIs",
+            "operator": "greaterThan",
+            "formula": 3,
+            "format": {
+              "fill": "accent2",
+              "font": {
+                "bold": true,
+                "color": "accent3"
+              }
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-EC7F66234F0A",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/conditionalformat.md#L9:`conditionalformat.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-FC2920CDC055",
+      "atomId": "NATOM-E221AA230556",
+      "domain": "reward-drop",
+      "value": {
+        "op": "datavalidation.set",
+        "target": {
+          "sheet": "Validation",
+          "range": "B2:B10"
+        },
+        "props": {
+          "rule": {
+            "type": "list",
+            "values": [
+              "Dog",
+              "Cat",
+              "Bat"
+            ]
+          },
+          "prompt": {
+            "title": "Pick an animal",
+            "show": true
+          },
+          "errorAlert": {
+            "title": "Invalid choice",
+            "show": true
+          },
+          "ignoreBlanks": true,
+          "inCellDropDown": true
+        }
+      },
+      "sourceId": "NSRC-4FFCCDEABC56",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/datavalidation.md#L9:`datavalidation.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CF92288A88EA",
+      "atomId": "NATOM-F8F314922CCC",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "image.add",
+        "sheet": "Images",
+        "props": {
+          "dataUrl": "data:image/png;base64,...",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 2
+            },
+            "extent": {
+              "widthPx": 160,
+              "heightPx": 120
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-F994E7E6DF4C",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/image.md#L9:`image.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-12DA7506C55A",
+      "atomId": "NATOM-48E25FC00D9F",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.function.add",
+        "name": "AddTax",
+        "lambda": "LAMBDA(price, tax, price*(1+tax))",
+        "description": "Adds tax to a price",
+        "parameters": [
+          {
+            "name": "price",
+            "description": "Base price"
+          },
+          {
+            "name": "tax",
+            "description": "Tax rate (e.g. 0.1)"
+          }
+        ],
+        "returns": "Taxed price"
+      },
+      "sourceId": "NSRC-98A421DFE42D",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L10:`names.function.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A6238FFF58E2",
+      "atomId": "NATOM-3AB611663CD2",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.range.add",
+        "name": "SalesRange",
+        "formula": "Data!$A$1:$A$3",
+        "description": "Input sales data"
+      },
+      "sourceId": "NSRC-98A421DFE42D",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L46:`names.range.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-20F29DE9EDED",
+      "atomId": "NATOM-BA68D2997633",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.format.set",
+        "target": {
+          "sheet": "Scorecard",
+          "range": "A1:C1"
+        },
+        "props": {
+          "fill": "accent1",
+          "font": {
+            "bold": true,
+            "size": 14
+          },
+          "horizontalAlignment": "Center"
+        }
+      },
+      "sourceId": "NSRC-2495D9F743CA",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L13:`range.format.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-1752D18D20AE",
+      "atomId": "NATOM-0F265EC1C96E",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.formulas.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "E2"
+        },
+        "formulas": [
+          [
+            "=AVERAGE(C2:C4)"
+          ]
+        ]
+      },
+      "sourceId": "NSRC-2495D9F743CA",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L60:`range.formulas.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-DA98ED71D0B6",
+      "atomId": "NATOM-49EC235C5F10",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.merge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D1"
+        }
+      },
+      "sourceId": "NSRC-2495D9F743CA",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L88:`range.merge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-613EC4D5DE56",
+      "atomId": "NATOM-B72DCB03F567",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.unmerge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D4"
+        }
+      },
+      "sourceId": "NSRC-2495D9F743CA",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L110:`range.unmerge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-E34BAEA83E32",
+      "atomId": "NATOM-39726686D0D1",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.values.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "A1:C2"
+        },
+        "values": [
+          [
+            "SKU",
+            "Color",
+            "Stock"
+          ],
+          [
+            "100-001",
+            "Black",
+            15
+          ]
+        ]
+      },
+      "sourceId": "NSRC-2495D9F743CA",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L132:`range.values.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-F9A438FF89D8",
+      "atomId": "NATOM-D1322A11BC62",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "shape.add",
+        "sheet": "Shapes",
+        "props": {
+          "geometry": "rect",
+          "anchor": {
+            "from": {
+              "row": 2,
+              "col": 3
+            },
+            "extent": {
+              "widthPx": 260,
+              "heightPx": 140
+            }
+          },
+          "fill": "accent1",
+          "line": {
+            "style": "dashed",
+            "fill": "accent4",
+            "width": 1
+          }
+        }
+      },
+      "sourceId": "NSRC-6DB0D4345002",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/shape.md#L9:`shape.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-4A43212BF294",
+      "atomId": "NATOM-18AA052D6B00",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sheet.add",
+        "name": "Inventory"
+      },
+      "sourceId": "NSRC-297FD96BEB96",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sheet.md#L9:`sheet.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-02FF5EFAFC8D",
+      "atomId": "NATOM-AEF35455B406",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sparkline.add",
+        "props": {
+          "type": "line",
+          "targetRange": {
+            "sheet": "KPIs",
+            "range": "H2:H3"
+          },
+          "sourceData": {
+            "sheet": "KPIs",
+            "range": "B2:G3"
+          },
+          "dateAxisRange": {
+            "sheet": "KPIs",
+            "range": "B1:G1"
+          },
+          "seriesColor": "accent1",
+          "markers": {
+            "show": true,
+            "high": true,
+            "low": true
+          }
+        }
+      },
+      "sourceId": "NSRC-D43CC525BB7D",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sparkline.md#L9:`sparkline.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CE01D75B4BD8",
+      "atomId": "NATOM-FF441622C7CF",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.add",
+        "props": {
+          "range": {
+            "sheet": "Inventory",
+            "range": "A1:C3"
+          },
+          "hasHeaders": true,
+          "name": "InventoryTable"
+        }
+      },
+      "sourceId": "NSRC-0D5258FCA455",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L10:`table.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CD56CFA5CEFA",
+      "atomId": "NATOM-1F8ECE08B907",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.rows.add",
+        "target": {
+          "name": "InventoryTable",
+          "sheet": "Inventory"
+        },
+        "props": {
+          "index": null,
+          "values": [
+            [
+              "100-003",
+              "Denim",
+              12
+            ]
+          ]
+        }
+      },
+      "sourceId": "NSRC-0D5258FCA455",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L39:`table.rows.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C05CEC8CF065",
+      "atomId": "NATOM-1FD5E34DE8AA",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.add",
+        "target": {
+          "cell": {
+            "sheet": "Sheet1",
+            "address": "F5"
+          }
+        },
+        "body": "Cell comment"
+      },
+      "sourceId": "NSRC-4B6633210E81",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L12:`thread.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-1EACC167B033",
+      "atomId": "NATOM-FFF19BB8799C",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reopen",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-4B6633210E81",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L39:`thread.reopen`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-B3F7F422544F",
+      "atomId": "NATOM-6E00355D9E2C",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reply",
+        "target": "threadId",
+        "body": "Reply on cell"
+      },
+      "sourceId": "NSRC-4B6633210E81",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L58:`thread.reply`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-EA0AED868176",
+      "atomId": "NATOM-37C471114085",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.resolve",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-4B6633210E81",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L80:`thread.resolve`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-42F47FF20AAC",
+      "atomId": "NATOM-31292FB8DE30",
+      "domain": "shared-foundation",
+      "value": {
+        "follow-redirects/http": "http",
+        "follow-redirects/https": "https"
+      },
+      "sourceId": "NSRC-EC714BC83C6D",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/node_modules/follow-redirects/README.md#L117:Browser Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-4CB757A74C76",
+      "atomId": "NATOM-8434DAD218F2",
+      "domain": "shared-foundation",
+      "value": {
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "skia-canvas"
+          ]
+        }
+      },
+      "sourceId": "NSRC-918757486F7C",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/@oai/artifact-tool/node_modules/skia-canvas/README.md#L59:`pnpm`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-99A4FF6EB2F3",
+      "atomId": "NATOM-4DF43D24040C",
+      "domain": "shared-foundation",
+      "value": {
+        "cookies": [
+          {
+            "name": "session_id",
+            "value": "abc123",
+            "domain": "example.com",
+            "path": "/",
+            "expires": 1893456000,
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax"
+          }
+        ],
+        "origins": [
+          {
+            "origin": "https://example.com",
+            "localStorage": [
+              {
+                "name": "theme",
+                "value": "dark"
+              },
+              {
+                "name": "user_id",
+                "value": "12345"
+              }
+            ]
+          }
+        ]
+      },
+      "sourceId": "NSRC-A89939F7FEC6",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md#L29:Storage State File Format",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C5B8A6AC4C29",
+      "atomId": "NATOM-D5BFDF3D1122",
+      "domain": "shared-foundation",
+      "value": {
+        "mcpServers": {
+          "playwright": {
+            "command": "npx",
+            "args": [
+              "@playwright/mcp@latest"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-6411D8BCC59E",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/playwright/README.md#L163:Setup",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-55C2A0763BDB",
+      "atomId": "NATOM-244549BEAE0E",
+      "domain": "shared-foundation",
+      "value": {
+        "str": 1000
+      },
+      "sourceId": "NSRC-FEA306D59C60",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/safe-buffer/README.md#L366:Would this ever be a problem in real code?",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-FBD18BC3C69D",
+      "atomId": "NATOM-745FCEAA92E3",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "importHelpers": true
+        }
+      },
+      "sourceId": "NSRC-64F9D6570556",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/tslib/README.md#L77:Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7DC48E68D600",
+      "atomId": "NATOM-7F251580C2E0",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "amd",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "bower_components/tslib/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-64F9D6570556",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-B549359DF038",
+      "atomId": "NATOM-7F251580C2E0",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "system",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "jspm_packages/npm/tslib@1.[version].0/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-64F9D6570556",
+      "sourceLocator": "02_AI规则/mapping-named-chg024/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-676E78C53B94",
+      "atomId": "NATOM-28978FD34E66",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "chart.add",
+        "sheet": "Charts",
+        "props": {
+          "chartType": "line",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 1,
+              "rowOffsetPx": 4,
+              "colOffsetPx": 8
+            },
+            "extent": {
+              "widthPx": 520,
+              "heightPx": 280
+            }
+          },
+          "title": "Milky Way Star Birth Rate",
+          "categories": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "series": [
+            {
+              "name": "Milky Way",
+              "values": [
+                1.8,
+                1.9,
+                2,
+                2.2
+              ]
+            }
+          ],
+          "hasLegend": true,
+          "legend": {
+            "position": "bottom"
+          },
+          "dataLabels": {
+            "showValue": true
+          }
+        }
+      },
+      "sourceId": "NSRC-31784C99B9A9",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/chart.md#L9:`chart.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-E4C6AB937346",
+      "atomId": "NATOM-57403FC5F0DB",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "comments.self.set",
+        "person": {
+          "displayName": "Artifact Bot",
+          "initials": "AB"
+        }
+      },
+      "sourceId": "NSRC-2EDE08DFF13F",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/comments.md#L9:`comments.self.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7BDBFC06D170",
+      "atomId": "NATOM-796BD5CD30AD",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "conditionalformat.add",
+        "target": {
+          "sheet": "CF",
+          "range": "A1:A3"
+        },
+        "props": {
+          "rule": {
+            "type": "cellIs",
+            "operator": "greaterThan",
+            "formula": 3,
+            "format": {
+              "fill": "accent2",
+              "font": {
+                "bold": true,
+                "color": "accent3"
+              }
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-A3269510A0E2",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/conditionalformat.md#L9:`conditionalformat.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-BA993BA384FF",
+      "atomId": "NATOM-3D1B076675F6",
+      "domain": "reward-drop",
+      "value": {
+        "op": "datavalidation.set",
+        "target": {
+          "sheet": "Validation",
+          "range": "B2:B10"
+        },
+        "props": {
+          "rule": {
+            "type": "list",
+            "values": [
+              "Dog",
+              "Cat",
+              "Bat"
+            ]
+          },
+          "prompt": {
+            "title": "Pick an animal",
+            "show": true
+          },
+          "errorAlert": {
+            "title": "Invalid choice",
+            "show": true
+          },
+          "ignoreBlanks": true,
+          "inCellDropDown": true
+        }
+      },
+      "sourceId": "NSRC-21454C95D276",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/datavalidation.md#L9:`datavalidation.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CC695B948C37",
+      "atomId": "NATOM-D941EB7C4448",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "image.add",
+        "sheet": "Images",
+        "props": {
+          "dataUrl": "data:image/png;base64,...",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 2
+            },
+            "extent": {
+              "widthPx": 160,
+              "heightPx": 120
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-F721D98CBA9B",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/image.md#L9:`image.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-B4108C111F0C",
+      "atomId": "NATOM-85F3CD645716",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.function.add",
+        "name": "AddTax",
+        "lambda": "LAMBDA(price, tax, price*(1+tax))",
+        "description": "Adds tax to a price",
+        "parameters": [
+          {
+            "name": "price",
+            "description": "Base price"
+          },
+          {
+            "name": "tax",
+            "description": "Tax rate (e.g. 0.1)"
+          }
+        ],
+        "returns": "Taxed price"
+      },
+      "sourceId": "NSRC-9275D28D1580",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L10:`names.function.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-B403308B3870",
+      "atomId": "NATOM-D5B54708D877",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.range.add",
+        "name": "SalesRange",
+        "formula": "Data!$A$1:$A$3",
+        "description": "Input sales data"
+      },
+      "sourceId": "NSRC-9275D28D1580",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L46:`names.range.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-664758B3D8F3",
+      "atomId": "NATOM-1CD953AB245B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.format.set",
+        "target": {
+          "sheet": "Scorecard",
+          "range": "A1:C1"
+        },
+        "props": {
+          "fill": "accent1",
+          "font": {
+            "bold": true,
+            "size": 14
+          },
+          "horizontalAlignment": "Center"
+        }
+      },
+      "sourceId": "NSRC-16D0C1C64A3B",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L13:`range.format.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-06EA6702927C",
+      "atomId": "NATOM-AEEAEC06E56C",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.formulas.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "E2"
+        },
+        "formulas": [
+          [
+            "=AVERAGE(C2:C4)"
+          ]
+        ]
+      },
+      "sourceId": "NSRC-16D0C1C64A3B",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L60:`range.formulas.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C0DAE5F070D3",
+      "atomId": "NATOM-559A4365C585",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.merge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D1"
+        }
+      },
+      "sourceId": "NSRC-16D0C1C64A3B",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L88:`range.merge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-53860F8B50E6",
+      "atomId": "NATOM-7178077FDF81",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.unmerge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D4"
+        }
+      },
+      "sourceId": "NSRC-16D0C1C64A3B",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L110:`range.unmerge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2E88E396F59F",
+      "atomId": "NATOM-C1CBEC4690D3",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.values.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "A1:C2"
+        },
+        "values": [
+          [
+            "SKU",
+            "Color",
+            "Stock"
+          ],
+          [
+            "100-001",
+            "Black",
+            15
+          ]
+        ]
+      },
+      "sourceId": "NSRC-16D0C1C64A3B",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L132:`range.values.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-CCF0D93E3312",
+      "atomId": "NATOM-9D2DF4D48DD3",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "shape.add",
+        "sheet": "Shapes",
+        "props": {
+          "geometry": "rect",
+          "anchor": {
+            "from": {
+              "row": 2,
+              "col": 3
+            },
+            "extent": {
+              "widthPx": 260,
+              "heightPx": 140
+            }
+          },
+          "fill": "accent1",
+          "line": {
+            "style": "dashed",
+            "fill": "accent4",
+            "width": 1
+          }
+        }
+      },
+      "sourceId": "NSRC-961FE2A0B8CD",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/shape.md#L9:`shape.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5E8E4736EDD6",
+      "atomId": "NATOM-2E2FF485B237",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sheet.add",
+        "name": "Inventory"
+      },
+      "sourceId": "NSRC-7E96BD99C52E",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sheet.md#L9:`sheet.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-31B09F12216D",
+      "atomId": "NATOM-FEFEBD00FDC7",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sparkline.add",
+        "props": {
+          "type": "line",
+          "targetRange": {
+            "sheet": "KPIs",
+            "range": "H2:H3"
+          },
+          "sourceData": {
+            "sheet": "KPIs",
+            "range": "B2:G3"
+          },
+          "dateAxisRange": {
+            "sheet": "KPIs",
+            "range": "B1:G1"
+          },
+          "seriesColor": "accent1",
+          "markers": {
+            "show": true,
+            "high": true,
+            "low": true
+          }
+        }
+      },
+      "sourceId": "NSRC-BDA2201876E2",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sparkline.md#L9:`sparkline.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-46BAA80E0AF6",
+      "atomId": "NATOM-D59AB72E8024",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.add",
+        "props": {
+          "range": {
+            "sheet": "Inventory",
+            "range": "A1:C3"
+          },
+          "hasHeaders": true,
+          "name": "InventoryTable"
+        }
+      },
+      "sourceId": "NSRC-C16FA34A5EF6",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L10:`table.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-24EA91917B6D",
+      "atomId": "NATOM-ECE08BDD4F37",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.rows.add",
+        "target": {
+          "name": "InventoryTable",
+          "sheet": "Inventory"
+        },
+        "props": {
+          "index": null,
+          "values": [
+            [
+              "100-003",
+              "Denim",
+              12
+            ]
+          ]
+        }
+      },
+      "sourceId": "NSRC-C16FA34A5EF6",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L39:`table.rows.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-3DB35FC1F97B",
+      "atomId": "NATOM-64C57DDAF8A0",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.add",
+        "target": {
+          "cell": {
+            "sheet": "Sheet1",
+            "address": "F5"
+          }
+        },
+        "body": "Cell comment"
+      },
+      "sourceId": "NSRC-56DE129F8619",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L12:`thread.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C6F813E974A2",
+      "atomId": "NATOM-25A278DC1633",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reopen",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-56DE129F8619",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L39:`thread.reopen`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8D92AA60F975",
+      "atomId": "NATOM-6022ED16A5DE",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reply",
+        "target": "threadId",
+        "body": "Reply on cell"
+      },
+      "sourceId": "NSRC-56DE129F8619",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L58:`thread.reply`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-845CBFCDEEB4",
+      "atomId": "NATOM-6971C8198796",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.resolve",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-56DE129F8619",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L80:`thread.resolve`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5243D86EB5CB",
+      "atomId": "NATOM-B0B904612747",
+      "domain": "shared-foundation",
+      "value": {
+        "follow-redirects/http": "http",
+        "follow-redirects/https": "https"
+      },
+      "sourceId": "NSRC-02EC3DCF4FD0",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/node_modules/follow-redirects/README.md#L117:Browser Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-6415E5E695EB",
+      "atomId": "NATOM-9DC78C3947CD",
+      "domain": "shared-foundation",
+      "value": {
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "skia-canvas"
+          ]
+        }
+      },
+      "sourceId": "NSRC-A3E1FB97CBB4",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/@oai/artifact-tool/node_modules/skia-canvas/README.md#L59:`pnpm`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-F73442327103",
+      "atomId": "NATOM-9DC523CD7349",
+      "domain": "shared-foundation",
+      "value": {
+        "cookies": [
+          {
+            "name": "session_id",
+            "value": "abc123",
+            "domain": "example.com",
+            "path": "/",
+            "expires": 1893456000,
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax"
+          }
+        ],
+        "origins": [
+          {
+            "origin": "https://example.com",
+            "localStorage": [
+              {
+                "name": "theme",
+                "value": "dark"
+              },
+              {
+                "name": "user_id",
+                "value": "12345"
+              }
+            ]
+          }
+        ]
+      },
+      "sourceId": "NSRC-97691AE49809",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md#L29:Storage State File Format",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-1C86826736BF",
+      "atomId": "NATOM-DAE1E282AFB4",
+      "domain": "shared-foundation",
+      "value": {
+        "mcpServers": {
+          "playwright": {
+            "command": "npx",
+            "args": [
+              "@playwright/mcp@latest"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-D1B38C46431B",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/playwright/README.md#L163:Setup",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-51BDD335E96A",
+      "atomId": "NATOM-1BDD823AAF22",
+      "domain": "shared-foundation",
+      "value": {
+        "str": 1000
+      },
+      "sourceId": "NSRC-9AAEBD216E95",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/safe-buffer/README.md#L366:Would this ever be a problem in real code?",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-6826B11C6CDB",
+      "atomId": "NATOM-4BB5AA905761",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "importHelpers": true
+        }
+      },
+      "sourceId": "NSRC-CD1C3D0C405D",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/tslib/README.md#L77:Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-DF6542A9DCA9",
+      "atomId": "NATOM-2EAB70E50F0A",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "amd",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "bower_components/tslib/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-CD1C3D0C405D",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-796D4DDC2E67",
+      "atomId": "NATOM-2EAB70E50F0A",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "system",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "jspm_packages/npm/tslib@1.[version].0/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-CD1C3D0C405D",
+      "sourceLocator": "02_AI规则/mapping-preview-chg026/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-0C757B116E19",
+      "atomId": "NATOM-254261D7C867",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "chart.add",
+        "sheet": "Charts",
+        "props": {
+          "chartType": "line",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 1,
+              "rowOffsetPx": 4,
+              "colOffsetPx": 8
+            },
+            "extent": {
+              "widthPx": 520,
+              "heightPx": 280
+            }
+          },
+          "title": "Milky Way Star Birth Rate",
+          "categories": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "series": [
+            {
+              "name": "Milky Way",
+              "values": [
+                1.8,
+                1.9,
+                2,
+                2.2
+              ]
+            }
+          ],
+          "hasLegend": true,
+          "legend": {
+            "position": "bottom"
+          },
+          "dataLabels": {
+            "showValue": true
+          }
+        }
+      },
+      "sourceId": "NSRC-11BE75C317AB",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/chart.md#L9:`chart.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-D4D4D59FDF1C",
+      "atomId": "NATOM-081D74D3F80B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "comments.self.set",
+        "person": {
+          "displayName": "Artifact Bot",
+          "initials": "AB"
+        }
+      },
+      "sourceId": "NSRC-8F93EC5FEBB9",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/comments.md#L9:`comments.self.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C7A36F0565F4",
+      "atomId": "NATOM-511CB86A7942",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "conditionalformat.add",
+        "target": {
+          "sheet": "CF",
+          "range": "A1:A3"
+        },
+        "props": {
+          "rule": {
+            "type": "cellIs",
+            "operator": "greaterThan",
+            "formula": 3,
+            "format": {
+              "fill": "accent2",
+              "font": {
+                "bold": true,
+                "color": "accent3"
+              }
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-37CB16DFE029",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/conditionalformat.md#L9:`conditionalformat.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-FF2C48FFF469",
+      "atomId": "NATOM-1F40EB4471C8",
+      "domain": "reward-drop",
+      "value": {
+        "op": "datavalidation.set",
+        "target": {
+          "sheet": "Validation",
+          "range": "B2:B10"
+        },
+        "props": {
+          "rule": {
+            "type": "list",
+            "values": [
+              "Dog",
+              "Cat",
+              "Bat"
+            ]
+          },
+          "prompt": {
+            "title": "Pick an animal",
+            "show": true
+          },
+          "errorAlert": {
+            "title": "Invalid choice",
+            "show": true
+          },
+          "ignoreBlanks": true,
+          "inCellDropDown": true
+        }
+      },
+      "sourceId": "NSRC-DA5AE83C97CF",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/datavalidation.md#L9:`datavalidation.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-3550E44BFAB3",
+      "atomId": "NATOM-F2A95C05A982",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "image.add",
+        "sheet": "Images",
+        "props": {
+          "dataUrl": "data:image/png;base64,...",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 2
+            },
+            "extent": {
+              "widthPx": 160,
+              "heightPx": 120
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-49A6D320A267",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/image.md#L9:`image.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-80A1796B80B0",
+      "atomId": "NATOM-4E2D15569D82",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.function.add",
+        "name": "AddTax",
+        "lambda": "LAMBDA(price, tax, price*(1+tax))",
+        "description": "Adds tax to a price",
+        "parameters": [
+          {
+            "name": "price",
+            "description": "Base price"
+          },
+          {
+            "name": "tax",
+            "description": "Tax rate (e.g. 0.1)"
+          }
+        ],
+        "returns": "Taxed price"
+      },
+      "sourceId": "NSRC-FC9198E54D06",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L10:`names.function.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7B46148213FC",
+      "atomId": "NATOM-5849145B713B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.range.add",
+        "name": "SalesRange",
+        "formula": "Data!$A$1:$A$3",
+        "description": "Input sales data"
+      },
+      "sourceId": "NSRC-FC9198E54D06",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L46:`names.range.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8FBD370E6C3A",
+      "atomId": "NATOM-CEB603992282",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.format.set",
+        "target": {
+          "sheet": "Scorecard",
+          "range": "A1:C1"
+        },
+        "props": {
+          "fill": "accent1",
+          "font": {
+            "bold": true,
+            "size": 14
+          },
+          "horizontalAlignment": "Center"
+        }
+      },
+      "sourceId": "NSRC-A0EBFA3E9D8D",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L13:`range.format.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-29A14B626EB5",
+      "atomId": "NATOM-F83BC9CBB095",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.formulas.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "E2"
+        },
+        "formulas": [
+          [
+            "=AVERAGE(C2:C4)"
+          ]
+        ]
+      },
+      "sourceId": "NSRC-A0EBFA3E9D8D",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L60:`range.formulas.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-AA81B91C9BB4",
+      "atomId": "NATOM-68F73F4D00C6",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.merge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D1"
+        }
+      },
+      "sourceId": "NSRC-A0EBFA3E9D8D",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L88:`range.merge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5E522F0F1AB0",
+      "atomId": "NATOM-7C2E8F1D53ED",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.unmerge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D4"
+        }
+      },
+      "sourceId": "NSRC-A0EBFA3E9D8D",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L110:`range.unmerge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-988E4C60FB7E",
+      "atomId": "NATOM-E7F072548635",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.values.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "A1:C2"
+        },
+        "values": [
+          [
+            "SKU",
+            "Color",
+            "Stock"
+          ],
+          [
+            "100-001",
+            "Black",
+            15
+          ]
+        ]
+      },
+      "sourceId": "NSRC-A0EBFA3E9D8D",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L132:`range.values.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-DF004E9D5610",
+      "atomId": "NATOM-05DBD3619047",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "shape.add",
+        "sheet": "Shapes",
+        "props": {
+          "geometry": "rect",
+          "anchor": {
+            "from": {
+              "row": 2,
+              "col": 3
+            },
+            "extent": {
+              "widthPx": 260,
+              "heightPx": 140
+            }
+          },
+          "fill": "accent1",
+          "line": {
+            "style": "dashed",
+            "fill": "accent4",
+            "width": 1
+          }
+        }
+      },
+      "sourceId": "NSRC-6898CA2D78F4",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/shape.md#L9:`shape.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-BC7F49B24B50",
+      "atomId": "NATOM-9B2C268D7F11",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sheet.add",
+        "name": "Inventory"
+      },
+      "sourceId": "NSRC-7CDDA29CB6EE",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sheet.md#L9:`sheet.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5A1B21A3B6CA",
+      "atomId": "NATOM-4A05C739AE64",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sparkline.add",
+        "props": {
+          "type": "line",
+          "targetRange": {
+            "sheet": "KPIs",
+            "range": "H2:H3"
+          },
+          "sourceData": {
+            "sheet": "KPIs",
+            "range": "B2:G3"
+          },
+          "dateAxisRange": {
+            "sheet": "KPIs",
+            "range": "B1:G1"
+          },
+          "seriesColor": "accent1",
+          "markers": {
+            "show": true,
+            "high": true,
+            "low": true
+          }
+        }
+      },
+      "sourceId": "NSRC-01149692C384",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sparkline.md#L9:`sparkline.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-3BC3046DB379",
+      "atomId": "NATOM-24E9EF172FE0",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.add",
+        "props": {
+          "range": {
+            "sheet": "Inventory",
+            "range": "A1:C3"
+          },
+          "hasHeaders": true,
+          "name": "InventoryTable"
+        }
+      },
+      "sourceId": "NSRC-6AEF8B7A7BBA",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L10:`table.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-9B6A9513D123",
+      "atomId": "NATOM-BC6992A55085",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.rows.add",
+        "target": {
+          "name": "InventoryTable",
+          "sheet": "Inventory"
+        },
+        "props": {
+          "index": null,
+          "values": [
+            [
+              "100-003",
+              "Denim",
+              12
+            ]
+          ]
+        }
+      },
+      "sourceId": "NSRC-6AEF8B7A7BBA",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L39:`table.rows.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-05231AEE20B9",
+      "atomId": "NATOM-DAEF6D0ADD11",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.add",
+        "target": {
+          "cell": {
+            "sheet": "Sheet1",
+            "address": "F5"
+          }
+        },
+        "body": "Cell comment"
+      },
+      "sourceId": "NSRC-F31440F582DF",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L12:`thread.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2B574FB19526",
+      "atomId": "NATOM-44356DD999BE",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reopen",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-F31440F582DF",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L39:`thread.reopen`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-9BB4184A327D",
+      "atomId": "NATOM-99FA89674EB2",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reply",
+        "target": "threadId",
+        "body": "Reply on cell"
+      },
+      "sourceId": "NSRC-F31440F582DF",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L58:`thread.reply`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8ECCD4AF3CF9",
+      "atomId": "NATOM-B685D6214DE5",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.resolve",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-F31440F582DF",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L80:`thread.resolve`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-FA508113FD62",
+      "atomId": "NATOM-6EFBF71F043D",
+      "domain": "shared-foundation",
+      "value": {
+        "follow-redirects/http": "http",
+        "follow-redirects/https": "https"
+      },
+      "sourceId": "NSRC-786ADE126208",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/node_modules/follow-redirects/README.md#L117:Browser Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2A5C547A5A02",
+      "atomId": "NATOM-CFE27CBA6E12",
+      "domain": "shared-foundation",
+      "value": {
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "skia-canvas"
+          ]
+        }
+      },
+      "sourceId": "NSRC-45B30243B49A",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/@oai/artifact-tool/node_modules/skia-canvas/README.md#L59:`pnpm`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-61E04CB76443",
+      "atomId": "NATOM-4233FA46439E",
+      "domain": "shared-foundation",
+      "value": {
+        "cookies": [
+          {
+            "name": "session_id",
+            "value": "abc123",
+            "domain": "example.com",
+            "path": "/",
+            "expires": 1893456000,
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax"
+          }
+        ],
+        "origins": [
+          {
+            "origin": "https://example.com",
+            "localStorage": [
+              {
+                "name": "theme",
+                "value": "dark"
+              },
+              {
+                "name": "user_id",
+                "value": "12345"
+              }
+            ]
+          }
+        ]
+      },
+      "sourceId": "NSRC-17CE6A1D5BBF",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md#L29:Storage State File Format",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-909D6F377F20",
+      "atomId": "NATOM-9413A20E6DEB",
+      "domain": "shared-foundation",
+      "value": {
+        "mcpServers": {
+          "playwright": {
+            "command": "npx",
+            "args": [
+              "@playwright/mcp@latest"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-4B43BBB42BEF",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/playwright/README.md#L163:Setup",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2B56C4E6C789",
+      "atomId": "NATOM-EEDAA17085A7",
+      "domain": "shared-foundation",
+      "value": {
+        "str": 1000
+      },
+      "sourceId": "NSRC-303F16F826F0",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/safe-buffer/README.md#L366:Would this ever be a problem in real code?",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-3C5B37FA1680",
+      "atomId": "NATOM-E4CB08D6D5B2",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "importHelpers": true
+        }
+      },
+      "sourceId": "NSRC-BDB75117F49B",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/tslib/README.md#L77:Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-8B9D7F3E10F1",
+      "atomId": "NATOM-1650687B7C75",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "amd",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "bower_components/tslib/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-BDB75117F49B",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-03805DBD6073",
+      "atomId": "NATOM-1650687B7C75",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "system",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "jspm_packages/npm/tslib@1.[version].0/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-BDB75117F49B",
+      "sourceLocator": "02_AI规则/mapping-rare-chg023/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-B074E7ED32B4",
+      "atomId": "NATOM-38A87633DE0B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "chart.add",
+        "sheet": "Charts",
+        "props": {
+          "chartType": "line",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 1,
+              "rowOffsetPx": 4,
+              "colOffsetPx": 8
+            },
+            "extent": {
+              "widthPx": 520,
+              "heightPx": 280
+            }
+          },
+          "title": "Milky Way Star Birth Rate",
+          "categories": [
+            "2020",
+            "2021",
+            "2022",
+            "2023"
+          ],
+          "series": [
+            {
+              "name": "Milky Way",
+              "values": [
+                1.8,
+                1.9,
+                2,
+                2.2
+              ]
+            }
+          ],
+          "hasLegend": true,
+          "legend": {
+            "position": "bottom"
+          },
+          "dataLabels": {
+            "showValue": true
+          }
+        }
+      },
+      "sourceId": "NSRC-00758B475B04",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/chart.md#L9:`chart.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A06AE08C2B26",
+      "atomId": "NATOM-2D6BE9959753",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "comments.self.set",
+        "person": {
+          "displayName": "Artifact Bot",
+          "initials": "AB"
+        }
+      },
+      "sourceId": "NSRC-F195B1DC0029",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/comments.md#L9:`comments.self.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-6E97A2FF22CE",
+      "atomId": "NATOM-F6D1536883D3",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "conditionalformat.add",
+        "target": {
+          "sheet": "CF",
+          "range": "A1:A3"
+        },
+        "props": {
+          "rule": {
+            "type": "cellIs",
+            "operator": "greaterThan",
+            "formula": 3,
+            "format": {
+              "fill": "accent2",
+              "font": {
+                "bold": true,
+                "color": "accent3"
+              }
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-05BC4996011A",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/conditionalformat.md#L9:`conditionalformat.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-5E34EA57D333",
+      "atomId": "NATOM-CB049A91E795",
+      "domain": "reward-drop",
+      "value": {
+        "op": "datavalidation.set",
+        "target": {
+          "sheet": "Validation",
+          "range": "B2:B10"
+        },
+        "props": {
+          "rule": {
+            "type": "list",
+            "values": [
+              "Dog",
+              "Cat",
+              "Bat"
+            ]
+          },
+          "prompt": {
+            "title": "Pick an animal",
+            "show": true
+          },
+          "errorAlert": {
+            "title": "Invalid choice",
+            "show": true
+          },
+          "ignoreBlanks": true,
+          "inCellDropDown": true
+        }
+      },
+      "sourceId": "NSRC-355604495A50",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/datavalidation.md#L9:`datavalidation.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2C9ED7C51398",
+      "atomId": "NATOM-CE7E6D594AA5",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "image.add",
+        "sheet": "Images",
+        "props": {
+          "dataUrl": "data:image/png;base64,...",
+          "anchor": {
+            "from": {
+              "row": 1,
+              "col": 2
+            },
+            "extent": {
+              "widthPx": 160,
+              "heightPx": 120
+            }
+          }
+        }
+      },
+      "sourceId": "NSRC-D4ECE889256A",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/image.md#L9:`image.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-49DDE827C8FD",
+      "atomId": "NATOM-00C7E30DA852",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.function.add",
+        "name": "AddTax",
+        "lambda": "LAMBDA(price, tax, price*(1+tax))",
+        "description": "Adds tax to a price",
+        "parameters": [
+          {
+            "name": "price",
+            "description": "Base price"
+          },
+          {
+            "name": "tax",
+            "description": "Tax rate (e.g. 0.1)"
+          }
+        ],
+        "returns": "Taxed price"
+      },
+      "sourceId": "NSRC-B5C9F38DBD6C",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L10:`names.function.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-060BAC2D31E7",
+      "atomId": "NATOM-3D42FAB82DCA",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "names.range.add",
+        "name": "SalesRange",
+        "formula": "Data!$A$1:$A$3",
+        "description": "Input sales data"
+      },
+      "sourceId": "NSRC-B5C9F38DBD6C",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/names.md#L46:`names.range.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-76362F67A273",
+      "atomId": "NATOM-74E4ADB79332",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.format.set",
+        "target": {
+          "sheet": "Scorecard",
+          "range": "A1:C1"
+        },
+        "props": {
+          "fill": "accent1",
+          "font": {
+            "bold": true,
+            "size": 14
+          },
+          "horizontalAlignment": "Center"
+        }
+      },
+      "sourceId": "NSRC-E70C1A90DEAD",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L13:`range.format.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-1FE936EE7440",
+      "atomId": "NATOM-DC88E7D29887",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.formulas.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "E2"
+        },
+        "formulas": [
+          [
+            "=AVERAGE(C2:C4)"
+          ]
+        ]
+      },
+      "sourceId": "NSRC-E70C1A90DEAD",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L60:`range.formulas.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-FE5011351486",
+      "atomId": "NATOM-6529EA03699B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.merge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D1"
+        }
+      },
+      "sourceId": "NSRC-E70C1A90DEAD",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L88:`range.merge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-1186FAC8756D",
+      "atomId": "NATOM-8C21E95E409D",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.unmerge",
+        "target": {
+          "sheet": "Report",
+          "range": "A1:D4"
+        }
+      },
+      "sourceId": "NSRC-E70C1A90DEAD",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L110:`range.unmerge`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-A892801B55BA",
+      "atomId": "NATOM-8CF2E1EB2243",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "range.values.set",
+        "target": {
+          "sheet": "Inventory",
+          "range": "A1:C2"
+        },
+        "values": [
+          [
+            "SKU",
+            "Color",
+            "Stock"
+          ],
+          [
+            "100-001",
+            "Black",
+            15
+          ]
+        ]
+      },
+      "sourceId": "NSRC-E70C1A90DEAD",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/range.md#L132:`range.values.set`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C14EFDE5305A",
+      "atomId": "NATOM-8AEF284EC52C",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "shape.add",
+        "sheet": "Shapes",
+        "props": {
+          "geometry": "rect",
+          "anchor": {
+            "from": {
+              "row": 2,
+              "col": 3
+            },
+            "extent": {
+              "widthPx": 260,
+              "heightPx": 140
+            }
+          },
+          "fill": "accent1",
+          "line": {
+            "style": "dashed",
+            "fill": "accent4",
+            "width": 1
+          }
+        }
+      },
+      "sourceId": "NSRC-BD2872277C58",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/shape.md#L9:`shape.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-1FBD36E60F9B",
+      "atomId": "NATOM-59EF6A588B5B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sheet.add",
+        "name": "Inventory"
+      },
+      "sourceId": "NSRC-7B6621748CA6",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sheet.md#L9:`sheet.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-C7470E6F18BF",
+      "atomId": "NATOM-F149B066A9E1",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "sparkline.add",
+        "props": {
+          "type": "line",
+          "targetRange": {
+            "sheet": "KPIs",
+            "range": "H2:H3"
+          },
+          "sourceData": {
+            "sheet": "KPIs",
+            "range": "B2:G3"
+          },
+          "dateAxisRange": {
+            "sheet": "KPIs",
+            "range": "B1:G1"
+          },
+          "seriesColor": "accent1",
+          "markers": {
+            "show": true,
+            "high": true,
+            "low": true
+          }
+        }
+      },
+      "sourceId": "NSRC-1D0209BB5F70",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/sparkline.md#L9:`sparkline.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-BE1C203AD938",
+      "atomId": "NATOM-B3E63982CDDD",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.add",
+        "props": {
+          "range": {
+            "sheet": "Inventory",
+            "range": "A1:C3"
+          },
+          "hasHeaders": true,
+          "name": "InventoryTable"
+        }
+      },
+      "sourceId": "NSRC-34CA847FAC9D",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L10:`table.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-E592AA751F3F",
+      "atomId": "NATOM-1388ABB96E1B",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "table.rows.add",
+        "target": {
+          "name": "InventoryTable",
+          "sheet": "Inventory"
+        },
+        "props": {
+          "index": null,
+          "values": [
+            [
+              "100-003",
+              "Denim",
+              12
+            ]
+          ]
+        }
+      },
+      "sourceId": "NSRC-34CA847FAC9D",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/table.md#L39:`table.rows.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-2EECE8213DD8",
+      "atomId": "NATOM-A3C43FB7FD06",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.add",
+        "target": {
+          "cell": {
+            "sheet": "Sheet1",
+            "address": "F5"
+          }
+        },
+        "body": "Cell comment"
+      },
+      "sourceId": "NSRC-B23BCEC831DE",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L12:`thread.add`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-83CE59475E07",
+      "atomId": "NATOM-B21B179C31C1",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reopen",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-B23BCEC831DE",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L39:`thread.reopen`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-3FC1761D2967",
+      "atomId": "NATOM-9908FA8FAFB4",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.reply",
+        "target": "threadId",
+        "body": "Reply on cell"
+      },
+      "sourceId": "NSRC-B23BCEC831DE",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L58:`thread.reply`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-256C3B2A911C",
+      "atomId": "NATOM-77BB5229824D",
+      "domain": "shared-foundation",
+      "value": {
+        "op": "thread.resolve",
+        "target": "threadId"
+      },
+      "sourceId": "NSRC-B23BCEC831DE",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/docs/spreadsheets/references/ops/thread.md#L80:`thread.resolve`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-1B5D9796AF54",
+      "atomId": "NATOM-44C57A971AA4",
+      "domain": "shared-foundation",
+      "value": {
+        "follow-redirects/http": "http",
+        "follow-redirects/https": "https"
+      },
+      "sourceId": "NSRC-B68CE42EFDA8",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/node_modules/follow-redirects/README.md#L117:Browser Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-628D6F0B8B74",
+      "atomId": "NATOM-06335ED874E9",
+      "domain": "shared-foundation",
+      "value": {
+        "pnpm": {
+          "onlyBuiltDependencies": [
+            "skia-canvas"
+          ]
+        }
+      },
+      "sourceId": "NSRC-C5A832CD106E",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/@oai/artifact-tool/node_modules/skia-canvas/README.md#L59:`pnpm`",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-7BABADBC1A40",
+      "atomId": "NATOM-B2C3853A3D9A",
+      "domain": "shared-foundation",
+      "value": {
+        "cookies": [
+          {
+            "name": "session_id",
+            "value": "abc123",
+            "domain": "example.com",
+            "path": "/",
+            "expires": 1893456000,
+            "httpOnly": true,
+            "secure": true,
+            "sameSite": "Lax"
+          }
+        ],
+        "origins": [
+          {
+            "origin": "https://example.com",
+            "localStorage": [
+              {
+                "name": "theme",
+                "value": "dark"
+              },
+              {
+                "name": "user_id",
+                "value": "12345"
+              }
+            ]
+          }
+        ]
+      },
+      "sourceId": "NSRC-D143E87211F9",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/playwright-core/lib/tools/skills/playwright-cli/references/storage-state.md#L29:Storage State File Format",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-9D915A3B0EDA",
+      "atomId": "NATOM-88DDF7C73B7F",
+      "domain": "shared-foundation",
+      "value": {
+        "mcpServers": {
+          "playwright": {
+            "command": "npx",
+            "args": [
+              "@playwright/mcp@latest"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-EC97B76C4D67",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/playwright/README.md#L163:Setup",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-B11980537A8A",
+      "atomId": "NATOM-0E42A6C3DE11",
+      "domain": "shared-foundation",
+      "value": {
+        "str": 1000
+      },
+      "sourceId": "NSRC-5569885BF0FA",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/safe-buffer/README.md#L366:Would this ever be a problem in real code?",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-056345AED7B0",
+      "atomId": "NATOM-94554268A6C6",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "importHelpers": true
+        }
+      },
+      "sourceId": "NSRC-DCD7D10F6879",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/tslib/README.md#L77:Usage",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-816CB00E61D8",
+      "atomId": "NATOM-94ED869D66A8",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "amd",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "bower_components/tslib/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-DCD7D10F6879",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
+    {
+      "parameterSetId": "NPARAM-82F39789ECD1",
+      "atomId": "NATOM-94ED869D66A8",
+      "domain": "shared-foundation",
+      "value": {
+        "compilerOptions": {
+          "module": "system",
+          "importHelpers": true,
+          "baseUrl": "./",
+          "paths": {
+            "tslib": [
+              "jspm_packages/npm/tslib@1.[version].0/tslib.d.ts"
+            ]
+          }
+        }
+      },
+      "sourceId": "NSRC-DCD7D10F6879",
+      "sourceLocator": "02_AI规则/mapping-special-chg025/node_modules/tslib/README.md#L95:For bower and JSPM users",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
+    },
     {
       "parameterSetId": "NPARAM-C8477294AAFF",
       "atomId": "NATOM-6A65FD363A5F",
@@ -17,20 +5552,20 @@
       "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
-      "parameterSetId": "NPARAM-5B54927A43E7",
-      "atomId": "NATOM-64EDEA2C0407",
+      "parameterSetId": "NPARAM-D5A3A89A09A3",
+      "atomId": "NATOM-94B7AF1028CC",
       "domain": "combat",
       "value": {
-        "document_status": "deprecated",
-        "deprecated_date": "2026-07-24",
-        "reason": "signature_weapon_system_removed",
-        "usable_as_current_input": false,
-        "replacement": "03_沉淀MD/养成/收容物养成数值沉淀-2026-07-24.md"
+        "document_status": "migration_compatibility",
+        "human_ruling": "RULING-EW-B",
+        "compatibility_major_versions": 1,
+        "usable_as_compatibility_input": true,
+        "target_system": "03_沉淀MD/养成/收容物养成数值沉淀-2026-07-24.md",
+        "implementation_status": "IMPLEMENTATION_PENDING"
       },
       "sourceId": "NSRC-888962F60980",
-      "sourceLocator": "03_沉淀MD/养成/专武数值沉淀-2026-07-07.md#L1:专武数值沉淀（已废弃）",
-      "status": "SUPERSEDED_SOURCE_CONTEXT",
-      "supersededBy": "RULING-EW-B"
+      "sourceLocator": "03_沉淀MD/养成/专武数值沉淀-2026-07-07.md#L1:专武数值沉淀（裁决B兼容迁移期）",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
       "parameterSetId": "NPARAM-26D5FE955F16",
@@ -284,7 +5819,7 @@
       "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
-      "parameterSetId": "NPARAM-FA5EB8846550",
+      "parameterSetId": "NPARAM-BDFBE9062A6B",
       "atomId": "NATOM-73110C49D594",
       "domain": "combat",
       "value": {
@@ -393,7 +5928,7 @@
               ],
               [
                 "角色升阶",
-                0,
+                1.2,
                 "旋钮",
                 "当前未投放基础属性",
                 "裸体"
@@ -548,14 +6083,14 @@
             ]
           }
         ],
-        "updated_at": "2026-07-10T11:38:48+08:00"
+        "updated_at": "2026-08-25T11:26:17+08:00"
       },
       "sourceId": "NSRC-6754F04EBFBA",
       "sourceLocator": "03_沉淀MD/参数基线/共享参数基线.md#L21:机器可读参数块",
       "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
-      "parameterSetId": "NPARAM-476164307F46",
+      "parameterSetId": "NPARAM-3418B727AEEE",
       "atomId": "NATOM-012CEAE5A5ED",
       "domain": "combat",
       "value": {
@@ -3222,7 +8757,7 @@
               ],
               [
                 "陈双双",
-                "SR",
+                "SSR",
                 "辅助（攻击）",
                 "魔法",
                 1,
@@ -3233,7 +8768,7 @@
                 1.01,
                 0.95,
                 2.98,
-                0.8,
+                1,
                 "攻击百分比",
                 "治疗率",
                 "能量回复等级",
@@ -3242,7 +8777,7 @@
               ],
               [
                 "克莉丝汀",
-                "SR",
+                "SSR",
                 "输出（战士）",
                 "物理",
                 1.05,
@@ -3253,7 +8788,7 @@
                 1.02,
                 0.98,
                 3.0,
-                0.8,
+                1,
                 "攻击百分比",
                 "必杀伤害加成",
                 "技能伤害加成",
@@ -3262,7 +8797,7 @@
               ],
               [
                 "阿莱克西娅",
-                "SR",
+                "SSR",
                 "辅助（生命）",
                 "魔法",
                 1.2,
@@ -3273,7 +8808,7 @@
                 0.95,
                 1,
                 3.1,
-                0.8,
+                1,
                 "生命百分比",
                 "治疗率",
                 "技能冷却等级",
@@ -3482,7 +9017,7 @@
               ],
               [
                 "凯兰",
-                "SR",
+                "SSR",
                 "辅助（均衡）",
                 "魔法",
                 1.1,
@@ -3493,7 +9028,7 @@
                 0.95,
                 0.95,
                 2.95,
-                0.8,
+                1,
                 "暴击等级",
                 "能量回复等级",
                 "技能冷却等级",
@@ -3556,7 +9091,7 @@
                 0.8,
                 "生命百分比",
                 "防御百分比",
-                "技能冷却等级",
+                "能量回复等级",
                 "物理伤害加成",
                 "技能冷却等级"
               ],
@@ -14336,14 +19871,14 @@
             ]
           }
         ],
-        "updated_at": "2026-07-23T14:53:30+08:00"
+        "updated_at": "2026-08-25T11:26:17+08:00"
       },
       "sourceId": "NSRC-8C2885A07242",
       "sourceLocator": "03_沉淀MD/参数基线/养成参数基线.md#L32:机器可读参数块",
       "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
-      "parameterSetId": "NPARAM-57F85170CD74",
+      "parameterSetId": "NPARAM-0599A859518E",
       "atomId": "NATOM-666792FE91D2",
       "domain": "combat",
       "value": {
@@ -14433,48 +19968,48 @@
               [
                 "裸体生命",
                 3,
-                64,
-                32000,
+                79,
+                39500,
                 0.999999,
                 "几何"
               ],
               [
                 "裸体攻击",
                 4,
-                19.2,
-                9600,
+                23.7,
+                11850,
                 0.999999,
                 "几何"
               ],
               [
                 "裸体防御",
                 5,
-                12.8,
-                6400,
+                15.8,
+                7900,
                 0.999999,
                 "几何"
               ],
               [
                 "额外生命",
                 6,
-                250,
-                125000,
+                290,
+                145000,
                 0.999999,
                 "几何"
               ],
               [
                 "额外攻击",
                 7,
-                75,
-                37500,
+                87,
+                43500,
                 0.999999,
                 "几何"
               ],
               [
                 "额外防御",
                 8,
-                50,
-                25000,
+                58,
+                29000,
                 0.999999,
                 "几何"
               ],
@@ -14585,16 +20120,16 @@
               [
                 "攻击系数修正",
                 35,
-                0.3,
-                2.3,
-                1.002,
+                0.5,
+                1.6,
+                1.003,
                 "几何"
               ],
               [
                 "BOSS生命系数修正",
                 36,
                 2.15,
-                1,
+                0.85,
                 0.95,
                 "几何"
               ],
@@ -14609,8 +20144,8 @@
               [
                 "小怪攻击系数修正",
                 38,
-                1,
-                1,
+                0.8,
+                0.95,
                 0.997,
                 "几何"
               ],
@@ -14740,12 +20275,12 @@
               ],
               [
                 "裸体总和系数",
-                6.4,
+                7.9,
                 "中期裸体投放(标准模型自带=初1+升4.2+阶1.5+盘1.2; 注:ruling②为8.1,此处复现源)"
               ],
               [
                 "额外总和系数",
-                25,
+                29,
                 "中期额外投放(专4+旅6+装10)"
               ],
               [
@@ -16753,7 +22288,7 @@
             ]
           }
         ],
-        "updated_at": "2026-07-10T11:38:48+08:00"
+        "updated_at": "2026-08-27T18:52:08+08:00"
       },
       "sourceId": "NSRC-FF5E428C6FFE",
       "sourceLocator": "03_沉淀MD/参数基线/战斗参数基线.md#L24:机器可读参数块",
@@ -16819,7 +22354,7 @@
       "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
-      "parameterSetId": "NPARAM-82E40DFDDA5B",
+      "parameterSetId": "NPARAM-0377BB46384F",
       "atomId": "NATOM-11B89D5ADB99",
       "domain": "combat",
       "value": {
@@ -17098,7 +22633,7 @@
               ],
               [
                 20,
-                50,
+                600,
                 10,
                 3,
                 1
@@ -17175,7 +22710,7 @@
               ],
               [
                 31,
-                200,
+                500,
                 20,
                 5,
                 4
@@ -17238,7 +22773,7 @@
               ],
               [
                 40,
-                300,
+                1000,
                 20,
                 "主线后",
                 9
@@ -17308,7 +22843,7 @@
               ],
               [
                 50,
-                850,
+                5000,
                 30,
                 "主线后",
                 24
@@ -17343,7 +22878,7 @@
               ],
               [
                 55,
-                1400,
+                10000,
                 40,
                 "主线后",
                 39
@@ -17364,7 +22899,7 @@
               ],
               [
                 58,
-                3000,
+                20000,
                 40,
                 "主线后",
                 52
@@ -17386,7 +22921,7 @@
             ]
           }
         ],
-        "updated_at": "2026-07-10T11:38:48+08:00"
+        "updated_at": "2026-08-25T11:26:17+08:00"
       },
       "sourceId": "NSRC-F8E56AF3588D",
       "sourceLocator": "03_沉淀MD/参数基线/节奏参数基线.md#L20:机器可读参数块",
@@ -17572,21 +23107,21 @@
       "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
-      "parameterSetId": "NPARAM-185623494FDC",
-      "atomId": "NATOM-41BFBF6FAEC2",
+      "parameterSetId": "NPARAM-6F72EF2FACD6",
+      "atomId": "NATOM-0C139362E9A3",
       "domain": "combat",
       "value": {
-        "document_status": "deprecated",
-        "deprecated_date": "2026-07-24",
-        "reason": "signature_weapon_system_removed",
-        "usable_as_current_input": false,
-        "replacement": "03_沉淀MD/养成/收容物养成数值沉淀-2026-07-24.md",
+        "document_status": "migration_compatibility",
+        "human_ruling": "RULING-EW-B",
+        "compatibility_major_versions": 1,
+        "usable_as_compatibility_input": true,
+        "target_system": "03_沉淀MD/养成/收容物养成数值沉淀-2026-07-24.md",
+        "implementation_status": "IMPLEMENTATION_PENDING",
         "cost_migration_to_replacement": false
       },
       "sourceId": "NSRC-A2FE68F6D7B4",
-      "sourceLocator": "03_沉淀MD/经济/19_养成_专武经济消耗沉淀-2026-07-09.md#L1:19_养成_专武经济消耗沉淀（已废弃）",
-      "status": "SUPERSEDED_SOURCE_CONTEXT",
-      "supersededBy": "RULING-EW-B"
+      "sourceLocator": "03_沉淀MD/经济/19_养成_专武经济消耗沉淀-2026-07-09.md#L1:19_养成_专武经济消耗沉淀（裁决B兼容迁移期）",
+      "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
       "parameterSetId": "NPARAM-F36CC7ADF4D9",
@@ -17791,8 +23326,8 @@
       "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
-      "parameterSetId": "NPARAM-DF2DCBFF30D3",
-      "atomId": "NATOM-1F0C6FD09E89",
+      "parameterSetId": "NPARAM-AF5637FCDFA6",
+      "atomId": "NATOM-86B104BC4FD1",
       "domain": "growth",
       "value": {
         "module": "gacha_character_and_containment",
@@ -17878,7 +23413,7 @@
           }
         },
         "containment": {
-          "gacha_design_status": "COMMON_POOL_V0_4_CONFIG_READY",
+          "gacha_design_status": "COMMON_POOL_V0_5_CONFIG_READY",
           "scope": "PERMANENT_POOL_ONLY",
           "common_rule_desc_id": 4,
           "pool_source": "Datas/ExclusiveWeapon/ExclWeapon.xlsx",
@@ -17947,21 +23482,21 @@
             "fragment_rate": 0.95,
             "quality_rate": {
               "S": 0.05,
-              "A": 0.4,
-              "B": 0.55
+              "A": 0.15,
+              "B": 0.8
             },
             "normal_branch_rate": {
               "S_whole": 0.0025,
-              "A_whole": 0.02,
-              "B_whole": 0.0275,
+              "A_whole": 0.0075,
+              "B_whole": 0.04,
               "S_fragment": 0.0475,
-              "A_fragment": 0.38,
-              "B_fragment": 0.5225
+              "A_fragment": 0.1425,
+              "B_fragment": 0.76
             },
             "ten_guarantee_quality_rate": {
               "S": 0.05,
-              "A": 0.4,
-              "B": 0.55
+              "A": 0.15,
+              "B": 0.8
             },
             "permanent_s_whole_pity": 100,
             "soft_pity": false,
@@ -18045,15 +23580,15 @@
         }
       },
       "sourceId": "NSRC-1FFA9F08539D",
-      "sourceLocator": "03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md#L257:6. 机器可读口径",
+      "sourceLocator": "03_沉淀MD/经济/21_抽卡_角色与收容物抽卡数值沉淀-2026-07-24.md#L259:6. 机器可读口径",
       "status": "MACHINE_READABLE_SOURCE_EXTRACTED"
     },
     {
-      "parameterSetId": "NPARAM-0B94721982AB",
+      "parameterSetId": "NPARAM-36A6602F6294",
       "atomId": "NATOM-4A116385CF21",
       "domain": "growth",
       "value": {
-        "schema": "vgame.trade.v25",
+        "schema": "vgame.trade.v27",
         "energy": {
           "cost_per_dispatch": 60,
           "tutorial_dispatch_cost": 0,
@@ -18067,32 +23602,32 @@
             {
               "level": 1,
               "cap": 60,
-              "minutes_per_point": 18
+              "recovery_speed_bonus": 0.0
             },
             {
               "level": 3,
               "cap": 60,
-              "minutes_per_point": 16
+              "recovery_speed_bonus": 0.1
             },
             {
               "level": 7,
               "cap": 120,
-              "minutes_per_point": 16
+              "recovery_speed_bonus": 0.1
             },
             {
               "level": 11,
               "cap": 120,
-              "minutes_per_point": 14
+              "recovery_speed_bonus": 0.2
             },
             {
               "level": 14,
               "cap": 180,
-              "minutes_per_point": 14
+              "recovery_speed_bonus": 0.2
             },
             {
               "level": 18,
               "cap": 180,
-              "minutes_per_point": 12
+              "recovery_speed_bonus": 0.3
             }
           ]
         }

@@ -1,13 +1,13 @@
 {
   "schema": "vgame-numerical-workbook-registry/v2",
-  "generatedAt": "2026-08-24T11:33:39.981856+00:00",
+  "generatedAt": "2026-09-02T07:43:57.383155+00:00",
   "count": 33,
   "workbooks": [
     {
       "workbookId": "NWB-7E02C44A27E1",
       "sourceId": "NSRC-7E02C44A27E1",
       "relativePath": "01_源表/全玩法难度填写表.xlsx",
-      "sha256": "e9146ba74e0de7693d971c521706a774f25ae830a7d31922ba6c8144575d198f",
+      "sha256": "d32a1344dfa432aaa3ab98a990b88e2d67e9a179434d7156d348b7d779747aac",
       "domain": "combat",
       "sheets": [
         {
@@ -77,6 +77,54 @@
         {
           "sheetId": "NSHEET-61EB136B6943",
           "name": "_字典"
+        },
+        {
+          "sheetId": "NSHEET-AAC7D55F7F84",
+          "name": "舱室材料"
+        },
+        {
+          "sheetId": "NSHEET-0BD0119B7CCC",
+          "name": "无限之旅"
+        },
+        {
+          "sheetId": "NSHEET-D4F16960FA55",
+          "name": "其他战斗玩法"
+        },
+        {
+          "sheetId": "NSHEET-6E21864A0458",
+          "name": "_统一战力"
+        },
+        {
+          "sheetId": "NSHEET-77F3D66E87B6",
+          "name": "_爬塔队伍"
+        },
+        {
+          "sheetId": "NSHEET-FBFD88623925",
+          "name": "本轮统一对比"
+        },
+        {
+          "sheetId": "NSHEET-FC794C25A38E",
+          "name": "统一口径说明"
+        },
+        {
+          "sheetId": "NSHEET-7F9F91D73453",
+          "name": "_怪物类型"
+        },
+        {
+          "sheetId": "NSHEET-52468A0DE060",
+          "name": "映射等级节点"
+        },
+        {
+          "sheetId": "NSHEET-12C7B8E36090",
+          "name": "爬塔本次调整"
+        },
+        {
+          "sheetId": "NSHEET-A458894D72F4",
+          "name": "推荐战力参数"
+        },
+        {
+          "sheetId": "NSHEET-DC6AD325ECEE",
+          "name": "爬塔战力校准"
         }
       ],
       "inspectionError": null,
@@ -86,7 +134,7 @@
       "workbookId": "NWB-EECA769C87C7",
       "sourceId": "NSRC-EECA769C87C7",
       "relativePath": "01_源表/养成属性分配.xlsx",
-      "sha256": "778be76696ef01d5e44dfd2236fe79a402476ad3e15fac08623ac6620d83f55d",
+      "sha256": "09bb311622181f462db0c49e760cee7389da4dbf461064e90816ffe66e7a7f9c",
       "domain": "combat",
       "sheets": [
         {
@@ -108,6 +156,34 @@
         {
           "sheetId": "NSHEET-574DC87AB416",
           "name": "_曲线基线"
+        },
+        {
+          "sheetId": "NSHEET-D952A42BCE79",
+          "name": "主线调参"
+        },
+        {
+          "sheetId": "NSHEET-451776E9F164",
+          "name": "曲线总览"
+        },
+        {
+          "sheetId": "NSHEET-2C563059CFC6",
+          "name": "参数说明"
+        },
+        {
+          "sheetId": "NSHEET-6399095EBF57",
+          "name": "玩家战力_节点"
+        },
+        {
+          "sheetId": "NSHEET-1EAF7BD18837",
+          "name": "本轮调整对比"
+        },
+        {
+          "sheetId": "NSHEET-85E3E7548053",
+          "name": "调前玩家曲线"
+        },
+        {
+          "sheetId": "NSHEET-62A911E665B7",
+          "name": "本轮源表统一"
         }
       ],
       "inspectionError": null,
@@ -132,7 +208,7 @@
       "workbookId": "NWB-967B503E96C9",
       "sourceId": "NSRC-967B503E96C9",
       "relativePath": "01_源表/战斗公式.xlsx",
-      "sha256": "31cf4d1f81b70e91b6ee1b73410272c9d88934cfa958bced8dc7125767d2014a",
+      "sha256": "908e190c3356f11ad093be5e03283470dbcbf32e50f5ca65bbf19ce0c13c9e13",
       "domain": "combat",
       "sheets": [
         {
@@ -150,6 +226,14 @@
         {
           "sheetId": "NSHEET-04971E575B67",
           "name": "技能系数"
+        },
+        {
+          "sheetId": "NSHEET-028AF52B6847",
+          "name": "_推荐战力映射"
+        },
+        {
+          "sheetId": "NSHEET-90075A5C0887",
+          "name": "_历史外链参数"
         }
       ],
       "inspectionError": null,
@@ -224,7 +308,7 @@
       "workbookId": "NWB-D4F5ECA2935F",
       "sourceId": "NSRC-D4F5ECA2935F",
       "relativePath": "01_源表/爬塔TeamHero配置表.xlsx",
-      "sha256": "3121d22db833d4eb8075c979836ab8fe072455b9b839cfcd55bb595388e2541a",
+      "sha256": "53bb9b055db32b3e60e5507df7790055ecfafc3dbc54a65fef1071375afcd3de",
       "domain": "validation-delivery",
       "sheets": [
         {
@@ -254,6 +338,18 @@
         {
           "sheetId": "NSHEET-678AE8DD610D",
           "name": "落表结果"
+        },
+        {
+          "sheetId": "NSHEET-B1867890EB3C",
+          "name": "统一验算"
+        },
+        {
+          "sheetId": "NSHEET-A4AA3E88A668",
+          "name": "难度节点"
+        },
+        {
+          "sheetId": "NSHEET-4539B11ABC7E",
+          "name": "爬塔本次调整"
         }
       ],
       "inspectionError": null,
@@ -290,7 +386,7 @@
       "workbookId": "NWB-B15AF831BD4C",
       "sourceId": "NSRC-B15AF831BD4C",
       "relativePath": "01_源表/节奏口径.xlsx",
-      "sha256": "0d461217f5bc7e8a53a73585afda654f27bb5ccaad1e554740cbcbe02dcd5024",
+      "sha256": "6db4a4214fc5e769303fd9bdc23f1fc4701fd0ac96fc37dda051eb7d0808da7c",
       "domain": "pacing",
       "sheets": [
         {

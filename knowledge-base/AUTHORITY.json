@@ -9,7 +9,8 @@
   "numericalCanonicalRoot": "knowledge-base/numerical/",
   "numericalProductionRoot": "numerical-workflows/v2/",
   "numericalProductionManifest": "numerical-workflows/v2/workflow-manifest.json",
+  "numericalFormalDocumentRoot": "numerical-workflows/v2/framework/04_数值文档/",
   "numericalProductionGeneratedRoot": "output/numerical-production-workflow-v2/",
   "numericalEvidenceInput": "vgame-numeric-source://框架v2/",
-  "rule": "只有 formalEntry 是正式权威入口；numerical 是其知识子层；numericalProductionRoot 是 Git 管理的生产源码与输入层；skills 只保存 Skill 正文；output 不得作为正文源。"
+  "rule": "只有 formalEntry 是正式权威入口；numerical 是其知识子层；numericalProductionRoot 管理生产源码、输入和正式数值交付文档；skills 只保存 Skill 正文；output 仅保存可重建工作区、报告和索引，不得作为正文源。"
 }

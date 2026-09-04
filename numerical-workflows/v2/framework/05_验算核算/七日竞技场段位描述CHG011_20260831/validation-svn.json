@@ -1,0 +1,11 @@
+{
+  "batch": "ARENA-RANK-DESC-CHG011-SVN",
+  "generated_at": "2026-08-31T10:59:42.946169",
+  "cell_diff_outside_plan": [],
+  "business_checks": {
+    "描述含段位名": true,
+    "ParamList为段位最低分": true,
+    "解锁与奖励不变": true
+  },
+  "status": "PASS"
+}

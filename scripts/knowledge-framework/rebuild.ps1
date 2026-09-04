@@ -78,6 +78,7 @@ $GateReport = [ordered]@{
     numericalProductionInputWorkbooks = "$($Production.counts.inputWorkbooks)/$($Production.counts.inputWorkbooks)"
     numericalProductionGates = "$($Production.passed)/$($Production.total)"
     numericalProductionFinalWorkbooks = "$($Production.counts.expectedFinalWorkbooks)/$($Production.counts.expectedFinalWorkbooks)"
+    numericalProductionFormalRoot = 'numerical-workflows/v2/framework/04_数值文档/'
     activeNumericalAtoms = $Numerical.counts.activeAtoms
     supersededTraceAtoms = $Numerical.counts.supersededAtoms
     historicalTraceAtoms = $Numerical.counts.historicalAtoms
@@ -99,7 +100,7 @@ $Report = @"
 - 单仓数值生产脚本：$($Production.counts.migratedPythonFiles)/$($Production.counts.originalPythonFiles)
 - 受控数值生产输入工作簿：$($Production.counts.inputWorkbooks)
 - 全量数值生成任务：$($Production.counts.mainGenerationJobs)
-- 最终数值文档：$($Production.counts.expectedFinalWorkbooks)
+- Git 管理正式数值文档：$($Production.counts.expectedFinalWorkbooks)（`numerical-workflows/v2/framework/04_数值文档/`）
 - 单仓生产与安全门禁：$($Production.passed)/$($Production.total)
 - 数值原子：$($Numerical.counts.atoms)（ACTIVE $($Numerical.counts.activeAtoms) / SUPERSEDED_TRACE $($Numerical.counts.supersededAtoms) / HISTORICAL_TRACE $($Numerical.counts.historicalAtoms)）
 - 数值公式/规则候选：$($Numerical.counts.formulas)；机器参数块：$($Numerical.counts.parameterSets)

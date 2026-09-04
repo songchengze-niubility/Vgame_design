@@ -35,7 +35,7 @@ Design -> Proposal -> Task -> Config/Code
 | 项目 | Vgame |
 | 本仓库 | Vgame 设计/harness/提案/任务/知识图谱/策划 Skill/数值生产工作流全包 |
 | 游戏工程 | `${VGAME_ROOT}` |
-| 配置体系 | 真实 SVN 配置不直接放入仓库；受控数值设计源表由 `numerical-workflows/v2/` 管理 |
+| 配置体系 | 真实 SVN 配置不直接放入仓库；受控数值设计源表与正式数值交付文档由 `numerical-workflows/v2/` 管理 |
 | Agent skill | `skills/`（本仓库内，入口 `skills/vgame-core-understanding/SKILL.md`） |
 | 协作目标 | 让策划、数值、配置、战斗、外循环问题有可追踪的判断链 |
 
@@ -58,13 +58,14 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 | 需要形成落地方案 | `proposals/TEMPLATE.md` |
 | 需要拆任务 | `tasks/TEMPLATE.md` |
 | 需要做数值案、成长/经济/战斗/概率规划或落表 | `harness/numerical-design-workflow.md` |
-| 需要执行全量数值生产、生成 44 份终稿或运行数值门禁 | `numerical-workflows/v2/README.md`、`scripts/numerical-workflows/run_production.py` |
+| 需要执行全量数值生产、查看 44 份终稿或运行数值门禁 | `numerical-workflows/v2/README.md`、`numerical-workflows/v2/framework/04_数值文档/`、`scripts/numerical-workflows/run_production.py` |
 | 需要看仓库约束 | `golden-principles.md` |
 | 需要跑门禁 | `harness/maintenance-gates.md`、`scripts/check.ps1` |
 | 涉及跨仓改动 | `CROSS-REPO-CHANGES.md` |
 | 涉及 Vgame skill | `skills/vgame-core-understanding/SKILL.md`（入口） |
 | 查询代码/配置/文档关系 | `knowledge-graph/README.md`、`knowledge-graph/KG-AI-RULES.md` |
 | 更新或查看知识图谱 | `knowledge-graph/知识图谱自动更新方案.md` |
+| 查询过往踩坑教训，或任务结束后沉淀新经验 | `knowledge-base/experience/README.md`、`skills/planning-feature-workflow/SKILL.md`（第 9 步写入点） |
 
 ## Vgame Skill 路由
 

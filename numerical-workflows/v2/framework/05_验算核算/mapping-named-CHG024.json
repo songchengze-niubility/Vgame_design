@@ -1,0 +1,15 @@
+{
+  "hashes": {
+    "SpecialEquipment.xlsx": "8e27ae3806b71b8db2bc6998f0483b4224abd67bbf3dd83501fb3aa2de16e38e",
+    "SpecialEquipmentEffect.xlsx": "84c7ec7e7b7fbe92125d83c0e8c7843a800c7d7af259db4d95ea9f2cff677d6e",
+    "00_配置清单.xlsx": "bfbf2a7678b8335b1b99a30664f749b77539ffff2f22ce1350449814eacebb81"
+  },
+  "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射装备CHG024_候选备份\\20260827T163302",
+  "files": [
+    "SpecialEquipment.xlsx",
+    "SpecialEquipmentEffect.xlsx",
+    "00_配置清单.xlsx"
+  ],
+  "revision": "CHG-024",
+  "status": "PUBLISHED_TO_06_ONLY"
+}

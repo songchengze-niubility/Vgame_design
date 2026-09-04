@@ -1,0 +1,24 @@
+{
+  "batch": "ARENA-COUNT-CHG013",
+  "created": "2026-08-31T17:41:04.278150",
+  "files": [
+    {
+      "file": "Task.xlsx",
+      "cells_changed": 9,
+      "sha256_before": "d45200c7dc6dd2ef6ac03d2852d3dff1a07c516383df55a725513c44989053db",
+      "sha256_after": "de7c0d53b12041380603d9f6bd14eb7c62f1cc76831ea59c7bf50e3b1f2e8565"
+    },
+    {
+      "file": "TaskTarget.xlsx",
+      "cells_changed": 9,
+      "sha256_before": "6710af580b0a91d7c2df2e83c3c2208ab2cf488390f5109d297008f1c6d7abdf",
+      "sha256_after": "ffedbabbf04d31bbb9c6282dd8ffecd740d37ae83fb99920a2294b9b1d930f8c"
+    },
+    {
+      "file": "Drop_TimeLimitedActivity.xlsx",
+      "cells_changed": 2,
+      "sha256_before": "a0ea4e5fa3bf291aa8e71cd9439b7d98344d303138b11685d2e4d5da265dc2e8",
+      "sha256_after": "db5c4241764cf342bdc15b4a9eeb490cb1a5241af65752c176c624facde154d9"
+    }
+  ]
+}

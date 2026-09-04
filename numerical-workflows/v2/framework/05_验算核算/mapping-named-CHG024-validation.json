@@ -1,0 +1,6262 @@
+{
+  "status": "PASS",
+  "target": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备",
+  "checks": 1249,
+  "pass": 1249,
+  "fail": 0,
+  "equipmentBindings": 22,
+  "uniqueSkills": 21,
+  "nameUpdates": 10,
+  "hashes": {
+    "SpecialEquipment.xlsx": "8e27ae3806b71b8db2bc6998f0483b4224abd67bbf3dd83501fb3aa2de16e38e",
+    "SpecialEquipmentEffect.xlsx": "84c7ec7e7b7fbe92125d83c0e8c7843a800c7d7af259db4d95ea9f2cff677d6e",
+    "00_配置清单.xlsx": "bfbf2a7678b8335b1b99a30664f749b77539ffff2f22ce1350449814eacebb81"
+  },
+  "details": [
+    {
+      "name": "Equipment:80001完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80002完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80003完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80004完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80005完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80006完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80007完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80008完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80009完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80010完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80011完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80012完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80013完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80014完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80015完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80016完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80017完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80018完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80019完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80020完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80021完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80022完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80023完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80024完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80025完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80026完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80027完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80028完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80029完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80030完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80031完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80032完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80033完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80034完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80035完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80036完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80037完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80038完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80039完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80040完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80041完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80042完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80043完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80044完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80045完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80046完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80047完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80048完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80049完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80050完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80051完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80052完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80053完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80054完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80055完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80056完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80057完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80058完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80059完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80060完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80061完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80062完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80063完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80064完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80065完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80066完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80067完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80068完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80069完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80070完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80071完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80072完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80073完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80074完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80075完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80076完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80077完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80078完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80079完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80080完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80081完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80082完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80083完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80084完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80085完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80086完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80087完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80088完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80089完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80090完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80091完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80092完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80093完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80094完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80095完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80096完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80097完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80098完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80099完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80100完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80101完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80102完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80103完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80104完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80105完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80106完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80107完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80108完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80109完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80110完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80111完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80112完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80113完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80114完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80115完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80116完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80117完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80118完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80119完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80120完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80121完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80122完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80123完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80124完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80125完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80126完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80127完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80128完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80129完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80130完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80131完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80132完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80133完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80134完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80135完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80136完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80137完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80138完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80139完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80140完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80141完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80142完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80143完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80144完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80145完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80146完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80147完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80148完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80149完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80150完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80151完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80152完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80153完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80154完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80155完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80156完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80157完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80158完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80159完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80160完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80161完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80162完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80163完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80164完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80165完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80166完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80167完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80168完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80169完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80170完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80171完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80172完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80173完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80174完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80175完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80176完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80177完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80178完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80179完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80180完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80181完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80182完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80183完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80184完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80185完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80186完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80187完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80188完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80189完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80190完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80191完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80192完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80193完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80194完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80195完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80196完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80197完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80198完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80199完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80200完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80201完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80202完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80203完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80204完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80205完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80206完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80207完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80208完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80209完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80210完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80211完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80212完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80213完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80214完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80215完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80216完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80217完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80218完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80219完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80220完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80221完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80222完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80223完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80224完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80225完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80226完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80227完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80228完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80229完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80230完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80231完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80232完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80233完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80234完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80235完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80236完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80237完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80238完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80239完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80240完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80241完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80242完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80243完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80244完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80245完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80246完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80247完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80248完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80249完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80250完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80251完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80252完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80253完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80254完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80255完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80256完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80257完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80258完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80259完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80260完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80261完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80262完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80263完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80264完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80265完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80266完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80267完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80268完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80269完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80270完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80271完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80272完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80273完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80274完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80275完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80276完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80277完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80278完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80279完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80280完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80281完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80282完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80283完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80284完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80285完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80286完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80287完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80288完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80289完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80290完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80291完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80292完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80293完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80294完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80295完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80296完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80297完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80298完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80299完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80300完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80301完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80302完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80303完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80304完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80305完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80306完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80307完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80308完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80309完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80310完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80311完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80312完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80313完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80314完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80315完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80316完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80317完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80318完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80319完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80320完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80321完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80322完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80323完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80324完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80325完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80326完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80327完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80328完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80329完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80330完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80331完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80332完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80333完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80334完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80335完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80336完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80337完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80338完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80339完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80340完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80341完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80342完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80343完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80344完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80345完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80346完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80347完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80348完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80349完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80350完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80351完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80352完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80353完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80354完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80355完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80356完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80357完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80358完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80359完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80360完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80361完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80362完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80363完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80364完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80365完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80366完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80367完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80368完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80369完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80370完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80371完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80372完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80373完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80374完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80375完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80376完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80377完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80378完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80379完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80380完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80381完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80382完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80383完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80384完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80385完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80386完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80387完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80388完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80389完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80390完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80391完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80392完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80393完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80394完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80395完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80396完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80397完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80398完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80399完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80400完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80401完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80402完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80403完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80404完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80405完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80406完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80407完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80408完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80409完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80410完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80411完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80412完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80413完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80414完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80415完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80416完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80417完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80418完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80419完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80420完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80421完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80422完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80423完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80424完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80425完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80426完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80427完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80428完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80429完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80430完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80431完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80432完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80433完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80434完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80435完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80436完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80437完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80438完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80439完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80440完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80441完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80442完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80443完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80444完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80445完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80446完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80447完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80448完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80449完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80450完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80451完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80452完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80453完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80454完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80455完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80456完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80457完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80458完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80459完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80460完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80461完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80462完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80463完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80464完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80465完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80466完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80467完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80468完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80469完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80470完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80471完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80472完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80473完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80474完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80475完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80476完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80477完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80478完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80479完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Equipment:80480完整行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "装备480条且Schema保留",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "22件红装21种技能",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "22件装备Id集合",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "384件非红装逐格不变",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "所有具名技能仅红装固定绑定",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "10个名称更新",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "虚空突袭之刃不绑定",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "35/55同名手套均30602",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80289",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80290",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80291",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80292",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80293",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80294",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80295",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80296",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80297",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80298",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80299",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80300",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80304",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80306",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80307",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80308",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80309",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80310",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80311",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80312",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80313",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80314",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80315",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80316",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80317",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80318",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80319",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80321",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80322",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80323",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80324",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80325",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80326",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80327",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80328",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80329",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80330",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80331",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80332",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80333",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80334",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80335",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80336",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80337",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80338",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80339",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80340",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80341",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80342",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80343",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80344",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80345",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80346",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80347",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80348",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80349",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80350",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80351",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80352",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80353",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80354",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80355",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80356",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80357",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80358",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80359",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80360",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80361",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80362",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80363",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80364",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80365",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80366",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80367",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80368",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80369",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80370",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80371",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80372",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80374",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80376",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80378",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80379",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80380",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80381",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80382",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80383",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80384",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80385",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80386",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80387",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80388",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80389",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80391",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80392",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80393",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80394",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80395",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80396",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80397",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80398",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80399",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80400",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80401",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80402",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80403",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80404",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80405",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80406",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80407",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80408",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80409",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80410",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80411",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80412",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80413",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80414",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80415",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80416",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80418",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80419",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80420",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80421",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80422",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80423",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80424",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80425",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80426",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80428",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80429",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80430",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80431",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80432",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80433",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80434",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80435",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80436",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80437",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80438",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80439",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80441",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80442",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80443",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80444",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80445",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80446",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80447",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80448",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80449",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80450",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80451",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80452",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80453",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80454",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80455",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80456",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80457",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80458",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80459",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80460",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80461",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80462",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80463",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80464",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80465",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80466",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80467",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80468",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80469",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80470",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80471",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80472",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80473",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80474",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80475",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80476",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80477",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80478",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80479",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "六档RareEffect保留:80480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "全部SpecialEffect原值保留",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "原918条Effect及Schema不变",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "新增21条且全部Id唯一",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30401",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30401",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30402",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30402",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30501",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30502",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30502",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30503",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30601",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30601",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30602",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30602",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30701",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30701",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30702",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30702",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30801",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯技能Effect:30802",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "Skill存在与资源路径:30802",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "22条FixEffect引用闭环",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "原说明/清单/历史页保留:SpecialEquipment.xlsx/中文说明",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "说明数据行数:SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "原说明/清单/历史页保留:SpecialEquipmentEffect.xlsx/中文说明",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "说明数据行数:SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "原说明/清单/历史页保留:00_配置清单.xlsx/配置清单",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "原说明/清单/历史页保留:00_配置清单.xlsx/CHG019概率展示",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "原说明/清单/历史页保留:00_配置清单.xlsx/CHG023稀有词条",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "清单22条绑定逐条一致",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "工作表集合:SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "公式缓存无错误:SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "工作表集合:SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "公式缓存无错误:SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "工作表集合:00_配置清单.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "公式缓存无错误:00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "正式/附件不变:D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipment.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件不变:D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffect.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件不变:D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffectDrop.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件不变:D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentQuality.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件不变:D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\Skill.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件不变:D:\\Vgame\\Config\\GameConfig\\Datas\\__tables__.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "正式/附件不变:C:\\Users\\songchengze\\Downloads\\映射装备.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:Drop_dungeon.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:EquipmentLevel.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:ItemAccess.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:Items.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:PortableCompoundProb.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:PortableCraftProb.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:PortableEquipCompound.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:PortableEquipCraft.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:PortableExp.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:PortableLvUp.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:PortableRange.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:SpecialEquipmentEffectDrop.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:SpecialEquipmentGenerate.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:SpecialEquipmentMain.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:SpecialEquipmentQuality.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:SpecialEquipmentSubAttrCoef.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:SystemOpen.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:UIlevel.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "未涉及06不变:Unlock.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "纯数据生成器21条结果一致",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "具名Effect重放幂等",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80001",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80003",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80004",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80005",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80006",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80007",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80008",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80009",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80016",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80017",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80018",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80019",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80020",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80026",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80028",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80029",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80030",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80036",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80037",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80038",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80039",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80040",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80042",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80043",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80044",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80045",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80046",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80047",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80048",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80049",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80050",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80054",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80055",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80056",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80057",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80058",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80059",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80060",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80064",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80065",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80066",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80067",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80068",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80069",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80070",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80071",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80072",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80073",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80075",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80076",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80077",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80078",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80079",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80080",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80081",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80082",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80083",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80084",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80085",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80086",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80087",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80088",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80089",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80090",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80091",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80092",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80093",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80094",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80095",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80096",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80097",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80098",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80099",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80116",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80117",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80118",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80119",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80120",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80126",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80128",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80129",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80130",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80136",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80137",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80138",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80140",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80146",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80147",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80148",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80149",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80150",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80151",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80152",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80155",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80156",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80157",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80158",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80159",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80161",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80162",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80163",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80164",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80165",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80166",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80167",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80168",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80169",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80170",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80171",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80172",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80173",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80174",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80175",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80176",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80177",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80178",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80179",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80180",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80181",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80182",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80183",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80184",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80185",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80186",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80187",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80188",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80189",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80190",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80191",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80192",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80193",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80194",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80195",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80196",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80197",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80198",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80199",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80200",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80201",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80202",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80203",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80204",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80206",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80207",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80208",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80209",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80210",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80211",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80213",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80214",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80215",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80216",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80217",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80218",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80219",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80220",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80221",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80222",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80223",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80224",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80225",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80226",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80227",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80228",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80229",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80230",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80231",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80232",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80233",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80234",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80235",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80236",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80237",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80238",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80239",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80240",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80241",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80242",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80243",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80244",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80245",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80246",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80247",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80248",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80249",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80250",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80251",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80252",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80253",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80254",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80255",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80256",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80257",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80258",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80259",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80260",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80261",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80262",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80263",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80264",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80265",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80266",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80267",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80268",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80269",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80270",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80271",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80272",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80273",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80274",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80275",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80276",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80277",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80278",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80279",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80280",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80281",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80282",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80283",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80284",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80285",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80286",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80287",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80288",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80289",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80290",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80291",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80292",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80293",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80294",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80295",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80296",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80297",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80298",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80299",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80300",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80302",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80303",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80304",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80306",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80307",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80308",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80309",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80310",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80311",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80312",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80313",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80314",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80315",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80316",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80317",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80318",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80319",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80320",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80321",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80322",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80323",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80324",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80325",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80326",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80327",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80328",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80329",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80330",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80331",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80332",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80333",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80334",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80335",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80336",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80337",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80338",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80339",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80340",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80341",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80342",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80343",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80344",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80345",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80346",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80347",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80348",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80349",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80350",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80351",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80352",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80353",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80354",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80355",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80356",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80357",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80358",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80359",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80360",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80361",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80362",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80363",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80364",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80365",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80366",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80367",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80368",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80369",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80370",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80371",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80372",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80373",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80374",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80375",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80376",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80377",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80378",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80379",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80380",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80381",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80382",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80383",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80384",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80385",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80386",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80387",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80388",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80389",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80390",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80391",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80392",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80393",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80394",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80395",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80396",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80397",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80398",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80399",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80400",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80401",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80402",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80403",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80404",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80405",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80406",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80407",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80408",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80409",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80410",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80411",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80412",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80413",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80414",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80415",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80416",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80417",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80418",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80419",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80420",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80421",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80422",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80423",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80424",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80425",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80426",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80427",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80428",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80429",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80430",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80431",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80432",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80433",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80434",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80435",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80436",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80437",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80438",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80439",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80440",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80441",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80442",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80443",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80444",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80445",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80446",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80447",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80448",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80449",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80450",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80451",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80452",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80453",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80454",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80455",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80456",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80457",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80458",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80459",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80460",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80461",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80462",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80463",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80464",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80465",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80466",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80467",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80468",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80469",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80470",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80471",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80472",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80473",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80474",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80475",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80476",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80477",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80478",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80479",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "生成规则名称绑定:80480",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "name": "已有Id冲突拒绝",
+      "pass": true,
+      "detail": null
+    }
+  ]
+}

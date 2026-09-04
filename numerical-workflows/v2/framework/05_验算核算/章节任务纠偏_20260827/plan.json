@@ -1,0 +1,903 @@
+{
+  "batch": "CHAPTER-CORRECTION-20260827",
+  "files": [
+    {
+      "file": "任务/Task.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Task.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\章节任务纠偏_20260827\\backup\\任务\\Task.xlsx",
+      "sha256": "a73d904a91fcdd939a8a1abcc83913d376b22975059d2ded06b7a2f4416de212",
+      "stage_sha256": "ec1b08efa1d0fd590a523bf1e217ea7cb12928c7ae59984e087b93bf3fe42756"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\00_配置清单.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\章节任务纠偏_20260827\\backup\\任务\\00_配置清单.xlsx",
+      "sha256": "9baa06333fd33ddba273e2f8c03eca597df19b1f7dfa698228d3214f31d34dac",
+      "edits": [
+        {
+          "sheet": "配置清单",
+          "cell": "C3",
+          "old": "写入每日10、每周33、章节68行任务目标、七日70条正式可配置目标；章节玩家等级10/20/25/30/33/36/38",
+          "new": "每日10、每周33、章节当前挂载69条任务目标、七日70；章节玩家等级10/20/25/30/33/36/38。未挂载旧记录不计入章节数量。"
+        },
+        {
+          "sheet": "配置清单",
+          "cell": "C4",
+          "old": "保留四套任务本体及引用；按每日每周任务MD修正9条任务UnlockId为123/140",
+          "new": "保留四套任务本体及引用；撤回误改的9条日周UnlockId及备注。章节任务实际落点见“章节任务落点”。"
+        },
+        {
+          "sheet": "配置清单",
+          "cell": "C10",
+          "old": "7章共55个任务类型组，主线组内有序",
+          "new": "7章共56组目标；主线分步展开后69条任务。第二章组35已挂载1327映射装备任务。"
+        },
+        {
+          "sheet": "落地说明",
+          "cell": "C5",
+          "old": "按2026-08-26任务MD：竞技场任务Unlock=123（2-8），映射任务Unlock=140（3-10）；其余保留。次日/次周刷新入池需联调。",
+          "new": "撤回本轮擅自同步：竞技场任务UnlockId恢复4112，映射日周任务恢复4314，9条新增备注清空。其余解锁不动。"
+        },
+        {
+          "sheet": "落地说明",
+          "cell": "C9",
+          "old": "日常10、周常33、章节68、七日70；只补钥匙和9条日周任务开放条件，章节及七日数据保留。",
+          "new": "已从Jottings逐层核对56组、69条章节任务：前两章舱室及第二章映射任务均已在06；本轮未新增或覆盖章节任务。"
+        },
+        {
+          "sheet": "落地说明",
+          "cell": "C10",
+          "old": "参见03_沉淀MD/经济/映射之匙与任务落06-2026-08-27.md；只更新候选，未导出SVN。",
+          "new": "章节要求按8月26日用户确认；本轮纠偏见03_沉淀MD/经济/映射之匙与任务落06-2026-08-27.md。仅06，SVN未改。"
+        },
+        {
+          "sheet": "任务总览",
+          "cell": "C4",
+          "old": "主线按关卡顺序完成；舱室目标按1个Lv2、2个Lv2、1个Lv3、2个Lv3、1个Lv4递进；映射装备目标从第二章4件5级起递进；玩家等级10/20/25/30/33/36/38；章节奖励均为元晶",
+          "new": "5/6/7/8/10/10/10组；玩家等级10/20/25/30/33/36/38。舱室按1个Lv2、2个Lv2、1个Lv3、2个Lv3、1个Lv4递进。第二至七章映射任务各奖3把钥匙。"
+        },
+        {
+          "sheet": "任务总览",
+          "cell": "D4",
+          "old": "主线每个检查点元晶30；章节奖励含旅券/限时旅券及系统稀有材料",
+          "new": "主线每分步元晶30；章节映射任务共18把钥匙（一次性）。其余任务奖励及章节完成奖励保留。"
+        },
+        {
+          "sheet": "数值校验",
+          "cell": "B6",
+          "old": 55,
+          "new": 56
+        },
+        {
+          "sheet": "数值校验",
+          "cell": "C6",
+          "old": 55,
+          "new": 56
+        },
+        {
+          "sheet": "数值校验",
+          "cell": "B7",
+          "old": 68,
+          "new": 69
+        },
+        {
+          "sheet": "数值校验",
+          "cell": "C7",
+          "old": 68,
+          "new": 69
+        }
+      ],
+      "stage_sha256": "c074ab16e8b22571c28f6598483b6215c24520837360a4cc16fcd2c8f41240e1"
+    },
+    {
+      "file": "任务/任务配置校验.json",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\任务配置校验.json",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\章节任务纠偏_20260827\\backup\\任务\\任务配置校验.json",
+      "sha256": "d7c08a588d1782dc3e01c3af55b8461ae1f69975c0d70f44e2c56d14527fa1b9",
+      "stage_sha256": "25bd1f5b500f5cd1ad0eacb6ab9962010a31189d8dee29c1477918f98e79eaee"
+    }
+  ],
+  "task_restore_from": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\任务\\Task.xlsx",
+  "task_restore_sha256": "ec1b08efa1d0fd590a523bf1e217ea7cb12928c7ae59984e087b93bf3fe42756",
+  "task_edits": [
+    {
+      "sheet": "Task",
+      "row": 151,
+      "col": 11,
+      "old": 123,
+      "new": 4112
+    },
+    {
+      "sheet": "Task",
+      "row": 151,
+      "col": 12,
+      "old": "主线2-8",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 152,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 152,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 153,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 153,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 167,
+      "col": 11,
+      "old": 123,
+      "new": 4112
+    },
+    {
+      "sheet": "Task",
+      "row": 167,
+      "col": 12,
+      "old": "主线2-8",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 168,
+      "col": 11,
+      "old": 123,
+      "new": 4112
+    },
+    {
+      "sheet": "Task",
+      "row": 168,
+      "col": 12,
+      "old": "主线2-8",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 169,
+      "col": 11,
+      "old": 123,
+      "new": 4112
+    },
+    {
+      "sheet": "Task",
+      "row": 169,
+      "col": 12,
+      "old": "主线2-8",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 170,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 170,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 171,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 171,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    },
+    {
+      "sheet": "Task",
+      "row": 172,
+      "col": 11,
+      "old": 140,
+      "new": 4314
+    },
+    {
+      "sheet": "Task",
+      "row": 172,
+      "col": 12,
+      "old": "主线3-10",
+      "new": null
+    }
+  ],
+  "chapter_audit": {
+    "group_counts": [
+      5,
+      6,
+      7,
+      8,
+      10,
+      10,
+      10
+    ],
+    "group_total": 56,
+    "task_count": 69,
+    "mapping_keys_one_time": 18,
+    "verified_existing_chapter_rows": [
+      {
+        "chapter": 1,
+        "group_id": 22,
+        "task_id": 1313,
+        "target_id": 1313,
+        "task_row": 190,
+        "target_row": 173,
+        "description": "玩家等级达到10级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "10,1",
+        "drop_id": 1030202,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 20000,
+            "max": 20000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 1,
+        "group_id": 24,
+        "task_id": 1315,
+        "target_id": 1315,
+        "task_row": 192,
+        "target_row": 175,
+        "description": "1个舱室达到2级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "2,1",
+        "drop_id": 1030205,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 2,
+            "max": 2
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 2,
+        "group_id": 32,
+        "task_id": 1324,
+        "target_id": 1324,
+        "task_row": 198,
+        "target_row": 181,
+        "description": "玩家等级达到20级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "20,1",
+        "drop_id": 1030301,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 25000,
+            "max": 25000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 2,
+        "group_id": 35,
+        "task_id": 1327,
+        "target_id": 1327,
+        "task_row": 201,
+        "target_row": 184,
+        "description": "收集4件5级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "5,4",
+        "drop_id": 1030307,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 2,
+        "group_id": 36,
+        "task_id": 1328,
+        "target_id": 1328,
+        "task_row": 202,
+        "target_row": 185,
+        "description": "2个舱室达到2级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "2,2",
+        "drop_id": 1030304,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 3,
+        "group_id": 42,
+        "task_id": 1334,
+        "target_id": 1334,
+        "task_row": 206,
+        "target_row": 189,
+        "description": "玩家等级达到25级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "25,1",
+        "drop_id": 1030401,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 30000,
+            "max": 30000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 3,
+        "group_id": 46,
+        "task_id": 1338,
+        "target_id": 1338,
+        "task_row": 210,
+        "target_row": 193,
+        "description": "1个舱室达到3级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "3,1",
+        "drop_id": 1030405,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 4,
+            "max": 4
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 3,
+        "group_id": 47,
+        "task_id": 1339,
+        "target_id": 1339,
+        "task_row": 211,
+        "target_row": 194,
+        "description": "收集4件10级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "10,4",
+        "drop_id": 1030407,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 4,
+        "group_id": 52,
+        "task_id": 1344,
+        "target_id": 1344,
+        "task_row": 215,
+        "target_row": 198,
+        "description": "玩家等级达到30级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "30,1",
+        "drop_id": 1030501,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 35000,
+            "max": 35000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 4,
+        "group_id": 56,
+        "task_id": 1348,
+        "target_id": 1348,
+        "task_row": 219,
+        "target_row": 202,
+        "description": "2个舱室达到3级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "3,2",
+        "drop_id": 1030509,
+        "rewards": [
+          {
+            "item": 3028,
+            "min": 5,
+            "max": 5
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 4,
+        "group_id": 57,
+        "task_id": 1349,
+        "target_id": 1349,
+        "task_row": 220,
+        "target_row": 203,
+        "description": "收集8件15级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "15,8",
+        "drop_id": 1030507,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 5,
+        "group_id": 62,
+        "task_id": 1354,
+        "target_id": 1354,
+        "task_row": 225,
+        "target_row": 208,
+        "description": "玩家等级达到33级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "33,1",
+        "drop_id": 1030601,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 40000,
+            "max": 40000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 5,
+        "group_id": 67,
+        "task_id": 1381,
+        "target_id": 1381,
+        "task_row": 230,
+        "target_row": 213,
+        "description": "收集8件25级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "25,8",
+        "drop_id": 1030607,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 5,
+        "group_id": 26,
+        "task_id": 1401,
+        "target_id": 1401,
+        "task_row": 194,
+        "target_row": 177,
+        "description": "1个舱室达到4级",
+        "target_type": "Target_TTT_RvCabin_LevelUp_Num",
+        "param": "4,1",
+        "drop_id": 1030610,
+        "rewards": [
+          {
+            "item": 3029,
+            "min": 4,
+            "max": 4
+          }
+        ],
+        "category": "舱室"
+      },
+      {
+        "chapter": 6,
+        "group_id": 72,
+        "task_id": 1364,
+        "target_id": 1364,
+        "task_row": 236,
+        "target_row": 219,
+        "description": "玩家等级达到36级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "36,1",
+        "drop_id": 1030701,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 45000,
+            "max": 45000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 6,
+        "group_id": 77,
+        "task_id": 1384,
+        "target_id": 1384,
+        "task_row": 241,
+        "target_row": 224,
+        "description": "收集8件35级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "35,8",
+        "drop_id": 1030707,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      },
+      {
+        "chapter": 7,
+        "group_id": 82,
+        "task_id": 1374,
+        "target_id": 1374,
+        "task_row": 248,
+        "target_row": 231,
+        "description": "玩家等级达到38级",
+        "target_type": "Target_TTT_RoleLevel",
+        "param": "38,1",
+        "drop_id": 1030801,
+        "rewards": [
+          {
+            "item": 1,
+            "min": 50000,
+            "max": 50000
+          }
+        ],
+        "category": "玩家等级"
+      },
+      {
+        "chapter": 7,
+        "group_id": 87,
+        "task_id": 1388,
+        "target_id": 1388,
+        "task_row": 253,
+        "target_row": 236,
+        "description": "收集8件45级的映射装备",
+        "target_type": "Target_TTT_SpecialEquipmentLevelUp_Num",
+        "param": "45,8",
+        "drop_id": 1030807,
+        "rewards": [
+          {
+            "item": 25,
+            "min": 3,
+            "max": 3
+          }
+        ],
+        "category": "映射装备"
+      }
+    ],
+    "chapter_config_changes_this_batch": 0
+  },
+  "preserved_workbooks": {
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\BOSS挑战\\00_配置清单.xlsx": "f64d8f1843f825de61b444555f279601765aca830f1eab75c4ad8982cc47e2c8",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\BOSS挑战\\AdvanceReward.xlsx": "028ab6a689ab6cef51205c3b1e83a22fb51fd5225acb33f3d1f066b8652cc3a7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\BOSS挑战\\Boss_Dungeon.xlsx": "817484d0b467c4bea2c010d39fe7d6ccbad47205cd3e2d3bb5940dc20a502ffb",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\BOSS挑战\\Drop_dungeon.xlsx": "9b801e2df731e33892f19783c4e7d51e9134a2f7fdb908375aec15ae134e3eec",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\BOSS挑战\\Items.xlsx": "d5d8e869c36432576654b2836e29143e8a1cd9acf7f9a87b3bfe89ed4ec19fde",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\BOSS挑战\\UIlevel.xlsx": "08401f5ddd3b26bf9a65550777e399580ca9fb65266400bc91baf472aed49f27",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_旅券副本_reward_display_staging\\00_配置清单.xlsx": "96dcb79d35aca60ff32bb697bbdad2b1b5c11dd8daed1c50cfe97a34e6d6b155",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_旅券副本_reward_display_staging\\UIlevel.xlsx": "47bbb446823baf3e0e8bcaf3868ed9972f43de939be22352744efb4bb4a1c152",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\00_配置清单.xlsx": "39b8ebb9496babd42621498bd4202fc8191126ce7a04476f37eccd9f3d6c20c6",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\Drop_dungeon.xlsx": "ead63c16f63d8d5352b51e03223a7f719a5a34a13f36c48958bc7dc795ba738c",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\EquipmentLevel.xlsx": "25b9414529dcdd9b76626d21beae36519b62f603186614a10e03306dc0c18dda",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\ItemAccess.xlsx": "bef9e8068be40d3e4bedf28f373d343f4aa433ba753dbe2d310b0ce93ca22de3",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\Items.xlsx": "50b951ef93151d8c4f98cc2ef5ca4acbaa971aad59ec90119c677e379d0d8d49",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\PortableCompoundProb.xlsx": "71c4a7ef4dc2de9632d89298d1f67286cecd5169c22e8016f2af7bc093048054",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\PortableCraftProb.xlsx": "7e97a0b3e5a54572fe3997c0695e0c783d9a600d9ca3511ae1bc2ed5583c59f3",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\PortableEquipCompound.xlsx": "b0469b21e84f25d20a0ff116af8476557a2129edad5fd2e20cf322a82af992a4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\PortableEquipCraft.xlsx": "fb4ae3ef0b7be57723b250bcef2b963e5831cf7ef1dd6a73371111d4fb59410c",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\PortableExp.xlsx": "df8f9cbad5afe2020cee03057953f94c87760d44dda78aaff55ede9a2ed898b6",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\PortableLvUp.xlsx": "7970ad3d254a7f3b3b51ec4f7294ab0416ddf9a63f2fa47195bf6cfdf3d02d30",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\PortableRange.xlsx": "97129986767dee2c179eb3e4f043461ed92d3d65999cf90b92c50216388ef28d",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\SpecialEquipment.xlsx": "4eef64f50be8fdfacf85cd110c85f720ea194dae2e11ed48ae6ca02aa1d014a2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\SpecialEquipmentEffect.xlsx": "8d72b79ae7d2d45adf055ccf9c2ba320538a62590349a3af53a258f9145560b5",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\SpecialEquipmentEffectDrop.xlsx": "6eb44b824ce2c6478c2932d489ce9f01f45fd2fd3d20fcd334136b7342993d13",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\SpecialEquipmentGenerate.xlsx": "892744bcdfd1a4fc1e67e4790ac36d08629dd2fbeaee490c8abffff07e7a19e0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\SpecialEquipmentMain.xlsx": "47f219a4a175dc96d4aa97765902b281feb9eedb8f884cf0202c98f0fc7a9c59",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\SpecialEquipmentQuality.xlsx": "864ff944a5cba154c2b5c6ae6dd873034f7bae137c03e2829a6299d988c4efa8",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\SpecialEquipmentSubAttrCoef.xlsx": "81f2fcc32cf16ed87d89aee24ca25d62374f95303867270d7cdb51b93aa085ee",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\SystemOpen.xlsx": "20066fd709e674b69a4bdf9ec1cdaf74af86797c9d76ea5b9c20b8f78f3631a3",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\UIlevel.xlsx": "e13dfaef6730395fbb094cb937018fa77ef904d48a2eaca69760acc938a1213a",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_attr_staging\\Unlock.xlsx": "c50a39012ccc3e28036be75d43867b15560ada0e311a45146a5d236790343c22",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\00_配置清单.xlsx": "029763facf5be2b5aa5496294291d5a35b313ec4a82f13f3d745ce6db132add5",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\Drop_dungeon.xlsx": "916e6091c3eff8b9402ce958966f977af5dd96c1908a551c9b89b0dbf7ce84fc",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\EquipmentLevel.xlsx": "08b211e78d263a872e6075b708ff004758b851c12d1205eda14ce7f6f5f177dd",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\ItemAccess.xlsx": "15bf8fae79ddfba6d4497a0b9bc24d40b703b3e43ef305bd3d0730615c3c4103",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\Items.xlsx": "118457f09f285284a62bf7efc310d080f269c2925cae41cc60e178b350d864e7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\PortableCompoundProb.xlsx": "1a3937af4466261c06415e935cdd33adea8a029b6d43a1e09ef2051843b4b7ae",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\PortableCraftProb.xlsx": "910cf7a85e86a9e54c1ddfae10d317b4b4735a5602eec1ee22f658c194ce9929",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\PortableEquipCompound.xlsx": "8dd936fd75095bb9c2719b66a682cb25af9c509613029c5ba2c34a7a40d17e7e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\PortableEquipCraft.xlsx": "6b4859d32147c48018853cd3715a094089ee06ac585bf15e14110f4da51f7775",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\PortableExp.xlsx": "9bc81bf597cd0469a6a243993b230e2af9b964e20f8d20dc7906bbfc2c1ffbcd",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\PortableLvUp.xlsx": "333385fd7887739ed3d1d48add92bd85fd69a6ffeb555a59209e009d7276712c",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\PortableRange.xlsx": "8aab07ac4e8f95c3e38fedfc96a3183ee8b8ef475d60402ed7b35cf0f62e038b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\SpecialEquipment.xlsx": "d72f3edcb7d46f326a06e80fff84d2587f6cff4c9decc1d703a739a5969a6036",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\SpecialEquipmentEffect.xlsx": "91e5982c913db3729b5791ce73b4f66de68fb90d62bff92112dc74e4283fe9a9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\SpecialEquipmentEffectDrop.xlsx": "078d1dcaedd60f352111389b9c2f3230ee1228ca2b9f20521d807fb579bd9818",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\SpecialEquipmentGenerate.xlsx": "2ce4f9a924faac26f74122510afc03cde352dd22db95c814ba3557be95fe7f98",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\SpecialEquipmentMain.xlsx": "040504b8516be871e81bb469bbf50a5c03f5604fbf526b810f4ef25b6b110196",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\SpecialEquipmentQuality.xlsx": "1cce72ae41917f65c8c5cbccce29787f161da90b2f3c60a59ce456d4a064da2a",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\SpecialEquipmentSubAttrCoef.xlsx": "b17cdf59ff0485b79f70f175afeb8b739ff482a07c7b31d4bde3808055e7a5d4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\SystemOpen.xlsx": "952506c83bf90223b92977d0b32a8444ea8f725cdf118bba6d204e24a0d475e5",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\UIlevel.xlsx": "9f66a8c771bd2ea54f371f901979e983ffc7320951a6fa4f1f58dd9d836d5362",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_chg008_staging\\Unlock.xlsx": "03c8e94bc8170acf8d94362daea63006fee1aa1764cef3ea4be10bfa3337cf1e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG017_staging\\00_配置清单.xlsx": "332d74b3266477713661b6b089886d9e3f60b5c2962599c89ca57cbc7c6261db",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG017_staging\\SpecialEquipment.xlsx": "0f01dea4a30475d4c4600fdec7fd8c80d0c9c194c7b45c7e940349b9ef4c4017",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG017_staging\\SpecialEquipmentEffect.xlsx": "9ebaa94841c9a9ed6b9f4cab9decc2d744ca066545fa7b296c1fabbfb798adb1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG017_staging\\SpecialEquipmentEffectDrop.xlsx": "90775bb8d9b21c6a530f74c2ed89ed7f094e165396641cb24d3094fd06f605be",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG017_staging\\SpecialEquipmentMain.xlsx": "8256b4c30dae59ba752c78715dc889c732ffee4de74a3168da51a402bc7adbd1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG017_staging\\SpecialEquipmentQuality.xlsx": "98981e92af5f6d19f0a89545b74d264614b49362c536936c89cabf596ece20ee",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG017_staging\\SpecialEquipmentSubAttrCoef.xlsx": "0fddb80d7407967c5e6cfdff7ad2aaa0993d4e291aafe6fa6dc9121343a61c39",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG018_staging\\00_配置清单.xlsx": "441ef80e311f3828b3dd7c3edf28d6f3164ab0db2d3ce626d3ea660af23fea2e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG018_staging\\SpecialEquipment.xlsx": "4d824282e42316b1228cdf9a2ee1112258f89b861b73c12908529cd87f9edd50",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG018_staging\\SpecialEquipmentEffect.xlsx": "30e4f48c3fd554f082ede1194641ab01a612aa5675522e43fd02acf1353dd5e4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG018_staging\\SpecialEquipmentEffectDrop.xlsx": "82907a77adb821b86014ffd73e860e050468cdf04d3be412e2933ef5848a18a1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG018_staging\\SpecialEquipmentMain.xlsx": "b9657bd840efc3071e1b5fef6958c94ccbe08ea2951a6f8bc7f527be1bc62a7f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG018_staging\\SpecialEquipmentQuality.xlsx": "7b3f2ed283efe2599955336c17ec57f3c608e42068abe27d80c3dc41e8ee42c0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG018_staging\\SpecialEquipmentSubAttrCoef.xlsx": "7c04c83f0c9b40fefbc942373b995c140e2dbab11f10a45ffc2cba7583615fe7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\00_配置清单.xlsx": "b8d9ca0395c4b6c59aa9380f4079d53f10a8dc50ce21888097ac8939a1d35df4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\Drop_dungeon.xlsx": "fdb6c5a2a4ef376e7c934de828595564946916dfd0c9c71fb7a20ddfcd415db8",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\EquipmentLevel.xlsx": "a3227d32a569160c5f79e1a33997d204c65b80fcf2b75f22de2338913b2ac812",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\ItemAccess.xlsx": "6d3ebce3e2fc0d68632c257597b0d6543826e092e94871f80105ac0ab1947758",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\Items.xlsx": "eb446a09d4c8b1b641fb76b7d068bf7886e6e92bdb69c4d9eece3ba9f752d216",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\PortableCompoundProb.xlsx": "e156b100ebaf50be477a57a2e1a495006cd1c35cbe9224de9d475519663f6791",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\PortableCraftProb.xlsx": "22a5b6439151c0eb3e722993ee9bd96fb4f1517127933a6d91514927f8ac8d8b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\PortableEquipCompound.xlsx": "8da6404b4fb83e3b05502d01f83d1c52d492ab3a73e5aa974dc18a3370a563b9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\PortableEquipCraft.xlsx": "8980d40a429043a50dde12df5785f90d5e38c4f3519cb356db2f4f2978c70e56",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\PortableExp.xlsx": "ce771d64e3145d6e33e5bfca58e1b6828c8b50484aaa8c2a8216dcff1fa1191e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\PortableLvUp.xlsx": "5a1f44d1d5442314a5449dfc1b6582447a0dc18fa02fe08bf78302ee8726d5f7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\PortableRange.xlsx": "c0e613772c8a90b4e5eb4c92d56cb91b6e85317fda51d5d830dd4ac9ba64e4b9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\SpecialEquipment.xlsx": "9ac89ea07036bcda3a8e173f5911d4e14afa48e4e5c5ca8d3f0aadeb2e6723a2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\SpecialEquipmentEffect.xlsx": "3b889293b404b86f983f5460242d5d33455a7ec0bd57eb57ed3ffc6e9067d877",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\SpecialEquipmentEffectDrop.xlsx": "4d01775f4ed0732f97d2815b22875976dcd48755afa1e7d39465f2b22dd09a8a",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\SpecialEquipmentGenerate.xlsx": "c7de9f6f48f16685a7d99fe6d204cd0585c3b1602fcec49b52696111134d2aa6",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\SpecialEquipmentMain.xlsx": "24a501e77772bfecbc86c6cc2c09b37f59cebb9ad5ce398568dd0a2e884e8a13",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\SpecialEquipmentQuality.xlsx": "3347ffdc1933e4735f4c7fe32dc6fcf0515a9d0f1ecfbe9e76069b072418ea30",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\SpecialEquipmentSubAttrCoef.xlsx": "1458155d8366ad861d5ced8e9ca5639a2353af3c53f3353f1ccae1bee345ecd3",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\UIlevel.xlsx": "b49ea8ff9c32db17aed74678c7249c6cc1195356eb5a09f851dd3746bdb867df",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_refresh_staging\\Unlock.xlsx": "0899e18f1d7dbcfadd97978f127283a6d8574d4901c5dbcf9cb1b0c0352ccc36",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\00_配置清单.xlsx": "cead6d67a443caf64f86916d858e2fc3a73255f903f737481bc5def64dca4716",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\Drop_dungeon.xlsx": "31be06b11bd7e997e8574384269f50701978c3e5cadaabf5a14b7e2f6d1c24d5",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\EquipmentLevel.xlsx": "254d1afb0e1dcba8574ce0f2e655b3bd23be5e651ebe3312c130ac7949ac653e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\ItemAccess.xlsx": "f0c704121a358535f0e4a3f931325a459f545f5f9deea9edfa18fa5229a99caa",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\Items.xlsx": "b4080b5ceee1dbd705d3577e4981b4b0ea20e94fa36db47989a4285a0588a6ed",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\PortableCompoundProb.xlsx": "8ffe3416da6510bace1ee96c6b8375eb506a1345b45346f002af3b910a898f73",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\PortableCraftProb.xlsx": "98b3fff573235b6af15830109109bbb8d514e30bbc81461a9733daa35817abfe",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\PortableEquipCompound.xlsx": "67ddd49121e20d129a27ffb14f5103bbbdaeb2824777344a82ce558e290f8199",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\PortableEquipCraft.xlsx": "642f0e13f43ef82fb6b38c4934e7d2f915813aedfad3b009038796cb68d4dab9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\PortableExp.xlsx": "3ad633ec15b6814e18ea2c9e7b8329063a86de28b8076ce9b9adfb0b5ac9a433",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\PortableLvUp.xlsx": "96fed1887dee7536f925a4f9dfd424d8066fd43221eefc895b9b21ced338888e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\PortableRange.xlsx": "8cc34aa0e6d9b1c990c6a72b1de966c2de1f84c8716ad496455823221f4b9933",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\SpecialEquipment.xlsx": "8c4763281b23017e754cdfe31c5f639e202f2c8e4c3ebc2e5a3470b26a5bf0af",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\SpecialEquipmentEffect.xlsx": "b94f3f4919960bf9d40d5ea4c6d60f00685746ff32d7de70b79b8d40fe3543a5",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\SpecialEquipmentEffectDrop.xlsx": "6a24cae2803a8ba58839514742110dcf353505f2c13dc5f4638569580794fb36",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\SpecialEquipmentGenerate.xlsx": "d2283bf4771de2ad409f5cb0d30cd25b4c7ebd60ebde594e290b3d62bc28b26f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\SpecialEquipmentMain.xlsx": "925bf6795fad9b30b63ea2904c6bb2aa83b2fd81e18dc55f83f81e2dcffb0921",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\SpecialEquipmentQuality.xlsx": "5422cfd741fad51cabba5a6331a54b5d53bf34575853c7aae3bc42c5ba8b5228",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\SpecialEquipmentSubAttrCoef.xlsx": "fe92c700575f4cb208f639daa92e3b0971281af0d1f9be78af3b2888e9845a5c",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\UIlevel.xlsx": "6b96fe16552bddd9666a726cff69d457b50a0f8bcfecd02312336f1a6eaf2fc1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_reward_display_staging\\Unlock.xlsx": "947c392d8b2ff8b3bad6dfb5bffdd9bcd47dc92ba93b0e727c9e29b78ebce889",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_subattr_20260826_staging\\00_配置清单.xlsx": "1dc48f1c69580087b2a3efba4333699626a4cfa25d0f4085f4ee4807d12e7190",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_subattr_20260826_staging\\SpecialEquipment.xlsx": "fefa7e34cd21db8fc86f2dfd58df78e781cf8d7d3ef32f843a7edcced4d65b61",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_subattr_20260826_staging\\SpecialEquipmentEffect.xlsx": "db89875a61ac7c2ab6c1d25840ce16ef9d2b185da088596a351afe7155fe4f85",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_subattr_20260826_staging\\SpecialEquipmentEffectDrop.xlsx": "9db9e3874d38ba6d2c7503bf96497ee958571625ddc8430545415db83398af74",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_subattr_20260826_staging\\SpecialEquipmentMain.xlsx": "da09e963d46434e7552d00019826d6e5c48121cfac882ebcf4315c8e67fddaa2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_subattr_20260826_staging\\SpecialEquipmentQuality.xlsx": "d2b6abf49e12d299208c1a147453d2db5e84a7fcb97408a784fb44176dc80b13",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_subattr_20260826_staging\\SpecialEquipmentSubAttrCoef.xlsx": "837907dd43be01562862c0fdbd7fe1b03622f5efa15bd92993d6a948164d6998",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\00_配置清单.xlsx": "dce5b525f68f43c1e78707893725615a70e0c509d418d77bdb08b16cef3bd28e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\ChapterStarReward.xlsx": "a8f7d0200bce84aaa7376852edfe8a9c58272a3e3d374e21da94bfed2372087e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\Chest.xlsx": "d5373762ddbda344dccdf86500a988bd5ecd9bd7654aae8dc8ba74bef696e659",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\Drop_mainlevel.xlsx": "37d62e5b3a506f28012222c4aac94903160ec19f7a83119215a265fb892e69e7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\ItemChest.xlsx": "f184db419ad58117f99fd9dbe3a7eb63449fbf483f2f6c5f73eba0d365ef86d9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\Items.xlsx": "716a151f0ccd4419e6508cdf5c8273a67d510782376ff8af4b37d00fb350e382",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\ItemSweep.xlsx": "f7577d05cf6aca683ce08ac01d6d1eacba7ba6819adaf5cbe88ef257573ef417",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\SpecialEquipmentGenerate.xlsx": "bd1f8cc5c2e93e6a75e016febee0bc8d4867ca6da1e8256f1e19871f1d4753d2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\UIlevel.xlsx": "84915714b1d4bd4b1cc138a457f82d6784f70a62561e14acbcab9020ec2d6a93",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\ActiveReward.xlsx": "24d3a4cd68beafe617808dfd733deffaf4650e6bfaf63e5bd1584e24dd067358",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\DailyActiveReward.xlsx": "8eb65b3b3bb8067ff15b92c025cfe421ef9cbcd9c8306865fd06e630a728b2e6",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\DailyTask.xlsx": "d6790b50749bfe3ac41c5f2dfbedb24f65d6342f26a0820ace6128fe11f9551b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Drop_other.xlsx": "1988926c4de843d9d00f9fc862a656c8d4c48796b758bf22a701d7806c9bfb9b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Drop_TimeLimitedActivity.xlsx": "d7939f1da236b9fc0c7afd721b38ccbc18865d593aac557093f4e12e41622c98",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\FourteenDayActivity.xlsx": "58831f42bd336cc2ec0a1b311328a01a4fac2e225fd9e87b96d218576b3b02c4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Jottings.xlsx": "95ad9e0da2f33e3784922d649dbd9ee399a3681e603d44a0767a7d8f259e0b21",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\JottingsTask.xlsx": "0a121dd54291ca8378fe4f113c2788fb0f919c3a06b80c37591a28b83cc3d7d0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\TaskTarget.xlsx": "47e2385999edf893b9ee36c5ad267876da40adcb3ba4564e2b3cb05cc64368c9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\WeeklyReward.xlsx": "d7d580eaf087ffb620d3b21a6a285b428cdff36e0c687389e851fe5dd6ebfd28",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\WeeklyTask.xlsx": "c0326a2be109e1ff9f7fb0867dd5983ec9e8201443acf82d9eda5949b88b018f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\__enums__.xlsx": "57256276ae18d8cf2aebf02086d3dd78c57a33b1e056492b712eb45711c95ecc",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\全玩法难度\\00_配置清单.xlsx": "953b3d8cba1bd5f431cc97aca24b9b7a593fb5e704e8efa9e433d1a77dab0de1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\全玩法难度\\level.xlsx": "9605414c855848a0e8670e74c10c3d1fbef5129084f8cca66fcbb1426966437e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\全玩法难度\\RoguelikeLevel.xlsx": "7e75bb546efe6aa6a45ab76ac22d9f2b0dca3bd0d3ee7bcb8f8c7c75a389ebb9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\全玩法难度\\UIlevel.xlsx": "66d504cbc79dd3c44642531e41f7fb02114f02772878f4200d186864f96a42ae",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\00_配置清单.xlsx": "d48b7b853b1e820fd630d223d3d00d7471c8f25e3b694e2d7470691f6d31b38d",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\AvyTime.xlsx": "fa1e42db3bfb7566f0ddc16e20c90a1b7ead1823805fb6a55e86b4c88e7c0666",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\Chest.xlsx": "a7dedda5cf6138cca904c920347c7ce93072313466cce87e8cd994967456290b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\Drop_other.xlsx": "bceb2a0e0b8035d50b4ea443b569ae8e883fa4c415f668098b42cde82dba71c6",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\Effect.xlsx": "cc45f1291411d24b34f52f7172c4ae91fd334ef9b82ee41a03cc851f98751198",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\globals_conf.xlsx": "dbc253dbcc8ddff9588e3930c577bfb5e3b01e574fcad4a3b103350daf0ec20a",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\GuildBossRankReward.xlsx": "36d1fd345a0f41727e2a6563597bed107b01a43dc42ef2b97decd71559803b2e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\GuildBossTask.xlsx": "196c67cd17f6bfec5d123174c60e0ea27643da02f650bbd9d9bda480e519ace2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\GuildBossTimes.xlsx": "1325bc067a890d907a31d834e0110e4240b7ae6d9a7197981fa3e6b5bcdc947e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\GuildLv.xlsx": "7de06fd6f9df9dd1823fa505b91f21db8dd4d4a6b2297768127d6787a89b6e93",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\GuildNodeLv.xlsx": "bfd94c62837b801fc6585bdd57d8426902c4831f78b9f4973b6eeb61e7326432",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\GuildSupplies.xlsx": "0cbf4c8f954193504ea4cdb58a05d6cca24ae26c62a68a09000e1fdc109187c4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\GuildTech.xlsx": "0cfd65f12e3a8756d921a003819cec85d2f7e1cc5043562ffba7312f1f154e2d",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\Items.xlsx": "239d680a42878c60f0863aacfbe5a423d84bed6e864cb9cd3e4c8f5dec82a28d",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\Shop.xlsx": "a6554a04bb901e3b0cd24113f594e1f5e0cf7cf49fe5cd078a87cafb93fb04a2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\ShopGoods.xlsx": "3bb72fa95076b5b6d226ffd4107ee53e9c63af608703bc72122a3a7a4825826a",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\Task.xlsx": "6cffefa8dc4be6ffc9547b447d1b3b31172751197da57d3ee3663817e8a177b2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\TaskTarget.xlsx": "170de2b7d0caa71a00ae2c176229b9172dcdcf4b15d79842fdc303cf07e276d9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\公会\\Unlock.xlsx": "66852375c8aed27c8b2c5660d45f5ced8e1fe554104b9a1c96dcac29dd28516e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\00_配置清单.xlsx": "19638e73aba6767c39f020cb326fd576d47a4ab8fd8f69cdb898fa373491585c",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\DeviceCraft.xlsx": "382a037d1777f24cef6eeef887766436e2e4bb47c745be5f1286c039c236593e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\DeviceLvUp.xlsx": "51d9101f478c83d19b2ab04965b39f25f275e58a278213397d5c74f567825f24",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\Drop_dungeon.xlsx": "f775f638056a425c59446c3454dd6ac8ca04dc5cde17d80b6b3f7e4d147da4f4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\ExpExchange.xlsx": "c425abd0a95e3520e466f971b720e280ab21491823f4f0e5b3500122303b01a0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\Items.xlsx": "ad3e1df8d81732cf2fbc9ae341bbf1130ab1cd05eab13a39fbc5757f734875aa",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\RvAttribute.xlsx": "d1b96829b998ebd99e828cf69a22b65a343231bca4ae41e02590940b890ad42d",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\RvDevice.xlsx": "41d25c2fce8ee52c614fbbd3aa21f51c3236c9e52bcaa30d7258a4600e04fa13",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\RvGuide.xlsx": "b20cbae818f13ba30fe3be58cbf2a87568c34dd91869a9007cfcc2c5e8f84ceb",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\RvGuideNode.xlsx": "4ee52b5e7b523f32be6d1e4e0efc5794455f12c958231bef0a41100bf8c384f5",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\RvGuideNodeLv.xlsx": "4b09192a79a725812f3376cf21cd6f842c2e13cf55f19ba125128aa25ce68639",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\RvLvUp.xlsx": "6b11f69f6a937538c49c24bce806965dda0551b037a9a16f5be237822e022e2c",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\RvStage.xlsx": "ffbe7f7a60da4e8b0786029d40c55c7b238ded4d9137e6649c64b4b18423a599",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\RvStrengthenResult.xlsx": "c7bff73fd54fae4d13aa066a7b6c6ab64c983dfc59607a67b14dfd07c8568ed1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\ShopGoods.xlsx": "bba0564e664e84200f11acac8426c3cbd9dad73e3247123bbbb89a42489a8d84",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\UIlevel.xlsx": "4b76509efa39aa9bdd79724d242c3d39c5e6566f285ccb14e549e2145908534f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\房车\\Unlock.xlsx": "7d2d5f6e3c215fbf6cf9330eb24c16da5c9c5c22e61033b2c9fa1b05952f71ce",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物养成材料\\00_配置清单.xlsx": "30729ae543f37e3f0ff13b3da6aa124bea2547ca65440ac9a8fd835962d35921",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物养成材料\\ExclWeapon.xlsx": "d40dc6018a91088d6f32e574f6bde40ae4adc2374f27031892d15b2587bd3f56",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物养成材料\\ExclWeaponLv.xlsx": "dcb11be616ae4ea75cf72b062aff752029b216a44fcd8513d69d8b803b1c11d9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物养成材料\\ExclWeaponLvLimit.xlsx": "357aa4576fdac780069d609935f8501f7929d7abaea196b48902e38b6bdd9c87",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物养成材料\\ExclWeaponStar.xlsx": "3b6ba3829d5ce33e3121e3f966ff4c2ba0d6e6f0e3f4313139fc2b691769135e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物养成材料\\globals_conf.xlsx": "cfcf830cbb1ea004db1257caa5d49256bd12888e67791199f4bec9294a78b1da",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物养成材料\\Items.xlsx": "782293a7796e654d5133320f8126999915917ad32c827c31e586f98401b87e14",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物属性\\00_配置清单.xlsx": "8d848aa459190e8fe8d8d35144ab26ea73e195b87ce8a69766c19386c2281c6c",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物属性\\ExclWeapon.xlsx": "51b432dca3c7f1d9d5461fa08d332457976d176a2a0fa869e06290d0a2aa3b1e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡\\00_配置清单.xlsx": "921ed9ef144838b4e302fe9ca9ae5022158ac51f23589a94c2e2babf35ab0722",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡\\CommonRuleDesc.xlsx": "79247180d3c0e612bafd54b542c6f2a4929eec143c4757ff68063f5da06f01cc",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡\\DrawCard.xlsx": "a7dd897859f76009006bfdce1135dcc2c4403ebd82b4a8669edd58ea30c181e0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡\\DrawCardPool.xlsx": "ce5734824482ecdeeaf24275fa16d7e1fc7bb8aaecaecc6e82fe5ee776ba1732",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡\\Drop_draw.xlsx": "c47a7f0ac7738b3901a8e89f165ee810430181e71003a356dbc75ecfe4114f72",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡\\ExclWeapon.xlsx": "e2e81388282163c0642dcd74ad36ed9e32d72d77e7e1e6070b8535bf31011b2a",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡\\Items.xlsx": "c4bcc4a36d76b2e229bd9a805814a31018b4484d42f51c41a07996d8ef68bc67",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡\\ShopGoods.xlsx": "19dc4e381213218bb38c8d21cfa65b9af8a66db2492f37d3f3a9179a010f2f05",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡\\WeaponDuplicateReward.xlsx": "70bcb2af3176fa9625835099153054090e334835381f410b52bf7e84c8a8885d",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\旅券副本\\00_配置清单.xlsx": "0fd92913f7a1ebfd2fc08c82d7025a1b907ab0e024a53bdad96f6bb7610059b8",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\旅券副本\\Drop_dungeon.xlsx": "2f59d11722320bd2dd144ba9f0e3b0c73708be40fc6ee00dcbe218a4ac230391",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\旅券副本\\UIlevel.xlsx": "327cdae0dfeae27ff83dd57f839f378eeaa070d3b1574d5119d7f7dff2e86ef6",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\00_配置清单.xlsx": "745bac23a5264ee01b4b0de6279e28fd3ea0cfe7dbb121ad797b1f87ce41c03e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\Drop_dungeon.xlsx": "93c4a14e141920c3b9ddfffe581d26414e14a3166b3fdd05595b7e3f7e65f9bd",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\Items.xlsx": "3f844ebf47c8a982a2684b46fb7d5d2d8fee3974545f669db16453912c50097b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\NR_Difficult.xlsx": "f6c65e21921c09b23d69516789ba20032f8a179c709b881f3cd7a716af32f3de",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\NR_HighestScoreReward.xlsx": "1ffa4888ddd58ee19e24a2bd60d20365706ea1cf6fdf0e07f42a057579b3a516",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\NR_Layer.xlsx": "fbf23ed1b7e8e8582fbfd3b8c0e363474db7d165b1b5926b873f8ddf2dec6b63",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\NR_LevelPool.xlsx": "42a9476cd1bfd9646328a629f7d8f194a1abfb0a7660fef2ce6a54f1d6654d72",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\Unlock.xlsx": "9c1570d3056a6117f92ee44f7fa1509e6acf5a791ce59fb0bc9aa26b5d319d3f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\00_配置清单.xlsx": "9b428faa7f72861144f2fb63cccf24b8851c175914f361e8a2b8e150f49ad64f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\Drop_dungeon.xlsx": "0ae699273764071295e838b4c312d73c28551053a5ebb9b51919dbec07b8fda2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\EquipmentLevel.xlsx": "95515039097cb192674d9ec2d3e3cfa59b6e0da8611c7904b606618b844a550b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\ItemAccess.xlsx": "2d9cc3932679ab4580700768eab8b4cc8d2b82c8fdc0b0ac9c9954db9e996f18",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\Items.xlsx": "4f9ff9d45cf5d134280bd4cbea64e18f06f6b1b77df78846749beb0fd382629b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableCompoundProb.xlsx": "aeb78dffa6ec84411d8913522a181ac0ca93350f250bc93c1e052fd69a785ec5",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableCraftProb.xlsx": "254af241b1714fd26e64b0cc21769e797fbc36b9d561d614889c224227efb95b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableEquipCompound.xlsx": "2ec107f71a85289378bf8baabae7c9e583cee1d67570827c60a6a8c96075c374",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableEquipCraft.xlsx": "c02e9fb2097acbe1cf5eff3046d3112ce98042ba34671e45d3268637ced46679",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableExp.xlsx": "6ef0eb730e87beb43eb43baed123dfd8e0f1e17356f77cfaf1c00bba466d630f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableLvUp.xlsx": "83653dec6daa64e468b575090ea60cccc49a1375e8ec31dfb36ee38063be0850",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableRange.xlsx": "73fea6fc7c02e8a56727a2cb7f8f1c9286622f899bfb53d30121ff250b183415",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipment.xlsx": "4d824282e42316b1228cdf9a2ee1112258f89b861b73c12908529cd87f9edd50",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentEffect.xlsx": "30e4f48c3fd554f082ede1194641ab01a612aa5675522e43fd02acf1353dd5e4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentEffectDrop.xlsx": "82907a77adb821b86014ffd73e860e050468cdf04d3be412e2933ef5848a18a1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentGenerate.xlsx": "eaa5555e884cbc7fe85b1883a5bbdb2921c6743e45ff75ba369a29fffb7db6d7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentMain.xlsx": "b9657bd840efc3071e1b5fef6958c94ccbe08ea2951a6f8bc7f527be1bc62a7f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentQuality.xlsx": "7b3f2ed283efe2599955336c17ec57f3c608e42068abe27d80c3dc41e8ee42c0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentSubAttrCoef.xlsx": "7c04c83f0c9b40fefbc942373b995c140e2dbab11f10a45ffc2cba7583615fe7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SystemOpen.xlsx": "d7b2faad04cd8b0142f8fbe6ae2404734b3ade339cd84ccda1b531947b36c9ad",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\UIlevel.xlsx": "1761b5c1fb0ac0b1336207292739b26cf653d553e9c9f3d6344ceeb584a56754",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\Unlock.xlsx": "7f888497b4969cf4215153affbf702be7a4ab772771c0500156fb797d2511f02",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\爬塔\\00_配置清单.xlsx": "df7ea684ea3d66d037c0c82c247594941966d7e76df855f2d45bd903acddc451",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\爬塔\\Chest.xlsx": "4d7222ed1aceec291829d42bc93861f577fd1438af72f6c687f061533e54921f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\爬塔\\Drop_dungeon.xlsx": "5a4c6d6cfed83ff8b649a7935bab7ecb5a3f645c351287aec7850efc8f66f447",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\爬塔\\Items.xlsx": "8890fda7764fbfbb9d08b5670d412ca1d8693d81ebaf53c126dc2be404d750d4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\爬塔\\TowerFirstReward.xlsx": "c8f6c9f8d906aeea47d4cb77f66a298411c6ce5a146a65d624a5d01fed1bd53a",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\爬塔\\TowerIdleRewards.xlsx": "2c15ab87ec15292de773c5a4843274e6f3c6333f6725cccf32566197b687d4ef",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\爬塔\\TowerReward.xlsx": "b5f65e3700d6f98f8d4e44036cb8c8b838937e481b149e124f2c8e09b78c61b3",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\爬塔\\UIlevel.xlsx": "49c48bc864edbcd7c223fe906b3601592aae62082112b830d3d97033679c8972",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\竞技场\\00_配置清单.xlsx": "a6aeca216ad98b2da7b2008e32352e0643f29dcc7cb3e8be2dc4f41358a43ecf",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\竞技场\\ArenaWinStreak.xlsx": "322ca1142596c4f35ec6c5a3c2dc0814bb82845a7bd751d4f5a2801afe15fbb0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\竞技场\\Battery.xlsx": "e5e7b19011c006f313928f2d96fc937705e12b6b35e096dc04e35e020d185e68",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\竞技场\\BatteryLv.xlsx": "6642e1b77267607e7ae5f0e89f61fce06de8f4b21874dea2b5394f93d3e3d655",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\竞技场\\Drop_dungeon.xlsx": "add408a275c29cc8774963f624148577b2d9e7c19f7291bc0bf65f65a03748ec",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\竞技场\\globals_conf.xlsx": "32625d8601e9b019787f65bcdbb13b29580953fb9d549b8940745aed01b0d40e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\竞技场\\Items.xlsx": "bdd6884a65c06ee24d4f1729fa747dfb53195d20da069dbadf5aded5cf823cf1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\竞技场\\ShopGoods.xlsx": "f282e68310545bbf984915101a1c1a92a6ac2dfd4ba2e6df2ac0638bedcdcef1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\竞技场\\Task.xlsx": "dbcf6ecf2837855760685ba718ee4b7dc8997aca8c0e1466d168a26ffed9723d",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\00_配置清单.xlsx": "1fb3bab3c0b075d666ad613015d0504316d41243a82e0037c14a90b5955d716e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\DailySign.xlsx": "12237b465628fdb693e2b882e788b83b273f8c47c757f394d0c5a8d76bf84fd7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\MonthlyAccumulate.xlsx": "618e807948ff35c8377e3f4936286bccdfc42e1859cf4db8632540f435669f6e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\SevenDaySign.xlsx": "0f5587a1a36caaf24d26582789a2176d40ef51bc592a547cdedac05890d63f7e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\TravelAccumulate.xlsx": "323419056fd47d05e7646fa7f335d938420638c7eac532705f664fb7a54c7977",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\肉鸽\\00_配置清单.xlsx": "84595b44a01c70d827948690a2ef69a418f0f18fdfdd97515d89114563ec9e06",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\肉鸽\\Drop_dungeon.xlsx": "6d8ffeb70e1abf7125013a5c95253efa84483c14061e59174bb27292a9a7049d",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\肉鸽\\globals_conf.xlsx": "f80530ae1e658f1ae2634242eaa383d2f2dd60d4b6745de4bb67f91cd006170a",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\肉鸽\\RoguelikeLevel.xlsx": "a09067f335ebde9344e7f64377575e6a7c15a8f939e3e8f2192883431c3c20a5",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\肉鸽\\RoguelikeWeeklyScoreReward.xlsx": "e70ddec82a4078daa93540d0cb387fc0b25608eb12d125dc63f25e858e4f6047",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\肉鸽\\RougelikeCombatReward.xlsx": "d4c791f58321ab0ca44a2b27d8a668e480caabbb45f7b790df00bc82ff2f3d50",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\能效配置\\00_配置清单.xlsx": "a9c6a36a09fe5e18802d5d63d6359b4387d28915c6e5cc3d41405645e2314fea",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\能效配置\\Hero.xlsx": "79d971df75301c0a0b7791561756854311fe901d9f9204e14c92af17eb5e3cce",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\能效配置\\HeroEnergyEfficiencyAttr.xlsx": "5bbbd3badb5bc2e5dfd59465424fa201ed90867c22a53d0c721b18544d8be430",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\能效配置\\HeroEnergyEfficiencyMap.xlsx": "75273a8fd65085464ff879826c440b4a3cc0e5edde54465dbd846b795e00f9d4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\角色升级配置\\00_配置清单.xlsx": "5c4f30d1bcfe96be170b7df5b191e9940ea5b05b1c243445f2e546041f890ad2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\角色升级配置\\HeroAttribute.xlsx": "2d9b0e08c47442f3d7cf61d50bed2612eca7e3d2377d11ee3f03c6512eecd55b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\00_资源副本配置清单.xlsx": "426953c0f0bbbc70353b1cfe190c22f445d1117da60163e398b7265e4f1bf124",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\00_配置清单.xlsx": "039341c6c597f55f99cbf3d3cc1268ff26e8c6e744641cfbd4f3240992e8d545",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\Drop_other.xlsx": "3d8ec8d8b54d20eef68a6ccad8f5a1215513b6ed5a3c7859ad992989a8fd30ff",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\globals_conf.xlsx": "24ee8307513936121a7bfbdf3e2a5b520847701b44c0cfe43f070dbb63f3a352",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\Items.xlsx": "6db73f2c696b2e9a9e096c7c7da9eebb3f984fb3ebb8e510b2128631a7646314",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\Power.xlsx": "bbc8e16b336c9c6c1fb75a760eb20eb5dab781fe1a19c53fc9d8bab2732db2d1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\Shop.xlsx": "6708ab7b1be2f1f7944baac6ff4c55daa30efd2a3a0570e16a9bfb7a98938da3",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\ShopGoods.xlsx": "b789a813a0e0b7066bf922089575e68f7ae4b56a6ae138bb3c7dfb0b53139611",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\TradeEvent.xlsx": "39bd97dcd605ac584f3077cd574fc672164d43c771543792be9cc3ae3b04adf2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\TradeGoodsMarket.xlsx": "40af74537bd528363ac4e50038070d252ef30e5ff580c75db8ef19aa75b7e3f0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\TradeLocation.xlsx": "f1c5f66e57de31b04fba56e1d2149543d233ad09fde69a7c1b3aae80ca268e46",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\TradeLvUp.xlsx": "e91d701576f3a72f429f4357d456bcd465afe62db2f975b62f7f56ad34acea24",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\Unlock.xlsx": "30b05dcc76e0669ae0c26ccde7536a861957e7df47e3ac0615b26406d9dd5f67",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\跑商\\跑商扩展配置需求.xlsx": "275ae3159d6ce2d94cff0d52e4241f05007f472a8f9c9838d0a1b3f8a7b43ba8",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\__enums__.xlsx": "7886ca75634e35f62c7f838b65291b330ca50d1878334545c744d11044c4606f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\人工操作\\Drop_dungeon_无需新增行.xlsx": "1e4c29343baf15919cc22f56413242ec83cdf39ffc5bd68ffed78e0c55d9b6db",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\Drop\\Drop_dungeon.xlsx": "20085be6e91f58858e046a48536a4efd6ee113bc12c1ca5cd1d1cef21f7fe56f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\globals_conf\\globals_conf.xlsx": "5740ea75a6c60199d102af094e6d91683fdd4fc23f8d4748dd419823b5fedb9f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\items\\Items.xlsx": "fb8d6bb93ddc74151c959e981541862c6d35aedba2557914a9615c2c71f8b85e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\level\\ChallengeDungeonSupport.xlsx": "19dcaed7c2fc6e8b1b5f6d9932b78f8ea1811ec52f3382b7ed011fcd89a5e611",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\level\\CoinLevel.xlsx": "04c608831b5baeddfa5f765abf4893cb5397e50607d8a9dbe1370bbf850e2422",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\level\\level.xlsx": "09d79b3cdb157b5b8f8bfb58fdc5429651f17eba3861f78a53b4a966119c683e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\level\\LevelType.xlsx": "a7b2e9f5a9558c8931d71fad0379b404e9de2c4fe0966cfefb2b846fc7cb5bea",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\level\\UIlevel.xlsx": "84d0de40283b0a2eb2c8070cee9bfa1aed3d33def6a6c153b3fa97810e5e71f3",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\system_open\\SystemOpen.xlsx": "9577a451b08cfdb517a5ec49c3046904d31439663261f1e83e7f6bc33a5e31ba",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\资源副本\\Datas\\unlock\\Unlock.xlsx": "6ebaf981bbe6c570799984fa22f1060bbaeda62b1a8d4a5f0e48e7f4ebdb60f7"
+  },
+  "formal_protected": {
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Task.xlsx": "bc10de22264d7f620f96091af5da78948301b6cb82dad6473324c343d1d2642d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\TaskTarget.xlsx": "671d7498b9f8b04d053217c3af8e78d27f68a6b1367dd9c819e9eaff3c347b7e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Jottings.xlsx": "0a624d07d9f3838d4f0ce7b049879fe058787b80e648f7b2d68a746f93189270",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\JottingsTask.xlsx": "0a121dd54291ca8378fe4f113c2788fb0f919c3a06b80c37591a28b83cc3d7d0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_other.xlsx": "35be77b95572ad4003b073dfefdec647fa0991d31016ec62128551d98be56ec7"
+  }
+}

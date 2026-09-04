@@ -8,4 +8,5 @@
 | DEBT-0004 | 2026-06-24 | 策划流程 | `scripts/update_planning_workflow_state.py`：已提交首版草案（阶段/结果/人类门禁/返工计数/历史写入，`--accept-delivery` 为唯一验收入口），待按真实使用校准 | 高 | 待定 | 进行中 |
 | DEBT-0005 | 2026-06-24 | 策划流程 | `scripts/planning_workflow_status.py`：已提交首版草案（状态文件 + 实际产物双视图对账，输出状态块），待按真实产物命名校准探测项 | 中 | 待定 | 进行中 |
 | DEBT-0006 | 2026-06-24 | 策划流程 | `scripts/check_planning_template_cache.py`：已提交首版草案（读取检查 + `--build` 增量构建，只扫模板源目录）。**工作假设**：索引位置默认 `${VGAME_OUTPUT_ROOT}/.template-index.json`、模板源默认 `${VGAME_SOURCE_DOCS_ROOT}/模板`、主模板按文件名「主/main」识别——三项待用户确认真实约定 | 低 | 待定 | 进行中 |
+| DEBT-0007 | 2026-08-27 | Harness | `design/映射装备系统数值设计文档-2026-07-03.md`（1184 行）与 `design/映射装备系统数值调整草案-2026-07-02.md`（885 行）超过门禁 800 行阈值。建议拆分为索引页 + 分篇正文，或明确豁免理由后在 tech-debt-tracker 记录口径 | 低 | 待定 | 打开 |
 

@@ -1,0 +1,47 @@
+{
+  "feature": "章节任务MD同步_20260827",
+  "current_phase": "change_sync",
+  "execution_mode": "REFRESH",
+  "artifact_profile": "IMPLEMENTATION",
+  "risk_tier": "LOW",
+  "last_actor": "change-sync-reviewer",
+  "last_outcome": "success",
+  "human_gates": {
+    "contract_confirmed": false,
+    "clarification_resolved": false,
+    "review_approved": false,
+    "figma_ui_plan_confirmed": false,
+    "figma_target_confirmed": false,
+    "ui_mockup_approved": false,
+    "acceptance_approved": false,
+    "delivery_accepted": false
+  },
+  "attempts_by_phase": {
+    "reference": 0,
+    "contract": 0,
+    "clarification": 0,
+    "core_design": 0,
+    "specialists": 0,
+    "review": 0,
+    "ui": 0,
+    "figma_ui_plan": 0,
+    "figma_target": 0,
+    "figma_ui": 0,
+    "excel": 0,
+    "acceptance": 0,
+    "delivery": 0,
+    "change_sync": 0
+  },
+  "block_reason": "",
+  "history": [
+    {
+      "at": "2026-08-27T07:56:29.377388+00:00",
+      "actor": "change-sync-reviewer",
+      "phase": "change_sync",
+      "outcome": "success",
+      "next_action": "用户复核章节沉淀MD正文",
+      "evidence": "正文CHG-007与validation.json：7章、56组、69条及所有奖励逐项匹配用户确认的06；配置未改"
+    }
+  ],
+  "updated_at": "2026-08-27T07:56:29.377388+00:00"
+}

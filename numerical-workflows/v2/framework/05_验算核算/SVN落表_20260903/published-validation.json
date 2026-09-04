@@ -1,0 +1,57 @@
+{
+  "batch": "SVN-SYNC-20260903",
+  "checks": [
+    {
+      "check": "task_20_retARGET",
+      "ok": true,
+      "detail": "20"
+    },
+    {
+      "check": "items_values",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "gen_6_rows_only",
+      "ok": true,
+      "detail": "[4621, 4622, 4623, 4624, 4625, 4626]"
+    },
+    {
+      "check": "drop_ids_unique_cached",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "check": "svn_exp_totals",
+      "ok": true,
+      "detail": "{1: 600, 2: 800, 3: 1800, 4: 2000, 5: 2400, 6: 3600, 7: 3600}"
+    },
+    {
+      "check": "items_6_rows_only",
+      "ok": true,
+      "detail": "[(2505, 2505), (2506, 2506), (2507, 2507), (2508, 2508), (2509, 2509), (2510, 2510)]"
+    },
+    {
+      "check": "items_values",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "check": "gen_6_rows_only",
+      "ok": true,
+      "detail": "[(4621, '5,1000', '15,1000'), (4622, '10,1000', '20,1000'), (4623, '15,1000', '25,1000')]"
+    },
+    {
+      "check": "drop_other_whitelist_no_id_col",
+      "ok": true,
+      "detail": "dels=1 ins=2 appended=63 mism=0 first=None"
+    }
+  ],
+  "svn_hashes_after": {
+    "Drop_other": "77cef53432acefb3e7f01ccfe6d0ffa3",
+    "Task": "c798e54c310763f736161a54caf0a651",
+    "Items": "752629052c465930baa217b70da4dc3e",
+    "SpecialEquipmentGenerate": "68a17341be2b12de0851009d087a5b27"
+  },
+  "status": "PASS"
+}

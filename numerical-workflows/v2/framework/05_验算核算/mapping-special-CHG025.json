@@ -1,0 +1,17 @@
+{
+  "hashes": {
+    "SpecialEquipment.xlsx": "3a592b3c3b5026ea649112e4b3c9e1eabd6f0219b03dbdc6846c472f9355a0cb",
+    "SpecialEquipmentEffectDrop.xlsx": "8051aaea5ffeb3716cbc2fb0ff78d0d90d9ab822d660bf1ce48935dd05d34098",
+    "SpecialEquipmentEffect.xlsx": "6c75a46de10c02f016269304b0a684efdf79f3fc6ac8e1ac2143d92f2fe0b074",
+    "00_配置清单.xlsx": "0f73c4ca63808c5354686eaa6fe4a860b01025b70422b3b0a9953c894a757b6b"
+  },
+  "files": [
+    "SpecialEquipment.xlsx",
+    "SpecialEquipmentEffectDrop.xlsx",
+    "SpecialEquipmentEffect.xlsx",
+    "00_配置清单.xlsx"
+  ],
+  "revision": "CHG-025",
+  "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射装备CHG025_候选备份\\20260827T165429",
+  "status": "PUBLISHED_TO_06_ONLY"
+}

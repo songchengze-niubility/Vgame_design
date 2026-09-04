@@ -84,6 +84,8 @@ def write_readme(output: Path) -> None:
 不是在旧数值文档上增量修改。
 
 - 权威输入：`01_源表` 的全局事实，以及 `03_沉淀MD` 的系统参数与裁决。
+- 正式位置：`numerical-workflows/v2/framework/04_数值文档/`，由 Git 随工作流管理。
+- 工作区与验算报告：仅保存在 `output/numerical-production-workflow-v2/`。
 - 参数 Excel：不再作为生成依赖。
 - 发布数量：44 个 Excel（22 个主交付/总表 + 22 个经济模块产销表）。
 - 映射装备：合成制作 8 档和 19 页总表均已有独立生成器。

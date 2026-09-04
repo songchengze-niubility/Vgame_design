@@ -1,0 +1,29 @@
+{
+  "revision": "CHG-023",
+  "source": "用户确认；映射装备.xlsx / 映射装备包装、技能 / A20:B91",
+  "categories": [
+    {"base": 31100, "name": "战士"},
+    {"base": 31200, "name": "学者"},
+    {"base": 31300, "name": "佣兵"},
+    {"base": 31400, "name": "元能者"},
+    {"base": 31500, "name": "旅行家"},
+    {"base": 31600, "name": "暗影"},
+    {"base": 31700, "name": "火焰"},
+    {"base": 31800, "name": "物理"},
+    {"base": 31900, "name": "冰霜"},
+    {"base": 32000, "name": "毒素"},
+    {"base": 32100, "name": "神圣"},
+    {"base": 32200, "name": "闪电"}
+  ],
+  "tiers": [
+    {"name": "金1", "quality": "Orange", "min": 5, "max": 20, "suffix": 1, "poolId": 6001, "bonus": 0.06},
+    {"name": "金2", "quality": "Orange", "min": 25, "max": 40, "suffix": 2, "poolId": 6002, "bonus": 0.12},
+    {"name": "金3", "quality": "Orange", "min": 45, "max": 60, "suffix": 3, "poolId": 6003, "bonus": 0.18},
+    {"name": "红1", "quality": "Red", "min": 5, "max": 20, "suffix": 4, "poolId": 6004, "bonus": 0.15},
+    {"name": "红2", "quality": "Red", "min": 25, "max": 40, "suffix": 5, "poolId": 6005, "bonus": 0.20},
+    {"name": "红3", "quality": "Red", "min": 45, "max": 60, "suffix": 6, "poolId": 6006, "bonus": 0.25}
+  ],
+  "weight": 100,
+  "effectTemplateId": 3101,
+  "unchanged": ["Green/Blue/Purple", "Effect", "SpecialEffect", "FixEffect", "RareEffectNum", "普通副属性值", "首通与常规掉落", "Skill实现"]
+}

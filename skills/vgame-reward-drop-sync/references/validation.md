@@ -10,6 +10,14 @@
 - 未修改无关字段，例如 `LevelType`、`Vitality`、剧情、怪物、阵容和解锁条件。
 - 源 Excel 保存后可重新打开。
 
+## 展示身份与开箱语义门禁
+
+- 对每个预览ItemId重新读取当前Items的ItemSubType、ParaList和内部备注，不沿用“这个ID以前是占位”的结论。
+- 实际开箱道具必须追踪到SpecialEquipmentGenerate或对应开箱表，核对等级、产物品质和数量；宝箱外观品质不等于开出装备品质，不可只凭同色推断或改写Description。
+- 检查Drop实际发放ID与首通预览代表的奖励是否一致。真实箱与占位身份冲突、MD与新增专用箱规则冲突时，先确认业务目标，不擅自升级奖励或取消特殊规则。
+- 候选和正式配置分别检查Reward/FirstReward→Items引用。候选存在而正式缺失应明确报告，不能用候选内通过代替正式联动完成；遵守既有SVN只读边界。
+- 按当前客户端消费方式联合检查首次通关时的FirstReward+Reward展示，以及已通关时仅Reward展示。字段位置一律从具名表头取，识别新增列后再映射。
+
 ## 当前项目自动检查缺口
 
 已观察 `CheckRules.py` 会校验 Drop 内部数量范围、Drop 二级引用、DropItem 到 item/chest 的引用，以及 DrawCard 到 Drop 的引用。

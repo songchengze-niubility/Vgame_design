@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "level_checked": 921,
+  "rogue_checked": 5,
+  "generated_at": "2026-08-06T15:11:50",
+  "output_dir": "D:\\数值文档\\数值文档\\框架v2\\06_最终配置\\全玩法难度",
+  "backup_dir": "D:\\数值文档\\数值文档\\框架v2\\_backups\\全玩法难度-20260806-151149",
+  "fill_workbook": "D:\\数值文档\\数值文档\\框架v2\\01_源表\\全玩法难度填写表.xlsx",
+  "source_readonly": true,
+  "stats": {
+    "total_level_ids": 926,
+    "level_ids": 921,
+    "rogue_ids": 5,
+    "level_total_rows": 1233,
+    "level_updated": 910,
+    "level_noop": 11,
+    "rogue_matched": 5,
+    "rogue_updated": 5,
+    "rogue_noop": 0,
+    "matched_play": {
+      "Boss挑战": 70,
+      "主线": 99,
+      "困难主线": 35,
+      "大秘境": 100,
+      "收容经验": 9,
+      "旅券": 40,
+      "映射": 150,
+      "爬塔": 400,
+      "角色经验": 9,
+      "金币": 9
+    }
+  },
+  "manifest": "D:\\数值文档\\数值文档\\框架v2\\06_最终配置\\全玩法难度\\00_配置清单.xlsx"
+}

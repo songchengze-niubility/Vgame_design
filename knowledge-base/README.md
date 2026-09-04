@@ -14,6 +14,8 @@
 
 机器入口：`AUTHORITY.json`、`registries/skill-registry.json`、`mappings/*.json`、`numerical/*.json`、`numerical/mappings/*.json`。
 
-数值知识与生产能力均已纳入本策划框架：原子正文、公式/参数注册及映射位于 `numerical/`；59 个生产脚本、37 份受控输入工作簿、规则与沉淀 MD 位于 `../numerical-workflows/v2/`。旧数值盘仅是迁移证据，不是运行依赖；查询按需加载原子，不复制 Skill 正文。
+任务教训与坑点收口于 `experience/`：写入时机见交付流程第 9 步（`../skills/planning-feature-workflow/SKILL.md`），门禁为 `../scripts/check_experience.py`，查询由 `../skills/vgame-knowledge-router` 在每次路由时自动带出命中条目。
 
-知识网页与索引重建：`pwsh -File scripts/knowledge-framework/rebuild.ps1`。数值终稿与动态验算重建：`python scripts/numerical-workflows/run_production.py`。两类产物均仅落入 `output/`；终验必须由独立审核对话执行。
+数值知识与生产能力均已纳入本策划框架：原子正文、公式/参数注册及映射位于 `numerical/`；59 个生产脚本、37 份受控输入工作簿、规则、沉淀 MD 和 44 份正式数值交付文档位于 `../numerical-workflows/v2/`。正式 Excel 入口为 `../numerical-workflows/v2/framework/04_数值文档/`，随 Git 仓库交付。旧数值盘仅是迁移证据，不是运行依赖；查询按需加载原子，不复制 Skill 正文。
+
+知识网页与索引重建：`pwsh -File scripts/knowledge-framework/rebuild.ps1`。数值终稿与动态验算重建：`python scripts/numerical-workflows/run_production.py`。网页、索引、staging 与验算报告仅落入 `output/`；44 份正式数值终稿在全部门禁通过后发布到 Git 管理的 `../numerical-workflows/v2/framework/04_数值文档/`。终验必须由独立审核对话执行。

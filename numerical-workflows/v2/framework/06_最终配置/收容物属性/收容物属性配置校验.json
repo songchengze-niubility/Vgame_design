@@ -1,0 +1,119 @@
+{
+  "status": "PASS",
+  "scope": "收容物属性 v4（2026-08-10）",
+  "primary": {
+    "ratio_source": "养成属性分配.xlsx/收容物属性分配/L:M:N",
+    "quality_coefficient_applied": false,
+    "first_phase_position_weight": 4.7,
+    "standard_full_level_package": {
+      "Hp": 8500.0,
+      "Attack": 2550.0,
+      "Armor": 1700.0
+    },
+    "level_formula": "ceil(full_level_attribute * level / 60)"
+  },
+  "secondary": {
+    "five_s_total_attack_equivalent_percent": 120,
+    "position_weight_total": 3,
+    "single_s_attack_equivalent_percent": 40,
+    "quality_coefficient": {
+      "S": 1.0,
+      "A": 0.75,
+      "B": 0.5
+    },
+    "star_ratio": [
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "percentage_storage": "decimal"
+  },
+  "shards": {
+    "star_cost": {
+      "S": [
+        100,
+        100,
+        200,
+        200,
+        300,
+        400
+      ],
+      "A": [
+        50,
+        100,
+        150,
+        200,
+        300,
+        400
+      ],
+      "B": [
+        60,
+        120,
+        180,
+        240,
+        300,
+        400
+      ]
+    },
+    "weapon_shards_formula": "int('3' + containment_id)",
+    "duplicate_conversion": {
+      "S": 100,
+      "A": 50,
+      "B": 20
+    },
+    "synthesis_cost": {
+      "S": 100,
+      "A": 100,
+      "B": 100
+    },
+    "configured_count": 39
+  },
+  "checks": {
+    "数量": {
+      "passed": true,
+      "detail": "全量39个收容物"
+    },
+    "一级比例来源": {
+      "passed": true,
+      "detail": "直接读取L/M/N；L/M/N公式不含K品质系数"
+    },
+    "一级标准包权重": {
+      "passed": true,
+      "detail": "标准包8500/2550/1700；位置总权重4.7下与40000/12000/8000基准误差均小于0.2%"
+    },
+    "一级线性成长": {
+      "passed": true,
+      "detail": "Hp/HpGrow等均为满级值/60"
+    },
+    "二级七档": {
+      "passed": true,
+      "detail": "0~6星七档完整"
+    },
+    "百分比小数": {
+      "passed": true,
+      "detail": "百分比类型以小数配置，不使用万分比整数"
+    },
+    "五件S预算": {
+      "passed": true,
+      "detail": "单件40%×位置权重3=五件合计120%攻击力等价"
+    },
+    "品质系数边界": {
+      "passed": true,
+      "detail": "一级不乘品质；二级运行时乘S/A/B=1/0.75/0.5"
+    },
+    "碎片字段": {
+      "passed": true,
+      "detail": "全量39个按品质配置ShardsList与DrawCardShards，并完整关联WeaponShards"
+    }
+  },
+  "runtime_acceptance": [
+    "一级属性只按等级和位置生效比例计算，不乘品质系数。",
+    "二级属性按星级取AttrNameList档位后，乘品质系数1/0.75/0.5与位置系数1/0.5/0.1。",
+    "百分比型二级属性按小数读取，例如0.4表示40%。"
+  ],
+  "datas_modified": false
+}

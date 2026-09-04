@@ -1,0 +1,8 @@
+node_modules/
+__pycache__/
+baseline.json
+repair.json
+publication.json
+validation-staged.json
+previews/
+outputs/

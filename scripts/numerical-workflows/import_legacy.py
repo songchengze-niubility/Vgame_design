@@ -204,6 +204,8 @@ def main() -> int:
         "authority": "knowledge-base/README.md",
         "workflowRoot": destination.relative_to(REPO_ROOT).as_posix(),
         "runtimeOutputRoot": "output/numerical-production-workflow-v2/",
+        "formalDocumentRoot": "numerical-workflows/v2/framework/04_数值文档",
+        "formalDocumentsVersionControlled": True,
         "legacyExternalSourceRequiredAtRuntime": False,
         "formalConfigWriteDefault": "DENY",
         "contentHashPolicy": "TEXT_UTF8_NORMALIZED_LF_BINARY_RAW_SHA256",

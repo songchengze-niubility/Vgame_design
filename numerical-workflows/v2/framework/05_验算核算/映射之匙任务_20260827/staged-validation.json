@@ -1,0 +1,5774 @@
+{
+  "batch": "KEY-TASK-20260827",
+  "phase": "staged",
+  "status": "PASS_STATIC_WITH_RUNTIME_GATES",
+  "passed": 872,
+  "failed": [],
+  "checks": [
+    {
+      "check": "逐单元格改动白名单:任务/Drop_other.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "公式错误:任务/Drop_other.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "页签完整:任务/Drop_other.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "逐单元格改动白名单:任务/Task.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "公式错误:任务/Task.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "页签完整:任务/Task.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "逐单元格改动白名单:签到/DailySign.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "公式错误:签到/DailySign.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "页签完整:签到/DailySign.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "逐单元格改动白名单:无限之旅/Drop_dungeon.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "公式错误:无限之旅/Drop_dungeon.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "页签完整:无限之旅/Drop_dungeon.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "逐单元格改动白名单:主线高难/Drop_mainlevel.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "公式错误:主线高难/Drop_mainlevel.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "页签完整:主线高难/Drop_mainlevel.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "逐单元格改动白名单:任务/00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "公式错误:任务/00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "页签完整:任务/00_配置清单.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "逐单元格改动白名单:签到/00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "公式错误:签到/00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "页签完整:签到/00_配置清单.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "逐单元格改动白名单:无限之旅/00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "公式错误:无限之旅/00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "页签完整:无限之旅/00_配置清单.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "逐单元格改动白名单:主线高难/00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "公式错误:主线高难/00_配置清单.xlsx",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "页签完整:主线高难/00_配置清单.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "每日10条索引及顺序",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "每周11组三级索引",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010101/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010102/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010101/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010101/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010101/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010102/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010102/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010101/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010101/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010101/16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日活10/20分档及130总量",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "前7条100日活",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12011, 12012, 12013]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12021, 12022, 12023]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12031, 12032, 12033]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12041, 12042, 12043]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12051, 12052, 12053]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12061, 12062, 12063]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12071, 12072, 12073]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12081, 12082, 12083]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12091, 12092, 12093]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12101, 12102, 12103]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020101/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020102/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020103/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常1/2/4活跃:[12111, 12112, 12113]",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周活上限与基础可达",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃节点:任务/DailyActiveReward.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010201/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010201/4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010201/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:20任务/DailyActiveReward.xlsx",
+      "pass": true,
+      "detail": {
+        "1": 20000,
+        "4": 300,
+        "17": 1
+      }
+    },
+    {
+      "check": "固定掉落:1010202/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010202/4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010202/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:40任务/DailyActiveReward.xlsx",
+      "pass": true,
+      "detail": {
+        "102": 5,
+        "4": 300,
+        "17": 1
+      }
+    },
+    {
+      "check": "固定掉落:1010203/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010203/4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010203/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:60任务/DailyActiveReward.xlsx",
+      "pass": true,
+      "detail": {
+        "2": 50,
+        "4": 300,
+        "17": 1
+      }
+    },
+    {
+      "check": "固定掉落:1010204/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010204/4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010204/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:80任务/DailyActiveReward.xlsx",
+      "pass": true,
+      "detail": {
+        "25": 3,
+        "4": 300,
+        "17": 1
+      }
+    },
+    {
+      "check": "固定掉落:1010205/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010205/4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010205/17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1010205/26",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:100任务/DailyActiveReward.xlsx",
+      "pass": true,
+      "detail": {
+        "2": 50,
+        "4": 300,
+        "17": 2,
+        "26": 800
+      }
+    },
+    {
+      "check": "活跃节点:任务/WeeklyReward.xlsx",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020201/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020201/110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:10任务/WeeklyReward.xlsx",
+      "pass": true,
+      "detail": {
+        "2": 50,
+        "110": 5
+      }
+    },
+    {
+      "check": "固定掉落:1020202/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020202/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:20任务/WeeklyReward.xlsx",
+      "pass": true,
+      "detail": {
+        "2": 50,
+        "25": 4
+      }
+    },
+    {
+      "check": "固定掉落:1020203/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020203/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:30任务/WeeklyReward.xlsx",
+      "pass": true,
+      "detail": {
+        "2": 100,
+        "102": 5
+      }
+    },
+    {
+      "check": "固定掉落:1020204/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020204/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:40任务/WeeklyReward.xlsx",
+      "pass": true,
+      "detail": {
+        "2": 100,
+        "25": 6
+      }
+    },
+    {
+      "check": "固定掉落:1020205/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020205/3027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:50任务/WeeklyReward.xlsx",
+      "pass": true,
+      "detail": {
+        "2": 150,
+        "3027": 5
+      }
+    },
+    {
+      "check": "固定掉落:1020206/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:1020206/3016",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "活跃真实包:60任务/WeeklyReward.xlsx",
+      "pass": true,
+      "detail": {
+        "2": 150,
+        "3016": 2
+      }
+    },
+    {
+      "check": "任务钥匙31/周",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日常目标配置:1111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12041",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12042",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12043",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12071",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12072",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12073",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12081",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12082",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12083",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12091",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12092",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12093",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "周常目标配置:12113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "竞技场任务2-8:1108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "竞技场任务2-8:12051",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "竞技场任务2-8:12052",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "竞技场任务2-8:12053",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "映射任务3-10:1109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "映射任务3-10:1110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "映射任务3-10:12061",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "映射任务3-10:12062",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "映射任务3-10:12063",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "日周任务类型枚举已注册",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B5",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B7",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B9",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B13",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B14",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B15",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B18",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B20",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B21",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B22",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B23",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B24",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B26",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B27",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B29",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B30",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B31",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B33",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B34",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B35",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B36",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B37",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B38",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B39",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B40",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B41",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B42",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B43",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B44",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B45",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B46",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B47",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B48",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B49",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B50",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B51",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B52",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B53",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B54",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B55",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B56",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B57",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B58",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B59",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B60",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B61",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B62",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B63",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B64",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B65",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B66",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B67",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B68",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B69",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B70",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B71",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B72",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B73",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B74",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B75",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B76",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B77",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B78",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B79",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B80",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B81",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B82",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B83",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B84",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B85",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B86",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B87",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B88",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B89",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B90",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B91",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B92",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B93",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B94",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B95",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B96",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B97",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B98",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B99",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B116",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B117",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B118",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B119",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B120",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:无限之旅/Drop_dungeon.xlsx!B124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游40包120项",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000001/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000001/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000001/100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000001",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000002/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000002/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000002/108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000002",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000003/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000003/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000003/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000003",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000004/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000004/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000004/28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000004",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000005/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000005/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000005/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000005",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000006/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000006/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000006/100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000006",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000007/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000007/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000007/108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000007",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000008/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000008/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000008/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000008",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000009/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000009/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000009/28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000009",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000010/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000010/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000010/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "单难度10钥匙:1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000011/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000011/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000011/100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000012/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000012/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000012/108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000013/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000013/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000013/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000013",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000014/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000014/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000014/28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000014",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000015/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000015/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000015/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000016/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000016/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000016/100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000016",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000017/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000017/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000017/108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000017",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000018/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000018/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000018/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000018",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000019/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000019/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000019/28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000019",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000020/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000020/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000020/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000020",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "单难度10钥匙:2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000021/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000021/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000021/101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000021",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000022/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000022/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000022/109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000022",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000023/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000023/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000023/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000023",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000024/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000024/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000024/28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000024",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000025/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000025/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000025/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000025",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000026/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000026/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000026/101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000026",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000027/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000027/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000027/109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000028/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000028/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000028/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000028",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000029/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000029/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000029/28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000029",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000030/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000030/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000030/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000030",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "单难度10钥匙:3",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000031/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000031/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000031/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000031",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000032/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000032/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000032/110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000032",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000033/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000033/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000033/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000033",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000034/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000034/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000034/28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000034",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000035/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000035/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000035/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000035",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000036/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000036/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000036/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000036",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000037/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000037/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000037/110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000037",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000038/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000038/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000038/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000038",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000039/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000039/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000039/28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000039",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000040/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000040/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:23000040/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游钥匙节点:23000040",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "单难度10钥匙:4",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游120条ID公式完整",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游DropId不为白色字体",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "check": "钥匙与日周活跃道具存在",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:119",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:126",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:219",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:226",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:305",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:312",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:319",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:326",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:405",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:412",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:419",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:426",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:505",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:512",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:519",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:526",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:605",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:612",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:619",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:626",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:705",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:712",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:719",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:726",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:805",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:812",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:819",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:826",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:905",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:912",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:919",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:926",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1005",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1019",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1026",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1119",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1126",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1205",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1212",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1219",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "月签钥匙日:1226",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "365天唯一日期",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "每月8全年96",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "第二章36星实际Drop11000012",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:11000012/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:11000012/101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:11000012/111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:11000012/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "第二章36星原奖励保留追加5把",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:11000011/2",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:11000011/101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:11000011/3028",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "第二章28星不发钥匙",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "主线候选999行",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B8",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B9",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B11",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B12",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B13",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B14",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B15",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B16",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B17",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B18",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B20",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B21",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B22",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B23",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B24",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B26",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B27",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B29",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B30",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B31",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B33",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B34",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B35",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B36",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B37",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B38",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B39",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B40",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B41",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B42",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B43",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B44",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B45",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B46",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B47",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B48",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B49",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B50",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B51",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B52",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B53",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B54",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B55",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B56",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B57",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B58",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B59",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B60",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B61",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B62",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B63",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B64",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B65",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B66",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B67",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B68",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B69",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B70",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B71",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B72",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B73",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B74",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B75",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B76",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B77",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B78",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B79",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B80",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B81",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B82",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B83",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B84",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B85",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B86",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B87",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B88",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B89",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B90",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B91",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B92",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B93",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B94",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B95",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B96",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B97",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B98",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B99",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B101",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B103",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B104",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B105",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B110",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B111",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B112",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B113",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B114",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B115",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B116",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B117",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B118",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B119",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B120",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C121",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C122",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C123",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C124",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C125",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B126",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C126",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C127",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B128",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C128",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B129",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C129",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B130",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C130",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C131",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C132",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C133",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C134",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C135",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B136",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C136",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B137",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C137",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B138",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C138",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C139",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B140",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C140",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C141",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C142",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C143",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C144",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C145",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B146",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C146",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B147",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!C147",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B148",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B149",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B150",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B151",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B152",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B153",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B154",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B155",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B156",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B157",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B158",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B159",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B160",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B161",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "公式缓存存在:任务/Drop_TimeLimitedActivity.xlsx!B162",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000001/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000001/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000002/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000002/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000003/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000003/3015",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000004/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000004/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000005/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000005/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000006/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000006/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000007/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000007/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000008/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000008/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000009/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000009/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000010/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000010/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000011/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000011/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000012/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000012/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000013/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000013/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000014/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000014/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000015/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000015/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000015/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000015/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000015/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000016/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000016/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000017/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000017/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000018/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000018/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000019/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000019/100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000020/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000020/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000021/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000021/301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000022/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000022/102",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000023/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000023/3027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000024/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000024/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000025/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000025/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000025/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000025/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000025/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000026/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000026/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000027/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000027/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000028/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000028/108",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000029/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000029/301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000030/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000030/3027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000031/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000031/3010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000032/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000032/3010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000033/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000033/3010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000034/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000034/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000035/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000035/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000035/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000035/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000035/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000036/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000036/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000037/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000037/106",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000038/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000038/3010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000039/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000039/1",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000040/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000040/301",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000041/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000041/3010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000042/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000042/3010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000043/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000043/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000044/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000044/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000045/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000045/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000045/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000045/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000045/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000046/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000046/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000047/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000047/3010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000048/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000048/3011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000049/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000049/28",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000050/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000050/3027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000051/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000051/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000052/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000052/3010",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000053/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000053/109",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000054/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000054/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000055/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000055/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000056/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000056/3027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000057/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000057/1074",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000058/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000058/1156",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000059/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000059/3011",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000060/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000060/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000061/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000061/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000062/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000062/33",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000062/33",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000062/33",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000063/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000063/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000063/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000064/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000064/25",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000065/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000065/19",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000066/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000066/3027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000067/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000067/100",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000068/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000068/3027",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000069/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000069/107",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000070/32",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "固定掉落:91000070/6",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "七日70任务8钥匙保持",
+      "pass": true,
+      "detail": {
+        "tasks": 70,
+        "keys": 8
+      }
+    },
+    {
+      "check": "每周41与每月8分开计算",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "清单公式缓存31及41",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "神经漫游清单四难度各10",
+      "pass": true,
+      "detail": null
+    },
+    {
+      "check": "SVN与本轮未改候选hash保护",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "weekly_keys": 41,
+  "monthly_keys": 8,
+  "nr_totals": [
+    {
+      "2": 400,
+      "1": 100000,
+      "100": 80,
+      "25": 10,
+      "108": 80,
+      "106": 3,
+      "6": 20000,
+      "28": 200,
+      "1074": 80,
+      "107": 10
+    },
+    {
+      "2": 400,
+      "1": 150000,
+      "100": 120,
+      "25": 10,
+      "108": 120,
+      "106": 3,
+      "6": 30000,
+      "28": 300,
+      "1074": 120,
+      "107": 10
+    },
+    {
+      "2": 400,
+      "1": 200000,
+      "101": 40,
+      "25": 10,
+      "109": 40,
+      "106": 3,
+      "6": 40000,
+      "28": 400,
+      "1074": 160,
+      "107": 10
+    },
+    {
+      "2": 400,
+      "1": 300000,
+      "102": 12,
+      "25": 10,
+      "110": 12,
+      "106": 3,
+      "6": 60000,
+      "28": 600,
+      "1074": 240,
+      "107": 10
+    }
+  ],
+  "runtime_gates": [
+    "资源副本目标1107/12041~12043复用Type_LevelClearNum参数0,N；仅资源类型过滤和挑战/通关语义未验证。",
+    "无限之旅周最高分暂复用InfiniteChallenge_Score；需验证最高值/非累计、周清零和四难度奖励互斥。",
+    "未解锁任务隐藏及解锁后下一日/周入池需服务端联调。",
+    "当前__tables__未注册DailyTask输入；需确认TaskType与任务池配置的消费入口。",
+    "本轮未执行Luban或服务端运行验证；SVN未改。"
+  ],
+  "differences": [
+    {
+      "file": "任务/Drop_other.xlsx",
+      "sheet": "Drop",
+      "cell": "L432",
+      "old": 1,
+      "new": 3
+    },
+    {
+      "file": "任务/Drop_other.xlsx",
+      "sheet": "Drop",
+      "cell": "M432",
+      "old": 1,
+      "new": 3
+    },
+    {
+      "file": "任务/Drop_other.xlsx",
+      "sheet": "Drop",
+      "cell": "L445",
+      "old": 2,
+      "new": 4
+    },
+    {
+      "file": "任务/Drop_other.xlsx",
+      "sheet": "Drop",
+      "cell": "M445",
+      "old": 2,
+      "new": 4
+    },
+    {
+      "file": "任务/Drop_other.xlsx",
+      "sheet": "Drop",
+      "cell": "L449",
+      "old": 3,
+      "new": 6
+    },
+    {
+      "file": "任务/Drop_other.xlsx",
+      "sheet": "Drop",
+      "cell": "M449",
+      "old": 3,
+      "new": 6
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "K151",
+      "old": 4112,
+      "new": 123
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "L151",
+      "old": null,
+      "new": "主线2-8"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "K152",
+      "old": 4314,
+      "new": 140
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "L152",
+      "old": null,
+      "new": "主线3-10"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "K153",
+      "old": 4314,
+      "new": 140
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "L153",
+      "old": null,
+      "new": "主线3-10"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "K167",
+      "old": 4112,
+      "new": 123
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "L167",
+      "old": null,
+      "new": "主线2-8"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "K168",
+      "old": 4112,
+      "new": 123
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "L168",
+      "old": null,
+      "new": "主线2-8"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "K169",
+      "old": 4112,
+      "new": 123
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "L169",
+      "old": null,
+      "new": "主线2-8"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "K170",
+      "old": 4314,
+      "new": 140
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "L170",
+      "old": null,
+      "new": "主线3-10"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "K171",
+      "old": 4314,
+      "new": 140
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "L171",
+      "old": null,
+      "new": "主线3-10"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "K172",
+      "old": 4314,
+      "new": 140
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "sheet": "Task",
+      "cell": "L172",
+      "old": null,
+      "new": "主线3-10"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E7",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E14",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E21",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E28",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E38",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E45",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E52",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E59",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E66",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E73",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E80",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E87",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E97",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E104",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E111",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E118",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E127",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E134",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E141",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E148",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E158",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E165",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E172",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E179",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E188",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E195",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E202",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E209",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E219",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E226",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E233",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E240",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E250",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E257",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E264",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E271",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E280",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E287",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E294",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E301",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E311",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E318",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E325",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E332",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E341",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E348",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E355",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "sheet": "Sheet1",
+      "cell": "E362",
+      "old": "25,1",
+      "new": "25,2"
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L9",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M9",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L15",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M15",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L21",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M21",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L27",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M27",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L33",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M33",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L39",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M39",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L45",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M45",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L51",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M51",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L57",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M57",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L63",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M63",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L69",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M69",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L75",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M75",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L81",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M81",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L87",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M87",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L93",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M93",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L99",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M99",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L105",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M105",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L111",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M111",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L117",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M117",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "L123",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "Drop",
+      "cell": "M123",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "中文说明",
+      "cell": "B3",
+      "old": "INFINITE-WEEKLY-20260814-CHG009",
+      "new": "KEY-TASK-20260827 / CHG-010"
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "中文说明",
+      "cell": "B4",
+      "old": "VALUE_READY_CHG006_DROPID_VISIBLE_CHG009",
+      "new": "PASS_STATIC_WITH_RUNTIME_GATES_CHG010"
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "中文说明",
+      "cell": "B6",
+      "old": "06_玩法_无限挑战经济沉淀CHG-006；复用现有DropId 23000001～23000040",
+      "new": "06_玩法_无限挑战经济沉淀CHG-010；沿用DropId23000001～23000040"
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "中文说明",
+      "cell": "B8",
+      "old": "C列120个业务DropId已恢复正式源表可见字体；B列表ID公式完整，奖励内容不变。",
+      "new": "保留CHG-009的可见DropId字体和B列ID公式；本轮只增加20项钥匙数量，其他奖励不变。"
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "中文说明",
+      "cell": "A9",
+      "old": null,
+      "new": "CHG-010 钥匙"
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "sheet": "中文说明",
+      "cell": "B9",
+      "old": null,
+      "new": "2000/4000/6000/8000/10000分每档映射之匙×2，单难度10把/周；四难度互斥，不可合计40把。其余奖励及B列ID公式不变。"
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "中文说明",
+      "cell": "A9",
+      "old": null,
+      "new": "CHG-004 钥匙"
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "中文说明",
+      "cell": "B9",
+      "old": null,
+      "new": "第二章36星实际引用11000012，追加25×5，保留原奖励；11000011是28星，不改。候选追加1行；正式表需人工预建行并下拉ID公式。"
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "C1003",
+      "old": null,
+      "new": 11000012
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "D1003",
+      "old": null,
+      "new": "第二章36星追加映射之匙"
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "E1003",
+      "old": null,
+      "new": "映射之匙"
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "F1003",
+      "old": null,
+      "new": 0
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "G1003",
+      "old": null,
+      "new": "fixed_"
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "H1003",
+      "old": null,
+      "new": 1
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "I1003",
+      "old": null,
+      "new": 1
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "K1003",
+      "old": null,
+      "new": 25
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "L1003",
+      "old": null,
+      "new": 5
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "M1003",
+      "old": null,
+      "new": 5
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "N1003",
+      "old": null,
+      "new": 10000
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "sheet": "Drop",
+      "cell": "O1003",
+      "old": null,
+      "new": 25
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "配置清单",
+      "cell": "C4",
+      "old": "写入四套任务本体、正式任务描述、解锁与奖励引用",
+      "new": "保留四套任务本体及引用；按每日每周任务MD修正9条任务UnlockId为123/140"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "配置清单",
+      "cell": "C13",
+      "old": "每日/每周/章节任务与节点奖励；第一、二章新增舱室任务图纸奖励；第二至第七章映射装备任务各奖励映射之匙×3",
+      "new": "日活80分钥匙3；周活20/40分钥匙4/6；章节任务奖励保留"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "任务总览",
+      "cell": "D2",
+      "old": "每日：元晶100、行旅帧片1500、映射之匙1、周活6",
+      "new": "每日：元晶100、行旅帧片1500、映射之匙3、周活6"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "任务总览",
+      "cell": "D3",
+      "old": "周节点：元晶600、映射之匙5",
+      "new": "周节点：元晶600、映射之匙10"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "数值校验",
+      "cell": "A10",
+      "old": "常驻映射之匙/周",
+      "new": "常驻任务映射之匙/周"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "数值校验",
+      "cell": "B10",
+      "old": 12,
+      "new": "='钥匙来源核对'!D2+'钥匙来源核对'!D3"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "数值校验",
+      "cell": "C10",
+      "old": 12,
+      "new": 31
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "C5",
+      "old": "Task.UnlockId已按4105/4112/4314/4101/4111/4039/4104/4041/4103/4106写入",
+      "new": "按2026-08-26任务MD：竞技场任务Unlock=123（2-8），映射任务Unlock=140（3-10）；其余保留。次日/次周刷新入池需联调。"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "A7",
+      "old": null,
+      "new": "统计联调"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "B7",
+      "old": null,
+      "new": "资源副本日周任务1107/12041~12043"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "C7",
+      "old": null,
+      "new": "现有Target_TTT_Type_LevelClearNum参数0,N；未找到参数0仅统计资源副本的运行证据。需验证资源类型过滤、挑战/通关差别，不能算作语义已通过。"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "A8",
+      "old": null,
+      "new": "注册核对"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "B8",
+      "old": null,
+      "new": "DailyTask.xlsx"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "C8",
+      "old": null,
+      "new": "当前__tables__.xlsx无DailyTask输入，可能由TaskType枚举入池；交接时确认任务池消费入口，不擅自注册新表。"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "A9",
+      "old": null,
+      "new": "本次核对"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "B9",
+      "old": null,
+      "new": "新增任务已存在06"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "C9",
+      "old": null,
+      "new": "日常10、周常33、章节68、七日70；只补钥匙和9条日周任务开放条件，章节及七日数据保留。"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "A10",
+      "old": null,
+      "new": "本次来源"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "B10",
+      "old": null,
+      "new": "映射之匙与新增任务落06-2026-08-27"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "sheet": "落地说明",
+      "cell": "C10",
+      "old": null,
+      "new": "参见03_沉淀MD/经济/映射之匙与任务落06-2026-08-27.md；只更新候选，未导出SVN。"
+    },
+    {
+      "file": "签到/00_配置清单.xlsx",
+      "sheet": "配置清单",
+      "cell": "H2",
+      "old": "每月按7日基础节奏；6/13/20/27日副材依次1152/1153/1154/1155x2；不递增；Day7=元晶(2)x50",
+      "new": "每月5/12/19/26日映射之匙各2把；6/13/20/27日副材依次1152/1153/1154/1155×2；其余不变"
+    },
+    {
+      "file": "签到/00_配置清单.xlsx",
+      "sheet": "验收结果",
+      "cell": "C5",
+      "old": "{1: 2140000, 2: 2400, 25: 48, 110: 118, 1074: 5500, 1152: 24, 1153: 24, 1154: 24, 1155: 24}",
+      "new": "{1: 2140000, 2: 2400, 25: 96, 110: 118, 1074: 5500, 1152: 24, 1153: 24, 1154: 24, 1155: 24}"
+    },
+    {
+      "file": "签到/00_配置清单.xlsx",
+      "sheet": "验收结果",
+      "cell": "C6",
+      "old": "每月四种副材各x2；28/30/31天其他资源与原口径一致",
+      "new": "每月映射之匙8把，四种副材各×2；28/30/31天均不额外追加钥匙"
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "配置清单",
+      "cell": "D7",
+      "old": "VALUE_READY_CHG006_DROPID_VISIBLE_CHG009",
+      "new": "VALUE_READY_CHG010_KEYS_10_PER_WEEK"
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "配置清单",
+      "cell": "F7",
+      "old": "40包×3项=120行；B列公式完整，C列DropId 23000001～23000040已改为正式源表可见字体。",
+      "new": "40包×3项=120行；每难度5个钥匙节点各×2；ID公式和其他奖励保持。周奖励四难度互斥，程序待联调。"
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "配置清单",
+      "cell": "D9",
+      "old": "PASS_WITH_SERVER_CONTRACT_CHG009",
+      "new": "PASS_STATIC_WITH_RUNTIME_GATES_CHG010"
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "配置清单",
+      "cell": "F9",
+      "old": "验证奖励Id/DropId、表ID公式、字体可见性、周资源汇总及道具引用。",
+      "new": "本轮重新核验钥匙、40包奖励、ID公式和可见字体；历史CHG009不作为当前校验结果。"
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K3",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K5",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K7",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K9",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K11",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K13",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K15",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K17",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K19",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K21",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K23",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K25",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K27",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K29",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K31",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K33",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K35",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K37",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K39",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励预览",
+      "cell": "K41",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励汇总",
+      "cell": "F2",
+      "old": 5,
+      "new": "=SUMIFS('周奖励预览'!K2:K41,'周奖励预览'!B2:B41,A2,'周奖励预览'!I2:I41,25)"
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励汇总",
+      "cell": "F3",
+      "old": 5,
+      "new": "=SUMIFS('周奖励预览'!K2:K41,'周奖励预览'!B2:B41,A3,'周奖励预览'!I2:I41,25)"
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励汇总",
+      "cell": "F4",
+      "old": 5,
+      "new": "=SUMIFS('周奖励预览'!K2:K41,'周奖励预览'!B2:B41,A4,'周奖励预览'!I2:I41,25)"
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "sheet": "周奖励汇总",
+      "cell": "F5",
+      "old": 5,
+      "new": "=SUMIFS('周奖励预览'!K2:K41,'周奖励预览'!B2:B41,A5,'周奖励预览'!I2:I41,25)"
+    },
+    {
+      "file": "主线高难/00_配置清单.xlsx",
+      "sheet": "配置清单",
+      "cell": "C8",
+      "old": 998,
+      "new": 999
+    },
+    {
+      "file": "主线高难/00_配置清单.xlsx",
+      "sheet": "配置清单",
+      "cell": "E8",
+      "old": "正式表预建行并下拉ID公式后，按DropId粘贴",
+      "new": "第二章36星11000012追加25×5；保留原998行。正式表先预建新增1行并下拉ID公式，再按DropId粘贴。"
+    },
+    {
+      "file": "主线高难/00_配置清单.xlsx",
+      "sheet": "验收结果",
+      "cell": "C6",
+      "old": "37节点；第二章沿用正式7/14/21/28/36五星档",
+      "new": "37节点；第二章7/14/21/28/36星；36星引用11000012，原奖励外追加映射之匙×5"
+    }
+  ]
+}

@@ -1,0 +1,281 @@
+{
+  "batch": "INFINITE-WEEKLY-20260814-CHG009",
+  "generated_at": "2026-08-14T13:43:57+08:00",
+  "status": "PASS_WITH_SERVER_CONTRACT_CHG009",
+  "scope": "Only D:/数值文档/.../06_最终配置/无限之旅; SVN source is read-only and unchanged.",
+  "checks": {
+    "four_difficulties": true,
+    "unlock_levels": {
+      "1": null,
+      "2": 35,
+      "3": 45,
+      "4": 55
+    },
+    "reward_rows": 40,
+    "score_nodes_per_difficulty": 10,
+    "max_score_per_difficulty": 10000,
+    "one_item_per_drop": false,
+    "same_reward_type_at_same_score": true,
+    "crystal_per_difficulty": 400,
+    "ticket_item": {
+      "item_id": 107,
+      "name": "收容凭证",
+      "quantity_per_difficulty": 1
+    },
+    "forbidden_items_absent": [
+      25,
+      106,
+      111,
+      112
+    ],
+    "choice_chests_validated": [
+      3015,
+      3016,
+      3017,
+      3018,
+      3027,
+      3031,
+      3032,
+      3033
+    ],
+    "layer_difficulty_counts": {
+      "1": 60,
+      "2": 60,
+      "3": 80,
+      "4": 97
+    },
+    "level_pool_counts": {
+      "1": 2,
+      "2": 2,
+      "3": 2,
+      "4": 3
+    },
+    "formula_cells_in_modified_data": 120,
+    "unlock_conditions": {
+      "difficulty_1": [],
+      "difficulty_2": [
+        {
+          "unlock_id": 13001,
+          "type": "UnLock_UUT_Neural_Roam",
+          "value": 1
+        },
+        {
+          "unlock_id": 13002,
+          "type": "UnLock_UUT_player_Grade",
+          "value": 35
+        }
+      ],
+      "difficulty_3": [
+        {
+          "unlock_id": 13003,
+          "type": "UnLock_UUT_Neural_Roam",
+          "value": 2
+        },
+        {
+          "unlock_id": 13004,
+          "type": "UnLock_UUT_player_Grade",
+          "value": 45
+        }
+      ],
+      "difficulty_4": [
+        {
+          "unlock_id": 13005,
+          "type": "UnLock_UUT_Neural_Roam",
+          "value": 3
+        },
+        {
+          "unlock_id": 13006,
+          "type": "UnLock_UUT_player_Grade",
+          "value": 55
+        }
+      ]
+    },
+    "unlock_rows": 6,
+    "reward_packages": 40,
+    "rewards_per_package": 3,
+    "drop_rows": 120,
+    "reward_slot_structure": [
+      "元晶/旅券/收容凭证",
+      "映射之匙/金币",
+      "养成材料"
+    ],
+    "mapping_keys_per_difficulty": 5,
+    "effective_weekly_mapping_key_cap": 5,
+    "role_ticket_per_difficulty": 1,
+    "containment_ticket_per_difficulty": 1,
+    "three_items_per_drop": true,
+    "reward_ids_reused": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
+    "drop_ids_reused": [
+      23000001,
+      23000002,
+      23000003,
+      23000004,
+      23000005,
+      23000006,
+      23000007,
+      23000008,
+      23000009,
+      23000010,
+      23000011,
+      23000012,
+      23000013,
+      23000014,
+      23000015,
+      23000016,
+      23000017,
+      23000018,
+      23000019,
+      23000020,
+      23000021,
+      23000022,
+      23000023,
+      23000024,
+      23000025,
+      23000026,
+      23000027,
+      23000028,
+      23000029,
+      23000030,
+      23000031,
+      23000032,
+      23000033,
+      23000034,
+      23000035,
+      23000036,
+      23000037,
+      23000038,
+      23000039,
+      23000040
+    ],
+    "high_value_per_difficulty": {
+      "crystal": 400,
+      "role_ticket_106": 3,
+      "containment_ticket_107": 10
+    },
+    "gold_per_difficulty": {
+      "1": 100000,
+      "2": 150000,
+      "3": 200000,
+      "4": 300000
+    },
+    "gold_ratio": "1:1.5:2:3",
+    "growth_ratio_by_value": "1:1.5:2:3",
+    "choice_chests_used": [],
+    "direct_growth_items": [
+      6,
+      28,
+      100,
+      101,
+      102,
+      108,
+      109,
+      110,
+      1074
+    ],
+    "drop_table_id_formula": "=ROW()+200000-4",
+    "drop_table_id_formula_rows": 120,
+    "dropid_visible_font_cells_fixed": 120,
+    "dropid_white_font_cells_remaining": 0,
+    "dropid_font_matches_source": true
+  },
+  "errors": [],
+  "warnings": [
+    "每周只能领取一种难度、周重置、各难度分数隔离无法由本批Excel字段单独证明，需服务端联调验收。",
+    "客户端NeuralSystem仍存在读取全量HighestScoreReward/HighestScoreEver的旧路径，需程序确认周状态接口已完成切换。",
+    "NR_Layer的四难度映射按最新NR_LevelPool既有分组推导；Grade、属性修正与过程积分未调整。",
+    "四条难度线静态共配置20把映射之匙；玩家周上限5依赖服务端每周只能领取一个难度的约束。"
+  ],
+  "source_snapshots": {
+    "NR_Difficult.xlsx": {
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_Difficult.xlsx",
+      "mtime": "2026-08-04T17:47:10+08:00",
+      "sha256": "3fd2b4ad5ff4f5e290f73b53e1a1d80f0aaa2d0f5c9cbd054ae4f531d4854875"
+    },
+    "NR_HighestScoreReward.xlsx": {
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_HighestScoreReward.xlsx",
+      "mtime": "2026-08-13T09:38:44+08:00",
+      "sha256": "cb87faae5b048d45bf51d6332931e1beb67dd4d15d5037aafb29838345c45b00"
+    },
+    "NR_Layer.xlsx": {
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_Layer.xlsx",
+      "mtime": "2026-08-13T09:38:43+08:00",
+      "sha256": "ca8b9187e49a381aa44db034587d258798f5c3f3a75ab192c3bfa04ce2db9326"
+    },
+    "NR_LevelPool.xlsx": {
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_LevelPool.xlsx",
+      "mtime": "2026-08-13T09:38:44+08:00",
+      "sha256": "bea65dc3e2e085e52ff224b848a19061fdc6b7601e0329d3bfd6a66b24e3c487"
+    },
+    "Unlock.xlsx": {
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\unlock\\Unlock.xlsx",
+      "mtime": "2026-08-13T09:38:44+08:00",
+      "sha256": "9df7c8eb2a08cb09b1810d1a398dea81c045a53f700eab9f76112ba7342840c2"
+    },
+    "Drop_dungeon.xlsx": {
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_dungeon.xlsx",
+      "mtime": "2026-08-13T09:38:43+08:00",
+      "sha256": "a86e2c5563db692a36ef96d98a392a7b11348f8c4e56028142151ad77eaed735"
+    },
+    "Items.xlsx": {
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\Items.xlsx",
+      "mtime": "2026-08-13T09:38:44+08:00",
+      "sha256": "3601dc8e72d2c2e0ece7adb03b575838c7cbd363545f7855008392585b0b1fa3"
+    },
+    "Chest.xlsx": {
+      "path": "D:\\Vgame\\Config\\GameConfig\\Datas\\valuablebox\\Chest.xlsx",
+      "mtime": "2026-08-13T09:38:44+08:00",
+      "sha256": "23e25cea632ce12b90b872ede255b64a852d0abcff300db631cc0d4b6c8c1dd3"
+    }
+  },
+  "output_files": [
+    "00_配置清单.xlsx",
+    "Drop_dungeon.xlsx",
+    "Items.xlsx",
+    "NR_Difficult.xlsx",
+    "NR_HighestScoreReward.xlsx",
+    "NR_Layer.xlsx",
+    "NR_LevelPool.xlsx",
+    "Unlock.xlsx"
+  ]
+}

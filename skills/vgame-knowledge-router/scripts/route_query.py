@@ -18,6 +18,7 @@ KB_ROOT = Path(os.environ.get(
     REPO_ROOT / "output" / "knowledge-framework" / "knowledge-base",
 ))
 MANIFEST_PATH = KB_ROOT / "router-manifest.json"
+EXPERIENCE_ROOT = REPO_ROOT / "knowledge-base" / "experience"
 PROFILE_ORDER = {"quick": 0, "design": 1, "audit": 2}
 GROUP_ALIASES = {
     "system-in": ("战斗内", "局内系统"),
@@ -500,6 +501,71 @@ def inherit_audit_unknowns(systems: list[dict[str, Any]]) -> list[str]:
     return unique(unknowns)
 
 
+def load_experience_entries() -> list[dict[str, Any]]:
+    """读取 knowledge-base/experience/exp-*.md 的简单键值头部；正文不进上下文。"""
+    entries: list[dict[str, Any]] = []
+    if not EXPERIENCE_ROOT.exists():
+        return entries
+    for path in sorted(EXPERIENCE_ROOT.glob("exp-*.md")):
+        try:
+            text = path.read_text(encoding="utf-8-sig")
+        except OSError:
+            continue
+        lines = text.splitlines()
+        if not lines or lines[0].strip() != "---":
+            continue
+        header: dict[str, str] = {}
+        for line in lines[1:]:
+            stripped = line.strip()
+            if stripped == "---":
+                break
+            if ":" in stripped and not line.startswith((" ", "\t")):
+                key, _, value = stripped.partition(":")
+                header[key.strip()] = value.strip()
+        entry_id = header.get("id")
+        title = header.get("title")
+        if not entry_id or not title:
+            continue
+        terms = re.split(r"[,，;；]", f"{header.get('triggerTerms', '')}，{header.get('tags', '')}")
+        entries.append({
+            "id": entry_id,
+            "date": header.get("date", ""),
+            "title": title,
+            "category": header.get("category", ""),
+            "status": header.get("status", "active"),
+            "path": relative_to_repo(path),
+            "terms": unique(term.strip() for term in terms if term.strip()),
+        })
+    return entries
+
+
+def choose_experiences(query: str, profile: str) -> list[dict[str, Any]]:
+    """按 triggerTerms/tags/标题召回 active 历史教训；只读条目头部，不展开正文。"""
+    query_norm = normalize(query)
+    scored: list[dict[str, Any]] = []
+    for entry in load_experience_entries():
+        if entry["status"] not in ("", "active"):
+            continue
+        score = 0
+        matches: list[str] = []
+        title_norm = normalize(entry["title"])
+        for term in entry["terms"]:
+            term_norm = normalize(term)
+            if len(term_norm) >= 2 and term_norm in query_norm:
+                score += 40 if term_norm in title_norm else 26
+                matches.append(term)
+        for token in re.findall(r"[\u4e00-\u9fff]{2,}|[A-Za-z0-9_]{4,}", query):
+            token_norm = normalize(token)
+            if len(token_norm) >= 2 and token_norm in title_norm:
+                score += 30
+                matches.append(token)
+        if score > 0:
+            scored.append({**entry, "_score": score, "_matches": unique(matches)})
+    scored.sort(key=lambda item: (-item["_score"], item["id"]))
+    # 经验提示是辅助层：quick 档最多 1 条防喧宾夺主，design/audit 档 3 条。
+    return scored[: (1 if profile == "quick" else 3)]
+
+
 def choose_modules(manifest: dict[str, Any], query: str) -> list[dict[str, Any]]:
     """专业模块（M01/M02）直达：问题提到模块 ID、模块名或其章节名时直接路由，不与系统混排。"""
     query_norm = normalize(query)
@@ -592,6 +658,7 @@ def build_read_plan(
     evidence: list[dict[str, Any]],
     modules: list[dict[str, Any]] | None = None,
     numeric_atoms: list[dict[str, Any]] | None = None,
+    experiences: list[dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     plan: list[dict[str, Any]] = [{
         "order": 1,
@@ -600,6 +667,16 @@ def build_read_plan(
         "reason": "使用本脚本已筛选出的目录摘要；不要再次全文读取 router-manifest.json。",
     }]
     order = 2
+    # 经验提示紧随路由输出、先于一切正文：目的是开读前先避开已知坑，不增加深层阅读负担。
+    for experience in experiences or []:
+        matched_preview = ", ".join((experience.get("_matches") or [])[:3])
+        plan.append({
+            "order": order,
+            "layer": "L1",
+            "ref": experience.get("path"),
+            "reason": f"历史经验 {experience.get('id')}「{experience.get('title')}」命中本问题（{matched_preview}）；先读以规避重踩。",
+        })
+        order += 1
     if numeric_atoms:
         plan.append({
             "order": order,
@@ -692,6 +769,7 @@ def route(args: argparse.Namespace) -> dict[str, Any]:
     modules = choose_modules(manifest, args.query)
     numeric_atoms, numeric_unknowns = choose_numeric_atoms(manifest, args.query, profile)
     unknowns.extend(numeric_unknowns)
+    experiences = choose_experiences(args.query, profile)
     # Fix: 如果命中专业模块但未命中具体系统，将"未命中具体系统"替换为更准确的描述
     if modules and not systems:
         unknowns = [u for u in unknowns if "未命中具体系统" not in u]
@@ -748,6 +826,11 @@ def route(args: argparse.Namespace) -> dict[str, Any]:
         "matchedTerms": terms,
         "systems": [clean_system(item) for item in systems],
         "specialistModules": [clean_module(item) for item in modules],
+        "experienceHints": [{
+            "id": item.get("id"), "date": item.get("date"), "title": item.get("title"),
+            "category": item.get("category"), "status": item.get("status"),
+            "path": item.get("path"), "matchedTerms": item.get("_matches") or [],
+        } for item in experiences],
         "numericAtoms": [{
             "atomId": item.get("atomId"), "domain": item.get("domain"), "title": item.get("title"),
             "statement": item.get("statement"), "numericStatements": item.get("numericStatements") or [],
@@ -758,7 +841,7 @@ def route(args: argparse.Namespace) -> dict[str, Any]:
         "catalogLayers": catalog_layers,
         "contracts": [clean_contract(item) for item in contracts],
         "evidence": [clean_evidence(item) for item in evidence],
-        "readPlan": build_read_plan(profile, systems, contracts, evidence, modules, numeric_atoms),
+        "readPlan": build_read_plan(profile, systems, contracts, evidence, modules, numeric_atoms, experiences),
         "unknowns": unique(unknowns),
         "provenance": manifest.get("provenance") or [],
         "safety": [
@@ -801,6 +884,14 @@ def markdown(result: dict[str, Any]) -> str:
             lines.append(f"- **{item['atomId']} {item['title']}**（{item['domain']} / {item['sourceNature']}）：{item['statement']}；来源 `{item['sourceLocator']}`")
     else:
         lines.append("- 本问题未触发数值原子层。")
+    lines.extend(["", "## 历史经验命中", ""])
+    experience_hints = result.get("experienceHints") or []
+    if experience_hints:
+        for item in experience_hints:
+            terms_preview = "、".join(item["matchedTerms"][:4]) or "-"
+            lines.append(f"- **{item['id']}**（{item['status']}）：{item['title']}；`{item['path']}`；命中：{terms_preview}")
+    else:
+        lines.append("- 无匹配的历史教训条目。")
     if result.get("catalogLayers"):
         lines.extend(["", "## 目录分层（按运行状态）", ""])
         layer_labels = {

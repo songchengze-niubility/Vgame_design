@@ -1,0 +1,4829 @@
+{
+  "revision": "CHG-020",
+  "scope": "仅06候选27/29/30层首通与关联展示；其他首通差异保留",
+  "output": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备",
+  "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射装备CHG020_候选备份\\20260827T032455",
+  "sourceHashes": {
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_dungeon.xlsx": "2ea5d33151acdb0019b2df1b68d158baf268ce50b19aef4c4956f700e12adf5d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx": "d64a20aa5f122f0455a7226e7446a105711e7724672eb7d1de62c5ca4226dce9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\Items.xlsx": "4251c95feb8c8061ec21db5aefcd52f7368c4a85269897511c200269fb348c95"
+  },
+  "files": {
+    "Drop_dungeon.xlsx": "25820af689f13a761b1a09faac571f015e89b319e66fe9d246ea87dd0c358948",
+    "UIlevel.xlsx": "a95caa1c9653a4d1de0f1081af29bf9626b404393076ba4f20dac9fb69f7a5a4",
+    "Items.xlsx": "451dc258530b765fa56bb1c8f181b5d25b2543289fcd1bc93212fab472c75e49",
+    "00_配置清单.xlsx": "0a254a7baeb983198185497434b8d27ee2a5fa3d7e02b27743cc7e1fc6d42609"
+  },
+  "summary": {
+    "checks": 961,
+    "pass": 961,
+    "fail": 0
+  },
+  "checks": [
+    {
+      "name": "CHG-019历史基线1697项验证通过",
+      "result": "PASS",
+      "detail": "{\"checks\": 1697, \"pass\": 1697, \"fail\": 0}\n"
+    },
+    {
+      "name": "仅移除三个旧子池ID",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "清理6条记录后有效行数690",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000010全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000010二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000010数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000011全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000011二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000011数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000012全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000012二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000012数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000013全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000013二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000013数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000014全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000014二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000014数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000015全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000015二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000015数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000016全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000016二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000016数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000017全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000017二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000017数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000018全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000018二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000018数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000019全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000019二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000019数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000020全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000020二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000020数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000021全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000021二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000021数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000022全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000022二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000022数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000023全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000023二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000023数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000024全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000024二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000024数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000025全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000025二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000025数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000026全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000026二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000026数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000027全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000027二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000027数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000028全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000028二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000028数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000029全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000029二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000029数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000030全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000030二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000030数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000031全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000031二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000031数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000032全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000032二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000032数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000033全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000033二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000033数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000034全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000034二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000034数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000035全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000035二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000035数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000036二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000036数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000037全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000037二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000037数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000038二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000038数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000039二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20000039数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005101全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005101二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005101数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005102全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005102二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005102数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005103全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005103二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005103数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005104全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005104二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005104数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005105全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005105二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005105数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005106全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005106二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005106数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005107全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005107二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005107数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005108全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005108二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005108数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005109全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005109二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005109数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005110全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005110二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005110数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005111全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005111二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005111数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005112全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005112二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005112数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005113全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005113二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005113数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005114全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005114二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005114数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005115全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005115二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005115数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005116全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005116二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005116数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005117全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005117二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005117数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005118全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005118二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005118数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005119全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005119二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005119数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005120全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005120二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005120数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005121全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005121二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005121数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005122全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005122二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005122数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005123全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005123二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005123数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005124全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005124二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005124数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005125全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005125二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005125数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005126全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005126二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005126数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005127全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005127二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005127数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005128全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005128二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005128数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005129全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005129二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005129数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005130全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005130二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop20005130数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22101全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22101二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22101数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22102全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22102二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22102数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22103全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22103二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22103数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22104全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22104二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22104数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22105全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22105二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22105数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22106全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22106二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22106数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22107全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22107二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22107数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22108全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22108二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22108数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22109全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22109二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22109数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22110全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22110二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22110数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22111全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22111二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22111数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22112全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22112二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22112数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22113全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22113二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22113数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22114全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22114二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22114数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22115全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22115二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22115数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22116全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22116二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22116数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22117全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22117二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22117数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22118全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22118二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22118数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22119全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22119二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22119数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22120全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22120二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22120数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22121全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22121二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22121数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22122全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22122二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22122数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22123全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22123二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22123数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22124全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22124二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22124数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22125全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22125二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22125数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22126全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22126二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22126数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22127全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22127二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22127数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22128全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22128二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22128数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22129全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22129二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22129数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22130全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22130二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22130数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22201全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22201二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22201数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22202全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22202二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22202数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22203全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22203二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22203数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22204全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22204二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22204数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22205全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22205二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22205数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22206全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22206二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22206数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22207全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22207二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22207数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22208全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22208二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22208数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22209全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22209二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22209数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22210全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22210二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22210数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22211全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22211二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22211数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22212全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22212二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22212数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22213全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22213二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22213数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22214全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22214二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22214数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22215全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22215二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22215数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22216全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22216二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22216数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22217全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22217二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22217数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22218全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22218二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22218数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22219全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22219二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22219数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22220全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22220二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22220数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22221全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22221二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22221数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22222全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22222二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22222数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22223全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22223二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22223数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22224全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22224二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22224数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22225全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22225二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22225数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22226全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22226二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22226数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22227全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22227二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22227数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22228全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22228二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22228数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22229全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22229二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22229数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22230全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22230二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22230数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22306全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22306二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22306数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22307全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22307二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22307数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22308全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22308二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22308数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22309全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22309二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22309数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22310全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22310二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22310数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22311全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22311二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22311数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22312全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22312二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22312数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22313全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22313二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22313数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22314全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22314二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22314数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22315全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22315二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22315数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22316全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22316二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22316数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22317全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22317二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22317数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22318全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22318二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22318数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22319全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22319二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22319数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22320全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22320二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22320数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22321全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22321二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22321数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22322全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22322二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22322数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22323全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22323二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22323数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22324全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22324二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22324数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22325全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22325二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22325数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22326全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22326二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22326数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22327全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22327二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22327数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22328全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22328二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22328数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22329全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22329二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22329数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22330全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22330二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22330数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22400全部字段保持不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22400二级引用完整",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop22400数量与权重合法",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "20000036与正式工作副本奖励逐字段相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "20000036仅固定箱一件且无子掉落",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "20000036钥匙与材料原值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "20000038与正式工作副本奖励逐字段相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "20000038仅固定箱一件且无子掉落",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "20000038钥匙与材料原值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "20000039与正式工作副本奖励逐字段相同",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "20000039仅固定箱一件且无子掉落",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "20000039钥匙与材料原值不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "150个关卡ID不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250011仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250012仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250013仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250014仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250015仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250021仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250022仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250023仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250024仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250025仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250031仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250032仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250033仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250034仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250035仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250041仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250042仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250043仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250044仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250045仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250051仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250052仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250053仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250054仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250055仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250061仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250062仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250063仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250064仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250065仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250071仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250072仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250073仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250074仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250075仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250081仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250082仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250083仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250084仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250085仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250091仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250092仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250093仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250094仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250095仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250101仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250102仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250103仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250104仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250105仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250111仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250112仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250113仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250114仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250115仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250121仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250122仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250123仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250124仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250125仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250131仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250132仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250133仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250134仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250135仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250141仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250142仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250143仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250144仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250145仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250151仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250152仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250153仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250154仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250155仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250161仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250162仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250163仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250164仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250165仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250171仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250172仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250173仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250174仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250175仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250181仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250182仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250183仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250184仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250185仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250191仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250192仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250193仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250194仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250195仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250201仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250202仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250203仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250204仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250205仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250211仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250212仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250213仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250214仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250215仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250221仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250222仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250223仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250224仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250225仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250231仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250232仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250233仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250234仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250235仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250241仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250242仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250243仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250244仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250245仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250251仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250252仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250253仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250254仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250255仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250261仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250262仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250263仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250264仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250265仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250271仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250272仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250273仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250274仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250275仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250281仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250282仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250283仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250284仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250285仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250291仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250292仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250293仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250294仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250295仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250301仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250302仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250303仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250304仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250305仅指定FirstReward变化",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "仅补入正式已有的三个展示道具",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4201逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4202逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4203逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4204逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4205逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4206逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4207逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4208逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4209逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4210逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4211逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4212逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4213逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4214逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4215逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4216逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4217逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4218逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4219逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4220逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4221逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4222逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4223逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4224逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4225逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4226逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4227逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4228逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4229逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4230逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4231逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4232逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4233逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4234逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4235逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4236逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4237逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4238逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4239逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4240逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4241逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4242逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4243逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4244逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4245逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4246逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4247逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4248逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4249逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4250逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4251逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4252逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4253逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4254逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4255逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4256逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4257逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4258逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4259逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4260逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4261逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4262逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4263逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4264逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4265逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4266逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4267逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4268逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4269逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4270逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4271逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4272逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4273逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4274逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4275逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4276逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4277逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4278逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4279逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4280逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4281逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4282逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4283逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4284逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4285逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4286逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4287逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4288逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4289逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4290逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4291逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4292逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4293逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4294逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4295逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4296逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4297逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4298逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4299逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4300逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4301逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4302逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4303逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4304逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4305逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4306逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4307逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4308逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4309逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4310逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4311逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4312逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4313逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4314逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4315逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4316逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4317逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4318逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4319逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4320逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4321逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4322逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4323逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4324逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4325逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4326逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4327逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4328逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4329逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4330逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4331逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4332逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4333逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4334逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4335逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4336逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4337逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4338逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4339逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4340逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4341逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4342逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4343逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4344逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4345逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4346逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4347逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4348逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4349逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4350逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1080逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1081逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1082逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1083逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1084逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1085逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1086逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1087逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1088逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1089逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1090逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1091逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1092逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1093逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1094逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1095逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1096逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1097逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1098逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1099逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1100逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1101逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1102逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1103逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1104逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1105逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1106逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1107逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1108逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1109逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1110逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1111逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1112逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1113逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1114逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1115逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1116逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1117逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1118逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1119逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1120逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1121逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1122逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1123逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1124逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1125逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1126逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1127逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1128逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1129逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1130逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1131逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1132逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1133逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1134逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1135逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1136逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1137逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1138逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1139逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1140逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1141逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1142逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1143逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1144逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1145逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1146逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1147逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1148逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1149逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1150逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1151逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1152逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1153逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1154逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item1155逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4351逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4352逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4353逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4354逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4365逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4366逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4367逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4368逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4369逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4370逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4371逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4372逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4355逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4356逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4357逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4358逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4359逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4360逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4361逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4362逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4363逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4364逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4403逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4404逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4405逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4406逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4407逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4408逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4409逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4410逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4411逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4412逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4413逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4414逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4415逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4416逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4417逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4418逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4419逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4420逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4421逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4422逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4423逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4424逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4425逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4426逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4427逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4428逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4429逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4430逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4431逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4432逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4433逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4434逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4435逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4436逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4437逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4438逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4439逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4440逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4441逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4442逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4443逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4444逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4445逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4446逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "既有Item4447逐字段不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "新Item4399与源映射一致",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "新Item4399不可开箱或发放",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "新Item4401与源映射一致",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "新Item4401不可开箱或发放",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "新Item4402与源映射一致",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "新Item4402不可开箱或发放",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250271首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250271展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250272首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250272展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250273首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250273展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250274首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250274展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250275首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250275展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250291首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250291展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250292首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250292展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250293首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250293展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250294首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250294展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250295首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250295展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250301首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250301展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250302首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250302展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250303首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250303展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250304首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250304展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250305首通占位唯一且数量1",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UI250305展示引用存在",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop_dungeon.xlsx页签集合不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop_dungeon.xlsx所有公式逐格不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Drop_dungeon.xlsx无公式错误",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "UIlevel.xlsx页签集合不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UIlevel.xlsx所有公式逐格不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "UIlevel.xlsx无公式错误",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "Items.xlsx页签集合不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Items.xlsx所有公式逐格不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "Items.xlsx无公式错误",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "00_配置清单.xlsx页签集合不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "00_配置清单.xlsx所有公式逐格不变",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "00_配置清单.xlsx无公式错误",
+      "result": "PASS",
+      "detail": []
+    },
+    {
+      "name": "正式文件未修改：Drop_dungeon.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "正式文件未修改：UIlevel.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "正式文件未修改：Items.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：EquipmentLevel.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：ItemAccess.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：PortableCompoundProb.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：PortableCraftProb.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：PortableEquipCompound.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：PortableEquipCraft.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：PortableExp.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：PortableLvUp.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：PortableRange.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：SpecialEquipment.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：SpecialEquipmentEffect.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：SpecialEquipmentGenerate.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：SpecialEquipmentMain.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：SpecialEquipmentQuality.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：SpecialEquipmentSubAttrCoef.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：SystemOpen.xlsx",
+      "result": "PASS",
+      "detail": null
+    },
+    {
+      "name": "其他候选未修改：Unlock.xlsx",
+      "result": "PASS",
+      "detail": null
+    }
+  ]
+}

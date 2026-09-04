@@ -1,0 +1,38 @@
+{
+  "batch": "FOURTEEN-DAY-CHG012",
+  "created": "2026-08-31T16:07:21.398385",
+  "root": "D:\\Vgame_design\\numerical-workflows\\v2\\framework",
+  "run": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\十四日活动CHG012_20260831",
+  "files": [
+    {
+      "file": "任务/FourteenDayActivity.xlsx",
+      "edits_count": 7,
+      "sha256_before": "5f9877354258c50426d1581193673864a69c10dec877fe71f94e049609e1c94c",
+      "sha256_after": "16a45db55f0769564b5404a2fdc118b237ece3b2f4dd86f4bf127af442e61a31"
+    },
+    {
+      "file": "任务/TaskTarget.xlsx",
+      "edits_count": 70,
+      "sha256_before": "0342dbaae1c19f536a5536ec0d7d695749aaa692f9736cb200aa123dbc0fa6bf",
+      "sha256_after": "243c30f5e9b7ca0da70e3cec3cb2f911916155a3178c4364acbdede3a15b6d8f"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "edits_count": 70,
+      "sha256_before": "a97da4ae9fc8f88b13c1249c4b95a1ab1e822fe0819304eb19d7d753ce167b34",
+      "sha256_after": "cc6c50c387b96a2b9f4f0b840bcdc237480dc308d8e93c9deaa6cda3f2ae3515"
+    },
+    {
+      "file": "任务/ActiveReward.xlsx",
+      "edits_count": 7,
+      "sha256_before": "24d3a4cd68beafe617808dfd733deffaf4650e6bfaf63e5bd1584e24dd067358",
+      "sha256_after": "4701ea44902a5cf3868be49038d665b60dfb5809e5613ad693b41f59f76fc182"
+    },
+    {
+      "file": "任务/Drop_TimeLimitedActivity.xlsx",
+      "edits_count": 154,
+      "sha256_before": "d7939f1da236b9fc0c7afd721b38ccbc18865d593aac557093f4e12e41622c98",
+      "sha256_after": "71dd6f7313523a0eb14295a9c36c4c3fad1bf642475bae2b9b0f0cb1c7c82df1"
+    }
+  ]
+}

@@ -7,6 +7,9 @@ Thumbs.db
 # 本仓库保存设计与协作约束，不保存真实导出缓存。
 codex_output/
 output/
+outputs/
+.codex-tmp/
+备份/
 dist/
 build/
 __pycache__/
@@ -14,6 +17,14 @@ knowledge-graph/watchdog-state.json
 knowledge-graph/fingerprints.json
 knowledge-graph/.understand-anything/diff-overlay.json
 local.env.bat
+
+# 本地智能体工具状态，不属于设计资产。
+.zcode/
+.workbuddy/
+/.understand-anything/
+
+# 一次性运行日志与性能分析缓存。
+tmp/
 
 # 避免误把真实配置导出或本地工具缓存提交进设计仓库。
 *.xlsx~

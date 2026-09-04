@@ -1,0 +1,148 @@
+{
+  "schema": "vgame.final_config_validation.boss_challenge.v1",
+  "batch": "BOSS-20260811-F02",
+  "generated_at": "2026-08-11T07:28:44.664Z",
+  "source_md": "D:/数值文档/数值文档/框架v2/03_沉淀MD/经济/10_玩法_BOSS挑战经济沉淀-2026-07-09.md",
+  "output_dir": "D:/数值文档/数值文档/框架v2/06_最终配置/BOSS挑战",
+  "formal_datas_modified": false,
+  "counts": {
+    "bosses": 7,
+    "base_layers_per_boss": 6,
+    "base_nodes": 42,
+    "base_drop_rows": 168,
+    "cognitive_layers": 10,
+    "cognitive_drop_rows": 10,
+    "advance_reward_rows": 10
+  },
+  "totals": {
+    "base": {
+      "crystal_2": 3000,
+      "gold_1": 1400000,
+      "ticket_106": 49,
+      "hero_exp": 154000,
+      "containment_exp": 308000
+    },
+    "weekly": {
+      "crystal_2": 500,
+      "ticket_106": 5,
+      "limited_ticket_111": 3,
+      "containment_ticket_107": 20
+    }
+  },
+  "checks": [
+    {
+      "name": "基础Boss数",
+      "actual": 7,
+      "expected": 7,
+      "status": "PASS"
+    },
+    {
+      "name": "基础节点数",
+      "actual": 42,
+      "expected": 42,
+      "status": "PASS"
+    },
+    {
+      "name": "UIlevel节点数",
+      "actual": 42,
+      "expected": 42,
+      "status": "PASS"
+    },
+    {
+      "name": "基础Drop明细数",
+      "actual": 168,
+      "expected": 168,
+      "status": "PASS"
+    },
+    {
+      "name": "认知负载层数",
+      "actual": 10,
+      "expected": 10,
+      "status": "PASS"
+    },
+    {
+      "name": "AdvanceReward映射行数",
+      "actual": 10,
+      "expected": 10,
+      "status": "PASS"
+    },
+    {
+      "name": "AdvanceReward首层DropId",
+      "actual": 7001,
+      "expected": 7001,
+      "status": "PASS"
+    },
+    {
+      "name": "AdvanceReward末层DropId",
+      "actual": 7010,
+      "expected": 7010,
+      "status": "PASS"
+    },
+    {
+      "name": "基础元晶总量",
+      "actual": 3000,
+      "expected": 3000,
+      "status": "PASS"
+    },
+    {
+      "name": "基础金币总量",
+      "actual": 1400000,
+      "expected": 1400000,
+      "status": "PASS"
+    },
+    {
+      "name": "基础旅券106总量",
+      "actual": 49,
+      "expected": 49,
+      "status": "PASS"
+    },
+    {
+      "name": "基础角色经验",
+      "actual": 154000,
+      "expected": 154000,
+      "status": "PASS"
+    },
+    {
+      "name": "基础收容物经验",
+      "actual": 308000,
+      "expected": 308000,
+      "status": "PASS"
+    },
+    {
+      "name": "周元晶总量",
+      "actual": 500,
+      "expected": 500,
+      "status": "PASS"
+    },
+    {
+      "name": "周旅券106总量",
+      "actual": 5,
+      "expected": 5,
+      "status": "PASS"
+    },
+    {
+      "name": "周限时旅券111总量",
+      "actual": 3,
+      "expected": 3,
+      "status": "PASS"
+    },
+    {
+      "name": "周收容凭证107总量",
+      "actual": 20,
+      "expected": 20,
+      "status": "PASS"
+    },
+    {
+      "name": "认知负载每层单一类型",
+      "actual": 10,
+      "expected": 10,
+      "status": "PASS"
+    }
+  ],
+  "unresolved": [
+    "AdvanceReward.xlsx未在Luban __tables__.xlsx观察到独立注册；正式发布沿用项目当前既有加载链路。",
+    "认知负载战斗LevelId、Boss池、Buff池和排行榜结算配置不在本批次。",
+    "正式Datas仍保留7×10旧配置，需另行批准后同步删除/停用7～10层。"
+  ],
+  "status": "PASS"
+}

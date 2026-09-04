@@ -1,0 +1,154 @@
+{
+  "batch": "ARENA-SCORE-CHG010",
+  "created": "2026-08-31T10:18:45.606797",
+  "root": "D:\\Vgame_design\\numerical-workflows\\v2\\framework",
+  "run": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\七日竞技场分数CHG010_20260831",
+  "files": [
+    {
+      "file": "任务/Task.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Task.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\七日竞技场分数CHG010_20260831\\backup\\任务\\Task.xlsx",
+      "sha256_before": "ec1b08efa1d0fd590a523bf1e217ea7cb12928c7ae59984e087b93bf3fe42756",
+      "edits": [
+        {
+          "sheet": "Task",
+          "row": 261,
+          "col": 3,
+          "task_id": 5105,
+          "old": "竞技场历史最高达到1200分",
+          "new": "竞技场历史最高达到1100分"
+        },
+        {
+          "sheet": "Task",
+          "row": 261,
+          "col": 4,
+          "task_id": 5105,
+          "old": "竞技场历史最高达到1200分",
+          "new": "竞技场历史最高达到1100分"
+        },
+        {
+          "sheet": "Task",
+          "row": 271,
+          "col": 3,
+          "task_id": 5205,
+          "old": "竞技场历史最高达到1250分",
+          "new": "竞技场历史最高达到1200分"
+        },
+        {
+          "sheet": "Task",
+          "row": 271,
+          "col": 4,
+          "task_id": 5205,
+          "old": "竞技场历史最高达到1250分",
+          "new": "竞技场历史最高达到1200分"
+        },
+        {
+          "sheet": "Task",
+          "row": 311,
+          "col": 3,
+          "task_id": 5605,
+          "old": "竞技场历史最高达到1550分",
+          "new": "竞技场历史最高达到1600分"
+        },
+        {
+          "sheet": "Task",
+          "row": 311,
+          "col": 4,
+          "task_id": 5605,
+          "old": "竞技场历史最高达到1550分",
+          "new": "竞技场历史最高达到1600分"
+        },
+        {
+          "sheet": "Task",
+          "row": 321,
+          "col": 3,
+          "task_id": 5705,
+          "old": "竞技场历史最高达到1600分",
+          "new": "竞技场历史最高达到1700分"
+        },
+        {
+          "sheet": "Task",
+          "row": 321,
+          "col": 4,
+          "task_id": 5705,
+          "old": "竞技场历史最高达到1600分",
+          "new": "竞技场历史最高达到1700分"
+        }
+      ],
+      "sha256_after": "30dc69a3a16c7439674f0d09364ada6b20e29bbaa4046b466836547b69739d11"
+    },
+    {
+      "file": "任务/TaskTarget.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\TaskTarget.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\七日竞技场分数CHG010_20260831\\backup\\任务\\TaskTarget.xlsx",
+      "sha256_before": "47e2385999edf893b9ee36c5ad267876da40adcb3ba4564e2b3cb05cc64368c9",
+      "edits": [
+        {
+          "sheet": "TaskTarget",
+          "row": 244,
+          "col": 3,
+          "task_id": 5105,
+          "old": "竞技场历史最高达到1200分",
+          "new": "竞技场历史最高达到1100分"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 244,
+          "col": 5,
+          "task_id": 5105,
+          "old": "0,1200",
+          "new": "0,1100"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 254,
+          "col": 3,
+          "task_id": 5205,
+          "old": "竞技场历史最高达到1250分",
+          "new": "竞技场历史最高达到1200分"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 254,
+          "col": 5,
+          "task_id": 5205,
+          "old": "0,1250",
+          "new": "0,1200"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 294,
+          "col": 3,
+          "task_id": 5605,
+          "old": "竞技场历史最高达到1550分",
+          "new": "竞技场历史最高达到1600分"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 294,
+          "col": 5,
+          "task_id": 5605,
+          "old": "0,1550",
+          "new": "0,1600"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 304,
+          "col": 3,
+          "task_id": 5705,
+          "old": "竞技场历史最高达到1600分",
+          "new": "竞技场历史最高达到1700分"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 304,
+          "col": 5,
+          "task_id": 5705,
+          "old": "0,1600",
+          "new": "0,1700"
+        }
+      ],
+      "sha256_after": "c142625089f4e0b7af5abb60c75509cc600d3ba52b507e991d0311ee045301a0"
+    }
+  ]
+}

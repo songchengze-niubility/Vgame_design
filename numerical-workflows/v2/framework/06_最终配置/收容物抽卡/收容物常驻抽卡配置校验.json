@@ -1,0 +1,91 @@
+{
+  "status": "PASS",
+  "scope": "收容物常驻抽卡v0.5（2026-09-02品质概率调整为5%/15%/80%）",
+  "source": "D:\\Vgame\\Config\\GameConfig\\Datas",
+  "output": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\收容物抽卡",
+  "checks": {
+    "投放数量": {
+      "passed": true,
+      "detail": "S/A/B=6/15/11，共32个；名单按最新ExclWeapon首列##过滤"
+    },
+    "普通概率": {
+      "passed": true,
+      "detail": "6分支权重合计10000；整件500、碎片9500"
+    },
+    "品质概率": {
+      "passed": true,
+      "detail": "S/A/B=5%/15%/80%"
+    },
+    "十连整件包": {
+      "passed": true,
+      "detail": "S/A/B=5%/15%/80%"
+    },
+    "碎片结果数量": {
+      "passed": true,
+      "detail": "S/A/B碎片结果分别为5/5/2片"
+    },
+    "碎片道具源表": {
+      "passed": true,
+      "detail": "最新Items已存在32个投放碎片，类型与RelatedId正确"
+    },
+    "掉落包号段": {
+      "passed": true,
+      "detail": "DropId 12～14须成组空闲或成组存在；具体内容由输出闭环继续校验"
+    },
+    "本体源数据": {
+      "passed": true,
+      "detail": "32个投放收容物均可回源ExclWeapon"
+    },
+    "升星碎片": {
+      "passed": true,
+      "detail": "S/A/B六段合计=1300/1200/1300片"
+    },
+    "重复转化": {
+      "passed": true,
+      "detail": "S/A/B重复整件分别转100/50/20片"
+    },
+    "价格与保底": {
+      "passed": true,
+      "detail": "单抽50、十连500、S整件100抽硬保底、无软保底"
+    },
+    "旧额外返还": {
+      "passed": true,
+      "detail": "WeaponDuplicateReward的21/22返还已在交付镜像中清空"
+    },
+    "品质碎片字段": {
+      "passed": true,
+      "detail": "ExclWeapon.ShardsList与DrawCardShards按S/A/B品质正确配置"
+    },
+    "碎片引用闭环": {
+      "passed": true,
+      "detail": "Items、ExclWeapon.WeaponShards与Drop_draw碎片奖励一致"
+    },
+    "掉落包内容闭环": {
+      "passed": true,
+      "detail": "DropId 12/13/14分别覆盖B/A/S有效碎片，且各组权重合计10000"
+    },
+    "碎片包数量": {
+      "passed": true,
+      "detail": "DropId 12/13/14分别产出B2/A5/S5片"
+    },
+    "主配置字段": {
+      "passed": true,
+      "detail": "显示元晶与107；元晶直付、快捷购买2003002、100抽S整件硬保底"
+    },
+    "公共规则文案": {
+      "passed": true,
+      "detail": "DrawCard.RuleId=4闭环到CommonRuleDesc.Id=4；新版概率、保底、重复转化与##过滤规则齐全"
+    },
+    "107直购50元晶": {
+      "passed": true,
+      "detail": "Items.ShopId=2003、ShopGoods.2003002恢复显示且Price=2,50、DrawCard.QuickPurchase=2003002"
+    }
+  },
+  "runtime_acceptance": [
+    "TenDropAIType=2时，收容物碎片不得被识别为B级及以上整件，否则十连整件保底会被碎片误满足。",
+    "S整件100抽保底只由整件触发和重置；S碎片不触发、不重置。",
+    "同抽同时命中十连整件保障与S硬保底时只结算1个S整件。",
+    "单抽不累计十连整件保障，但累计S整件硬保底。",
+    "107支持50元晶/张直购（ShopGoods.2003002 Price=2,50，快捷购买QuickPurchase=2003002）；抽卡时需先扣107，免费券不足时再按OnePrice扣元晶。"
+  ]
+}

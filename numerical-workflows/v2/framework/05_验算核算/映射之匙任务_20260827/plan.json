@@ -1,0 +1,1823 @@
+{
+  "batch": "KEY-TASK-20260827",
+  "created": "2026-08-27T14:29:53.875798",
+  "root": "D:\\Vgame_design\\numerical-workflows\\v2\\framework",
+  "run": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827",
+  "files": [
+    {
+      "file": "任务/Drop_other.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Drop_other.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\任务\\Drop_other.xlsx",
+      "sha256": "8ee7077d99d9297b41528c6aaa679156945d45acb91a7ca9a0d5725520907f2c",
+      "edits": [
+        {
+          "sheet": "Drop",
+          "row": 432,
+          "col": 12,
+          "old": 1,
+          "new": 3
+        },
+        {
+          "sheet": "Drop",
+          "row": 432,
+          "col": 13,
+          "old": 1,
+          "new": 3
+        },
+        {
+          "sheet": "Drop",
+          "row": 445,
+          "col": 12,
+          "old": 2,
+          "new": 4
+        },
+        {
+          "sheet": "Drop",
+          "row": 445,
+          "col": 13,
+          "old": 2,
+          "new": 4
+        },
+        {
+          "sheet": "Drop",
+          "row": 449,
+          "col": 12,
+          "old": 3,
+          "new": 6
+        },
+        {
+          "sheet": "Drop",
+          "row": 449,
+          "col": 13,
+          "old": 3,
+          "new": 6
+        }
+      ],
+      "stage_sha256": "1988926c4de843d9d00f9fc862a656c8d4c48796b758bf22a701d7806c9bfb9b"
+    },
+    {
+      "file": "任务/Task.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Task.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\任务\\Task.xlsx",
+      "sha256": "ec1b08efa1d0fd590a523bf1e217ea7cb12928c7ae59984e087b93bf3fe42756",
+      "edits": [
+        {
+          "sheet": "Task",
+          "row": 151,
+          "col": 11,
+          "old": 4112,
+          "new": 123
+        },
+        {
+          "sheet": "Task",
+          "row": 151,
+          "col": 12,
+          "old": null,
+          "new": "主线2-8"
+        },
+        {
+          "sheet": "Task",
+          "row": 152,
+          "col": 11,
+          "old": 4314,
+          "new": 140
+        },
+        {
+          "sheet": "Task",
+          "row": 152,
+          "col": 12,
+          "old": null,
+          "new": "主线3-10"
+        },
+        {
+          "sheet": "Task",
+          "row": 153,
+          "col": 11,
+          "old": 4314,
+          "new": 140
+        },
+        {
+          "sheet": "Task",
+          "row": 153,
+          "col": 12,
+          "old": null,
+          "new": "主线3-10"
+        },
+        {
+          "sheet": "Task",
+          "row": 167,
+          "col": 11,
+          "old": 4112,
+          "new": 123
+        },
+        {
+          "sheet": "Task",
+          "row": 167,
+          "col": 12,
+          "old": null,
+          "new": "主线2-8"
+        },
+        {
+          "sheet": "Task",
+          "row": 168,
+          "col": 11,
+          "old": 4112,
+          "new": 123
+        },
+        {
+          "sheet": "Task",
+          "row": 168,
+          "col": 12,
+          "old": null,
+          "new": "主线2-8"
+        },
+        {
+          "sheet": "Task",
+          "row": 169,
+          "col": 11,
+          "old": 4112,
+          "new": 123
+        },
+        {
+          "sheet": "Task",
+          "row": 169,
+          "col": 12,
+          "old": null,
+          "new": "主线2-8"
+        },
+        {
+          "sheet": "Task",
+          "row": 170,
+          "col": 11,
+          "old": 4314,
+          "new": 140
+        },
+        {
+          "sheet": "Task",
+          "row": 170,
+          "col": 12,
+          "old": null,
+          "new": "主线3-10"
+        },
+        {
+          "sheet": "Task",
+          "row": 171,
+          "col": 11,
+          "old": 4314,
+          "new": 140
+        },
+        {
+          "sheet": "Task",
+          "row": 171,
+          "col": 12,
+          "old": null,
+          "new": "主线3-10"
+        },
+        {
+          "sheet": "Task",
+          "row": 172,
+          "col": 11,
+          "old": 4314,
+          "new": 140
+        },
+        {
+          "sheet": "Task",
+          "row": 172,
+          "col": 12,
+          "old": null,
+          "new": "主线3-10"
+        }
+      ],
+      "stage_sha256": "a73d904a91fcdd939a8a1abcc83913d376b22975059d2ded06b7a2f4416de212"
+    },
+    {
+      "file": "签到/DailySign.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\DailySign.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\签到\\DailySign.xlsx",
+      "sha256": "224bd5ea27b58afa22053073e565b0d94e190ffb068923e98cff0ca1d82e0b98",
+      "edits": [
+        {
+          "sheet": "Sheet1",
+          "row": 7,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 14,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 21,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 28,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 38,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 45,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 52,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 59,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 66,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 73,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 80,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 87,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 97,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 104,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 111,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 118,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 127,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 134,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 141,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 148,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 158,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 165,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 172,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 179,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 188,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 195,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 202,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 209,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 219,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 226,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 233,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 240,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 250,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 257,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 264,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 271,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 280,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 287,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 294,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 301,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 311,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 318,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 325,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 332,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 341,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 348,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 355,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        },
+        {
+          "sheet": "Sheet1",
+          "row": 362,
+          "col": 5,
+          "old": "25,1",
+          "new": "25,2"
+        }
+      ],
+      "stage_sha256": "12237b465628fdb693e2b882e788b83b273f8c47c757f394d0c5a8d76bf84fd7"
+    },
+    {
+      "file": "无限之旅/Drop_dungeon.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\Drop_dungeon.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\无限之旅\\Drop_dungeon.xlsx",
+      "sha256": "7b4f53130d2ca256941cce21a10f3f7ca2fac8e21eb1c04d6244437326c3b481",
+      "edits": [
+        {
+          "sheet": "Drop",
+          "row": 9,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 9,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 15,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 15,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 21,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 21,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 27,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 27,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 33,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 33,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 39,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 39,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 45,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 45,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 51,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 51,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 57,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 57,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 63,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 63,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 69,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 69,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 75,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 75,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 81,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 81,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 87,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 87,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 93,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 93,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 99,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 99,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 105,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 105,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 111,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 111,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 117,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 117,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 123,
+          "col": 12,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "Drop",
+          "row": 123,
+          "col": 13,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "中文说明",
+          "row": 3,
+          "col": 2,
+          "old": "INFINITE-WEEKLY-20260814-CHG009",
+          "new": "KEY-TASK-20260827 / CHG-010"
+        },
+        {
+          "sheet": "中文说明",
+          "row": 4,
+          "col": 2,
+          "old": "VALUE_READY_CHG006_DROPID_VISIBLE_CHG009",
+          "new": "PASS_STATIC_WITH_RUNTIME_GATES_CHG010"
+        },
+        {
+          "sheet": "中文说明",
+          "row": 6,
+          "col": 2,
+          "old": "06_玩法_无限挑战经济沉淀CHG-006；复用现有DropId 23000001～23000040",
+          "new": "06_玩法_无限挑战经济沉淀CHG-010；沿用DropId23000001～23000040"
+        },
+        {
+          "sheet": "中文说明",
+          "row": 8,
+          "col": 2,
+          "old": "C列120个业务DropId已恢复正式源表可见字体；B列表ID公式完整，奖励内容不变。",
+          "new": "保留CHG-009的可见DropId字体和B列ID公式；本轮只增加20项钥匙数量，其他奖励不变。"
+        },
+        {
+          "sheet": "中文说明",
+          "row": 9,
+          "col": 1,
+          "old": null,
+          "new": "CHG-010 钥匙"
+        },
+        {
+          "sheet": "中文说明",
+          "row": 9,
+          "col": 2,
+          "old": null,
+          "new": "2000/4000/6000/8000/10000分每档映射之匙×2，单难度10把/周；四难度互斥，不可合计40把。其余奖励及B列ID公式不变。"
+        }
+      ],
+      "stage_sha256": "93c4a14e141920c3b9ddfffe581d26414e14a3166b3fdd05595b7e3f7e65f9bd"
+    },
+    {
+      "file": "主线高难/Drop_mainlevel.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\Drop_mainlevel.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\主线高难\\Drop_mainlevel.xlsx",
+      "sha256": "b6c5fdbc83d45becb87850abab6bb8c590e83e555f27c6c728a3f7415cb706de",
+      "edits": [
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 3,
+          "old": null,
+          "new": 11000012
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 4,
+          "old": null,
+          "new": "第二章36星追加映射之匙"
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 5,
+          "old": null,
+          "new": "映射之匙"
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 6,
+          "old": null,
+          "new": 0
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 7,
+          "old": null,
+          "new": "fixed_"
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 8,
+          "old": null,
+          "new": 1
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 9,
+          "old": null,
+          "new": 1
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 11,
+          "old": null,
+          "new": 25
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 12,
+          "old": null,
+          "new": 5
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 13,
+          "old": null,
+          "new": 5
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 14,
+          "old": null,
+          "new": 10000
+        },
+        {
+          "sheet": "Drop",
+          "row": 1003,
+          "col": 15,
+          "old": null,
+          "new": 25
+        },
+        {
+          "sheet": "中文说明",
+          "row": 9,
+          "col": 1,
+          "old": null,
+          "new": "CHG-004 钥匙"
+        },
+        {
+          "sheet": "中文说明",
+          "row": 9,
+          "col": 2,
+          "old": null,
+          "new": "第二章36星实际引用11000012，追加25×5，保留原奖励；11000011是28星，不改。候选追加1行；正式表需人工预建行并下拉ID公式。"
+        }
+      ],
+      "stage_sha256": "37d62e5b3a506f28012222c4aac94903160ec19f7a83119215a265fb892e69e7"
+    },
+    {
+      "file": "任务/00_配置清单.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\00_配置清单.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\任务\\00_配置清单.xlsx",
+      "sha256": "8b3fb861e85a19a4ab4f7a71253ac1f31614e57b0d005b8463a6b894b76462cd",
+      "edits": [
+        {
+          "sheet": "任务总览",
+          "row": 2,
+          "col": 4,
+          "old": "每日：元晶100、行旅帧片1500、映射之匙1、周活6",
+          "new": "每日：元晶100、行旅帧片1500、映射之匙3、周活6"
+        },
+        {
+          "sheet": "任务总览",
+          "row": 3,
+          "col": 4,
+          "old": "周节点：元晶600、映射之匙5",
+          "new": "周节点：元晶600、映射之匙10"
+        },
+        {
+          "sheet": "数值校验",
+          "row": 10,
+          "col": 1,
+          "old": "常驻映射之匙/周",
+          "new": "常驻任务映射之匙/周"
+        },
+        {
+          "sheet": "数值校验",
+          "row": 10,
+          "col": 2,
+          "old": 12,
+          "new": "='钥匙来源核对'!D2+'钥匙来源核对'!D3"
+        },
+        {
+          "sheet": "数值校验",
+          "row": 10,
+          "col": 3,
+          "old": 12,
+          "new": 31
+        },
+        {
+          "sheet": "落地说明",
+          "row": 5,
+          "col": 3,
+          "old": "Task.UnlockId已按4105/4112/4314/4101/4111/4039/4104/4041/4103/4106写入",
+          "new": "按2026-08-26任务MD：竞技场任务Unlock=123（2-8），映射任务Unlock=140（3-10）；其余保留。次日/次周刷新入池需联调。"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 7,
+          "col": 1,
+          "old": null,
+          "new": "统计联调"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 7,
+          "col": 2,
+          "old": null,
+          "new": "资源副本日周任务1107/12041~12043"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 7,
+          "col": 3,
+          "old": null,
+          "new": "现有Target_TTT_Type_LevelClearNum参数0,N；未找到参数0仅统计资源副本的运行证据。需验证资源类型过滤、挑战/通关差别，不能算作语义已通过。"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 8,
+          "col": 1,
+          "old": null,
+          "new": "注册核对"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 8,
+          "col": 2,
+          "old": null,
+          "new": "DailyTask.xlsx"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 8,
+          "col": 3,
+          "old": null,
+          "new": "当前__tables__.xlsx无DailyTask输入，可能由TaskType枚举入池；交接时确认任务池消费入口，不擅自注册新表。"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 9,
+          "col": 1,
+          "old": null,
+          "new": "本次核对"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 9,
+          "col": 2,
+          "old": null,
+          "new": "新增任务已存在06"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 9,
+          "col": 3,
+          "old": null,
+          "new": "日常10、周常33、章节68、七日70；只补钥匙和9条日周任务开放条件，章节及七日数据保留。"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 10,
+          "col": 1,
+          "old": null,
+          "new": "本次来源"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 10,
+          "col": 2,
+          "old": null,
+          "new": "映射之匙与新增任务落06-2026-08-27"
+        },
+        {
+          "sheet": "落地说明",
+          "row": 10,
+          "col": 3,
+          "old": null,
+          "new": "参见03_沉淀MD/经济/映射之匙与任务落06-2026-08-27.md；只更新候选，未导出SVN。"
+        },
+        {
+          "sheet": "配置清单",
+          "row": 4,
+          "col": 3,
+          "old": "写入四套任务本体、正式任务描述、解锁与奖励引用",
+          "new": "保留四套任务本体及引用；按每日每周任务MD修正9条任务UnlockId为123/140"
+        },
+        {
+          "sheet": "配置清单",
+          "row": 13,
+          "col": 3,
+          "old": "每日/每周/章节任务与节点奖励；第一、二章新增舱室任务图纸奖励；第二至第七章映射装备任务各奖励映射之匙×3",
+          "new": "日活80分钥匙3；周活20/40分钥匙4/6；章节任务奖励保留"
+        }
+      ],
+      "stage_sha256": "9baa06333fd33ddba273e2f8c03eca597df19b1f7dfa698228d3214f31d34dac"
+    },
+    {
+      "file": "签到/00_配置清单.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\00_配置清单.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\签到\\00_配置清单.xlsx",
+      "sha256": "935216a6ec1b2b1e452d4c9df519f557efe620dbd06a56944abfe7441268542b",
+      "edits": [
+        {
+          "sheet": "配置清单",
+          "row": 2,
+          "col": 8,
+          "old": "每月按7日基础节奏；6/13/20/27日副材依次1152/1153/1154/1155x2；不递增；Day7=元晶(2)x50",
+          "new": "每月5/12/19/26日映射之匙各2把；6/13/20/27日副材依次1152/1153/1154/1155×2；其余不变"
+        },
+        {
+          "sheet": "验收结果",
+          "row": 5,
+          "col": 3,
+          "old": "{1: 2140000, 2: 2400, 25: 48, 110: 118, 1074: 5500, 1152: 24, 1153: 24, 1154: 24, 1155: 24}",
+          "new": "{1: 2140000, 2: 2400, 25: 96, 110: 118, 1074: 5500, 1152: 24, 1153: 24, 1154: 24, 1155: 24}"
+        },
+        {
+          "sheet": "验收结果",
+          "row": 6,
+          "col": 3,
+          "old": "每月四种副材各x2；28/30/31天其他资源与原口径一致",
+          "new": "每月映射之匙8把，四种副材各×2；28/30/31天均不额外追加钥匙"
+        }
+      ],
+      "stage_sha256": "1fb3bab3c0b075d666ad613015d0504316d41243a82e0037c14a90b5955d716e"
+    },
+    {
+      "file": "无限之旅/00_配置清单.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\00_配置清单.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\无限之旅\\00_配置清单.xlsx",
+      "sha256": "415936a583a002abe3186c9e90a773da037f0e4e52895620b91b86de78384f36",
+      "edits": [
+        {
+          "sheet": "周奖励预览",
+          "row": 3,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 5,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 7,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 9,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 11,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 13,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 15,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 17,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 19,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 21,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 23,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 25,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 27,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 29,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 31,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 33,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 35,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 37,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 39,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励预览",
+          "row": 41,
+          "col": 11,
+          "old": 1,
+          "new": 2
+        },
+        {
+          "sheet": "周奖励汇总",
+          "row": 2,
+          "col": 6,
+          "old": 5,
+          "new": "=SUMIFS('周奖励预览'!K2:K41,'周奖励预览'!B2:B41,A2,'周奖励预览'!I2:I41,25)"
+        },
+        {
+          "sheet": "周奖励汇总",
+          "row": 3,
+          "col": 6,
+          "old": 5,
+          "new": "=SUMIFS('周奖励预览'!K2:K41,'周奖励预览'!B2:B41,A3,'周奖励预览'!I2:I41,25)"
+        },
+        {
+          "sheet": "周奖励汇总",
+          "row": 4,
+          "col": 6,
+          "old": 5,
+          "new": "=SUMIFS('周奖励预览'!K2:K41,'周奖励预览'!B2:B41,A4,'周奖励预览'!I2:I41,25)"
+        },
+        {
+          "sheet": "周奖励汇总",
+          "row": 5,
+          "col": 6,
+          "old": 5,
+          "new": "=SUMIFS('周奖励预览'!K2:K41,'周奖励预览'!B2:B41,A5,'周奖励预览'!I2:I41,25)"
+        },
+        {
+          "sheet": "配置清单",
+          "row": 7,
+          "col": 4,
+          "old": "VALUE_READY_CHG006_DROPID_VISIBLE_CHG009",
+          "new": "VALUE_READY_CHG010_KEYS_10_PER_WEEK"
+        },
+        {
+          "sheet": "配置清单",
+          "row": 7,
+          "col": 6,
+          "old": "40包×3项=120行；B列公式完整，C列DropId 23000001～23000040已改为正式源表可见字体。",
+          "new": "40包×3项=120行；每难度5个钥匙节点各×2；ID公式和其他奖励保持。周奖励四难度互斥，程序待联调。"
+        },
+        {
+          "sheet": "配置清单",
+          "row": 9,
+          "col": 4,
+          "old": "PASS_WITH_SERVER_CONTRACT_CHG009",
+          "new": "PASS_STATIC_WITH_RUNTIME_GATES_CHG010"
+        },
+        {
+          "sheet": "配置清单",
+          "row": 9,
+          "col": 6,
+          "old": "验证奖励Id/DropId、表ID公式、字体可见性、周资源汇总及道具引用。",
+          "new": "本轮重新核验钥匙、40包奖励、ID公式和可见字体；历史CHG009不作为当前校验结果。"
+        }
+      ],
+      "stage_sha256": "745bac23a5264ee01b4b0de6279e28fd3ea0cfe7dbb121ad797b1f87ce41c03e"
+    },
+    {
+      "file": "主线高难/00_配置清单.xlsx",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\00_配置清单.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\主线高难\\00_配置清单.xlsx",
+      "sha256": "68dd6ef204c35c5caac43425bb56a2d78b65d9b5177c5d1ce33a90bd86f16811",
+      "edits": [
+        {
+          "sheet": "配置清单",
+          "row": 8,
+          "col": 3,
+          "old": 998,
+          "new": 999
+        },
+        {
+          "sheet": "配置清单",
+          "row": 8,
+          "col": 5,
+          "old": "正式表预建行并下拉ID公式后，按DropId粘贴",
+          "new": "第二章36星11000012追加25×5；保留原998行。正式表先预建新增1行并下拉ID公式，再按DropId粘贴。"
+        },
+        {
+          "sheet": "验收结果",
+          "row": 6,
+          "col": 3,
+          "old": "37节点；第二章沿用正式7/14/21/28/36五星档",
+          "new": "37节点；第二章7/14/21/28/36星；36星引用11000012，原奖励外追加映射之匙×5"
+        }
+      ],
+      "stage_sha256": "dce5b525f68f43c1e78707893725615a70e0c509d418d77bdb08b16cef3bd28e"
+    }
+  ],
+  "guards": {
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\00_配置清单.xlsx": "8b3fb861e85a19a4ab4f7a71253ac1f31614e57b0d005b8463a6b894b76462cd",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\ActiveReward.xlsx": "24d3a4cd68beafe617808dfd733deffaf4650e6bfaf63e5bd1584e24dd067358",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\DailyActiveReward.xlsx": "8eb65b3b3bb8067ff15b92c025cfe421ef9cbcd9c8306865fd06e630a728b2e6",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\DailyTask.xlsx": "d6790b50749bfe3ac41c5f2dfbedb24f65d6342f26a0820ace6128fe11f9551b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Drop_other.xlsx": "8ee7077d99d9297b41528c6aaa679156945d45acb91a7ca9a0d5725520907f2c",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Drop_TimeLimitedActivity.xlsx": "d7939f1da236b9fc0c7afd721b38ccbc18865d593aac557093f4e12e41622c98",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\FourteenDayActivity.xlsx": "58831f42bd336cc2ec0a1b311328a01a4fac2e225fd9e87b96d218576b3b02c4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Jottings.xlsx": "95ad9e0da2f33e3784922d649dbd9ee399a3681e603d44a0767a7d8f259e0b21",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\JottingsTask.xlsx": "0a121dd54291ca8378fe4f113c2788fb0f919c3a06b80c37591a28b83cc3d7d0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\Task.xlsx": "ec1b08efa1d0fd590a523bf1e217ea7cb12928c7ae59984e087b93bf3fe42756",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\TaskTarget.xlsx": "47e2385999edf893b9ee36c5ad267876da40adcb3ba4564e2b3cb05cc64368c9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\WeeklyReward.xlsx": "d7d580eaf087ffb620d3b21a6a285b428cdff36e0c687389e851fe5dd6ebfd28",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\WeeklyTask.xlsx": "c0326a2be109e1ff9f7fb0867dd5983ec9e8201443acf82d9eda5949b88b018f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\__enums__.xlsx": "57256276ae18d8cf2aebf02086d3dd78c57a33b1e056492b712eb45711c95ecc",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\00_配置清单.xlsx": "935216a6ec1b2b1e452d4c9df519f557efe620dbd06a56944abfe7441268542b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\DailySign.xlsx": "224bd5ea27b58afa22053073e565b0d94e190ffb068923e98cff0ca1d82e0b98",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\MonthlyAccumulate.xlsx": "618e807948ff35c8377e3f4936286bccdfc42e1859cf4db8632540f435669f6e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\SevenDaySign.xlsx": "0f5587a1a36caaf24d26582789a2176d40ef51bc592a547cdedac05890d63f7e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\签到\\TravelAccumulate.xlsx": "323419056fd47d05e7646fa7f335d938420638c7eac532705f664fb7a54c7977",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\00_配置清单.xlsx": "415936a583a002abe3186c9e90a773da037f0e4e52895620b91b86de78384f36",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\Drop_dungeon.xlsx": "7b4f53130d2ca256941cce21a10f3f7ca2fac8e21eb1c04d6244437326c3b481",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\Items.xlsx": "3f844ebf47c8a982a2684b46fb7d5d2d8fee3974545f669db16453912c50097b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\NR_Difficult.xlsx": "f6c65e21921c09b23d69516789ba20032f8a179c709b881f3cd7a716af32f3de",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\NR_HighestScoreReward.xlsx": "1ffa4888ddd58ee19e24a2bd60d20365706ea1cf6fdf0e07f42a057579b3a516",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\NR_Layer.xlsx": "fbf23ed1b7e8e8582fbfd3b8c0e363474db7d165b1b5926b873f8ddf2dec6b63",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\NR_LevelPool.xlsx": "42a9476cd1bfd9646328a629f7d8f194a1abfb0a7660fef2ce6a54f1d6654d72",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\Unlock.xlsx": "9c1570d3056a6117f92ee44f7fa1509e6acf5a791ce59fb0bc9aa26b5d319d3f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\00_配置清单.xlsx": "68dd6ef204c35c5caac43425bb56a2d78b65d9b5177c5d1ce33a90bd86f16811",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\ChapterStarReward.xlsx": "a8f7d0200bce84aaa7376852edfe8a9c58272a3e3d374e21da94bfed2372087e",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\Chest.xlsx": "d5373762ddbda344dccdf86500a988bd5ecd9bd7654aae8dc8ba74bef696e659",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\Drop_mainlevel.xlsx": "b6c5fdbc83d45becb87850abab6bb8c590e83e555f27c6c728a3f7415cb706de",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\ItemChest.xlsx": "f184db419ad58117f99fd9dbe3a7eb63449fbf483f2f6c5f73eba0d365ef86d9",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\Items.xlsx": "716a151f0ccd4419e6508cdf5c8273a67d510782376ff8af4b37d00fb350e382",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\ItemSweep.xlsx": "f7577d05cf6aca683ce08ac01d6d1eacba7ba6819adaf5cbe88ef257573ef417",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\SpecialEquipmentGenerate.xlsx": "bd1f8cc5c2e93e6a75e016febee0bc8d4867ca6da1e8256f1e19871f1d4753d2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\UIlevel.xlsx": "84915714b1d4bd4b1cc138a457f82d6784f70a62561e14acbcab9020ec2d6a93",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\00_配置清单.xlsx": "9b428faa7f72861144f2fb63cccf24b8851c175914f361e8a2b8e150f49ad64f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\Drop_dungeon.xlsx": "0ae699273764071295e838b4c312d73c28551053a5ebb9b51919dbec07b8fda2",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\EquipmentLevel.xlsx": "95515039097cb192674d9ec2d3e3cfa59b6e0da8611c7904b606618b844a550b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\ItemAccess.xlsx": "2d9cc3932679ab4580700768eab8b4cc8d2b82c8fdc0b0ac9c9954db9e996f18",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\Items.xlsx": "4f9ff9d45cf5d134280bd4cbea64e18f06f6b1b77df78846749beb0fd382629b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableCompoundProb.xlsx": "aeb78dffa6ec84411d8913522a181ac0ca93350f250bc93c1e052fd69a785ec5",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableCraftProb.xlsx": "254af241b1714fd26e64b0cc21769e797fbc36b9d561d614889c224227efb95b",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableEquipCompound.xlsx": "2ec107f71a85289378bf8baabae7c9e583cee1d67570827c60a6a8c96075c374",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableEquipCraft.xlsx": "c02e9fb2097acbe1cf5eff3046d3112ce98042ba34671e45d3268637ced46679",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableExp.xlsx": "6ef0eb730e87beb43eb43baed123dfd8e0f1e17356f77cfaf1c00bba466d630f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableLvUp.xlsx": "83653dec6daa64e468b575090ea60cccc49a1375e8ec31dfb36ee38063be0850",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\PortableRange.xlsx": "73fea6fc7c02e8a56727a2cb7f8f1c9286622f899bfb53d30121ff250b183415",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipment.xlsx": "4d824282e42316b1228cdf9a2ee1112258f89b861b73c12908529cd87f9edd50",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentEffect.xlsx": "30e4f48c3fd554f082ede1194641ab01a612aa5675522e43fd02acf1353dd5e4",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentEffectDrop.xlsx": "82907a77adb821b86014ffd73e860e050468cdf04d3be412e2933ef5848a18a1",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentGenerate.xlsx": "eaa5555e884cbc7fe85b1883a5bbdb2921c6743e45ff75ba369a29fffb7db6d7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentMain.xlsx": "b9657bd840efc3071e1b5fef6958c94ccbe08ea2951a6f8bc7f527be1bc62a7f",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentQuality.xlsx": "7b3f2ed283efe2599955336c17ec57f3c608e42068abe27d80c3dc41e8ee42c0",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SpecialEquipmentSubAttrCoef.xlsx": "7c04c83f0c9b40fefbc942373b995c140e2dbab11f10a45ffc2cba7583615fe7",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\SystemOpen.xlsx": "d7b2faad04cd8b0142f8fbe6ae2404734b3ade339cd84ccda1b531947b36c9ad",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\UIlevel.xlsx": "1761b5c1fb0ac0b1336207292739b26cf653d553e9c9f3d6344ceeb584a56754",
+    "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备\\Unlock.xlsx": "7f888497b4969cf4215153affbf702be7a4ab772771c0500156fb797d2511f02",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\__beans__.xlsx": "e376a0be574ab48f9f5056c46ea5f7ea1a0c4e54bf7b317f86cf049fbd981764",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\__enums__.xlsx": "f8ea1cdaae6c7f516dc233b1b96bb6cd0cb3af4cc1f1dbafbad69b8967a48ab3",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\__tables__.xlsx": "3d123a27bbfe758fc1cd067c15d10e3a194327b84dbcf79069016f2a8e926912",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\ActiveReward.xlsx": "49f1c5b5c4c5f11cda549eab993c9eb04818191ef67b0aa6a16b686955757181",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\Activity.xlsx": "98516e90184c08f1f318bb1d936722322f6b150250adaa9007c5fb8d73b84d19",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DoubleDropActivity.xlsx": "aa6570876b943e100b3a4ca1d0a11a65c38280fca8c26d36d09a8bae867d0410",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\FourteenDayActivity.xlsx": "810bbb8884118456ec62859dad275b58d6abcd11f1a5d44514bd943a356599f1",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaMonsterAttribute.xlsx": "6c7c099d25a09714fc45cebc100052b22660db331d93751a0a60a8079aff73bd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaMonsterMultiplier.xlsx": "0fbcf5dae518460b9209367800cb61ac537c657ef7502c0c8b9e2aae85438fca",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaRank.xlsx": "b310d9c646f7cd74aa4abeee0b8e997e9b03e9994fb73d96279cf6ef3af90733",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaRankReward.xlsx": "8e6d5dd95e273e26dea3694f318a6f1aae3e098bd41698ee931810b9cef8302c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaWinReward.xlsx": "55a0aacd6fc4709a704547020d873c2e1383f97d233ffc054e474d43d1bc501a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaWinStreak.xlsx": "322ca1142596c4f35ec6c5a3c2dc0814bb82845a7bd751d4f5a2801afe15fbb0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\ArenaWinStreakBonus.xlsx": "2c586558a459e7923c17abfcd29ac7f33887bc1d2ad0e839ebb86b64f33d5bc1",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\Battery.xlsx": "14f8d507803328daabdaffb3d1a048fc02c902b677b693754d0f16f9c68addae",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\BatteryAttribute.xlsx": "e6b172dd3bccdc6b4ef9333894f56a32b5616c2f159889588a00e689b5f1c9bc",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Arena\\BatteryLv.xlsx": "400c9ebc08a4ee804be288f2412852165b84edc9302fa65b4497dd12d17c38fb",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Attribute\\Attribute.xlsx": "eac03a40679d244ada1cff14098f3d25b60363b8fffc247f2893286bf23bfc35",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Attribute\\AttributeHurt.xlsx": "630a2f25677760d5e5b1d715837c7d00f1787411eb856974ede304e6428445c0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Audit\\AuditAsset.xlsx": "e18ac40dfd8e25cc7117911d518daa599628719c45a86f338b57137d37c1518a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Avy_time_config\\AvyTime.xlsx": "a2ec1828629276706205dfbcf67206535e456cae31d12ba343e9a0afc52eee3a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Battlepass\\BattlePass.xlsx": "836fbe24c8d96dfd9f049f6e0bfea5617749570793cf6cf8605b291f1014727c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Battlepass\\BattlePassLevel.xlsx": "2cf2df3a36ef46c6385291d786cbb7cc72db03085dc93807ab224059eb328a48",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Battlepass\\BattlePassReward.xlsx": "36ecc4a1582cb3d076809e9455435c9e71b68a171d92d50a238180815422fbca",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\BattleSimulation\\BattleSimulationHero.xlsx": "0651ffe88dfc82024c7dbfcb07abc1e55f9a76a5a662434817ed3b31d5b61b78",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\BattleSimulation\\BattleSimulationLevel.xlsx": "9bd6619587b1fa201ed7bb275c15a42f75a4e3182c794a230cbfecabc39f8f38",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\BattleSimulation\\BattleSimulationTeam.xlsx": "7ef88f79edfc977dd95674c7a1fdb5d3b2049e5ec2c5682c9d0cf7e28c07a01a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\AdvanceReward.xlsx": "513c282de45f92ced8b9074232561dd5f62cd9d1d61c250ffb11e21916447a12",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\BossAdvanceDungeon.xlsx": "51c7068e4285b9b8162e15a3ef61bda8f2093eb391f367497d72c7052939f5c9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\BossPool.xlsx": "e4e35e04f8f9417e19085f6d24597ea7c0736865d53082a892b0ded890223f9a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\Boss_Dungeon.xlsx": "9d2b49a289bd362d9a42ac1b97dbfe6f0b3fee432adbce104c4139b0ec3357ef",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\BossDungeon\\BuffPool.xlsx": "a44f7477bee944eb7e99b234eca6e530ec960896671f89577af2c933b9a12a1d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvAttribute.xlsx": "4d248e118ac9d4b80343f2c22c9b0a9c497ee889c5333a3bcc77425f7c362351",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvGuide.xlsx": "edddf4dce408e6a6054f91926f36015e6d9288a14d3749710d824e99f6142718",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvGuideNode.xlsx": "6aa5b70d00a3b4686ef174e8493357956769011dcd1e48285747993e0926738e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvGuideNodeLv.xlsx": "d1e98370839a9b767eb24b50116192227ca227e1758046df833aac074d6e6373",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvLvUp.xlsx": "18d043bfcdeab328ac7f1fdc63f092aae10d393a4246cdd6bde1f9353efff681",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvStage.xlsx": "e0f44367d565805ff6136386536a11b09d7d32451190b77bb90ae7454415e1bd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\RvStrengthenResult.xlsx": "a5d248f6b93a316dd82ca0e2d37cc08da32ee2e22b289712402e9bbe75749830",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\Chat.xlsx": "87108d429d5c8c261313274f018eb55e5b2b117aca57e142a94c613274f7dc77",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\ChatBg.xlsx": "a92fc36fdfab524d4dc1903dde824ce9e0f13e67ac1eb9daec290bd24df579c0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\ChatBox.xlsx": "ee9eb329869f3ddaa467ccf1d7147ab870c3fe2d891732a87a9781b926e43b93",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\ChatBubble.xlsx": "57e3a697345b538fc926da32409ff7e6e1a8fd261726f2c8ab11ab3b32d60a82",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\ChatPanelContent.xlsx": "e0cce6efc0ac61f5402c911fdb26c7474f545b1e932d709c26f3e699fc12ea14",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\Emoji.xlsx": "4171e3962e343838fe4b5de84959562eb0ffa237744259195ac00e84b7b854e8",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\EmojiClass.xlsx": "f62844c157a6f08f207e92abcd504feca1adf68643b29b60e8eb7bbd7823f84e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\Gif.xlsx": "33bb5d0cb4c5d6a28d77366bfd75fa2c537131c0fde713dadbea92f1b10bb79a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\StoryChat.xlsx": "b2a487b316a90f04fa0913c3678f26bc0a1e70a04764d2f3fb9277fe689c3f87",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\TeamEmote.xlsx": "fa41e56c72d76df48ebf04e9dc68219cf02ae8150f7ad17a5a5b43cd9ff6bae4",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\chat\\Timeline_Gen.xlsx": "4f168bf7f832595c29ff31b68f57b02d65493cb9eb42d4063b2af1a7a7c8aca9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Common\\Banner.xlsx": "c22abccd2d2381faa0c028fca987df1bbf059489ea87f1bc7a44cb296da50b2b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Common\\CommonRuleDesc.xlsx": "91a773dd859fca961858c785997eef4293228bb4867e80227f03e904cfdb45e1",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Common\\CommonSpecialRuleDesc.xlsx": "fdc58d2b3978bbf4ce8662be7ca51a632d6bbddf5a8dc70ba8619024d7411d94",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Common\\EntranceUnlock.xlsx": "c9d08137ba57490991b4b5fcef55e683371c39627256e2ed9307a8f4efc64ce6",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Common\\UIPopPriority.xlsx": "032b229d5c75820e31bd7136d52dbe57358148ded4ff62080cce59adb2a99212",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Common\\UIRule.xlsx": "2cac5f66761700c24f34d6a53690bd33bbc11109f380f6c1366eb5afe2a99198",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_BattlePass.xlsx": "d08c85a1ab23f970f57a20c4f1fe62d18a7afd0224f6d6e0d06cb4e2ca8e0dd8",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_draw.xlsx": "f6ddd8b71c21819b3bae906bf1c71d079c5abfa5d1181c26100c0544872e8b4e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_dungeon.xlsx": "7ed6dbb738a0ea0a10a6fd5678e1db4c370df5d802ed758f32b65686c07c80de",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_GiftBox.xlsx": "4488d4ff5d7faf57eaeb50917ec035979cf4c0cf6bc257c9d6c92755c5634e21",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_mainlevel.xlsx": "e1d6f809e1028bfb6888a9775abea6cd97f1fbe952b090f2dc6b4bcfe0342394",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_other.xlsx": "f1e56406d5ea54eea5c90988b0d49e4fa6884dc9ee319957f05a813fc5d24325",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_TimeLimitedActivity.xlsx": "e003b15f640bda40848c1ac128f95321abfce485b9faba6a053430b05f38ac14",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Drop\\Drop_world.xlsx": "b8ff30403c17942b5d0f8eb96b5ea0edf00ef711062105d6c135b5c652e79b74",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\Eqpt.xlsx": "ba955e8285f776924560dd3eecf60f2a744713cc4c8f5d49c07a0c04d881f4b0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptAscendLv.xlsx": "367ae8a5df649e71f928628886a878bb62b7fa006aa8df71239618e4e98946fe",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptAscendMaterial.xlsx": "8c9632e69ff83000bdee2478c0d8712a818354f3798b71f5976134d348bf3d1b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptLv.xlsx": "864654a03fb2eb56f3c94c274295101182a529df32c2168ee4460bd5011949c9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptResolve.xlsx": "a0adb30f46a900b830dd4421ffb8f9d5c9045bc33d1ac9acc7f07712ace8a121",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\equipment\\EqptStar.xlsx": "31f5dfb2cc81e68c3f70eab231b3f41754df4a338f472384445458447803a85a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeapon.xlsx": "46d9e390563db42429725ad110016992a630cc17f497d20ec746e4ee28f72cf0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeaponAscendLv.xlsx": "814e06e54684f10fa07bb04a212ac4c4f49570cf5a2fbac72ac3ec9f056946fa",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeaponAscendMaterial.xlsx": "af69fae4d284779f2bcb4f7f8c5b8633d1ae9cf5bbb59aac785b7c63dc25c84f",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeaponLv.xlsx": "73fcc8956301a3fa76ce447a5880bf8499b7aaf69de41f13e49e83518ed582d7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeaponLvLimit.xlsx": "fb519f210e2d546f9b44b0a67a4deb55addbb009dddc5b169adff2deb9b4f46f",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeaponResolve.xlsx": "c1bec1a028a0b220e235dad36fd3ed1d7457eea7e9842979accabe057dc87c84",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\ExclWeaponStar.xlsx": "a2ed6301d16a154ad67a16e1e013d82fe36f6194911fe123c11ba2193ab447bc",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\ExclusiveWeapon\\WeaponDuplicateReward.xlsx": "ac28b2c4dedfff5869794495c58bf0d9f6223355fc0d17103a9eb39c1508add0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\AddPoints.xlsx": "a3e7cb3240b09a5ef16670d1e547c26946b08d757538957af8e29e8f1e6148c2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\BattleTips.xlsx": "77f8f49cc884a3a39f009f7253f36f54250dfc596bf05306f61699f84d487fc2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\CameraChangeLimit.xlsx": "3e08603d1a7ec90c657d7030543811035b263c4394621b7ef8792c059017782c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\CameraChangeSize.xlsx": "04e6efe7cddfccaab0de506f04c4a1e9547cd590c542a047de61f1929f79cedf",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\CameraMovePosition.xlsx": "0894a468d93fb572dcd96aef9f4d0793734205f6ae36635cf45a55d7d47786c9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\CameraShake.xlsx": "f8a0f42305f18ed880f06a69b1c99ac4b5dcd7ea305c34c05c293d1cc2900533",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\ChangeTerrainSpeed.xlsx": "04b153ddc04930dffbf2e8e9d2f1d70bd5a2c14228a302db8c81b781c80308b0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\EnergyBall.xlsx": "a9194337bc74e4a362e11000999ddde66ed58cb2c7a08ead51e40755986164b2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\EnergyBallMagnet.xlsx": "bbe1c1e71e05b92d1734c5f628ffc1c5ddca7a1516dfad675e4f86513f6a1994",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\FightItem.xlsx": "bcf499538a3b4e3025dc6e80849211bbb0d55143821e614183e15b0c5d8caa7a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\PointsBallMagnet.xlsx": "62805a98dd81dfacfc041c99855db663bc6a1c2422286f8db66b5a5be73475ab",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\Sprint.xlsx": "32a7a6bc4bd24b0067f91de9594308a34d8aa07f7569e765f4b292b234f87a3b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\UseHeroSkill.xlsx": "fd3a5f6c4c6f87dff18772e38e9214343b2f576e014d8a9ade0d330d51cbd781",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\FightItem\\UseUltimateSkill.xlsx": "8d0fd3201d0ecfd166a546c1172b5df839ba757c5576732d09552258b66832cf",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\friends\\IntimacyLevel.xlsx": "28e10cb2afe9d936c63f7bbd912e2c3c29b3a1b1d945551373f98d035358f902",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\globals_conf\\globals_conf.xlsx": "b3f5178e94f4d98381167684c01ead4013d3e73b4ec9a504713bcbc581cbf926",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\globals_conf\\globals_conf_cs.xlsx": "3719f79c6bc64dcfb04ab7c66efa2dfb11bc141821695e02fc606a512f3ce902",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guide\\BattleGuide.xlsx": "116d795145a60ac7057e0c2aa6025c477e3bc701d057385e01e7a7f65d1c6df9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guide\\Introduction.xlsx": "200fe6150ed7caefa0e1074c2b0d45eb941ae9c4b8c7f44a8974841c0d3711da",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\CommissionConditionDesc.xlsx": "9b825a8d2f900c4c01475ba0dc4ce69f0470a0a36c8438ddbb6a473ceb983aae",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildAssistingQuota.xlsx": "6b56cacc1f83d30ad4ec42d61d0d20584184b6425de4f0b56aa57e043294231a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildAuthority.xlsx": "42e7aeba8016886856f62cc3ca1fbba76f952e4c3501464b2cb806c2145a7d7b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildBargaining.xlsx": "43a13b15f74136e855463f45ff508225121d462078b8cf9973e7a44bb3cd0262",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildBargainingQuota.xlsx": "cb15a23ef02e1a3b7d6c1450f7af6e19b36d6150d4c1ec546248a40c508d2a03",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildBuilding.xlsx": "c057bff5ee911a8ef97497e510907cb869e815a44e93bc2f1f12f10c884e4ceb",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildComission.xlsx": "01093812fd1d3908d710a65ee6a35362c060d018937fd33a42dc74fcf49a75f2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildCommissionLv.xlsx": "3e0d2bb437e4bd0c57d413697a8ead0773c30df9959d566efba32255baf98689",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildFlag.xlsx": "ba75a24c4a88c05b8476ed9d515c32be82695d3118b056b1519d32bb34668b27",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildIcon.xlsx": "4cf349605cea321963357b92d8af1013a88031bc142073b8ebab60b80944f268",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildLv.xlsx": "1faaa5ba662b0213476e97b150cd2272e8ea4823b6e5eeaafd5b21cbe5452777",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildMission.xlsx": "ac12d57a3354120f81571710c0606a0fddfbb12c629111e59f42ecc001f8e67a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildNodeLv.xlsx": "cfaad96993d92338913b1cd8adb5a8c507bb8936cc1a3b0b25ccdcd7869a4aa9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildSupplies.xlsx": "29ebd3bd28c42b3428bc44b1be644e15fbaacd82f854c5aed1cc1fb22a2404f7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Guild\\GuildTech.xlsx": "1d70a0fa5f24e6ff5a9e089c3454020f1690f0c7bc4bf44972040cb121486a0d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\GuildBoss\\GuildBossHard.xlsx": "890c46299333ac0bf5a44d7df24997d328040e5424a2f48fb1f311d702f4b2ab",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\GuildBoss\\GuildBossModifier.xlsx": "ff29cc4a5a7be521d18033666c9c726f8bd58c9c794856c3497365bf68f31f4c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\GuildBoss\\GuildBossRankReward.xlsx": "ab13baca9581375158b1a73f7613dc086d95e1155f95a8f580a82fccb9f6efab",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\GuildBoss\\GuildBossTask.xlsx": "6b6799e27312d97cf3535c72a7ee078a59d6c7700417c2652c93d396a9998af5",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\GuildBoss\\GuildBossTimes.xlsx": "85e1fd1359efb1e9f9c351a699557c9bf48d47f19bc4209bf543becc324681f9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\CalibrationPoints.xlsx": "634a90813985aa83ebc201da12f1b2c21c4a0420d3d42cd8f64f2ba790552157",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\CalibrationPointsAttr.xlsx": "5c300dcccffe26eaca353db63a707598aa992369332a97abd5b5d8051071af78",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\Hero.xlsx": "b6a65787ceca6608d2d7184a94d9f1f89f8896a11219891ef51b28a57d3e0882",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroAscendLv.xlsx": "36e61ef1c7d0d76313310330b0a86362cb44fa70d46c3a560b28fed3fde16a70",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroAscendMaterial.xlsx": "424f5f7b60d60ae63e5115a344d160ac796faf5224b47f0bf0681f72e20a18c6",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroAttribute.xlsx": "1bd07b1bf91ddea433173675bef2e01cee2310e7851cb933f7dfe84b3777669b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroClass.xlsx": "7b3eae989636d08d5a5027b412cd97086ef00bc9bd68e2e32c320c41c1636da4",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroEnergyEfficiencyAttr.xlsx": "778b7a213ac8ce3d58573cff9c5677f3d0f725402edf1bbc52423a307667b7bb",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroEnergyEfficiencyMap.xlsx": "323ec80dedb2fd4ad394d5d8783d2ab6832dac6dfb0c1d0e4652acf95ac38dfc",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroExtraReward.xlsx": "c5070a3b5777af31e98ccb93ccf9b50b2d0968c64a44c758ea7dd150e554cff2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroInformation.xlsx": "6141a33c6122c20a86c2bda701b6d4d8d6a6b3011142c635a8dec8f61288503b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroLv.xlsx": "e110a9d4739d8555ee6fd37cfcf177854be35cc207a99f4705e6725e32819936",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroSkillLv.xlsx": "d8824b38ad4f35037bd9fa1dbf395bfca328510ddd3807e0fac3d5bb19e711c3",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroStarAttrUp.xlsx": "ea309999c662b23ec5f0dcb40cfc9ca180444ff8c956066204375edfe73ae117",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HeroSupport.xlsx": "ff36c04742af4eeebd374b4b6b154bd62f47c5288acfa351ef6f2e4e9b835179",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\HotSpringHero.xlsx": "ce198ae24634c5c2c86ae99214ec1cfa8e767e57b939aaaeca864935a7757150",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Hero\\Job.xlsx": "04a893ac6a366d5a6ac6451cd8fffb943f3412e183261978dababdfa10f0bfff",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\ItemAccess.xlsx": "5ae4573f728e37de8421fed2d8d1bf787070cd755f2a0cdba2a527d26741cb95",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\ItemChest.xlsx": "d8a3a82053543f7a4bec894fae8e9bb0bf80d994620784d358716273b066ed51",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\Items.xlsx": "4251c95feb8c8061ec21db5aefcd52f7368c4a85269897511c200269fb348c95",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\ItemSweep.xlsx": "813633744694e9f779199557f6b39117377944d203ed1a179eb33179c7dc24fb",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\ItemTypeFunc.xlsx": "b2ad0df74acdb89fce8fc7858372f5525579a3c13eacb63155c6e818f7aa3568",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\QualityCfg.xlsx": "29423f5b98ca6548237a759f10a0d5ac55c2bef977f651b463b77850f6a3915f",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\QualityName.xlsx": "31e89f9649aab834976e9ead01d6a2d73363327bb048b4648752f128fc1779f8",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\items\\TopAssets.xlsx": "e6062596f80d169c9fea6d97518ce9d63d45386445fe51544e3e1c0e0059bcee",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\item_craft\\StrategyCraft.xlsx": "b22d3094a19188fae72b51ddacf93073945270fd7c5471cb37ddd95127512575",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\BossBattleTime.xlsx": "5ec1c0ed9453b65009f0690b7e10233ecf9bd17dbdfa2a153f20144c6f4b2df6",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\CameraParameter.xlsx": "f5e55703bd0f9f380f3d6c582a7d837fb8b8ef1a316738fa676359a9a7da9a04",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChallengeDungeonSupport.xlsx": "070ea7884f9da33756eeb1679d2fee6799ba3bd25824d4aa088439c88c6fddce",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChapterDelegation.xlsx": "42573182e90256ead69a2dc255658596f93f28af65f9ff666de5f72428bbfd2d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChapterLevel.xlsx": "c5a10c0c8e85ddb7f8a7466a410858c7e64ea525a0c23de7e64324b1fc9b58bb",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChapterStarReward.xlsx": "b819499949a3ec2a245c2c3cea4fe9538e27b758b1010f30ec9a4c3878d1f7bd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ChapterTasks.xlsx": "6759015bda8dbf4517c320eaae4c877e677385b43bb6ddab5d37965a1f666d59",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\ClueCraft.xlsx": "e45c798bcd195d79e5a89e8b2a8fe17511e523b7c66ae947f4e0d2cce2be9558",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\CoinLevel.xlsx": "9089dc74d55c4747cf06596b493c5ab2d86dc68b0f08bdd65dca1dd07f920780",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\DifficultLevelNum.xlsx": "62056699d455a930e5269498a09ba79a971a1f7fb8049411128f35cbf9730d04",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\EquipmentLevel.xlsx": "e7f71e5e0641b5c65995f27ca63ca249be4170c7646e3f75d280ed1940516842",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\level.xlsx": "c7524177afb6cc606343b3cb84f554c3b3ebf63905fb317fd8cd4c788dcf219d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelCondition.xlsx": "676d1b863b3fedc83b2d72da751c3d6213ca76c42dfb78a3e3b5ab282e57e01a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelDaliyTaskQuestion.xlsx": "ab5bc1a4e6acf1716c3ca7ea17ab7969f8141ca0b6c8f277e69efeb4daa8c249",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelNode.xlsx": "281e726b5fcbea3791573696bd8d5c962321d7d37110aae4c7e130568511e0c0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\LevelType.xlsx": "4f2db96c252f46fa3a217e7bd91955b8da3815f43033175e1c78a1d42b4007c2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\MainLevel.xlsx": "b2ea9168e376c8fb767b94e09d5003af83bedf35202d889b5aa08b2ddb43d20a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\SpecialLevel.xlsx": "f49300e9ba8268f8808d5e4be053b39533ed77628e8c2e4bad827c9a6727e9b3",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\level\\UIlevel.xlsx": "36f410c6363addcf3cb98a0677cfe77ebe3ed7c7a6e274b1a390acf839c96553",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\loading_pic\\LoadingPic.xlsx": "c1b5303f2ec6b83793e241a132e317fb848f283de8b2511837e11fa57f92f1ed",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\loading_pic\\LoadingTips.xlsx": "0ce3f1a8e03703e1bbc3b46b8bf82f26ea8a8b4c9c608c34f5229a5273505ab0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mail\\Mail.xlsx": "86c68feec473086e8805e393353cce8e4863296b5bb9c6668e944ffec04ce7dc",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mail\\PresendMail.xlsx": "ddd71ce4b04f3676731700a22e900e29aad44e282e68d551b3030338d7da1d5c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\Boss.xlsx": "b743182e6ccd63ef8d659e4e21927693733b100a31b0fc58194d414c4c94ef19",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\Monster.xlsx": "5286c9f7ed3e991150d485333cfadc87de254f9ebf9199d93ebedc36ffed75c5",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\MonsterAttribute.xlsx": "0f08113b8dab0270e95a21aa115e071d1f00799feaf52ef10ba5019754905ef3",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\MonsterAttributeCorrect.xlsx": "f9cdf77bbb6cd3c599f8e1548af76a5f004a52480975cf6cd434af6fc3ed6e18",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\MonsterAttributeType.xlsx": "a882fc06379429992d6eeeb36dbe2f9639cc6ac933b30aad3bf958d64ab731e2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\SummonMonster.xlsx": "07d0349c099bd4f8ed58f1fa50b15d6dbc2b24351a81419bc3a95140ed7405fc",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Monster\\UIMonster.xlsx": "4d87f659f55ee04e8bb5080b19e7008b88b3de2790f4a4473c6dcb87013cc12d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\MonthCard\\MonthCard.xlsx": "575918b45155bd1af4800001771a4b8923bd8370436b0fc8477e71f93dc20e96",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\Affix.xlsx": "8d9612b1cee49ecbf443469d7ef138b8050c933ccbb4f34243ddb20b52f6e39a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\AffixSchedule.xlsx": "b4f6549a4d362e21c52016e2ed8637297b8e3e5228f571cac042b75e2f5c25ec",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\Dungeon.xlsx": "0f240a7d7f81ffa329bebe632f65a771745aae178cfbeb25abc87e37bd5c56fb",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\Layers.xlsx": "c3eb3c06b7316d8b0d22e573b14bea5aa2fc6221d9d199eae0993aee4ebe5d17",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\SeasonRankReward.xlsx": "d42f140d97de79c5a48877f640ada34273bef8843459a8e1ddb9c285f150063c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\SeasonScoreReward.xlsx": "8b8243132372b3c9b4f356af44cdcdbad6c9e93c9c10ce9382cf2cff50c70dc1",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\WeekBalanceDownLayer.xlsx": "d591f4aab0f6d12bd2a1dc851664458e1a2a07d00f2245c29f885646220dbfaf",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\WeekMaxLayerReward.xlsx": "87107280833135465c1cf819472d3edb9c3cb012733b61a3d683612bba1f1428",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\mythic_dungeon\\WeekScoreReward.xlsx": "f0a1db5631ab322755f3bdbc9e796372976f2647622044dd30498802ab9b388c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_Difficult.xlsx": "9d99a5a532cc3e3988fa744aedf2889e35af825c29972109d73f6951e56efe1f",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_HighestScoreReward.xlsx": "829e0a3babe5530714b6eb156c3fac63aecaef8763d11dc39928cb5b1584e7ea",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_Layer.xlsx": "4f62f511115c44e62cd1f6c52817a82c9c0d2dcf5b3d4b510405af5cdb73ca51",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_Level.xlsx": "33f7c90719d62a6233d582f6d181168cc63680852bb90ea003fec3d47cc21ef3",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_LevelPool.xlsx": "e6dcc5afe108a790c4a2ea1c9edebfedf8b07580fde4b1ba28152e1be78d4162",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_Modifier.xlsx": "823d78e52f9a3dfe3da3c4edd9f920ce2e84855d9b0f6a0b1eb78be413c41a22",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_ModifierSchedule.xlsx": "9ce3d0c3e78ff13ecbf8c7c9520a5d4cc6900e6415e86fefbec5734cacddcbd7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_RankReward.xlsx": "f70f9f39e8873c2cc3d1f0c844f260fbcdba7123cc2c10465e6071b855a14c9c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\neural_roam\\NR_StartProgress.xlsx": "d3a54f005cbc66909e922435efd7b4c5d5bffaa17f04b8a40a7a6c58bb5c93b7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Objects\\Objects.xlsx": "a40704a05dd116d876a59ec3eef34bee49a7ea2371a6e5d6c7d0f72ea154ac08",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\paomadeng\\Paomadeng.xlsx": "91c7c8da2e794724a20fcabae824328b6aa113d28a350310be786d06aa155293",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Pay\\PayProducts.xlsx": "7dd4003a22bc476b1a371745dc38160fa9ab950a29f97156bc62811dd802b024",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Player\\Avatar.xlsx": "ac462fb746bd2e8ed9488c80aea414739f9b6c563911821374421882bb225238",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Player\\Frame.xlsx": "5dcd51cc3b73d9686fc1fc7e3ea943142cf8553a4b8844c0d9653e2b7771e533",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Player\\PlayerLv.xlsx": "dca9472f6c48e890648dd4c089f1d7a0eb482d8400f3fcb3a7142583ee3e0e77",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Player\\Power.xlsx": "ebe836c3d87a4e18721f929f79d4ee8d6800a2a9eb95995260bc402a5faa543a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Player\\Title.xlsx": "3d3ec6af22723ffcb4606d678bfc70e2edfcc06f88ea87996f6a69bae060a165",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Robot\\RobotName.xlsx": "7845a28944ed4ec2fa313660501e016f53d8e7e0477e704b1e5401fc323c63ac",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Robot\\RobotObject.xlsx": "cda6a90d9850b26bcde5681f066c05fb8a2d5b152a4c065f831e1037bd11a409",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Robot\\RobotTeam.xlsx": "e311e4ba83592820ccfffafe278171d350ae643355ad8a8331aaffd9ec0c218c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Rogue\\RoguelikeCoefficient.xlsx": "ce903091f0adf07410072c5c29a2ad9350872d79f58178b105bf5bcc50486b63",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Rogue\\RoguelikeCombatExp.xlsx": "308a6a7871f8be0ec50db360f81e6e553cd525f3e7c98da96d166ed2c3511374",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Rogue\\RoguelikeItem.xlsx": "5c9ce5caf6719238e3e4eefc125900b5cffe17f7ddb473e34ad7287e691c6353",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Rogue\\RoguelikeItemCard.xlsx": "c3fa7b0cb04b71a82436c121d6d27279f78c1e26b71db8bd38f949d6cc605506",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Rogue\\RoguelikeItemSchool.xlsx": "ad5121c0fc271996c55bee94cff413bae9619fdcb332641840ff53b3d9a78c5d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Rogue\\RoguelikeLevel.xlsx": "69834eacc8afa49ab9ed62aa5ef72b680ed81bf5bda9b24b0fb5c1b020c96c4e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Rogue\\RoguelikeWeeklyScoreReward.xlsx": "971c9c63c7c338898dd2a0d9b758c1e66f3715228a6f88e69d208baeb6bc5e4a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Rogue\\RougelikeCombatReward.xlsx": "1f48e10920537ee48cde4fbb99b39d8016f77250ac38bb11949729c6dba00859",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\role_name\\RoleName.xlsx": "3cb5375db8ab63803cceb5b02f504d39397ad85dce2b8e4f3dfbfc49294428e5",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Rubik\\Craft.xlsx": "5bd92fc09102c7b1e1cfa7c16464ccef77717ce541b46ecd2565af406ee28910",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\ServerSave\\ServerSave.xlsx": "2ec625a76d9a2ebadc3a2e9165824692a66c6186232814118c1db37a35a3fec6",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\server_error_code\\CDKeyError.xlsx": "236c022a2303b5753897ca9957ca00f4a2e8cf3a2cb42a03931ca27225213068",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\server_error_code\\ServerErrorCode.xlsx": "547a6a045c64ef53b2887355093fdc9f159ccfe6f4f2c89eecd381f8e6b891e1",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\settings\\GameQualitySettings.xlsx": "c4a2c73adf0c34ddcb3108169175a89ebe7ec0efb261a4389193d74355c9ccf7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\share\\ShareConversationBg.xlsx": "e53cd408f67b6ae51e17b0ec7c5c955ec6fbf635739525f86380629f26ac4b3e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\ShardRecycle.xlsx": "520e8ed98e181563e1db1c85891ba2bf21aec92f5b206259f080ad16731f2970",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\Shop.xlsx": "00d59f8387c157dbfc4e318718839dd18c14f89737a2e247d312b158411b6ead",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\ShopGoods.xlsx": "e48be39b729be83f58ea1c77c7c49dbbe7b4df0a81cd85fc99aa330c17184cad",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\StrategyCardShop.xlsx": "3ebe397d92660386945d1fd4dd21f3f2434d96f5aeb2bb0923df35bec5503a04",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\DailySign.xlsx": "aa28d14e5abb333b9bad13c1f530878f1a3373d7426a15712796943537882fd5",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\MonthlyAccumulate.xlsx": "618e807948ff35c8377e3f4936286bccdfc42e1859cf4db8632540f435669f6e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\SevenDaySign.xlsx": "124dfefe48582ce43e44907d2fe9e215ac49df49b7a4a1cad2d3b317c1627856",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\SigninText.xlsx": "5862789ce9fc43a874915af20b1bd0cc35a30deb0a3cbf944940975815b01b64",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SignInReward\\TravelAccumulate.xlsx": "4d94b471522e9bb188a0ea54054a5a7157922b62ffff23f3736be723c9a94ba7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\Buff.xlsx": "ea8b072ccda6c430c93a00ad25aa73577912b8ea348f89309315c1a69e470e64",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\BuffIcon.xlsx": "bd3a3347dae90658bf1af5d6037a4608d4de2a206216da4b82915563baaabe15",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\Buff生成模版.xlsx": "ee0d12e03a3edd7795c938bc070698d2c1103dceb201bb8aa28e04149d43246f",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\Effect.xlsx": "36ee03eea9620383353e2a4f90726f4db5615597ae6ef94ee1eafc9e392d9394",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\LevelSkill.xlsx": "6731f7b0c41c1eef2e1ecde6061de4cd0531a1bc76227811689f662467aafe63",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\Skill.xlsx": "2be47219b90b2ef0cc4b84d2e60abe0e998c39fdcc7cf20f1192e193aaa27a19",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\SpecialBuff.xlsx": "2cdfcf01a3f96da83cc1238975892486fb99f776e57fed34e8beb67e5c6b24e2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skill\\TargetSkill.xlsx": "bc2f5e3d6f0f640f94405de400499794d909303d09e15d6229dd442847a5e2cd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skin\\ChatHeroFacialRes.xlsx": "14aba334e3c80ba10b49855cf7507a543727d7188b6a070e42ee76db7022669b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Skin\\Skin.xlsx": "a5a7f42b7c2a9391673f422e9b2d1fa32266c4509ef9335259e2789df40f9313",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SkinDraw\\SkinDraw.xlsx": "7183baa39ee925ba316cfc877a9e0290b02a8b84c2b6a99dfe3190bed63ce42b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SkinDraw\\SkinDrawCost.xlsx": "1767c2b830821bebb551cfe26926a59abd20da95ca7d155f18fb7d602e8c440e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SmallGame\\Fish.xlsx": "6812fcca75c981c2a4735b3eba956cd7e801350884d2855bafdb5ab327884b3b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SmallGame\\FishGroup.xlsx": "6ab71a3a2903f14925c158553f1e19c593de288dd2b74759291d22a489fed57e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SmallGame\\FruitNinja.xlsx": "ec8658e2c5b7480dd0cf5a76bfa8c02f5d28c258623dc3095208a6653c9354b5",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SmallGame\\HuaRongDao.xlsx": "2a8bb7581dff98bb18ddf40a886662278835da46d09bac3ea6a0ca62e0b8d8b7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SmallGame\\PipeConnect.xlsx": "9bb94025bc35ade8844d34ce7240bca9dcf9293f6a1f4e7712f71150bce7e73e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SmallGame\\Sokoban.xlsx": "9992eb68702318162116cc3bf1b41fc801364d6b109260fb564ec1f6f893508e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SmallGame\\WhackAGhost.xlsx": "8a0a45dce47b93dca488a6951577390b70a00c845c60a23afe2a89d1b4ebdfff",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Sound\\AudioMixerType.xlsx": "1087fb69e0ff9e8cc5d22081479bda5b914678ef28c58e8d0f40bc7c5fe6537d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Sound\\BGSound.xlsx": "f18c5897e24510dfb46264d92732ffb025f0276dc000d81067b6a2e342aaa4a6",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Sound\\LevelSound.xlsx": "b5ab8a15dfa7949faa5808a45356d37a93316c99878943b44b48dfb0ecd52030",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Sound\\RecordAlbum.xlsx": "d7e4d3c94da83fbedac10f41d9468eca09d0f9830d8c1327ffde2f5f9b967ccf",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Sound\\RecordPlayer.xlsx": "eca149790dd5bfba96b662ec6d52cbc404bb382eed444064f15f2abf98ae3045",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Sound\\Sounds.xlsx": "4c637d05df4aaffb95656263010ad1676f07a1392dd3189a0daeafd1fb8f75dc",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipment.xlsx": "75bc7d5c15ff0ce8d20935460e12769173be537049e4c6fd318b1953ee7668e1",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentChip.xlsx": "d592ef1fca76435d6ae3b7bc8abe6a16e430a6e3524d9c1d2fd75daa684d976a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentColor.xlsx": "b332c041bc4aba7f465c826576016f55aff3f049e6258a01691e21ea6a372089",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffect.xlsx": "456bd7032f9e57afd082c375da4197ab40f67f3b23e25b3ee4ed5c010d083acd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentEffectDrop.xlsx": "e3fd63d4f5083bfc51f8ef66ece8618497a21288628bbf7f4ee732c17479e7fd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentGem.xlsx": "50a5bf626bf3e4287d7c2b09c4480bd3788597e46c3d39a90034015d00ab48c6",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentGenerate.xlsx": "c8e97cef3ae1ebfedc2239dcfaa3fa967e765a243b5520d085039280a051f549",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentLvLimit.xlsx": "907e36ab278da98ad8dfb3067ac5f68ff37c124b9a9915c9132ab88b80082c7d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentLvUp.xlsx": "d1d6db33e04e2a954af25c154acf8b23f50707a42a96fa54844b6fce5af877b1",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentMain.xlsx": "16653ca928bb5790d93f0ed07c033d854faae7a4f5aa945caad55758a92a1970",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentPartFun.xlsx": "1f66be03a7fe9f4cd0eca031ddc2294eff4a62289a7508758e43ec79482945de",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentQuality.xlsx": "1c5925b9c55524453fb3dd6646005b5489fe11320b36b147f8922d01030eb1d2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\SpecialEquipmentSubAttrCoef.xlsx": "f9d5c40bd2221190719bfce86f7da4349d2090255eada3232ca134d792cbd9e8",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\PrimAttr.xlsx": "d62a8d74bee46c3950171c4be2ac4d5f70af0a098759f979e19b643bad3401f9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\PrimAttrWeight.xlsx": "40e6c8d108083070a5caba8470e5caa35cd2f88b23b9ee2a92815358455c679a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\SecAttr.xlsx": "b29feff9a7b3788b3f9f66280d8fe4651230efb60e97af8ebd037ecf872754d7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\SecAttrWeight.xlsx": "cd73709f9595a2b3c22db3c3d093a474615ca55777b397225abfc2adfe3161d2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\SetAttr.xlsx": "c52438fbcb630fdacbee30fc68d724a5e915e7696b63d2ad0e88b29de521fdab",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyCards.xlsx": "b0a9ab5a0847646f8e4113fb381b9fa6df35e3e183e283290137e2cc34ac0f20",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyLv.xlsx": "b362937054d4f8d82b694b77c6a71d0f02556d7219accad8760207bc57793e88",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyQuality.xlsx": "9fdedd05c3f19466d86ac04f39f06ed01b5576f358988b6161e4c50105bbd30b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyRecommendation.xlsx": "c287194ae41c01b370d51031a691fa6fda1b5967856ed2dd37aea32753e07c22",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategyResolve.xlsx": "dff74bbf2e0f0b8094017749429bb38b3147292be5c633e2dd78d0ebeaafea2f",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\strategy\\StrategySuits.xlsx": "ba54961f6dee5a3188344e0a5865ba142b4d823ae29bcecfc2d2559090235a4f",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\StringConst\\CSCodeString.xlsx": "1d30db59e5d648796f87bc1b87d94837eda6945cae513be92717947decb71b86",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\StringConst\\LuaCodeString.xlsx": "fff64abcd809e843de8c6c800d8553255a12416cd67b33f9a451afc2206ae11c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\StringConst\\StringConst.xlsx": "cbd67b6083094a7f4f645b57e0c1a99c203ce072abbace0aba4aba71d7c07344",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\Multifunctional.xlsx": "8a98fa6bf3245f372a7cb029e5cbc817bc34d83e178a9b6c1f4facddfac014ba",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpen.xlsx": "187570cd496e40ec6f7d345b0f49cd808da6b37d95f343bc6884cb121a7141eb",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\system_open\\SystemOpenTips.xlsx": "222a505f1d746009f12bf4fbb25365e0633d926a18fe7cc68e9c08212094c6d2",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\DailyActiveReward.xlsx": "8eb65b3b3bb8067ff15b92c025cfe421ef9cbcd9c8306865fd06e630a728b2e6",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\DailyTask.xlsx": "d6790b50749bfe3ac41c5f2dfbedb24f65d6342f26a0820ace6128fe11f9551b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Jottings.xlsx": "0a624d07d9f3838d4f0ce7b049879fe058787b80e648f7b2d68a746f93189270",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\JottingsTask.xlsx": "0a121dd54291ca8378fe4f113c2788fb0f919c3a06b80c37591a28b83cc3d7d0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\SystemGuideTask.xlsx": "4b065f3d206bb106989dfdf6dcf28e45845d9696371d0f5c4a749c6fb802e7dd",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Task.xlsx": "f26a0655312db79db0758ecf7fba1bf633434e68b78a4454f48da061eba1a367",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\TaskTarget.xlsx": "671d7498b9f8b04d053217c3af8e78d27f68a6b1367dd9c819e9eaff3c347b7e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\WeeklyReward.xlsx": "d5873c29418bfa37b4886eec3c888bbf39bede0ff0021e8e96372db3ead003cb",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\WeeklyTask.xlsx": "c0326a2be109e1ff9f7fb0867dd5983ec9e8201443acf82d9eda5949b88b018f",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Team\\Team.xlsx": "bb9074ea7e79a47525d7def011f1b183e31834db92a1c57e840a3e6ee47c7182",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Team\\TeamHero.xlsx": "0ee5ee22bbd31fea6b02837e4bfbfb03692a09e0f54050de60d88c2d7fd2abb6",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\BuffCalendar.xlsx": "47159e89912977d3e4ba5f48ae3a94e5f17d88acde05c401b759cbdbe9a32cc9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerBossAvatar.xlsx": "d8eca25dbc90388e25324cc3c479e5b9b90873d94fcdbff55252df413fa29ef8",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerBuff.xlsx": "0aba19e0b5bf642db23de1f1d5c97ab9691249a708d26b05b33fd7173f7732db",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerDebuff.xlsx": "c3c93e425f758c57c0765229b367ccbc7cb47ac1d2314d8cd6b0702d15ffd27d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerEnemyFormation.xlsx": "9e3976492e7ae62d3c553e3ab3330506e4077f89797fd42e60eda669a77cd2f4",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerFall.xlsx": "41ad8df52773ce50a1a9add5390ccf47666a824da52258d72ac53ab4edd8defc",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerFirstReward.xlsx": "dcd7d85a26d4f550d66c005d7dc607c5e86bc8fcc8b77da3c2769fb3d0a6a38d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerIdleRewards.xlsx": "4ac042ad1fa820c62ba00a554238c88b8b9424c74f7c08d0f846c392da2865d0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerLevelDebuff.xlsx": "3e69f32d68e462130fb9a3c766071ed981866a623097e9eff98ac509c421c7f7",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerLevelSeasonStage.xlsx": "28d764db56c42fd3c7ae9ac27ae0e9e4193b77802063bdc399865de1628b3e64",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerRankReward.xlsx": "049fa4afa78549b3e5406e0564d13dff97303389e36a278bc595937e99b6e0a0",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerReward.xlsx": "bca12f469c0972b3ff46caca55746ba40d223187e49d604d0c965c334828f565",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\TowerTrial\\TowerText.xlsx": "ae43b53288861022cfc5c5774fd11899423fab930a6ca629bb43f32a8c9a761b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Trade\\TradeBattleEvent.xlsx": "6347668d9346e09c3de61fd0533ae599c889d348e786b4ec7b91c005f624836a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Trade\\TradeEvent.xlsx": "6b96e561d031b79236232dbf0d849b0309d68a8b172e434dfaac3a97e34b97aa",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Trade\\TradeGoodsMarket.xlsx": "7a5651719f77f6149e0b22182f14618533d0218375cbddd9ace9a65094ac8a00",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Trade\\TradeLocation.xlsx": "e77067a5ebc399c09e2a6052d34ac68868cf5078243a3eb2f1449ef95bf2b902",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Trade\\TradeLvUp.xlsx": "5fcc48bca3934be81125fa243f794e87184184a684b631f08f48547da509943e",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\unlock\\Unlock.xlsx": "d6a6bd23a0cf73e1eb13cbf66cbfb1942365f56ed1ea1dd7c43a56a98449c43b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\unlock\\UnlockDesc.xlsx": "9f90bdba075baf1717259bc944d56b6ee74cb1ef343b2ab93b111ed9bc0a063b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\valuablebox\\Chest.xlsx": "1b761f32dc407ea7f161c16dfe30126b57fcc008c26633ddd0bcb223b055c5b3",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\valuablebox\\ValuableBox.xlsx": "704fe39535061cbae97c5da6109eaf7435450d9bce7110436f1f6456afa77ef3",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\videos\\OtherVideos.xlsx": "08ccb56551246bdbde4b8532c53c5bddb35c4585d52f0ca045257b45918edc8f",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\videos\\Videos.xlsx": "b95adf29cb321e92d6ccf6ded9cccedf1ac4d651083f167370d76ce6d4e78862",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\Barrier.xlsx": "b37bc17d56b6c0d980be55894ac42f01b496fa6556b535aae4f6a1a9994f4b07",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\CollectStation.xlsx": "e2eed74d817fd3436449edb26c7c4494bec9e40a8dec1e9356d590c42fe2834a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\Gain.xlsx": "3aa83da470fcde91b0832ce65b588818ee8029f921d40ff91b6d72c34c7ee3d8",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\Map.xlsx": "0b5d9e1043aed0d74f390eda4bc34dee6010d28a4c7786c7f11fd7974b406363",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\MapBuff.xlsx": "665a2aa95d29d8e0eed412a05e6424a9ff7abab2a75fdde4425f3e759688c42b",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\ReputationLvUp.xlsx": "b1b70c9355ce6ff0bd4743aab42ca7fa27913f65364890376581965f18812b53",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\SmallGame.xlsx": "4c1a613219ce12d07f48c850834ec8d54bb51c2a710063ece71e2012742e9964",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\World.xlsx": "2fe5c109640209c78050a4a43715490ef07275d2846f033d7bbca2d34ac6dd92",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\WorldChest.xlsx": "213e66cd7e61eff61dbd5f57bdbac70bbccf509c81569ea087b93277bc28a917",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\WorldCondition.xlsx": "7f7e74bccd2f798ebec31b3b806043a1b5d63f23590280461cb04d9901c54139",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\WorldScheduleReward.xlsx": "3b175632e13cf7062cac811c90d030b677f41a1c7497726258293b981b2fd0b9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\文本翻译\\TextTranslate.xlsx": "20b9ce39e41780cbb26ed649ce2db670d2474f3a1e37f988cc4f9adc698e85c9",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCard.xlsx": "963b7a1ead03a86fed7886fdf2a6f33c368dabb4c9c60f0484dc9f3e26e7e0bc",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCardAnimationSSR.xlsx": "eb3f6f17235e649ff8ed300bd86bdc76348616be8fc6252c06495530f3266404",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCardGoodsTip.xlsx": "f3b4aaacee71b247fdf8882657052041095e826e5262da19f14bddfa7fe11711",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCardPool.xlsx": "6c48e5794bb89cfb2d67e1a0cd31b1667c1e31c16f3fa75349fededd007d7749",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawCardWeight.xlsx": "9e51036fd53577c854be9611cd193a9f614c10eeab0eec21eaeb1f5cc9d65e14",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Activity\\DrawCard\\DrawSpecialChooseGacha.xlsx": "137f9b70a5be3016f3aba60ca153189685d72c1e059d77ba395b1db73d4f3bf4",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\Facility\\DeviceCraft.xlsx": "46dad5d7fced56505a4ee1412fb8d25a193a30c727757a196804ee0e3f61cf38",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\Facility\\DeviceLvUp.xlsx": "6a0573f3192f37f679c76604477502bd8ed44eb07e0139ace5b9831264bd8eff",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\Facility\\ExpExchange.xlsx": "273bb9222cc36c1f671d60a9d85208fdb4373ccaaa775daf264ca0b924b3d36a",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\Facility\\RvDevice.xlsx": "14e0162aa9a1b7ec58863d548abde37717304aaf6e8dd49b9d0db7dacbe60007",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\Portable\\PortableCompoundProb.xlsx": "9fb0943292cd58b56e1bfee5b56d86fceb8adf731299c979c5fb71a721ab2c04",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\Portable\\PortableCraftProb.xlsx": "b742acde8f85bfc9e056c54ff9197f48332c137beaed55f5973e8cf7ae66079c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\Portable\\PortableEquipCompound.xlsx": "b358587cbc213f7b0e58fe49d2c5a4d205978720fd637c8fdf7190f5cac55188",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\Portable\\PortableEquipCraft.xlsx": "40331b7ab7ef9c17fee17b9a0b43326f87f7f3139c5ce506c9d7b582d2b2d3f1",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\Portable\\PortableExp.xlsx": "049bd5ee9d15f44fb2e43c78b00afbcf28f2b6fe577350c1f9beb3426b0dce0c",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\Portable\\PortableLvUp.xlsx": "270000185090b8823f3b2e5901a236f3ead5bc5038d1ad92d7b61b1119bb8245",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\SpecialEquipment\\Portable\\PortableRange.xlsx": "ee6d7f585f055695e3b070cc64e67a6a5e6f962be8b9139da70f043cc519a05d",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\SmallGame\\WhackAMole.xlsx": "778458e86ca8c01bbf8ec2afb6612ea57e82c5c5d92de5c97f864a121431d2d5",
+    "D:\\Vgame\\Config\\GameConfig\\Datas\\WorldMap\\SmallGame\\WoodpeckerLevel.xlsx": "8134a11527fd74978f05f7c218e865ee938a07a5d6021eab4d0f4be30987bf4b"
+  },
+  "append_main_row": 1003,
+  "reports": [
+    {
+      "file": "任务/任务配置校验.json",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\任务\\任务配置校验.json",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\任务\\任务配置校验.json",
+      "sha256": null,
+      "stage_sha256": "d7c08a588d1782dc3e01c3af55b8461ae1f69975c0d70f44e2c56d14527fa1b9"
+    },
+    {
+      "file": "无限之旅/无限之旅配置校验.json",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\无限之旅\\无限之旅配置校验.json",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\无限之旅\\无限之旅配置校验.json",
+      "sha256": "67ab90cb6d9f93b8fc30ed57f7fea792774410d7b8e49108ce3861c05a00f7bb",
+      "stage_sha256": "4b736e2b762315706a18d5a2bf2827bca3212c9ff61e47c1f063c2d55824d15d"
+    },
+    {
+      "file": "主线高难/主线高难奖励配置校验.json",
+      "source": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\主线高难\\主线高难奖励配置校验.json",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射之匙任务_20260827\\backup\\主线高难\\主线高难奖励配置校验.json",
+      "sha256": "e0abca535ae868b7d0c7b5cc78ca3d439183b824a7a8831f9feb849d9d90550a",
+      "stage_sha256": "9223d057047cef3c66c842187176e96263b476b3390a2ee03c6cb79c97f3e6e2"
+    }
+  ]
+}

@@ -1,0 +1,4394 @@
+{
+  "revision": "CHG-019",
+  "generatedAt": "2026-08-27T03:00:38.426Z",
+  "output": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\映射装备",
+  "scope": "06候选镜像；未写入Datas",
+  "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\映射装备CHG019_候选备份\\20260827T030036",
+  "files": [
+    "Drop_dungeon.xlsx",
+    "Items.xlsx",
+    "UIlevel.xlsx",
+    "00_配置清单.xlsx"
+  ],
+  "dropRows": 696,
+  "newMainRows": 18,
+  "newBoxPreviewItems": 43,
+  "newMainPreviewItems": 2,
+  "newPreviewRange": [
+    4403,
+    4447
+  ],
+  "itemRows": 293,
+  "uiRows": 150,
+  "layers": [
+    {
+      "layer": 1,
+      "box": [
+        5150,
+        3000,
+        1850,
+        0,
+        0
+      ],
+      "mainHit": 0,
+      "main": [
+        1,
+        0,
+        0
+      ],
+      "tier": 10,
+      "grades": [
+        10,
+        5
+      ],
+      "pairs": [
+        {
+          "grade": 10,
+          "quality": 2,
+          "key": "10:2"
+        },
+        {
+          "grade": 5,
+          "quality": 1,
+          "key": "5:1"
+        },
+        {
+          "grade": 5,
+          "quality": 0,
+          "key": "5:0"
+        }
+      ],
+      "preview": "10级紫色 → 5级蓝色 → 5级绿色"
+    },
+    {
+      "layer": 2,
+      "box": [
+        5093,
+        2993,
+        1914,
+        0,
+        0
+      ],
+      "mainHit": 0,
+      "main": [
+        1,
+        0,
+        0
+      ],
+      "tier": 10,
+      "grades": [
+        10,
+        5
+      ],
+      "pairs": [
+        {
+          "grade": 10,
+          "quality": 2,
+          "key": "10:2"
+        },
+        {
+          "grade": 5,
+          "quality": 1,
+          "key": "5:1"
+        },
+        {
+          "grade": 5,
+          "quality": 0,
+          "key": "5:0"
+        }
+      ],
+      "preview": "10级紫色 → 5级蓝色 → 5级绿色"
+    },
+    {
+      "layer": 3,
+      "box": [
+        5036,
+        2986,
+        1978,
+        0,
+        0
+      ],
+      "mainHit": 0,
+      "main": [
+        1,
+        0,
+        0
+      ],
+      "tier": 10,
+      "grades": [
+        10,
+        5
+      ],
+      "pairs": [
+        {
+          "grade": 10,
+          "quality": 2,
+          "key": "10:2"
+        },
+        {
+          "grade": 5,
+          "quality": 1,
+          "key": "5:1"
+        },
+        {
+          "grade": 5,
+          "quality": 0,
+          "key": "5:0"
+        }
+      ],
+      "preview": "10级紫色 → 5级蓝色 → 5级绿色"
+    },
+    {
+      "layer": 4,
+      "box": [
+        4980,
+        2979,
+        2041,
+        0,
+        0
+      ],
+      "mainHit": 0,
+      "main": [
+        1,
+        0,
+        0
+      ],
+      "tier": 10,
+      "grades": [
+        10,
+        5
+      ],
+      "pairs": [
+        {
+          "grade": 10,
+          "quality": 2,
+          "key": "10:2",
+          "id": 4407
+        },
+        {
+          "grade": 5,
+          "quality": 1,
+          "key": "5:1",
+          "id": 4404
+        },
+        {
+          "grade": 5,
+          "quality": 0,
+          "key": "5:0"
+        }
+      ],
+      "preview": "10级紫色 → 5级蓝色 → 5级绿色"
+    },
+    {
+      "layer": 5,
+      "box": [
+        4923,
+        2972,
+        2105,
+        0,
+        0
+      ],
+      "mainHit": 0,
+      "main": [
+        1,
+        0,
+        0
+      ],
+      "tier": 10,
+      "grades": [
+        15,
+        10,
+        5
+      ],
+      "pairs": [
+        {
+          "grade": 15,
+          "quality": 2,
+          "key": "15:2"
+        },
+        {
+          "grade": 10,
+          "quality": 1,
+          "key": "10:1"
+        },
+        {
+          "grade": 5,
+          "quality": 0,
+          "key": "5:0"
+        }
+      ],
+      "preview": "15级紫色 → 10级蓝色 → 5级绿色"
+    },
+    {
+      "layer": 6,
+      "box": [
+        4865,
+        2966,
+        2169,
+        0,
+        0
+      ],
+      "mainHit": 0.2,
+      "main": [
+        1,
+        0,
+        0
+      ],
+      "tier": 10,
+      "grades": [
+        15,
+        10,
+        5
+      ],
+      "pairs": [
+        {
+          "grade": 15,
+          "quality": 2,
+          "key": "15:2"
+        },
+        {
+          "grade": 10,
+          "quality": 1,
+          "key": "10:1"
+        },
+        {
+          "grade": 5,
+          "quality": 0,
+          "key": "5:0"
+        }
+      ],
+      "preview": "15级紫色 → 10级蓝色 → 5级绿色"
+    },
+    {
+      "layer": 7,
+      "box": [
+        4808,
+        2959,
+        2233,
+        0,
+        0
+      ],
+      "mainHit": 0.21,
+      "main": [
+        1,
+        0,
+        0
+      ],
+      "tier": 10,
+      "grades": [
+        15,
+        10,
+        5
+      ],
+      "pairs": [
+        {
+          "grade": 15,
+          "quality": 2,
+          "key": "15:2",
+          "id": 4410
+        },
+        {
+          "grade": 10,
+          "quality": 1,
+          "key": "10:1",
+          "id": 4406
+        },
+        {
+          "grade": 5,
+          "quality": 0,
+          "key": "5:0",
+          "id": 4403
+        }
+      ],
+      "preview": "15级紫色 → 10级蓝色 → 5级绿色"
+    },
+    {
+      "layer": 8,
+      "box": [
+        4751,
+        2952,
+        2297,
+        0,
+        0
+      ],
+      "mainHit": 0.22,
+      "main": [
+        1,
+        0,
+        0
+      ],
+      "tier": 10,
+      "grades": [
+        20,
+        15,
+        10
+      ],
+      "pairs": [
+        {
+          "grade": 20,
+          "quality": 2,
+          "key": "20:2"
+        },
+        {
+          "grade": 15,
+          "quality": 1,
+          "key": "15:1"
+        },
+        {
+          "grade": 10,
+          "quality": 0,
+          "key": "10:0"
+        }
+      ],
+      "preview": "20级紫色 → 15级蓝色 → 10级绿色"
+    },
+    {
+      "layer": 9,
+      "box": [
+        4695,
+        2945,
+        2360,
+        0,
+        0
+      ],
+      "mainHit": 0.23,
+      "main": [
+        1,
+        0,
+        0
+      ],
+      "tier": 20,
+      "grades": [
+        20,
+        15,
+        10
+      ],
+      "pairs": [
+        {
+          "grade": 20,
+          "quality": 2,
+          "key": "20:2"
+        },
+        {
+          "grade": 15,
+          "quality": 1,
+          "key": "15:1"
+        },
+        {
+          "grade": 10,
+          "quality": 0,
+          "key": "10:0",
+          "id": 4405
+        }
+      ],
+      "preview": "20级紫色 → 15级蓝色 → 10级绿色"
+    },
+    {
+      "layer": 10,
+      "box": [
+        4538,
+        2938,
+        2424,
+        100,
+        0
+      ],
+      "mainHit": 0.24,
+      "main": [
+        0.985,
+        0.015,
+        0
+      ],
+      "tier": 30,
+      "grades": [
+        25,
+        20,
+        15
+      ],
+      "pairs": [
+        {
+          "grade": 25,
+          "quality": 3,
+          "key": "25:3"
+        },
+        {
+          "grade": 20,
+          "quality": 2,
+          "key": "20:2"
+        },
+        {
+          "grade": 15,
+          "quality": 1,
+          "key": "15:1"
+        },
+        {
+          "grade": 15,
+          "quality": 0,
+          "key": "15:0"
+        }
+      ],
+      "preview": "25级金色 → 20级紫色 → 15级蓝色 → 15级绿色"
+    },
+    {
+      "layer": 11,
+      "box": [
+        4391,
+        2931,
+        2553,
+        125,
+        0
+      ],
+      "mainHit": 0.25,
+      "main": [
+        0.98175,
+        0.01825,
+        0
+      ],
+      "tier": 30,
+      "grades": [
+        25,
+        20,
+        15
+      ],
+      "pairs": [
+        {
+          "grade": 25,
+          "quality": 3,
+          "key": "25:3",
+          "id": 4417
+        },
+        {
+          "grade": 20,
+          "quality": 2,
+          "key": "20:2",
+          "id": 4413
+        },
+        {
+          "grade": 15,
+          "quality": 1,
+          "key": "15:1",
+          "id": 4409
+        },
+        {
+          "grade": 15,
+          "quality": 0,
+          "key": "15:0",
+          "id": 4408
+        }
+      ],
+      "preview": "25级金色 → 20级紫色 → 15级蓝色 → 15级绿色"
+    },
+    {
+      "layer": 12,
+      "box": [
+        4244,
+        2924,
+        2682,
+        150,
+        0
+      ],
+      "mainHit": 0.26,
+      "main": [
+        0.9785,
+        0.0215,
+        0
+      ],
+      "tier": 30,
+      "grades": [
+        30,
+        25,
+        20
+      ],
+      "pairs": [
+        {
+          "grade": 30,
+          "quality": 3,
+          "key": "30:3"
+        },
+        {
+          "grade": 25,
+          "quality": 2,
+          "key": "25:2"
+        },
+        {
+          "grade": 20,
+          "quality": 1,
+          "key": "20:1"
+        },
+        {
+          "grade": 20,
+          "quality": 0,
+          "key": "20:0"
+        }
+      ],
+      "preview": "30级金色 → 25级紫色 → 20级蓝色 → 20级绿色"
+    },
+    {
+      "layer": 13,
+      "box": [
+        4097,
+        2917,
+        2811,
+        175,
+        0
+      ],
+      "mainHit": 0.27,
+      "main": [
+        0.97525,
+        0.02475,
+        0
+      ],
+      "tier": 30,
+      "grades": [
+        30,
+        25,
+        20
+      ],
+      "pairs": [
+        {
+          "grade": 30,
+          "quality": 3,
+          "key": "30:3",
+          "id": 4421
+        },
+        {
+          "grade": 25,
+          "quality": 2,
+          "key": "25:2",
+          "id": 4416
+        },
+        {
+          "grade": 20,
+          "quality": 1,
+          "key": "20:1",
+          "id": 4412
+        },
+        {
+          "grade": 20,
+          "quality": 0,
+          "key": "20:0",
+          "id": 4411
+        }
+      ],
+      "preview": "30级金色 → 25级紫色 → 20级蓝色 → 20级绿色"
+    },
+    {
+      "layer": 14,
+      "box": [
+        3951,
+        2910,
+        2939,
+        200,
+        0
+      ],
+      "mainHit": 0.28,
+      "main": [
+        0.972,
+        0.028,
+        0
+      ],
+      "tier": 30,
+      "grades": [
+        35,
+        30,
+        25
+      ],
+      "pairs": [
+        {
+          "grade": 35,
+          "quality": 3,
+          "key": "35:3"
+        },
+        {
+          "grade": 30,
+          "quality": 2,
+          "key": "30:2"
+        },
+        {
+          "grade": 25,
+          "quality": 1,
+          "key": "25:1"
+        },
+        {
+          "grade": 25,
+          "quality": 0,
+          "key": "25:0"
+        }
+      ],
+      "preview": "35级金色 → 30级紫色 → 25级蓝色 → 25级绿色"
+    },
+    {
+      "layer": 15,
+      "box": [
+        3804,
+        2903,
+        3068,
+        225,
+        0
+      ],
+      "mainHit": 0.29,
+      "main": [
+        0.96875,
+        0.03125,
+        0
+      ],
+      "tier": 30,
+      "grades": [
+        35,
+        30,
+        25
+      ],
+      "pairs": [
+        {
+          "grade": 35,
+          "quality": 3,
+          "key": "35:3",
+          "id": 4425
+        },
+        {
+          "grade": 30,
+          "quality": 2,
+          "key": "30:2",
+          "id": 4420
+        },
+        {
+          "grade": 25,
+          "quality": 1,
+          "key": "25:1",
+          "id": 4415
+        },
+        {
+          "grade": 25,
+          "quality": 0,
+          "key": "25:0",
+          "id": 4414
+        }
+      ],
+      "preview": "35级金色 → 30级紫色 → 25级蓝色 → 25级绿色"
+    },
+    {
+      "layer": 16,
+      "box": [
+        3656,
+        2897,
+        3197,
+        250,
+        0
+      ],
+      "mainHit": 0.3,
+      "main": [
+        0.9655,
+        0.0345,
+        0
+      ],
+      "tier": 40,
+      "grades": [
+        40,
+        35,
+        30
+      ],
+      "pairs": [
+        {
+          "grade": 40,
+          "quality": 3,
+          "key": "40:3"
+        },
+        {
+          "grade": 35,
+          "quality": 2,
+          "key": "35:2"
+        },
+        {
+          "grade": 30,
+          "quality": 1,
+          "key": "30:1"
+        },
+        {
+          "grade": 30,
+          "quality": 0,
+          "key": "30:0"
+        }
+      ],
+      "preview": "40级金色 → 35级紫色 → 30级蓝色 → 30级绿色"
+    },
+    {
+      "layer": 17,
+      "box": [
+        3509,
+        2890,
+        3326,
+        275,
+        0
+      ],
+      "mainHit": 0.31,
+      "main": [
+        0.96225,
+        0.03775,
+        0
+      ],
+      "tier": 40,
+      "grades": [
+        40,
+        35,
+        30
+      ],
+      "pairs": [
+        {
+          "grade": 40,
+          "quality": 3,
+          "key": "40:3",
+          "id": 4429
+        },
+        {
+          "grade": 35,
+          "quality": 2,
+          "key": "35:2",
+          "id": 4424
+        },
+        {
+          "grade": 30,
+          "quality": 1,
+          "key": "30:1",
+          "id": 4419
+        },
+        {
+          "grade": 30,
+          "quality": 0,
+          "key": "30:0",
+          "id": 4418
+        }
+      ],
+      "preview": "40级金色 → 35级紫色 → 30级蓝色 → 30级绿色"
+    },
+    {
+      "layer": 18,
+      "box": [
+        3363,
+        2883,
+        3454,
+        300,
+        0
+      ],
+      "mainHit": 0.32,
+      "main": [
+        0.959,
+        0.041,
+        0
+      ],
+      "tier": 40,
+      "grades": [
+        45,
+        40,
+        35
+      ],
+      "pairs": [
+        {
+          "grade": 45,
+          "quality": 3,
+          "key": "45:3"
+        },
+        {
+          "grade": 40,
+          "quality": 2,
+          "key": "40:2"
+        },
+        {
+          "grade": 35,
+          "quality": 1,
+          "key": "35:1"
+        },
+        {
+          "grade": 35,
+          "quality": 0,
+          "key": "35:0"
+        }
+      ],
+      "preview": "45级金色 → 40级紫色 → 35级蓝色 → 35级绿色"
+    },
+    {
+      "layer": 19,
+      "box": [
+        3216,
+        2876,
+        3583,
+        325,
+        0
+      ],
+      "mainHit": 0.33,
+      "main": [
+        0.95575,
+        0.04425,
+        0
+      ],
+      "tier": 40,
+      "grades": [
+        45,
+        40,
+        35
+      ],
+      "pairs": [
+        {
+          "grade": 45,
+          "quality": 3,
+          "key": "45:3"
+        },
+        {
+          "grade": 40,
+          "quality": 2,
+          "key": "40:2",
+          "id": 4428
+        },
+        {
+          "grade": 35,
+          "quality": 1,
+          "key": "35:1",
+          "id": 4423
+        },
+        {
+          "grade": 35,
+          "quality": 0,
+          "key": "35:0",
+          "id": 4422
+        }
+      ],
+      "preview": "45级金色 → 40级紫色 → 35级蓝色 → 35级绿色"
+    },
+    {
+      "layer": 20,
+      "box": [
+        3019,
+        2869,
+        3732,
+        350,
+        30
+      ],
+      "mainHit": 0.34,
+      "main": [
+        0.9475,
+        0.0475,
+        0.005
+      ],
+      "tier": 40,
+      "grades": [
+        50,
+        45,
+        40
+      ],
+      "pairs": [
+        {
+          "grade": 50,
+          "quality": 4,
+          "key": "50:4"
+        },
+        {
+          "grade": 45,
+          "quality": 3,
+          "key": "45:3"
+        },
+        {
+          "grade": 45,
+          "quality": 2,
+          "key": "45:2"
+        },
+        {
+          "grade": 40,
+          "quality": 1,
+          "key": "40:1"
+        },
+        {
+          "grade": 40,
+          "quality": 0,
+          "key": "40:0"
+        }
+      ],
+      "preview": "50级红色 → 45级金色 → 45级紫色 → 40级蓝色 → 40级绿色"
+    },
+    {
+      "layer": 21,
+      "box": [
+        2837,
+        2862,
+        3884,
+        375,
+        42
+      ],
+      "mainHit": 0.35,
+      "main": [
+        0.94325,
+        0.05075,
+        0.006
+      ],
+      "tier": 40,
+      "grades": [
+        50,
+        45,
+        40
+      ],
+      "pairs": [
+        {
+          "grade": 50,
+          "quality": 4,
+          "key": "50:4",
+          "id": 4438
+        },
+        {
+          "grade": 45,
+          "quality": 3,
+          "key": "45:3",
+          "id": 4433
+        },
+        {
+          "grade": 45,
+          "quality": 2,
+          "key": "45:2",
+          "id": 4432
+        },
+        {
+          "grade": 40,
+          "quality": 1,
+          "key": "40:1",
+          "id": 4427
+        },
+        {
+          "grade": 40,
+          "quality": 0,
+          "key": "40:0",
+          "id": 4426
+        }
+      ],
+      "preview": "50级红色 → 45级金色 → 45级紫色 → 40级蓝色 → 40级绿色"
+    },
+    {
+      "layer": 22,
+      "box": [
+        2655,
+        2855,
+        4036,
+        400,
+        54
+      ],
+      "mainHit": 0.36,
+      "main": [
+        0.939,
+        0.054,
+        0.007
+      ],
+      "tier": 45,
+      "grades": [
+        55,
+        50,
+        45
+      ],
+      "pairs": [
+        {
+          "grade": 55,
+          "quality": 4,
+          "key": "55:4"
+        },
+        {
+          "grade": 50,
+          "quality": 3,
+          "key": "50:3"
+        },
+        {
+          "grade": 50,
+          "quality": 2,
+          "key": "50:2"
+        },
+        {
+          "grade": 45,
+          "quality": 1,
+          "key": "45:1"
+        },
+        {
+          "grade": 45,
+          "quality": 0,
+          "key": "45:0"
+        }
+      ],
+      "preview": "55级红色 → 50级金色 → 50级紫色 → 45级蓝色 → 45级绿色"
+    },
+    {
+      "layer": 23,
+      "box": [
+        2474,
+        2848,
+        4187,
+        425,
+        66
+      ],
+      "mainHit": 0.37,
+      "main": [
+        0.93475,
+        0.05725,
+        0.008
+      ],
+      "tier": 45,
+      "grades": [
+        55,
+        50,
+        45
+      ],
+      "pairs": [
+        {
+          "grade": 55,
+          "quality": 4,
+          "key": "55:4",
+          "id": 4443
+        },
+        {
+          "grade": 50,
+          "quality": 3,
+          "key": "50:3",
+          "id": 4437
+        },
+        {
+          "grade": 50,
+          "quality": 2,
+          "key": "50:2",
+          "id": 4436
+        },
+        {
+          "grade": 45,
+          "quality": 1,
+          "key": "45:1",
+          "id": 4431
+        },
+        {
+          "grade": 45,
+          "quality": 0,
+          "key": "45:0",
+          "id": 4430
+        }
+      ],
+      "preview": "55级红色 → 50级金色 → 50级紫色 → 45级蓝色 → 45级绿色"
+    },
+    {
+      "layer": 24,
+      "box": [
+        2292,
+        2841,
+        4339,
+        450,
+        78
+      ],
+      "mainHit": 0.38,
+      "main": [
+        0.9305,
+        0.0605,
+        0.009
+      ],
+      "tier": 45,
+      "grades": [
+        60,
+        55,
+        50
+      ],
+      "pairs": [
+        {
+          "grade": 60,
+          "quality": 4,
+          "key": "60:4"
+        },
+        {
+          "grade": 55,
+          "quality": 3,
+          "key": "55:3"
+        },
+        {
+          "grade": 55,
+          "quality": 2,
+          "key": "55:2"
+        },
+        {
+          "grade": 50,
+          "quality": 1,
+          "key": "50:1"
+        },
+        {
+          "grade": 50,
+          "quality": 0,
+          "key": "50:0"
+        }
+      ],
+      "preview": "60级红色 → 55级金色 → 55级紫色 → 50级蓝色 → 50级绿色"
+    },
+    {
+      "layer": 25,
+      "box": [
+        2110,
+        2834,
+        4491,
+        475,
+        90
+      ],
+      "mainHit": 0.39,
+      "main": [
+        0.92625,
+        0.06375,
+        0.01
+      ],
+      "tier": 50,
+      "grades": [
+        60,
+        55,
+        50
+      ],
+      "pairs": [
+        {
+          "grade": 60,
+          "quality": 4,
+          "key": "60:4"
+        },
+        {
+          "grade": 55,
+          "quality": 3,
+          "key": "55:3"
+        },
+        {
+          "grade": 55,
+          "quality": 2,
+          "key": "55:2"
+        },
+        {
+          "grade": 50,
+          "quality": 1,
+          "key": "50:1"
+        },
+        {
+          "grade": 50,
+          "quality": 0,
+          "key": "50:0"
+        }
+      ],
+      "preview": "60级红色 → 55级金色 → 55级紫色 → 50级蓝色 → 50级绿色"
+    },
+    {
+      "layer": 26,
+      "box": [
+        1927,
+        2828,
+        4643,
+        500,
+        102
+      ],
+      "mainHit": 0.4,
+      "main": [
+        0.922,
+        0.067,
+        0.011
+      ],
+      "tier": 50,
+      "grades": [
+        60,
+        55,
+        50
+      ],
+      "pairs": [
+        {
+          "grade": 60,
+          "quality": 4,
+          "key": "60:4"
+        },
+        {
+          "grade": 55,
+          "quality": 3,
+          "key": "55:3",
+          "id": 4442
+        },
+        {
+          "grade": 55,
+          "quality": 2,
+          "key": "55:2"
+        },
+        {
+          "grade": 50,
+          "quality": 1,
+          "key": "50:1",
+          "id": 4435
+        },
+        {
+          "grade": 50,
+          "quality": 0,
+          "key": "50:0",
+          "id": 4434
+        }
+      ],
+      "preview": "60级红色 → 55级金色 → 55级紫色 → 50级蓝色 → 50级绿色"
+    },
+    {
+      "layer": 27,
+      "box": [
+        1745,
+        2821,
+        4795,
+        525,
+        114
+      ],
+      "mainHit": 0.41,
+      "main": [
+        0.91775,
+        0.07025,
+        0.012
+      ],
+      "tier": 55,
+      "grades": [
+        60,
+        55
+      ],
+      "pairs": [
+        {
+          "grade": 60,
+          "quality": 4,
+          "key": "60:4"
+        },
+        {
+          "grade": 60,
+          "quality": 3,
+          "key": "60:3"
+        },
+        {
+          "grade": 55,
+          "quality": 2,
+          "key": "55:2"
+        },
+        {
+          "grade": 55,
+          "quality": 1,
+          "key": "55:1"
+        },
+        {
+          "grade": 55,
+          "quality": 0,
+          "key": "55:0"
+        }
+      ],
+      "preview": "60级红色 → 60级金色 → 55级紫色 → 55级蓝色 → 55级绿色"
+    },
+    {
+      "layer": 28,
+      "box": [
+        1564,
+        2814,
+        4946,
+        550,
+        126
+      ],
+      "mainHit": 0.42,
+      "main": [
+        0.9135,
+        0.0735,
+        0.013
+      ],
+      "tier": 55,
+      "grades": [
+        60,
+        55
+      ],
+      "pairs": [
+        {
+          "grade": 60,
+          "quality": 4,
+          "key": "60:4"
+        },
+        {
+          "grade": 60,
+          "quality": 3,
+          "key": "60:3"
+        },
+        {
+          "grade": 55,
+          "quality": 2,
+          "key": "55:2"
+        },
+        {
+          "grade": 55,
+          "quality": 1,
+          "key": "55:1"
+        },
+        {
+          "grade": 55,
+          "quality": 0,
+          "key": "55:0"
+        }
+      ],
+      "preview": "60级红色 → 60级金色 → 55级紫色 → 55级蓝色 → 55级绿色"
+    },
+    {
+      "layer": 29,
+      "box": [
+        1382,
+        2807,
+        5098,
+        575,
+        138
+      ],
+      "mainHit": 0.43,
+      "main": [
+        0.90925,
+        0.07675,
+        0.014
+      ],
+      "tier": 60,
+      "grades": [
+        60,
+        55
+      ],
+      "pairs": [
+        {
+          "grade": 60,
+          "quality": 4,
+          "key": "60:4"
+        },
+        {
+          "grade": 60,
+          "quality": 3,
+          "key": "60:3"
+        },
+        {
+          "grade": 55,
+          "quality": 2,
+          "key": "55:2"
+        },
+        {
+          "grade": 55,
+          "quality": 1,
+          "key": "55:1"
+        },
+        {
+          "grade": 55,
+          "quality": 0,
+          "key": "55:0"
+        }
+      ],
+      "preview": "60级红色 → 60级金色 → 55级紫色 → 55级蓝色 → 55级绿色"
+    },
+    {
+      "layer": 30,
+      "box": [
+        1200,
+        2800,
+        5250,
+        600,
+        150
+      ],
+      "mainHit": 0.45,
+      "main": [
+        0.905,
+        0.08,
+        0.015
+      ],
+      "tier": 60,
+      "grades": [
+        60,
+        55
+      ],
+      "pairs": [
+        {
+          "grade": 60,
+          "quality": 4,
+          "key": "60:4",
+          "id": 4445
+        },
+        {
+          "grade": 60,
+          "quality": 3,
+          "key": "60:3",
+          "id": 4444
+        },
+        {
+          "grade": 55,
+          "quality": 2,
+          "key": "55:2",
+          "id": 4441
+        },
+        {
+          "grade": 55,
+          "quality": 1,
+          "key": "55:1",
+          "id": 4440
+        },
+        {
+          "grade": 55,
+          "quality": 0,
+          "key": "55:0",
+          "id": 4439
+        }
+      ],
+      "preview": "60级红色 → 60级金色 → 55级紫色 → 55级蓝色 → 55级绿色"
+    }
+  ],
+  "checks": [
+    {
+      "name": "L1 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L1 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L1 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L2 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L2 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L2 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L3 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L3 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L3 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L4 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L4 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L4 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L5 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L5 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L5 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L6 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L6 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L6 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L7 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L7 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L7 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L8 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L8 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L8 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L9 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L9 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L9 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 item1098 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 item1099 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 item1101 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 item1102 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 item1104 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 item1105 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 item1098 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 item1099 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 item1101 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 item1102 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 item1104 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 item1105 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 item1098 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 item1099 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 item1101 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 item1102 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 item1104 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 item1105 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 item1098 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 item1099 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 item1101 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 item1102 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 item1104 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 item1105 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 item1098 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 item1099 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 item1101 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 item1102 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 item1104 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 item1105 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 item1098 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 item1099 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 item1101 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 item1102 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 item1104 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 item1105 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 item1107 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 item1108 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 item1110 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 item1111 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 item1113 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 item1114 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 item1107 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 item1108 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 item1110 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 item1111 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 item1113 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 item1114 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 item1107 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 item1108 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 item1110 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 item1111 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 item1113 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 item1114 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 item1107 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 item1108 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 item1110 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 item1111 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 item1113 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 item1114 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 item1107 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 item1108 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 item1109 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 item1110 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 item1111 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 item1112 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 item1113 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 item1114 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 item1115 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 item1107 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 item1108 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 item1109 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 item1110 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 item1111 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 item1112 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 item1113 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 item1114 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 item1115 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 item1116 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 item1117 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 item1118 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 item1119 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 item1120 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 item1121 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 item1122 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 item1123 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 item1124 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 item1116 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 item1117 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 item1118 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 item1119 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 item1120 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 item1121 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 item1122 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 item1123 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 item1124 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 item1116 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 item1117 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 item1118 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 item1119 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 item1120 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 item1121 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 item1122 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 item1123 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 item1124 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 item1125 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 item1126 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 item1127 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 item1128 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 item1129 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 item1130 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 item1131 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 item1132 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 item1133 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 item1125 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 item1126 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 item1127 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 item1128 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 item1129 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 item1130 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 item1131 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 item1132 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 item1133 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 item1134 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 item1135 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 item1136 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 item1137 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 item1138 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 item1139 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 item1140 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 item1141 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 item1142 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 item1134 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 item1135 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 item1136 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 item1137 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 item1138 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 item1139 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 item1140 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 item1141 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 item1142 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 extra weights exact",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 item1143 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 item1144 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 item1145 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 item1146 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 item1147 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 item1148 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 item1149 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 item1150 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 item1151 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 fixed box shape",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 fixed weights",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 extra chance baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 main hit baseline",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 item1143 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 item1144 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 item1145 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 item1146 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 item1147 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 item1148 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 item1149 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 item1150 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 item1151 exact integer",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 main total",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000010",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000011",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000012",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000013",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000014",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000015",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000016",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000017",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000018",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000019",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000020",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000021",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000022",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000023",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000024",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000025",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000026",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000027",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000028",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000029",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000030",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000031",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000032",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000033",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000034",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000035",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000036",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000037",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000038",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20000039",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005101",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005102",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005103",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005104",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005105",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005106",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005107",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005108",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005109",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005110",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005111",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005112",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005113",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005114",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005115",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005116",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005117",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005118",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005119",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005120",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005121",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005122",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005123",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005124",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005125",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005126",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005127",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005128",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005129",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 20005130",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 22306",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 22307",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 22308",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 22309",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 22400",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 22451",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 22452",
+      "result": "PASS"
+    },
+    {
+      "name": "unchanged DropId 22453",
+      "result": "PASS"
+    },
+    {
+      "name": "Drop candidate row count 696",
+      "result": "PASS"
+    },
+    {
+      "name": "18 added records against original pre-CHG019 mirror",
+      "result": "PASS"
+    },
+    {
+      "name": "L1 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L2 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L3 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L4 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L5 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L6 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L7 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L8 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L9 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 five same grade pools",
+      "result": "PASS"
+    },
+    {
+      "name": "L1 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L2 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L3 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L4 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L5 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L6 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L7 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L8 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L9 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L10 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L11 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L12 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L13 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L14 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L15 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L16 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L17 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L18 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L19 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L20 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L21 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L22 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L23 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L24 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L25 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L26 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L27 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L28 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L29 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "L30 all grades represented",
+      "result": "PASS"
+    },
+    {
+      "name": "all item IDs unique",
+      "result": "PASS"
+    },
+    {
+      "name": "preview IDs never occur in real Drop",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250011 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250011 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250012 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250012 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250013 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250013 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250014 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250014 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250015 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250015 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250021 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250021 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250022 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250022 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250023 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250023 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250024 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250024 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250025 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250025 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250031 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250031 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250032 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250032 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250033 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250033 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250034 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250034 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250035 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250035 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250041 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250041 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250042 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250042 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250043 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250043 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250044 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250044 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250045 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250045 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250051 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250051 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250052 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250052 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250053 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250053 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250054 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250054 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250055 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250055 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250061 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250061 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250062 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250062 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250063 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250063 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250064 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250064 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250065 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250065 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250071 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250071 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250072 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250072 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250073 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250073 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250074 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250074 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250075 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250075 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250081 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250081 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250082 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250082 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250083 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250083 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250084 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250084 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250085 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250085 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250091 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250091 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250092 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250092 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250093 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250093 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250094 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250094 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250095 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250095 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250101 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250101 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250102 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250102 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250103 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250103 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250104 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250104 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250105 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250105 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250111 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250111 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250112 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250112 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250113 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250113 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250114 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250114 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250115 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250115 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250121 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250121 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250122 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250122 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250123 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250123 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250124 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250124 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250125 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250125 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250131 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250131 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250132 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250132 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250133 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250133 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250134 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250134 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250135 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250135 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250141 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250141 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250142 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250142 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250143 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250143 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250144 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250144 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250145 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250145 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250151 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250151 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250152 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250152 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250153 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250153 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250154 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250154 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250155 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250155 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250161 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250161 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250162 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250162 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250163 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250163 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250164 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250164 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250165 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250165 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250171 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250171 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250172 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250172 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250173 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250173 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250174 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250174 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250175 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250175 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250181 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250181 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250182 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250182 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250183 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250183 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250184 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250184 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250185 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250185 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250191 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250191 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250192 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250192 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250193 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250193 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250194 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250194 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250195 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250195 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250201 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250201 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250202 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250202 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250203 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250203 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250204 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250204 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250205 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250205 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250211 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250211 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250212 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250212 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250213 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250213 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250214 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250214 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250215 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250215 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250221 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250221 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250222 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250222 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250223 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250223 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250224 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250224 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250225 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250225 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250231 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250231 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250232 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250232 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250233 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250233 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250234 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250234 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250235 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250235 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250241 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250241 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250242 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250242 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250243 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250243 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250244 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250244 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250245 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250245 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250251 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250251 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250252 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250252 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250253 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250253 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250254 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250254 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250255 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250255 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250261 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250261 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250262 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250262 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250263 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250263 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250264 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250264 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250265 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250265 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250271 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250271 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250272 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250272 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250273 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250273 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250274 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250274 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250275 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250275 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250281 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250281 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250282 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250282 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250283 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250283 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250284 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250284 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250285 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250285 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250291 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250291 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250292 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250292 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250293 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250293 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250294 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250294 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250295 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250295 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250301 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250301 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250302 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250302 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250303 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250303 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250304 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250304 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250305 valid references",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 250305 only Reward Des changed",
+      "result": "PASS"
+    },
+    {
+      "name": "UI 150 rows",
+      "result": "PASS"
+    },
+    {
+      "name": "user example 60red 60gold 55purple 55blue 55green",
+      "result": "PASS"
+    }
+  ]
+}

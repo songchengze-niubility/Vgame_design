@@ -1,0 +1,5 @@
+node_modules/
+preflight.json
+previews/
+staged/
+*.inspect.ndjson

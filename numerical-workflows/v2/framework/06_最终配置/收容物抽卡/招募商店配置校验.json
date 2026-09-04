@@ -1,0 +1,44 @@
+{
+  "module": "recruitment_shop",
+  "updated_at": "2026-08-07",
+  "status": "VALUE_READY_RUNTIME_CHECK",
+  "target_workbook": "D:\\数值文档\\数值文档\\框架v2\\06_最终配置\\收容物抽卡\\ShopGoods.xlsx",
+  "source_workbook": "D:\\Vgame\\Config\\GameConfig\\Datas\\Shop\\ShopGoods.xlsx",
+  "source_datas_modified": false,
+  "shop_id": 1107,
+  "currency": {
+    "premium": {"item_id": 21, "name": "印象余音"},
+    "basic": {"item_id": 22, "name": "残留余响"}
+  },
+  "summary": {
+    "enabled_goods": 19,
+    "disabled_historical_goods": 3,
+    "direct_purchase_goods": 1,
+    "premium_limited_monthly_cost": 335,
+    "basic_monthly_cost": 4960
+  },
+  "disabled_ids": [1107002, 1107007, 1107014],
+  "new_ids": [1107015, 1107016, 1107017, 1107018, 1107019, 1107020, 1107021, 1107022],
+  "design_aliases": {
+    "攻略笔记Ⅱ": {"item_id": 35, "current_item_name": "定位透镜"},
+    "攻略笔记Ⅲ": {"item_id": 36, "current_item_name": "铭刻印章"}
+  },
+  "checks": {
+    "workbook_reopen": "PASS",
+    "formula_count": 0,
+    "goods_id_unique": "PASS",
+    "new_ids_unused_in_current_source": "PASS",
+    "item_references_exist": "PASS",
+    "enabled_107_single_goods": 0,
+    "enabled_107_triple_goods": 2,
+    "spray_1107014_disabled": "PASS",
+    "premium_monthly_arithmetic": "35*6+20*2+40*1+2*15+3*5=335",
+    "basic_monthly_arithmetic": "60*10+60*5+60*15+8*100+8*30+8*30+8*100+40*10+40*10+8*20+12*10=4960"
+  },
+  "runtime_checks_pending": [
+    "Luban导出后确认ShopGoods逻辑表目标ID与字段类型",
+    "客户端招募商店排序、月限购刷新和售罄表现",
+    "定位透镜/铭刻印章策划别名与最终UI文案统一",
+    "限时旅券过期或转换规则另行确认"
+  ]
+}

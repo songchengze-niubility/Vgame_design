@@ -1,0 +1,214 @@
+{
+  "batch": "ARENA-RANK-DESC-CHG011-SVN",
+  "created": "2026-08-31T10:59:42.483844",
+  "svn_dir": "D:\\Vgame\\Config\\GameConfig\\Datas\\task",
+  "files": [
+    {
+      "file": "task/Task.xlsx",
+      "source": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Task.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\七日竞技场段位描述CHG011_20260831\\backup-svn\\task\\Task.xlsx",
+      "sha256_before": "5cc2e4acface9a62dbfc06383c182bd10947b6736423de755eaf280a0757ea78",
+      "edits": [
+        {
+          "sheet": "Task",
+          "row": 261,
+          "col": 3,
+          "field": "TaskName",
+          "task_id": 5105,
+          "old": "竞技场历史最高达到1100分",
+          "new": "竞技场历史最高达到黄金Ⅱ"
+        },
+        {
+          "sheet": "Task",
+          "row": 261,
+          "col": 4,
+          "field": "TaskDesc",
+          "task_id": 5105,
+          "old": "竞技场历史最高达到1100分",
+          "new": "竞技场历史最高达到黄金Ⅱ"
+        },
+        {
+          "sheet": "Task",
+          "row": 271,
+          "col": 3,
+          "field": "TaskName",
+          "task_id": 5205,
+          "old": "竞技场历史最高达到1200分",
+          "new": "竞技场历史最高达到黄金Ⅰ"
+        },
+        {
+          "sheet": "Task",
+          "row": 271,
+          "col": 4,
+          "field": "TaskDesc",
+          "task_id": 5205,
+          "old": "竞技场历史最高达到1200分",
+          "new": "竞技场历史最高达到黄金Ⅰ"
+        },
+        {
+          "sheet": "Task",
+          "row": 281,
+          "col": 3,
+          "field": "TaskName",
+          "task_id": 5305,
+          "old": "竞技场历史最高达到1300分",
+          "new": "竞技场历史最高达到铂金Ⅲ"
+        },
+        {
+          "sheet": "Task",
+          "row": 281,
+          "col": 4,
+          "field": "TaskDesc",
+          "task_id": 5305,
+          "old": "竞技场历史最高达到1300分",
+          "new": "竞技场历史最高达到铂金Ⅲ"
+        },
+        {
+          "sheet": "Task",
+          "row": 291,
+          "col": 3,
+          "field": "TaskName",
+          "task_id": 5405,
+          "old": "竞技场历史最高达到1400分",
+          "new": "竞技场历史最高达到铂金Ⅱ"
+        },
+        {
+          "sheet": "Task",
+          "row": 291,
+          "col": 4,
+          "field": "TaskDesc",
+          "task_id": 5405,
+          "old": "竞技场历史最高达到1400分",
+          "new": "竞技场历史最高达到铂金Ⅱ"
+        },
+        {
+          "sheet": "Task",
+          "row": 301,
+          "col": 3,
+          "field": "TaskName",
+          "task_id": 5505,
+          "old": "竞技场历史最高达到1500分",
+          "new": "竞技场历史最高达到铂金Ⅰ"
+        },
+        {
+          "sheet": "Task",
+          "row": 301,
+          "col": 4,
+          "field": "TaskDesc",
+          "task_id": 5505,
+          "old": "竞技场历史最高达到1500分",
+          "new": "竞技场历史最高达到铂金Ⅰ"
+        },
+        {
+          "sheet": "Task",
+          "row": 311,
+          "col": 3,
+          "field": "TaskName",
+          "task_id": 5605,
+          "old": "竞技场历史最高达到1600分",
+          "new": "竞技场历史最高达到钻石Ⅲ"
+        },
+        {
+          "sheet": "Task",
+          "row": 311,
+          "col": 4,
+          "field": "TaskDesc",
+          "task_id": 5605,
+          "old": "竞技场历史最高达到1600分",
+          "new": "竞技场历史最高达到钻石Ⅲ"
+        },
+        {
+          "sheet": "Task",
+          "row": 321,
+          "col": 3,
+          "field": "TaskName",
+          "task_id": 5705,
+          "old": "竞技场历史最高达到1700分",
+          "new": "竞技场历史最高达到钻石Ⅱ"
+        },
+        {
+          "sheet": "Task",
+          "row": 321,
+          "col": 4,
+          "field": "TaskDesc",
+          "task_id": 5705,
+          "old": "竞技场历史最高达到1700分",
+          "new": "竞技场历史最高达到钻石Ⅱ"
+        }
+      ],
+      "sha256_after": "da548a2e9994b25b71887af29e559f14c74228532328a3bf3b515be7b3b66cae"
+    },
+    {
+      "file": "task/TaskTarget.xlsx",
+      "source": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\TaskTarget.xlsx",
+      "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\七日竞技场段位描述CHG011_20260831\\backup-svn\\task\\TaskTarget.xlsx",
+      "sha256_before": "5eb03ff4672b58ff64a08f40f37be895ab50803db4db119a9152d961f10dbe58",
+      "edits": [
+        {
+          "sheet": "TaskTarget",
+          "row": 244,
+          "col": 3,
+          "field": "TargetDesc",
+          "task_id": 5105,
+          "old": "竞技场历史最高达到1100分",
+          "new": "竞技场历史最高达到黄金Ⅱ"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 254,
+          "col": 3,
+          "field": "TargetDesc",
+          "task_id": 5205,
+          "old": "竞技场历史最高达到1200分",
+          "new": "竞技场历史最高达到黄金Ⅰ"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 264,
+          "col": 3,
+          "field": "TargetDesc",
+          "task_id": 5305,
+          "old": "竞技场历史最高达到1300分",
+          "new": "竞技场历史最高达到铂金Ⅲ"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 274,
+          "col": 3,
+          "field": "TargetDesc",
+          "task_id": 5405,
+          "old": "竞技场历史最高达到1400分",
+          "new": "竞技场历史最高达到铂金Ⅱ"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 284,
+          "col": 3,
+          "field": "TargetDesc",
+          "task_id": 5505,
+          "old": "竞技场历史最高达到1500分",
+          "new": "竞技场历史最高达到铂金Ⅰ"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 294,
+          "col": 3,
+          "field": "TargetDesc",
+          "task_id": 5605,
+          "old": "竞技场历史最高达到1600分",
+          "new": "竞技场历史最高达到钻石Ⅲ"
+        },
+        {
+          "sheet": "TaskTarget",
+          "row": 304,
+          "col": 3,
+          "field": "TargetDesc",
+          "task_id": 5705,
+          "old": "竞技场历史最高达到1700分",
+          "new": "竞技场历史最高达到钻石Ⅱ"
+        }
+      ],
+      "sha256_after": "628a149a186ac53ca70d501d7db09833ea011a3af5ce8088de71e93547d61de4"
+    }
+  ]
+}

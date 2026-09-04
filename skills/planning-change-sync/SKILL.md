@@ -17,6 +17,7 @@ description: 在游戏策划需求、规则、数值、配置、UI 或实现发�
 4. 范围、核心体验或经济模型变化时，退回契约确认和一致性评审。
 5. 仅局部表现或文案变化时，只回到受影响阶段。
 6. 所有同步项必须有实际文件路径或验证证据；禁止仅勾选“已同步”。
-7. 完成后更新状态：
+7. 变更根因是既有经验条目覆盖不足（该坑本应被 `vgame-knowledge-router` 提前召回却没有）时，更新 `knowledge-base/experience/` 对应条目的触发词、根因或状态；属于新的可复用坑点且无条目时新增一条。
+8. 完成后更新状态：
 
    `python scripts/update_planning_workflow_state.py --feature "<功能名>" --phase change_sync --outcome success --actor change-sync-reviewer --close-change`

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info>
+<entry
+   kind="dir"
+   path="D:\Vgame\Config\GameConfig\Datas"
+   revision="40473">
+<url>https://svn.dobest.com/svn/HorizonFlyMaster/trunk/Config/GameConfig/Datas</url>
+<relative-url>^/trunk/Config/GameConfig/Datas</relative-url>
+<repository>
+<root>https://svn.dobest.com/svn/HorizonFlyMaster</root>
+<uuid>8f58d77c-c11b-11ef-a767-21b17ae08162</uuid>
+</repository>
+<wc-info>
+<wcroot-abspath>D:/Vgame</wcroot-abspath>
+<schedule>normal</schedule>
+<depth>infinity</depth>
+</wc-info>
+<commit
+   revision="40466">
+<author>songchengze</author>
+<date>2026-08-27T07:09:24.409465Z</date>
+</commit>
+</entry>
+</info>

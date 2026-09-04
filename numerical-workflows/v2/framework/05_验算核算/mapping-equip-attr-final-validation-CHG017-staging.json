@@ -1,0 +1,1402 @@
+{
+  "status": "PASS",
+  "checks": 34,
+  "pass": 34,
+  "fail": 0,
+  "output": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\_映射装备_CHG017_staging",
+  "details": [
+    {
+      "name": "存在:SpecialEquipment.xlsx",
+      "result": "PASS",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "正式Schema:SpecialEquipment.xlsx",
+      "result": "PASS",
+      "actual": [
+        [
+          "##var",
+          "Id",
+          "Name",
+          "Grade",
+          "Part",
+          "Quality",
+          "Attribute1List",
+          "Attribute2List",
+          "Effect",
+          "RareEffect",
+          "SpecialEffect",
+          "FixEffect",
+          "IsDrop"
+        ],
+        [
+          "##type",
+          "int",
+          "lotext?",
+          "int",
+          "SpecialEquipmentPart",
+          "Quality",
+          "(array#sep=;),AttributeMain",
+          "(array#sep=;),AttributeMain",
+          "int",
+          "int?",
+          "int?",
+          "int?",
+          "bool"
+        ],
+        [
+          "##group",
+          null,
+          "c",
+          null,
+          null,
+          null,
+          null,
+          "c",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "名称",
+          "等级",
+          "部位",
+          "稀有度",
+          "主属性1列表",
+          "主属性2列表",
+          "副属性池",
+          "稀有词条池",
+          "特殊效果池",
+          "固定效果属性",
+          "是否走掉落"
+        ]
+      ],
+      "expected": [
+        [
+          "##var",
+          "Id",
+          "Name",
+          "Grade",
+          "Part",
+          "Quality",
+          "Attribute1List",
+          "Attribute2List",
+          "Effect",
+          "RareEffect",
+          "SpecialEffect",
+          "FixEffect",
+          "IsDrop"
+        ],
+        [
+          "##type",
+          "int",
+          "lotext?",
+          "int",
+          "SpecialEquipmentPart",
+          "Quality",
+          "(array#sep=;),AttributeMain",
+          "(array#sep=;),AttributeMain",
+          "int",
+          "int?",
+          "int?",
+          "int?",
+          "bool"
+        ],
+        [
+          "##group",
+          null,
+          "c",
+          null,
+          null,
+          null,
+          null,
+          "c",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "名称",
+          "等级",
+          "部位",
+          "稀有度",
+          "主属性1列表",
+          "主属性2列表",
+          "副属性池",
+          "稀有词条池",
+          "特殊效果池",
+          "固定效果属性",
+          "是否走掉落"
+        ]
+      ]
+    },
+    {
+      "name": "公式与错误值:SpecialEquipment.xlsx",
+      "result": "PASS",
+      "actual": {
+        "formulas": 0,
+        "errors": 0
+      },
+      "expected": {
+        "formulas": 0,
+        "errors": 0
+      }
+    },
+    {
+      "name": "存在:SpecialEquipmentMain.xlsx",
+      "result": "PASS",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "正式Schema:SpecialEquipmentMain.xlsx",
+      "result": "PASS",
+      "actual": [
+        [
+          "##var",
+          "Id",
+          "Attribute",
+          "Value",
+          "Grow",
+          "Param"
+        ],
+        [
+          "##type",
+          "int",
+          "string",
+          "float",
+          "float",
+          "float"
+        ],
+        [
+          "##group",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "属性",
+          "基础数值",
+          "属性成长系数",
+          "参数"
+        ]
+      ],
+      "expected": [
+        [
+          "##var",
+          "Id",
+          "Attribute",
+          "Value",
+          "Grow",
+          "Param"
+        ],
+        [
+          "##type",
+          "int",
+          "string",
+          "float",
+          "float",
+          "float"
+        ],
+        [
+          "##group",
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "属性",
+          "基础数值",
+          "属性成长系数",
+          "参数"
+        ]
+      ]
+    },
+    {
+      "name": "公式与错误值:SpecialEquipmentMain.xlsx",
+      "result": "PASS",
+      "actual": {
+        "formulas": 0,
+        "errors": 0
+      },
+      "expected": {
+        "formulas": 0,
+        "errors": 0
+      }
+    },
+    {
+      "name": "存在:SpecialEquipmentEffect.xlsx",
+      "result": "PASS",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "正式Schema:SpecialEquipmentEffect.xlsx",
+      "result": "PASS",
+      "actual": [
+        [
+          "##var",
+          "Id",
+          "Attribute",
+          "ParameterLimit",
+          "ValueMax",
+          "ValueMin",
+          "RandomMin",
+          "SkillList",
+          "Score"
+        ],
+        [
+          "##type",
+          "int",
+          "string?",
+          "int?",
+          "float?",
+          "float?",
+          "float?",
+          "(array#sep=;),int",
+          "int"
+        ],
+        [
+          "##group",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "属性",
+          "特殊参数限制",
+          "数值上限",
+          "数值下限",
+          "随机最小单位",
+          "效果技能ID",
+          "评分基础值"
+        ]
+      ],
+      "expected": [
+        [
+          "##var",
+          "Id",
+          "Attribute",
+          "ParameterLimit",
+          "ValueMax",
+          "ValueMin",
+          "RandomMin",
+          "SkillList",
+          "Score"
+        ],
+        [
+          "##type",
+          "int",
+          "string?",
+          "int?",
+          "float?",
+          "float?",
+          "float?",
+          "(array#sep=;),int",
+          "int"
+        ],
+        [
+          "##group",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "属性",
+          "特殊参数限制",
+          "数值上限",
+          "数值下限",
+          "随机最小单位",
+          "效果技能ID",
+          "评分基础值"
+        ]
+      ]
+    },
+    {
+      "name": "公式与错误值:SpecialEquipmentEffect.xlsx",
+      "result": "PASS",
+      "actual": {
+        "formulas": 0,
+        "errors": 0
+      },
+      "expected": {
+        "formulas": 0,
+        "errors": 0
+      }
+    },
+    {
+      "name": "存在:SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "正式Schema:SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS",
+      "actual": [
+        [
+          "##var",
+          "Id",
+          "EffectList"
+        ],
+        [
+          "##type",
+          "int",
+          "(array#sep=;),AttributeEffect"
+        ],
+        [
+          "##group",
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "效果属性列表"
+        ]
+      ],
+      "expected": [
+        [
+          "##var",
+          "Id",
+          "EffectList"
+        ],
+        [
+          "##type",
+          "int",
+          "(array#sep=;),AttributeEffect"
+        ],
+        [
+          "##group",
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "效果属性列表"
+        ]
+      ]
+    },
+    {
+      "name": "公式与错误值:SpecialEquipmentEffectDrop.xlsx",
+      "result": "PASS",
+      "actual": {
+        "formulas": 0,
+        "errors": 0
+      },
+      "expected": {
+        "formulas": 0,
+        "errors": 0
+      }
+    },
+    {
+      "name": "存在:SpecialEquipmentQuality.xlsx",
+      "result": "PASS",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "正式Schema:SpecialEquipmentQuality.xlsx",
+      "result": "PASS",
+      "actual": [
+        [
+          "##var",
+          "Id",
+          "Quality",
+          "GradeLimit",
+          "ExtraItemList",
+          "Basic",
+          "RareEffectNum",
+          "SpecialEffectNum",
+          "HoleMax",
+          "HoleMin",
+          "ExtraHoleNum",
+          "InscriptionProbability",
+          "EffectNumMax",
+          "EffectNumMin",
+          "GradeCoefficient",
+          "QualityCoefficient",
+          "IdentifyCost",
+          "IdentifyCostCurrency",
+          "HoleCost",
+          "HoleCostCurrency"
+        ],
+        [
+          "##type",
+          "int",
+          "Quality",
+          "int",
+          "(array#sep=;),ExtraItem",
+          "int",
+          "(array#sep=;),EffectRefresh",
+          "(array#sep=;),EffectRefresh",
+          "int",
+          "int",
+          "int",
+          "float",
+          "int",
+          "int",
+          "float",
+          "float",
+          "(array#sep=;),PropType",
+          "PropType?",
+          "(array#sep=;),PropType",
+          "PropType?"
+        ],
+        [
+          "##group",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "稀有度",
+          "等级上限",
+          "分解额外获得",
+          "分解基础金币",
+          "稀有词条刷新数量",
+          "特殊效果刷新数量",
+          "孔数上限",
+          "孔数下限",
+          "额外打孔数量",
+          "芯片孔位生成概率",
+          "效果属性条数上限",
+          "效果属性条数下限",
+          "品质成长系数（影响主属性成长）",
+          "品质系数（影响评分相关）",
+          "鉴定道具消耗",
+          "鉴定消耗货币",
+          "开孔道具消耗",
+          "开孔消耗货币"
+        ]
+      ],
+      "expected": [
+        [
+          "##var",
+          "Id",
+          "Quality",
+          "GradeLimit",
+          "ExtraItemList",
+          "Basic",
+          "RareEffectNum",
+          "SpecialEffectNum",
+          "HoleMax",
+          "HoleMin",
+          "ExtraHoleNum",
+          "InscriptionProbability",
+          "EffectNumMax",
+          "EffectNumMin",
+          "GradeCoefficient",
+          "QualityCoefficient",
+          "IdentifyCost",
+          "IdentifyCostCurrency",
+          "HoleCost",
+          "HoleCostCurrency"
+        ],
+        [
+          "##type",
+          "int",
+          "Quality",
+          "int",
+          "(array#sep=;),ExtraItem",
+          "int",
+          "(array#sep=;),EffectRefresh",
+          "(array#sep=;),EffectRefresh",
+          "int",
+          "int",
+          "int",
+          "float",
+          "int",
+          "int",
+          "float",
+          "float",
+          "(array#sep=;),PropType",
+          "PropType?",
+          "(array#sep=;),PropType",
+          "PropType?"
+        ],
+        [
+          "##group",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "ID",
+          "稀有度",
+          "等级上限",
+          "分解额外获得",
+          "分解基础金币",
+          "稀有词条刷新数量",
+          "特殊效果刷新数量",
+          "孔数上限",
+          "孔数下限",
+          "额外打孔数量",
+          "芯片孔位生成概率",
+          "效果属性条数上限",
+          "效果属性条数下限",
+          "品质成长系数（影响主属性成长）",
+          "品质系数（影响评分相关）",
+          "鉴定道具消耗",
+          "鉴定消耗货币",
+          "开孔道具消耗",
+          "开孔消耗货币"
+        ]
+      ]
+    },
+    {
+      "name": "公式与错误值:SpecialEquipmentQuality.xlsx",
+      "result": "PASS",
+      "actual": {
+        "formulas": 0,
+        "errors": 0
+      },
+      "expected": {
+        "formulas": 0,
+        "errors": 0
+      }
+    },
+    {
+      "name": "存在:SpecialEquipmentSubAttrCoef.xlsx",
+      "result": "PASS",
+      "actual": true,
+      "expected": true
+    },
+    {
+      "name": "正式Schema:SpecialEquipmentSubAttrCoef.xlsx",
+      "result": "PASS",
+      "actual": [
+        [
+          "##var",
+          "Id",
+          "EquipLv",
+          "SubAttrCoef"
+        ],
+        [
+          "##type",
+          "int",
+          "int",
+          "float"
+        ],
+        [
+          "##group",
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "Id",
+          "装备等级",
+          "副属性系数"
+        ]
+      ],
+      "expected": [
+        [
+          "##var",
+          "Id",
+          "EquipLv",
+          "SubAttrCoef"
+        ],
+        [
+          "##type",
+          "int",
+          "int",
+          "float"
+        ],
+        [
+          "##group",
+          null,
+          null,
+          null
+        ],
+        [
+          "##",
+          "Id",
+          "装备等级",
+          "副属性系数"
+        ]
+      ]
+    },
+    {
+      "name": "公式与错误值:SpecialEquipmentSubAttrCoef.xlsx",
+      "result": "PASS",
+      "actual": {
+        "formulas": 0,
+        "errors": 0
+      },
+      "expected": {
+        "formulas": 0,
+        "errors": 0
+      }
+    },
+    {
+      "name": "480件装备仅改主属性2与副属性池",
+      "result": "PASS",
+      "actual": {
+        "rows": 480,
+        "errors": []
+      },
+      "expected": {
+        "rows": 480,
+        "errors": []
+      }
+    },
+    {
+      "name": "装备品质等级组合60组",
+      "result": "PASS",
+      "actual": [
+        [
+          "Blue",
+          5
+        ],
+        [
+          "Blue",
+          10
+        ],
+        [
+          "Blue",
+          15
+        ],
+        [
+          "Blue",
+          20
+        ],
+        [
+          "Blue",
+          25
+        ],
+        [
+          "Blue",
+          30
+        ],
+        [
+          "Blue",
+          35
+        ],
+        [
+          "Blue",
+          40
+        ],
+        [
+          "Blue",
+          45
+        ],
+        [
+          "Blue",
+          50
+        ],
+        [
+          "Blue",
+          55
+        ],
+        [
+          "Blue",
+          60
+        ],
+        [
+          "Green",
+          5
+        ],
+        [
+          "Green",
+          10
+        ],
+        [
+          "Green",
+          15
+        ],
+        [
+          "Green",
+          20
+        ],
+        [
+          "Green",
+          25
+        ],
+        [
+          "Green",
+          30
+        ],
+        [
+          "Green",
+          35
+        ],
+        [
+          "Green",
+          40
+        ],
+        [
+          "Green",
+          45
+        ],
+        [
+          "Green",
+          50
+        ],
+        [
+          "Green",
+          55
+        ],
+        [
+          "Green",
+          60
+        ],
+        [
+          "Orange",
+          5
+        ],
+        [
+          "Orange",
+          10
+        ],
+        [
+          "Orange",
+          15
+        ],
+        [
+          "Orange",
+          20
+        ],
+        [
+          "Orange",
+          25
+        ],
+        [
+          "Orange",
+          30
+        ],
+        [
+          "Orange",
+          35
+        ],
+        [
+          "Orange",
+          40
+        ],
+        [
+          "Orange",
+          45
+        ],
+        [
+          "Orange",
+          50
+        ],
+        [
+          "Orange",
+          55
+        ],
+        [
+          "Orange",
+          60
+        ],
+        [
+          "Purple",
+          5
+        ],
+        [
+          "Purple",
+          10
+        ],
+        [
+          "Purple",
+          15
+        ],
+        [
+          "Purple",
+          20
+        ],
+        [
+          "Purple",
+          25
+        ],
+        [
+          "Purple",
+          30
+        ],
+        [
+          "Purple",
+          35
+        ],
+        [
+          "Purple",
+          40
+        ],
+        [
+          "Purple",
+          45
+        ],
+        [
+          "Purple",
+          50
+        ],
+        [
+          "Purple",
+          55
+        ],
+        [
+          "Purple",
+          60
+        ],
+        [
+          "Red",
+          5
+        ],
+        [
+          "Red",
+          10
+        ],
+        [
+          "Red",
+          15
+        ],
+        [
+          "Red",
+          20
+        ],
+        [
+          "Red",
+          25
+        ],
+        [
+          "Red",
+          30
+        ],
+        [
+          "Red",
+          35
+        ],
+        [
+          "Red",
+          40
+        ],
+        [
+          "Red",
+          45
+        ],
+        [
+          "Red",
+          50
+        ],
+        [
+          "Red",
+          55
+        ],
+        [
+          "Red",
+          60
+        ]
+      ],
+      "expected": [
+        [
+          "Green",
+          5
+        ],
+        [
+          "Green",
+          10
+        ],
+        [
+          "Green",
+          15
+        ],
+        [
+          "Green",
+          20
+        ],
+        [
+          "Green",
+          25
+        ],
+        [
+          "Green",
+          30
+        ],
+        [
+          "Green",
+          35
+        ],
+        [
+          "Green",
+          40
+        ],
+        [
+          "Green",
+          45
+        ],
+        [
+          "Green",
+          50
+        ],
+        [
+          "Green",
+          55
+        ],
+        [
+          "Green",
+          60
+        ],
+        [
+          "Blue",
+          5
+        ],
+        [
+          "Blue",
+          10
+        ],
+        [
+          "Blue",
+          15
+        ],
+        [
+          "Blue",
+          20
+        ],
+        [
+          "Blue",
+          25
+        ],
+        [
+          "Blue",
+          30
+        ],
+        [
+          "Blue",
+          35
+        ],
+        [
+          "Blue",
+          40
+        ],
+        [
+          "Blue",
+          45
+        ],
+        [
+          "Blue",
+          50
+        ],
+        [
+          "Blue",
+          55
+        ],
+        [
+          "Blue",
+          60
+        ],
+        [
+          "Purple",
+          5
+        ],
+        [
+          "Purple",
+          10
+        ],
+        [
+          "Purple",
+          15
+        ],
+        [
+          "Purple",
+          20
+        ],
+        [
+          "Purple",
+          25
+        ],
+        [
+          "Purple",
+          30
+        ],
+        [
+          "Purple",
+          35
+        ],
+        [
+          "Purple",
+          40
+        ],
+        [
+          "Purple",
+          45
+        ],
+        [
+          "Purple",
+          50
+        ],
+        [
+          "Purple",
+          55
+        ],
+        [
+          "Purple",
+          60
+        ],
+        [
+          "Orange",
+          5
+        ],
+        [
+          "Orange",
+          10
+        ],
+        [
+          "Orange",
+          15
+        ],
+        [
+          "Orange",
+          20
+        ],
+        [
+          "Orange",
+          25
+        ],
+        [
+          "Orange",
+          30
+        ],
+        [
+          "Orange",
+          35
+        ],
+        [
+          "Orange",
+          40
+        ],
+        [
+          "Orange",
+          45
+        ],
+        [
+          "Orange",
+          50
+        ],
+        [
+          "Orange",
+          55
+        ],
+        [
+          "Orange",
+          60
+        ],
+        [
+          "Red",
+          5
+        ],
+        [
+          "Red",
+          10
+        ],
+        [
+          "Red",
+          15
+        ],
+        [
+          "Red",
+          20
+        ],
+        [
+          "Red",
+          25
+        ],
+        [
+          "Red",
+          30
+        ],
+        [
+          "Red",
+          35
+        ],
+        [
+          "Red",
+          40
+        ],
+        [
+          "Red",
+          45
+        ],
+        [
+          "Red",
+          50
+        ],
+        [
+          "Red",
+          55
+        ],
+        [
+          "Red",
+          60
+        ]
+      ]
+    },
+    {
+      "name": "190条Main兼容定义及在用部位映射",
+      "result": "PASS",
+      "actual": {
+        "rows": 190,
+        "id_set_match": true,
+        "errors": []
+      },
+      "expected": {
+        "rows": 190,
+        "id_set_match": true,
+        "errors": []
+      }
+    },
+    {
+      "name": "主属性Lv5与Lv60锚点",
+      "result": "PASS",
+      "actual": {
+        "lv5_max_error": 5.6079443311318755e-09,
+        "lv60_max_error": 1.617663656361401e-07
+      },
+      "expected": "均<1e-5"
+    },
+    {
+      "name": "246条正式历史Effect逐行保留",
+      "result": "PASS",
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "600条双曲线新Effect值",
+      "result": "PASS",
+      "actual": {
+        "rows": 846,
+        "errors": []
+      },
+      "expected": {
+        "rows": 846,
+        "errors": []
+      }
+    },
+    {
+      "name": "绿蓝紫定值且金红随机",
+      "result": "PASS",
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "新增60个品质等级池",
+      "result": "PASS",
+      "actual": 253,
+      "expected": 253
+    },
+    {
+      "name": "全部在用池均为十类无重复词条",
+      "result": "PASS",
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "60个品质等级池引用正确Effect",
+      "result": "PASS",
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "旧池退出新装备引用",
+      "result": "PASS",
+      "actual": [],
+      "expected": []
+    },
+    {
+      "name": "五品质系数与副属性条数",
+      "result": "PASS",
+      "actual": {
+        "Green": [
+          2,
+          2,
+          0.2,
+          0.35
+        ],
+        "Blue": [
+          2,
+          3,
+          0.3,
+          0.5
+        ],
+        "Purple": [
+          4,
+          4,
+          0.45,
+          0.65
+        ],
+        "Orange": [
+          4,
+          4,
+          0.7,
+          0.85
+        ],
+        "Red": [
+          4,
+          4,
+          1,
+          1
+        ]
+      },
+      "expected": {
+        "Green": [
+          2,
+          2,
+          0.2,
+          0.35
+        ],
+        "Blue": [
+          2,
+          3,
+          0.3,
+          0.5
+        ],
+        "Purple": [
+          4,
+          4,
+          0.45,
+          0.65
+        ],
+        "Orange": [
+          4,
+          4,
+          0.7,
+          0.85
+        ],
+        "Red": [
+          4,
+          4,
+          1.0,
+          1.0
+        ]
+      }
+    },
+    {
+      "name": "红色上限为绿色定值4倍",
+      "result": "PASS",
+      "actual": 4.0,
+      "expected": 4.0
+    },
+    {
+      "name": "SubAttrCoef统一为1避免双重缩放",
+      "result": "PASS",
+      "actual": {
+        "5": 1,
+        "10": 1,
+        "15": 1,
+        "20": 1,
+        "25": 1,
+        "30": 1,
+        "35": 1,
+        "40": 1,
+        "45": 1,
+        "50": 1,
+        "55": 1,
+        "60": 1
+      },
+      "expected": {
+        "5": 1.0,
+        "10": 1.0,
+        "15": 1.0,
+        "20": 1.0,
+        "25": 1.0,
+        "30": 1.0,
+        "35": 1.0,
+        "40": 1.0,
+        "45": 1.0,
+        "50": 1.0,
+        "55": 1.0,
+        "60": 1.0
+      }
+    },
+    {
+      "name": "百分比曲线Lv5/Lv60锚点",
+      "result": "PASS",
+      "actual": {
+        "5": 0.45,
+        "60": 1.0
+      },
+      "expected": {
+        "5": 0.45,
+        "60": 1.0
+      }
+    },
+    {
+      "name": "固定值曲线Lv5/Lv60锚点",
+      "result": "PASS",
+      "actual": {
+        "5": 0.03,
+        "60": 1.0
+      },
+      "expected": {
+        "5": 0.03,
+        "60": 1.0
+      }
+    }
+  ]
+}

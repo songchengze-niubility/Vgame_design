@@ -212,6 +212,14 @@ description: 游戏策划功能从需求想法、逐条澄清、专业设计到�
 - 最终 Excel 排版、规则正确性和 UI 表达必须由用户人工确认。
 - 不得替用户把 `delivery_accepted` 设为 true。
 
+### 9.1 经验沉淀必检项（自进化回路的写入点）
+
+- 验收对话收尾时必须二选一，不允许跳过判断本身：
+  - **有可复用坑点**：按 `knowledge-base/experience/_TEMPLATE.md` 新增 `knowledge-base/experience/exp-<YYYY-MM-DD>-<短题>.md`，填齐 id/date/title/category/tags/triggerTerms/status/source 及现象/根因/处理/规则化建议；运行 `python scripts/check_experience.py` 通过后随 Git 一并提交。
+  - **确认无沉淀**：在本阶段状态回复中显式写明「本次无经验沉淀」。
+- 同一坑点第二次出现时改为**修订既有条目**：补充触发词与新证据；规避动作已固化进 skill 正文或脚本时，将 status 改为 `incorporated` 并注明固化位置。
+- 条目会被 `vgame-knowledge-router` 在后续提问中自动召回；triggerTerms 要写成"下一个踩坑的人会真实使用的措辞"，不要假设对方读过本次上下文。
+
 ## 需求变更循环
 
 - 责任：`change-sync-reviewer`。
@@ -220,6 +228,7 @@ description: 游戏策划功能从需求想法、逐条澄清、专业设计到�
 - 范围、核心体验或经济模型变化时回到契约与评审。
 - 局部变化只回到受影响阶段，但必须同步追踪矩阵和验收用例。
 - 没有实际文件或验证证据时不得关闭变更。
+- 变更根因指向既有经验条目覆盖不足（本应被路由提前提示却没召回）时，更新对应 `knowledge-base/experience/` 条目的触发词、根因或状态。
 
 ## 状态回复
 
@@ -253,5 +262,6 @@ description: 游戏策划功能从需求想法、逐条澄清、专业设计到�
 - Excel 没有实际嵌图时声称 `DOC_UI` 完成。
 - Excel 没有嵌入 Figma 实际预览图时声称 `DOC_FIGMA` 完成。
 - 替用户宣称最终验收通过。
+- 第 9 步收尾时既不写经验条目也不显式声明「本次无经验沉淀」。
 - 需求变化后只改 Excel 或只改实现，不同步其它受影响产物。
 - 功能准备上线却没有指标、监控、回滚或适用的补偿方案。
