@@ -23,6 +23,7 @@ $VgameRoot = if ($env:VGAME_ROOT) { $env:VGAME_ROOT } else { $DefaultVgameRoot }
 $SkillRoot = if ($env:VGAME_SKILL_ROOT) { $env:VGAME_SKILL_ROOT } else { Join-Path $Root "skills" }
 $FailCount = 0
 $WarnCount = 0
+$SkippedChecks = @()
 
 function Write-Result {
     param([string]$Level, [string]$Message, [string]$Fix = "")
@@ -123,7 +124,8 @@ Write-Host "--- Planning Workflow Scripts Check ---" -ForegroundColor "White"
 
 $python = (Get-Command python -ErrorAction SilentlyContinue)
 if (-not $python) {
-    Write-Host "  [SKIP] python not found; skipping planning script smoke test." -ForegroundColor "DarkGray"
+    Write-Result "WARN" "未检测到 python：规划脚本冒烟检查（4 个脚本）未执行" "安装 Python 3.10+ 并加入 PATH，然后重跑 scripts/check.ps1。"
+    $script:SkippedChecks += "规划脚本冒烟检查（python 缺失）"
 } else {
     $PlanningScripts = @(
         "planning_workflow_status.py",
@@ -150,7 +152,8 @@ if ($python) {
         Write-Result "FAIL" "Experience knowledge entries failed validation" "Run 'python scripts/check_experience.py' and fix the reported entries."
     }
 } else {
-    Write-Host "  [SKIP] python not found; skipping experience entry check." -ForegroundColor "DarkGray"
+    Write-Result "WARN" "未检测到 python：经验条目校验未执行" "安装 Python 后重跑 scripts/check.ps1。"
+    $script:SkippedChecks += "经验条目校验（python 缺失）"
 }
 
 Write-Host ""
@@ -287,7 +290,17 @@ try {
         Write-Host "  [PASS] No unpushed commits require message validation." -ForegroundColor "DarkGray"
     }
 } catch {
-    Write-Host "  [SKIP] Git is unavailable or this is not a git repo." -ForegroundColor "DarkGray"
+    Write-Result "WARN" "git 不可用：提交信息规范检查未执行" "在 Vgame_design 仓库内运行 scripts/check.ps1。"
+    $script:SkippedChecks += "提交信息规范检查（git 不可用）"
+}
+
+if ($SkippedChecks.Count -gt 0) {
+    Write-Host ""
+    Write-Host "--- 未执行检查汇总（本机能力缺失） ---" -ForegroundColor "Yellow"
+    foreach ($item in $SkippedChecks) {
+        Write-Host "  [SKIPPED] $item" -ForegroundColor "Yellow"
+    }
+    Write-Host "  本机环境与维护者基线不一致：按上面各条 FIX 安装缺失能力后重跑。" -ForegroundColor "Yellow"
 }
 
 Write-Host ""

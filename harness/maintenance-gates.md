@@ -17,6 +17,7 @@ powershell -ExecutionPolicy Bypass -File scripts/check.ps1
 | 大文档扫描 | WARN | 超大文档需要拆分或索引化 |
 | 真实配置误提交 | WARN | `.xlsx`、`.xlsm`、`.csv` 需要确认是否只是样例 |
 | 经验条目校验 | FAIL | `scripts/check_experience.py`（check.ps1 内自动调用）：`knowledge-base/experience/` 条目字段齐全、id 唯一且与文件名日期一致、refs 路径存在；正文过短或缺现象/根因为 WARN |
+| 环境能力缺失 | WARN | python/git 缺失时不再静默跳过：显式 WARN 并在结果前汇总全部未执行检查，新人据此对齐维护者基线 |
 | Skill 根目录检查 | WARN | 缺失时提示，不阻断本仓库维护 |
 
 ## 扩展方向
