@@ -1,24 +1,24 @@
 {
   "schema": "vgame-numerical-migration-summary/v2",
-  "generatedAt": "2026-09-02T07:43:57.383155+00:00",
-  "sourceFiles": 71203,
-  "authoritativeMarkdownFiles": 1868,
+  "generatedAt": "2026-09-04T07:54:07.756593+00:00",
+  "sourceFiles": 71291,
+  "authoritativeMarkdownFiles": 1870,
   "sourceWorkbooks": 33,
-  "atoms": 20138,
-  "activeAtoms": 20105,
+  "atoms": 20158,
+  "activeAtoms": 20126,
   "supersededAtoms": 4,
-  "historicalAtoms": 29,
-  "formulas": 9599,
+  "historicalAtoms": 28,
+  "formulas": 9638,
   "parameterSets": 275,
   "dispositions": {
     "ARCHIVE_TRACE_ONLY": 35,
-    "MIRROR_OR_STAGING_TRACE_ONLY": 305,
-    "NORMALIZED_INTO_CANONICAL": 77,
+    "MIRROR_OR_STAGING_TRACE_ONLY": 307,
+    "NORMALIZED_INTO_CANONICAL": 79,
     "REGENERATABLE_OR_READING_OUTPUT": 46,
     "REGISTERED_EVIDENCE": 1,
     "SOURCE_WORKBOOK_EVIDENCE": 34,
-    "TOOLING_OR_RULE_EVIDENCE": 70459,
-    "VALIDATION_EVIDENCE": 246
+    "TOOLING_OR_RULE_EVIDENCE": 70477,
+    "VALIDATION_EVIDENCE": 312
   },
   "status": "AUTHORED_PENDING_GATES"
 }

@@ -18,8 +18,8 @@ from pathlib import Path
 V2_DIR = Path(__file__).resolve().parent.parent
 FINAL_DIR = V2_DIR / "04_数值文档"
 
-# 最终交付只保留一个稳定文件名；旧的“框架生成”重复件和已废弃的主属性
-# 迁移切片不再发布。两份过去只能从 04 保留的映射装备文档现在都有生成器。
+# 最终交付面向 QA 测试对照：只发布可直接验证的数值表；经济产销核算类产物
+# （模块产销表、全资源产销总表、资源养成阅读版）保留在工作流内部，不再进入 04。
 FIXED_MAPPINGS = [
     ("养成/生成_养成总览.xlsx", "养成/养成总览_数值文档.xlsx"),
     ("养成/生成_角色升级.xlsx", "养成/角色升级_数值文档.xlsx"),
@@ -36,8 +36,7 @@ FIXED_MAPPINGS = [
     ("战斗/镜像_战斗知识工具页.xlsx", "战斗/战斗知识工具页_镜像.xlsx"),
     ("经济/生成_角色升级成本.xlsx", "经济/角色升级成本_数值文档.xlsx"),
     ("经济/镜像_经济知识工具页.xlsx", "经济/经济知识工具页_镜像.xlsx"),
-    ("经济/全资源产销总表.xlsx", "经济/经济总账_数值文档.xlsx"),
-    ("经济/资源养成_阅读版.xlsx", "经济/资源养成_阅读版_数值文档.xlsx"),
+    ("经济/生成_爬塔首通挂机奖励.xlsx", "玩法/爬塔首通挂机奖励_数值文档.xlsx"),
     ("节奏/生成_开启节奏总览.xlsx", "节奏/开放节奏总览_数值文档.xlsx"),
     ("节奏/生成_主角等级单源.xlsx", "节奏/主角等级_数值文档.xlsx"),
     ("节奏/全玩法难度线.xlsx", "节奏/全玩法难度线_数值文档.xlsx"),
@@ -48,6 +47,11 @@ FIXED_MAPPINGS = [
 EXPECTED_MODULE_WORKBOOKS = 22
 EXPECTED_FINAL_WORKBOOKS = len(FIXED_MAPPINGS) + EXPECTED_MODULE_WORKBOOKS
 
+# 系统工作簿按 QA 口径发布：去掉产销核算/汇总页签，只保留数据页。
+MODULE_ACCOUNTING_SHEETS = ("阅读摘要", "产销阅读", "资源汇总", "机器明细")
+MODULE_FALLBACK_SHEET = "产销阅读"
+MODULE_FALLBACK_TITLE = "奖励与消耗"
+
 
 def sha256(path: Path) -> str:
     h = hashlib.sha256()
@@ -55,6 +59,26 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             h.update(block)
     return h.hexdigest()
+
+
+def write_qa_module_copy(source: Path, destination: Path) -> None:
+    """把经济模块工作簿复制为 QA 版：删除核算页签；若只剩空壳则保留逐条件清单页。"""
+
+    import openpyxl
+
+    wb = openpyxl.load_workbook(source)
+    only_accounting = set(wb.sheetnames) <= set(MODULE_ACCOUNTING_SHEETS)
+    for name in [n for n in wb.sheetnames if n in MODULE_ACCOUNTING_SHEETS]:
+        if only_accounting and name == MODULE_FALLBACK_SHEET:
+            continue
+        del wb[name]
+    if not wb.sheetnames:
+        raise RuntimeError("模块工作簿没有可保留的数据页签: %s" % source)
+    if set(wb.sheetnames) == {MODULE_FALLBACK_SHEET}:
+        wb[MODULE_FALLBACK_SHEET].title = MODULE_FALLBACK_TITLE
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    wb.save(destination)
+    wb.close()
 
 
 def mappings() -> list[tuple[Path, Path]]:
@@ -67,7 +91,7 @@ def mappings() -> list[tuple[Path, Path]]:
             % (EXPECTED_MODULE_WORKBOOKS, len(module_files))
         )
     for source in module_files:
-        result.append((source, Path("经济/模块产销表") / source.name))
+        result.append((source, Path("系统") / source.name))
     return result
 
 
@@ -78,19 +102,24 @@ def expected_relatives() -> list[str]:
 
 
 def write_readme(output: Path) -> None:
-    text = """# 04 数值文档（全量重建版）
+    text = """# 04 数值文档（QA 交付版）
 
 本目录由 `02_AI规则/stage_final_documents_from_md.py` 从本次生成物全量组装，
-不是在旧数值文档上增量修改。
+不是在旧数值文档上增量修改。读者是 QA：内容为可直接对照测试的数值表
+（逐级曲线、逐层奖励、节点消耗、难度线、逐系统奖励/消耗清单）。
 
 - 权威输入：`01_源表` 的全局事实，以及 `03_沉淀MD` 的系统参数与裁决。
 - 正式位置：`numerical-workflows/v2/framework/04_数值文档/`，由 Git 随工作流管理。
 - 工作区与验算报告：仅保存在 `output/numerical-production-workflow-v2/`。
 - 参数 Excel：不再作为生成依赖。
-- 发布数量：44 个 Excel（22 个主交付/总表 + 22 个经济模块产销表）。
-- 映射装备：合成制作 8 档和 19 页总表均已有独立生成器。
-- 已下线：重复的 `房车养成_框架生成.xlsx`，以及旧迁移切片
-  `映射装备_框架生成.xlsx`。
+- 发布数量：43 个 Excel（养成 10 + 大模块 1 + 战斗 2 + 经济 2 + 玩法 1 + 节奏 5
+  + 系统 22）。
+- `系统/` 22 份为每个玩法/外循环/养成系统的逐条件数值表：玩法类为「玩法产出」
+  逐层/逐条件表，养成类为升级/升阶/升星/制作等阶段表，抽卡为卡池概率表；
+  只有账本页的系统保留「奖励与消耗」逐条件清单页。
+- 产销核算不发布：系统工作簿已剔除「阅读摘要/产销阅读/资源汇总/机器明细」
+  核算页签；全资源产销总账与资源养成阅读版是内部经济分析产物，保留在
+  工作流目录，不进入本交付。
 
 每次升级必须先在新 staging 中生成并通过 `05_验算核算` 动态门禁，再整体替换
 本目录。禁止从旧 04 回拷缺失文件。
@@ -187,11 +216,11 @@ def main() -> int:
     for source, relative in pairs:
         destination = output / relative
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(source, destination)
-        source_hash = sha256(source)
+        if relative.parts[0] == "系统":
+            write_qa_module_copy(source, destination)
+        else:
+            shutil.copy2(source, destination)
         destination_hash = sha256(destination)
-        if source_hash != destination_hash:
-            raise RuntimeError("复制后哈希不一致: %s" % relative)
         manifest["artifacts"].append(
             {
                 "path": relative.as_posix(),

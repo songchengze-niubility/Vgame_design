@@ -1,272 +1,266 @@
 {
   "schema": 1,
-  "built_at": "2026-08-25T11:31:11+08:00",
+  "built_at": "2026-09-05T12:05:45+08:00",
   "architecture": "01_source + 03_md -> generated artifacts -> clean 04",
-  "xlsx_count": 44,
+  "xlsx_count": 43,
   "artifacts": [
     {
       "path": "养成/养成总览_数值文档.xlsx",
       "generator_output": "养成/生成_养成总览.xlsx",
-      "sha256": "33a48ba3cb8e3036cfc6cee98c3078d4bc502a90ca2c37448195ca3af8e80c7d",
-      "bytes": 7727
+      "sha256": "67ec110ad7f042b9d10d179f63fcef6a8fc77a5397349ec859e2fe7cdc4f7ef8",
+      "bytes": 7838
     },
     {
       "path": "养成/角色升级_数值文档.xlsx",
       "generator_output": "养成/生成_角色升级.xlsx",
-      "sha256": "1d574077b89a4a5028c6ecf1bc486318ea69f33abf94dd39eca26983babfebc6",
-      "bytes": 10408
+      "sha256": "145d1d47900bb3ee1d0536de4b7be7a537634be156e47cb1b6d3eefd4ddaf3b8",
+      "bytes": 10470
     },
     {
       "path": "养成/角色星盘_数值文档.xlsx",
       "generator_output": "养成/生成_角色星盘.xlsx",
-      "sha256": "13c6ec3ac48a5e97dec26c71bf465495d862eb94050e0ed150ff14149ac4f31e",
-      "bytes": 8648
+      "sha256": "2a3a9ae866f503ea9b63fdff46fcc1ff87b3416fb6482104c69f6fab59f78e5c",
+      "bytes": 8792
     },
     {
       "path": "养成/角色升星_数值文档.xlsx",
       "generator_output": "养成/生成_角色升星.xlsx",
-      "sha256": "6245c5b1d965ba5571a16586dea06b7d040ec1b26b56572f68824c26808d0b1b",
-      "bytes": 7960
+      "sha256": "c730f31a4e99411f2722595b262dcbc05610230c37cb37f078de56202284f7bd",
+      "bytes": 8138
     },
     {
       "path": "养成/玩家战力曲线_数值文档.xlsx",
       "generator_output": "养成/生成_玩家战力曲线.xlsx",
-      "sha256": "4c05a3996abdf190a3ab69e636d384955196c4e0ca8987c5738e2d3eba286bc5",
-      "bytes": 27979
+      "sha256": "4b657d3c0f1e948400c5311045bcc0c1d46501fe986f17b8f5da0aeca2be3294",
+      "bytes": 27915
     },
     {
       "path": "养成/旅券属性_数值文档.xlsx",
       "generator_output": "养成/生成_旅券属性.xlsx",
-      "sha256": "4fcdf344dab82259b8eb3e2da2abfed3dc3ced0228d166b36564b5dd4b36a64f",
-      "bytes": 8222
+      "sha256": "726c1cbbfd42713ea7879b699736f956c4506da244cb485525c87c5dc2dc6dcc",
+      "bytes": 8308
     },
     {
       "path": "养成/专武_数值文档.xlsx",
       "generator_output": "养成/生成_专武.xlsx",
-      "sha256": "34764d5f9372f339479c71b9a15027b66529b6cbac4a9e55094588e40a326ce3",
-      "bytes": 12027
+      "sha256": "6c36761b8673939b2b8b0f3445fd442fd3b31b30c2d0549b3548397fca128747",
+      "bytes": 12313
     },
     {
       "path": "养成/炮台_数值文档.xlsx",
       "generator_output": "养成/生成_炮台.xlsx",
-      "sha256": "c25070d68a1da088cc041bbe146b91f55226d76bfe924e7bb6134d654a0c3ddf",
-      "bytes": 7476
+      "sha256": "255104be15c99541a622d1518d3d604c9ab27aef88d925076849306a531d748f",
+      "bytes": 7464
     },
     {
       "path": "养成/房车养成_数值文档.xlsx",
       "generator_output": "养成/生成_房车.xlsx",
-      "sha256": "f86793191196c348e2f81800626b6164740d4a162300dd6c8790f10530d5a98a",
-      "bytes": 78137
+      "sha256": "6df5150cc82f7fbe635074470c4a02b661b412f34f12df8f9897478238115ea8",
+      "bytes": 131199
     },
     {
       "path": "养成/映射装备合成制作8档_数值文档.xlsx",
       "generator_output": "养成/生成_映射装备合成制作8档.xlsx",
-      "sha256": "64a70b59f6a72502bbce7bc71bfb6fe6c22258560d2fadcf488b18eca4919416",
-      "bytes": 15315
+      "sha256": "c296cfa4514d91b67b23776fc2bd1cd36c0f7dd9894a05c14cd8ee6b9bbc419f",
+      "bytes": 15526
     },
     {
       "path": "大模块/映射装备数值总表_数值文档.xlsx",
       "generator_output": "养成/生成_映射装备数值总表.xlsx",
-      "sha256": "529f5fc8da64bb9d2d53ff80df44c6eca1ecb925ee679405dc5775c4f0116054",
-      "bytes": 126402
+      "sha256": "fe64bc6305cd046e1ab283bc04c7bb3a4c3511b4a897a4d0f85c39cbb146eac3",
+      "bytes": 148446
     },
     {
       "path": "战斗/怪物标准模型_数值文档.xlsx",
       "generator_output": "战斗/生成_怪物标准模型.xlsx",
-      "sha256": "16c59ad8f826f2ee325b8645be430c5fee6b350eadb012fde1474b87ae389ae5",
-      "bytes": 193024
+      "sha256": "a36eadd6570fbf1c0169131a5b44fae8d32dd5f6d21e597fb5dbd6b30c58b612",
+      "bytes": 192758
     },
     {
       "path": "战斗/战斗知识工具页_镜像.xlsx",
       "generator_output": "战斗/镜像_战斗知识工具页.xlsx",
-      "sha256": "178945c00c7ec6214640ed6c23818b24d048bbc4ad1b7073b9ebba8476cd5255",
-      "bytes": 25198
+      "sha256": "4ea5eb79571e01da54bde409b301e79ccdfec405e40723bf96fc2b35504ae82c",
+      "bytes": 26013
     },
     {
       "path": "经济/角色升级成本_数值文档.xlsx",
       "generator_output": "经济/生成_角色升级成本.xlsx",
-      "sha256": "a23505f9a28a7d6903d97eb6b466f200b572f43f13dc6fe3b1310ecbda231adc",
-      "bytes": 7112
+      "sha256": "f4e8d4d069eefeb6bbdbd4993876d8adaef0f05ad1efad92b78c1ef2c1b034ba",
+      "bytes": 7108
     },
     {
       "path": "经济/经济知识工具页_镜像.xlsx",
       "generator_output": "经济/镜像_经济知识工具页.xlsx",
-      "sha256": "adaa410f6a15b8714604ec55b9b5015c8194f00e7dba5822d7ea848b92dad0d4",
-      "bytes": 36624
+      "sha256": "25eb6d4c0c47a9352bfe60f4901d7791678ad58dc35cde8f446c861312d5340e",
+      "bytes": 37636
     },
     {
-      "path": "经济/经济总账_数值文档.xlsx",
-      "generator_output": "经济/全资源产销总表.xlsx",
-      "sha256": "9b7f7368337dad83cadf719f01186f13f3aa413a0731374d9469326857172c4c",
-      "bytes": 598889
-    },
-    {
-      "path": "经济/资源养成_阅读版_数值文档.xlsx",
-      "generator_output": "经济/资源养成_阅读版.xlsx",
-      "sha256": "ee6387c4d8e45fa240e603c1a3df66c0d61ec677d2e39079e91025692b78e72b",
-      "bytes": 342270
+      "path": "玩法/爬塔首通挂机奖励_数值文档.xlsx",
+      "generator_output": "经济/生成_爬塔首通挂机奖励.xlsx",
+      "sha256": "d6a0832853fd4046992e0b40f38c5ed11ddb2e43e984e0ac86f3a9ff06a21e20",
+      "bytes": 15558
     },
     {
       "path": "节奏/开放节奏总览_数值文档.xlsx",
       "generator_output": "节奏/生成_开启节奏总览.xlsx",
-      "sha256": "69f57917830f67b869be608940ff1001842c116e8c833fc5972c8178334331f8",
-      "bytes": 23570
+      "sha256": "944993472b861cf38f6d8489daa1827a240afa730d6c50e299a9545d1f1c2a70",
+      "bytes": 24166
     },
     {
       "path": "节奏/主角等级_数值文档.xlsx",
       "generator_output": "节奏/生成_主角等级单源.xlsx",
-      "sha256": "0cc2c6fbbf18d33fa8f758c185ff8061d469121fc47321bd1e53c27209f206d2",
-      "bytes": 7520
+      "sha256": "aa83a3e611a3bddf1ea84fbed991055b194b3b50c05e546d16517e3e2ae3f41c",
+      "bytes": 7522
     },
     {
       "path": "节奏/全玩法难度线_数值文档.xlsx",
       "generator_output": "节奏/全玩法难度线.xlsx",
-      "sha256": "24ad18d49cfcd63e26e92af3e5396ec4a14862d44077bcd954fd10a30be0618f",
-      "bytes": 79759
+      "sha256": "bc3c681e64a9f2373602df16197a1be9d2785f035417737c6f6fb4ca7bb2e085",
+      "bytes": 83955
     },
     {
       "path": "节奏/无限挑战难度线_数值文档.xlsx",
       "generator_output": "节奏/生成_无限挑战难度线.xlsx",
-      "sha256": "1c65941b5b72b40e7d9e5ff0b3a3484a6b1b8d706bd43c7a89b1ab71c3b9f524",
-      "bytes": 13137
+      "sha256": "b6b75619c279f1c3462d41860e7aefd8029b47896a514e1d23fc79b7209c16d9",
+      "bytes": 13122
     },
     {
       "path": "节奏/爬塔难度线_数值文档.xlsx",
       "generator_output": "节奏/生成_爬塔难度线_天数层数.xlsx",
-      "sha256": "f542f8b329200040b49108283390efac1ace9a8e880981e5cafe26a0409f4283",
-      "bytes": 11239
+      "sha256": "4a99a509f05f9483c308c706a321cd2faba1ec1e4e8162898b1da481f5f0a2f7",
+      "bytes": 11353
     },
     {
-      "path": "经济/模块产销表/01_玩法_主线.xlsx",
+      "path": "系统/01_玩法_主线.xlsx",
       "generator_output": "经济/模块产销表/01_玩法_主线.xlsx",
-      "sha256": "8ebdcca360d6b4369979031bf7af97733d83143fd360c925d7878b36228dee98",
-      "bytes": 124316
+      "sha256": "afa8b747b284d01a7431e196bbcce72e1c54d2ff9a5311d89de4d0fd5f98be2b",
+      "bytes": 112171
     },
     {
-      "path": "经济/模块产销表/02_玩法_困难主线.xlsx",
+      "path": "系统/02_玩法_困难主线.xlsx",
       "generator_output": "经济/模块产销表/02_玩法_困难主线.xlsx",
-      "sha256": "6da7fda3a6efa1d5099141802b4dca56b85826326624fd14b31ed4f7cdaac766",
-      "bytes": 37639
+      "sha256": "f78f0ed8ba1e92ea15eff266a208d6adbd3c1a31ce094109d28d21d35f5178f6",
+      "bytes": 16992
     },
     {
-      "path": "经济/模块产销表/03_玩法_资源副本.xlsx",
+      "path": "系统/03_玩法_资源副本.xlsx",
       "generator_output": "经济/模块产销表/03_玩法_资源副本.xlsx",
-      "sha256": "7e5c079c08a9c42cbb7947faf08e035bb4c13529487205ebdba39be18907fb78",
-      "bytes": 37998
+      "sha256": "aba93677ce7df2554f220ff65b7ea68433d568f84ba9a828c8212c606377ba2d",
+      "bytes": 23280
     },
     {
-      "path": "经济/模块产销表/04_玩法_旅券副本.xlsx",
+      "path": "系统/04_玩法_旅券副本.xlsx",
       "generator_output": "经济/模块产销表/04_玩法_旅券副本.xlsx",
-      "sha256": "02247543fa46cfa582d638028480a629c06b9942a11439dd697aa5753d36e9ea",
-      "bytes": 49339
+      "sha256": "f754b9c8ffa4a13ca9565a811bd5460131177f332d7bfd191285c9ddd8947e50",
+      "bytes": 12082
     },
     {
-      "path": "经济/模块产销表/05_玩法_映射副本.xlsx",
+      "path": "系统/05_玩法_映射副本.xlsx",
       "generator_output": "经济/模块产销表/05_玩法_映射副本.xlsx",
-      "sha256": "d7cd3257ddbb8f140305ac52e94820131a39dd1782d6f12f3825379ece512ffa",
-      "bytes": 91198
+      "sha256": "15ae3f28eaa3f5750c0c5bd5e214e11fb12339d705195708e1b61c97d48d80ed",
+      "bytes": 28410
     },
     {
-      "path": "经济/模块产销表/06_玩法_无限挑战.xlsx",
+      "path": "系统/06_玩法_无限挑战.xlsx",
       "generator_output": "经济/模块产销表/06_玩法_无限挑战.xlsx",
-      "sha256": "2f29c186cfea37d65e46358d2fc58ecd456fa3f5102fcd32dade12e4e0e432a7",
-      "bytes": 145521
+      "sha256": "bef19b9fd7a5f5b9027f11b40d89fcbc2ef6fcd580a8c7f8930f352d36fc7bb6",
+      "bytes": 57792
     },
     {
-      "path": "经济/模块产销表/07_玩法_竞技场.xlsx",
+      "path": "系统/07_玩法_竞技场.xlsx",
       "generator_output": "经济/模块产销表/07_玩法_竞技场.xlsx",
-      "sha256": "edb3ebc2c80284c60866c69fa8a93e12062734d4c96e18dd506e4084a2dd9f45",
-      "bytes": 41592
+      "sha256": "4f0c0d4bddd5ff3d23beb6f0d302d02428616fc32089a03dee3e93a44838b08f",
+      "bytes": 17544
     },
     {
-      "path": "经济/模块产销表/08_玩法_爬塔.xlsx",
+      "path": "系统/08_玩法_爬塔.xlsx",
       "generator_output": "经济/模块产销表/08_玩法_爬塔.xlsx",
-      "sha256": "e4cee6bdb0ecb91fe918208881515f9b61fe1374f8496a65d58b4516539fb192",
-      "bytes": 89326
+      "sha256": "d1e1d8611d092638006efaae5c2e9e24791beb51e387603cebaf869c5d4369b8",
+      "bytes": 31648
     },
     {
-      "path": "经济/模块产销表/09_玩法_大秘境.xlsx",
+      "path": "系统/09_玩法_大秘境.xlsx",
       "generator_output": "经济/模块产销表/09_玩法_大秘境.xlsx",
-      "sha256": "f5207448c393793dd16fe5731271043cca3918b227aafad652a5d00b4a26e75f",
-      "bytes": 25789
+      "sha256": "d99fbd3320a37d59ec5bf218d4b23a2116dd1d5bc1fd6ed648749da6547bcaba",
+      "bytes": 10880
     },
     {
-      "path": "经济/模块产销表/10_玩法_BOSS挑战.xlsx",
+      "path": "系统/10_玩法_BOSS挑战.xlsx",
       "generator_output": "经济/模块产销表/10_玩法_BOSS挑战.xlsx",
-      "sha256": "538c2d924dd56c81be2de0e9326f04df04a17a71f1edbcffb5f368bdec3bcee9",
-      "bytes": 39941
+      "sha256": "e7c00ff3cf4fd380e751344dacda99af9ecc81b7cfd98ca810a61b8a2e33a006",
+      "bytes": 13777
     },
     {
-      "path": "经济/模块产销表/11_外循环_任务.xlsx",
+      "path": "系统/11_外循环_任务.xlsx",
       "generator_output": "经济/模块产销表/11_外循环_任务.xlsx",
-      "sha256": "e8f581f31cc9e69260e71c1648bef12c826bb97fa7324b8a706986a14e78d365",
-      "bytes": 78403
+      "sha256": "350c9a34a41d9cad51d05c9a9410664281e64b5f7b396b0d157440deebdca9d1",
+      "bytes": 38723
     },
     {
-      "path": "经济/模块产销表/12_外循环_签到.xlsx",
+      "path": "系统/12_外循环_签到.xlsx",
       "generator_output": "经济/模块产销表/12_外循环_签到.xlsx",
-      "sha256": "4a475a65424105f85583ad39e262660235afb87142c8da318f6e3307f179356d",
-      "bytes": 17867
+      "sha256": "63f63624c896d5c2f72e0074e14699efd98d1ddea2b8d9bdb4086fa3e4fe1617",
+      "bytes": 8962
     },
     {
-      "path": "经济/模块产销表/13_外循环_通行证.xlsx",
+      "path": "系统/13_外循环_通行证.xlsx",
       "generator_output": "经济/模块产销表/13_外循环_通行证.xlsx",
-      "sha256": "cf6792c9bab88a50284369d866415870c6e041510210a092f6b8d775211ac0d7",
-      "bytes": 49742
+      "sha256": "401fc0eb91894c6055b94942a9c933f730d45d17da0bdeda1f99bc6d7cb49476",
+      "bytes": 19004
     },
     {
-      "path": "经济/模块产销表/14_外循环_商店公会.xlsx",
+      "path": "系统/14_外循环_商店公会.xlsx",
       "generator_output": "经济/模块产销表/14_外循环_商店公会.xlsx",
-      "sha256": "3ef3e565c0834a1d0141cc8d7bf22801d8b127b7a7d9e296217d8944a0c90e86",
-      "bytes": 42190
+      "sha256": "e67dfacf09c05b4a6d51615e8f52b2a005863bb4739ba435b4cce2652cd77af5",
+      "bytes": 15328
     },
     {
-      "path": "经济/模块产销表/15_养成_角色.xlsx",
+      "path": "系统/15_养成_角色.xlsx",
       "generator_output": "经济/模块产销表/15_养成_角色.xlsx",
-      "sha256": "7a95dbfa27cd6615ea68bfa3f78ff57def862db4a73681ad159a2f676e8a7626",
-      "bytes": 35944
+      "sha256": "6e40b1476cf73684257fc4a446f6355886af3f3343b8eb610248b21a09c36119",
+      "bytes": 16888
     },
     {
-      "path": "经济/模块产销表/16_养成_专武.xlsx",
+      "path": "系统/16_养成_专武.xlsx",
       "generator_output": "经济/模块产销表/16_养成_专武.xlsx",
-      "sha256": "c9a0e9541f6cd6ebc92801851eb7e2fdb331c77d65efc61294f1082c9e1fdb8e",
-      "bytes": 29387
+      "sha256": "43f6097cc4a7fc573746d1e586dfbbe2daea15b02d3b1802c3e466183a99fabf",
+      "bytes": 14032
     },
     {
-      "path": "经济/模块产销表/17_养成_旅券.xlsx",
+      "path": "系统/17_养成_旅券.xlsx",
       "generator_output": "经济/模块产销表/17_养成_旅券.xlsx",
-      "sha256": "47ed6bbefcde528c5c0db1a848c96ae8198115b13c03f04496a944e46ce18ceb",
-      "bytes": 88234
+      "sha256": "9acf0eca80d36bb749e5236db91cfddaf95819965207e1098bd56c8f06433360",
+      "bytes": 24767
     },
     {
-      "path": "经济/模块产销表/18_养成_映射装备.xlsx",
+      "path": "系统/18_养成_映射装备.xlsx",
       "generator_output": "经济/模块产销表/18_养成_映射装备.xlsx",
-      "sha256": "86fb76976d0e23ad9afbbb30c562e3829451703d623ef1402b3f96361fe23b86",
-      "bytes": 107317
+      "sha256": "2d7cd7e97eda4aaee68621d397eda3dddc204aa3ac3e02b6a4779a2bbdcbb882",
+      "bytes": 42604
     },
     {
-      "path": "经济/模块产销表/19_养成_炮台.xlsx",
+      "path": "系统/19_养成_炮台.xlsx",
       "generator_output": "经济/模块产销表/19_养成_炮台.xlsx",
-      "sha256": "648c7db5852e7f45748c8c961a46ad5be55060765b7040d4f767283151c2c0cf",
-      "bytes": 52373
+      "sha256": "3e36a6f60f519272c6b211ce87705ae0c3a77117329ffb7094ca84d34c4a031f",
+      "bytes": 15553
     },
     {
-      "path": "经济/模块产销表/20_养成_房车.xlsx",
+      "path": "系统/20_养成_房车.xlsx",
       "generator_output": "经济/模块产销表/20_养成_房车.xlsx",
-      "sha256": "5d605d51268994f2190b03e8d9a1a521a8ec8b3ae5a74a289ea45bbcd4877be9",
-      "bytes": 96314
+      "sha256": "e8fa3a047265a70680c53ce8dca26996b741921ca8cc7138c7d58e73d86591cd",
+      "bytes": 108929
     },
     {
-      "path": "经济/模块产销表/21_抽卡_概率.xlsx",
+      "path": "系统/21_抽卡_概率.xlsx",
       "generator_output": "经济/模块产销表/21_抽卡_概率.xlsx",
-      "sha256": "9fd85167f231dafc30db72778145dfda968142486fc86cd97bfd919ee0af2432",
-      "bytes": 18028
+      "sha256": "3f51dedd2a6e60b06bdb04612df57403ed2c718ee5f8c41211b6b4429ff8cfdc",
+      "bytes": 17255
     },
     {
-      "path": "经济/模块产销表/22_外循环_章节任务.xlsx",
+      "path": "系统/22_外循环_章节任务.xlsx",
       "generator_output": "经济/模块产销表/22_外循环_章节任务.xlsx",
-      "sha256": "60335595ec523f37a3d1448ef827747cd1b530c5f9ea6535d8828a16d8cff722",
-      "bytes": 17801
+      "sha256": "6a405b0beab6665023f1fad538973658abafd8c866dd0d631a9bf99f66e9d558",
+      "bytes": 8050
     }
   ]
 }

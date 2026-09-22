@@ -5,7 +5,7 @@
 ## 目录
 
 - `framework/`：原生产入口、规则、共享代码、源表、参数 MD、专项生成器与动态验算器。
-- `framework/04_数值文档/`：44 份 Git 管理的正式数值 Excel；拉取仓库即可使用。
+- `framework/04_数值文档/`：43 份 Git 管理的 QA 数值交付 Excel（含 22 份逐系统数值表）；拉取仓库即可使用。
 - `legacy-inputs/`：仍被生产链读取的四份历史全局源工作簿。
 - `workflow-manifest.json`：全部生产文件、原始哈希、迁入哈希、职责与写入风险。
 - `governance-overrides.json`：房车 C、专武 B、公式缓存缺失策略及真实配置默认拒绝策略。
@@ -18,7 +18,7 @@
 python scripts/numerical-workflows/run_production.py
 ```
 
-运行器先在 `output/numerical-production-workflow-v2/` 从 Git 管理的输入创建全新 staging，再执行 2 个输入门禁、22 个生成任务、44 份数值终稿组装和独立动态验算。全部门禁通过后，正式终稿整体发布到 Git 管理的 `framework/04_数值文档/`；运行过程、诊断报告、临时工作区和旧发布归档继续保存在 `output/`。
+运行器先在 `output/numerical-production-workflow-v2/` 从 Git 管理的输入创建全新 staging，再执行 2 个输入门禁、23 个生成任务、43 份 QA 数值交付组装和独立动态验算。全部门禁通过后，正式交付整体发布到 Git 管理的 `framework/04_数值文档/`（系统工作簿剔除核算页签后按 QA 口径发布）；全资源产销总账与阅读版保留在工作流内部不发布；运行过程、诊断报告、临时工作区和旧发布归档继续保存在 `output/`。
 
 正式 Excel 是可追溯的交付结果，不是参数或模板输入。每次重建都会从隔离工作区排除已有 `04_数值文档/`，继续只以 `01_源表/` 和 `03_沉淀MD/` 作为数值设计依据。
 
@@ -44,7 +44,7 @@ python scripts/numerical-workflows/run_production.py
 1. **引用闭环审查**：DropId、LevelId、Unlock、UIlevel 只读闭环校验（原扩展方向存量项，最先落地）。
 2. **经济沙盘门禁**：奖励结构变更于方案冻结后、落表前运行确定性 12 周库存/通胀模拟（python 计算）；假设清单随方案冻结显式登记；通胀增速超红线即 FAIL 并禁止进入最终配置。
 3. **口径一致性审计**：沉淀 MD、参数基线与配置注册表三方定期对账。
-4. **黄金数回归**：44 份终稿每次发布生成基线快照，重建时自动 diff。
+4. **黄金数回归**：43 份 QA 交付每次发布生成基线快照，重建时自动 diff。
 5. **设计模板升级**：假设声明必填字段并入 design/proposal 模板。
 
 分工约束与上游规则同见 `harness/maintenance-gates.md`：数值权威属于代码与阈值；AI 承担搭建、审计与解读，不承担计算判定。

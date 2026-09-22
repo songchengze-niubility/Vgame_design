@@ -1,13 +1,13 @@
 {
   "schema": "vgame-numerical-workbook-registry/v2",
-  "generatedAt": "2026-09-02T07:43:57.383155+00:00",
+  "generatedAt": "2026-09-04T07:54:07.756593+00:00",
   "count": 33,
   "workbooks": [
     {
       "workbookId": "NWB-7E02C44A27E1",
       "sourceId": "NSRC-7E02C44A27E1",
       "relativePath": "01_源表/全玩法难度填写表.xlsx",
-      "sha256": "d32a1344dfa432aaa3ab98a990b88e2d67e9a179434d7156d348b7d779747aac",
+      "sha256": "6f7d3f0450fa4388f37a4098bf1d223f198921fbf754582b40fc7d19cae7d759",
       "domain": "combat",
       "sheets": [
         {

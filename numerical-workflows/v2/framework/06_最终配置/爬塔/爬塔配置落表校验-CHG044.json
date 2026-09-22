@@ -1,0 +1,65 @@
+{
+  "change_id": "CHG-044",
+  "first_clear_packages": 100,
+  "first_clear_rows": 223,
+  "first_clear_totals": {
+    "2": 7300,
+    "103": 7,
+    "106": 60,
+    "1074": 4000,
+    "1156": 150,
+    "1157": 10,
+    "3027": 650
+  },
+  "guide_material_floors": {
+    "40": {
+      "advanced": 20,
+      "super_advanced": 1
+    },
+    "50": {
+      "advanced": 25,
+      "super_advanced": 1
+    },
+    "70": {
+      "advanced": 30,
+      "super_advanced": 2
+    },
+    "80": {
+      "advanced": 35,
+      "super_advanced": 3
+    },
+    "90": {
+      "advanced": 40,
+      "super_advanced": 3
+    }
+  },
+  "guide_material_totals": {
+    "advanced_1156": 150,
+    "super_advanced_1157": 10
+  },
+  "normal_drop_packages_active": 0,
+  "season_drop_packages_active": 0,
+  "uilevel_rows": 400,
+  "uilevel_preview_rows_updated": 20,
+  "idle_random_pool": [
+    1075,
+    1076,
+    1077,
+    1078,
+    1079
+  ],
+  "formula_errors": 0,
+  "formal_datas_modified": false,
+  "target": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\06_最终配置\\爬塔",
+  "backup": "D:\\Vgame_design\\output\\rv_growth\\mirror-backup-20260904-154340-tower-chg044-guide-materials",
+  "files": {
+    "00_配置清单.xlsx": "441536f067dba54d709e4f674e009440c920b557d550559f4ba37bc0d36dbdd4",
+    "Chest.xlsx": "4d7222ed1aceec291829d42bc93861f577fd1438af72f6c687f061533e54921f",
+    "Drop_dungeon.xlsx": "1f0935fabb280acc5d87353b86fff504c90e2df79d25863e8e11d0698219f7ac",
+    "Items.xlsx": "8890fda7764fbfbb9d08b5670d412ca1d8693d81ebaf53c126dc2be404d750d4",
+    "TowerFirstReward.xlsx": "fd9c5508660e18229187ee49f3fb4166b0123be84a748b9f8ac55c81147507fd",
+    "TowerIdleRewards.xlsx": "2c15ab87ec15292de773c5a4843274e6f3c6333f6725cccf32566197b687d4ef",
+    "TowerReward.xlsx": "b5f65e3700d6f98f8d4e44036cb8c8b838937e481b149e124f2c8e09b78c61b3",
+    "UIlevel.xlsx": "7a53652fb18e49843e05ffb7767cf864a45a299efdeb60b49a4b9dc36644869c"
+  }
+}

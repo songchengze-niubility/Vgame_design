@@ -632,8 +632,8 @@ class EconomyLedger:
     def add_reward(self, system, group, item, qty, sheet, row, value="", item_id="", period="", condition="", basis="直接奖励", note=""):
         self.add(system, group, "产出", item, qty, value, item_id, "", "", "", "", period, condition, sheet, row, basis, note)
 
-    def add_cost(self, system, group, item, qty, sheet, row, value="", period="", condition="", basis="消耗", note=""):
-        self.add(system, group, "消耗", item, qty, value, "", "", "", "", "", period, condition, sheet, row, basis, note)
+    def add_cost(self, system, group, item, qty, sheet, row, value="", period="", condition="", basis="消耗", note="", item_id=""):
+        self.add(system, group, "消耗", item, qty, value, item_id, "", "", "", "", period, condition, sheet, row, basis, note)
 
     def add_ref(self, system, group, item, qty, sheet, row, item_id="", condition="", note=""):
         self.add(system, group, "引用", item, qty, "", item_id, "", "", "", "", "", condition, sheet, row, "奖励包/配置引用，待 DropId/RewardId 展开", note)
@@ -985,6 +985,167 @@ def add_formal_shopgoods(b, system, group, shop_id, source_label):
     return count
 
 
+TOWER_MIRROR_DIR = os.path.join(V2_DIR, "06_最终配置", "爬塔")
+# 2026-09-20 扩展 101-200 层后全塔验收：1-100 层 CHG-044 口径不变，101-200 层按第 100 层面额平推
+# （首通新增 元晶10,000/熔晶10/旅券60/零件8,600/箱900/1156×200/1157×15；见 design/爬塔扩展101-200层Design Doc.md）。
+TOWER_FIRST_CLEAR_TOTALS = {2: 17300, 103: 17, 106: 120, 1074: 12600, 3027: 1550, 1156: 350, 1157: 25}
+TOWER_FIRST_CLEAR_ROWS = 446
+TOWER_IDLE_POOL_DROP_ID = 24003001
+TOWER_ITEM_FALLBACK_NAMES = {
+    1: "猎鹰金币",
+    2: "元晶",
+    103: "熔晶",
+    106: "旅券",
+    1074: "房车零件",
+    1075: "行程便签",
+    1076: "安途清单",
+    1077: "探路标记",
+    1078: "见闻手札",
+    1079: "调律灯片",
+    1156: "高阶课程笔记",
+    1157: "精英课程笔记",
+    3027: "指南材料自选箱",
+}
+
+
+def parse_tower_mirror(b):
+    """爬塔经济改读 06 评审镜像（CHG-044 口径），替代旧经济母表「配置页-爬塔」。
+
+    来源：TowerFirstReward(100层首通DropId) + Drop_dungeon(包内容/挂机池)
+    + TowerIdleRewards(逐层挂机)。旧每周到达/通关/扫荡、爬塔商店与赛季
+    奖励已随改版删除；镜像中 ## 停用行不计入产出。
+    """
+
+    first_path = os.path.join(TOWER_MIRROR_DIR, "TowerFirstReward.xlsx")
+    drop_path = os.path.join(TOWER_MIRROR_DIR, "Drop_dungeon.xlsx")
+    idle_path = os.path.join(TOWER_MIRROR_DIR, "TowerIdleRewards.xlsx")
+    source_mirror = "评审镜像:06_最终配置/爬塔"
+    missing = [p for p in (first_path, drop_path, idle_path) if not os.path.exists(p)]
+    if missing:
+        mark_external(b, source_mirror, "待生成", "爬塔评审镜像缺失：%s" % "、".join(missing))
+        return
+
+    def mirror_item_name(item_id, resolved):
+        if resolved and not str(resolved).startswith("ItemId "):
+            return resolved
+        return TOWER_ITEM_FALLBACK_NAMES.get(item_id, resolved)
+
+    drop_entries = drop_entries_by_id(drop_path)
+    first_rows = [r for r in row_dicts(first_path, "Sheet1") if r.get("ID") not in (None, "")]
+    if len(first_rows) != 100:
+        raise RuntimeError("爬塔首通镜像应为 200 层，实际 %s" % len(first_rows))
+    first_totals = defaultdict(float)
+    expanded = 0
+    disabled = 0
+    for row in first_rows:
+        layer = to_int(row.get("Layer"))
+        drop_id = to_int(row.get("DropId"))
+        if layer is None or drop_id is None:
+            continue
+        cond = "第%s层｜账号级首通｜DropId %s" % (layer, drop_id)
+        entries = drop_entries.get(drop_id, [])
+        if not entries:
+            b.add_ref("爬塔", "首通奖励引用", "TowerFirstReward.DropId", drop_id,
+                      "%s/TowerFirstReward.xlsx" % source_mirror, row.get("_row"),
+                      condition=cond, note="首通 DropId 未在镜像 Drop_dungeon 展开")
+            continue
+        for entry in entries:
+            if entry["invalid"]:
+                disabled += 1
+                continue
+            qty = entry["qty"]
+            try:
+                first_totals[int(entry["item_id"])] += float(str(qty).rstrip("+")) if isinstance(qty, str) else float(qty)
+            except (TypeError, ValueError):
+                pass
+            b.add_reward(
+                "爬塔",
+                "首通奖励",
+                mirror_item_name(entry["item_id"], entry["item"]),
+                qty,
+                "%s/TowerFirstReward.xlsx + Drop_dungeon.xlsx" % source_mirror,
+                row.get("_row"),
+                item_id=entry["item_id"],
+                period="常驻一次性（账号级）",
+                condition=cond,
+                basis="评审镜像首通展开（CHG-044口径）",
+                note="Drop_dungeon 行%s" % entry["row"],
+            )
+            expanded += 1
+    if expanded != TOWER_FIRST_CLEAR_ROWS:
+        raise RuntimeError("爬塔首通有效行应为 %s，实际 %s" % (TOWER_FIRST_CLEAR_ROWS, expanded))
+    expected_totals = {str(k): float(v) for k, v in TOWER_FIRST_CLEAR_TOTALS.items()}
+    actual_totals = {str(k) for k in first_totals}
+    if actual_totals != set(expected_totals) or any(abs(first_totals[int(k)] - v) > 1e-6 for k, v in expected_totals.items()):
+        raise RuntimeError(
+            "爬塔首通总量与 CHG-044 验收不一致: %s" % {k: first_totals[int(k)] for k in sorted(expected_totals, key=int)}
+        )
+
+    pool_entries = [e for e in drop_entries.get(TOWER_IDLE_POOL_DROP_ID, []) if not e["invalid"]]
+    if len(pool_entries) != 5:
+        raise RuntimeError("挂机材料池 %s 应为 5 个等权项，实际 %s" % (TOWER_IDLE_POOL_DROP_ID, len(pool_entries)))
+    idle_rows = [r for r in row_dicts(idle_path, "TowerIdleRewards") if r.get("ID") not in (None, "")]
+    if len(idle_rows) != 100:
+        raise RuntimeError("爬塔挂机镜像应为 200 层，实际 %s" % len(idle_rows))
+    idle_expanded = 0
+    for row in idle_rows:
+        layer = to_int(row.get("LayerLimitMin"))
+        cond = "第%s层挂机｜按历史最高层结算" % layer
+        items = [p for p in str(row.get("IdleRewards") or "").split(";") if p]
+        nums = [p for p in str(row.get("IdleRewardsNum") or "").split(";") if p]
+        times = [p for p in str(row.get("IdleRewardsTime") or "").split(";") if p]
+        for item_text, num_text, time_text in zip(items, nums, times):
+            item_id = to_int(item_text)
+            per_day = float(num_text) * 86400.0 / float(time_text)
+            per_day = int(per_day) if per_day == int(per_day) else round(per_day, 2)
+            b.add_reward(
+                "爬塔",
+                "挂机产出",
+                mirror_item_name(item_id, formal_item_name(item_id)),
+                per_day,
+                "%s/TowerIdleRewards.xlsx" % source_mirror,
+                row.get("_row"),
+                item_id=item_id,
+                period="每日（挂机）",
+                condition=cond,
+                basis="挂机按历史最高层逐层累计",
+                note="IdleRewards %s×%s / %s秒" % (item_text, num_text, time_text),
+            )
+            idle_expanded += 1
+        pool_drop_id = to_int(row.get("DropId"))
+        pool_per_cycle = to_int(row.get("DropIdNum"))
+        pool_cycle_text = str(row.get("DropIdTimes") or "").split(";")[0]
+        if pool_drop_id is not None and pool_per_cycle:
+            cycle_seconds = float(pool_cycle_text)
+            drops_per_day = pool_per_cycle * 86400.0 / cycle_seconds
+            for entry in pool_entries:
+                expect = round(drops_per_day / len(pool_entries), 2)
+                b.add_reward(
+                    "爬塔",
+                    "挂机材料池",
+                    mirror_item_name(entry["item_id"], entry["item"]),
+                    expect,
+                    "%s/TowerIdleRewards.xlsx + Drop_dungeon.xlsx" % source_mirror,
+                    row.get("_row"),
+                    item_id=entry["item_id"],
+                    period="每日（挂机·期望）",
+                    condition=cond,
+                    basis="等权五选一期望值（池%s）" % pool_drop_id,
+                    note="池 %s×%s次/%s秒，五项等权各20%%" % (pool_drop_id, pool_per_cycle, pool_cycle_text),
+                )
+                idle_expanded += 1
+    mark_external(
+        b,
+        source_mirror,
+        "已结构化",
+        "CHG-044口径：账号级1-100层一次性首通 %s 行，总量 元晶7,300/熔晶7/旅券60/房车零件4,000/自选箱650/高阶课程笔记150/精英课程笔记10；"
+        "挂机金币+房车零件逐层日产，第30层起材料池等权五选一期望；镜像##停用 %s 行与旧每周/扫荡/商店/赛季奖励不计入。" % (expanded, disabled),
+        len(first_rows) + len(idle_rows),
+        "",
+    )
+    b.mark("配置页-爬塔", "已由镜像承接", "旧经济母表配置页-爬塔与爬塔商店口径已废弃；爬塔产销改读 06_最终配置/爬塔 评审镜像（CHG-044）。")
+
+
 def parse_verification_configs(b):
     ws = b.wb["配置页-无限挑战"]
     for r in range(4, ws.max_row + 1):
@@ -1109,72 +1270,7 @@ def parse_verification_configs(b):
             "，共 %s 个商品" % formal_arena_shop if formal_arena_shop else "",
             "；正式 Arena 奖励引用 %s 行" % arena_formal_count if arena_formal_count else ""))
 
-    ws = b.wb["配置页-爬塔"]
-    for r in range(2, ws.max_row + 1):
-        if ws.cell(r, 5).value:
-            b.add_reward("爬塔", "首通奖励", ws.cell(r, 6).value, ws.cell(r, 8).value, "配置页-爬塔", r,
-                         item_id=ws.cell(r, 7).value, period="常驻一次性",
-                         condition="层%s｜RewardId %s" % (clean_value(ws.cell(r, 9).value), clean_value(ws.cell(r, 5).value)))
-        item = ws.cell(r, 11).value
-        prop_item, prop_id, prop_qty = b.parse_prop(ws.cell(r, 14).value)
-        if item:
-            b.add_shop("爬塔", "爬塔商店", item, ws.cell(r, 13).value, prop_item, prop_qty,
-                       "配置页-爬塔", r, item_id=ws.cell(r, 12).value,
-                       period="%s%s" % (clean_text(ws.cell(r, 15).value), clean_value(ws.cell(r, 17).value)),
-                       condition="商店配置行%s" % r, note="价格串 %s" % clean_text(ws.cell(r, 14).value))
-    tower_ws = b.wb["爬塔"]
-    for r in range(24, 124):
-        layer = to_int(tower_ws.cell(r, 2).value)
-        if layer is None:
-            continue
-        fall_floor = clean_value(tower_ws.cell(r, 13).value)
-        if tower_ws.cell(r, 8).value:
-            b.add_reward(
-                "爬塔",
-                "每周通关奖励",
-                tower_ws.cell(r, 8).value,
-                tower_ws.cell(r, 9).value,
-                "爬塔",
-                r,
-                period="每周重置｜通关/扫荡可重复",
-                condition="通关层%s｜扫荡至已到达楼层后继续挑战｜下降层数%s" % (layer, fall_floor),
-                note="经济母表“奖励道具1/奖励数量1”：每层通关奖励；周重置后玩家可扫荡到已达楼层并继续挑战，纳入重复产出。",
-            )
-        if tower_ws.cell(r, 11).value:
-            b.add_reward(
-                "爬塔",
-                "每周到达层数奖励",
-                tower_ws.cell(r, 11).value,
-                tower_ws.cell(r, 12).value,
-                "爬塔",
-                r,
-                period="每周重置｜按到达层数逐层发放",
-                condition="每周到达层%s｜一层对应一个钻石奖励｜下降层数%s" % (layer, fall_floor),
-                note="经济母表列名为“双周奖励1”；用户确认爬塔常驻每周重置，钻石按每周到达层数逐层发放。",
-            )
-    tower_reward_path = cfg_path("TowerTrial", "TowerReward.xlsx")
-    if os.path.exists(tower_reward_path):
-        formal_count = 0
-        for row in row_dicts(tower_reward_path):
-            drop_id = row.get("SeasonDropId")
-            if clean_value(drop_id) in ("", 0):
-                continue
-            add_drop_ref_period(
-                b,
-                "爬塔",
-                "正式周期奖励引用",
-                "TowerReward.SeasonDropId",
-                drop_id,
-                "正式:TowerTrial/TowerReward.xlsx",
-                row.get("_row"),
-                period="每周重置｜按到达层数逐层发放",
-                condition="层数上限%s｜%s" % (clean_value(row.get("LayerLimit")), clean_text(row.get("#注释"))),
-                note="正式 SeasonDropId 为层段奖励包引用；用户确认钻石口径按每周到达层数逐层发放。",
-            )
-            formal_count += 1
-        if formal_count:
-            mark_external(b, "正式:TowerTrial/TowerReward.xlsx", "已补强", "爬塔常驻周期奖励 SeasonDropId 引用已登记；真实包内容待 Drop 展开。", formal_count, "")
-    b.mark("配置页-爬塔", "已结构化", "常驻首通奖励、每周到达层数钻石、每周通关/扫荡奖励、正式 TowerReward 引用与爬塔商店已登记。")
+    parse_tower_mirror(b)
 
 
 def parse_mythic(b):
@@ -1374,41 +1470,90 @@ def parse_growth_sinks(b):
     b.mark("共鸣装备", "已结构化（首版）", "装备升级经验/金币与升星材料/金币已登记。")
 
 
+RV_GUIDE_ITEM_IDS = {"行程指南": 1075, "安行指南": 1076, "探路指南": 1077, "见闻指南": 1078, "共鸣指南": 1079}
+RV_ITEM_FALLBACK_NAMES = {
+    1: "金币",
+    1074: "房车零件",
+    1156: "高阶课程笔记",
+    1157: "精英课程笔记",
+}
+
+
 def parse_rv_growth(b):
+    """房车消耗改读 `生成_房车.xlsx` 的结构化页签（2026-09-04 起）。
+
+    04 交付版房车工作簿不再携带「经济消耗明细」账本页；本函数直接消费
+    「房车整备曲线」与「出行指南节点等级」两页 QA 数值表。
+    """
+
     source = "养成/生成_房车.xlsx"
     path = os.path.join(V2_DIR, "养成", "生成_房车.xlsx")
     if not os.path.exists(path):
         mark_external(b, source, "待生成", "房车养成生成表不存在；先运行 养成/scripts/gen_rv_growth.py。")
         return
     wb = openpyxl.load_workbook(path, data_only=True, read_only=True)
-    if "经济消耗明细" not in wb.sheetnames:
-        wb.close()
-        mark_external(b, source, "缺少经济明细", "未找到 `经济消耗明细` 页，无法写入经济总账。")
-        return
-    ws = wb["经济消耗明细"]
-    headers = [clean_text(c.value) for c in ws[1]]
+    for sheet in ("房车整备曲线", "出行指南节点等级"):
+        if sheet not in wb.sheetnames:
+            wb.close()
+            mark_external(b, source, "缺少结构化页", "未找到 `%s` 页，无法写入经济总账。" % sheet)
+            return
+
+    def rv_item_name(item_id):
+        resolved = formal_item_name(item_id)
+        if resolved and not str(resolved).startswith("ItemId "):
+            return resolved
+        return RV_ITEM_FALLBACK_NAMES.get(item_id, resolved)
+
     count = 0
+    ws = wb["房车整备曲线"]
+    headers = [clean_text(c.value) for c in ws[1]]
     for row_idx, values in enumerate(ws.iter_rows(min_row=2, values_only=True), start=2):
         row = {headers[i]: values[i] if i < len(values) else "" for i in range(len(headers))}
-        system = clean_text(row.get("系统"))
-        item = clean_text(row.get("资源/道具"))
-        if not system or not item:
+        target_lv = to_int(row.get("目标等级"))
+        if target_lv is None or target_lv <= 1:
             continue
-        b.add_cost(
-            system,
-            clean_text(row.get("分组")),
-            item,
-            row.get("数量"),
-            "%s:%s" % (source, ws.title),
-            row_idx,
-            condition=clean_text(row.get("进度/条件")),
-            basis=clean_text(row.get("口径")) or "房车养成消耗",
-            note=clean_text(row.get("备注")),
-        )
-        count += 1
-    cols = ws.max_column
+        cond = "房车目标Lv%s" % target_lv
+        for column, item_id in (("房车零件", 1074), ("金币", 1)):
+            qty = row.get(column)
+            if qty in (None, ""):
+                continue
+            b.add_cost("房车养成", "房车整备", rv_item_name(item_id), qty,
+                       "%s:房车整备曲线" % source, row_idx,
+                       condition=cond, basis="房车整备逐级强化消耗", item_id=item_id)
+            count += 1
+    ws = wb["出行指南节点等级"]
+    headers = [clean_text(c.value) for c in ws[1]]
+    for row_idx, values in enumerate(ws.iter_rows(min_row=2, values_only=True), start=2):
+        row = {headers[i]: values[i] if i < len(values) else "" for i in range(len(headers))}
+        guide = clean_text(row.get("指南"))
+        career = clean_text(row.get("职业"))
+        node_name = clean_text(row.get("节点名"))
+        node_id = clean_value(row.get("NodeId"))
+        target_lv = clean_value(row.get("目标等级"))
+        if not guide or not career:
+            continue
+        career_item = RV_GUIDE_ITEM_IDS.get(guide)
+        if career_item is None:
+            wb.close()
+            raise RuntimeError("生成_房车.xlsx 出现未知指南: %s" % guide)
+        cond = "%s｜%s｜%s（Node %s）｜升到Lv%s" % (guide, career, node_name, node_id, target_lv)
+        basis = "出行指南多级节点升级消耗（CHG-053后口径）"
+        for column, item_id in (("职业基础材料", career_item), ("高级指南材料", 1156), ("超高级指南材料", 1157)):
+            qty = row.get(column)
+            if qty in (None, "", 0):
+                continue
+            b.add_cost("房车养成", "出行指南", rv_item_name(item_id), qty,
+                       "%s:出行指南节点等级" % source, row_idx,
+                       condition=cond, basis=basis, item_id=item_id)
+            count += 1
+        qty = row.get("金币")
+        if qty not in (None, "", 0):
+            b.add_cost("房车养成", "出行指南", rv_item_name(1), qty,
+                       "%s:出行指南节点等级" % source, row_idx,
+                       condition=cond, basis=basis, item_id=1)
+            count += 1
     wb.close()
-    mark_external(b, source, "已结构化", "房车整备逐级强化与出行指南职业节点消耗已登记。", count, cols)
+    mark_external(b, source, "已结构化", "房车整备曲线与出行指南多级节点消耗已登记（出行指南读06评审镜像，CHG-053口径）。", count, "")
 
 
 def parse_formal_boss_challenge(b):
@@ -1704,10 +1849,28 @@ def parse_formal_task_and_seven_day(b):
 
 LEVEL_TYPE_TO_SYSTEM = {
     "LevelType_Main": ("主线", "正式普通主线"),
+    "LevelType_None": ("主线", "正式序章"),
+    "LevelType_SubLevel": ("主线", "正式支线关"),
+    "LevelType_ExtraLevel": ("主线", "正式额外关"),
+    "LevelType_Chest": ("主线", "正式章节宝箱关"),
+    "LevelType_CircuitConnect": ("主线", "正式章节电路关"),
+    "LevelType_Fish": ("主线", "正式章节钓鱼关"),
+    "LevelType_Klotski": ("主线", "正式章节华容道关"),
+    "LevelType_Question": ("主线", "正式章节答题关"),
     "LevelType_Main_Difficult": ("困难主线", "正式困难主线"),
     "LevelType_Gold": ("资源副本", "正式金币副本"),
     "LevelType_Exp": ("资源副本", "正式角色经验副本"),
     "LevelType_WeaponExp": ("资源副本", "正式专武经验副本"),
+    "LevelType_Material_First": ("资源副本", "正式材料副本1"),
+    "LevelType_Material_Second": ("资源副本", "正式材料副本2"),
+    "LevelType_Material_Three": ("资源副本", "正式材料副本3"),
+    "LevelType_WeaponMaterial_First": ("资源副本", "正式专武材料副本1"),
+    "LevelType_WeaponMaterial_Second": ("资源副本", "正式专武材料副本2"),
+    "LevelType_WeaponMaterial_Three": ("资源副本", "正式专武材料副本3"),
+    "LevelType_EnergyEfficiency_First": ("资源副本", "正式能效副本1"),
+    "LevelType_EnergyEfficiency_Second": ("资源副本", "正式能效副本2"),
+    "LevelType_EnergyEfficiency_Three": ("资源副本", "正式能效副本3"),
+    "LevelType_RvCabin": ("资源副本", "正式房车舱室副本"),
     "LevelType_Strategy_First": ("旅券副本", "正式旅券副本1"),
     "LevelType_Strategy_Second": ("旅券副本", "正式旅券副本2"),
     "LevelType_Strategy_Three": ("旅券副本", "正式旅券副本3"),
@@ -1715,6 +1878,10 @@ LEVEL_TYPE_TO_SYSTEM = {
     "LevelType_SpecialEquipment": ("映射装备副本", "正式映射装备副本"),
     "LevelType_SpecialEquipmentGem": ("映射装备副本", "正式映射装备宝石副本"),
     "LevelType_SpecialEquipmentChip": ("映射装备副本", "正式映射装备铭文副本"),
+    "LevelType_Equip_First": ("映射装备副本", "正式装备副本1"),
+    "LevelType_Equip_Second": ("映射装备副本", "正式装备副本2"),
+    "LevelType_Equip_Three": ("映射装备副本", "正式装备副本3"),
+    "LevelType_Equip_Four": ("映射装备副本", "正式装备副本4"),
 }
 
 
@@ -1730,35 +1897,55 @@ def parse_formal_level_reward_refs(b):
     if os.path.exists(uilevel_path):
         rows = row_dicts(uilevel_path, "level")
         drop_entries = logical_drop_entries_by_id()
+        expanded_rows = 0
         for row in rows:
             level_type = clean_text(row.get("LevelType"))
             if level_type not in LEVEL_TYPE_TO_SYSTEM:
                 continue
             count += 1
             system, group = LEVEL_TYPE_TO_SYSTEM[level_type]
-            cond = "LevelId %s｜%s｜Tier %s" % (clean_value(row.get("LevelId")), level_type, clean_value(row.get("TierNum")))
-            for field, label in [
-                ("FirstRewardDrop", "首通Drop"),
-                ("FallRewardDrop", "重复Drop"),
-                ("ThreeStarRewardDrop", "三星Drop"),
-                ("HighRewardDrop", "高额Drop"),
+            chapter_id = to_int(row.get("ChapterId"))
+            chapter_note = "｜章节%s" % (chapter_id - 10000) if chapter_id is not None and chapter_id >= 10000 else ""
+            cond = "LevelId %s｜%s%s｜%s" % (
+                clean_value(row.get("LevelId")), clean_text(row.get("Name")), chapter_note, level_type)
+            for field, kind, period in [
+                ("FirstRewardDrop", "首通", "一次性首通"),
+                ("FallRewardDrop", "重复", "可重复通关"),
+                ("ThreeStarRewardDrop", "三星", "一次性三星达成"),
+                ("HighRewardDrop", "高额", "高额结算"),
             ]:
-                add_drop_ref(b, system, "%s奖励引用" % group, "UIlevel.%s" % label, row.get(field),
-                             "正式:level/UIlevel.xlsx", row.get("_row"), condition=cond)
-            if system == "映射装备副本":
-                first_drop = to_int(row.get("FirstRewardDrop"))
-                for entry in drop_entries.get(first_drop, []):
-                    note = "UIlevel.FirstRewardDrop %s 展开；来源 %s#%s。" % (
-                        first_drop, entry.get("source"), entry.get("row"))
-                    if entry.get("invalid"):
-                        note += " Drop 行当前为 ## 标记。"
-                    b.add_reward("映射装备副本", "%s首通" % group, entry["item"], entry["qty"],
+                drop_id = to_int(row.get(field))
+                if drop_id is None:
+                    continue
+                entries = [
+                    e for e in drop_entries.get(drop_id, [])
+                    if not e["invalid"] and to_int(e.get("item_id")) not in (None, 0)
+                    and to_num(e.get("qty")) not in (None, 0)
+                ]
+                if not entries:
+                    add_drop_ref(b, system, "%s奖励引用" % group, "UIlevel.%s" % kind, drop_id,
+                                 "正式:level/UIlevel.xlsx", row.get("_row"), condition=cond)
+                    continue
+                for entry in entries:
+                    note = "UIlevel.%s=%s；来源 %s#%s。" % (field, drop_id, entry.get("source"), entry.get("row"))
+                    b.add_reward(system, "%s%s奖励" % (group, kind), entry["item"], entry["qty"],
                                  "正式:level/UIlevel.xlsx + %s" % entry.get("source"),
-                                 row.get("_row"), item_id=entry["item_id"], period="一次性",
-                                 condition=cond, basis="UIlevel.FirstRewardDrop 展开", note=note)
+                                 row.get("_row"), item_id=entry["item_id"], period=period,
+                                 condition=cond, basis="正式UIlevel+Drop展开", note=note)
+                    expanded_rows += 1
             add_formal_props(b, system, "%s体力消耗" % group, "消耗", row.get("Vitality"),
                              "正式:level/UIlevel.xlsx", row.get("_row"), period="关卡进入", condition=cond,
                              basis="正式UIlevel体力消耗")
+        mark_external(
+            b,
+            "正式:level/UIlevel.xlsx",
+            "已结构化",
+            "主线/困难主线/资源副本/旅券副本/映射装备副本按正式UIlevel直读：关卡 %s 行，首通/重复/三星/高额Drop已逐项展开 %s 行（##停用与ItemId=0占位行不计）；未展开的Drop保留为引用。旧经济母表设计页不再作为这五个系统的产销源。" % (count, expanded_rows),
+            count,
+            "",
+        )
+        for sheet in ("主线副本", "高难主线关卡", "资源、装备副本", "旅券副本", "映射装备副本"):
+            b.mark(sheet, "已由正式承接", "2026-09-04起该设计页口径停用；产销改读正式 level/UIlevel.xlsx + Drop 展开（当前游戏口径）。")
     if os.path.exists(chapter_star_path):
         rows = row_dicts(chapter_star_path)
         count += len(rows)
@@ -1988,7 +2175,7 @@ def finalize_coverage(b):
         "无限挑战": "设计说明页；奖励明细已从配置页-无限挑战登记。",
         "竞技场": "设计说明页；奖励明细已从配置页-竞技场登记。",
         "竞技场分层": "分层测算页，难度/竞技分层已在节奏层处理；经济层首版不作为产销源。",
-        "爬塔": "设计说明/测算页；奖励明细已从配置页-爬塔登记。",
+        "爬塔": "设计说明/测算页；奖励明细已改读 06_最终配置/爬塔 评审镜像（CHG-044）。",
         "映射装备副本配置": "配置导出页，首版先从映射装备副本设计页登记期望奖励。",
         "肉鸽（废弃）": "废弃玩法，不纳入当前正式经济层。",
     }
@@ -2139,14 +2326,14 @@ def write_sheet(wb, title, headers, rows):
 
 
 SPLIT_DEFS = [
-    ("玩法_主线", ["主线"], "普通主线首通/重复/星级奖励与体力消耗；章节任务已拆到独立模块。"),
-    ("玩法_困难主线", ["困难主线"], "高难主线体力、玩家经验、宝石与首通奖励。"),
-    ("玩法_资源副本", ["资源副本"], "金币本、角色经验本、专武经验本；经验计算值不计入道具产销。"),
-    ("玩法_旅券副本", ["旅券副本"], "旅券副本体力、金币、旅券期望掉落与首通奖励。"),
-    ("玩法_映射副本", ["映射装备副本"], "映射装备副本装备期望、经验与体力消耗。"),
+    ("玩法_主线", ["主线"], "正式UIlevel普通主线/序章/支线/章节玩法关的首通/重复/三星/高额奖励展开与体力；章节任务独立模块。"),
+    ("玩法_困难主线", ["困难主线"], "正式UIlevel困难主线首通/重复奖励展开与体力。"),
+    ("玩法_资源副本", ["资源副本"], "正式UIlevel金币/经验/专武经验/材料/专武材料/能效/房车舱室副本奖励展开；经验计算值不计入道具产销。"),
+    ("玩法_旅券副本", ["旅券副本"], "正式UIlevel旅券副本1-4首通/重复奖励展开。"),
+    ("玩法_映射副本", ["映射装备副本"], "正式UIlevel映射装备/宝石/铭文副本首通/重复奖励展开。"),
     ("玩法_无限挑战", ["无限挑战"], "无限挑战/无限之旅生涯奖励、正式 neural_roam 最高分奖励与玩法积分。"),
     ("玩法_竞技场", ["竞技场(PVPVE)"], "竞技场单场胜负、14天赛季累胜、首次到达、赛季结算、排行结算和商店。"),
-    ("玩法_爬塔", ["爬塔"], "爬塔常驻首通奖励、每周到达层数钻石、每周通关/扫荡奖励和爬塔商店。"),
+    ("玩法_爬塔", ["爬塔"], "账号级1-100层一次性首通（CHG-044：元晶/熔晶/旅券/房车零件/自选箱/指南材料）与按历史最高层挂机产出；旧每周到达、通关/扫荡、商店与赛季奖励已删除。"),
     ("玩法_大秘境", ["大秘境"], "大秘境周层数、周积分、赛季积分和排行奖励。"),
     ("玩法_BOSS挑战", ["BOSS挑战"], "Boss 挑战正式7个boss的一次性通关奖励展开；BestReward 作为最高奖励预览引用。"),
     ("外循环_任务", ["任务", "7日任务"], "每日/每周/阶段任务与新手 7 日任务。"),
@@ -3477,6 +3664,177 @@ def write_module_summary_sheet(wb, title, systems, rows, note, metrics):
     return ws
 
 
+MAINLINE_SUMMARY_TITLES = ("玩法_主线", "玩法_困难主线")
+_CN_CHAPTER = {0: "序章", 1: "第一章", 2: "第二章", 3: "第三章", 4: "第四章", 5: "第五章", 6: "第六章", 7: "第七章"}
+_SUMMARY_FOCUS = ("元晶", "金币", "低阶记录盘", "中阶记录盘", "高阶记录盘")
+_SUMMARY_OTHER_LIMIT = 6
+
+
+def _mainline_chapter_name(condition, hard_only=None):
+    text = str(condition or "")
+    if "IsDifficult" in text:
+        is_hard = "IsDifficult True" in text
+        if hard_only is not None and is_hard != hard_only:
+            return None
+    m = re.search(r"LevelId\s+(\d{6})", text)
+    if m:
+        lid = m.group(1)
+        if lid.startswith("100") or lid.startswith("110"):
+            return _CN_CHAPTER.get(int(lid[3]))
+        if lid.startswith("120"):
+            return "支线"
+        if lid.startswith("15"):
+            return "章节玩法关(华容道)"
+        if lid.startswith("17"):
+            return "章节玩法关(电路)"
+        return None
+    m = re.search(r"ChapterId\s+(\d+)", text)
+    if m:
+        return _CN_CHAPTER.get(int(m.group(1)) - 10000)
+    return None
+
+
+def _summary_add(bundle, resource, value):
+    if value is None:
+        return False
+    bundle[resource] = bundle.get(resource, 0) + value
+    return True
+
+
+def _summary_text_pair(name, qty):
+    return "%s×%s" % (name, fmt_num(qty) if isinstance(qty, (int, float)) else qty)
+
+
+def build_chapter_summary_sheet(wb, title, rows):
+    """主线/困难主线模块的章节汇总阅读页：每章一行，置顶。解析失败时不产出该页。"""
+    hard_only = True if title == "玩法_困难主线" else (False if title == "玩法_主线" else None)
+    chapters = {}
+    order = []
+    for row in rows:
+        condition = str(row.get("进度/条件") or "")
+        chapter = _mainline_chapter_name(condition, hard_only)
+        if chapter is None:
+            continue
+        group = str(row.get("分组") or "")
+        is_level_row = any(key in group for key in ("首通奖励", "重复奖励", "体力消耗", "高额奖励"))
+        is_star_row = condition.startswith("ChapterId")
+        if not is_level_row and not is_star_row:
+            continue
+        if chapter not in chapters:
+            chapters[chapter] = {
+                "levels": set(),
+                "repeat_costs": set(),
+                "first_out": {},
+                "first_out_text": [],
+                "repeat_per_level": {},
+                "star_nodes": 0,
+                "star_out": {},
+                "star_value": 0.0,
+                "value": 0.0,
+            }
+            order.append(chapter)
+        rec = chapters[chapter]
+        direction = str(row.get("方向") or "")
+        resource = str(row.get("资源/道具") or "")
+        period = str(row.get("周期/限制") or "")
+        qty = to_num(row.get("数量"))
+        m = re.search(r"LevelId\s+(\d{6})", condition)
+        level_id = m.group(1) if m else condition[:40]
+        if is_star_row:
+            rec["star_nodes"] += 1
+            value = to_num(row.get("价值(钻石)")) or 0.0
+            rec["star_value"] += value
+            if direction == "产出" and resource and qty is not None:
+                rec["star_out"][resource] = rec["star_out"].get(resource, 0) + qty
+            continue
+        rec["levels"].add(level_id)
+        if direction == "消耗" and "储能" in resource:
+            if "重复" in period or "进入" in period:
+                rec["repeat_costs"].add(qty if qty is not None else str(row.get("数量")))
+        elif direction == "产出":
+            value = to_num(row.get("价值(钻石)")) or 0.0
+            if "一次性" in period or "首通" in period:
+                if resource and qty is not None:
+                    rec["first_out"][resource] = rec["first_out"].get(resource, 0) + qty
+                if resource and resource not in _SUMMARY_FOCUS:
+                    rec["first_out_text"].append(_summary_text_pair(resource, row.get("数量")))
+                rec["value"] += value
+            elif "重复" in period:
+                per = rec["repeat_per_level"].setdefault(level_id, {})
+                if resource and qty is not None:
+                    per[resource] = per.get(resource, 0) + qty
+    if not order:
+        return None
+
+    chapter_order = sorted(order, key=lambda n: (n not in _CN_CHAPTER.values(), list(_CN_CHAPTER.values()).index(n) if n in _CN_CHAPTER.values() else 0, n))
+    headers = ["章节", "关数", "进入体力/次", "首通元晶", "首通金币", "首通记录盘(低/中/高)",
+               "首通其他产出(要点)", "重复产出(每关区间)", "星级奖励", "首通+星级价值(钻石)"]
+
+    def _focus_sum(bundle, keyword):
+        return sum(v for k, v in bundle.items() if keyword in k)
+
+    out_rows = []
+    totals = {"levels": 0, "value": 0.0, "yuan": 0, "gold": 0, "disk": [0, 0, 0], "star": 0.0}
+    for name in chapter_order:
+        rec = chapters[name]
+        first = rec["first_out"]
+        disks = "/".join(fmt_num(first.get(key, 0)) if first.get(key) is not None else "0" for key in _SUMMARY_FOCUS[2:])
+        others = [t for t in rec["first_out_text"] if not any(key in t for key in _SUMMARY_FOCUS)][: _SUMMARY_OTHER_LIMIT]
+        repeat_bits = []
+        for resource in sorted({k for per in rec["repeat_per_level"].values() for k in per}):
+            values = [per[resource] for per in rec["repeat_per_level"].values() if resource in per]
+            if not values:
+                continue
+            lo, hi = min(values), max(values)
+            repeat_bits.append("%s %s/关" % (resource, fmt_num(lo) if lo == hi else "%s~%s" % (fmt_num(lo), fmt_num(hi))))
+        star_bits = []
+        if rec["star_nodes"]:
+            star_bits.append("%d 档" % rec["star_nodes"])
+            for resource in ("元晶", "金币"):
+                if _focus_sum(rec["star_out"], resource):
+                    star_bits.append("%s %s" % (resource, fmt_num(_focus_sum(rec["star_out"], resource))))
+        cost_repeat = "/".join(str(c) for c in sorted(rec["repeat_costs"])) if rec["repeat_costs"] else "-"
+        yuan = _focus_sum(first, "元晶")
+        gold = _focus_sum(first, "金币")
+        out_rows.append([
+            name,
+            len(rec["levels"]),
+            cost_repeat,
+            fmt_num(yuan) or "0",
+            fmt_num(gold) or "0",
+            disks,
+            "；".join(others) if others else "-",
+            "；".join(repeat_bits[:4]) if repeat_bits else "-",
+            "；".join(star_bits) if star_bits else "-",
+            fmt_num(round(rec["value"] + rec["star_value"], 2)) if (rec["value"] or rec["star_value"]) else "-",
+        ])
+        totals["levels"] += len(rec["levels"])
+        totals["value"] += rec["value"] + rec["star_value"]
+        totals["yuan"] += yuan
+        totals["gold"] += gold
+        for i, key in enumerate(_SUMMARY_FOCUS[2:]):
+            totals["disk"][i] += first.get(key, 0) or 0
+        totals["star"] += rec["star_value"]
+    out_rows.append([
+        "合计", totals["levels"], "-", fmt_num(totals["yuan"]),
+        fmt_num(totals["gold"]), "/".join(fmt_num(v) for v in totals["disk"]),
+        "见各章", "见各章", "星级价值 %s" % fmt_num(round(totals["star"], 2)), fmt_num(round(totals["value"], 2)),
+    ])
+
+    ws = wb.create_sheet("章节汇总", 0)
+    ws.append(["章节汇总（阅读版）：每章一行；" + ("困难主线" if title == "玩法_困难主线" else "普通主线（含序章/支线/章节玩法关/星级）") + "。逐关明细见「玩法产出」页。"])
+    ws.append(headers)
+    for row in out_rows:
+        ws.append(row)
+    widths = [16, 8, 12, 12, 14, 18, 40, 34, 22, 18]
+    for idx, width in enumerate(widths, start=1):
+        ws.column_dimensions[openpyxl.utils.get_column_letter(idx)].width = width
+    for cell in ws[2]:
+        cell.font = openpyxl.styles.Font(bold=True)
+    ws.freeze_panes = "A3"
+    return ws
+
+
 def write_module_workbook(title, systems, rows, note, idx, display_rows=None):
     path = os.path.join(MODULE_DIR, safe_filename(title, idx))
     rows = sorted(rows, key=ledger_row_sort_key)
@@ -3515,6 +3873,11 @@ def write_module_workbook(title, systems, rows, note, idx, display_rows=None):
         "T_%s" % TABLE_NAME_BY_TITLE.get(title, "module"),
         direction_col=2,
     )
+    if title in MAINLINE_SUMMARY_TITLES:
+        try:
+            build_chapter_summary_sheet(wb, title, rows)
+        except Exception as error:  # 阅读页失败不阻塞数值生产
+            MODULE_WRITE_WARNINGS.append("章节汇总页生成失败(%s): %s" % (title, error))
     try:
         wb.save(path)
     except PermissionError:
@@ -3669,6 +4032,9 @@ def write_report(b, summary_rows, module_outputs):
         "- 校验回答补充：按用户在 P4c `需要确认` 页的回答，补正式 Task/SevenDaySign、UIlevel/Chapter、DrawCard 概率入口、Guild；旧设计 B炮台 ID 纠偏为 96303，竞技场商店则改读正式 ShopGoods#1109。",
         "- 真实差异修正：签到改由正式 DailySign/MonthlyAccumulate/TravelAccumulate 覆盖旧设计值；角色/专武满级无下一等级消耗的旧行不再写入；竞技场商店不再使用旧设计行。",
         "- 工具页索引修正：旧经济框架的 `道具定价` 不再作为定价输入，统一读取 `01_源表/道具定价.xlsx`。",
+        "- 2026-09-04 爬塔改读评审镜像（CHG-043/044）：`玩法_爬塔` 产销改读 `06_最终配置/爬塔`（TowerFirstReward + Drop_dungeon + TowerIdleRewards），并按 CHG-044 验收总量断言（首通223行：元晶7,300/熔晶7/旅券60/房车零件4,000/自选箱650/高阶课程笔记150/精英课程笔记10）；旧经济母表配置页-爬塔、每周/扫荡、爬塔商店与正式 TowerReward 赛季引用不再计入。",
+        "- 2026-09-04 房车多级节点接入（CHG-053）：`养成_房车` 改为消费 `养成/生成_房车.xlsx` 的多级节点经济明细（每职业66节点/360条升级记录，1156拆分落Lv2/Lv3），并携带道具ID列。",
+        "- 2026-09-04 副本五族直读正式配置：主线/困难主线/资源副本/旅券副本/映射装备副本停用经济母表2026-07设计页，改读正式 level/UIlevel.xlsx + Drop 全表展开（首通/重复/三星/高额；##停用与ItemId=0占位行不计），与当前游戏口径一致。",
         "",
         "## 待后续深挖",
         "",
@@ -3707,11 +4073,8 @@ def main():
     parse_task_sheet(b)
     parse_battlepass(b)
     parse_battlepass_config(b)
-    parse_mainline(b)
-    parse_hard_mainline(b)
-    parse_resource_dungeons(b)
-    parse_voucher_dungeon(b)
-    parse_mapping_dungeon(b)
+    # 2026-09-04：主线/困难主线/资源副本/旅券副本/映射装备副本不再读经济母表
+    # 设计页，统一由 parse_formal_level_reward_refs 直读正式 UIlevel + Drop 展开。
     parse_verification_configs(b)
     parse_mythic(b)
     parse_boss_challenge(b)

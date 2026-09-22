@@ -1,0 +1,163 @@
+{
+ "change_id": "CHG-054",
+ "date": "2026-09-04",
+ "scope": "房车设备挂机产出调整：累积时长统一24小时；工作台/车载电脑/车载床铺产出曲线更新",
+ "design_source": "D:\\Vgame_design\\design\\房车设备数值设计-2026-07-21.md（2026-09-04确认记录）",
+ "formal_datas_modified": true,
+ "svn_target": "D:\\Vgame\\Config\\GameConfig\\Datas\\Car\\Facility\\DeviceLvUp.xlsx",
+ "svn_revision_base": 41726,
+ "svn_status": "M（工作副本已修改，未提交）",
+ "backup": "D:\\Vgame_design\\output\\rv_growth\\svn-backup-20260904-172122-devicelvup-chg054\\DeviceLvUp.xlsx",
+ "changes": {
+  "cumulative_time_hours": {
+   "before": [
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    30
+   ],
+   "after": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+   ],
+   "rows": 50
+  },
+  "device2_workbench_parts_per_hour": {
+   "before": [
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26
+   ],
+   "after": [
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30
+   ]
+  },
+  "device3_stamp_energy_hourly": {
+   "landed_then_user_revised": [
+    0.5,
+    0.5417,
+    0.5833,
+    0.625,
+    0.6667,
+    0.7083,
+    0.7917,
+    0.875,
+    0.9583,
+    1.0417
+   ],
+   "final_hourly": [
+    0.5,
+    0.6,
+    0.7,
+    0.8,
+    0.9,
+    1.0,
+    1.1,
+    1.2,
+    1.3,
+    1.4
+   ],
+   "final_daily_theoretical": [
+    12,
+    14.4,
+    16.8,
+    19.2,
+    21.6,
+    24,
+    26.4,
+    28.8,
+    31.2,
+    33.6
+   ]
+  },
+  "device4_stamina_hourly": {
+   "landed_then_user_revised": [
+    1.6667,
+    1.8333,
+    2.0,
+    2.1667,
+    2.3333,
+    2.5,
+    2.7083,
+    2.9167,
+    3.125,
+    3.3333
+   ],
+   "final_hourly": [
+    1.6,
+    1.8,
+    2.0,
+    2.1,
+    2.3,
+    2.5,
+    2.7,
+    2.9,
+    3.1,
+    3.3
+   ],
+   "final_daily_theoretical": [
+    38.4,
+    43.2,
+    48,
+    50.4,
+    55.2,
+    60,
+    64.8,
+    69.6,
+    74.4,
+    79.2
+   ]
+  }
+ },
+ "unchanged": [
+  "DeviceId 1 驾驶台 ProduceNum（程序侧整数口径 21~125/小时，本次不改）",
+  "DeviceId 5 储藏架 ProduceNum（1250~4200/小时）与 BuffGainTypeList 载货量增量",
+  "Unlock 列（12011-12019 玩家等级门槛 10/15/20/25/30/35/40/45/50，程序侧已落表）",
+  "CostItemList（3028/3029/3030 分段消耗）与 CostCurrencyNum"
+ ],
+ "known_drift": "驾驶台/储藏架 SVN 整数小时产与设计文档日产存在约±0.8%偏差（如储藏架Lv4 2050/hr=49,200/天 vs 设计49,000；Lv10 4200/hr=100,800/天 vs 设计100,000），为程序侧既有取整口径，本次未处理",
+ "cells_changed": {
+  "produce_num": 29,
+  "cumulative_time": 45
+ },
+ "files": {
+  "svn_modified": "46a0cbcfbe97a1e78945018e91c6e15a245d3aed1f31a85f715347799dba7b54",
+  "svn_backup_before_all_changes": "ab9a86e57d2bbed8e6e0ecc95a9b3f89660291836eb40dd598e8929a53dac9f2",
+  "mirror_06": "3cfafaa774e420e863fce1eaac21cd3f69ca339f75fab69902eb940423cea986"
+ },
+ "post_actions": [
+  "待程序管线重跑 Luban 导出（server json/code + client bytes/lua）",
+  "SVN 提交由用户执行；工作副本另有他人未提交改动 rvguidenodelv.json，注意分开提交"
+ ],
+ "user_revision": "2026-09-04用户在SVN工作副本手工修订设备3/4小时产出为0.1步进整洁小数，替代CHG-054首轮落表的日产÷24四位小数；设计文档与06镜像已按修订值同步"
+}

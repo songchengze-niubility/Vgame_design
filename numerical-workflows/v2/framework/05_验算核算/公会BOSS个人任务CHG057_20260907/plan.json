@@ -1,0 +1,207 @@
+{
+  "batch": "GUILDBOSS-TASK-CHG057",
+  "created": "2026-09-07T17:56:47.844084",
+  "file": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\04_数值文档\\系统\\11_外循环_任务.xlsx",
+  "backup": "D:\\Vgame_design\\numerical-workflows\\v2\\framework\\05_验算核算\\公会BOSS个人任务CHG057_20260907\\backup\\11_外循环_任务.xlsx",
+  "sha256_before": "350c9a34a41d9cad51d05c9a9410664281e64b5f7b396b0d157440deebdca9d1",
+  "svn_source": "D:\\Vgame\\Config\\GameConfig\\Datas\\task\\Task.xlsx",
+  "edits": [
+    {
+      "row": 342,
+      "col": 7,
+      "task_id": 6001,
+      "old": "正式Task奖励：Task.DropId奖励包 x91000070",
+      "new": "正式Task奖励：Task.DropId奖励包 x70001001"
+    },
+    {
+      "row": 342,
+      "col": 10,
+      "task_id": 6001,
+      "old": null,
+      "new": "公会BOSS个人任务启用档（GuildBossTask 6001~6007）；奖励包=元晶(2)+公会个人代币(15)固定值"
+    },
+    {
+      "row": 343,
+      "col": 4,
+      "task_id": 6002,
+      "old": "TaskId 6002｜Task_TTT_GuildBossTask｜聚集地首领累计挑战5次",
+      "new": "TaskId 6002｜Task_TTT_GuildBossTask｜聚集地首领累计挑战2次"
+    },
+    {
+      "row": 343,
+      "col": 7,
+      "task_id": 6002,
+      "old": "正式Task奖励：Task.DropId奖励包 x91000070",
+      "new": "正式Task奖励：Task.DropId奖励包 x70001002"
+    },
+    {
+      "row": 343,
+      "col": 10,
+      "task_id": 6002,
+      "old": null,
+      "new": "公会BOSS个人任务启用档（GuildBossTask 6001~6007）；奖励包=元晶(2)+公会个人代币(15)固定值"
+    },
+    {
+      "row": 344,
+      "col": 4,
+      "task_id": 6003,
+      "old": "TaskId 6003｜Task_TTT_GuildBossTask｜聚集地首领累计挑战10次",
+      "new": "TaskId 6003｜Task_TTT_GuildBossTask｜聚集地首领累计挑战3次"
+    },
+    {
+      "row": 344,
+      "col": 7,
+      "task_id": 6003,
+      "old": "正式Task奖励：Task.DropId奖励包 x91000070",
+      "new": "正式Task奖励：Task.DropId奖励包 x70001003"
+    },
+    {
+      "row": 344,
+      "col": 10,
+      "task_id": 6003,
+      "old": null,
+      "new": "公会BOSS个人任务启用档（GuildBossTask 6001~6007）；奖励包=元晶(2)+公会个人代币(15)固定值"
+    },
+    {
+      "row": 345,
+      "col": 4,
+      "task_id": 6004,
+      "old": "TaskId 6004｜Task_TTT_GuildBossTask｜聚集地首领累计挑战20次",
+      "new": "TaskId 6004｜Task_TTT_GuildBossTask｜聚集地首领累计挑战4次"
+    },
+    {
+      "row": 345,
+      "col": 7,
+      "task_id": 6004,
+      "old": "正式Task奖励：Task.DropId奖励包 x91000070",
+      "new": "正式Task奖励：Task.DropId奖励包 x70001004"
+    },
+    {
+      "row": 345,
+      "col": 10,
+      "task_id": 6004,
+      "old": null,
+      "new": "公会BOSS个人任务启用档（GuildBossTask 6001~6007）；奖励包=元晶(2)+公会个人代币(15)固定值"
+    },
+    {
+      "row": 346,
+      "col": 4,
+      "task_id": 6005,
+      "old": "TaskId 6005｜Task_TTT_GuildBossTask｜聚集地首领累计挑战40次",
+      "new": "TaskId 6005｜Task_TTT_GuildBossTask｜聚集地首领累计挑战5次"
+    },
+    {
+      "row": 346,
+      "col": 7,
+      "task_id": 6005,
+      "old": "正式Task奖励：Task.DropId奖励包 x91000070",
+      "new": "正式Task奖励：Task.DropId奖励包 x70001005"
+    },
+    {
+      "row": 346,
+      "col": 10,
+      "task_id": 6005,
+      "old": null,
+      "new": "公会BOSS个人任务启用档（GuildBossTask 6001~6007）；奖励包=元晶(2)+公会个人代币(15)固定值"
+    },
+    {
+      "row": 347,
+      "col": 4,
+      "task_id": 6006,
+      "old": "TaskId 6006｜Task_TTT_GuildBossTask｜聚集地首领累计挑战60次",
+      "new": "TaskId 6006｜Task_TTT_GuildBossTask｜聚集地首领累计挑战6次"
+    },
+    {
+      "row": 347,
+      "col": 7,
+      "task_id": 6006,
+      "old": "正式Task奖励：Task.DropId奖励包 x91000070",
+      "new": "正式Task奖励：Task.DropId奖励包 x70001006"
+    },
+    {
+      "row": 347,
+      "col": 10,
+      "task_id": 6006,
+      "old": null,
+      "new": "公会BOSS个人任务启用档（GuildBossTask 6001~6007）；奖励包=元晶(2)+公会个人代币(15)固定值"
+    },
+    {
+      "row": 348,
+      "col": 4,
+      "task_id": 6007,
+      "old": "TaskId 6007｜Task_TTT_GuildBossTask｜聚集地首领累计挑战80次",
+      "new": "TaskId 6007｜Task_TTT_GuildBossTask｜聚集地首领累计挑战7次"
+    },
+    {
+      "row": 348,
+      "col": 7,
+      "task_id": 6007,
+      "old": "正式Task奖励：Task.DropId奖励包 x91000070",
+      "new": "正式Task奖励：Task.DropId奖励包 x70001007"
+    },
+    {
+      "row": 348,
+      "col": 10,
+      "task_id": 6007,
+      "old": null,
+      "new": "公会BOSS个人任务启用档（GuildBossTask 6001~6007）；奖励包=元晶(2)+公会个人代币(15)固定值"
+    },
+    {
+      "row": 349,
+      "col": 10,
+      "task_id": 6008,
+      "old": null,
+      "new": "未启用档：GuildBossTask.xlsx 以 ## 停用；DropId 91000070 与开服挑战任务共用"
+    },
+    {
+      "row": 350,
+      "col": 10,
+      "task_id": 6009,
+      "old": null,
+      "new": "未启用档：GuildBossTask.xlsx 以 ## 停用；DropId 91000070 与开服挑战任务共用"
+    },
+    {
+      "row": 351,
+      "col": 10,
+      "task_id": 6010,
+      "old": null,
+      "new": "未启用档：GuildBossTask.xlsx 以 ## 停用；DropId 91000070 与开服挑战任务共用"
+    },
+    {
+      "row": 352,
+      "col": 10,
+      "task_id": 6011,
+      "old": null,
+      "new": "未启用档：GuildBossTask.xlsx 以 ## 停用；DropId 91000070 与开服挑战任务共用"
+    },
+    {
+      "row": 353,
+      "col": 10,
+      "task_id": 6012,
+      "old": null,
+      "new": "未启用档：GuildBossTask.xlsx 以 ## 停用；DropId 91000070 与开服挑战任务共用"
+    },
+    {
+      "row": 354,
+      "col": 10,
+      "task_id": 6013,
+      "old": null,
+      "new": "未启用档：GuildBossTask.xlsx 以 ## 停用；DropId 91000070 与开服挑战任务共用"
+    },
+    {
+      "row": 355,
+      "col": 10,
+      "task_id": 6014,
+      "old": null,
+      "new": "未启用档：GuildBossTask.xlsx 以 ## 停用；DropId 91000070 与开服挑战任务共用"
+    },
+    {
+      "row": 356,
+      "col": 10,
+      "task_id": 6015,
+      "old": null,
+      "new": "未启用档：GuildBossTask.xlsx 以 ## 停用；DropId 91000070 与开服挑战任务共用"
+    }
+  ],
+  "sha256_after": "969bcc9e19e736971b521edde9c7aad7ed555ac73c4b865bd57c8f5d1a9234f0"
+}

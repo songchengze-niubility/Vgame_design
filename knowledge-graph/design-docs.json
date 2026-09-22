@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generated_at": "2026-09-02T15:44:55",
+  "generated_at": "2026-09-04T14:59:32",
   "nodes": [
     {
       "id": "document:37dd68363fc1",
@@ -74,8 +74,8 @@
       "layer": "design",
       "metadata": {
         "category": "governance",
-        "line_count": 404,
-        "sha256": "1ea9bff93f0d2bc8c1765f12c3d54e44ffad9c496d008093834d89da1c649218"
+        "line_count": 446,
+        "sha256": "6f812a791f393c224948d871ffd468b88db1b1c1850e7507100cf8c9acec7443"
       }
     },
     {
@@ -740,7 +740,7 @@
       "metadata": {
         "category": "design",
         "line_count": 202,
-        "sha256": "6042d6b3824880327acc2cd85c3ecd46b2f5fc528587bdec71a23abbba2a617f"
+        "sha256": "5cc038a668ce4a0e49d4ed2aca409d4bd41aa8783f5a3b59f606dc17c7d589ca"
       }
     },
     {
@@ -1010,6 +1010,25 @@
       }
     },
     {
+      "id": "document:f50d859eed21",
+      "type": "document",
+      "name": "映射装备占位彩装屏蔽记录（2026-09-03）",
+      "filePath": "design/映射装备占位彩装屏蔽-2026-09-03.md",
+      "summary": "映射装备占位彩装屏蔽记录（2026-09-03）",
+      "tags": [
+        "vgame",
+        "design-doc",
+        "design"
+      ],
+      "complexity": "simple",
+      "layer": "design",
+      "metadata": {
+        "category": "design",
+        "line_count": 46,
+        "sha256": "3b9d5c7dc3b6abd9786a462963c6fa351132c75417523cb6c6aceaee00fe9809"
+      }
+    },
+    {
       "id": "document:7553053e0035",
       "type": "document",
       "name": "映射装备数值超级爆改",
@@ -1210,12 +1229,12 @@
         "design-doc",
         "design"
       ],
-      "complexity": "simple",
+      "complexity": "moderate",
       "layer": "design",
       "metadata": {
         "category": "design",
-        "line_count": 230,
-        "sha256": "2bec65043f7f9e3fd3e29dd4dac974bf70c02253976d84e6289ca60e177d704d"
+        "line_count": 254,
+        "sha256": "76d96379308a2875f619d481e052c8dac169e8d6fdad72426dfa53db9a40b9a4"
       }
     },
     {
@@ -2193,7 +2212,7 @@
     {
       "id": "layer:design-docs",
       "name": "策划与治理文档",
-      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（115份）",
+      "description": "Vgame 设计、提案、任务、计划和 Harness 文档（116份）",
       "nodeIds": [
         "document:37dd68363fc1",
         "document:5353c59756b7",
@@ -2248,6 +2267,7 @@
         "document:e9d8745b6ec8",
         "document:5dbf432d2672",
         "document:287cb0ab0b13",
+        "document:f50d859eed21",
         "document:7553053e0035",
         "document:60ce44b676ff",
         "document:61e09bb1becb",
@@ -2314,7 +2334,7 @@
     }
   ],
   "statistics": {
-    "documents": 115,
+    "documents": 116,
     "edges": 0
   }
 }

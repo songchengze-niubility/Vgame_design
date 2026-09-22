@@ -61,6 +61,7 @@ JOBS = (
     Job("经济/升级成本", "经济/scripts/gen_levelup_cost.py", ("经济/生成_角色升级成本.xlsx",)),
     Job("经济/资源产销总账", "经济/scripts/gen_economy_ledger.py", ("经济/全资源产销总表.xlsx", "经济/模块产销表/01_玩法_主线.xlsx", "经济/模块产销表/22_外循环_章节任务.xlsx")),
     Job("经济/资源养成阅读版", "经济/scripts/gen_economy_readable_views.py", ("经济/资源养成_阅读版.xlsx",)),
+    Job("经济/爬塔QA奖励表", "经济/scripts/gen_tower_reward_qa_table.py", ("经济/生成_爬塔首通挂机奖励.xlsx",)),
     Job("节奏/主角等级", "节奏/scripts/gen_hero_level.py", ("节奏/生成_主角等级单源.xlsx",)),
     Job("节奏/无限挑战", "节奏/scripts/gen_difficulty_inf.py", ("节奏/生成_无限挑战难度线.xlsx",)),
     Job("节奏/爬塔难度", "节奏/scripts/gen_difficulty_tower.py", ("节奏/生成_爬塔难度线_天数层数.xlsx",)),

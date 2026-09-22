@@ -169,8 +169,9 @@ def table_data() -> dict:
         "parts": find_table(gt, ["部位", "主属性", "口径"]),
         "main_level": find_table(gt, ["等级", "主属性等级倍率"]),
         "main_target": compatible_table(gt, ["主属性", "目标值", "说明"]),
-        "sub_level": find_table(gt, ["等级", "副属性等级倍率"]),
-        "sub_target": compatible_table(gt, ["副属性", "60级红装单条目标值", "换算说明"], {"60级红装单条上限": "60级红装单条目标值"}),
+        "sub_level": find_table(gt, ["等级", "百分比等级倍率", "固定值等级倍率"]),
+        "sub_target": find_table(gt, ["副属性", "当前 ValueMax", "新标准值 S", "Lv60红装随机区间"]),
+        "random_band": find_table(gt, ["品质", "随机倍率下限", "随机倍率上限", "数值随机规则"]),
         "forge_rules": find_table(et, ["项", "最新口径"], 0),
         "equip_exp": find_table(et, ["装备等级", "绿", "蓝", "紫", "金", "红"], 0),
         "synthesis_tier": find_table(et, ["合成档", "角色等级要求", "产物等级池", "等级权重", "投入装备等级下限", "基础金币"]),
@@ -351,13 +352,14 @@ def build_workbook(data: dict, evidence: dict) -> Workbook:
 
     quality_order = {r["品质"]: number(r["品质顺序"]) for r in data["qualities"]}
     quality_coef = {r["品质"]: (number(r["主属性品质系数"]), number(r["副属性品质系数"])) for r in data["quality_coef"]}
+    random_band = {r["品质"]: (number(r["随机倍率下限"]), number(r["随机倍率上限"])) for r in data["random_band"]}
     syn_gold = {k: number(v) for k, v in data["quality_gold_synthesis"][0].items() if k != "品质"}
     dec_gold = {k: number(v) for k, v in data["quality_gold_decompose"][0].items() if k != "品质"}
     qualities = [r["品质"] for r in data["qualities"]]
 
     ws = wb.create_sheet("02_品质等级")
-    add_rows(ws, [["品质", "品质顺序", "主属性品质系数", "副属性品质系数", "合成金币系数", "分解金币系数"]] + [
-        [q, quality_order[q], quality_coef[q][0], quality_coef[q][1], syn_gold[q], dec_gold[q]] for q in qualities
+    add_rows(ws, [["品质", "品质顺序", "主属性品质系数", "副属性品质系数", "合成金币系数", "分解金币系数", "随机倍率下限", "随机倍率上限"]] + [
+        [q, quality_order[q], quality_coef[q][0], quality_coef[q][1], syn_gold[q], dec_gold[q], random_band[q][0], random_band[q][1]] for q in qualities
     ])
     style_sheet(ws, source_note=GROWTH_MD.name + "；" + ECON_MD.name)
 
@@ -403,42 +405,59 @@ def build_workbook(data: dict, evidence: dict) -> Workbook:
                 ])
     style_sheet(ws, source_note=GROWTH_MD.name)
 
-    sub_levels = [(number(r["等级"]), number(r["副属性等级倍率"])) for r in data["sub_level"]]
+    sub_levels = [
+        (number(r["等级"]), number(r["百分比等级倍率"]), number(r["固定值等级倍率"]))
+        for r in data["sub_level"]
+    ]
     sub_targets = [
         (
             r["副属性"],
-            number(r["60级红装单条目标值"]),
-            "比例" if "%" in r["60级红装单条目标值"] else ("等级" if r["副属性"].endswith("等级") else "数值"),
-            r["换算说明"].replace(",", ""),
+            number(r["当前 ValueMax"]),
+            number(r["新标准值 S"]),
+            "比例" if "%" in str(r["新标准值 S"]) else ("等级" if str(r["副属性"]).endswith("等级") else "数值"),
         )
         for r in data["sub_target"]
     ]
     ws = wb.create_sheet("05_副属性基础")
-    ws.append(["副属性", "60级红装单条目标值", "单位", "换算说明", "", "等级", "副属性等级倍率"])
+    ws.append(["副属性", "当前ValueMax", "新标准值S", "Lv60红装随机区间", "单位", "", "等级", "百分比等级倍率", "固定值等级倍率"])
     for i in range(max(len(sub_targets), len(sub_levels))):
         target = sub_targets[i] if i < len(sub_targets) else None
+        row = data["sub_target"][i] if i < len(data["sub_target"]) else None
         level = sub_levels[i] if i < len(sub_levels) else None
         ws.append([
-            target[0] if target else "", target[1] if target else "", target[2] if target else "", target[3] if target else "", "",
-            level[0] if level else "", level[1] if level else "",
+            target[0] if target else "",
+            target[1] if target else "",
+            target[2] if target else "",
+            row["Lv60红装随机区间"] if row else "",
+            target[3] if target else "",
+            "",
+            level[0] if level else "",
+            level[1] if level else "",
+            level[2] if level else "",
         ])
     style_sheet(ws, source_note=GROWTH_MD.name + "；01_源表/属性定价.xlsx")
     for row in range(2, ws.max_row + 1):
-        if ws.cell(row, 3).value == "比例":
-            ws.cell(row, 2).number_format = "0.00%"
+        if ws.cell(row, 5).value == "比例":
+            ws.cell(row, 3).number_format = "0.00%"
 
+    # CHG-ME-ATTR-005：副属性值 = S × 属性类别等级倍率 × 副属性品质系数 × 品质随机倍率。
     ws = wb.create_sheet("06_副属性计算")
-    ws.append(["副属性", "品质", "等级", "60红单条目标", "副属性品质系数", "副属性等级倍率", "副属性值"])
-    for attr, _target, _unit, _note in sub_targets:
+    ws.append(["副属性", "类别", "品质", "等级", "标准值S", "副属性品质系数", "类别等级倍率", "随机倍率下限", "随机倍率上限", "副属性值下限", "副属性值上限"])
+    for attr, _value_max, _s_value, unit in sub_targets:
+        category = "百分比" if unit == "比例" else "固定值"
+        curve_col = "H" if category == "百分比" else "I"
         for quality in qualities:
-            for level, _ratio in sub_levels:
+            for level, _percent_ratio, _fixed_ratio in sub_levels:
                 r = ws.max_row + 1
                 ws.append([
-                    attr, quality, level,
-                    "=INDEX('05_副属性基础'!$B$2:$B$13,MATCH(A%d,'05_副属性基础'!$A$2:$A$13,0))" % r,
-                    "=INDEX('02_品质等级'!$D$2:$D$6,MATCH(B%d,'02_品质等级'!$A$2:$A$6,0))" % r,
-                    "=INDEX('05_副属性基础'!$G$2:$G$13,MATCH(C%d,'05_副属性基础'!$F$2:$F$13,0))" % r,
-                    "=D%d*E%d*F%d" % (r, r, r),
+                    attr, category, quality, level,
+                    "=INDEX('05_副属性基础'!$C$2:$C$%d,MATCH(A%d,'05_副属性基础'!$A$2:$A$%d,0))" % (len(sub_targets) + 1, r, len(sub_targets) + 1),
+                    "=INDEX('02_品质等级'!$D$2:$D$6,MATCH(C%d,'02_品质等级'!$A$2:$A$6,0))" % r,
+                    "=INDEX('05_副属性基础'!$%s$2:$%s$%d,MATCH(D%d,'05_副属性基础'!$G$2:$G$%d,0))" % (curve_col, curve_col, len(sub_levels) + 1, r, len(sub_levels) + 1),
+                    "=INDEX('02_品质等级'!$G$2:$G$6,MATCH(C%d,'02_品质等级'!$A$2:$A$6,0))" % r,
+                    "=INDEX('02_品质等级'!$H$2:$H$6,MATCH(C%d,'02_品质等级'!$A$2:$A$6,0))" % r,
+                    "=E%d*F%d*G%d*H%d" % (r, r, r, r),
+                    "=E%d*F%d*G%d*I%d" % (r, r, r, r),
                 ])
     style_sheet(ws, source_note=GROWTH_MD.name)
 

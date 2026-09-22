@@ -1,10 +1,9 @@
 # 概率与随机
 
-本域共登记 28 个原子。正文只给出规范化导航；精确上下文按 `sourceLocator` 回源。
+本域共登记 29 个原子。正文只给出规范化导航；精确上下文按 `sourceLocator` 回源。
 
 | 原子 | 状态 | 标题 | 规范化陈述 | 系统 | Skill |
 |---|---|---|---|---|---|
-| `NATOM-B4125696D1FA` | ACTIVE | 2026-08-31 14日扩展版：第8~14天42条任务（CHG-013修订，当前生效） | 结构：保留第1~7天每天10条不动，新增第8~14天每天6条共42条，全活动112条。第8~14天只保留有挑战性的任务线：映射副本最高层、竞技场线、爬塔最高层、无限之旅、高难主线+肉鸽/邮票/抽卡，砍掉登录/储能/等级/行商类日常填充。每条奖励=挑战积分(32)×10+1项玩法奖励。 | SYS-OUT-GP-01、SYS-OUT-GP-02、SYS-OUT-GP-05、SYS-OUT-GP-07、SYS-OUT-GP-08、SYS-OUT-SU-05、SYS-OUT-SU-07、SYS-OUT-SU-14 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |
 | `NATOM-DDED2E81D23D` | ACTIVE | CHG-001（2026-07-20）序章星级、无效 Drop 行与汇总复核 | 状态：`verified` 提出人：用户 旧口径：序章星级节点写为 `3/9/15`；`LevelId=100104` 的首通真实 Drop 误计首列为 `##` 的“抽卡券×10”。 新口径：序章星级节点按正式 `ChapterStarReward.xlsx` 修正为 `3/6/12`；所有正式 Drop 展开统一排除数据行首列为 `##` 的无效行。 汇 | SYS-OUT-GP-01、SYS-OUT-GP-03、SYS-OUT-SU-05、SYS-IN-04 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |
 | `NATOM-3FD106AD0450` | ACTIVE | CHG-024 红装具名技能增量配置 | *已撤回：以下是历史实施记录，不得重放。** 用户明确要求具名技能使用SpecialEffect；FixEffect方案及保护低品质旧池的做法均错误。update.mjs、publish.ps1已停用。当前使用mapping-special-chg025；本目录rules.json保留已确认名称映射并已改为CHG-025语义。 规则为用户已确认的按名称绑定， | SYS-IN-04 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |
 | `NATOM-5143C0346D18` | ACTIVE | Drop_draw 展开 | Drop_draw 展开（源章节未提供可直接摘要的自然语言正文） | SYS-OUT-SU-05 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |
@@ -31,4 +30,6 @@
 | `NATOM-1BDC376E0EC6` | ACTIVE | 沉淀范围 | 模块编号：经济模块 02/22 模块文件：`经济/模块产销表/02_玩法_困难主线.xlsx` 对应系统：困难主线 / 高难主线 当前定位：普通主线之后的每日刷新宝石投放玩法，兼具首通元晶、首通宝石、重复宝石、困难章节星级奖励。 当前硬口径：逐关沉淀首通、常规、概率/权重、周期奖励；不能只停在 DropId 或模块汇总。 | SYS-OUT-GP-01、SYS-OUT-GP-02、SYS-OUT-SU-05 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |
 | `NATOM-5E201D57FC9D` | ACTIVE | 规则与入口 | `rules.mjs`：纯函数`previewPatches(books, sources)`，返回具名字段对应的单元格变更与73条等级链。重复应用返回零变更；缺失CHG-019道具、U列冲突或4375等级/品质不符时拒绝执行。 `prepare.py`：只读提取完整行宽、公式、实际开箱源，记录全部22份候选和4份相关SVN文件哈希。禁止覆盖已存在的本次基线 | SYS-OUT-SU-05、SYS-IN-04 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |
 | `NATOM-D7935873DFAF` | ACTIVE | 赛季累胜奖励 | \| 赛季累胜门槛 \| DropId \| 奖励展开 \| Drop 口径 \| \| --- \| --- \| --- \| --- \| \| 3 胜 \| 26003001 \| 勇士勋章(19)x30 \| `fixed_`，权重 10000 \| \| 6 胜 \| 26003002 \| 校准元件(28)x100 \| `fixed_`，权重 | SYS-OUT-GP-07、SYS-OUT-SU-05、SYS-OUT-SU-14 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |
+| `NATOM-8C2220EE5018` | ACTIVE | 配置影响矩阵 | 路径均相对`06_最终配置/任务`。 \| 文件/页签 \| ID/字段 \| 旧值 \| 新值 \| 说明 \| \| Task.xlsx / Task \| 1311、1312 \| DropId=1030201 \| 1030206 \| 第一章主线分步（元晶30+行旅帧片×50） \| \| 同上 \| 1321～1323 \| DropId=103 | SYS-OUT-GP-01、SYS-OUT-SU-05、SYS-OUT-SU-07 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |
 | `NATOM-5774DFEC623E` | ACTIVE | 风险与待展开 | 正式与设计源表 ID 不一致：源表建议 `200201-200405`，正式为 `110201-110405`；模块生成脚本需要统一映射。 正式第 1 章困难 5 关未出现在经济源表设计节点中，并且已确认当前未实装；脚本固化时需要排除出当前投放口径，避免误计入。 当前模块产销表按旧口径记录 15 个高难设计节点；这个数量与当前实装口径一致，但后续仍需固化首通 | SYS-OUT-GP-01、SYS-OUT-GP-02、SYS-OUT-GP-11、SYS-OUT-SU-05 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |
+| `NATOM-39535EF90AD2` | ACTIVE | 验证 | 独立复读结果：`05_验算核算/章节任务经验_20260903/published-validation.json`，状态`PASS_STATIC_WITH_RUNTIME_GATES`。覆盖： 1. Drop_other相对批次前备份：仅表尾追加63行（14主线行+49经验行），原有行逐格一致、顺序不变；新增行类型/数量/权重/命名逐项核对。 2. Tas | SYS-OUT-GP-01、SYS-OUT-SU-05、SYS-OUT-SU-07 | vgame-knowledge-router、game-numerical-analysis、senior-game-economy |

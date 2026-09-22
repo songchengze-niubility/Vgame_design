@@ -58,7 +58,7 @@ ${VGAME_ROOT}              <- 项目工程与真实配置（SVN）
 | 需要形成落地方案 | `proposals/TEMPLATE.md` |
 | 需要拆任务 | `tasks/TEMPLATE.md` |
 | 需要做数值案、成长/经济/战斗/概率规划或落表 | `harness/numerical-design-workflow.md` |
-| 需要执行全量数值生产、查看 44 份终稿或运行数值门禁 | `numerical-workflows/v2/README.md`、`numerical-workflows/v2/framework/04_数值文档/`、`scripts/numerical-workflows/run_production.py` |
+| 需要执行全量数值生产、查看 43 份 QA 数值交付或运行数值门禁 | `numerical-workflows/v2/README.md`、`numerical-workflows/v2/framework/04_数值文档/`、`scripts/numerical-workflows/run_production.py` |
 | 需要看仓库约束 | `golden-principles.md` |
 | 需要跑门禁 | `harness/maintenance-gates.md`、`scripts/check.ps1` |
 | 涉及跨仓改动 | `CROSS-REPO-CHANGES.md` |
